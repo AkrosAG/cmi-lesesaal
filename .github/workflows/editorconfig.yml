@@ -1,0 +1,20 @@
+name: Pre-Merge Validates
+on: 
+  pull_request:
+    branches:  
+      - develop
+      
+jobs:
+  pre_merge_validates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+        
+      - name: Run dotnet format
+        run: dotnet format whitespace ./src/MetaTool.sln --verify-no-changes --no-restore
