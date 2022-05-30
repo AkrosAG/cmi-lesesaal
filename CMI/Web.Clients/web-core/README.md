@@ -1,85 +1,88 @@
-# Master-Stand
-Dies ist der Master-Stand dieses Repositories.
-Eine Kopie davon wird regelmässig OpenSource publiziert.
-Das zugehörige ReadMe befindet sich hier: 
-[OpenSource-Readme](os_readme.md)
+# cmi-viaduc-web-core
+- [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc)
+   - **[cmi-viaduc-web-core](https://github.com/SwissFederalArchives/cmi-viaduc-web-core)** :triangular_flag_on_post:
+   - [cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)
+   - [cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)
+   - [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)
 
-## Anleitung zur OpenSource-Veröffentlichung
-Siehe:
-https://cminformatik.atlassian.net/wiki/spaces/VIAD/pages/2771812482/Sourcecode+Opensource+publizieren
+# Context
 
-# NPM-Package
-Dieses Repo wird als NPM-Package publiziert und durch cmi-viaduc-web-frontend und cmi-viaduc-web-management eingebunden.
-Es ist möglich dieses Repo auch lokal einzubinden. Dazu muss dieses Projekt gebuildet werden `npm run build` und anschliessend im Zielprojekt (z.B. cmi-viaduc-web-frontend) verlinkt werden (`npm run link`).
+The [Viaduc](https://github.com/SwissFederalArchives/cmi-viaduc) project includes 4 code repositories. The present repository `cmi-viaduc-web-core` is an Angular library. This library is used in the other two applications _public access_ ([cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)) and _internal management_ ([cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)) as a common code base and component library. The frontend applications are hosted in an `ASP.NET` container (see _backend_ repository [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)) and communicate with the system via web API.
 
-Das NPM Package wird durch Teamcity automatisch erzeugt und landet anschliessend in der MyGet-Registry (https://www.myget.org/feed/cmiag-nuget/package/npm/@cmi/viaduc-web-core)
-- Builds ab einem PR ergeben ein x.x.x-beta NPM-Package
-- Builds ab develop oder master ergeben ein x.x.x.x NPM-Package
-- Die ersten beiden Versionsnummern in `version.json` müssen gemäss Semantic-Versioning von Hand angepasst werden (Breaking Change -> Neue Major-Version)
+![The Big-Picture](docs/imgs/context.svg)
 
-Um das Package aus dem CMI-Internen Feed zu konsumieren wird ein MyGet-Account benötigt, welcher auf den cmiag-nuget Feed berechtigt wird.
-Danach muss via NPM folgende Befehle abgesetzt werden:
-- `npm login --registry https://www.myget.org/F/cmiag-nuget/npm/ --scope=@cmi`
-- Es folgt die Eingabe des MyGet Benutzername
-- Anschliessend muss der API-Key [hier zu finden](https://www.myget.org/feed/Details/cmiag-nuget) eingegeben werden
-- Schlussendlich noch die geschäftliche E-Mailadresse
+> Note: A general description of the repositories can be found in the repository [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc).
 
-anschliessend kann das Package mittels `npm i` aus MyGet installiert werden.
+# Architecture and components
 
-# Gitflow & Reviews
-Wir benutzen den Gitflow (CMI-Version)
-Siehe https://cminformatik.atlassian.net/wiki/spaces/EN/pages/234553356/Git-Workflow+Guideline
+This is an Angular CLI library published in an internal package feed and included in the [cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend) and [cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management) projects.
+It contains components, services and model classes that are needed in both projects.
 
-Jegliche Änderungen werden nur in separaten Featurebranches via PullRequest und mind. einem "approved" Review gemerged.
-Info's wie wir das Review durchführen siehe: 
-https://cminformatik.atlassian.net/wiki/spaces/EN/pages/234553356/Git-Workflow+Guideline#Git-WorkflowGuideline-Code-Review
+## Modules
 
-# Guidelines
-- Es wird nichts committet, was nicht buildet (auch TSLint-Regeln)
-- Anzahl Codezeilen sind vereinbar mit der Komplexität des geschriebenen Codes
-- Businesslogik gehört in Services
-- private Methoden und Properties und Fields müssen mit einem Underscore ('_' prefixt werden)
-- AngularJS / Typescriptfeatures wie truthy/falsy sind zu gebraucehn, um "unnötige singleline" Methoden zu vermeiden
-- Alle arbeiten mit demselben Indent (Tabs), die Webstorm Config dafür kann bei jedem Mitarbeiter verlangt werden
-- Über Webstorm -> Code -> Reformat Code stellt man sicher, dass bestehender Code die richtigen Indents haben
-- neue Pages (über's Routing "Routes.ts" erreichbare Components) gehören in /app/component, restliche componenten gehören in /client/components/
-- Components-CSS dürfen nur Styles enthalten, die die jenige Component betrifft und mit einem Namespace geprifxt werden (z.B. tree-node-link)
-- Services die im Konstruktor injected werden und ausserhalb vom Konstruktor verwendet werden, werden mit "private" direkt zu einem Field gemacht
-- ToDo's müssen als "// ToDo: {Bemerkung} " ausgewiesen sein und spezifizieren was noch offen ist, 
-z.B. // ToDo: Favoriten Service anbinden
-- Auskommentierter Code muss beim Merge in den develop entfernt werden
-- Nicht mehr benötigte console.logs dürfen nicht in den develop gemerged werden
-- Aus laufender Erfahrung können weitere Punkte hinzukommen
+- `core`
+  - Common components for running the application, e.g. Configs, BreadCrumbs, ErrorHandling, Modals
+- `orders`
+  - Components for the order management part in the public and management client
+- `tooltip`
+  - Tooltip component
+- `wijmo`
+  - Custom implementation of the Wijmo grid with extended functionality (e.g. save sort states, filters, etc.)
+  - Note: For productive use of this component a Wijmo license is required. It can be ordered at `https://www.grapecity.com/wijmo/licensing`.
 
-# UX
-- Mockup anhand Bundes CI/CD Guinelines (https://swiss.github.io/styleguide/de/) Elementen umsetzen
-- Flex Elemente können abgeändert werden
-- Wenn Fixe Elemente abgeändert werden, muss der Kunde im Ticket entsprechend informiert werden
+# Installation
 
-## Icons
-- Erste Anlaufstelle:
-https://swiss.github.io/styleguide/de/general.html#02-general-08-icons
-- Zweite Anlaufstelle:
-https://getbootstrap.com/docs/3.3/components/ (Glyphicons)
+## Preparations
 
-# Best-Pracites
-- Bestehende Elemente verwenden (Fragen, ob etwas bereits da ist)
+- [Node.js download](https://nodejs.org/en/), LTS-version
+- Make sure that old angular/cli versions are uninstalled
+  - `npm uninstall angular-cli`
+  - `npm uninstall @angular/cli`
+  - `npm cache clean --force`
+- Install Angular CLI
+  - `npm install -g @angular/cli`
 
-# CI / Automated Testing
-- In den Angular Repositories wird bei jedem Pullrequest ein CI Build durch Teamcity ausgelöst. Er führt einen provisorischen Merge mit dem develop Branch durch und meldet das Resultat in Github zurück (Sichtbar im Pullrequest).
+## Install
 
-# Testing
-- Fokus auf Logik in Services
+- Install packages with `npm i`
+- Build library with `npm run build`
 
-## End of Sprint Process 
-Voraussetzung:
-- Alle Featurebranches welche im Sprint enthalten sein müssen, müssen gemerged sein (oder sonst muss bewusst Entschieden werden, ob das Feature weggelassen werden kann)
+# Customization
 
-Ablauf:
-- Kontrollieren, ob alle benötigtigen Featurebranches gemerged wurden
-- Develop Branch in den Master mergen
-- Gemergde Feature Branches (ausgehend vom Develop) löschen
-- Teamcity Releasebuild erstellen
-- Develop im Github Tag / Release ziehen
-- Mitarbeiter die noch pendente Feature Branches haben, müssen den neuen Sprintbranch in ihren Branch ziehen um Merge Konflikte zu verhindern
+## General
 
+- Pay attention to TSLint
+- Move business logic to services
+
+## Run tests
+
+- Run tests once `ng test --watch=false`
+- Run tests as watcher `ng test`
+
+## Embedding the library
+
+The library `cmi-viaduc-web-core` must be delivered as part of an application.
+
+- Either this is done via the internal MyGet feed using `npm i` in the application (e.g.: `cmi-viaduc-web-frontend`)
+- Or the library can be included locally. For this, the following steps are required:
+  - Make sure that `cmi-viaduc-web-core`, `cmi-viaduc-web-management` and `cmi-viaduc-web-frontend` are in the same root in the filesystem (e.g. `C:\Viaduc`).
+  - Build the library `cmi-viaduc-web-core` with `npm run build`.
+  - In the target application (e.g. `cmi-viaduc-web-frontend`) link the library using `npm run link`.
+
+# Authors
+
+- [CM Informatik AG](https://cmiag.ch)
+- [Evelix GmbH](https://evelix.ch)
+
+# License
+
+GNU Affero General Public License (AGPLv3), see [LICENSE](LICENSE.TXT).
+
+# Contribute
+
+This repository is a copy which is updated regularly - therefore contributions via pull requests are not possible. However, independent copies (forks) are possible under consideration of the AGPLV3 license.
+
+# Contact
+
+- For general questions (and technical support), please contact the Swiss Federal Archives by e-mail at bundesarchiv@bar.admin.ch.
+- Technical questions or problems concerning the source code can be posted here on GitHub via the "Issues" interface.
