@@ -11,7 +11,7 @@ namespace CMI.Web.Frontend.api.Controllers
     {
         private UserAccessProvider userAccessProvider;
 
-        protected FrontendSettingsViaduc Settings => FrontendSettingsViaduc.Instance;
+        protected FrontendSettings Settings => FrontendSettings.Instance;
 
         /// <summary>
         ///     Falls die Methode true zurückgibt, muss der der Benutzer

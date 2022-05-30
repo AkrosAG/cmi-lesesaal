@@ -28,7 +28,7 @@ namespace CMI.Web.Management.DependencyInjection
             builder.RegisterType<ExcelExportHelper>().AsSelf();
             builder.RegisterType<CacheHelper>().As<ICacheHelper>().WithParameter("sftpLicenseKey", WebHelper.Settings["sftpLicenseKey"]);
             
-            var connectionString = ManagementSettingsViaduc.Instance.SqlConnectionString;
+            var connectionString = ManagementSettings.Instance.SqlConnectionString;
             builder.RegisterType<UserDataAccess>().As<IUserDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);
             builder.RegisterType<ApplicationRoleDataAccess>().As<IApplicationRoleDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);
             builder.RegisterType<ApplicationRoleUserDataAccess>().As<IApplicationRoleUserDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);

@@ -106,7 +106,7 @@ namespace CMI.Web.Frontend.api.Search
 
         public static void InitDictionaries()
         {
-            var settings = FrontendSettingsViaduc.Instance.GetServerSettings().DeepClone() as JObject;
+            var settings = FrontendSettings.Instance.GetServerSettings().DeepClone() as JObject;
             var searchSettings = SettingsHelper.GetSettingsFor<SearchSetting>(settings, "search");
 
             searchFieldDefinitionsByKey = searchSettings.AdvancedSearchFields.ToDictionary(s => s.Key);

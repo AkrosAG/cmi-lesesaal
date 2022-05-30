@@ -9,7 +9,7 @@ using Serilog;
 
 namespace CMI.Access.Sql.Lesesaal.EF
 {
-    public class ViaducDbCommandInterceptor : IDbCommandInterceptor
+    public class LesesaalDbCommandInterceptor : IDbCommandInterceptor
     {
         public void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
         {

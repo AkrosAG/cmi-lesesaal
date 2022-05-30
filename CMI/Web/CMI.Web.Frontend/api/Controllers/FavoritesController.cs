@@ -126,8 +126,8 @@ namespace CMI.Web.Frontend.api.Controllers
             list.Items = GetFavoritesContainedOnList(listId);
             var language = GetUserAccess(WebHelper.GetClientLanguage(Request)).Language;
             return ResponseMessage(veExportRecordHelper.CreateExcelFile(ConvertExportData(list.Items.Where(i => i is VeFavorite).ToList()), language,
-                    FrontendSettingsViaduc.Instance.GetTranslation(language, "accountFavoritesDetailPageComponent.fileName") + $"{list.Name}.xlsx",
-                FrontendSettingsViaduc.Instance.GetTranslation("en", "accountFavoritesDetailPageComponent.fileName") + $"{DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss")}.xlsx"));
+                    FrontendSettings.Instance.GetTranslation(language, "accountFavoritesDetailPageComponent.fileName") + $"{list.Name}.xlsx",
+                FrontendSettings.Instance.GetTranslation("en", "accountFavoritesDetailPageComponent.fileName") + $"{DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss")}.xlsx"));
         }
 
         [HttpPost]

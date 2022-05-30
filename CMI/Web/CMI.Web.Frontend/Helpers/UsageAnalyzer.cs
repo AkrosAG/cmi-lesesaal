@@ -80,7 +80,7 @@ namespace CMI.Web.Frontend.Helpers
 
         public string GetText(TimeSpan span, string language)
         {
-            var translationSettings = FrontendSettingsViaduc.Instance;
+            var translationSettings = FrontendSettings.Instance;
             var sb = new StringBuilder();
 
             if (span.Days > 0)

@@ -596,7 +596,7 @@
     <Compile Include="api\Elastic\ElasticQuery.cs" />
     <Compile Include="api\Elastic\ElasticQueryResult.cs" />
     <Compile Include="api\Elastic\ElasticService.cs" />
-    <Compile Include="api\Configuration\FrontendSettingsViaduc.cs" />
+    <Compile Include="api\Configuration\FrontendSettings.cs" />
     <Compile Include="api\Configuration\ServerSettings.cs" />
     <Compile Include="api\Configuration\ServerSettingsModels.cs" />
     <Compile Include="api\Controllers\ApiFrontendControllerBase.cs" />

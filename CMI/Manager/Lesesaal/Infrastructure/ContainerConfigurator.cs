@@ -22,7 +22,7 @@ namespace CMI.Manager.Lesesaal.Infrastructure
             RegisterBus(builder);
 
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
-            builder.RegisterType<ViaducDb>().AsSelf().WithParameter(nameof(connectionString), connectionString); ;
+            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString); ;
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
             builder.RegisterType<CollectionAccess>().As<ICollectionAccess>();
             builder.RegisterType<CollectionManager>().As<ICollectionManager>();
@@ -51,7 +51,7 @@ namespace CMI.Manager.Lesesaal.Infrastructure
         private static void RegisterBus(ContainerBuilder builder)
         {
             var helper = new ParameterBusHelper();
-            BusConfigurator.ConfigureBus(builder, MonitoredServices.ViaducService,
+            BusConfigurator.ConfigureBus(builder, MonitoredServices.LesesaalService,
                 (cfg, ctx) => { helper.SubscribeAllSettingsInAssembly(Assembly.GetExecutingAssembly(), cfg); });
         }
     }

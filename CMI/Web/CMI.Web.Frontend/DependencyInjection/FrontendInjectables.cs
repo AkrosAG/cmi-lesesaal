@@ -28,7 +28,7 @@ namespace CMI.Web.Frontend.DependencyInjection
     {
         public static void RegisterFrontendInjectables(this ContainerBuilder builder)
         {
-            var connectionString = FrontendSettingsViaduc.Instance.SqlConnectionString;
+            var connectionString = FrontendSettings.Instance.SqlConnectionString;
             var sftpLicenseKey = WebHelper.Settings["sftpLicenseKey"];
 
             builder.RegisterType<ExcelExportHelper>().AsSelf();
@@ -56,7 +56,7 @@ namespace CMI.Web.Frontend.DependencyInjection
             builder.RegisterType<OrderManagerClient>().As<IPublicOrder>();
             builder.RegisterType<FileDownloadHelper>().As<IFileDownloadHelper>();
 
-            builder.Register(c => FrontendSettingsViaduc.Instance).As<ITranslator>().SingleInstance().ExternallyOwned();
+            builder.Register(c => FrontendSettings.Instance).As<ITranslator>().SingleInstance().ExternallyOwned();
             builder.Register(c => new UsageAnalyzer(GetUsageSettings(), UsageType.Download)).As<IUsageAnalyzer>().SingleInstance().ExternallyOwned();
 
             builder.RegisterType<UserDataAccess>().As<IUserDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);
@@ -78,7 +78,7 @@ namespace CMI.Web.Frontend.DependencyInjection
 
         private static DownloadUsageSettings GetUsageSettings()
         {
-            var settings = FrontendSettingsViaduc.Instance.GetServerSettings();
+            var settings = FrontendSettings.Instance.GetServerSettings();
             var block = JsonHelper.FindTokenValue<JObject>(settings, "block");
             var usage = JsonHelper.GetByPath<JObject>(block, "download");
             var usageSettings = usage != null ? usage.ToObject<DownloadUsageSettings>() : new DownloadUsageSettings();

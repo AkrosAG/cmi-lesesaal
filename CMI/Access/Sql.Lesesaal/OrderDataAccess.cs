@@ -1101,7 +1101,7 @@ namespace CMI.Access.Sql.Lesesaal
         public Task<List<OrderItemByUser>> GetOrderItemsByUser(int[] orderItemIds)
         {
             var retVal = new List<OrderItemByUser>();
-            using (var context = new ViaducContext(connectionString))
+            using (var context = new LesesaalContext(connectionString))
             {
                 var orderItemsByUser = context.OrderingFlatItem.Where(o => orderItemIds.Contains(o.ItemId)).GroupBy(o => o.UserId);
                 foreach (var orderItemByUser in orderItemsByUser)

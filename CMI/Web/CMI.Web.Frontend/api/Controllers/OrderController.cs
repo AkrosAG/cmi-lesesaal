@@ -130,7 +130,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 return Content(HttpStatusCode.OK, new OrderItemDto {VeId = veId});
             }
 
-            var settings = FrontendSettingsViaduc.Instance;
+            var settings = FrontendSettings.Instance;
             var unknowText = settings.GetTranslation(WebHelper.GetClientLanguage(Request), "order.unknowtext",
                 "[Nicht sichtbar]");
             var indexSnapShot = OrderHelper.GetOrderingIndexSnapshot(entity, unknowText);
@@ -262,7 +262,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     }
 
                     orderParams.Comment = string.Join(" ", orderParams.Comment,
-                        FrontendSettingsViaduc.Instance.GetTranslation(WebHelper.GetClientLanguage(Request),
+                        FrontendSettings.Instance.GetTranslation(WebHelper.GetClientLanguage(Request),
                             "order.frombar", "(Diese Bestellung wurde durch das Bundesarchiv ausgelöst.)"));
                 }
 

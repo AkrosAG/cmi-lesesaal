@@ -65,31 +65,31 @@
     <Compile Include="MissingDllWorkaround.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Viaduc.Converters.cs">
-      <DependentUpon>Viaduc.edml</DependentUpon>
+      <DependentUpon>Lesesaal.edml</DependentUpon>
     </Compile>
-    <Compile Include="Viaduc.Designer.cs">
+    <Compile Include="Lesesaal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Viaduc.edml</DependentUpon>
+      <DependentUpon>Lesesaal.edml</DependentUpon>
     </Compile>
-    <Compile Include="ViaducDbCommandInterceptor.cs" />
+    <Compile Include="LesesaalDbCommandInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Viaduc.csdl" />
+    <EmbeddedResource Include="Lesesaal.csdl" />
     <None Include="Viaduc.Diagram1.view">
-      <DependentUpon>Viaduc.edml</DependentUpon>
+      <DependentUpon>Lesesaal.edml</DependentUpon>
     </None>
-    <DevartEntityDeploy Include="Viaduc.edml">
+    <DevartEntityDeploy Include="Lesesaal.edml">
       <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>Viaduc.Designer.cs</LastGenOutput>
+      <LastGenOutput>Lesesaal.cs</LastGenOutput>
     </DevartEntityDeploy>
     <None Include="Viaduc.edps">
-      <DependentUpon>Viaduc.edml</DependentUpon>
+      <DependentUpon>Lesesaal.edml</DependentUpon>
     </None>
-    <EmbeddedResource Include="Viaduc.msl" />
-    <EmbeddedResource Include="Viaduc.ssdl" />
+    <EmbeddedResource Include="Lesesaal.msl" />
+    <EmbeddedResource Include="Lesesaal.ssdl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

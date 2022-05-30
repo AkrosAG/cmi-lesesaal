@@ -15,13 +15,13 @@ namespace CMI.Access.Sql.Lesesaal.EF
 {
     public class CollectionAccess : ICollectionAccess
     {
-        private readonly ViaducDb dbContext;
+        private readonly LesesaalDb dbContext;
         private readonly Size defaultTargetSize = new Size(800, 565);
         private readonly int maxThumbnailSize = 200;
 
-        public CollectionAccess(ViaducDb dbContext)
+        public CollectionAccess(LesesaalDb dbContext)
         {
-            DbInterception.Add(new ViaducDbCommandInterceptor());
+            DbInterception.Add(new LesesaalDbCommandInterceptor());
             this.dbContext = dbContext;
         }
 

@@ -192,7 +192,7 @@ namespace CMI.Web.Management.api.Controllers
 
         private async Task<OrderingFlatDetailItem> GetOrderingDetailItemInternal(int id, bool nichtSichtbarEinsehen = false)
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             var flatItem = ctx.OrderingFlatItem.FirstOrDefault(i => i.ItemId == id);
 
             if (flatItem == null)
@@ -235,7 +235,7 @@ namespace CMI.Web.Management.api.Controllers
 
         private List<OrderingFlatItem> GetItemsToCheck(int[] orderItemids)
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             return ctx.OrderingFlatItem.Where(i => orderItemids.Contains(i.ItemId)).ToList();
         }
 
@@ -612,7 +612,7 @@ namespace CMI.Web.Management.api.Controllers
 
         private bool CheckNurMahnbareAuftraegeEnthalten(List<int> orderItemIds)
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             var items = ctx.OrderingFlatItem.Where(i => orderItemIds.Contains(i.ItemId) &&
                                                         (i.Status != (int) OrderStatesInternal.Ausgeliehen ||
                                                          !(i.OrderingType == (int) OrderType.Lesesaalausleihen ||
@@ -622,7 +622,7 @@ namespace CMI.Web.Management.api.Controllers
 
         private bool CheckNurErinnerbareAuftraegeEnthalten(List<int> orderItemIds)
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             var items = ctx.OrderingFlatItem.Where(i => orderItemIds.Contains(i.ItemId) &&
                                                         (i.Status != (int)OrderStatesInternal.Ausgeliehen ||
                                                          i.OrderingType != (int)OrderType.Lesesaalausleihen)).ToList();

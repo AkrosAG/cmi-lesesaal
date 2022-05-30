@@ -240,7 +240,7 @@ namespace CMI.Web.Management.api.Controllers
 
         private MonitoringResult TestDb()
         {
-            var connectionString = ManagementSettingsViaduc.Instance.SqlConnectionString;
+            var connectionString = ManagementSettings.Instance.SqlConnectionString;
             var watch = new Stopwatch();
 
             watch.Start();

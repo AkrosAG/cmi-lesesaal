@@ -19,7 +19,7 @@ namespace CMI.Web.Management.api.Controllers
             AllowedFunctions = AllowedFunctions.AllFunctions, AllowedLogicalOperators = AllowedLogicalOperators.All, MaxNodeCount = 500)]
         public IHttpActionResult Get()
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             var access = ManagementHelper.GetUserAccess();
 
             var items = ctx.OrderingFlatItem.AsQueryable()

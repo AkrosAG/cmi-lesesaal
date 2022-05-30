@@ -24,14 +24,14 @@ namespace CMI.Web.Frontend.Controllers
                 return Redirect(new Uri(baseUrl + Request.Url.Query, UriKind.Relative).ToString());
             }
 
-            var translations = WebHelper.InjectTranslations ? FrontendSettingsViaduc.Instance.GetTranslations(language) : null;
-            var settings = WebHelper.InjectSettings ? FrontendSettingsViaduc.Instance.GetSettings() : null;
+            var translations = WebHelper.InjectTranslations ? FrontendSettings.Instance.GetTranslations(language) : null;
+            var settings = WebHelper.InjectSettings ? FrontendSettings.Instance.GetSettings() : null;
 
             var formatting = Formatting.None;
             ViewBag.Translations = translations != null ? JsonConvert.SerializeObject(translations, formatting) : string.Empty;
             ViewBag.Settings = settings != null ? JsonConvert.SerializeObject(settings, formatting) : string.Empty;
 
-            var title = FrontendSettingsViaduc.Instance.GetTranslation(language, "page.title", "Schweizerisches Bundesarchiv BAR");
+            var title = FrontendSettings.Instance.GetTranslation(language, "page.title", "Schweizerisches Bundesarchiv BAR");
             ViewBag.StaticContent =
                 FrontendHelper.GetStaticIndexContent(Request, language, title, ViewBag.Translations, ViewBag.Settings, ViewBag.ModelData);
 

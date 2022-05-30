@@ -136,7 +136,7 @@
     <Compile Include="Properties\Documentation.cs" />
     <Compile Include="ReadStammdatenConsumer.cs" />
     <Compile Include="ReadUserInformationConsumer.cs" />
-    <Compile Include="ViaducService.cs" />
+    <Compile Include="LesesaalService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

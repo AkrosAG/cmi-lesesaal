@@ -16,7 +16,7 @@ namespace CMI.Web.Management.Helpers
                 new JsonAppData
                 {
                     Info = "Public/Settings",
-                    Root = ManagementSettingsViaduc.Instance.GetServerSettings(),
+                    Root = ManagementSettings.Instance.GetServerSettings(),
                     Mappings = new List<JsonDataMapping>()
                 }
             };

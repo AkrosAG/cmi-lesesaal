@@ -9,9 +9,9 @@ namespace CMI.Host.Lesesaal
         {
             HostFactory.Run(x =>
             {
-                x.Service<ViaducService>(s =>
+                x.Service<LesesaalService>(s =>
                 {
-                    s.ConstructUsing(name => new ViaducService());
+                    s.ConstructUsing(name => new LesesaalService());
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });
