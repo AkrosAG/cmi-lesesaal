@@ -1,0 +1,29 @@
+{
+  "name": "@cmi/viaduc-web-core",
+  "version": "1.1.2",
+  "typings": "typings.d.ts",
+  "main": "public_api.ts",
+  "scripts": {
+    "build:echo:warning": "echo \"\\033[33mPost-Removing Ivy-Publish-Blocker-Scripts\"",
+    "build:remove:ivy-publishblock": "node ../../../scripts/removePrepublishScript.ts",
+    "prepare": "npm run build:remove:ivy-publishblock"
+  },
+  "peerDependencies": {
+    "@angular/animations": "12.0.4",
+    "@angular/common": "12.0.4",
+    "@angular/compiler": "12.0.4",
+    "@angular/core": "12.0.4",
+    "@angular/forms": "12.0.4",
+    "@angular/language-service": "12.0.4",
+    "@angular/platform-browser": "12.0.4",
+    "@angular/platform-browser-dynamic": "12.0.4",
+    "@angular/router": "12.0.4",
+    "rxjs": "6.6.7",
+    "moment": "^2.29.1",
+    "ngx-toastr": "14.0.0",
+    "pikaday": "1.8.2",
+    "@grapecity/wijmo.angular2.all": "^5.20211.792",
+    "file-saver": "2.0.5",
+    "jszip": "3.7.1"
+  }
+}
