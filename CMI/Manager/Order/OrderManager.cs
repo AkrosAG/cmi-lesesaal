@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Extensions;
 using CMI.Contract.Order;

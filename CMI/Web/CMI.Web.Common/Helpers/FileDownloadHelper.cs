@@ -20,7 +20,7 @@ namespace CMI.Web.Common.Helpers
 
         public string CreateDownloadToken()
         {
-            const string salt = "Viaduc Download Token Hash";
+            const string salt = "Lesesaal Download Token Hash";
             var bytes = Encoding.UTF8.GetBytes(salt + Guid.NewGuid().ToString("N") + DateTime.Now.Ticks);
             using (var sha = SHA1.Create())
             {

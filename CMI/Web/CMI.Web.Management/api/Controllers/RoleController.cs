@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Transactions;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Logging.Configurator;
 using CMI.Web.Common.api;

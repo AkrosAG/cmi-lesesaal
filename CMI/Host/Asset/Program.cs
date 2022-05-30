@@ -18,7 +18,7 @@ namespace CMI.Host.Asset
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The asset service works on zip packages from the digital repository.");
-                x.SetDisplayName("CMI Viaduc Asset Service");
+                x.SetDisplayName("CMI Lesesaal Asset Service");
                 x.SetServiceName("CMIAssetService");
             });
         }

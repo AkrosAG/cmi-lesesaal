@@ -92,7 +92,7 @@
         public const string DocumentConverterExtractionStartRequestQueue = "r.documentConverter.manager.extractionStartRequest";
         public const string DocumentConverterSupportedFileTypesRequestQueue = "r.documentConverter.manager.supportedFileTypesRequest";
 
-        // Events the Viaduc Service subscribes to
+        // Events the Lesesaal Service subscribes to
         public const string ReadUserInformationQueue = "r.viaduc.manager.readuserinformation";
         public const string ReadStammdatenQueue = "r.viaduc.manager.readstammdaten";
         public const string ViaducManagerRequestBase = "r.viaduc.manager.{0}";

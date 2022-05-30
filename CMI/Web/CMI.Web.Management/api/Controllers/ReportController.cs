@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Order;
 using CMI.Web.Common.Helpers;
@@ -92,7 +92,7 @@ namespace CMI.Web.Management.api.Controllers
         private HttpResponseMessage CreateExcelFile(List<PrimaerdatenReportRecord> response)
         {
             var retVal = new HttpResponseMessage(HttpStatusCode.OK);
-            var file = $"Viaduc-Primaerdaten-{DateTime.Now:s}.xlsx";
+            var file = $"Lesesaal-Primaerdaten-{DateTime.Now:s}.xlsx";
             var contentType = MimeMapping.GetMimeMapping(Path.GetExtension(file));
             var format = new DateTimeFormat("dd.MM.yyyy HH:mm:ss");
 

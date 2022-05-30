@@ -19,7 +19,7 @@ namespace CMI.Host.Harvest
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The harvest service gets pending sync operation from the bus and gathers the data from the AIS.");
-                x.SetDisplayName("CMI Viaduc Harvest Service");
+                x.SetDisplayName("CMI Lesesaal Harvest Service");
                 x.SetServiceName("CMIHarvestService");
             });
         }

@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
 using System.Web.Optimization;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Logging.Configurator;
 using CMI.Web.Common;
@@ -68,7 +68,7 @@ namespace CMI.Web.Management
         private void EnableSwagger(IAppBuilder app, HttpConfiguration config)
         {
             config
-                .EnableSwagger(c => c.SingleApiVersion("v1", "Schnittstelle Manager Client Viaduc"))
+                .EnableSwagger(c => c.SingleApiVersion("v1", "Schnittstelle Manager Client Lesesaal"))
                 .EnableSwaggerUi();
             app.UseSwaggerUi3(typeof(Startup).Assembly, settings =>
             {

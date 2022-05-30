@@ -43,7 +43,7 @@ namespace CMI.Manager.Vecteur
                     {
                         document.Info.Title = "Vecteur API";
                         document.Info.Version = "v1";
-                        document.Info.Description = "API um Aufträge aus Viaduc zu verarbeiten.";
+                        document.Info.Description = "API um Aufträge aus Lesesaal zu verarbeiten.";
                         document.SecurityDefinitions.Add("ApiKey", new SwaggerSecurityScheme
                         {
                             Type = SwaggerSecuritySchemeType.ApiKey,

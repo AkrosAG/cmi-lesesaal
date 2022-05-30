@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Order;

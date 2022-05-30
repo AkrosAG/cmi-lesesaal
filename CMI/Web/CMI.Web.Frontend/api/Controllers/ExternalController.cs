@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Logging.Configurator;
 using CMI.Web.Common.api;

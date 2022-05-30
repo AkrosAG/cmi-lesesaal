@@ -18,7 +18,7 @@ namespace CMI.Host.Repository
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The repository service gets zip packages from the digital repository.");
-                x.SetDisplayName("CMI Viaduc Repository Service");
+                x.SetDisplayName("CMI Lesesaal Repository Service");
                 x.SetServiceName("CMIRepositoryService");
             });
         }

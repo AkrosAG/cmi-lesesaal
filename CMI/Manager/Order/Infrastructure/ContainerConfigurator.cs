@@ -2,7 +2,7 @@
 using System.Reflection;
 using Autofac;
 using CMI.Access.Common;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Messaging;
 using CMI.Contract.Order;
 using CMI.Contract.Parameter;

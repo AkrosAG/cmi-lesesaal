@@ -19,7 +19,7 @@ namespace CMI.Host.Vecteur
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The vecteur service offers an API for Vecteur");
-                x.SetDisplayName("CMI Viaduc Vecteur Service");
+                x.SetDisplayName("CMI Lesesaal Vecteur Service");
                 x.SetServiceName("CMIVecteurService");
             });
         }

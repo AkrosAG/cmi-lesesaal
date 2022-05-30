@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Parameter;
 using CMI.Engine.MailTemplate;
 using CMI.Manager.Onboarding.Properties;
@@ -76,7 +76,7 @@ namespace CMI.Manager.Onboarding
                     }
                     else
                     {
-                        Log.Information("User not found in Viaduc during post-back call.");
+                        Log.Information("User not found in Lesesaal during post-back call.");
                     }
                 }
 

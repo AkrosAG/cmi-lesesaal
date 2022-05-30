@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="20.1">
     <meta>
-        <filters directoryPatterns="" filePatterns="Viaduc%20Gebrauchskopie.xpr" positiveFilePatterns="" showHiddenFiles="false"/>
+        <filters directoryPatterns="" filePatterns="Lesesaal%20Gebrauchskopie.xpr" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
             <serialized version="20.1" xml:space="preserve">
                 <serializableOrderedMap>
@@ -189,7 +189,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>file:////developerpc10/Dev/CMInformatik/Viaduc/CMI/Engine/Asset/Html/Xslt/gebrauchskopie.xsl</String>
+                                    <String>file:////developerpc10/Dev/CMInformatik/Lesesaal/CMI/Engine/Asset/Html/Xslt/gebrauchskopie.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -258,7 +258,7 @@
             </serialized>
         </options>
     </meta>
-    <projectTree name="Viaduc%20Gebrauchskopie.xpr">
+    <projectTree name="Lesesaal%20Gebrauchskopie.xpr">
         <folder path="."/>
         <file name="../../../../Contract/Common/Gebrauchskopie/gebrauchskopie.xsd"/>
     </projectTree>

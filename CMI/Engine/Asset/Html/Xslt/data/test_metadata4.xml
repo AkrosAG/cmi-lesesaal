@@ -67,7 +67,7 @@
       <aktenbildnerName>Bundesarchiv </aktenbildnerName>
     </provenienz>
     <ordnungssystem>
-      <name>Schweizerisches Bundesarchiv: Viaduc Testdaten</name>
+      <name>Schweizerisches Bundesarchiv: Lesesaal Testdaten</name>
       <ordnungssystemposition id="_ubpbIEbQEeiqjKHXAxsI6w">
         <nummer>1</nummer>
         <titel>Testdaten</titel>
@@ -87,7 +87,7 @@
           <zusatzDaten>
             <merkmal name="Signatur">E3120-05#2018/2#3*</merkmal>
             <merkmal name="Stufe">Dossier</merkmal>
-            <merkmal name="Archivplankontext">[{"IconId":4,"Level":"Archiv","RefCode":"CH-BAR#Unterlagen*","Title":"Gesamtbestand des schweizerischen Bundesarchivs (1798-)","DateRangeText":"1424-2007","ArchiveRecordId":"1"},{"IconId":10,"Level":"Hauptabteilung","RefCode":"E*","Title":"Archiv des Schweizerischen Bundesstaates ab 1848","DateRangeText":"1848-2009","ArchiveRecordId":"28"},{"IconId":5,"Level":"Bestand","RefCode":"E10796*","Title":"Schweizerisches Bundesarchiv (1979-)","DateRangeText":"1976-2004","ArchiveRecordId":"6764"},{"IconId":12,"Level":"Teilbestand","RefCode":"E3120-05*","Title":"Schweizerisches Bundesarchiv: Viaduc Testdaten","DateRangeText":"1978-1992","ArchiveRecordId":"31442817"},{"IconId":19,"Level":"Serie","RefCode":"E3120-05#1","Title":"Testdaten","DateRangeText":null,"ArchiveRecordId":"31442818"},{"IconId":2,"Level":"Dossier","RefCode":"E3120-05#2018/2#3*","Title":"JPG2000 Testdaten","DateRangeText":"1900","ArchiveRecordId":"31442821"}]</merkmal>
+            <merkmal name="Archivplankontext">[{"IconId":4,"Level":"Archiv","RefCode":"CH-BAR#Unterlagen*","Title":"Gesamtbestand des schweizerischen Bundesarchivs (1798-)","DateRangeText":"1424-2007","ArchiveRecordId":"1"},{"IconId":10,"Level":"Hauptabteilung","RefCode":"E*","Title":"Archiv des Schweizerischen Bundesstaates ab 1848","DateRangeText":"1848-2009","ArchiveRecordId":"28"},{"IconId":5,"Level":"Bestand","RefCode":"E10796*","Title":"Schweizerisches Bundesarchiv (1979-)","DateRangeText":"1976-2004","ArchiveRecordId":"6764"},{"IconId":12,"Level":"Teilbestand","RefCode":"E3120-05*","Title":"Schweizerisches Bundesarchiv: Lesesaal Testdaten","DateRangeText":"1978-1992","ArchiveRecordId":"31442817"},{"IconId":19,"Level":"Serie","RefCode":"E3120-05#1","Title":"Testdaten","DateRangeText":null,"ArchiveRecordId":"31442818"},{"IconId":2,"Level":"Dossier","RefCode":"E3120-05#2018/2#3*","Title":"JPG2000 Testdaten","DateRangeText":"1900","ArchiveRecordId":"31442821"}]</merkmal>
             <merkmal name="Identifikation digitales Magazin">f7db5abf-b476-4a05-9dc5-3d1fa26fedcc@_ubtskEbQEeiqjKHXAxsI6w</merkmal>
             <merkmal name="Entstehungszeitraum Anzeigetext">1900</merkmal>
           </zusatzDaten>

@@ -256,9 +256,9 @@
     <Compile Include="OnboardingController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Access\Sql.Viaduc\CMI.Access.Sql.Viaduc.csproj">
+    <ProjectReference Include="..\..\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj">
       <Project>{713F2501-9065-454B-9E14-2599A1F3D4E8}</Project>
-      <Name>CMI.Access.Sql.Viaduc</Name>
+      <Name>CMI.Access.Sql.Lesesaal</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Contract\Common\CMI.Contract.Common.csproj">
       <Project>{045835A1-50C3-4D61-947A-7398A9D70706}</Project>

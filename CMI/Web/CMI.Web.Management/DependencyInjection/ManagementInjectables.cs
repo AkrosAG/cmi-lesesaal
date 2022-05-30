@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Autofac;
-using CMI.Access.Sql.Viaduc;
-using CMI.Access.Sql.Viaduc.AblieferndeStellen;
-using CMI.Access.Sql.Viaduc.File;
+using CMI.Access.Sql.Lesesaal;
+using CMI.Access.Sql.Lesesaal.AblieferndeStellen;
+using CMI.Access.Sql.Lesesaal.File;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Order;

@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Reflection;
 using System.Threading;
 using Autofac;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Monitoring;
 using CMI.Contract.Parameter;
 using CMI.Manager.Onboarding.Properties;

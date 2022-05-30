@@ -316,9 +316,9 @@
       <Project>{B4E28C42-E653-4686-AD53-3458B51B2B98}</Project>
       <Name>CMI.Utilities.Security</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Access\Sql.Viaduc\CMI.Access.Sql.Viaduc.csproj">
+    <ProjectReference Include="..\..\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj">
       <Project>{713f2501-9065-454b-9e14-2599a1f3d4e8}</Project>
-      <Name>CMI.Access.Sql.Viaduc</Name>
+      <Name>CMI.Access.Sql.Lesesaal</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Contract\Common\CMI.Contract.Common.csproj">
       <Project>{045835a1-50c3-4d61-947a-7398a9d70706}</Project>

@@ -18,7 +18,7 @@ namespace CMI.Host.ExternalContent
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The external content service provides data from external systems.");
-                x.SetDisplayName("CMI Viaduc External Content Service");
+                x.SetDisplayName("CMI Lesesaal External Content Service");
                 x.SetServiceName("CMIExternalContentService");
             });
         }

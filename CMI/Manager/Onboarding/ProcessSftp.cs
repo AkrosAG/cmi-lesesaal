@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Parameter;
 using CMI.Engine.MailTemplate;
@@ -149,7 +149,7 @@ namespace CMI.Manager.Onboarding
 
                     if (user == null)
                     {
-                        Log.Information("User not found in Viaduc");
+                        Log.Information("User not found in Lesesaal");
                         return;
                     }
 

@@ -30,7 +30,7 @@ namespace CMI.Web.Common.Helpers
         public string DefaultOutputRoot;
         public string DefaultDataPath;
 
-        public AppInfo Viaduc;
+        public AppInfo Lesesaal;
 
         public OutputHelper Output = new OutputHelper();
 
@@ -83,7 +83,7 @@ namespace CMI.Web.Common.Helpers
                 var started = DateTime.Now;
                 var info = string.Empty;
 
-                var appInfo = Viaduc;
+                var appInfo = Lesesaal;
 
                 var defaultFileName = "translations." + WebHelper.DefaultLanguage + ".json";
                 var partialFileName = "translations." + language + ".partial.json";
@@ -206,7 +206,7 @@ namespace CMI.Web.Common.Helpers
                 }
 
                 var generated = new JObject();
-                generated.Add("info", "CMI.Viaduc.Client.generatetranslations");
+                generated.Add("info", "CMI.Lesesaal.Client.generatetranslations");
                 generated.Add("date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 result.translations.AddFirst(new JProperty("__generated", generated));
 

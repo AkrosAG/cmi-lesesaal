@@ -18,7 +18,7 @@ namespace CMI.Host.Notification
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The notification service sends emails.");
-                x.SetDisplayName("CMI Viaduc Notification Service");
+                x.SetDisplayName("CMI Lesesaal Notification Service");
                 x.SetServiceName("CMINotificationService");
             });
         }

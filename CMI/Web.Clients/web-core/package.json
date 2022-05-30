@@ -2,7 +2,7 @@
   "name": "@cmi/viaduc-web-core",
   "version": "0.1.0",
   "license": "MIT",
-  "description": "CMI Viaduc Web Core",
+  "description": "CMI Lesesaal Web Core",
   "repository": {
     "type": "git",
     "url": "git@github.com:CMInformatik/cmi-viaduc-web-core.git"

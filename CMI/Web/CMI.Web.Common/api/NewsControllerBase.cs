@@ -1,4 +1,4 @@
-﻿using CMI.Access.Sql.Viaduc;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Web.Common.Helpers;
 
 namespace CMI.Web.Common.api

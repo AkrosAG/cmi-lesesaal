@@ -1,4 +1,4 @@
-﻿using CMI.Access.Sql.Viaduc;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 
 namespace CMI.Engine.MailTemplate

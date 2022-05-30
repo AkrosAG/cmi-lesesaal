@@ -7,7 +7,7 @@
 
 # Context
 
-The [Viaduc](https://github.com/SwissFederalArchives/cmi-viaduc) project includes 4 code repositories. The present repository `cmi-viaduc-web-core` is an Angular library. This library is used in the other two applications _public access_ ([cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)) and _internal management_ ([cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)) as a common code base and component library. The frontend applications are hosted in an `ASP.NET` container (see _backend_ repository [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)) and communicate with the system via web API.
+The [Lesesaal](https://github.com/SwissFederalArchives/cmi-viaduc) project includes 4 code repositories. The present repository `cmi-viaduc-web-core` is an Angular library. This library is used in the other two applications _public access_ ([cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)) and _internal management_ ([cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)) as a common code base and component library. The frontend applications are hosted in an `ASP.NET` container (see _backend_ repository [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)) and communicate with the system via web API.
 
 ![The Big-Picture](docs/imgs/context.svg)
 
@@ -65,7 +65,7 @@ The library `cmi-viaduc-web-core` must be delivered as part of an application.
 
 - Either this is done via the internal MyGet feed using `npm i` in the application (e.g.: `cmi-viaduc-web-frontend`)
 - Or the library can be included locally. For this, the following steps are required:
-  - Make sure that `cmi-viaduc-web-core`, `cmi-viaduc-web-management` and `cmi-viaduc-web-frontend` are in the same root in the filesystem (e.g. `C:\Viaduc`).
+  - Make sure that `cmi-viaduc-web-core`, `cmi-viaduc-web-management` and `cmi-viaduc-web-frontend` are in the same root in the filesystem (e.g. `C:\Lesesaal`).
   - Build the library `cmi-viaduc-web-core` with `npm run build`.
   - In the target application (e.g. `cmi-viaduc-web-frontend`) link the library using `npm run link`.
 

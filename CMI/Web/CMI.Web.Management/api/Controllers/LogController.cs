@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Web.Common.Helpers;
@@ -49,7 +49,7 @@ namespace CMI.Web.Management.api.Controllers
                 }
 
                 var retVal = new HttpResponseMessage(HttpStatusCode.OK);
-                var file = $"Viaduc-Log-Data-{DateTime.Now:s}.xlsx";
+                var file = $"Lesesaal-Log-Data-{DateTime.Now:s}.xlsx";
                 var contentType = MimeMapping.GetMimeMapping(Path.GetExtension(file));
 
                 using (var stream = exportHelper.ExportToExcel(response.Result.Records,

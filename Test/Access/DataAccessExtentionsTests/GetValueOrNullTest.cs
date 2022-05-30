@@ -1,4 +1,4 @@
-﻿using CMI.Access.Sql.Viaduc;
+﻿using CMI.Access.Sql.Lesesaal;
 using NUnit.Framework;
 
 namespace DataAccessExtentionsTests

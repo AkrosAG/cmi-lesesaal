@@ -81,7 +81,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Web.Frontend", "CMI\Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Web.Common", "CMI\Web\CMI.Web.Common\CMI.Web.Common.csproj", "{D0CB96A3-F09E-46F3-B3AE-DF11E627F0E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Access.Sql.Viaduc", "CMI\Access\Sql.Viaduc\CMI.Access.Sql.Viaduc.csproj", "{713F2501-9065-454B-9E14-2599A1F3D4E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Access.Sql.Lesesaal", "CMI\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj", "{713F2501-9065-454B-9E14-2599A1F3D4E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DigitalRepository", "DigitalRepository", "{1928E5E9-5D05-4172-92F3-D5F822FF78E1}"
 EndProject
@@ -198,12 +198,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abbyy", "Abbyy", "{10713F20
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{F8CDFDFA-DACC-4BA6-9853-222EE6D98290}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Host.Viaduc", "CMI\Host\Viaduc\CMI.Host.Viaduc.csproj", "{277443B8-8FDA-411D-AFCA-54E1094252E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Host.Lesesaal", "CMI\Host\Lesesaal\CMI.Host.Lesesaal.csproj", "{277443B8-8FDA-411D-AFCA-54E1094252E4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{95103430-9D5B-4D04-8F56-7FE82E91A44F} = {95103430-9D5B-4D04-8F56-7FE82E91A44F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Manager.Viaduc", "CMI\Manager\Viaduc\CMI.Manager.Viaduc.csproj", "{7F5AAD0F-1904-4427-9C6C-484826112D9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Manager.Lesesaal", "CMI\Manager\Lesesaal\CMI.Manager.Lesesaal.csproj", "{7F5AAD0F-1904-4427-9C6C-484826112D9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Host.ExternalContent", "CMI\Host\ExternalContent\CMI.Host.ExternalContent.csproj", "{A210040D-D6CF-446B-9797-F2A45E919CB0}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -317,7 +317,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Web.Frontend.API.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Tools.CacheFilesAnalysis", "CMI\Tools\CacheFilesAnalysis\CMI.Tools.CacheFilesAnalysis.csproj", "{DA8884E6-DC8C-401E-8845-F54300EDF03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Access.Sql.Viaduc.EF", "CMI\Access\Sql.Viaduc.SF\CMI.Access.Sql.Viaduc.EF.csproj", "{CED136DF-B922-481D-9F57-6E88BC91827D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Access.Sql.Lesesaal.EF", "CMI\Access\Sql.Lesesaal.SF\CMI.Access.Sql.Lesesaal.EF.csproj", "{CED136DF-B922-481D-9F57-6E88BC91827D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Clients", "Web.Clients", "{565802BB-B072-43F1-83BD-CDB83DE5BA70}"
 EndProject

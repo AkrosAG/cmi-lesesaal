@@ -23,4 +23,4 @@ $targetPath = Join-Path $PublishOutput "client"
 Write-Host "Copy " + $ClientPath + " To " + $targetPath
 cp -R $ClientPath $targetPath
 
-#cp -R P:\work\CMI.Viaduc.Client\build\dev\ C:\Temp\Release3\_PublishedWebsites\CMI.Web.Frontend\client33\
+#cp -R P:\work\CMI.Lesesaal.Client\build\dev\ C:\Temp\Release3\_PublishedWebsites\CMI.Web.Frontend\client33\

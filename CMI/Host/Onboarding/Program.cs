@@ -19,7 +19,7 @@ namespace CMI.Host.Onboarding
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The service offers digital onboarding with Swisscom");
-                x.SetDisplayName("CMI Viaduc Onboarding Service");
+                x.SetDisplayName("CMI Lesesaal Onboarding Service");
                 x.SetServiceName("CMIOnboardingService");
             });
         }

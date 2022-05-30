@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Transactions;
 using CMI.Access.Common;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Order;
 using CMI.Manager.Order.Status;
 using MassTransit;
