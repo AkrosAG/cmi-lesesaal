@@ -76,8 +76,8 @@ namespace CMI.Web.Common.api
             Log.Information("Got userId from claims: {userId}", userId);
 
             // Die SessionId wird zusätzlich in einem eigenem Cookie gespeichert, damit diese nach dem Logout kurzzeitig verwendet werden kann.
-            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcViaducUserIdKey : WebHelper.CookieMcViaducUserIdKey;
-            AddViaducSessionCookie(owinContext, userId, cookieUserIdKey);
+            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
+            AddLesesaalSessionCookie(owinContext, userId, cookieUserIdKey);
 
             // Wir merken uns die aktive SessionId um sie bei einem Logout zurückzusetzen. 
             // Dies wird beim Überprüfen der Identity genutzt um zu verhindern, dass vor einem Logout
@@ -92,7 +92,7 @@ namespace CMI.Web.Common.api
         /// <param name="owinContext"></param>
         public void OnExternalSignOut(IOwinContext owinContext, bool isPublicClient)
         {
-            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcViaducUserIdKey : WebHelper.CookieMcViaducUserIdKey;
+            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
             var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
 
             var userId = owinContext.Request.Cookies[cookieUserIdKey];
@@ -106,7 +106,7 @@ namespace CMI.Web.Common.api
             });
         }
 
-        private static void AddViaducSessionCookie(IOwinContext owinContext, string userId, string cookieUserIdKey)
+        private static void AddLesesaalSessionCookie(IOwinContext owinContext, string userId, string cookieUserIdKey)
         {
             owinContext.Response.Cookies.Append(cookieUserIdKey, userId,
                 new CookieOptions { HttpOnly = true, Secure = true, SameSite = SameSiteMode.Strict });

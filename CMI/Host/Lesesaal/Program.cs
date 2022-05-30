@@ -19,7 +19,7 @@ namespace CMI.Host.Lesesaal
 
                 x.SetDescription("The Lesesaal service allows Access to the Lesesaal database.");
                 x.SetDisplayName("CMI Lesesaal Service");
-                x.SetServiceName("CMIViaducService");
+                x.SetServiceName("CMILesesaalService");
             });
         }
     }
