@@ -16,7 +16,7 @@ export class NewsPageComponent implements OnInit {
 	}
 
 	public async ngOnInit(): Promise<void> {
-		this.news = await this._newsService.getRelevantNewsForViaducClient();
+		this.news = await this._newsService.getRelevantNews();
 	}
 
 	public get hasNews(): boolean {

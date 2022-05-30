@@ -8,11 +8,11 @@ namespace CMI.Web.Frontend.api.Controllers
     public class NewsController : NewsControllerBase
     {
         [HttpGet]
-        public IHttpActionResult GetRelevantNewsForViaducClient(string lang)
+        public IHttpActionResult GetRelevantNews(string lang)
         {
             try
             {
-                var result = newsDataAccess.GetRelevantNewsForViaducClient(lang);
+                var result = newsDataAccess.GetRelevantNews(lang);
                 return Ok(result);
             }
             catch (Exception e)

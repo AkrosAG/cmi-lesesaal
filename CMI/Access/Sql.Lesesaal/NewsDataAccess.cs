@@ -19,7 +19,7 @@ namespace CMI.Access.Sql.Lesesaal
             this.connectionString = connectionString;
         }
 
-        public List<INewsForOneLanguage> GetRelevantNewsForViaducClient(string language)
+        public List<INewsForOneLanguage> GetRelevantNews(string language)
         {
             if (language == null)
             {

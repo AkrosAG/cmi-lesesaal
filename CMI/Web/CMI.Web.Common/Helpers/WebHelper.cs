@@ -22,8 +22,8 @@ namespace CMI.Web.Common.Helpers
 
         public const string CookiePcAspNetSessionIdKey = "V_PC_ASP_SessionId";
         public const string CookieMcAspNetSessionIdKey = "V_MC_ASP_SessionId";
-        public const string CookiePcViaducUserIdKey = "V_PC_UserId";
-        public const string CookieMcViaducUserIdKey = "V_MC_UserId";
+        public const string CookiePcUserIdKey = "V_PC_UserId";
+        public const string CookieMcUserIdKey = "V_MC_UserId";
         public const string CookiePcAppliationCookieKey = "V_PC_AppCookie";
         public const string CookieMcAppliationCookieKey = "V_MC_AppCookie";
 

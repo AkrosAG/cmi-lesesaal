@@ -11,8 +11,8 @@ export class NewsService {
 				private _http: HttpService) {
 	}
 
-	public async getRelevantNewsForViaducClient(): Promise<INewsForOneLanguage[]> {
-		this._url = this._createBaseUrl() + '/GetRelevantNewsForViaducClient?lang=' + this._context.language;
+	public async getRelevantNews(): Promise<INewsForOneLanguage[]> {
+		this._url = this._createBaseUrl() + '/GetRelevantNews?lang=' + this._context.language;
 		return await this._http.get<INewsForOneLanguage[]>(this._url, this._http.noCaching).toPromise();
 	}
 
