@@ -18,7 +18,7 @@ namespace CMI.Host.Order
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The order service handles all kinds of orders.");
-                x.SetDisplayName("CMI Viaduc Order Service");
+                x.SetDisplayName("CMI Lesesaal Order Service");
                 x.SetServiceName("CMIOrderService");
             });
         }

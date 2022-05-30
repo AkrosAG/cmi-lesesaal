@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Asset;
 using CMI.Contract.Messaging;
 using CMI.Contract.Parameter;

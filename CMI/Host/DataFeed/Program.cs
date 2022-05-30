@@ -19,7 +19,7 @@ namespace CMI.Host.DataFeed
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The data feed service fetches pending mutations from the AIS and pushes the data to the bus.");
-                x.SetDisplayName("CMI Viaduc DataFeed Service");
+                x.SetDisplayName("CMI Lesesaal DataFeed Service");
                 x.SetServiceName("CMIDataFeedService");
             });
         }

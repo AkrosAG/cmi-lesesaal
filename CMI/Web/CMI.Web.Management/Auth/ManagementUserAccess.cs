@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Web.Management.api.Configuration;
 

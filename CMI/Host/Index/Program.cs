@@ -19,7 +19,7 @@ namespace CMI.Host.Index
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The index service updates data in Elasticsearch and also queries Elasticsearch");
-                x.SetDisplayName("CMI Viaduc Index Service");
+                x.SetDisplayName("CMI Lesesaal Index Service");
                 x.SetServiceName("CMIIndexService");
             });
         }

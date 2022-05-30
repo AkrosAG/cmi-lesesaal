@@ -69,7 +69,7 @@ namespace CMI.Tools.UrbanCode
                 {
                     throw new DescriptionNotSetException("Folgende Beschreibungen für den Typ " + t.AssemblyQualifiedName +
                                                          " wurden nicht gesetzt: " + string.Join(",", failedDescriptions) +
-                                                         ". Help: https://github.com/CMInformatik/Viaduc/wiki/Dokumentation-f%C3%BCr-Settings");
+                                                         ". Help: https://github.com/CMInformatik/Lesesaal/wiki/Dokumentation-f%C3%BCr-Settings");
                 }
 
                 stringBuilder.AppendLine("</table>");

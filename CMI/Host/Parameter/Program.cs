@@ -18,7 +18,7 @@ namespace CMI.Host.Parameter
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The parameter service helps makeing all parameters accessible for the management client.");
-                x.SetDisplayName("CMI Viaduc Parameter Service");
+                x.SetDisplayName("CMI Lesesaal Parameter Service");
                 x.SetServiceName("CMIParameterService");
             });
         }

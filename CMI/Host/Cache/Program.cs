@@ -19,7 +19,7 @@ namespace CMI.Host.Cache
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The service stores files over a defined period of time.");
-                x.SetDisplayName("CMI Viaduc Cache Service");
+                x.SetDisplayName("CMI Lesesaal Cache Service");
                 x.SetServiceName("CMICacheService");
             });
         }

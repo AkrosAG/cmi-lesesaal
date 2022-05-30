@@ -70,7 +70,7 @@ namespace CMI.Manager.Harvest.Consumers
 
                         // Security Check
                         // If no Metadata Access Token is present, then we end the sync process here,
-                        // as this record MUST not be synced to Viaduc
+                        // as this record MUST not be synced to Lesesaal
                         if (!archiveRecord.Security.MetadataAccessToken.Any())
                         {
                             harvestManager.UpdateMutationStatus(new MutationStatusInfo
@@ -79,7 +79,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 NewStatus = ActionStatus.SyncAborted,
                                 ChangeFromStatus = ActionStatus.SyncInProgress,
                                 ErrorMessage =
-                                    "Record can not be synced to Viaduc due to it's security level. Record should not have entered the sync queue in the first place."
+                                    "Record can not be synced to Lesesaal due to it's security level. Record should not have entered the sync queue in the first place."
                             });
                             return;
                         }

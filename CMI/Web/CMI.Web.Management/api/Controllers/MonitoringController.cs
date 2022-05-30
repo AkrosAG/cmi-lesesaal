@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
 using CMI.Utilities.Bus.Configuration;
@@ -230,7 +230,7 @@ namespace CMI.Web.Management.api.Controllers
                 {
                     MonitoredServices = "AIS DB",
                     Status = HeartbeatStatus.Nok.ToString(),
-                    Message = $"Viaduc service call failed which execute the test. Exception: {ex.Message}",
+                    Message = $"Lesesaal service call failed which execute the test. Exception: {ex.Message}",
                     ExecutionTime = watch.ElapsedMilliseconds
                 };
             }
@@ -288,7 +288,7 @@ namespace CMI.Web.Management.api.Controllers
                 {
                     MonitoredServices = "Elasticsearch",
                     Status = HeartbeatStatus.Nok.ToString(),
-                    Message = $"Viaduc service call failed which execute the test. Exception: {ex.Message}"
+                    Message = $"Lesesaal service call failed which execute the test. Exception: {ex.Message}"
                 };
             }
 
@@ -363,7 +363,7 @@ namespace CMI.Web.Management.api.Controllers
             catch (Exception ex)
             {
                 result.Status = HeartbeatStatus.Nok.ToString();
-                result.Message = $"Viaduc service call failed which execute the test. Exception: {ex.Message}";
+                result.Message = $"Lesesaal service call failed which execute the test. Exception: {ex.Message}";
             }
 
             result.ExecutionTime = watch.ElapsedMilliseconds;
@@ -406,7 +406,7 @@ namespace CMI.Web.Management.api.Controllers
                 {
                     MonitoredServices = "Abbyy Licence",
                     Status = HeartbeatStatus.Nok.ToString(),
-                    Message = $"Viaduc service call failed. Exception: {ex.Message}",
+                    Message = $"Lesesaal service call failed. Exception: {ex.Message}",
                     ExecutionTime = watch.ElapsedMilliseconds
                 };
             }
@@ -438,7 +438,7 @@ namespace CMI.Web.Management.api.Controllers
                 {
                     MonitoredServices = "Abbyy Execute",
                     Status = HeartbeatStatus.Nok.ToString(),
-                    Message = $"Viaduc service call failed. Exception: {ex.Message}",
+                    Message = $"Lesesaal service call failed. Exception: {ex.Message}",
                     ExecutionTime = watch.ElapsedMilliseconds
                 };
             }

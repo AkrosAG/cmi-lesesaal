@@ -1,7 +1,7 @@
 
 <#
 .SYNOPSIS
-    Script um einen Import in GitHub Repositories der zuvor exportierten Viaduc-Repositories zu machen.
+    Script um einen Import in GitHub Repositories der zuvor exportierten Lesesaal-Repositories zu machen.
 .DESCRIPTION
     .
 .PARAMETER GitPesonalAccessToken

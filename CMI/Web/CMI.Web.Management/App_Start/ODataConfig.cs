@@ -1,5 +1,5 @@
 ﻿using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Web.Management.api.Controllers;
 using Microsoft.AspNet.OData.Batch;
 using Microsoft.AspNet.OData.Builder;

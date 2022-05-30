@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Common.Helpers;
 using Microsoft.AspNet.OData;

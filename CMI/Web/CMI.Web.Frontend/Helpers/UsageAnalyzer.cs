@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Utilities.Common.Helpers;
 using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Configuration;

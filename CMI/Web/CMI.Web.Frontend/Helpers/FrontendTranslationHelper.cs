@@ -13,7 +13,7 @@ namespace CMI.Web.Frontend.Helpers
         {
             base.Initialize();
 
-            var vdInfo = Viaduc = new AppInfo(this, "viaducclient", "vd", "app;app/modules/client");
+            var vdInfo = Lesesaal = new AppInfo(this, "viaducclient", "vd", "app;app/modules/client");
             vdInfo.AppDatas = new List<AppData>
             {
                 new JsonAppData

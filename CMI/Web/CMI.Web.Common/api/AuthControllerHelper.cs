@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Manager.Order.Status;
 using CMI.Web.Common.Auth;
@@ -46,7 +46,7 @@ namespace CMI.Web.Common.api
 
         /// <summary>
         /// Wird aufgerufen, wenn das EIAM / SAML2-Login durchgeführt wurde.
-        /// Erstellt die Session innerhalb der Viaduc Applikation
+        /// Erstellt die Session innerhalb der Lesesaal Applikation
         /// </summary>
         /// <param name="owinContext"></param>
         /// <returns></returns>

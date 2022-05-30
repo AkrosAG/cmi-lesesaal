@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
-using CMI.Access.Sql.Viaduc;
-using CMI.Access.Sql.Viaduc.AblieferndeStellen;
+using CMI.Access.Sql.Lesesaal;
+using CMI.Access.Sql.Lesesaal.AblieferndeStellen;
 using CMI.Contract.Common;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Management.api.Data;

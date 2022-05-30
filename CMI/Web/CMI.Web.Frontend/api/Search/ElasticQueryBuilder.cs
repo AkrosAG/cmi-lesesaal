@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Utilities.Common.Helpers;
 using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Configuration;

@@ -18,7 +18,7 @@ namespace CMI.Host.Monitoring
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The monitoring service checks the hearbeat of all services.");
-                x.SetDisplayName("CMI Viaduc Monitoring Service");
+                x.SetDisplayName("CMI Lesesaal Monitoring Service");
                 x.SetServiceName("CMIMonitoringService");
             });
         }

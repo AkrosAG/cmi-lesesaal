@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 
 namespace CMI.Web.Management.api.Data
 {

@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
 using System.Web.Optimization;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Utilities.Logging.Configurator;
 using CMI.Web.Common;
 using CMI.Web.Common.Auth;
@@ -46,7 +46,7 @@ namespace CMI.Web.Frontend
             app.UseSwaggerUi3(new[] {typeof(ExternalController)}, settings =>
             {
                 settings.GeneratorSettings.DefaultUrlTemplate = "api/{controller}/{action}/{id?}";
-                settings.GeneratorSettings.Title = "Viaduc REST API";
+                settings.GeneratorSettings.Title = "Lesesaal REST API";
                 settings.GeneratorSettings.Description = @"The API lets you search the Swiss Federal Archives.";
                 settings.GeneratorSettings.Version = "1.0";
                 settings.PostProcess = doc =>

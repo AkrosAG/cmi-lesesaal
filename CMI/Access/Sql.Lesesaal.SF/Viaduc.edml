@@ -1,0 +1,702 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CMI.Access.Sql.Lesesaal.EF.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ViaducEntitiesStoreContainer">
+          <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.Collection" store:Type="Tables" Schema="dbo" Table="Collection" />
+          <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
+          <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.ApplicationUser" store:Type="Tables" Schema="dbo" Table="ApplicationUser" />
+          <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
+            <End Role="Collection" EntitySet="Collections" />
+            <End Role="Collection1" EntitySet="Collections" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity">
+            <Documentation>
+              <Summary>Primarykey </Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ParentId" Type="int">
+            <Documentation>
+              <Summary>Points to the parent collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="2" devart:DefaultValue="'de'" DefaultValue="de">
+            <Documentation>
+              <Summary>The language as ISO code de, en, fr</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="255">
+            <Documentation>
+              <Summary>Title of the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="DescriptionShort" Type="nvarchar" Nullable="false" MaxLength="512">
+            <Documentation>
+              <Summary>A short description of the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false">
+            <Documentation>
+              <Summary>A full description of the collection in markup language</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ValidFrom" Type="datetime2" Nullable="false" devart:DefaultValue="getdate()">
+            <Documentation>
+              <Summary>From which point in time the collection should be visible to the users</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ValidTo" Type="datetime2" Nullable="false">
+            <Documentation>
+              <Summary>Until which point in time the collection should be visible to the users</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CollectionTypeId" Type="int" Nullable="false">
+            <Documentation>
+              <Summary>Indicates the type of collections: Themenblöcke and Ausstellungen (Topics and Collections)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Image" Type="varbinary(max)">
+            <Documentation>
+              <Summary>An image that gives a hint to the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Thumbnail" Type="varbinary(max)">
+            <Documentation>
+              <Summary>The thumbnail to the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ImageAltText" Type="nvarchar" MaxLength="255">
+            <Documentation>
+              <Summary>The accessibility help information for the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ImageMimeType" Type="nvarchar" MaxLength="255">
+            <Documentation>
+              <Summary>The mime type of the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Link" Type="nvarchar" MaxLength="4000">
+            <Documentation>
+              <Summary>The URL that will lead the user to the collection details</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CollectionPath" Type="nvarchar" Nullable="false" MaxLength="400">
+            <Documentation>
+              <Summary>The path of the item consisting of a padded string of the ids from first parent to current item.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="SortOrder" Type="int" Nullable="false" DefaultValue="0">
+            <Documentation>
+              <Summary>Allows to order the collections in a specific way</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedOn" Type="datetime2" Nullable="false" devart:DefaultValue="getdate()">
+            <Documentation>
+              <Summary>Date when record was added</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="255">
+            <Documentation>
+              <Summary>User that added the record</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ModifiedOn" Type="datetime2">
+            <Documentation>
+              <Summary>Date when the record was modified</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255">
+            <Documentation>
+              <Summary>User that modified the record</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <EntityType Name="v_CollectionList">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DescriptionShort" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Nullable="false" />
+          <Property Name="CollectionTypeId" Type="int" Nullable="false" />
+          <Property Name="ImageAltText" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageMimeType" Type="nvarchar" MaxLength="255" />
+          <Property Name="Link" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CollectionPath" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ModifiedOn" Type="datetime2" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Parent" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChildCollections" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ApplicationUser">
+          <Documentation>
+            <Summary>Enthält Benutzer, die sich an Lesesaal angemeldet haben</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="200">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/nameidentifier</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="FamilyName" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/surname</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/givenname</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Organization" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Street" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="StreetAttachment" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Town" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="10">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/emailaddress</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="SkypeName" Type="nvarchar" MaxLength="200">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Setting" Type="nvarchar(max)" />
+          <Property Name="Claims" Type="nvarchar(max)">
+            <Documentation>
+              <Summary>Claims (json) von der letzten Anmeldung</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Created" Type="datetime" Nullable="false" devart:DefaultValue="getdate()">
+            <Documentation>
+              <Summary>Erstellungsdatum</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Updated" Type="datetime" Nullable="false" devart:DefaultValue="getdate()">
+            <Documentation>
+              <Summary>Änderungsdatum</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Fulltext" Type="nvarchar" Nullable="false" MaxLength="1808" StoreGeneratedPattern="Computed">
+            <Documentation>
+              <Summary>Volltext</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="UserExtId" Type="nvarchar" MaxLength="100">
+            <Documentation>
+              <Summary>Vom eIAM Benutzer externe ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="2" devart:DefaultValue="'de'" DefaultValue="de">
+            <Documentation>
+              <Summary>Sprache, in welcher der Benutzer EMails empfangen möchte.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" devart:DefaultValue="sysdatetime()" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="500" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" devart:DefaultValue="sysdatetime()" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="500" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="FabasoftDossier" Type="varchar" MaxLength="1000" />
+          <Property Name="ReasonForRejection" Type="varchar" MaxLength="100">
+            <Documentation>
+              <Summary>In dieses Feld wird automatisch der Ablehnungsgrund eingetragen, welcher Swisscom beim Onboarding zurückgegeben hat.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="IsInternalUser" Type="bit" Nullable="false" devart:DefaultValue="1" />
+          <Property Name="RolePublicClient" Type="varchar" MaxLength="3" />
+          <Property Name="EiamRoles" Type="varchar" MaxLength="10" />
+          <Property Name="ResearcherGroup" Type="bit" Nullable="false" devart:DefaultValue="0" />
+          <Property Name="BarInternalConsultation" Type="bit" Nullable="false" devart:DefaultValue="0" />
+          <Property Name="IdentifierDocument" Type="varbinary(max)">
+            <Documentation>
+              <Summary>Beim erfolgreichem Onboarding mit Swisscom wird in dieses Feld automatisch ein von der Swisscom generiertes PDF abgelegt. Zudem kann in dieses Feld auch über den Management Client eine Datei hochgeladen werden.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="ReasonForRejectionDate" Type="datetime">
+            <Documentation>
+              <Summary>Datum an dem das Feld ReasonForRejection gesetzt wurde</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="DownloadLimitDisabledUntil" Type="datetime" />
+          <Property Name="DigitalisierungsbeschraenkungAufgehobenBis" Type="datetime">
+            <Documentation>
+              <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <Association Name="Collection_Collection">
+          <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />
+          <End Role="Collection1" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection">
+              <PropertyRef Name="CollectionId" />
+            </Principal>
+            <Dependent Role="Collection1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CMI.Access.Sql.Lesesaal.EF" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ViaducDb" annotation:LazyLoadingEnabled="true" ed:Guid="f6072421-c423-460d-a299-71dd6cecf252">
+          <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Collection" />
+          <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
+          <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.ApplicationUser" />
+          <AssociationSet Name="Collection_CollectionSet" Association="CMI.Access.Sql.Lesesaal.EF.Collection_Collection">
+            <End Role="Parent" EntitySet="Collections" />
+            <End Role="ChildCollections" EntitySet="Collections" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Collection" ed:Guid="67cb0d2a-7dd5-4262-833a-2bcdfbb2403b">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="5447d4a8-304c-4bdf-8547-8efa8a60603d">
+            <Documentation>
+              <Summary>Primarykey </Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="c8ed3dc3-121c-4d1b-aaef-f5b37f135bfe">
+            <Documentation>
+              <Summary>Points to the parent collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Language" Type="String" Nullable="false" DefaultValue="'de'" MaxLength="2" Unicode="true" ed:ValidateMaxLength="2" ed:ValidateRequired="true" ed:Guid="9b75272c-981c-43a4-b08a-18ef64538ede">
+            <Documentation>
+              <Summary>The language as ISO code de, en, fr</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="025419dc-47a1-4764-82b8-e4b6829f5e97">
+            <Documentation>
+              <Summary>Title of the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="DescriptionShort" Type="String" Nullable="false" MaxLength="512" Unicode="true" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="042a49f2-48de-4021-9497-90f0d0b23497">
+            <Documentation>
+              <Summary>A short description of the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Description" Type="String" Nullable="false" Unicode="true" ed:ValidateRequired="true" ed:Guid="0ecf3f1b-2101-4f14-8ffa-a09415029d20">
+            <Documentation>
+              <Summary>A full description of the collection in markup language</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="aa896cf9-9594-4a95-b68b-808b44269efc">
+            <Documentation>
+              <Summary>From which point in time the collection should be visible to the users</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="84926561-19c6-47f2-bc31-0ccce400577c">
+            <Documentation>
+              <Summary>Until which point in time the collection should be visible to the users</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CollectionTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="121ea8a6-ef95-48df-b636-4bd4eb28ccc5">
+            <Documentation>
+              <Summary>Indicates the type of collections: Themenblöcke and Ausstellungen (Topics and Collections)</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Image" Type="Binary" ed:ValidateRequired="false" ed:Guid="5b4935f9-aead-40e5-850e-54e997c82d02">
+            <Documentation>
+              <Summary>An image that gives a hint to the collection</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Thumbnail" Type="Binary" ed:ValidateRequired="false" ed:Guid="1fe48b66-01e6-495b-9df4-40830f43359e">
+            <Documentation>
+              <Summary>The thumbnail to the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ImageAltText" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="eaa57b44-12b3-4d19-811d-1f8be85e6f5b">
+            <Documentation>
+              <Summary>The accessibility help information for the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ImageMimeType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1e3b7b52-965e-467e-802a-79ced788407e">
+            <Documentation>
+              <Summary>The mime type of the image</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Link" Type="String" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="637f19f8-58dc-4d87-9591-75a4a6dd9061">
+            <Documentation>
+              <Summary>The URL that will lead the user to the collection details</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CollectionPath" Type="String" Nullable="false" MaxLength="400" Unicode="true" ed:ValidateMaxLength="400" ed:ValidateRequired="true" ed:Guid="737ea8d8-39da-4016-948d-b22937e31271">
+            <Documentation>
+              <Summary>The path of the item consisting of a padded string of the ids from first parent to current item.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="SortOrder" Type="Int32" Nullable="false" DefaultValue="0" ed:ValidateRequired="true" ed:Guid="e638fb12-066e-4fae-b976-691567778f69">
+            <Documentation>
+              <Summary>Allows to order the collections in a specific way</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="2c7e35ed-b939-4133-9293-059ff88d1e9e">
+            <Documentation>
+              <Summary>Date when record was added</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="3010db4e-2cbc-4da0-a1ca-042c4a9c6cd1">
+            <Documentation>
+              <Summary>User that added the record</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="120e7170-89fc-438d-9d35-7919bfbbb5d3">
+            <Documentation>
+              <Summary>Date when the record was modified</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="e8ab548a-35ce-4cd5-8958-8056b82e5dc7">
+            <Documentation>
+              <Summary>User that modified the record</Summary>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="ChildCollections" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="Parent" ToRole="ChildCollections" ed:Guid="e4f5bb98-a5f3-48d2-a7d9-039e748704e5" />
+          <NavigationProperty Name="Parent" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="ChildCollections" ToRole="Parent" ed:Guid="1ca9b2e0-1d45-4ffb-8b71-aebb8368668f" />
+        </EntityType>
+        <EntityType Name="CollectionListItem" ed:Guid="afca5f71-b259-4792-95d6-8c946be959dc">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="db6e7225-de75-4c4f-bd05-e34b37f04730" />
+          <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="455d2e5e-61f7-4044-abfa-542cd0a1d107" />
+          <Property Name="Language" Type="String" Nullable="false" MaxLength="2" Unicode="true" ed:ValidateMaxLength="2" ed:ValidateRequired="true" ed:Guid="08037c9e-8288-451c-957c-ba0655f69961" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="f2379e79-57fa-4d22-be69-f75485f68d95" />
+          <Property Name="DescriptionShort" Type="String" Nullable="false" MaxLength="512" Unicode="true" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="f4fdd445-e84d-4615-98a1-dfa5e45e16c3" />
+          <Property Name="Description" Type="String" Nullable="false" Unicode="true" ed:ValidateRequired="true" ed:Guid="f01f73fd-31f4-4c1f-a0b2-89c9bdb3d147" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="605a9148-c5b0-44c8-ae8b-567f773b302a" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="3640f941-0989-40e6-95ba-95e8be3382e5" />
+          <Property Name="CollectionTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e858fb2c-e376-4c7d-9e9c-2916a0f470f0" />
+          <Property Name="ImageAltText" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="6ac13a3e-470a-4c70-a397-bdb2c8be7b43" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7dbea88a-b41d-4543-a928-da47a14ae312" />
+          <Property Name="Link" Type="String" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="43ffa588-db5f-4ffd-a2ec-2ea406d28a2c" />
+          <Property Name="CollectionPath" Type="String" Nullable="false" MaxLength="400" Unicode="true" ed:ValidateMaxLength="400" ed:ValidateRequired="true" ed:Guid="a714595d-133f-4d81-9ecb-1f3ddec3bf38" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="636baaeb-1504-4d63-8c26-2676a562fe68" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="58a74588-5335-4fd1-a277-c958e33696de" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="f1fe75d0-65bc-4aaa-89e5-e38d1b37857a" />
+          <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="5f0a663f-9b44-4057-a987-87a38df14cf4" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="13e28751-e44d-40c7-b9be-68aa1f32e15f" />
+          <Property Name="Parent" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="45e785bb-8cf4-4501-8e10-17c925f718ef" />
+          <Property Name="ChildCollections" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="f966bf95-8823-46df-82f1-4ea9fb824b6b" />
+        </EntityType>
+        <EntityType Name="ApplicationUser" ed:Guid="a07476e2-aa46-462c-ba6c-723a75221978">
+          <Documentation>
+            <Summary>Enthält Benutzer, die sich an Lesesaal angemeldet haben</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="134029a2-5ead-423b-bae8-3262acd411df">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/nameidentifier</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="FamilyName" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="118a15de-cd6a-4c9f-b681-57a15de62649">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/surname</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="FirstName" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="6c00baa2-0513-4686-a38c-579dd13460ee">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/givenname</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Organization" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="69275c27-7e10-4ffe-b9b9-adbb03528c33">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Street" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="dd3c8828-2f18-4411-9744-296f75ff999e">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="StreetAttachment" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="d816dd5f-a173-494f-bc9e-42d559524db3">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ZipCode" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="78ce72fb-ae67-49aa-b8b3-2ea73a253be2">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Town" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="b72a6750-b389-4f9b-9165-6bf3210d9102">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CountryCode" Type="String" MaxLength="10" Unicode="true" ed:ValidateMaxLength="10" ed:ValidateRequired="false" ed:Guid="383d5694-9687-4122-ae09-bdc8e4c0a2d8">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="EmailAddress" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="0d586372-1795-4d36-8a2c-0481c05c6bf2">
+            <Documentation>
+              <Summary>Vom eIAM Token Claim /identity/claims/emailaddress</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="7f8ef6ba-4385-4101-80e2-ab8de8a9171f">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="SkypeName" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="df459b03-2b41-4694-b3c7-fd1901354ec5">
+            <Documentation>
+              <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Setting" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="f9822dd7-508f-4b4a-856e-1ce77c5226ff" />
+          <Property Name="Claims" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="81f19de6-403a-4e37-9be7-bce42ffadcae">
+            <Documentation>
+              <Summary>Claims (json) von der letzten Anmeldung</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Created" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="352e44d0-2213-4e3c-a201-2cf143a52ecc">
+            <Documentation>
+              <Summary>Erstellungsdatum</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Updated" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="1a6e88a2-df44-44a4-831e-7be20a31ca66">
+            <Documentation>
+              <Summary>Änderungsdatum</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Fulltext" Type="String" Nullable="false" MaxLength="1808" Unicode="true" annotation:StoreGeneratedPattern="Computed" ed:ValidateMaxLength="1808" ed:ValidateRequired="true" ed:Guid="27f0043b-d89e-4be4-ba2b-2f7cbdd25837">
+            <Documentation>
+              <Summary>Volltext</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="UserExtId" Type="String" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="6af3a1de-bdd7-4bfa-9713-9bb56c8bb4e7">
+            <Documentation>
+              <Summary>Vom eIAM Benutzer externe ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Language" Type="String" Nullable="false" DefaultValue="'de'" MaxLength="2" Unicode="true" ed:ValidateMaxLength="2" ed:ValidateRequired="true" ed:Guid="ca689c2c-afe3-41c8-8175-1b2e17d57696">
+            <Documentation>
+              <Summary>Sprache, in welcher der Benutzer EMails empfangen möchte.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="9321e4b6-aeda-40c9-96f6-b94204b06742" />
+          <Property Name="CreatedBy" Type="String" MaxLength="500" ed:ValidateMaxLength="500" ed:ValidateRequired="false" ed:Guid="8138b8a5-85bb-4654-9fae-5421ff99b754" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="5a0f7ca3-8aa9-41c7-af4f-401c5cad254d" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="500" ed:ValidateMaxLength="500" ed:ValidateRequired="false" ed:Guid="30db79eb-5ff5-4d3d-b5aa-424454d1cf7e" />
+          <Property Name="Birthday" Type="DateTime" ed:ValidateRequired="false" ed:Guid="9457b0df-4836-422c-abf6-43d70e932b11" />
+          <Property Name="FabasoftDossier" Type="String" MaxLength="1000" ed:ValidateMaxLength="1000" ed:ValidateRequired="false" ed:Guid="38f47ec3-5f52-4a9a-963d-cd6543443325" />
+          <Property Name="ReasonForRejection" Type="String" MaxLength="100" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="ad15043c-a007-4798-b510-8b03acb4cf6a">
+            <Documentation>
+              <Summary>In dieses Feld wird automatisch der Ablehnungsgrund eingetragen, welcher Swisscom beim Onboarding zurückgegeben hat.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="IsInternalUser" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="57ca3788-ad53-46c1-85a1-89a2780f115e" />
+          <Property Name="RolePublicClient" Type="String" MaxLength="3" ed:ValidateMaxLength="3" ed:ValidateRequired="false" ed:Guid="250d30f3-6571-4234-8f18-7f1d12d6b6b6" />
+          <Property Name="EiamRoles" Type="String" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="false" ed:Guid="33b33907-b23d-485b-9be2-70c72d034c9d" />
+          <Property Name="ResearcherGroup" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="987ac55c-5865-4b22-a23f-af8321c409b0" />
+          <Property Name="BarInternalConsultation" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="0cf3445f-45c3-4a50-905d-424786ab451a" />
+          <Property Name="IdentifierDocument" Type="Binary" ed:ValidateRequired="false" ed:Guid="2ab9ec1f-ab4f-4e89-9b58-4c1f395ad5ff">
+            <Documentation>
+              <Summary>Beim erfolgreichem Onboarding mit Swisscom wird in dieses Feld automatisch ein von der Swisscom generiertes PDF abgelegt. Zudem kann in dieses Feld auch über den Management Client eine Datei hochgeladen werden.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="MobileNumber" Type="String" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="24eec9b3-6050-4a7c-8090-83cbb30a11c9" />
+          <Property Name="ReasonForRejectionDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="1a1dbe9f-5f36-4175-a8a0-1e7315195674">
+            <Documentation>
+              <Summary>Datum an dem das Feld ReasonForRejection gesetzt wurde</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="DownloadLimitDisabledUntil" Type="DateTime" ed:ValidateRequired="false" ed:Guid="d2a25cdf-f0b6-4a3f-8827-73b65dd2bf72" />
+          <Property Name="DigitalisierungsbeschraenkungAufgehobenBis" Type="DateTime" ed:ValidateRequired="false" ed:Guid="54c85496-b0d8-4ae6-bfb0-c35e2c5c14d5">
+            <Documentation>
+              <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <Association Name="Collection_Collection" ed:Guid="fbe07d51-f04c-43f2-8c4e-e1f493f628db">
+          <End Role="Parent" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="0..1" />
+          <End Role="ChildCollections" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="CollectionId" />
+            </Principal>
+            <Dependent Role="ChildCollections">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ViaducEntitiesStoreContainer" CdmEntityContainer="ViaducDb">
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.Collection">
+              <MappingFragment StoreEntitySet="Collections">
+                <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DescriptionShort" ColumnName="DescriptionShort" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="CollectionTypeId" ColumnName="CollectionTypeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ImageAltText" ColumnName="ImageAltText" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="CollectionPath" ColumnName="CollectionPath" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CollectionList">
+            <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.CollectionListItem">
+              <MappingFragment StoreEntitySet="v_CollectionLists">
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="ChildCollections" ColumnName="ChildCollections" />
+                <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DescriptionShort" ColumnName="DescriptionShort" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="CollectionTypeId" ColumnName="CollectionTypeId" />
+                <ScalarProperty Name="ImageAltText" ColumnName="ImageAltText" />
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="CollectionPath" ColumnName="CollectionPath" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationUsers">
+            <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.ApplicationUser">
+              <MappingFragment StoreEntitySet="ApplicationUsers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="StreetAttachment" ColumnName="StreetAttachment" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
+                <ScalarProperty Name="Setting" ColumnName="Setting" />
+                <ScalarProperty Name="Claims" ColumnName="Claims" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="Fulltext" ColumnName="Fulltext" />
+                <ScalarProperty Name="UserExtId" ColumnName="UserExtId" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="FabasoftDossier" ColumnName="FabasoftDossier" />
+                <ScalarProperty Name="ReasonForRejection" ColumnName="ReasonForRejection" />
+                <ScalarProperty Name="IsInternalUser" ColumnName="IsInternalUser" />
+                <ScalarProperty Name="RolePublicClient" ColumnName="RolePublicClient" />
+                <ScalarProperty Name="EiamRoles" ColumnName="EiamRoles" />
+                <ScalarProperty Name="ResearcherGroup" ColumnName="ResearcherGroup" />
+                <ScalarProperty Name="BarInternalConsultation" ColumnName="BarInternalConsultation" />
+                <ScalarProperty Name="IdentifierDocument" ColumnName="IdentifierDocument" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ReasonForRejectionDate" ColumnName="ReasonForRejectionDate" />
+                <ScalarProperty Name="DownloadLimitDisabledUntil" ColumnName="DownloadLimitDisabledUntil" />
+                <ScalarProperty Name="DigitalisierungsbeschraenkungAufgehobenBis" ColumnName="DigitalisierungsbeschraenkungAufgehobenBis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

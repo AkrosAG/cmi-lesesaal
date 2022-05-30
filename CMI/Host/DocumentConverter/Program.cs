@@ -18,7 +18,7 @@ namespace CMI.Host.DocumentConverter
                 x.RunAsLocalSystem();
 
                 x.SetDescription("The document converter service converts documents.");
-                x.SetDisplayName("CMI Viaduc DocumentConverter Service");
+                x.SetDisplayName("CMI Lesesaal DocumentConverter Service");
                 x.SetServiceName("CMIDocumentConverterService");
             });
         }

@@ -1,9 +1,9 @@
 ﻿#Requires -RunAsAdministrator
 
 param(
-    [String]$ServicesRootDir,         <# Speicherort für alle Viaduc Services, z.B. C:\Viaduc Services #>
+    [String]$ServicesRootDir,         <# Speicherort für alle Lesesaal Services, z.B. C:\Lesesaal Services #>
     [String[]]$ServicesToInstall,     <# Liste der zu installierenden Services: Asset, Cache, DataFeeed, etc #>
-    [String]$WebSitesDir,             <# Speicherort für alle WebSites, z.B. C:\Viaduc Services #>
+    [String]$WebSitesDir,             <# Speicherort für alle WebSites, z.B. C:\Lesesaal Services #>
     [String[]]$WebApplicationsToInstall,     <# Liste der zu installierenden Services: Frontend, Management, etc #>
     [String]$BackupDir,                <# Verzeichnis, in welches die bestehenden binaries vor dem Update gebackupt werden. Wenn leer -> automatisch #>   
     [String]$StageParameterFile       <# Pfad, zum Parameterfile für die Anpassung der Variablen in den Config-Files #>

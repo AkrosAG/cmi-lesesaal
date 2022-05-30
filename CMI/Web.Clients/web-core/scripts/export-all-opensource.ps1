@@ -1,7 +1,7 @@
 
 <#
 .SYNOPSIS
-    Script um einen Export von den Viaduc-Repositories zu machen, mit dem Ziel öffentlich publizierbare ZIPs zu erstellen
+    Script um einen Export von den Lesesaal-Repositories zu machen, mit dem Ziel öffentlich publizierbare ZIPs zu erstellen
 .DESCRIPTION
     .
 .PARAMETER GitPesonalAccessToken
@@ -34,7 +34,7 @@ Function Export-All-OpenSource {
                    'Change Script PVW-895 Anonymization.sql',
                    'Small Tests for FK_VIADUC_DIR_ACCESS.sql',
                    'Small Tests for FK_VIADUC_VE_ACCESS_TKN.sql',
-                   'Viaduc DB Objects for scopeArchiv Database.sql'
+                   'Lesesaal DB Objects for scopeArchiv Database.sql'
                   )
     Export-OpenSource -ProjectName "viaduc" -FilesOrDirsToExclude $ToExclude -ResultName "cmi-viaduc-backend"
     Write-Host "Finished exporting repositories"
@@ -92,7 +92,7 @@ Function Write-Management-Replacements {
     Write-Readme
 }
 
-Function Write-Viaduc-Replacements {
+Function Write-Lesesaal-Replacements {
     $sql = Get-SqlReplacement
     Write-Replacement -FilePath "$WorkingDirectory\$ProjectName\CMI\Access\Harvest\ScopeArchiv\SqlStatements.cs" -Replacement $sql
     Write-Replacement -FilePath "$WorkingDirectory\$ProjectName\CMI\Manager\Asset\Aspose.Total.lic" -Replacement "Buy license"
@@ -162,7 +162,7 @@ Function Write-Replacements {
         }
         "viaduc"
         {
-            Write-Viaduc-Replacements
+            Write-Lesesaal-Replacements
         }
         Default
         {

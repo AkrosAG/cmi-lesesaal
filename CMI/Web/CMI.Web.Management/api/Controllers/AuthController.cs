@@ -4,7 +4,7 @@ using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using CMI.Access.Sql.Viaduc;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Web.Common.api;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Common.Auth;
