@@ -1,5 +1,6 @@
 ﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.Harvest
 {
@@ -12,7 +13,7 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="archiveRecordId">The id of the archive id in the AIS</param>
         /// <returns>ArchiveRecord.</returns>
-        ArchiveRecord BuildArchiveRecord(string archiveRecordId);
+        Task<ArchiveRecord> BuildArchiveRecord(string archiveRecordId);
 
         /// <summary>
         ///     Updates the mutation status in the mutation table.

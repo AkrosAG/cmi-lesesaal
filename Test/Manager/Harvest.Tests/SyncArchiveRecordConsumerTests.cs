@@ -40,7 +40,7 @@ namespace CMI.Manager.Harvest.Tests
             var archvieRecordId = "34599";
             var mutationId = 6616;
             var ar = new ArchiveRecord { ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = null } };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
 
             var harness = new InMemoryTestHarness();
             var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
@@ -93,7 +93,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = null },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId,
@@ -152,7 +152,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId,
@@ -210,7 +210,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId,
@@ -269,7 +269,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId, ElasticArchiveRecord = new ElasticArchiveRecord
@@ -336,7 +336,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             cachedHarvesterSetting.Setup(s => s.EnableFullResync()).Returns(true);
             var findResult = new FindArchiveRecordResponse
             {
@@ -399,7 +399,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string>() }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
 
             var harness = new InMemoryTestHarness();
             var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
@@ -442,7 +442,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = null },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId,
@@ -507,7 +507,7 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = null },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse { ArchiveRecordId = archvieRecordId, ElasticArchiveRecord = null };
             var response = new Mock<Response<FindArchiveRecordResponse>>();
             response.Setup(r => r.Message).Returns(findResult);
@@ -603,7 +603,7 @@ namespace CMI.Manager.Harvest.Tests
             var mutationId = 66267;
             var ar = new ArchiveRecord
             { ArchiveRecordId = archvieRecordId, Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string>() } };
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(ar);
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             harvestManager.Setup(e => e.UpdateMutationStatus(It.IsAny<MutationStatusInfo>())).Verifiable();
 
             var harness = new InMemoryTestHarness();

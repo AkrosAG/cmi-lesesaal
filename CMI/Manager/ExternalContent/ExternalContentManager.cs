@@ -1,5 +1,6 @@
 ﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.ExternalContent
 {
@@ -21,10 +22,9 @@ namespace CMI.Manager.ExternalContent
         /// </summary>
         /// <param name="archiveRecordId">The archive record identifier.</param>
         /// <returns>DigitizationOrderDataResult.</returns>
-        public DigitizationOrderDataResult GetDigitizationOrderData(string archiveRecordId)
+        public async Task<DigitizationOrderDataResult> GetDigitizationOrderData(string archiveRecordId)
         {
-            // TODO: Review
-            return dbExternalContentAccess.GetDigitizationOrderData(archiveRecordId).GetAwaiter().GetResult();
+            return await dbExternalContentAccess.GetDigitizationOrderData(archiveRecordId);
         }
     }
 }

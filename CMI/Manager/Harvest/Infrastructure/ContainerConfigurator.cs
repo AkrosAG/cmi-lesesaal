@@ -21,6 +21,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             builder.RegisterType<LanguageSettings>().AsSelf();
             builder.RegisterType<ApplicationSettings>().AsSelf();
             builder.RegisterType<CachedLookupData>().AsSelf();
+            
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
 
