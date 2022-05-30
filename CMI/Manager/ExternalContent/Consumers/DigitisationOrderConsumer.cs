@@ -23,7 +23,7 @@ namespace CMI.Manager.ExternalContent.Consumers
                     context.ConversationId);
 
                 var message = context.Message;
-                var result = externalContentManager.GetDigitizationOrderData(message.ArchiveRecordId);
+                var result = await externalContentManager.GetDigitizationOrderData(message.ArchiveRecordId);
 
                 Log.Information("Sending {ResponseName} to {ResponseAddress} with conversationId {ConversationId}",
                     nameof(GetDigitizationOrderDataResponse), context.ResponseAddress, context.ConversationId);

@@ -665,8 +665,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         public async Task<DataRow> GetLinkedAccessionToArchiveRecord(long recordId)
         {
             // Get the data element for the accession link
-            // TODO: Review
-            var table = (DetailDataDataSet.DetailDataDataTable) await GetDetailDataForElement(recordId, (int) ScopeArchivDatenElementId.AblieferungLink);
+            var table = await GetDetailDataForElement(recordId, (int) ScopeArchivDatenElementId.AblieferungLink);
             if (table != null && table.Rows.Count > 0)
             {
                 var accessionId = table.AsEnumerable().First().VRKNP_GSFT_OBJ_ID;
@@ -775,7 +774,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>ContainerDataSet.</returns>
-        public async Task<DataSet> LoadContainers(long recordId)
+        public async Task<ContainerDataSet> LoadContainers(long recordId)
         {
             return await GetDataSetFromSql<ContainerDataSet>(SqlStatements.SqlArchiveRecordContainers, new[]
             {

@@ -1,6 +1,7 @@
 ﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 using Serilog;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.Harvest
 {
@@ -27,10 +28,9 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="archiveRecordId">The id of the archive id in the AIS</param>
         /// <returns></returns>
-        public ArchiveRecord BuildArchiveRecord(string archiveRecordId)
+        public async Task<ArchiveRecord> BuildArchiveRecord(string archiveRecordId)
         {
-            // TODO: Review
-            return dbAccess.GetArchiveRecord(archiveRecordId).GetAwaiter().GetResult();
+            return await dbAccess.GetArchiveRecord(archiveRecordId);
         }
 
         /// <summary>

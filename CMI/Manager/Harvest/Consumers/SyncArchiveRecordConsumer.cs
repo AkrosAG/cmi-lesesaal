@@ -51,7 +51,7 @@ namespace CMI.Manager.Harvest.Consumers
                 switch (message.Action.ToLowerInvariant())
                 {
                     case "update":
-                        var archiveRecord = harvestManager.BuildArchiveRecord(message.ArchiveRecordId);
+                        var archiveRecord = await harvestManager.BuildArchiveRecord(message.ArchiveRecordId);
 
                         // If no records was found it could be, that the records was deleted or put into 
                         // status "in Bearbeitung" after it was put on the queue. In this case we end

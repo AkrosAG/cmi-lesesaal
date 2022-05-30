@@ -46,20 +46,18 @@ namespace CMI.Access.Harvest.ScopeArchiv
             // clear cache 
             containerContentCache.Clear();
             
-            // TODO: Review
             // Get lots of metadata we need for processing 
             var archiveRecord = await recordBuilder.Build(recordId);
 
             if (archiveRecord != null)
             {
-                var t1 = GetAccessionData(recordId, archiveRecord);
-                var t2 = Task.Run(() => GetOrderingPositionData(archiveRecord));
-                var t3 = GetDossierData(archiveRecord);
-                await Task.WhenAll(t1, t2, t3);
+                var tAccessionData = GetAccessionData(recordId, archiveRecord);
+                var tDossierData = GetDossierData(archiveRecord);
+                await Task.WhenAll(tAccessionData, tDossierData);
 
-                result.Ablieferung = t1.Result;
-                result.OrdnungsSystem = t2.Result;
-                result.Dossier = t3.Result;
+                result.Ablieferung = tAccessionData.Result;
+                result.OrdnungsSystem = GetOrderingPositionData(archiveRecord);
+                result.Dossier = tDossierData.Result;
                 result.Auftragsdaten = GetOrderData(recordId, result);
             }
             else
@@ -133,10 +131,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
             var children = await dataProvider.GetChildrenRecordOrderDetailDataForArchiveRecord(Convert.ToInt64(verzEinheit.Id));
             if (children.Any())
             {
-                // TODO: Review 
-                var tasks = children.Select(GetArchiveRecordDetailData);
-                var einheiten = await Task.WhenAll(tasks);
-                retVal.UntergeordneteVerzEinheiten = new List<VerzEinheitType>(einheiten);
+                retVal.UntergeordneteVerzEinheiten = new List<VerzEinheitType>();
+                foreach(var child in children)
+                {
+                    retVal.UntergeordneteVerzEinheiten.Add(await GetArchiveRecordDetailData(child));
+                }
             }
 
             // Add all containers to item

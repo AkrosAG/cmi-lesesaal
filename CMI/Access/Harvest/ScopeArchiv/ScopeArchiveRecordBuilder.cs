@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Serilog;
 
-using CMI.Access.Harvest.ScopeArchiv.DataSets; // TODO: Review
+using CMI.Access.Harvest.ScopeArchiv.DataSets;
 using CMI.Contract.Common;
 
 namespace CMI.Access.Harvest.ScopeArchiv
@@ -79,16 +79,15 @@ namespace CMI.Access.Harvest.ScopeArchiv
         {
             try
             {
-                // TODO: Review
-                var t1 = dataProvider.LoadMetadataSecurityTokens(Convert.ToInt64(recordId));
-                var t2 = dataProvider.LoadPrimaryDataSecurityTokens(Convert.ToInt64(recordId));
+                var tMetadataSecurityTokens = dataProvider.LoadMetadataSecurityTokens(Convert.ToInt64(recordId));
+                var tPrimaryDataSecurityTokens = dataProvider.LoadPrimaryDataSecurityTokens(Convert.ToInt64(recordId));
 
-                await Task.WhenAll(t1, t2);
+                await Task.WhenAll(tMetadataSecurityTokens, tPrimaryDataSecurityTokens);
                 return new ArchiveRecordSecurity
                 {
-                    MetadataAccessToken = t1.Result,
-                    PrimaryDataDownloadAccessToken = t2.Result.DownloadAccessTokens.Any() ? t2.Result.DownloadAccessTokens : null,
-                    PrimaryDataFulltextAccessToken = t2.Result.FulltextAccessTokens.Any() ? t2.Result.FulltextAccessTokens : null,
+                    MetadataAccessToken = tMetadataSecurityTokens.Result,
+                    PrimaryDataDownloadAccessToken = tPrimaryDataSecurityTokens.Result.DownloadAccessTokens.Any() ? tPrimaryDataSecurityTokens.Result.DownloadAccessTokens : null,
+                    PrimaryDataFulltextAccessToken = tPrimaryDataSecurityTokens.Result.FulltextAccessTokens.Any() ? tPrimaryDataSecurityTokens.Result.FulltextAccessTokens : null,
                 };
             }
             catch (Exception ex)
@@ -115,33 +114,28 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             try
             {
-                // TODO: Review
+                var tNodeContext = dataProvider.LoadNodeContext(Convert.ToInt64(recordId));
+           
+                display.ContainsImages = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image);
+                display.ContainsMedia = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media);
+                // In scopeArchiv the Levels (Stufen) have an attribute called "Bestellbar". We now check this on the 
+                // Unit of Description (VRZNG_ENHT_BSTLG_IND) PLUS the additional rule, that there must be containers.
+                // PVW-1071: Nicht bestellbar, wenn physische Bestellbarkeit nicht gegeben ist, d.h. Bestellbarkeit != "Uneingeschränkt"
+                display.CanBeOrdered = metadata.Containers.NumberOfContainers > 0 && recordRow.VRZNG_ENHT_BSTLG_IND != 0 &&
+                                        recordRow.VRZNG_ENHT_BNTZB_ID == 1;
 
-                var tNodeContext = Task.Run(async () =>
-                {
-                    var context = await dataProvider.LoadNodeContext(Convert.ToInt64(recordId));
-                    display.FirstChildArchiveRecordId = context.FirstChildArchiveRecordId;
-                    display.NextArchiveRecordId = context.NextArchiveRecordId;
-                    display.PreviousArchiveRecordId = context.PreviousArchiveRecordId;
-                    display.ParentArchiveRecordId = context.ParentArchiveRecordId;
-                });
-                var tMetaInfo = Task.Run(() =>
-                {
-                    display.ContainsImages = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image);
-                    display.ContainsMedia = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media);
-                    // In scopeArchiv the Levels (Stufen) have an attribute called "Bestellbar". We now check this on the 
-                    // Unit of Description (VRZNG_ENHT_BSTLG_IND) PLUS the additional rule, that there must be containers.
-                    // PVW-1071: Nicht bestellbar, wenn physische Bestellbarkeit nicht gegeben ist, d.h. Bestellbarkeit != "Uneingeschränkt"
-                    display.CanBeOrdered = metadata.Containers.NumberOfContainers > 0 && recordRow.VRZNG_ENHT_BSTLG_IND != 0 &&
-                                           recordRow.VRZNG_ENHT_BNTZB_ID == 1;
-                });
-                var tArchiveplanContext = Task.Run(async () =>
-                {
-                    display.ArchiveplanContext = await LoadArchivePlanContext(Convert.ToInt64(recordId), metadata);
-                });
+                var tArchiveplanContext = LoadArchivePlanContext(Convert.ToInt64(recordId), metadata);
 
-                // ToDo: Use Async / Await
-                await Task.WhenAll(tNodeContext, tMetaInfo, tArchiveplanContext);
+                await Task.WhenAll(tNodeContext, tArchiveplanContext);
+
+                display.ArchiveplanContext = tArchiveplanContext.Result;
+
+                var context = tNodeContext.Result;
+                display.FirstChildArchiveRecordId = context.FirstChildArchiveRecordId;
+                display.NextArchiveRecordId = context.NextArchiveRecordId;
+                display.PreviousArchiveRecordId = context.PreviousArchiveRecordId;
+                display.ParentArchiveRecordId = context.ParentArchiveRecordId;
+        
             }
             catch (Exception ex)
             {
@@ -163,41 +157,23 @@ namespace CMI.Access.Harvest.ScopeArchiv
             var retVal = new ArchiveRecordMetadata();
 
             try
-            {  
-                // TODO: Review
-                var tDetailData = Task.Run(async() =>
-                {
-                    retVal.DetailData = await LoadDataElements(Convert.ToInt64(recordId));
-                    // Get the accession year from the reserved data element with id 505
-                    var accessionDataElement =
-                        retVal.DetailData.FirstOrDefault(d => d.ElementId == ((int)ScopeArchivDatenElementId.AblieferungLink).ToString());
-                    if (accessionDataElement != null && accessionDataElement.ElementValue.Any())
-                    {
-                        var textValue = accessionDataElement.ElementValue.First().TextValues.First().Value;
-                        // the year is indicated in the first 4 digits
-                        int year;
-                        int.TryParse(textValue.Substring(0, 4), out year);
-                        retVal.AccessionDate = year;
-                    }
+            {
+                retVal.Usage = ExtractUsageData(recordRow);
+                
+                var tDetailData = LoadDataElements(Convert.ToInt64(recordId));
+                var tNodeInfo = LoadNodeInfo(Convert.ToInt64(recordId));
+                var tContainer = LoadContainers(Convert.ToInt64(recordId));
+                var tDescriptor = LoadDescriptors(Convert.ToInt64(recordId));
+                var tReference = LoadReferences(Convert.ToInt64(recordId));
+                var tAggregationData = LoadAggregation(recordRow);
 
-                    // Get the digital repository identifier
-                    var repositoryDataElement =
-                        retVal.DetailData.FirstOrDefault(d => d.ElementId == applicationSettings.DigitalRepositoryElementIdentifier);
-                    if (repositoryDataElement != null && repositoryDataElement.ElementValue.Any())
-                    {
-                        var textValue = repositoryDataElement.ElementValue.First().TextValues.First().Value;
-                        retVal.PrimaryDataLink = textValue;
-                    }
-                });
-                var tArchiveData = Task.Run(() => { retVal.Usage = ExtractUsageData(recordRow); });
-                var tNodeInfo = Task.Run(async() => { retVal.NodeInfo = await LoadNodeInfo(Convert.ToInt64(recordId)); });
-                var tContainer = Task.Run(async() => { retVal.Containers = await LoadContainers(Convert.ToInt64(recordId)); });
-                var tDescriptor = Task.Run(async() => { retVal.Descriptors = await LoadDescriptors(Convert.ToInt64(recordId)); });
-                var tReference = Task.Run(async() => { retVal.References = await LoadReferences(Convert.ToInt64(recordId)); });
-                var tAggregationData = Task.Run(() => { retVal.AggregationFields.AddRange(LoadAggregation(recordRow)); });
+                await Task.WhenAll(tDetailData, tNodeInfo, tContainer, tDescriptor, tReference, tAggregationData);
 
-                // ToDo: Use Async / Await
-                await Task.WhenAll(tDetailData, tArchiveData, tNodeInfo, tContainer, tDescriptor, tReference, tAggregationData);
+                AddDetailData(retVal, tDetailData);
+                retVal.NodeInfo = tNodeInfo.Result;
+                retVal.Containers = tContainer.Result;
+                retVal.Descriptors = tDescriptor.Result;
+                retVal.AggregationFields.AddRange(tAggregationData.Result);
             }
             catch (Exception ex)
             {
@@ -206,6 +182,30 @@ namespace CMI.Access.Harvest.ScopeArchiv
             }
 
             return retVal;
+        }
+
+        private void AddDetailData(ArchiveRecordMetadata retVal, Task<List<DataElement>> tDetailData)
+        {
+            retVal.DetailData = tDetailData.Result;
+            // Get the accession year from the reserved data element with id 505
+            var accessionDataElement = retVal.DetailData.FirstOrDefault(d => d.ElementId == ((int)ScopeArchivDatenElementId.AblieferungLink).ToString());
+            if (accessionDataElement != null && accessionDataElement.ElementValue.Any())
+            {
+                var textValue = accessionDataElement.ElementValue.First().TextValues.First().Value;
+                // the year is indicated in the first 4 digits
+                int year;
+                int.TryParse(textValue.Substring(0, 4), out year);
+                retVal.AccessionDate = year;
+            }
+
+            // Get the digital repository identifier
+            var repositoryDataElement =
+                retVal.DetailData.FirstOrDefault(d => d.ElementId == applicationSettings.DigitalRepositoryElementIdentifier);
+            if (repositoryDataElement != null && repositoryDataElement.ElementValue.Any())
+            {
+                var textValue = repositoryDataElement.ElementValue.First().TextValues.First().Value;
+                retVal.PrimaryDataLink = textValue;
+            }
         }
 
         /// <summary>
@@ -379,8 +379,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             try
             {
-                // TODO: Review
-                var dsContainers = (ContainerDataSet) await dataProvider.LoadContainers(recordId);
+                var dsContainers = await dataProvider.LoadContainers(recordId);
                 retVal.NumberOfContainers = dsContainers.StorageContainer.Count;
 
                 foreach (var row in dsContainers.StorageContainer)
@@ -526,7 +525,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             return retVal;
         }
 
-        private List<AggregationField> LoadAggregation(ArchiveRecordDataSet.ArchiveRecordRow recordRow)
+        private async Task<List<AggregationField>> LoadAggregation(ArchiveRecordDataSet.ArchiveRecordRow recordRow)
         {
             var retVal = new List<AggregationField>();
 
@@ -536,7 +535,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
                 var fondsAggregation = new AggregationField
                 {
                     AggregationName = "FondsOverview",
-                    Values = GetFondLinkValues(recordRow.HRCH_PFAD)
+                    Values = await GetFondLinkValues(recordRow.HRCH_PFAD)
                 };
                 retVal.Add(fondsAggregation);
             }
@@ -556,16 +555,16 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="hrchPfad">The hierarchy path.</param>
         /// <returns>System.String.</returns>
-        private List<string> GetFondLinkValues(string hrchPfad)
+        private async Task<List<string>> GetFondLinkValues(string hrchPfad)
         {
             if (string.IsNullOrEmpty(hrchPfad))
             {
                 return new List<string>();
             }
 
-            return lookupData.fondsOverview
+            return (await lookupData.LoadFondsOverviewCached())
                 .Where(l => l.HierarchyPath.Length <= hrchPfad.Length && hrchPfad.Substring(0, l.HierarchyPath.Length)
-                    .Equals(l.HierarchyPath, StringComparison.InvariantCultureIgnoreCase))
+                .Equals(l.HierarchyPath, StringComparison.InvariantCultureIgnoreCase))
                 .Select(i => i.LinkName)
                 .ToList();
         }
