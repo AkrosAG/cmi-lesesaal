@@ -323,7 +323,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Clients", "Web.Clients"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-core", "CMI\Web.Clients\web-core\", "{146C0BBB-42E7-4F51-BAC5-71A8AB429464}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_60379"
 		Debug.AspNetCompiler.PhysicalPath = "CMI\Web.Clients\web-core\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60379\"
@@ -344,7 +344,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-core", "CMI\Web.Clients
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-frontend", "CMI\Web.Clients\web-frontend\", "{AA978769-8910-4F3F-8919-51A0322B40F4}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_60380"
 		Debug.AspNetCompiler.PhysicalPath = "CMI\Web.Clients\web-frontend\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60380\"
@@ -365,7 +365,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-frontend", "CMI\Web.Cli
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-management", "CMI\Web.Clients\web-management\", "{18961680-CCC4-48F7-80DF-2EA109A04B6E}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_60381"
 		Debug.AspNetCompiler.PhysicalPath = "CMI\Web.Clients\web-management\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60381\"

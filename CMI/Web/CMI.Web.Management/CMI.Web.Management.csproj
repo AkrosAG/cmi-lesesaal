@@ -422,7 +422,7 @@
     <Compile Include="api\Controllers\AuthController.cs" />
     <Compile Include="api\Controllers\OrderController.cs" />
     <Compile Include="api\Controllers\UserController.cs" />
-    <Compile Include="api\Configuration\ManagementSettingsViaduc.cs" />
+    <Compile Include="api\Configuration\ManagementSettings.cs" />
     <Compile Include="api\Configuration\ServerSettings.cs" />
     <Compile Include="api\Controllers\ODataManagementControllerBase.cs" />
     <Compile Include="api\Controllers\PublicController.cs" />

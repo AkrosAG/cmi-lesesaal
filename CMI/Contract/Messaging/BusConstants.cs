@@ -93,9 +93,9 @@
         public const string DocumentConverterSupportedFileTypesRequestQueue = "r.documentConverter.manager.supportedFileTypesRequest";
 
         // Events the Lesesaal Service subscribes to
-        public const string ReadUserInformationQueue = "r.viaduc.manager.readuserinformation";
-        public const string ReadStammdatenQueue = "r.viaduc.manager.readstammdaten";
-        public const string ViaducManagerRequestBase = "r.viaduc.manager.{0}";
+        public const string ReadUserInformationQueue = "r.lesesaal.manager.readuserinformation";
+        public const string ReadStammdatenQueue = "r.lesesaal.manager.readstammdaten";
+        public const string LesesaalManagerRequestBase = "r.lesesaal.manager.{0}";
 
 
         // Request/Response base URL for OrderManager

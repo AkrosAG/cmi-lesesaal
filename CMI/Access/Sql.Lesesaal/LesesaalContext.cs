@@ -2,9 +2,9 @@
 
 namespace CMI.Access.Sql.Lesesaal
 {
-    public class ViaducContext : DataContext
+    public class LesesaalContext : DataContext
     {
-        public ViaducContext(string fileOrServerOrConnection) : base(fileOrServerOrConnection)
+        public LesesaalContext(string fileOrServerOrConnection) : base(fileOrServerOrConnection)
         {
         }
 

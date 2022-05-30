@@ -17,7 +17,7 @@ namespace CMI.Web.Frontend.Controllers
 
             ViewBag.Language = language;
             ViewBag.Title =
-                FrontendSettingsViaduc.Instance.GetTranslation(language, "page.title",
+                FrontendSettings.Instance.GetTranslation(language, "page.title",
                     "Schweizerisches Bundesarchiv BAR");
 
             var viewModel = new ContentIndexModel();
@@ -45,9 +45,9 @@ namespace CMI.Web.Frontend.Controllers
             try
             {
                 var contentNode =
-                    StaticContentHelper.FindStaticContentNode(FrontendSettingsViaduc.Instance, contentMarkup);
+                    StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, contentMarkup);
 
-                contentHtml = StaticContentHelper.ProcessStaticMarkupForMvc(FrontendSettingsViaduc.Instance, Request,
+                contentHtml = StaticContentHelper.ProcessStaticMarkupForMvc(FrontendSettings.Instance, Request,
                     relativeUrl, language, contentNode.OuterHtml);
             }
             catch (Exception ex)

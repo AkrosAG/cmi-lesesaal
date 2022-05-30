@@ -2,21 +2,21 @@
 using CMI.Web.Common.api;
 using CMI.Web.Common.Helpers;
 
-namespace CMI.Web.Management.api.Configuration
+namespace CMI.Web.Frontend.api.Configuration
 {
-    public class ManagementSettingsViaduc : AppSettings
+    public class FrontendSettings : AppSettings
     {
-        static ManagementSettingsViaduc()
+        static FrontendSettings()
         {
-            Instance = new ManagementSettingsViaduc();
+            Instance = new FrontendSettings();
         }
 
-        private ManagementSettingsViaduc()
+        private FrontendSettings()
             : base(Assembly.GetExecutingAssembly())
         {
         }
 
-        public static ManagementSettingsViaduc Instance { get; }
+        public static FrontendSettings Instance { get; }
         public string SqlConnectionString { get; } = WebHelper.Settings["sqlConnectionString"];
         public string SqlEFConnectionString { get; } = WebHelper.Settings["sqlefConnectionString"];
         public int CookieExpireTimeInMinutes { get; } = WebHelper.GetIntSetting("cookieExpireTimeInMinutes", 60);

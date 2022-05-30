@@ -53,37 +53,37 @@ namespace CMI.Web.Frontend.Helpers
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.ReferenceCode), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.referenceCode")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.referenceCode")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.FileReference), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.fileReference")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileReference")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.title")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.CreationPeriod), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.creationPeriod")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.creationPeriod")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.WithinInfo), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.withinInfo")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.withinInfo")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Level), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.level")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.level")
                 },
                 new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Accessibility), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.accessibility")
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.accessibility")
                 }
             };
         }

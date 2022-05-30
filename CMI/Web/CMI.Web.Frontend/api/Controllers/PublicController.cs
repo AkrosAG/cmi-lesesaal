@@ -179,7 +179,7 @@ namespace CMI.Web.Frontend.api.Controllers
         [HttpPost]
         public JObject VerifyCaptcha([FromBody] CaptchaVerificationData data)
         {
-            return SecurityHelper.VerifyCaptcha(data, FrontendSettingsViaduc.Instance.GetServerSettings());
+            return SecurityHelper.VerifyCaptcha(data, FrontendSettings.Instance.GetServerSettings());
         }
     }
 }

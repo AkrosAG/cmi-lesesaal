@@ -17,7 +17,7 @@ namespace CMI.Web.Management.api.Controllers
             AllowedLogicalOperators = AllowedLogicalOperators.All, MaxNodeCount = 500)]
         public IHttpActionResult Get()
         {
-            var ctx = new ViaducContext(WebHelper.Settings["sqlConnectionString"]);
+            var ctx = new LesesaalContext(WebHelper.Settings["sqlConnectionString"]);
             return Ok(ctx.UserOverview
                 .OrderBy(u => u.FamilyName)
                 .ThenBy(u => u.FirstName)

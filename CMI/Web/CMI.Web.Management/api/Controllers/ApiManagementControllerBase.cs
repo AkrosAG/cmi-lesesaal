@@ -8,7 +8,7 @@ namespace CMI.Web.Management.api.Controllers
     [CamelCaseJson]
     public abstract class ApiManagementControllerBase : ApiControllerBase
     {
-        protected ManagementSettingsViaduc Settings => ManagementSettingsViaduc.Instance;
+        protected ManagementSettings Settings => ManagementSettings.Instance;
 
         public IManagementControllerHelper ManagementControllerHelper { get; set; }
 

@@ -11,7 +11,7 @@ using Serilog;
 
 namespace CMI.Manager.Lesesaal
 {
-    public class ViaducService
+    public class LesesaalService
     {
         private IBusControl bus;
 
@@ -23,7 +23,7 @@ namespace CMI.Manager.Lesesaal
 
             var containerBuilder = ContainerConfigurator.Configure();
 
-            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.ViaducService, (cfg, ctx) =>
+            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.LesesaalService, (cfg, ctx) =>
             {
                 cfg.ReceiveEndpoint(BusConstants.ReadUserInformationQueue,
                     ec => { ec.Consumer(ctx.Resolve<ReadUserInformationConsumer>); }
@@ -32,25 +32,25 @@ namespace CMI.Manager.Lesesaal
                     ec => { ec.Consumer(ctx.Resolve<ReadStammdatenConsumer>); }
                 );
                 // CollectionManager Methods
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetAllCollectionsRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetAllCollectionsRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetAllCollectionsRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetActiveCollectionsRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetActiveCollectionsRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetActiveCollectionsRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetCollectionsHeaderRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionsHeaderRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionsHeaderRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetCollectionRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(InsertOrUpdateCollectionRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(InsertOrUpdateCollectionRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<InsertOrUpdateCollectionRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(DeleteCollectionRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(DeleteCollectionRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<DeleteCollectionRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(BatchDeleteCollectionRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(BatchDeleteCollectionRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<BatchDeleteCollectionRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetPossibleParentsRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetPossibleParentsRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetPossibleParentsRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetImageRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetImageRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetImageRequest>>); });
-                cfg.ReceiveEndpoint(string.Format(BusConstants.ViaducManagerRequestBase, nameof(GetCollectionItemResultRequest)),
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionItemResultRequest)),
                     ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionItemResultRequest>>); });
 
                 var helper = new ParameterBusHelper();

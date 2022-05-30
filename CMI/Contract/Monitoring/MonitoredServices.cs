@@ -16,7 +16,7 @@
         ParameterService,
         RepositoryService,
         VecteurService,
-        ViaducService,
+        LesesaalService,
         NotMonitored
     }
 }

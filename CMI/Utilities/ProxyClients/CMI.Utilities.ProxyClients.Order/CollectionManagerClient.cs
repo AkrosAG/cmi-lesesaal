@@ -128,7 +128,7 @@ namespace CMI.Utilities.ProxyClients.Order
         private IRequestClient<T1> GetRequestClient<T1>(string queueEndpoint = "", int requestTimeOutInSeconds = 0) where T1 : class
         {
             var serviceUrl = string.IsNullOrEmpty(queueEndpoint)
-                ? string.Format(BusConstants.ViaducManagerRequestBase, typeof(T1).Name)
+                ? string.Format(BusConstants.LesesaalManagerRequestBase, typeof(T1).Name)
                 : queueEndpoint;
 
 #if DEBUG

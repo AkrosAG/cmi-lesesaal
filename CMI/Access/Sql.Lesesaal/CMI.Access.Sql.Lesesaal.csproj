@@ -111,7 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FavoriteDataAccess.cs" />
     <Compile Include="OrderDataAccess.cs" />
-    <Compile Include="ViaducContext.cs" />
+    <Compile Include="LesesaalContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SqlDbScripts\0000_TO_0001.sql" />

@@ -37,7 +37,7 @@ namespace CMI.Web.Frontend.Controllers
         private ErrorModel CreateErrorViewModel(string contentMarkup, string language, string url, bool is404 = false)
         {
             ViewBag.Language = language;
-            ViewBag.Title = FrontendSettingsViaduc.Instance.GetTranslation(language, "page.title",
+            ViewBag.Title = FrontendSettings.Instance.GetTranslation(language, "page.title",
                 "Schweizerisches Bundesarchiv BAR");
 
             var viewModel = new ErrorModel();
@@ -46,9 +46,9 @@ namespace CMI.Web.Frontend.Controllers
             var relativeUrl = StaticContentHelper.GetRelativeUrl(Request.ApplicationPath, subRequestPath, true);
 
             var contentNode =
-                StaticContentHelper.FindStaticContentNode(FrontendSettingsViaduc.Instance, contentMarkup);
+                StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, contentMarkup);
 
-            var contentHtml = StaticContentHelper.ProcessStaticMarkupForMvc(FrontendSettingsViaduc.Instance, Request,
+            var contentHtml = StaticContentHelper.ProcessStaticMarkupForMvc(FrontendSettings.Instance, Request,
                 relativeUrl, language, contentNode.OuterHtml);
 
             ViewBag.Html = contentHtml;

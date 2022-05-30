@@ -140,9 +140,9 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     return ResponseMessage(veExportRecordHelper.CreateExcelFile(
                         ConvertExportData(searchRecords.Entities.Items.Select(i => i.Data).ToList()), language,
-                        FrontendSettingsViaduc.Instance.GetTranslation(language, "veExportRecord.fileName") +
+                        FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileName") +
                         $"-{DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss")}.xlsx",
-                        FrontendSettingsViaduc.Instance.GetTranslation("en", "veExportRecord.fileName") +
+                        FrontendSettings.Instance.GetTranslation("en", "veExportRecord.fileName") +
                         $"-{DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss")}.xlsx"));
                 }
             }
@@ -188,7 +188,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         return GetCaptchaMissing(language);
                     }
 
-                    if (!SecurityHelper.IsValidCaptcha(search.Captcha, FrontendSettingsViaduc.Instance.GetServerSettings()))
+                    if (!SecurityHelper.IsValidCaptcha(search.Captcha, FrontendSettings.Instance.GetServerSettings()))
                     {
                         return GetCaptchaInvalid(language);
                     }
@@ -215,7 +215,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     Error = new ApiError
                     {
                         StatusCode = (int) HttpStatusCode.InternalServerError,
-                        Message = FrontendSettingsViaduc.Instance.GetTranslation(language, "search.unexpectedSystemError",
+                        Message = FrontendSettings.Instance.GetTranslation(language, "search.unexpectedSystemError",
                             "Es ist ein unerwarteter Fehler aufgetreten.")
                     }
                 };
@@ -288,7 +288,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private void ThrowBadRequestMessageForNonUniqueRefCodeSearch()
         {
-            var settings = FrontendSettingsViaduc.Instance;
+            var settings = FrontendSettings.Instance;
             var msg = settings.GetTranslation(WebHelper.GetClientLanguage(Request),
                 "searchErrors.multipleResultsFound",
                 "Die Suche nach dieser Signatur hat mehrere Resultate erbracht. Bitte geben Sie eine eindeutige Signatur ein.");
@@ -306,7 +306,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private static SearchUsageSettings GetUsageSettings()
         {
-            var settings = FrontendSettingsViaduc.Instance.GetServerSettings();
+            var settings = FrontendSettings.Instance.GetServerSettings();
             var captcha = JsonHelper.FindTokenValue<JObject>(settings, "captcha");
             var usage = JsonHelper.GetByPath<JObject>(captcha, "server.usage");
             var usageSettings = usage != null ? usage.ToObject<SearchUsageSettings>() : new SearchUsageSettings();
@@ -324,7 +324,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private ErrorSearchResult GetCaptchaMissing(string language)
         {
-            var settings = FrontendSettingsViaduc.Instance;
+            var settings = FrontendSettings.Instance;
 
             return new ErrorSearchResult
             {
@@ -339,7 +339,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private ErrorSearchResult GetCaptchaInvalid(string language)
         {
-            var settings = FrontendSettingsViaduc.Instance;
+            var settings = FrontendSettings.Instance;
 
             return new ErrorSearchResult
             {

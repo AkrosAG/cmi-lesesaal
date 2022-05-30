@@ -19,7 +19,7 @@ namespace CMI.Web.Frontend.Helpers
                 new JsonAppData
                 {
                     Info = "Public/Settings",
-                    Root = FrontendSettingsViaduc.Instance.GetServerSettings(),
+                    Root = FrontendSettings.Instance.GetServerSettings(),
                     Mappings = new List<JsonDataMapping>
                     {
                         new JsonDataMapping

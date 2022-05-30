@@ -292,7 +292,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CMI.Access.Sql.Lesesaal.EF" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ViaducDb" annotation:LazyLoadingEnabled="true" ed:Guid="f6072421-c423-460d-a299-71dd6cecf252">
+        <EntityContainer Name="LesesaalDb" annotation:LazyLoadingEnabled="true" ed:Guid="f6072421-c423-460d-a299-71dd6cecf252">
           <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Collection" />
           <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
           <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.ApplicationUser" />
@@ -582,7 +582,7 @@
     <!-- MSL content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ViaducEntitiesStoreContainer" CdmEntityContainer="ViaducDb">
+        <EntityContainerMapping StorageEntityContainer="ViaducEntitiesStoreContainer" CdmEntityContainer="LesesaalDb">
           <EntitySetMapping Name="Collections">
             <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.Collection">
               <MappingFragment StoreEntitySet="Collections">

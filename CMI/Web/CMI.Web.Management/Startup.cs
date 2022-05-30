@@ -98,7 +98,7 @@ namespace CMI.Web.Management
             
             app.Use(async (context, next) => { await next.Invoke(); });            
 
-            var connectionString = ManagementSettingsViaduc.Instance.SqlConnectionString;
+            var connectionString = ManagementSettings.Instance.SqlConnectionString;
             var userDataAccess = new UserDataAccess(connectionString);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -108,7 +108,7 @@ namespace CMI.Web.Management
                 CookieSameSite = SameSiteMode.Strict,
                 CookieSecure = CookieSecureOption.Always,
                 CookieHttpOnly = true,
-                ExpireTimeSpan = TimeSpan.FromMinutes(ManagementSettingsViaduc.Instance.CookieExpireTimeInMinutes),
+                ExpireTimeSpan = TimeSpan.FromMinutes(ManagementSettings.Instance.CookieExpireTimeInMinutes),
                 SlidingExpiration = true,
                 Provider = new CookieAuthenticationProvider
                 {
@@ -134,7 +134,7 @@ namespace CMI.Web.Management
 
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}", ManagementSettingsViaduc.Instance.CookieExpireTimeInMinutes);
+            Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}", ManagementSettings.Instance.CookieExpireTimeInMinutes);
         }
 
         private void UpgradeDb()

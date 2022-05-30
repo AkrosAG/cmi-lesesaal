@@ -11,7 +11,7 @@ namespace CMI.Web.Management.Auth
         public ManagementUserAccess(string userId, string eiamRole, string[] asTokens, string language = null) : base(userId, null, eiamRole,
             asTokens, false, language)
         {
-            var user = new UserDataAccess(ManagementSettingsViaduc.Instance.SqlConnectionString).GetUser(userId);
+            var user = new UserDataAccess(ManagementSettings.Instance.SqlConnectionString).GetUser(userId);
             ApplicationRoles = user?.Roles ?? new List<ApplicationRole>();
             ApplicationFeatures = user?.Features ?? new List<ApplicationFeature>();
         }

@@ -91,7 +91,7 @@ namespace CMI.Web.Frontend
             app.UseKentorOwinCookieSaver();
 
             app.Use(async (context, next) => { await next.Invoke(); });
-            var connectionString = FrontendSettingsViaduc.Instance.SqlConnectionString;
+            var connectionString = FrontendSettings.Instance.SqlConnectionString;
             var userDataAccess = new UserDataAccess(connectionString);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -101,7 +101,7 @@ namespace CMI.Web.Frontend
                 CookieSameSite = SameSiteMode.Strict,
                 CookieSecure = CookieSecureOption.Always,
                 CookieHttpOnly = true,
-                ExpireTimeSpan = TimeSpan.FromMinutes(FrontendSettingsViaduc.Instance.CookieExpireTimeInMinutes),
+                ExpireTimeSpan = TimeSpan.FromMinutes(FrontendSettings.Instance.CookieExpireTimeInMinutes),
                 SlidingExpiration = true,
                 Provider = new CookieAuthenticationProvider
                 {
@@ -124,7 +124,7 @@ namespace CMI.Web.Frontend
             app.UseKentorAuthServicesAuthentication(authOptions);
             
             Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}",
-                FrontendSettingsViaduc.Instance.CookieExpireTimeInMinutes);
+                FrontendSettings.Instance.CookieExpireTimeInMinutes);
             
             app.Use(async (context, next) => { await next.Invoke(); });
         }

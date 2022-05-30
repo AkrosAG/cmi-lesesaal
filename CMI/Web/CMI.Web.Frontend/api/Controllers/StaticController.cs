@@ -52,8 +52,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     statusCode = HttpStatusCode.NotFound;
                 }
 
-                var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettingsViaduc.Instance, html);
-                contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettingsViaduc.Instance, RequestContext, relativeUrl, language,
+                var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, html);
+                contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettings.Instance, RequestContext, relativeUrl, language,
                     contentNode.OuterHtml);
             }
             catch (Exception ex)
@@ -68,8 +68,8 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
                 else
                 {
-                    var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettingsViaduc.Instance, html);
-                    contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettingsViaduc.Instance, RequestContext, relativeUrl,
+                    var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, html);
+                    contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettings.Instance, RequestContext, relativeUrl,
                         language, contentNode.OuterHtml);
                 }
             }
@@ -115,8 +115,8 @@ namespace CMI.Web.Frontend.api.Controllers
                 statusCode = HttpStatusCode.InternalServerError;
                 if (!string.IsNullOrEmpty(html))
                 {
-                    var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettingsViaduc.Instance, html);
-                    content = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettingsViaduc.Instance, RequestContext, url, language,
+                    var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, html);
+                    content = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettings.Instance, RequestContext, url, language,
                         contentNode.OuterHtml);
                 }
             }
@@ -150,7 +150,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 return new HttpResponseMessage(HttpStatusCode.Forbidden);
             }
 
-            return StaticContentHelper.UpdateStaticContent(FrontendSettingsViaduc.Instance, ControllerContext.RequestContext, update);
+            return StaticContentHelper.UpdateStaticContent(FrontendSettings.Instance, ControllerContext.RequestContext, update);
         }
 
         [HttpGet]

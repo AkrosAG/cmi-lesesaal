@@ -12,7 +12,7 @@ namespace CMI.Web.Management.api.Configuration
             T entry = default;
             try
             {
-                entry = SettingsHelper.GetSettingsFor<T>(ManagementSettingsViaduc.Instance.GetServerSettings(), entryPath);
+                entry = SettingsHelper.GetSettingsFor<T>(ManagementSettings.Instance.GetServerSettings(), entryPath);
             }
             catch (Exception ex)
             {

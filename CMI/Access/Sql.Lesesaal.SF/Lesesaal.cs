@@ -36,39 +36,39 @@ using System.Xml.Serialization;
 namespace CMI.Access.Sql.Lesesaal.EF
 {
 
-    #region ViaducDb
+    #region LesesaalDb
 
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class ViaducDb : ObjectContext
+    public partial class LesesaalDb : ObjectContext
     {
         #region Constructors
 
         /// <summary>
-        /// Initialize a new ViaducDb object.
+        /// Initialize a new LesesaalDb object.
         /// </summary>
-        public ViaducDb() :
-                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=.\sqlexpress;Initial Catalog=viaduc;Integrated Security=True;Persist Security Info=True""", "ViaducDb")
+        public LesesaalDb() :
+                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=.\sqlexpress;Initial Catalog=viaduc;Integrated Security=True;Persist Security Info=True""", "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
 
         /// <summary>
-        /// Initializes a new ViaducDb object using the connection string found in the 'ViaducDb' section of the application configuration file.
+        /// Initializes a new LesesaalDb object using the connection string found in the 'LesesaalDb' section of the application configuration file.
         /// </summary>
-        public ViaducDb(string connectionString) :
-                base(connectionString, "ViaducDb")
+        public LesesaalDb(string connectionString) :
+                base(connectionString, "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
 
         /// <summary>
-        /// Initialize a new ViaducDb object.
+        /// Initialize a new LesesaalDb object.
         /// </summary>
-        public ViaducDb(EntityConnection connection) : base(connection, "ViaducDb")
+        public LesesaalDb(EntityConnection connection) : base(connection, "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
