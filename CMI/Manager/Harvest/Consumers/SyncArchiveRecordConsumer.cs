@@ -58,7 +58,7 @@ namespace CMI.Manager.Harvest.Consumers
                         // sync process
                         if (archiveRecord == null)
                         {
-                            harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                            await harvestManager.UpdateMutationStatus(new MutationStatusInfo
                             {
                                 MutationId = context.Message.MutationId,
                                 NewStatus = ActionStatus.SyncAborted,
@@ -73,7 +73,7 @@ namespace CMI.Manager.Harvest.Consumers
                         // as this record MUST not be synced to Lesesaal
                         if (!archiveRecord.Security.MetadataAccessToken.Any())
                         {
-                            harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                            await harvestManager.UpdateMutationStatus(new MutationStatusInfo
                             {
                                 MutationId = context.Message.MutationId,
                                 NewStatus = ActionStatus.SyncAborted,
