@@ -99,16 +99,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMIAis\CMIRecordBuilderTests.cs" />
-    <Compile Include="Scope\ArchiveRecordBuilderTests.cs" />
-    <Compile Include="Scope\DataElementHelperFillDataElementElementValueTests.cs" />
-    <Compile Include="Scope\DataElementHelperGetSearchDateTests.cs" />
-    <Compile Include="Scope\DataProviderMock.cs" />
-    <Compile Include="Scope\DigitizationOrderBuilderTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scope\ArchiveRecordBuilderTests.cs" />
+    <Compile Include="Scope\DataElementHelperFillDataElementElementValueTests.cs" />
+    <Compile Include="Scope\DataElementHelperGetSearchDateTests.cs" />
+    <Compile Include="Scope\DataProviderMock.cs" />
+    <Compile Include="Scope\DigitizationOrderBuilderTests.cs" />
     <Compile Include="Scope\SipDateBuilderTests.cs" />
     <Compile Include="TimeRangeFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
