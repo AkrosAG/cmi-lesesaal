@@ -20,17 +20,17 @@ namespace CMI.Access.Harvest.ScopeArchiv
         private const string subFondsLevelIdentifier = "Teilbestand";
         private const string fondsLevelIdentifier = "Bestand";
         private const string serieLevelIdentifier = "Serie";
-        private readonly ConcurrentDictionary<long, List<VerzEinheitKurzType>> containerContentCache;
-        private readonly ScopeAISDataProvider dataProvider;
-        private readonly ScopeArchiveRecordBuilder recordBuilder;
+        private readonly ConcurrentDictionary<string, List<VerzEinheitKurzType>> containerContentCache;
+        private readonly IAISDataProvider dataProvider;
+        private readonly IArchiveRecordBuilder recordBuilder;
         private readonly SipDateBuilder sipDateBuilder;
 
-        public DigitizationOrderBuilder(ScopeAISDataProvider dataProvider, ScopeArchiveRecordBuilder recordBuilder, SipDateBuilder sipDateBuilder)
+        public DigitizationOrderBuilder(IAISDataProvider dataProvider, IArchiveRecordBuilder recordBuilder, SipDateBuilder sipDateBuilder)
         {
             this.dataProvider = dataProvider;
             this.recordBuilder = recordBuilder;
             this.sipDateBuilder = sipDateBuilder;
-            containerContentCache = new ConcurrentDictionary<long, List<VerzEinheitKurzType>>();
+            containerContentCache = new ConcurrentDictionary<string, List<VerzEinheitKurzType>>();
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             var dossierId = archiveRecord.Display.ArchiveplanContext[dossierLevelIndex].ArchiveRecordId;
 
-            var dossier = await dataProvider.LoadOrderDetailData(Convert.ToInt32(dossierId));
+            var dossier = await dataProvider.LoadOrderDetailData(dossierId);
             var dossierData = await GetArchiveRecordDetailData(dossier);
             return dossierData;
         }
@@ -128,7 +128,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             };
 
             // Do we have child records? If yes, add all the the collection
-            var children = await dataProvider.GetChildrenRecordOrderDetailDataForArchiveRecord(Convert.ToInt64(verzEinheit.Id));
+            var children = await dataProvider.GetChildrenRecordOrderDetailDataForArchiveRecord(verzEinheit.Id);
             if (children.Any())
             {
                 retVal.UntergeordneteVerzEinheiten = new List<VerzEinheitType>();
@@ -148,20 +148,20 @@ namespace CMI.Access.Harvest.ScopeArchiv
             List<BehaeltnisType> retVal = null;
             Log.Debug("Fetching containers for archive record with id {archiveRecordId}", verzEinheit.Id);
             
-            var containers = (ContainerDataSet) await dataProvider.LoadContainers(Convert.ToInt64(verzEinheit.Id));
-            if (containers.StorageContainer.Rows.Count > 0)
+            var containers = await dataProvider.LoadContainers(verzEinheit.Id);
+            if (containers.Count > 0)
             {
                 retVal = new List<BehaeltnisType>();
-                foreach (var container in containers.StorageContainer)
+                foreach (var container in containers)
                 {
                     retVal.Add(new BehaeltnisType
                     {
-                        BehaeltnisCode = container.BHLTN_CD,
-                        BehaeltnisTyp = container.BHLTN_TYP_NM,
-                        InformationsTraeger = container.BHLTN_INFO_TRGR_NM,
-                        Standort = container.BHLTN_DEF_STAND_ORT_CD,
+                        BehaeltnisCode = container.BehaeltnisCode,
+                        BehaeltnisTyp = container.BehaeltnisTypeName,
+                        InformationsTraeger = container.BehaeltnisInfotraegerName,
+                        Standort = container.DefinitiverStandortCd,
                         EnthalteneVerzEinheiten =
-                            verzEinheit.Level == dossierLevelIdentifier ? await GetArchiveRecordsToContainer(container.BHLTN_ID) : null
+                            verzEinheit.Level == dossierLevelIdentifier ? await GetArchiveRecordsToContainer(container.BehaeltnisId) : null
                     });
                 }
             }
@@ -169,7 +169,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             return retVal;
         }
 
-        private async Task<List<VerzEinheitKurzType>> GetArchiveRecordsToContainer(long containerId)
+        private async Task<List<VerzEinheitKurzType>> GetArchiveRecordsToContainer(string containerId)
         {
             // Do we have the container contents in the cache?
             if (containerContentCache.ContainsKey(containerId))
@@ -179,7 +179,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             Log.Debug("Getting archive records in container with id {containerId}", containerId);
             var retVal = new List<VerzEinheitKurzType>();
-            var archiveRecords = await dataProvider.GetArchiveRecordOrderDetailDataForContainer(containerId);
+            var archiveRecords = await dataProvider.GetArchiveRecordOrderDetailDataForContainer(containerId.ToString());
             retVal.AddRange(archiveRecords.Select(r => new VerzEinheitKurzType
             {
                 Titel = !string.IsNullOrEmpty(r.Title) ? r.Title : NoDataAvailable,
@@ -364,11 +364,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         {
             var retVal = new AblieferungType();
             // Get the accession
-            var accession = (AccessionDataSet.AcessionRecordRow)  await dataProvider.GetLinkedAccessionToArchiveRecord(Convert.ToInt64(recordId));
+            var accession = await dataProvider.GetLinkedAccessionToArchiveRecord(recordId);
             if (accession != null)
             {
-                retVal.AblieferndeStelle = accession.ABLFR_PRTNR_KURZ_NM;
-                retVal.Ablieferungsnummer = $"{accession.ABLFR_JAHR}/{Convert.ToInt32(accession.ABLFR_NR)}";
+                retVal.AblieferndeStelle = accession.AblieferndeStelleName;
+                retVal.Ablieferungsnummer = $"{accession.AblieferungsJahr}/{Convert.ToInt32(accession.AblieferungsNummer)}";
             }
             else
             {
@@ -393,14 +393,9 @@ namespace CMI.Access.Harvest.ScopeArchiv
             // or one of its parent
             for (var i = archivePlan.Count - 1; i >= 0; i--)
             {
-                var deTable = await dataProvider.GetDetailDataForElement(Convert.ToInt64(archivePlan[i].ArchiveRecordId),
-                    (int) ScopeArchivDatenElementId.AktenbildnerProvenienzLink);
-                if (deTable.Rows.Count > 0)
+                var partnerIdName = await dataProvider.GetAccessionBuilderName(archivePlan[i].ArchiveRecordId);
+                if (!string.IsNullOrEmpty(partnerIdName))
                 {
-                    // Get the first linked element (should always be one)
-                    var deRow = deTable.AsEnumerable().First();
-                    var partnerId = deRow.VRKNP_GSFT_OBJ_ID;
-                    var partnerIdName = await dataProvider.GetBusinessObjectIdName(Convert.ToInt64(partnerId));
                     return partnerIdName;
                 }
             }
