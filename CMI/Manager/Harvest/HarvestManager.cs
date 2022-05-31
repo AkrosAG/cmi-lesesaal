@@ -40,7 +40,6 @@ namespace CMI.Manager.Harvest
         /// <returns>Task.</returns>
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)
         {
-            // TODO: Review
             return await queueAccess.UpdateMutationStatus(info);
         }
 
@@ -53,7 +52,6 @@ namespace CMI.Manager.Harvest
         {
             Log.Information("About to insert record ids into mutation table for full resync. Command was started by {username} at {startTime}",
                 info.Username, info.IssueDate);
-            // TODO: Review
             var affectedRecords = await resyncAccess.InitiateFullResync(info);
             Log.Information("Finished inserting record ids into mutation table. A total of {affectedRecords} were added.", affectedRecords);
             return affectedRecords;
@@ -66,8 +64,7 @@ namespace CMI.Manager.Harvest
         /// <returns>HarvestStatusInfo.</returns>
         public async Task<HarvestStatusInfo> GetStatusInfo(QueryDateRangeEnum dateRange)
         {
-            // TODO: Review
-            return await statusAccess.GetStatusInfo(dateRange);
+             return await statusAccess.GetStatusInfo(dateRange);
         }
 
         /// <summary>
@@ -77,7 +74,6 @@ namespace CMI.Manager.Harvest
         /// <returns>HarvestLogInfo.</returns>
         public async Task<HarvestLogInfoResult> GetLogInfo(HarvestLogInfoRequest request)
         {
-            // TODO: Review
             return await statusAccess.GetLogInfo(request);
         }
     }
