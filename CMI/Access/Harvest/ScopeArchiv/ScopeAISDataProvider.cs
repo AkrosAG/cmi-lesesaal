@@ -272,11 +272,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        public async Task<ArchiveRecordDataSet.ArchiveRecordRow> GetArchiveRecordRow(long recordId)
+        public async Task<ArchiveRecordDataSet.ArchiveRecordRow> GetArchiveRecordRow(string recordId)
         {
             var ds = await GetDataSetFromSql<ArchiveRecordDataSet>(SqlStatements.SqlArchiveRecordSelect, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
 
             if (!ds.ArchiveRecord.Any())
@@ -292,11 +292,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>DetailDataDataSet.</returns>
-        public async Task<DetailDataDataSet> LoadDetailData(long recordId)
+        public async Task<DetailDataDataSet> LoadDetailData(string recordId)
         {
             return await GetDataSetFromSql<DetailDataDataSet>(SqlStatements.SqlDataElementsSelect, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
         }
 
@@ -305,11 +305,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>DetailDataDataSet.</returns>
-        public async Task<OrderDetailData> LoadOrderDetailData(long recordId)
+        public async Task<OrderDetailData> LoadOrderDetailData(string recordId)
         {
             var data = await GetDataSetFromSql<DataSet>(SqlStatements.OrderDetailDataSelect, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
             if (data.Tables[0].Rows.Count == 0)
             {
@@ -325,7 +325,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        public async Task<NodeContext> LoadNodeContext(long recordId)
+        public async Task<NodeContext> LoadNodeContext(string recordId)
         {
             var retVal = new NodeContext();
             using (var cn = AISConnection.GetConnection())
@@ -350,7 +350,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
                         cmd.Parameters.Add(new OracleParameter("pi_item_id", OracleDbType.Integer)
                         {
                             Direction = ParameterDirection.Input,
-                            Value = recordId
+                            Value = Convert.ToInt64(recordId)
                         });
 
                         cmd.Parameters.Add(new OracleParameter("pio_pred_id", OracleDbType.Integer)
@@ -383,7 +383,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
                         retVal.FirstChildArchiveRecordId = Convert.ToInt32(cmd.Parameters["pio_first_child_id"].Value).ToString();
                         retVal.NextArchiveRecordId = Convert.ToInt32(cmd.Parameters["pio_succ_id"].Value).ToString();
                         retVal.PreviousArchiveRecordId = Convert.ToInt32(cmd.Parameters["pio_pred_id"].Value).ToString();
-                        retVal.ArchiveRecordId = recordId.ToString();
+                        retVal.ArchiveRecordId = recordId;
                     }
                 }
                 catch (Exception ex)
@@ -417,21 +417,21 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The primary key of the archive record.</param>
         /// <returns>NodeInfoDataSet.</returns>
-        public async Task<NodeInfoDataSet> LoadNodeInfo(long recordId)
+        public async Task<NodeInfoDataSet> LoadNodeInfo(string recordId)
         {
             return await GetDataSetFromSql<NodeInfoDataSet>(SqlStatements.SqlArchiveRecordNodeInfo, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
         }
 
-        public async Task<List<string>> LoadMetadataSecurityTokens(long recordId)
+        public async Task<List<string>> LoadMetadataSecurityTokens(string recordId)
         {
             var retVal = new List<string>();
 
             var securityInfo = await GetDataSetFromSql<DataSet>(SqlStatements.GetArchiveRecordSecurityInfo, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
 
             // We should have received exatly one record
@@ -451,13 +451,13 @@ namespace CMI.Access.Harvest.ScopeArchiv
             return retVal;
         }
 
-        public async Task<PrimaryDataSecurityTokenResult> LoadPrimaryDataSecurityTokens(long recordId)
+        public async Task<PrimaryDataSecurityTokenResult> LoadPrimaryDataSecurityTokens(string recordId)
         {
             var retVal = new PrimaryDataSecurityTokenResult();
 
             var securityInfo = await GetDataSetFromSql<DataSet>(SqlStatements.GetArchiveRecordPrimaryDataSecurityInfo, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
 
             // We should have received exatly one record
@@ -662,7 +662,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>AccessionDataSet.AcessionRecordRow.</returns>
-        public async Task<DataRow> GetLinkedAccessionToArchiveRecord(long recordId)
+        public async Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
         {
             // Get the data element for the accession link
             var table = await GetDetailDataForElement(recordId, (int) ScopeArchivDatenElementId.AblieferungLink);
@@ -675,8 +675,30 @@ namespace CMI.Access.Harvest.ScopeArchiv
                 });
                 if (ds.AcessionRecord.Count == 1)
                 {
-                    return ds.AcessionRecord[0];
+                    var record = ds.AcessionRecord[0];
+                    return new LinkedAccessionInfo
+                    {
+                        AblieferndeStelleName = record.ABLFR_PRTNR_KURZ_NM,
+                        AblieferungsJahr = record.ABLFR_JAHR,
+                        AblieferungsNummer = record.ABLFR_NR
+                    };
                 }
+            }
+
+            return null;
+        }
+
+        public async Task<string> GetAccessionBuilderName(string recordId)
+        {
+            var deTable = await GetDetailDataForElement(recordId,
+                (int)ScopeArchivDatenElementId.AktenbildnerProvenienzLink);
+            if (deTable.Rows.Count > 0)
+            {
+                // Get the first linked element (should always be one)
+                var deRow = deTable.AsEnumerable().First();
+                var partnerId = deRow.VRKNP_GSFT_OBJ_ID;
+                var partnerIdName = await GetBusinessObjectIdName(Convert.ToInt64(partnerId).ToString());
+                return partnerIdName;
             }
 
             return null;
@@ -690,11 +712,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// <param name="recordId">The archive record identifier.</param>
         /// <param name="dataElementId">The data element identifier.</param>
         /// <returns>DetailDataDataSet.DetailDataRow.</returns>
-        public async Task<DetailDataDataSet.DetailDataDataTable> GetDetailDataForElement(long recordId, int dataElementId)
+        public async Task<DetailDataDataSet.DetailDataDataTable> GetDetailDataForElement(string recordId, int dataElementId)
         {
             var ds = await GetDataSetFromSql<DetailDataDataSet>(SqlStatements.GetDetailDataForDataElement, new[]
             {
-                new OracleParameter("gsft_obj_id", OracleDbType.Integer) {Value = recordId},
+                new OracleParameter("gsft_obj_id", OracleDbType.Integer) {Value = Convert.ToInt64(recordId)},
                 new OracleParameter("daten_elmnt_id", OracleDbType.Integer) {Value = dataElementId}
             });
 
@@ -706,11 +728,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>System.String.</returns>
-        public async Task<string> GetBusinessObjectIdName(long recordId)
+        public async Task<string> GetBusinessObjectIdName(string recordId)
         {
             return await ExecuteSqlScalar<string>("select gsft_obj_kurz_nm from tbs_gsft_obj where gsft_obj_id = :gsft_obj_id", new[]
             {
-                new OracleParameter("gsft_obj_id", OracleDbType.Integer) {Value = recordId}
+                new OracleParameter("gsft_obj_id", OracleDbType.Integer) {Value = Convert.ToInt64(recordId)}
             });
         }
 
@@ -719,11 +741,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>List&lt;System.Int64&gt;.</returns>
-        public async Task<List<OrderDetailData>> GetChildrenRecordOrderDetailDataForArchiveRecord(long recordId)
+        public async Task<List<OrderDetailData>> GetChildrenRecordOrderDetailDataForArchiveRecord(string recordId)
         {
             var ds = await GetDataSetFromSql<DataSet>(SqlStatements.OrderDetailDataSelectForChildRecords, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
 
             var data = ds.Tables[0].AsEnumerable().Select(ConvertDataSetRowToOrderDetailData);
@@ -736,11 +758,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="containerId">The container identifier.</param>
         /// <returns>List&lt;System.Int64&gt;.</returns>
-        public async Task<List<OrderDetailData>> GetArchiveRecordOrderDetailDataForContainer(long containerId)
+        public async Task<List<OrderDetailData>> GetArchiveRecordOrderDetailDataForContainer(string containerId)
         {
             var ds = await GetDataSetFromSql<DataSet>(SqlStatements.OrderDetailDataSelectForContainer, new[]
             {
-                new OracleParameter {ParameterName = "bhltn_id", Value = containerId}
+                new OracleParameter {ParameterName = "bhltn_id", Value = Convert.ToInt64(containerId)}
             });
 
             var data = ds.Tables[0].AsEnumerable().Select(ConvertDataSetRowToOrderDetailData);
@@ -774,22 +796,41 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>ContainerDataSet.</returns>
-        public async Task<ContainerDataSet> LoadContainers(long recordId)
+        public async Task<List<ContainerInfo>> LoadContainers(string recordId)
         {
-            return await GetDataSetFromSql<ContainerDataSet>(SqlStatements.SqlArchiveRecordContainers, new[]
+            List<ContainerInfo> retVal = new List<ContainerInfo>();
+            var containers = await GetDataSetFromSql<ContainerDataSet>(SqlStatements.SqlArchiveRecordContainers, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
+
+            if (containers.StorageContainer.Rows.Count > 0)
+            {
+                foreach (var container in containers.StorageContainer)
+                {
+                    retVal.Add(new ContainerInfo
+                    {
+                        BehaeltnisId = container.BHLTN_ID.ToString(),
+                        BehaeltnisCode = container.BHLTN_CD,
+                        BehaeltnisTypeName = container.BHLTN_TYP_NM,
+                        BehaeltnisInfotraegerName = container.BHLTN_INFO_TRGR_NM,
+                        DefinitiverStandortCd = container.BHLTN_DEF_STAND_ORT_CD,
+                        BehaeltnisKurzname = container.GSFT_OBJ_KURZ_NM
+                    });
+                }
+            }
+
+            return retVal;
         }
 
         /// <summary>
         ///     Loads the descriptors for an archive record
         /// </summary>
-        public async Task<DescriptorDataSet> LoadDescriptors(long recordId)
+        public async Task<DescriptorDataSet> LoadDescriptors(string recordId)
         {
             return await GetDataSetFromSql<DescriptorDataSet>(SqlStatements.SqlArchiveRecordDescriptors, new[]
             {
-                new OracleParameter {ParameterName = "vrzng_enht_id", Value = recordId}
+                new OracleParameter {ParameterName = "vrzng_enht_id", Value = Convert.ToInt64(recordId)}
             });
         }
 
@@ -798,11 +839,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>ReferencesDataSet.</returns>
-        public async Task<ReferencesDataSet> LoadReferences(long recordId)
+        public async Task<ReferencesDataSet> LoadReferences(string recordId)
         {
             return await GetDataSetFromSql<ReferencesDataSet>(SqlStatements.SqlArchiveRecordReferences, new[]
             {
-                new OracleParameter {ParameterName = "gsft_obj_id", Value = recordId}
+                new OracleParameter {ParameterName = "gsft_obj_id", Value = Convert.ToInt64(recordId)}
             });
         }
 
@@ -1060,12 +1101,12 @@ namespace CMI.Access.Harvest.ScopeArchiv
             }
         }
 
-        Task<List<string>> IAISDataProvider.LoadMetadataSecurityTokens(long recordId)
+        Task<List<string>> IAISDataProvider.LoadMetadataSecurityTokens(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        Task<PrimaryDataSecurityTokenResult> IAISDataProvider.LoadPrimaryDataSecurityTokens(long recordId)
+        Task<PrimaryDataSecurityTokenResult> IAISDataProvider.LoadPrimaryDataSecurityTokens(string recordId)
         {
             throw new NotImplementedException();
         }
