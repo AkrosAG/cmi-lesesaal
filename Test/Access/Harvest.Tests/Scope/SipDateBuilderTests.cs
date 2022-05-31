@@ -3,7 +3,7 @@ using CMI.Access.Harvest.ScopeArchiv;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace CMI.Access.Harvest.Tests
+namespace CMI.Access.Harvest.Tests.Scope
 {
     [TestFixture]
     public class SipDateBuilderTests
