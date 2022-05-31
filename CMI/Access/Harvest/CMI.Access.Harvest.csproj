@@ -67,6 +67,7 @@
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="ArchiveRecordBuilderFactory.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordBuilder.cs" />
+    <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\DetailDataBuilder.cs" />

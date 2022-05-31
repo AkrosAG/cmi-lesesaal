@@ -48,7 +48,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             sw.Start();
 
             // Get some base information about the record that is used in several places
-            var recordRow = await dataProvider.GetArchiveRecordRow(Convert.ToInt64(archiveRecordId));
+            var recordRow = await dataProvider.GetArchiveRecordRow(archiveRecordId);
 
             // If we don't receive a record, it does not exist.
             if (recordRow == null)
@@ -79,8 +79,8 @@ namespace CMI.Access.Harvest.ScopeArchiv
         {
             try
             {
-                var tMetadataSecurityTokens = dataProvider.LoadMetadataSecurityTokens(Convert.ToInt64(recordId));
-                var tPrimaryDataSecurityTokens = dataProvider.LoadPrimaryDataSecurityTokens(Convert.ToInt64(recordId));
+                var tMetadataSecurityTokens = dataProvider.LoadMetadataSecurityTokens(recordId);
+                var tPrimaryDataSecurityTokens = dataProvider.LoadPrimaryDataSecurityTokens(recordId);
 
                 await Task.WhenAll(tMetadataSecurityTokens, tPrimaryDataSecurityTokens);
                 return new ArchiveRecordSecurity
@@ -114,7 +114,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             try
             {
-                var tNodeContext = dataProvider.LoadNodeContext(Convert.ToInt64(recordId));
+                var tNodeContext = dataProvider.LoadNodeContext(recordId);
            
                 display.ContainsImages = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image);
                 display.ContainsMedia = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media);
@@ -160,11 +160,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
             {
                 retVal.Usage = ExtractUsageData(recordRow);
                 
-                var tDetailData = LoadDataElements(Convert.ToInt64(recordId));
-                var tNodeInfo = LoadNodeInfo(Convert.ToInt64(recordId));
-                var tContainer = LoadContainers(Convert.ToInt64(recordId));
-                var tDescriptor = LoadDescriptors(Convert.ToInt64(recordId));
-                var tReference = LoadReferences(Convert.ToInt64(recordId));
+                var tDetailData = LoadDataElements(recordId);
+                var tNodeInfo = LoadNodeInfo(recordId);
+                var tContainer = LoadContainers(recordId);
+                var tDescriptor = LoadDescriptors(recordId);
+                var tReference = LoadReferences(recordId);
                 var tAggregationData = LoadAggregation(recordRow);
 
                 await Task.WhenAll(tDetailData, tNodeInfo, tContainer, tDescriptor, tReference, tAggregationData);
@@ -272,7 +272,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>NodeInfo.</returns>
-        private async Task<NodeInfo> LoadNodeInfo(long recordId)
+        private async Task<NodeInfo> LoadNodeInfo(string recordId)
         {
             var retVal = new NodeInfo();
 
@@ -306,7 +306,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>List&lt;ArchiveRecordMetadataReference&gt;.</returns>
-        private async Task<List<ArchiveRecordMetadataReference>> LoadReferences(long recordId)
+        private async Task<List<ArchiveRecordMetadataReference>> LoadReferences(string recordId)
         {
             var retVal = new List<ArchiveRecordMetadataReference>();
 
@@ -337,7 +337,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>List&lt;Descriptor&gt;.</returns>
-        private async Task<List<Descriptor>> LoadDescriptors(long recordId)
+        private async Task<List<Descriptor>> LoadDescriptors(string recordId)
         {
             var retVal = new List<Descriptor>();
 
@@ -373,24 +373,24 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>ArchiveRecordMetadataContainers.</returns>
-        private async Task<ArchiveRecordMetadataContainers> LoadContainers(long recordId)
+        private async Task<ArchiveRecordMetadataContainers> LoadContainers(string recordId)
         {
             var retVal = new ArchiveRecordMetadataContainers();
 
             try
             {
                 var dsContainers = await dataProvider.LoadContainers(recordId);
-                retVal.NumberOfContainers = dsContainers.StorageContainer.Count;
+                retVal.NumberOfContainers = dsContainers.Count;
 
-                foreach (var row in dsContainers.StorageContainer)
+                foreach (var row in dsContainers)
                 {
                     retVal.Container.Add(new ArchiveRecordMetadataContainersContainer
                     {
-                        ContainerLocation = row.BHLTN_DEF_STAND_ORT_CD,
-                        ContainerType = row.BHLTN_TYP_NM,
-                        IdName = row.GSFT_OBJ_KURZ_NM,
-                        ContainerCode = row.BHLTN_CD,
-                        ContainerCarrierMaterial = row.BHLTN_INFO_TRGR_NM
+                        ContainerLocation = row.DefinitiverStandortCd,
+                        ContainerType = row.BehaeltnisTypeName,
+                        IdName = row.BehaeltnisKurzname,
+                        ContainerCode = row.BehaeltnisCode,
+                        ContainerCarrierMaterial = row.BehaeltnisInfotraegerName
                     });
                 }
             }
@@ -450,7 +450,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// </summary>
         /// <param name="recordId">The record identifier.</param>
         /// <returns>List&lt;DataElement&gt;.</returns>
-        private async Task<List<DataElement>> LoadDataElements(long recordId)
+        private async Task<List<DataElement>> LoadDataElements(string recordId)
         {
             var retVal = new List<DataElement>();
 
