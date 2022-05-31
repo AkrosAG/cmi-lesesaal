@@ -9,9 +9,9 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
         private readonly ArchiveRecord archiveRecord;
         private readonly Verzeichnungseinheit cmiRecord;
         internal readonly LanguageSettings languageSettings;
-        internal readonly CMIAISDataProvider cmiaisDataProvider;
+        internal readonly IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess;
 
-        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, LanguageSettings languageSettings, CMIAISDataProvider cmiaisDataProvider)
+        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, LanguageSettings languageSettings, IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess)
         {
             archiveRecord = new ArchiveRecord
             {
@@ -19,7 +19,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
             };
             this.cmiRecord = cmiRecord;
             this.languageSettings = languageSettings;
-            this.cmiaisDataProvider = cmiaisDataProvider;
+            this.cmiSpecificRecordAccess = cmiSpecificRecordAccess;
         }
 
         public ArchiveRecord Build()
@@ -31,7 +31,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
         {
             archiveRecord.Metadata = new ArchiveRecordMetadata
             {
-                AccessionDate = cmiRecord.Akzession.FirstOrDefault()?.Datum?.Start?.Year ?? 0,
+                AccessionDate = cmiRecord.Akzession?.FirstOrDefault()?.Datum?.Start?.Year ?? 0,
                 PrimaryDataLink = cmiRecord.PID, // ToDo: Mapping
                 References = GetReferences(cmiRecord),
                 Descriptors = GetDescriptors(cmiRecord),
@@ -43,8 +43,10 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
 
         private ArchiveRecordMetadataContainers GetContainers(Verzeichnungseinheit cmiRecord)
         {
-            var containers = new List<ArchiveRecordMetadataContainersContainer>();
+            if (cmiRecord.Standort == null || cmiRecord.Standort.Length == 0)
+                return null;
 
+            var containers = new List<ArchiveRecordMetadataContainersContainer>();
             containers.AddRange(cmiRecord.Standort.OfType<MagazinObjekt>().Select(m => new ArchiveRecordMetadataContainersContainer
             {
                 ContainerLocation = m.ParentMagazinobjekt?.Item?.Kuerzel ?? m.ParentGebauede?.Item?.Kuerzel,
@@ -62,7 +64,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
 
         private List<Descriptor> GetDescriptors(Verzeichnungseinheit cmiRecord)
         {
-            return cmiRecord.Registerzuordnung.Select(r =>
+            return cmiRecord.Registerzuordnung?.Select(r =>
             {
                 var register = r.Registereintrag?.Item;
                 if (register == null)
@@ -81,8 +83,8 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
 
         private List<ArchiveRecordMetadataReference> GetReferences(Verzeichnungseinheit cmiRecord)
         {
-            var verweiseVon = cmiRecord.VerwiesenVon.Select(v => CreateVerweis(cmiRecord, v, "Verweis von"));
-            var verweiseZu = cmiRecord.VerwiesenZu.Select(v => CreateVerweis(cmiRecord, v, "Verweis zu"));
+            var verweiseVon = cmiRecord.VerwiesenVon?.Select(v => CreateVerweis(cmiRecord, v, "Verweis von")) ?? new List<ArchiveRecordMetadataReference>();
+            var verweiseZu = cmiRecord.VerwiesenZu?.Select(v => CreateVerweis(cmiRecord, v, "Verweis zu")) ?? new List<ArchiveRecordMetadataReference>();
 
             return verweiseVon.Union(verweiseZu).Where(v => v != null).ToList();
         }

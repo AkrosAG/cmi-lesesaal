@@ -36,8 +36,8 @@ public class MetaDataBuilder
             ChildCount = childrenCount,
             IsLeaf = childrenCount == 0,
             IsRoot = ancestorsCount == 0,
-            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors![0].Depth + 1 : 0),
-            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors![cmiRecord.Ancestors.Length - 1].OBJ_GUID : null,
+            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors!.Max(a => a.Depth) + 1 : 0),
+            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
             Path = cmiRecord.Tektonikpfad,
             Sequence = await GetSequence(cmiRecord)
         };
@@ -47,11 +47,11 @@ public class MetaDataBuilder
 
     private async Task<int> GetSequence(Verzeichnungseinheit cmiRecord)
     {
-        var parent = cmiRecord.Ancestors.FirstOrDefault(a => a.Depth == 0);
+        var parent = cmiRecord.Ancestors?.FirstOrDefault(a => a.Depth == 0);
         if (parent == null)
             return 0;
 
-        var parentRecord = await archiveRecordMapperBuilder.cmiaisDataProvider.GetCmiArchiveRecord(parent.OBJ_GUID);
+        var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetAisSpecificRecord(parent.OBJ_GUID);
         var meAsChild = parentRecord.Children.FirstOrDefault(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
         if (meAsChild == null)
             return 0;

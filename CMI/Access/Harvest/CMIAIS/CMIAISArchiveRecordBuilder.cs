@@ -7,19 +7,20 @@ namespace CMI.Access.Harvest.CMIAIS
 {
     public class CMIAISArchiveRecordBuilder : IArchiveRecordBuilder
     {
-        private readonly CMIAISDataProvider cmiAisDataProvider;
+        private readonly IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess;
         private readonly LanguageSettings languageSettings;
 
-        public CMIAISArchiveRecordBuilder(CMIAISDataProvider cmiAisDataProvider, LanguageSettings languageSettings)
+        public CMIAISArchiveRecordBuilder(IAISDataProvider cmiAisDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess, LanguageSettings languageSettings)
         {
-            this.cmiAisDataProvider = cmiAisDataProvider;
+   
+            this.aisSpecificRecordAccess = aisSpecificRecordAccess;
             this.languageSettings = languageSettings;
         }
 
         public async Task<ArchiveRecord> Build(string archiveRecordId)
         {
-            var cmiRecord = await cmiAisDataProvider.GetCmiArchiveRecord(archiveRecordId);
-            var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, languageSettings, cmiAisDataProvider);
+            var cmiRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecordId);
+            var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, languageSettings, aisSpecificRecordAccess);
             
             var metaDataBuilder = await archiveRecordBuilder
                     .AddMedataData()
@@ -89,7 +90,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
         private ArchiveRecordSecurity GetSecuritySection()
         {
-            throw new NotImplementedException();
+            return new ArchiveRecordSecurity();
         }
 
         private ArchiveRecordDisplay GetDisplaySection()
