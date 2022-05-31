@@ -50,6 +50,9 @@ public class ElementDataBuilder
 
     public ElementDataBuilder FromCustomFields()
     {
+        if (cmiRecord.CustomFields == null || cmiRecord.CustomFields.ChildNodes.Count == 0)
+            return this;
+
         foreach (var element in cmiRecord.CustomFields.ChildNodes.OfType<XmlElement>())
         {
             CreateValueInternal(element.GetAttribute("name"), element);
@@ -60,6 +63,9 @@ public class ElementDataBuilder
     
     private void CreateValueInternal(string name, object value)
     {
+        if (value == null)
+            return;
+
         if (!mappingsByType.TryGetValue(value.GetType(), out var mapping))
             throw new NotImplementedException($"No Builder is implemented for Type {value.GetType()}");
 
