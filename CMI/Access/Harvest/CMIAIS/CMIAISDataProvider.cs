@@ -4,7 +4,6 @@ using CMI.Contract.Harvest;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -27,22 +26,27 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
 
-        public Task<DataRow> GetLinkedAccessionToArchiveRecord(long recordId)
+        public Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<OrderDetailData>> GetArchiveRecordOrderDetailDataForContainer(long containerId)
+        public Task<string> GetAccessionBuilderName(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetBusinessObjectIdName(long recordId)
+        public Task<List<OrderDetailData>> GetArchiveRecordOrderDetailDataForContainer(string containerId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<OrderDetailData>> GetChildrenRecordOrderDetailDataForArchiveRecord(long recordId)
+        public Task<string> GetBusinessObjectIdName(string recordId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<OrderDetailData>> GetChildrenRecordOrderDetailDataForArchiveRecord(string recordId)
         {
             throw new NotImplementedException();
         }
@@ -90,7 +94,7 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
         
-        public Task<DataSet> LoadContainers(long recordId)
+        public Task<List<ContainerInfo>> LoadContainers(string recordId)
         {
             throw new NotImplementedException();
         }
@@ -100,22 +104,22 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
 
-        public Task<List<string>> LoadMetadataSecurityTokens(long recordId)
+        public Task<List<string>> LoadMetadataSecurityTokens(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<NodeContext> LoadNodeContext(long recordId)
+        public Task<NodeContext> LoadNodeContext(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<OrderDetailData> LoadOrderDetailData(long recordId)
+        public Task<OrderDetailData> LoadOrderDetailData(string recordId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PrimaryDataSecurityTokenResult> LoadPrimaryDataSecurityTokens(long recordId)
+        public Task<PrimaryDataSecurityTokenResult> LoadPrimaryDataSecurityTokens(string recordId)
         {
             throw new NotImplementedException();
         }
@@ -126,10 +130,6 @@ namespace CMI.Access.Harvest.CMIAIS
         }
 
         public Task<int> UpdateMutationStatus(MutationStatusInfo info)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<DataTable> GetDetailDataForElement(long recordId, int dataElementId)
         {
             throw new NotImplementedException();
         }
