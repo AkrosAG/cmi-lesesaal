@@ -38,10 +38,10 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="info">Object with information about the change.</param>
         /// <returns>Task.</returns>
-        public int UpdateMutationStatus(MutationStatusInfo info)
+        public async Task<int> UpdateMutationStatus(MutationStatusInfo info)
         {
             // TODO: Review
-            return queueAccess.UpdateMutationStatus(info).GetAwaiter().GetResult();
+            return await queueAccess.UpdateMutationStatus(info);
         }
 
         /// <summary>
@@ -49,12 +49,12 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="info">Information about who and when the request was sent.</param>
         /// <returns>Number of added records to the mutation table</returns>
-        public int InitiateFullResync(ResyncRequestInfo info)
+        public async Task<int> InitiateFullResync(ResyncRequestInfo info)
         {
             Log.Information("About to insert record ids into mutation table for full resync. Command was started by {username} at {startTime}",
                 info.Username, info.IssueDate);
             // TODO: Review
-            var affectedRecords = resyncAccess.InitiateFullResync(info).GetAwaiter().GetResult();
+            var affectedRecords = await resyncAccess.InitiateFullResync(info);
             Log.Information("Finished inserting record ids into mutation table. A total of {affectedRecords} were added.", affectedRecords);
             return affectedRecords;
         }
@@ -64,10 +64,10 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="dateRange">A date range to analize</param>
         /// <returns>HarvestStatusInfo.</returns>
-        public HarvestStatusInfo GetStatusInfo(QueryDateRangeEnum dateRange)
+        public async Task<HarvestStatusInfo> GetStatusInfo(QueryDateRangeEnum dateRange)
         {
             // TODO: Review
-            return statusAccess.GetStatusInfo(dateRange).GetAwaiter().GetResult();
+            return await statusAccess.GetStatusInfo(dateRange);
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>HarvestLogInfo.</returns>
-        public HarvestLogInfoResult GetLogInfo(HarvestLogInfoRequest request)
+        public async Task<HarvestLogInfoResult> GetLogInfo(HarvestLogInfoRequest request)
         {
             // TODO: Review
-            return statusAccess.GetLogInfo(request).GetAwaiter().GetResult();
+            return await statusAccess.GetLogInfo(request);
         }
     }
 }
