@@ -1,4 +1,8 @@
-﻿using CMI.Contract.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CMI.Contract.Common;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping;
 
@@ -17,11 +21,12 @@ public class MetaDataBuilder
 
     public DetailDataBuilder AddDetailData()
     {
+        archiveRecord.Metadata.DetailData = new List<DataElement>();
         var detailData = new DetailDataBuilder(cmiRecord, archiveRecord, this);
         return detailData;
     }
 
-    public MetaDataBuilder WithNodeInfos()
+    public async Task<MetaDataBuilder> WithNodeInfos()
     {
         var childrenCount = cmiRecord.Children?.Length ?? 0;
         var ancestorsCount = cmiRecord.Ancestors?.Length ?? 0;
@@ -31,43 +36,45 @@ public class MetaDataBuilder
             ChildCount = childrenCount,
             IsLeaf = childrenCount == 0,
             IsRoot = ancestorsCount == 0,
-            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors[0].Depth + 1 : 0),
-            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors[cmiRecord.Ancestors.Length - 1].OBJ_GUID : null,
+            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors![0].Depth + 1 : 0),
+            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors![cmiRecord.Ancestors.Length - 1].OBJ_GUID : null,
             Path = cmiRecord.Tektonikpfad,
-            Sequence = 0, // ToDo: Kennen wir nicht?
+            Sequence = await GetSequence(cmiRecord)
         };
 
         return this;
+    }
+
+    private async Task<int> GetSequence(Verzeichnungseinheit cmiRecord)
+    {
+        var parent = cmiRecord.Ancestors.FirstOrDefault(a => a.Depth == 0);
+        if (parent == null)
+            return 0;
+
+        var parentRecord = await archiveRecordMapperBuilder.cmiaisDataProvider.GetCmiArchiveRecord(parent.OBJ_GUID);
+        var meAsChild = parentRecord.Children.FirstOrDefault(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+        if (meAsChild == null)
+            return 0;
+
+        return int.TryParse(meAsChild.Sortierung, out var result) ? result : 0;
     }
 
     public MetaDataBuilder WithUsageInfos()
     {
         archiveRecord.Metadata.Usage = new ArchiveRecordMetadataUsage
         {
-            AlwaysVisibleOnline = true, // ToDo: Validate
-            IsPhysicalyUsable = true, // ToDo: Mapping
-            ContainsPersonRelatedData = false, // ToDo: Mapping
-            ProtectionCategory = null, // ToDo: Mapping
-            ProtectionBaseDate = null, // ToDo: Mapping im CDWS
-            ProtectionDuration = null, // ToDo: Mapping im CDWS
-            ProtectionEndDate = null, // ToDo: Mapping im CDWS,
-            ProtectionNote = null, // ToDo: Validate, Führen wir nicht?
-            CannotFallBelow = true, // ToDo: Validate, Führen wir nicht?
-            AdjustedManually = false, // ToDo: Validate, Führen wir nicht
-            Permission = cmiRecord.Zugangsbestimmungen, // ToDo: Validate,
-            PhysicalUsability = cmiRecord.PhysischeBeschaffenheit, // ToDo: Validate
-            Accessibility = cmiRecord.Zugangsbestimmungen, // ToDo: Validate
-            UsageNotes = null, // ToDo: Mapping
-            License = ArchiveRecordMetadataUsageLicense.Undefined, // ToDo: Mapping
+            AlwaysVisibleOnline = StringComparer.InvariantCultureIgnoreCase.Compare(cmiRecord.Publikation, "sofort") == 0,
+            ProtectionCategory = cmiRecord.Schutzfrist?.Item?.Bezeichnung,
+            ProtectionBaseDate = cmiRecord.SchutzfristBasisdatum?.Text,
+            ProtectionDuration =  (int?)cmiRecord.Schutzfrist?.Item?.Frist ?? 0, 
+            ProtectionEndDate = cmiRecord.SchutzfristEnddatum?.Start,
+            Permission = cmiRecord.Zugangsbestimmungen,
+            PhysicalUsability = cmiRecord.PhysischeBeschaffenheit,
+            Accessibility = cmiRecord.Zugangsbestimmungen,
+            UsageNotes = cmiRecord.AllgemeineAnmerkungen,
+            License = ArchiveRecordMetadataUsageLicense.Undefined, // ToDo: Mapping von cmiRecord.Verwertungsrecht
         };
 
         return this;
     }
-
-
-    public ArchiveRecordMapperBuilder EndMetaData()
-    {
-        return archiveRecordMapperBuilder;
-    }
-
 }

@@ -70,6 +70,7 @@
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\DetailDataBuilder.cs" />
+    <Compile Include="CMIAIS\Mapping\ElementDataBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\BaseMapping.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\BoolMapping.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\DateRangeMapping.cs" />

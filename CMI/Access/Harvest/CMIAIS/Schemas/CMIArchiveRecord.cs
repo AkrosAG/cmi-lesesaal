@@ -20,8 +20,8 @@ using System.Xml.Serialization;
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord", IsNullable=false)]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord", IsNullable=false)]
 public partial class Verzeichnungseinheit {
     
     private ParentFieldType[] ancestorsField;
@@ -76,7 +76,7 @@ public partial class Verzeichnungseinheit {
     
     private string findmittelField;
     
-    private VerzeichnungseinheitStandort standortField;
+    private object[] standortField;
     
     private string kopienReproduktionenField;
     
@@ -148,7 +148,17 @@ public partial class Verzeichnungseinheit {
     
     private string tektonikpfadField;
     
-    private CustomField[] customFieldsField;
+    private VerzeichnungseinheitSchutzfrist schutzfristField;
+    
+    private Verweis[] verwiesenVonField;
+    
+    private Verweis[] verwiesenZuField;
+    
+    private System.Xml.XmlElement customFieldsField;
+    
+    private DateTimeFieldType schutzfristBasisdatumField;
+    
+    private DateTimeFieldType schutzfristEnddatumField;
     
     private string oBJ_GUIDField;
     
@@ -422,7 +432,9 @@ public partial class Verzeichnungseinheit {
     }
     
     /// <remarks/>
-    public VerzeichnungseinheitStandort Standort {
+    [System.Xml.Serialization.XmlArrayItemAttribute(typeof(Gebaeude), IsNullable=false)]
+    [System.Xml.Serialization.XmlArrayItemAttribute(typeof(MagazinObjekt), IsNullable=false)]
+    public object[] Standort {
         get {
             return this.standortField;
         }
@@ -792,13 +804,64 @@ public partial class Verzeichnungseinheit {
     }
     
     /// <remarks/>
+    public VerzeichnungseinheitSchutzfrist Schutzfrist {
+        get {
+            return this.schutzfristField;
+        }
+        set {
+            this.schutzfristField = value;
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-    public CustomField[] CustomFields {
+    public Verweis[] VerwiesenVon {
+        get {
+            return this.verwiesenVonField;
+        }
+        set {
+            this.verwiesenVonField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+    public Verweis[] VerwiesenZu {
+        get {
+            return this.verwiesenZuField;
+        }
+        set {
+            this.verwiesenZuField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public System.Xml.XmlElement CustomFields {
         get {
             return this.customFieldsField;
         }
         set {
             this.customFieldsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public DateTimeFieldType SchutzfristBasisdatum {
+        get {
+            return this.schutzfristBasisdatumField;
+        }
+        set {
+            this.schutzfristBasisdatumField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public DateTimeFieldType SchutzfristEnddatum {
+        get {
+            return this.schutzfristEnddatumField;
+        }
+        set {
+            this.schutzfristEnddatumField = value;
         }
     }
     
@@ -841,7 +904,7 @@ public partial class Verzeichnungseinheit {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class ParentFieldType {
     
     private string oBJ_GUIDField;
@@ -902,19 +965,55 @@ public partial class ParentFieldType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-public partial class CustomField {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class Verweis {
     
-    private System.Xml.XmlElement[] anyField;
+    private string bemerkungField;
+    
+    private VerweisVE1 vE1Field;
+    
+    private VerweisVE2 vE2Field;
+    
+    private string oBJ_GUIDField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlAnyElementAttribute()]
-    public System.Xml.XmlElement[] Any {
+    public string Bemerkung {
         get {
-            return this.anyField;
+            return this.bemerkungField;
         }
         set {
-            this.anyField = value;
+            this.bemerkungField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public VerweisVE1 VE1 {
+        get {
+            return this.vE1Field;
+        }
+        set {
+            this.vE1Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    public VerweisVE2 VE2 {
+        get {
+            return this.vE2Field;
+        }
+        set {
+            this.vE2Field = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
         }
     }
 }
@@ -924,7 +1023,251 @@ public partial class CustomField {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class VerweisVE1 {
+    
+    private Child itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Child")]
+    public Child Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class Child {
+    
+    private string typeNameField;
+    
+    private string displayNameField;
+    
+    private string sortierungField;
+    
+    private string signaturField;
+    
+    private string kuerzelField;
+    
+    private string titelField;
+    
+    private DateTimeFieldType entstehungszeitraumField;
+    
+    private string oBJ_GUIDField;
+    
+    /// <remarks/>
+    public string TypeName {
+        get {
+            return this.typeNameField;
+        }
+        set {
+            this.typeNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string DisplayName {
+        get {
+            return this.displayNameField;
+        }
+        set {
+            this.displayNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Sortierung {
+        get {
+            return this.sortierungField;
+        }
+        set {
+            this.sortierungField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Signatur {
+        get {
+            return this.signaturField;
+        }
+        set {
+            this.signaturField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Kuerzel {
+        get {
+            return this.kuerzelField;
+        }
+        set {
+            this.kuerzelField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Titel {
+        get {
+            return this.titelField;
+        }
+        set {
+            this.titelField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public DateTimeFieldType Entstehungszeitraum {
+        get {
+            return this.entstehungszeitraumField;
+        }
+        set {
+            this.entstehungszeitraumField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class DateTimeFieldType {
+    
+    private System.Nullable<System.DateTime> startField;
+    
+    private System.Nullable<System.DateTime> endField;
+    
+    private string textField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+    public System.Nullable<System.DateTime> Start {
+        get {
+            return this.startField;
+        }
+        set {
+            this.startField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+    public System.Nullable<System.DateTime> End {
+        get {
+            return this.endField;
+        }
+        set {
+            this.endField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Text {
+        get {
+            return this.textField;
+        }
+        set {
+            this.textField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class VerweisVE2 {
+    
+    private Child itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Child")]
+    public Child Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class Schutzfrist {
+    
+    private System.Nullable<decimal> fristField;
+    
+    private string bezeichnungField;
+    
+    private string oBJ_GUIDField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+    public System.Nullable<decimal> Frist {
+        get {
+            return this.fristField;
+        }
+        set {
+            this.fristField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Bezeichnung {
+        get {
+            return this.bezeichnungField;
+        }
+        set {
+            this.bezeichnungField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Verfuegbarkeit {
     
     private string bezeichnungField;
@@ -958,8 +1301,8 @@ public partial class Verfuegbarkeit {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-public partial class Register {
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class Registertyp {
     
     private string bezeichnungField;
     
@@ -992,7 +1335,87 @@ public partial class Register {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class Register {
+    
+    private string bezeichnungField;
+    
+    private string bemerkungField;
+    
+    private RegisterRegistertyp registertypField;
+    
+    private string oBJ_GUIDField;
+    
+    /// <remarks/>
+    public string Bezeichnung {
+        get {
+            return this.bezeichnungField;
+        }
+        set {
+            this.bezeichnungField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Bemerkung {
+        get {
+            return this.bemerkungField;
+        }
+        set {
+            this.bemerkungField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public RegisterRegistertyp Registertyp {
+        get {
+            return this.registertypField;
+        }
+        set {
+            this.registertypField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class RegisterRegistertyp {
+    
+    private Registertyp itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Registertyp")]
+    public Registertyp Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Registerzuweisung {
     
     private RegisterzuweisungRegistereintrag registereintragField;
@@ -1026,7 +1449,7 @@ public partial class Registerzuweisung {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class RegisterzuweisungRegistereintrag {
     
     private Register itemField;
@@ -1048,7 +1471,7 @@ public partial class RegisterzuweisungRegistereintrag {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Digitalisierungsgrad {
     
     private string digitalisierungsgrad1Field;
@@ -1083,7 +1506,7 @@ public partial class Digitalisierungsgrad {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Erschliessungszustand {
     
     private string bezeichnungField;
@@ -1117,7 +1540,7 @@ public partial class Erschliessungszustand {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Reproduktionsart {
     
     private string bezeichnungField;
@@ -1151,7 +1574,7 @@ public partial class Reproduktionsart {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Ueberlieferungsform {
     
     private string bezeichnungField;
@@ -1210,12 +1633,14 @@ public partial class Ueberlieferungsform {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Akzession {
     
     private string akzessionsnummerField;
     
     private string titelField;
+    
+    private DateTimeFieldType datumField;
     
     private string oBJ_GUIDField;
     
@@ -1240,6 +1665,16 @@ public partial class Akzession {
     }
     
     /// <remarks/>
+    public DateTimeFieldType Datum {
+        get {
+            return this.datumField;
+        }
+        set {
+            this.datumField = value;
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string OBJ_GUID {
         get {
@@ -1256,7 +1691,7 @@ public partial class Akzession {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Provenienz {
     
     private string offiziellerNameField;
@@ -1290,7 +1725,7 @@ public partial class Provenienz {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Archivalienart {
     
     private string bezeichnungField;
@@ -1337,7 +1772,7 @@ public partial class Archivalienart {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class ArtDatei {
     
     private string bezeichnungField;
@@ -1371,7 +1806,7 @@ public partial class ArtDatei {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class RenditionType {
     
     private string extensionField;
@@ -1406,7 +1841,7 @@ public partial class RenditionType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class VersionType {
     
     private RenditionType[] itemsField;
@@ -1441,7 +1876,7 @@ public partial class VersionType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class DocumentFieldType {
     
     private VersionType[] itemsField;
@@ -1489,7 +1924,7 @@ public partial class DocumentFieldType {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Datei {
     
     private string titelField;
@@ -1608,7 +2043,7 @@ public partial class Datei {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class DateiArt {
     
     private ArtDatei itemField;
@@ -1630,7 +2065,75 @@ public partial class DateiArt {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class ParentM {
+    
+    private string kuerzelField;
+    
+    private string oBJ_GUIDField;
+    
+    /// <remarks/>
+    public string Kuerzel {
+        get {
+            return this.kuerzelField;
+        }
+        set {
+            this.kuerzelField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class ParentG {
+    
+    private string kuerzelField;
+    
+    private string oBJ_GUIDField;
+    
+    /// <remarks/>
+    public string Kuerzel {
+        get {
+            return this.kuerzelField;
+        }
+        set {
+            this.kuerzelField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string OBJ_GUID {
+        get {
+            return this.oBJ_GUIDField;
+        }
+        set {
+            this.oBJ_GUIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class ArtMagazinObjekt {
     
     private string bezeichnungField;
@@ -1664,7 +2167,7 @@ public partial class ArtMagazinObjekt {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class MagazinObjekt {
     
     private string kuerzelField;
@@ -1672,6 +2175,10 @@ public partial class MagazinObjekt {
     private string bezeichnungField;
     
     private MagazinObjektArt artField;
+    
+    private MagazinObjektParentGebauede parentGebauedeField;
+    
+    private MagazinObjektParentMagazinobjekt parentMagazinobjektField;
     
     private string oBJ_GUIDField;
     
@@ -1706,6 +2213,26 @@ public partial class MagazinObjekt {
     }
     
     /// <remarks/>
+    public MagazinObjektParentGebauede ParentGebauede {
+        get {
+            return this.parentGebauedeField;
+        }
+        set {
+            this.parentGebauedeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public MagazinObjektParentMagazinobjekt ParentMagazinobjekt {
+        get {
+            return this.parentMagazinobjektField;
+        }
+        set {
+            this.parentMagazinobjektField = value;
+        }
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
     public string OBJ_GUID {
         get {
@@ -1722,7 +2249,7 @@ public partial class MagazinObjekt {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class MagazinObjektArt {
     
     private ArtMagazinObjekt itemField;
@@ -1744,7 +2271,51 @@ public partial class MagazinObjektArt {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class MagazinObjektParentGebauede {
+    
+    private ParentG itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Gebaeude")]
+    public ParentG Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class MagazinObjektParentMagazinobjekt {
+    
+    private ParentM itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("MagazinObjekt")]
+    public ParentM Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Gebaeude {
     
     private string kuerzelField;
@@ -1790,7 +2361,7 @@ public partial class Gebaeude {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Schrift {
     
     private string bezeichnungField;
@@ -1824,7 +2395,7 @@ public partial class Schrift {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Sprache {
     
     private string bezeichnungField;
@@ -1858,7 +2429,7 @@ public partial class Sprache {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class Umfang {
     
     private string masseinheitField;
@@ -1905,183 +2476,7 @@ public partial class Umfang {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-public partial class DateTimeFieldType {
-    
-    private System.Nullable<System.DateTime> startField;
-    
-    private System.Nullable<System.DateTime> endField;
-    
-    private string textField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-    public System.Nullable<System.DateTime> Start {
-        get {
-            return this.startField;
-        }
-        set {
-            this.startField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-    public System.Nullable<System.DateTime> End {
-        get {
-            return this.endField;
-        }
-        set {
-            this.endField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Text {
-        get {
-            return this.textField;
-        }
-        set {
-            this.textField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-public partial class Child {
-    
-    private string typeNameField;
-    
-    private string displayNameField;
-    
-    private string sortierungField;
-    
-    private string signaturField;
-    
-    private string kuerzelField;
-    
-    private string titelField;
-    
-    private DateTimeFieldType entstehungszeitraumField;
-    
-    private string oBJ_GUIDField;
-    
-    /// <remarks/>
-    public string TypeName {
-        get {
-            return this.typeNameField;
-        }
-        set {
-            this.typeNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string DisplayName {
-        get {
-            return this.displayNameField;
-        }
-        set {
-            this.displayNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Sortierung {
-        get {
-            return this.sortierungField;
-        }
-        set {
-            this.sortierungField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Signatur {
-        get {
-            return this.signaturField;
-        }
-        set {
-            this.signaturField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Kuerzel {
-        get {
-            return this.kuerzelField;
-        }
-        set {
-            this.kuerzelField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string Titel {
-        get {
-            return this.titelField;
-        }
-        set {
-            this.titelField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public DateTimeFieldType Entstehungszeitraum {
-        get {
-            return this.entstehungszeitraumField;
-        }
-        set {
-            this.entstehungszeitraumField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string OBJ_GUID {
-        get {
-            return this.oBJ_GUIDField;
-        }
-        set {
-            this.oBJ_GUIDField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
-public partial class VerzeichnungseinheitStandort {
-    
-    private object itemField;
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Gebaeude", typeof(Gebaeude))]
-    [System.Xml.Serialization.XmlElementAttribute("MagazinObjekt", typeof(MagazinObjekt))]
-    public object Item {
-        get {
-            return this.itemField;
-        }
-        set {
-            this.itemField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class VerzeichnungseinheitErschliessungszustand {
     
     private Erschliessungszustand itemField;
@@ -2103,7 +2498,7 @@ public partial class VerzeichnungseinheitErschliessungszustand {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class VerzeichnungseinheitDigitalisierungsgrad {
     
     private Digitalisierungsgrad itemField;
@@ -2125,7 +2520,7 @@ public partial class VerzeichnungseinheitDigitalisierungsgrad {
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/ArchiveRecord")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
 public partial class VerzeichnungseinheitVerfuegbarkeit {
     
     private Verfuegbarkeit itemField;
@@ -2133,6 +2528,28 @@ public partial class VerzeichnungseinheitVerfuegbarkeit {
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("Verfuegbarkeit")]
     public Verfuegbarkeit Item {
+        get {
+            return this.itemField;
+        }
+        set {
+            this.itemField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+public partial class VerzeichnungseinheitSchutzfrist {
+    
+    private Schutzfrist itemField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Schutzfrist")]
+    public Schutzfrist Item {
         get {
             return this.itemField;
         }
