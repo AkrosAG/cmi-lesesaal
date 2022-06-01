@@ -18,6 +18,6 @@ public class DetailDataBuilder
 
     public ElementDataBuilder WithMappings()
     {
-        return new ElementDataBuilder(cmiRecord, archiveRecord.Metadata.DetailData, this, metaDataBuilder.archiveRecordMapperBuilder.languageSettings);
+        return new ElementDataBuilder(cmiRecord, archiveRecord.Metadata.DetailData, metaDataBuilder.archiveRecordMapperBuilder.languageSettings);
     }
 }

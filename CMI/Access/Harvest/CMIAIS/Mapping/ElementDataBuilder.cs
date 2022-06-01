@@ -11,13 +11,11 @@ public class ElementDataBuilder
 {
     private readonly Verzeichnungseinheit cmiRecord;
     private readonly List<DataElement> detailData;
-    private readonly DetailDataBuilder detailDataBuilder;
     private readonly Dictionary<Type, BaseMapping> mappingsByType;
-    public ElementDataBuilder(Verzeichnungseinheit cmiRecord, List<DataElement> detailData, DetailDataBuilder detailDataBuilder, LanguageSettings languageSettings)
+    public ElementDataBuilder(Verzeichnungseinheit cmiRecord, List<DataElement> detailData, LanguageSettings languageSettings)
     {
         this.cmiRecord = cmiRecord;
         this.detailData = detailData;
-        this.detailDataBuilder = detailDataBuilder;
         mappingsByType = new Dictionary<Type, BaseMapping>
         {
             { typeof(string), new TextMapping() },

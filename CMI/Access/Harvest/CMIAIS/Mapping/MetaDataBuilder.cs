@@ -59,6 +59,16 @@ public class MetaDataBuilder
         return int.TryParse(meAsChild.Sortierung, out var result) ? result : 0;
     }
 
+    private ArchiveRecordMetadataUsageLicense GetLicense(Verzeichnungseinheit cmiRecord)
+    {
+        return (cmiRecord.Verwertungsrecht?.ToLowerInvariant() ?? "") switch
+        {
+            "gemeinfrei" => ArchiveRecordMetadataUsageLicense.CC0,// kein Copyright wenn möglich (Public domain) („no Copyright“)
+            "extern" => ArchiveRecordMetadataUsageLicense.CCBYNCND,// Namensnennung, nicht kommerziell, keine Bearbeitung
+            _ => ArchiveRecordMetadataUsageLicense.Undefined,
+        };
+    }
+
     public MetaDataBuilder WithUsageInfos()
     {
         archiveRecord.Metadata.Usage = new ArchiveRecordMetadataUsage
@@ -72,7 +82,7 @@ public class MetaDataBuilder
             PhysicalUsability = cmiRecord.PhysischeBeschaffenheit,
             Accessibility = cmiRecord.Zugangsbestimmungen,
             UsageNotes = cmiRecord.AllgemeineAnmerkungen,
-            License = ArchiveRecordMetadataUsageLicense.Undefined, // ToDo: Mapping von cmiRecord.Verwertungsrecht
+            License = GetLicense(cmiRecord)
         };
 
         return this;
