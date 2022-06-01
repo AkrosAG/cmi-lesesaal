@@ -13,10 +13,10 @@ namespace CMI.Manager.Harvest.Tests
 {
     public class ArchiveDatabaseResyncConsumerTests : InMemoryTestFixture
     {
-        private readonly Mock<IHarvestManager> harvestManager = new Mock<IHarvestManager>();
+        private readonly Mock<IHarvestManager> harvestManager = new();
 
         private readonly Mock<IConsumer<IResyncArchiveDatabaseStarted>> resyncArchiveDatabaseConsumer =
-            new Mock<IConsumer<IResyncArchiveDatabaseStarted>>();
+            new();
 
         private Task<ConsumeContext<IResyncArchiveDatabaseStarted>> resyncArchiveDatabaseStartedTask;
         private Task<ConsumeContext<IResyncArchiveDatabase>> resyncArchiveDatabaseTask;
@@ -52,7 +52,7 @@ namespace CMI.Manager.Harvest.Tests
         {
             // Arrange
             var info = new ResyncRequestInfo {Username = "the username", IssueDate = DateTime.Today};
-            harvestManager.Setup(e => e.InitiateFullResync(It.IsAny<ResyncRequestInfo>())).Returns(999);
+            harvestManager.Setup(e => e.InitiateFullResync(It.IsAny<ResyncRequestInfo>())).Returns(Task.FromResult(999));
 
             // Act
             await InputQueueSendEndpoint.Send<IResyncArchiveDatabase>(new

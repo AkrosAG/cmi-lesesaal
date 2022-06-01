@@ -13,7 +13,7 @@ namespace CMI.Manager.Harvest.Tests
 {
     public class HarvestStatusInfoConsumerTests : InMemoryTestFixture
     {
-        private readonly Mock<IHarvestManager> harvestManager = new Mock<IHarvestManager>();
+        private readonly Mock<IHarvestManager> harvestManager = new();
         private IRequestClient<GetHarvestStatusInfo> client;
 
         public HarvestStatusInfoConsumerTests()
@@ -38,7 +38,7 @@ namespace CMI.Manager.Harvest.Tests
         public async Task Request_responds_with_answer()
         {
             // Arrange
-            harvestManager.Setup(e => e.GetStatusInfo(It.IsAny<QueryDateRangeEnum>())).Returns(new HarvestStatusInfo
+            harvestManager.Setup(e => e.GetStatusInfo(It.IsAny<QueryDateRangeEnum>())).Returns(Task.FromResult(new HarvestStatusInfo
             {
                 NumberOfRecordsCurrentlySyncing = 1,
                 NumberOfRecordsWithSyncFailure = 2,
@@ -48,7 +48,7 @@ namespace CMI.Manager.Harvest.Tests
                 TotalNumberOfRecordsCurrentlySyncing = 11,
                 TotalNumberOfRecordsWithSyncSuccess = 12,
                 TotalNumberOfRecordsWaitingForSync = 13
-            });
+            }));
 
             // Act
             var response = (await client.GetResponse<GetHarvestStatusInfoResult>(new GetHarvestStatusInfo {DateRange = QueryDateRangeEnum.LastHour})).Message;

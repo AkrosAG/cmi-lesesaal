@@ -43,7 +43,7 @@ namespace CMI.Manager.Harvest.Consumers
 
                 if (context.Message.ActionSuccessful)
                 {
-                    harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                    await harvestManager.UpdateMutationStatus(new MutationStatusInfo
                     {
                         MutationId = context.Message.MutationId,
                         NewStatus = ActionStatus.SyncCompleted,
@@ -52,7 +52,7 @@ namespace CMI.Manager.Harvest.Consumers
                 }
                 else
                 {
-                    harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                    await harvestManager.UpdateMutationStatus(new MutationStatusInfo
                     {
                         MutationId = context.Message.MutationId,
                         NewStatus = ActionStatus.SyncFailed,
