@@ -202,6 +202,7 @@
 			</xsd:element>
 			<xsd:element name="SchutzfristBasisdatum" type="DateTimeFieldType" />
 			<xsd:element name="SchutzfristEnddatum" type="DateTimeFieldType" />
+			<xsd:element name="LinkZuPrimaerdaten" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional" />
