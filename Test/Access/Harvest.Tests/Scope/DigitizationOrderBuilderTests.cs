@@ -3,7 +3,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace CMI.Access.Harvest.Tests
+namespace CMI.Access.Harvest.Tests.Scope
 {
     [TestFixture]
     public class DigitizationOrderBuilderTests

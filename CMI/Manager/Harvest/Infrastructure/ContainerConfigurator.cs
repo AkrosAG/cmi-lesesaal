@@ -32,7 +32,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             {
                 var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
                 return dataProviderFactory.Create();
-            }).As<IAISDataProvider>().AsSelf();
+            }).AsImplementedInterfaces().AsSelf();
 
             builder.Register(ctx =>
             {
