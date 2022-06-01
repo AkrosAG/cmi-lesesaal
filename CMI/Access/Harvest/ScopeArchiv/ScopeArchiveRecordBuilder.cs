@@ -20,6 +20,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         private readonly ScopeAISDataProvider dataProvider;
         private readonly LanguageSettings languageSettings;
         private readonly CachedLookupData lookupData;
+        private readonly IArchiveRecordSecurityProvider securityProvider
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ScopeArchiveRecordBuilder" /> class.
@@ -28,13 +29,14 @@ namespace CMI.Access.Harvest.ScopeArchiv
         /// <param name="languageSettings">The language settings.</param>
         /// <param name="applicationSettings">The application settings.</param>
         /// <param name="lookupData">The lookup data.</param>
-        public ScopeArchiveRecordBuilder(ScopeAISDataProvider dataProvider, LanguageSettings languageSettings, ApplicationSettings applicationSettings,
+        public ScopeArchiveRecordBuilder(ScopeAISDataProvider dataProvider, IArchiveRecordSecurityProvider securityProvider, LanguageSettings languageSettings, ApplicationSettings applicationSettings,
             CachedLookupData lookupData)
         {
             this.dataProvider = dataProvider;
             this.languageSettings = languageSettings;
             this.applicationSettings = applicationSettings;
             this.lookupData = lookupData;
+            this.securityProvider = securityProvider;
         }
 
         /// <summary>
@@ -60,41 +62,13 @@ namespace CMI.Access.Harvest.ScopeArchiv
             {
                 ArchiveRecordId = archiveRecordId,
                 Metadata = await LoadMetadata(archiveRecordId, recordRow),
-                Security = await LoadSecurityDetails(archiveRecordId)
+                Security = await securityProvider.GetArchiveRecordSecurity(archiveRecordId);
             };
             ar.Display = await LoadDisplayData(archiveRecordId, ar.Metadata, recordRow);
             sw.Stop();
 
             Log.Information("Took {Time}ms to build ArchiveRecord for id {Id}", sw.ElapsedMilliseconds, archiveRecordId);
             return ar;
-        }
-
-        /// <summary>
-        ///     Loads the security details.
-        /// </summary>
-        /// <param name="recordId">The archive record identifier.</param>
-        /// <returns>ArchiveRecordSecurity.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        private async Task<ArchiveRecordSecurity> LoadSecurityDetails(string recordId)
-        {
-            try
-            {
-                var tMetadataSecurityTokens = dataProvider.LoadMetadataSecurityTokens(recordId);
-                var tPrimaryDataSecurityTokens = dataProvider.LoadPrimaryDataSecurityTokens(recordId);
-
-                await Task.WhenAll(tMetadataSecurityTokens, tPrimaryDataSecurityTokens);
-                return new ArchiveRecordSecurity
-                {
-                    MetadataAccessToken = tMetadataSecurityTokens.Result,
-                    PrimaryDataDownloadAccessToken = tPrimaryDataSecurityTokens.Result.DownloadAccessTokens.Any() ? tPrimaryDataSecurityTokens.Result.DownloadAccessTokens : null,
-                    PrimaryDataFulltextAccessToken = tPrimaryDataSecurityTokens.Result.FulltextAccessTokens.Any() ? tPrimaryDataSecurityTokens.Result.FulltextAccessTokens : null,
-                };
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Failed to load the security information for record {RecordId}", recordId);
-                throw;
-            }
         }
 
         /// <summary>

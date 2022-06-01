@@ -9,11 +9,13 @@ namespace CMI.Access.Harvest.CMIAIS
     {
         private readonly CMIAISDataProvider cmiAisDataProvider;
         private readonly LanguageSettings languageSettings;
+        private readonly IArchiveRecordSecurityProvider securityProvider
 
-        public CMIAISArchiveRecordBuilder(CMIAISDataProvider cmiAisDataProvider, LanguageSettings languageSettings)
+        public CMIAISArchiveRecordBuilder(CMIAISDataProvider cmiAisDataProvider, IArchiveRecordSecurityProvider securityProvider, LanguageSettings languageSettings)
         {
             this.cmiAisDataProvider = cmiAisDataProvider;
             this.languageSettings = languageSettings;
+            this.securityProvider = securityProvider;
         }
 
         public async Task<ArchiveRecord> Build(string archiveRecordId)
@@ -74,16 +76,11 @@ namespace CMI.Access.Harvest.CMIAIS
                     .EndDetailData()
                 .EndMetaData()
                 .Build();
-            
-            record.Security = GetSecuritySection();
+
+            record.Security = await securityProvider.GetArchiveRecordSecurity(archiveRecordId);
             record.Display = GetDisplaySection();
 
             return record;
-        }
-        
-        private ArchiveRecordSecurity GetSecuritySection()
-        {
-            throw new NotImplementedException();
         }
 
         private ArchiveRecordDisplay GetDisplaySection()
