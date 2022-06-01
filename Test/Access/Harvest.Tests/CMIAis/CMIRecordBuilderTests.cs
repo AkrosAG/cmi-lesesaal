@@ -121,7 +121,5 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             nodeInfo.Path.Should().Be(cmiRecord.Tektonikpfad);
             nodeInfo.Sequence.Should().Be(2);
         }
-
-
     }
 }
