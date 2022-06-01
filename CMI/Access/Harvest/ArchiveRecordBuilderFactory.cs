@@ -23,7 +23,7 @@ namespace CMI.Access.Harvest
             switch (Properties.Settings.Default.AisProvider.ToLowerInvariant())
             {
                 case "cmiais":
-                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, languageSettings);
+                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, (CMIAIS.CMIAISDataProvider)aisDataProvider, languageSettings);
                     break;
                 case "scopeais":
                     archiveRecordBuilder = new ScopeArchiv.ScopeArchiveRecordBuilder((ScopeArchiv.ScopeAISDataProvider) aisDataProvider, languageSettings, applicationSettings, cachedLookupData);

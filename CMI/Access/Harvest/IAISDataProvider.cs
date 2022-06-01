@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
-using CMI.Access.Harvest.ScopeArchiv.DataSets;
 using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 

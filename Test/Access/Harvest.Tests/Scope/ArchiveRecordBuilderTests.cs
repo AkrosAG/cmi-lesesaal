@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 // ReSharper disable PossibleNullReferenceException
 
-namespace CMI.Access.Harvest.Tests
+namespace CMI.Access.Harvest.Tests.Scope
 {
     [TestFixture]
     public class ArchiveRecordBuilderTests
@@ -20,9 +20,9 @@ namespace CMI.Access.Harvest.Tests
             var translationFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"sample.tab");
         }
 
-        private readonly LanguageSettings languageSettings = new LanguageSettings {DefaultLanguage = new CultureInfo("de-CH")};
-        private readonly ApplicationSettings applicationSettings = new ApplicationSettings {DigitalRepositoryElementIdentifier = "10367"};
-       
+        private readonly LanguageSettings languageSettings = new LanguageSettings { DefaultLanguage = new CultureInfo("de-CH") };
+        private readonly ApplicationSettings applicationSettings = new ApplicationSettings { DigitalRepositoryElementIdentifier = "10367" };
+
         [Test]
         public void ArchiveRecord_Must_Have_5_Metadata_Values()
         {
@@ -50,7 +50,7 @@ namespace CMI.Access.Harvest.Tests
 
             // Act
             //var result = ab.Build("1000");
-             
+
             // Assert
             // result.Metadata.DetailData.Count(d => d.ElementType == DataElementElementType.memo).Should().Be(1);
         }

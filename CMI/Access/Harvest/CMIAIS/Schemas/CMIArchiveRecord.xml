@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveRecord" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveRecord">
+    <xsd:annotation>
+        <xsd:documentation>
+            <SearchField xsi:type="SearchFieldText" Name="DateiText" BoostFactor="2" Nrs="51" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="DisplayName" BoostFactor="4" Nrs="253;312;371;430" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="TypeName" BoostFactor="1" Nrs="252;311;370;429" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="Signatur" BoostFactor="3.5" Nrs="254;313;372;431" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="Ancestors" BoostFactor="1" Nrs="250;309;368;427" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldDate" Name="Entstehungszeitraum" BoostFactor="1" Nrs="260;319;378;437" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="Text" BoostFactor="3" Nrs="60;110;71;70;96;34;33;105;106;65;103;27;24;74;254;255;256;257;258;259;260;261;263;264;265;266;267;268;269;270;273;274;276;277;278;279;281;284;288;289;290;291;292;294;295;296;298;301;313;314;315;316;317;318;319;320;322;323;324;325;326;327;328;329;332;333;335;336;337;338;339;340;343;347;348;349;350;351;353;354;355;357;360;372;373;374;375;376;377;378;379;381;382;383;384;385;386;387;388;391;392;394;395;396;397;398;399;402;406;407;408;409;410;412;413;414;416;419;431;432;433;434;435;436;437;438;440;441;442;443;444;445;446;447;450;451;453;454;455;456;457;458;461;465;466;467;468;469;471;472;473;475;478" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="UeberlieferungsformenGuids" BoostFactor="1" Nrs="500;499;501;502" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="ArchivalienartenGuids" BoostFactor="1" Nrs="496;495;497;494" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="Benutzbarkeit" BoostFactor="1" Nrs="288;347;406;465" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldText" Name="VerfuegbarkeitGuids" BoostFactor="1" Nrs="544;546;547;545" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldBoolean" Name="DateiVorhanden" BoostFactor="1" Nrs="549;551;550;552" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldBoolean" Name="DigitalVorhanden" BoostFactor="1" Nrs="554;556;555;557" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            <SearchField xsi:type="SearchFieldDate" Name="Bezugszeitraum" BoostFactor="1" Nrs="540;542;541;539" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+        </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType name="Verzeichnungseinheit">
+        <xsd:sequence>
+            <xsd:element name="Ancestors" type="TreeParentFieldType" />
+            <xsd:element name="Children">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Child" type="Child" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="TypeName" type="xsd:string" />
+            <xsd:element name="DisplayName" type="xsd:string" />
+            <xsd:element name="Signatur" type="xsd:string" />
+            <xsd:element name="AlteSignatur" type="xsd:string" />
+            <xsd:element name="Verwaltungssignatur" type="xsd:string" />
+            <xsd:element name="ID" type="xsd:string" />
+            <xsd:element name="PID" type="xsd:string" />
+            <xsd:element name="Titel" type="xsd:string" />
+            <xsd:element name="Entstehungszeitraum" type="DateTimeFieldType" />
+            <xsd:element name="Bezugszeitraum" type="DateTimeFieldType" />
+            <xsd:element name="Verzeichnungsstufe" type="xsd:string" />
+            <xsd:element name="Umfang">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Umfang" type="Umfang" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Verwaltungsgeschichte" type="xsd:string" />
+            <xsd:element name="Bestandsgeschichte" type="xsd:string" />
+            <xsd:element name="AbgebendeStelle" type="xsd:string" />
+            <xsd:element name="FormInhalt" type="xsd:string" />
+            <xsd:element name="BewertungKassation" type="xsd:string" />
+            <xsd:element name="OrdnungKlassifikation" type="xsd:string" />
+            <xsd:element name="Zugangsbestimmungen" type="xsd:string" />
+            <xsd:element name="Reproduktionsbestimmungen" type="xsd:string" />
+            <xsd:element name="Sprache">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Sprache" type="Sprache" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Schrift">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Schrift" type="Schrift" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="PhysischeBeschaffenheit" type="xsd:string" />
+            <xsd:element name="Findmittel" type="xsd:string" />
+            <xsd:element name="Standort">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Gebaeude" type="Gebaeude" />
+                        <xsd:element name="MagazinObjekt" type="MagazinObjekt" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="KopienReproduktionen" type="xsd:string" />
+            <xsd:element name="VerwandtesMaterial" type="xsd:string" />
+            <xsd:element name="Veroeffentlichungen" type="xsd:string" />
+            <xsd:element name="AllgemeineAnmerkungen" type="xsd:string" />
+            <xsd:element name="Verzeichnungsgrundsaetze" type="xsd:string" />
+            <xsd:element name="BemerkungEntstehungszeitraum" type="xsd:string" />
+            <xsd:element name="Dateien">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Datei" type="Datei" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ArchivalienartenGuids" type="xsd:string" />
+            <xsd:element name="Archivalienart">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Archivalienart" type="Archivalienart" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Provenienz">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Provenienz" type="Provenienz" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Akzession">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Akzession" type="Akzession" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UeberlieferungsformenGuids" type="xsd:string" />
+            <xsd:element name="Ueberlieferungsform">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Ueberlieferungsform" type="Ueberlieferungsform" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Benutzbarkeit" type="xsd:string" />
+            <xsd:element name="Publikation" type="xsd:string" />
+            <xsd:element name="Verwertungsrecht" type="xsd:string" />
+            <xsd:element name="AblaufVerwerstungsrecht" type="DateTimeFieldType" />
+            <xsd:element name="UrheberBekannt" type="xsd:boolean" nillable="true" />
+            <xsd:element name="TodesdatumUrheber" type="DateTimeFieldType" />
+            <xsd:element name="Urheber" type="xsd:string" />
+            <xsd:element name="AufbewahrungsortOriginale" type="xsd:string" />
+            <xsd:element name="Reproduktionsart">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Reproduktionsart" type="Reproduktionsart" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Verzeichnungsstatus" type="xsd:string" />
+            <xsd:element name="Erschliessungszustand">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Erschliessungszustand" type="Erschliessungszustand" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Digitalisierungsgrad">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Digitalisierungsgrad" type="Digitalisierungsgrad" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Bearbeiterzeitraum" type="xsd:string" />
+            <xsd:element name="InterneAnmerkungen" type="xsd:string" />
+            <xsd:element name="Registerzuordnung">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Registerzuweisung" type="Registerzuweisung" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="BemerkungDatierung" type="xsd:string" />
+            <xsd:element name="BemerkungProvenienz" type="xsd:string" />
+            <xsd:element name="Verfuegbarkeit">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Verfuegbarkeit" type="Verfuegbarkeit" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="VerfuegbarkeitGuids" type="xsd:string" />
+            <xsd:element name="DateiVorhanden" type="xsd:boolean" nillable="true" />
+            <xsd:element name="DigitalVorhanden" type="xsd:boolean" nillable="true" />
+            <xsd:element name="Tektonikpfad" type="xsd:string" />
+            <xsd:element name="Schutzfrist">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Schutzfrist" type="Schutzfrist" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="VerwiesenVon">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Verweis" type="Verweis" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="VerwiesenZu">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Verweis" type="Verweis" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CustomFields">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="CustomField" type="CustomField" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+        <xsd:attribute name="SEQ" type="xsd:string" use="optional" />
+        <xsd:attribute name="IDX" type="xsd:string" use="optional" />
+    </xsd:complexType>
+    <xsd:complexType name="TreeParentFieldType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Parent" type="ParentFieldType" />
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ParentFieldType">
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+        <xsd:attribute name="TypeId" type="xsd:decimal" use="required" />
+        <xsd:attribute name="TypeKey" type="xsd:string" use="required" />
+        <xsd:attribute name="Depth" type="xsd:decimal" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="DateTimeFieldType">
+        <xsd:sequence minOccurs="0">
+            <xsd:element name="Start" type="xsd:dateTime" nillable="true" />
+            <xsd:element name="End" type="xsd:dateTime" nillable="true" />
+            <xsd:element name="Text" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Umfang">
+        <xsd:sequence>
+            <xsd:element name="Masseinheit" type="xsd:string" />
+            <xsd:element name="Wert" type="xsd:decimal" nillable="true" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Sprache">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Schrift">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Gebaeude">
+        <xsd:sequence>
+            <xsd:element name="Kuerzel" type="xsd:string" />
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Datei">
+        <xsd:sequence>
+            <xsd:element name="Titel" type="xsd:string" />
+            <xsd:element name="File" type="DocumentFieldType" />
+            <xsd:element name="FileExtension" type="xsd:string" />
+            <xsd:element name="FileSize" type="xsd:string" />
+            <xsd:element name="FileType" type="xsd:string" />
+            <xsd:element name="FileTypeOrder" type="xsd:decimal" nillable="true" />
+            <xsd:element name="Bemerkungen" type="xsd:string" />
+            <xsd:element name="Art">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="ArtDatei" type="ArtDatei" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="DocumentFieldType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Version" type="VersionType" />
+        </xsd:choice>
+        <xsd:attribute name="ID" type="xsd:string" use="required" />
+        <xsd:attribute name="FileName" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="VersionType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Rendition" type="RenditionType" />
+        </xsd:choice>
+        <xsd:attribute name="Nr" type="xsd:decimal" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="RenditionType">
+        <xsd:attribute name="Extension" type="xsd:string" use="required" />
+        <xsd:attribute name="Ansicht" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Archivalienart">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+            <xsd:element name="Sortierung" type="xsd:decimal" nillable="true" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Provenienz">
+        <xsd:sequence>
+            <xsd:element name="OffiziellerName" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Akzession">
+        <xsd:sequence>
+            <xsd:element name="Akzessionsnummer" type="xsd:string" />
+            <xsd:element name="Titel" type="xsd:string" />
+            <xsd:element name="Datum" type="DateTimeFieldType" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Ueberlieferungsform">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+            <xsd:element name="Form" type="xsd:string" />
+            <xsd:element name="Sortierung" type="xsd:decimal" nillable="true" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Reproduktionsart">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Erschliessungszustand">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Digitalisierungsgrad">
+        <xsd:sequence>
+            <xsd:element name="Digitalisierungsgrad" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Registerzuweisung">
+        <xsd:sequence>
+            <xsd:element name="Registereintrag">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Register" type="Register" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Register">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+            <xsd:element name="Bemerkung" type="xsd:string" />
+            <xsd:element name="Registertyp">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Registertyp" type="Registertyp" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="MagazinObjekt">
+        <xsd:sequence>
+            <xsd:element name="Kuerzel" type="xsd:string" />
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+            <xsd:element name="Art">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="ArtMagazinObjekt" type="ArtMagazinObjekt" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ParentGebauede">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Gebaeude" type="ParentG" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ParentMagazinobjekt">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="MagazinObjekt" type="ParentM" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="ArtMagazinObjekt">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Child">
+        <xsd:sequence>
+            <xsd:element name="TypeName" type="xsd:string" />
+            <xsd:element name="DisplayName" type="xsd:string" />
+            <xsd:element name="Sortierung" type="xsd:string" />
+            <xsd:element name="Signatur" type="xsd:string" />
+            <xsd:element name="Kuerzel" type="xsd:string" />
+            <xsd:element name="Titel" type="xsd:string" />
+            <xsd:element name="Entstehungszeitraum" type="DateTimeFieldType" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="ArtDatei">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Verfuegbarkeit">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Registertyp">
+        <xsd:sequence>
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Schutzfrist">
+        <xsd:sequence>
+            <xsd:element name="Frist" type="xsd:decimal" nillable="true" />
+            <xsd:element name="Bezeichnung" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="Verweis">
+        <xsd:sequence>
+            <xsd:element name="Bemerkung" type="xsd:string" />
+            <xsd:element name="VE1">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Child" type="Child" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="VE2">
+                <xsd:complexType>
+                    <xsd:choice minOccurs="0" maxOccurs="1">
+                        <xsd:element name="Child" type="Child" />
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="ParentG">
+        <xsd:sequence>
+            <xsd:element name="Kuerzel" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="ParentM">
+        <xsd:sequence>
+            <xsd:element name="Kuerzel" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="CustomField">
+        <xsd:sequence>
+            <xsd:element name="CustomTextField" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:element name="Verzeichnungseinheit" type="Verzeichnungseinheit" />
+</xsd:schema>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public class CMIAISDataProvider : IAISDataProvider
+    public class CMIAISDataProvider : IAISDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit>
     {
         private readonly HttpClient cdwsRequestClient;
 
@@ -51,7 +51,7 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
 
-        public async Task<Verzeichnungseinheit> GetCmiArchiveRecord(string id)
+        public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
         {
             var response = await cdwsRequestClient.GetAsync($"searchdetails?q=obj_guid%20any%20{id}&l=de-CH");
             response.EnsureSuccessStatusCode();
