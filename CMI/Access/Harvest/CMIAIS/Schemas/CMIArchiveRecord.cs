@@ -160,6 +160,8 @@ public partial class Verzeichnungseinheit {
     
     private DateTimeFieldType schutzfristEnddatumField;
     
+    private string linkZuPrimaerdatenField;
+    
     private string oBJ_GUIDField;
     
     private string sEQField;
@@ -862,6 +864,16 @@ public partial class Verzeichnungseinheit {
         }
         set {
             this.schutzfristEnddatumField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string LinkZuPrimaerdaten {
+        get {
+            return this.linkZuPrimaerdatenField;
+        }
+        set {
+            this.linkZuPrimaerdatenField = value;
         }
     }
     
