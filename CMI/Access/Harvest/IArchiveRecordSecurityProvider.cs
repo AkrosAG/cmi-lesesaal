@@ -9,6 +9,6 @@ namespace CMI.Access.Harvest
 {
     public interface IArchiveRecordSecurityProvider
     {
-        Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(string archiveRecordId);
+        Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(string recordId);
     }
 }
