@@ -4,16 +4,17 @@ using CMI.Contract.Common;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public class ScopeArchiveRecordSecurityProvider : IArchiveRecordSecurityProvider
+    public class CMIAISArchiveRecordSecurityProvider : IArchiveRecordSecurityProvider
     {
-        private readonly IAISDataProvider dataProvider;;
-        public ScopeArchiveRecordSecurityProvider(IAISDataProvider dataProvider)
+        private readonly IAISDataProvider dataProvider;
+        public CMIAISArchiveRecordSecurityProvider(IAISDataProvider dataProvider)
         {
             this.dataProvider = dataProvider;
         }
-        public async Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(int archiveRecordId)
+        public async Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(string archiveRecordId)
         {
-            throw new NotImplementedException();
+            // TODO: Review
+            return await Task.FromResult(new ArchiveRecordSecurity());
         }
     }
 }

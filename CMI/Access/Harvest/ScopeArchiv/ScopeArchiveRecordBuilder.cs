@@ -20,7 +20,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         private readonly ScopeAISDataProvider dataProvider;
         private readonly LanguageSettings languageSettings;
         private readonly CachedLookupData lookupData;
-        private readonly IArchiveRecordSecurityProvider securityProvider
+        private readonly IArchiveRecordSecurityProvider securityProvider;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ScopeArchiveRecordBuilder" /> class.
@@ -62,7 +62,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             {
                 ArchiveRecordId = archiveRecordId,
                 Metadata = await LoadMetadata(archiveRecordId, recordRow),
-                Security = await securityProvider.GetArchiveRecordSecurity(archiveRecordId);
+                Security = await securityProvider.GetArchiveRecordSecurity(archiveRecordId)
             };
             ar.Display = await LoadDisplayData(archiveRecordId, ar.Metadata, recordRow);
             sw.Stop();
