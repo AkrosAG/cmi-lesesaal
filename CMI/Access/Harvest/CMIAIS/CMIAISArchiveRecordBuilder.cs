@@ -1,6 +1,6 @@
 ﻿using CMI.Access.Harvest.CMIAIS.Mapping;
 using CMI.Contract.Common;
-using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CMI.Access.Harvest.CMIAIS
@@ -32,7 +32,7 @@ namespace CMI.Access.Harvest.CMIAIS
             var record = archiveRecordBuilder.Build();
 
             record.Security = GetSecuritySection();
-            record.Display = GetDisplaySection();
+            record.Display = await GetDisplaySection(cmiRecord, record);
 
             return record;
         }
@@ -93,9 +93,94 @@ namespace CMI.Access.Harvest.CMIAIS
             return new ArchiveRecordSecurity();
         }
 
-        private ArchiveRecordDisplay GetDisplaySection()
+        private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
         {
-            return new ArchiveRecordDisplay();
+            var display = new ArchiveRecordDisplay
+            {
+                InternalDisplayTemplateName = $"{cmiRecord.TypeName}_Intern",
+                ExternalDisplayTemplateName = $"{cmiRecord.TypeName}_Extern",
+                ContainsImages = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image),
+                ContainsMedia = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media),
+                CanBeOrdered = true, // ToDo: Abklären, wie sich das ermittelt
+            };
+
+            await CalculateTreeContext(display, cmiRecord, archiveRecord);
+            return display;
+        }
+
+        private async Task CalculateTreeContext(ArchiveRecordDisplay display, Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
+        {
+            if (string.IsNullOrWhiteSpace(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId))
+                return;
+
+            var parentRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId);
+            
+            display.ParentArchiveRecordId = parentRecord.OBJ_GUID;            
+            display.FirstChildArchiveRecordId = cmiRecord.Children.FirstOrDefault()?.OBJ_GUID;
+
+            if (parentRecord.Children.Length > 1)
+            {
+                var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+                var indexNext = indexOfMe + 1;
+                var indexPrev = indexOfMe - 1;
+
+                if (parentRecord.Children.Length >= indexNext)
+                {
+                    display.NextArchiveRecordId = parentRecord.Children[indexNext].OBJ_GUID;
+                }
+
+                if (indexPrev > 0)
+                {
+                    display.PreviousArchiveRecordId = parentRecord.Children[indexPrev].OBJ_GUID;
+                }
+                
+            }
+
+            display.ArchiveplanContext = new System.Collections.Generic.List<ArchiveplanContextItem>();
+
+            foreach(var ancestor in cmiRecord.Ancestors.OrderByDescending(b => b.Depth))
+            {
+                var ancestorRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(ancestor.OBJ_GUID);
+                ArchiveplanContextItem contextItem;
+
+                if (ancestorRecord != null)
+                {
+                    contextItem = new ArchiveplanContextItem
+                    {
+                        ArchiveRecordId = ancestorRecord.OBJ_GUID,
+                        Level = ancestorRecord.TypeName,
+                        Title = ancestorRecord.Titel,
+                        DateRangeText = ancestorRecord.Entstehungszeitraum?.Text,
+                        RefCode = ancestorRecord.Signatur,
+                        IconId = (int) ancestor.TypeId,
+                    };
+                }
+                else
+                {
+                     // Fallback - falls es eine Referenz auf eine VE gibt, die eventuell nicht publiziert wurde.
+                    contextItem = new ArchiveplanContextItem
+                    {
+                        ArchiveRecordId = "-1",
+                        Level = "?",
+                        DateRangeText = "?",
+                        IconId = -1,
+                        RefCode = "?",
+                        Title = "?"
+                    };
+                }
+                
+                display.ArchiveplanContext.Add(contextItem);
+            }
+            
+            display.ArchiveplanContext.Add(new ArchiveplanContextItem
+            {
+                ArchiveRecordId = cmiRecord.OBJ_GUID,
+                Level = cmiRecord.TypeName,
+                Title = cmiRecord.Titel,
+                DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
+                RefCode = cmiRecord.Signatur,
+                IconId = -1,
+            });
         }
     }
 }
