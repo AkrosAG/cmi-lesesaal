@@ -67,6 +67,7 @@
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="ArchiveRecordBuilderFactory.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordBuilder.cs" />
+    <Compile Include="CMIAIS\CMIAISArchiveRecordDisplayProvider.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordSecurityProvider.cs" />
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="IArchiveRecordBuilder.cs" />
     <Compile Include="IArchiveRecordBuilderFactory.cs" />
     <Compile Include="IArchiveRecordSecurityProvider.cs" />
+    <Compile Include="IArchiveRecordDisplayProvider.cs" />
     <Compile Include="Properties\Documentation.cs" />
     <Compile Include="ScopeArchiv\AISConnection.cs" />
     <Compile Include="AISDataAccess.cs" />
