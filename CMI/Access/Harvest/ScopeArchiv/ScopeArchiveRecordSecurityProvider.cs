@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CMI.Contract.Common;
+using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
     public class ScopeArchiveRecordSecurityProvider : IArchiveRecordSecurityProvider
     {
-        private readonly IAISDataProvider _provider;
+        private readonly IAISDataProvider dataProvider;
         public ScopeArchiveRecordSecurityProvider(IAISDataProvider dataProvider)
         {
-            _provider = dataProvider;
+            this.dataProvider = dataProvider;
         }
 
         /// <summary>
@@ -19,12 +21,12 @@ namespace CMI.Access.Harvest.CMIAIS
         /// <param name="recordId">The archive record identifier.</param>
         /// <returns>ArchiveRecordSecurity.</returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public async Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(int archiveRecordId)
+        public async Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(string archiveRecordId)
         {
             try
             {
-                var tMetadataSecurityTokens = _dataProvider.LoadMetadataSecurityTokens(recordId);
-                var tPrimaryDataSecurityTokens = _dataProvider.LoadPrimaryDataSecurityTokens(recordId);
+                var tMetadataSecurityTokens = this.dataProvider.LoadMetadataSecurityTokens(archiveRecordId);
+                var tPrimaryDataSecurityTokens = this.dataProvider.LoadPrimaryDataSecurityTokens(archiveRecordId);
 
                 await Task.WhenAll(tMetadataSecurityTokens, tPrimaryDataSecurityTokens);
                 return new ArchiveRecordSecurity
@@ -36,7 +38,7 @@ namespace CMI.Access.Harvest.CMIAIS
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Failed to load the security information for record {RecordId}", recordId);
+                Log.Error(ex, "Failed to load the security information for record {RecordId}", archiveRecordId);
                 throw;
             }
         }

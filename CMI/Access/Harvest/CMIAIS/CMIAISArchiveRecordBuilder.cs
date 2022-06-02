@@ -9,7 +9,7 @@ namespace CMI.Access.Harvest.CMIAIS
     {
         private readonly CMIAISDataProvider cmiAisDataProvider;
         private readonly LanguageSettings languageSettings;
-        private readonly IArchiveRecordSecurityProvider securityProvider
+        private readonly IArchiveRecordSecurityProvider securityProvider;
 
         public CMIAISArchiveRecordBuilder(CMIAISDataProvider cmiAisDataProvider, IArchiveRecordSecurityProvider securityProvider, LanguageSettings languageSettings)
         {
