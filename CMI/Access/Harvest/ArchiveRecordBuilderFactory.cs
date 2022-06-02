@@ -8,12 +8,10 @@ namespace CMI.Access.Harvest
         private readonly LanguageSettings languageSettings;
         private readonly ApplicationSettings applicationSettings;
         private readonly CachedLookupData cachedLookupData;
-        private readonly IArchiveRecordSecurityProvider securityProvider;
-        private readonly IArchiveRecordDisplayProvider displayProvider;
-
+        private readonly IArchiveRecordSecurityHandler securityHandler;
+        
         public ArchiveRecordBuilderFactory(IAISDataProvider aisDataProvider,
-                                           IArchiveRecordSecurityProvider securityProvider,
-                                           IArchiveRecordDisplayProvider displayProvider,
+                                           IArchiveRecordSecurityHandler securityHandler,
                                            LanguageSettings languageSettings,
                                            ApplicationSettings applicationSettings,
                                            CachedLookupData cachedLookupData)
@@ -21,8 +19,7 @@ namespace CMI.Access.Harvest
             this.aisDataProvider = aisDataProvider;
             this.languageSettings = languageSettings;
             this.applicationSettings = applicationSettings;
-            this.securityProvider = securityProvider;
-            this.displayProvider = displayProvider;
+            this.securityHandler = securityHandler;
             this.cachedLookupData = cachedLookupData;
         }
 
@@ -32,10 +29,10 @@ namespace CMI.Access.Harvest
             switch (Properties.Settings.Default.AisProvider.ToLowerInvariant())
             {
                 case "cmiais":
-                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, securityProvider, displayProvider, languageSettings);
+                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, securityHandler, languageSettings);
                     break;
                 case "scopeais":
-                    archiveRecordBuilder = new ScopeArchiv.ScopeArchiveRecordBuilder((ScopeArchiv.ScopeAISDataProvider) aisDataProvider, securityProvider, languageSettings, applicationSettings, cachedLookupData);
+                    archiveRecordBuilder = new ScopeArchiv.ScopeArchiveRecordBuilder((ScopeArchiv.ScopeAISDataProvider) aisDataProvider, languageSettings, applicationSettings, cachedLookupData);
                     break;
                 default:
                     throw new NotImplementedException($"{Properties.Settings.Default.AisProvider} is not a supported AisProvider");

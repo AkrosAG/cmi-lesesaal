@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CMI.Access.Harvest
 {
-    public interface IArchiveRecordSecurityProvider
+    public interface IArchiveRecordSecurityHandler
     {
-        Task<ArchiveRecordSecurity> GetArchiveRecordSecurity(string recordId);
+        Task ProcessArchiveRecord(ArchiveRecord record);
     }
 }
