@@ -43,12 +43,11 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         [Test]
         public async Task NodeData_Should_Get_Mapped()
         {
-            
             var cmiRecord = new Verzeichnungseinheit
             {
                 DisplayName = "Me",
                 OBJ_GUID = "123",
-                Children = new Child[]
+                Children = new[]
                 {
                     new Child
                     {
@@ -63,7 +62,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         Sortierung = "2"
                     }
                 },
-                Ancestors = new ParentFieldType[]
+                Ancestors = new[]
                 {
                     new ParentFieldType
                     {
@@ -82,7 +81,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var parent = new Verzeichnungseinheit
             {
                 OBJ_GUID = "12",
-                Children = new Child[]
+                Children = new[]
                 {
                     new Child
                     {
@@ -120,6 +119,98 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             nodeInfo.Level.Should().Be(2);
             nodeInfo.Path.Should().Be(cmiRecord.Tektonikpfad);
             nodeInfo.Sequence.Should().Be(2);
+        }
+
+        [Test]
+        public async Task Archivplan_Context_Should_Get_Build_Correct()
+        {
+
+            var cmiRecord = new Verzeichnungseinheit
+            {
+                DisplayName = "Me",
+                OBJ_GUID = "123",
+                Children = new[]
+                {
+                    new Child
+                    {
+                        OBJ_GUID = "1231",
+                        DisplayName = "Child 1",
+                        Sortierung = "1"
+                    },
+                    new Child
+                    {
+                        OBJ_GUID = "1232",
+                        DisplayName = "Child 2",
+                        Sortierung = "2"
+                    }
+                },
+                Ancestors = new[]
+                {
+                    new ParentFieldType
+                    {
+                        Depth = 0,
+                        OBJ_GUID = "12"
+                    },
+                    new ParentFieldType
+                    {
+                        Depth = 1,
+                        OBJ_GUID = "1"
+                    }
+                },
+                Tektonikpfad = "1 / 12 / 123"
+            };
+
+            var parent = new Verzeichnungseinheit
+            {
+                OBJ_GUID = "12",
+                Children = new[]
+                {
+                    new Child
+                    {
+                        OBJ_GUID = "122",
+                        DisplayName = "brother",
+                        Sortierung = "1",
+                    },
+                    new Child
+                    {
+                        OBJ_GUID = "123",
+                        DisplayName = "Me",
+                        Sortierung = "2"
+                    },
+                    new Child
+                    {
+                        OBJ_GUID = "124",
+                        DisplayName = "sister",
+                        Sortierung = "3"
+                    }
+                }
+            };
+            
+            var parentParent = new Verzeichnungseinheit
+            {
+                OBJ_GUID = "1",
+                Children = new[]
+                {
+                    new Child
+                    {
+                        OBJ_GUID = "12",
+                        DisplayName = "parent",
+                        Sortierung = "1"
+                    }
+                }
+            };
+
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("1").Result).Returns(parentParent);
+
+            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings);
+
+            var record = await sut.Build("123");
+
+            record.Display.ArchiveplanContext[0].ArchiveRecordId.Should().Be("1");
+            record.Display.ArchiveplanContext[1].ArchiveRecordId.Should().Be("12");
+            record.Display.ArchiveplanContext[2].ArchiveRecordId.Should().Be("123");
         }
     }
 }
