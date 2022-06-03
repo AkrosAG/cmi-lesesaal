@@ -20,27 +20,27 @@ namespace CMI.Manager.Harvest
         /// </summary>
         /// <param name="info">Object with information about the change.</param>
         /// <returns>Task.</returns>
-        int UpdateMutationStatus(MutationStatusInfo info);
+        Task<int> UpdateMutationStatus(MutationStatusInfo info);
 
         /// <summary>
         ///     Initiates a full resync of all archive records.
         /// </summary>
         /// <param name="info">Information about who and when the request was sent.</param>
         /// <returns>Number of added records to the mutation table</returns>
-        int InitiateFullResync(ResyncRequestInfo info);
+        Task<int> InitiateFullResync(ResyncRequestInfo info);
 
         /// <summary>
         ///     Gets the status information on how many records are waiting for sync, or are in sync.
         /// </summary>
         /// <param name="dateRange">A date range to analize</param>
         /// <returns>HarvestStatusInfo.</returns>
-        HarvestStatusInfo GetStatusInfo(QueryDateRangeEnum dateRange);
+        Task<HarvestStatusInfo> GetStatusInfo(QueryDateRangeEnum dateRange);
 
         /// <summary>
         ///     Gets the detailed log information for the data harvesting.
         /// </summary>
         /// <param name="request">The request object.</param>
         /// <returns>HarvestLogInfo.</returns>
-        HarvestLogInfoResult GetLogInfo(HarvestLogInfoRequest request);
+        Task<HarvestLogInfoResult> GetLogInfo(HarvestLogInfoRequest request);
     }
 }
