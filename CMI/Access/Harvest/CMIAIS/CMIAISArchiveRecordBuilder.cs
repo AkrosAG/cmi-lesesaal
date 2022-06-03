@@ -72,7 +72,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.Benutzbarkeit), vz => vz.Benutzbarkeit)
                 .From(nameof(Verzeichnungseinheit.Publikation), vz => vz.Publikation)
                 .From(nameof(Verzeichnungseinheit.Verwertungsrecht), vz => vz.Verwertungsrecht)
-                .From(nameof(Verzeichnungseinheit.AblaufVerwerstungsrecht), vz => vz.AblaufVerwerstungsrecht)
+                .From(nameof(Verzeichnungseinheit.AblaufVerwertungsrecht), vz => vz.AblaufVerwertungsrecht)
                 .From(nameof(Verzeichnungseinheit.UrheberBekannt), vz => vz.UrheberBekannt)
                 .From(nameof(Verzeichnungseinheit.TodesdatumUrheber), vz => vz.TodesdatumUrheber)
                 .From(nameof(Verzeichnungseinheit.Urheber), vz => vz.Urheber)
