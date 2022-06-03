@@ -79,7 +79,8 @@
     <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.cs">
       <DependentUpon>CMIArchiveRecord.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CMIAIS\Schemas\SearchResponse.cs" />
+    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.cs" />
+    <Compile Include="CMIAIS\Schemas\SearchResponse.Designer.cs" />
     <Compile Include="IAISDataProviderFactory.cs" />
     <Compile Include="IArchiveRecordBuilder.cs" />
     <Compile Include="IArchiveRecordBuilderFactory.cs" />
@@ -160,7 +161,16 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="CMIAIS\Schemas\ChangesResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CMIAIS\Schemas\CMIArchiveRecord.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CMIAIS\Schemas\SearchDetailResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CMIAIS\Schemas\SearchResponse.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
