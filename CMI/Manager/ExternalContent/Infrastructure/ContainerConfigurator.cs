@@ -31,7 +31,7 @@ namespace CMI.Manager.ExternalContent.Infrastructure
             {
                 var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
                 return dataProviderFactory.Create();
-            }).As<IAISDataProvider>().AsSelf();
+            }).AsImplementedInterfaces().AsSelf();
 
             builder.Register(ctx =>
             {

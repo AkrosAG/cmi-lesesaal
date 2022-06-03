@@ -5,7 +5,7 @@ using CMI.Access.Harvest.ScopeArchiv.DataSets;
 using CMI.Contract.Common;
 using Moq;
 
-namespace CMI.Access.Harvest.Tests
+namespace CMI.Access.Harvest.Tests.Scope
 {
     internal class DataProviderMock
     {

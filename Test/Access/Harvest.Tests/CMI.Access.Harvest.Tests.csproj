@@ -98,17 +98,18 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveRecordBuilderTests.cs" />
-    <Compile Include="DataElementHelperFillDataElementElementValueTests.cs" />
-    <Compile Include="DataElementHelperGetSearchDateTests.cs" />
-    <Compile Include="DataProviderMock.cs" />
-    <Compile Include="DigitizationOrderBuilderTests.cs" />
+    <Compile Include="CMIAis\CMIRecordBuilderTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SipDateBuilderTests.cs" />
+    <Compile Include="Scope\ArchiveRecordBuilderTests.cs" />
+    <Compile Include="Scope\DataElementHelperFillDataElementElementValueTests.cs" />
+    <Compile Include="Scope\DataElementHelperGetSearchDateTests.cs" />
+    <Compile Include="Scope\DataProviderMock.cs" />
+    <Compile Include="Scope\DigitizationOrderBuilderTests.cs" />
+    <Compile Include="Scope\SipDateBuilderTests.cs" />
     <Compile Include="TimeRangeFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
