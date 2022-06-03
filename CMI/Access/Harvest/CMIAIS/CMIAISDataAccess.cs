@@ -10,9 +10,16 @@ namespace CMI.Access.Harvest.CMIAIS
 {
     public class CMIAISDataAccess: IDbMutationQueueAccess
     {
-        public Task<List<MutationRecord>> GetPendingMutations()
+        private readonly IAISDataProvider dataProvider;
+
+        public CMIAISDataAccess(IAISDataProvider dataProvider)
         {
-            throw new NotImplementedException();
+            this.dataProvider = dataProvider;
+        }
+
+        public async Task<List<MutationRecord>> GetPendingMutations()
+        {
+            return await dataProvider.GetPendingMutations(); 
         }
 
         public Task<int> UpdateMutationStatus(MutationStatusInfo info)
