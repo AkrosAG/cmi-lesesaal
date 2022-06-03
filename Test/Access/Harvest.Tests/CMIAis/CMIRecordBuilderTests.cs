@@ -12,6 +12,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         private LanguageSettings languageSettings = null;
         private Mock<IAISDataProvider> mockAisDataProvider = null;
         private Mock<IAISSpecificRecordAccess<Verzeichnungseinheit>> aisSpecificRecordAccess = null;
+        private Mock<IArchiveRecordProcessHandler> mockArchiveRecordProcessHandler = null;
 
         [SetUp]
         public void Setup()
@@ -19,6 +20,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             languageSettings = new LanguageSettings { DefaultLanguage = System.Globalization.CultureInfo.CreateSpecificCulture("de-CH") };
             mockAisDataProvider = new Mock<IAISDataProvider>();
             aisSpecificRecordAccess = new Mock<IAISSpecificRecordAccess<Verzeichnungseinheit>>();
+            mockArchiveRecordProcessHandler = new Mock<IArchiveRecordProcessHandler>();
         }
 
         [Test]
@@ -31,7 +33,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             };
 
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord(It.IsAny<string>()).Result).Returns(cmiRecord);
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings);
+            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
 
@@ -108,7 +110,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
 
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings);
+            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
 

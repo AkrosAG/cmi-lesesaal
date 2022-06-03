@@ -4,10 +4,10 @@ using CMI.Contract.Common;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public class CMIAISArchiveRecordSecurityHandler : IArchiveRecordSecurityHandler
+    public class CMIAISArchiveRecordProcessHandler : IArchiveRecordProcessHandler
     {
         private readonly IAISDataProvider dataProvider;
-        public CMIAISArchiveRecordSecurityHandler(IAISDataProvider dataProvider)
+        public CMIAISArchiveRecordProcessHandler(IAISDataProvider dataProvider)
         {
             this.dataProvider = dataProvider;
         }

@@ -9,13 +9,14 @@ namespace CMI.Access.Harvest.CMIAIS
     {
         private readonly IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess;
         private readonly LanguageSettings languageSettings;
+        private readonly IArchiveRecordProcessHandler processHandler;
 
-        public CMIAISArchiveRecordBuilder(IAISDataProvider cmiAisDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess, LanguageSettings languageSettings)
+        public CMIAISArchiveRecordBuilder(IAISDataProvider cmiAisDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess, LanguageSettings languageSettings, IArchiveRecordProcessHandler processHandler)
         {
    
             this.aisSpecificRecordAccess = aisSpecificRecordAccess;
             this.languageSettings = languageSettings;
-            this.securityHandler = securityHandler;
+            this.processHandler = processHandler;
         }
 
         public async Task<ArchiveRecord> Build(string archiveRecordId)
@@ -32,8 +33,8 @@ namespace CMI.Access.Harvest.CMIAIS
             
             var record = archiveRecordBuilder.Build();
 
-            record.Security = GetSecuritySection();
-            record.Display = GetDisplaySection();
+            await processHandler.ProcessArchiveRecord(record);
+            await GetDisplayData(record);  // TODO: Review
 
             return record;
         }
@@ -89,10 +90,6 @@ namespace CMI.Access.Harvest.CMIAIS
                 .FromCustomFields();
         }
 
-        private ArchiveRecordSecurity GetSecuritySection()
-        {
-            return new ArchiveRecordSecurity();
-        }
 
         private async Task GetDisplayData(ArchiveRecord record)
         {

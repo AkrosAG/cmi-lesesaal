@@ -8,10 +8,10 @@ namespace CMI.Access.Harvest
         private readonly LanguageSettings languageSettings;
         private readonly ApplicationSettings applicationSettings;
         private readonly CachedLookupData cachedLookupData;
-        private readonly IArchiveRecordSecurityHandler securityHandler;
+        private readonly IArchiveRecordProcessHandler processHandler;
         
         public ArchiveRecordBuilderFactory(IAISDataProvider aisDataProvider,
-                                           IArchiveRecordSecurityHandler securityHandler,
+                                           IArchiveRecordProcessHandler processHandler,
                                            LanguageSettings languageSettings,
                                            ApplicationSettings applicationSettings,
                                            CachedLookupData cachedLookupData)
@@ -19,7 +19,7 @@ namespace CMI.Access.Harvest
             this.aisDataProvider = aisDataProvider;
             this.languageSettings = languageSettings;
             this.applicationSettings = applicationSettings;
-            this.securityHandler = securityHandler;
+            this.processHandler = processHandler;
             this.cachedLookupData = cachedLookupData;
         }
 
@@ -29,7 +29,7 @@ namespace CMI.Access.Harvest
             switch (Properties.Settings.Default.AisProvider.ToLowerInvariant())
             {
                 case "cmiais":
-                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, (CMIAIS.CMIAISDataProvider)aisDataProvider, languageSettings);
+                    archiveRecordBuilder = new CMIAIS.CMIAISArchiveRecordBuilder((CMIAIS.CMIAISDataProvider)aisDataProvider, (CMIAIS.CMIAISDataProvider)aisDataProvider, languageSettings, processHandler);
                     break;
                 case "scopeais":
                     archiveRecordBuilder = new ScopeArchiv.ScopeArchiveRecordBuilder((ScopeArchiv.ScopeAISDataProvider) aisDataProvider, languageSettings, applicationSettings, cachedLookupData);
