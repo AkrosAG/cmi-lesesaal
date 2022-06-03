@@ -110,7 +110,7 @@ public partial class Verzeichnungseinheit {
     
     private string verwertungsrechtField;
     
-    private DateTimeFieldType ablaufVerwerstungsrechtField;
+    private DateTimeFieldType ablaufVerwertungsrechtField;
     
     private System.Nullable<bool> urheberBekanntField;
     
@@ -611,12 +611,12 @@ public partial class Verzeichnungseinheit {
     }
     
     /// <remarks/>
-    public DateTimeFieldType AblaufVerwerstungsrecht {
+    public DateTimeFieldType AblaufVerwertungsrecht {
         get {
-            return this.ablaufVerwerstungsrechtField;
+            return this.ablaufVerwertungsrechtField;
         }
         set {
-            this.ablaufVerwerstungsrechtField = value;
+            this.ablaufVerwertungsrechtField = value;
         }
     }
     
