@@ -353,6 +353,7 @@
     <Content Include="App_Data_Template\Synonyme\SourceMapping.txt" />
     <Content Include="App_Data_Template\Synonyme\VBS11.txt" />
     <Content Include="App_Data_Template\Synonyme\WAFFE18.txt" />
+    <Content Include="App_Data_Template\templates.json" />
     <Content Include="content\css\2-klick-logo.jpg" />
     <Content Include="content\css\admin.css" />
     <Content Include="content\css\dummy_facebook.png" />
@@ -522,7 +523,7 @@
     <Content Include="content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="App_Data_Template\templates.json" />
+    <Content Include="App_Data_Template\templates.scope.json" />
     <Content Include="App_Data_Template\app.bus.config">
       <SubType>Designer</SubType>
     </Content>
