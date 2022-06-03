@@ -39,8 +39,8 @@ namespace CMI.Manager.Harvest.Tests
         public async Task Request_responds_with_answer()
         {
             // Arrange
-            harvestManager.Setup(e => e.GetLogInfo(It.IsAny<HarvestLogInfoRequest>())).Returns(new HarvestLogInfoResult
-                {ResultSet = new List<HarvestLogInfo>(), TotalResultSetSize = 1000});
+            harvestManager.Setup(e => e.GetLogInfo(It.IsAny<HarvestLogInfoRequest>())).Returns(Task.FromResult(new HarvestLogInfoResult
+                {ResultSet = new List<HarvestLogInfo>(), TotalResultSetSize = 1000}));
 
             // Act
             var response = (await client.GetResponse<GetHarvestLogInfoResult>(new GetHarvestLogInfo {Request = new HarvestLogInfoRequest {ArchiveRecordIdFilter = "123"}})).Message;
