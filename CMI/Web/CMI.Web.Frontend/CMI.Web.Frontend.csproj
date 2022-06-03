@@ -787,7 +787,7 @@
     <PostBuildEvent>IF NOT '%25ON_BUILDSERVER%25'=='True' (
 RMDIR /Q /S "$(ProjectDir)App_Data"
 XCOPY "$(ProjectDir)App_Data_Template" "$(ProjectDir)App_Data" /E/I/Q
-"$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(ProjectDir)App_Data" "$(SolutionDir)..\Credentials for develop.json"
+"$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(ProjectDir)App_Data" "$(SolutionDir)..\$(SolutionName)-secrets.json"
 )</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
