@@ -4,9 +4,15 @@
     <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.Collection" store:Type="Tables" Schema="dbo" Table="Collection" />
     <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
     <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.ApplicationUser" store:Type="Tables" Schema="dbo" Table="ApplicationUser" />
+    <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction" store:Type="Tables" Schema="dbo" Table="SyncAction" />
+    <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" store:Type="Tables" Schema="dbo" Table="SyncActionLog" />
     <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
       <End Role="Collection" EntitySet="Collections" />
       <End Role="Collection1" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="SyncAction_SyncActionLog" Association="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction_SyncActionLog">
+      <End Role="SyncAction" EntitySet="SyncActions" />
+      <End Role="SyncActionLog" EntitySet="SyncActionLogs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Collection">
@@ -270,6 +276,33 @@
         <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
       </Documentation>
     </Property>
+    <Property Name="ActiveAspNetSessionId" Type="nvarchar(max)" devart:DefaultValue="''" DefaultValue="">
+      <Documentation>
+        <Summary>Enthält die ASP-Session ID falls der Benutzer nicht abgemeldet ist.</Summary>
+      </Documentation>
+    </Property>
+  </EntityType>
+  <EntityType Name="SyncAction">
+    <Key>
+      <PropertyRef Name="SyncActionId" />
+    </Key>
+    <Property Name="SyncActionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArchiveRecordId" Type="nvarchar" MaxLength="255" />
+    <Property Name="ActionType" Type="nvarchar" MaxLength="40" />
+    <Property Name="ActionStatus" Type="int" DefaultValue="0" />
+    <Property Name="NumberOfTries" Type="int" DefaultValue="0" />
+    <Property Name="CreatedOn" Type="datetime2" devart:DefaultValue="getdate()" />
+    <Property Name="ModifiedOn" Type="datetime2" devart:DefaultValue="getdate()" />
+  </EntityType>
+  <EntityType Name="SyncActionLog">
+    <Key>
+      <PropertyRef Name="SyncActionLogId" />
+    </Key>
+    <Property Name="SyncActionLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SyncActionId" Type="int" />
+    <Property Name="LogDate" Type="datetime2" devart:DefaultValue="getdate()" />
+    <Property Name="ActionStatusHistory" Type="nvarchar" MaxLength="40" />
+    <Property Name="ErrorReason" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="Collection_Collection">
     <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />
@@ -280,6 +313,20 @@
       </Principal>
       <Dependent Role="Collection1">
         <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SyncAction_SyncActionLog">
+    <End Role="SyncAction" Type="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SyncActionLog" Type="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SyncAction">
+        <PropertyRef Name="SyncActionId" />
+      </Principal>
+      <Dependent Role="SyncActionLog">
+        <PropertyRef Name="SyncActionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -4,9 +4,15 @@
     <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Collection" />
     <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
     <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.ApplicationUser" />
+    <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncAction" />
+    <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncActionLog" />
     <AssociationSet Name="Collection_CollectionSet" Association="CMI.Access.Sql.Lesesaal.EF.Collection_Collection">
       <End Role="Parent" EntitySet="Collections" />
       <End Role="ChildCollections" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="SyncAction_SyncActionLogSet" Association="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog">
+      <End Role="SyncAction" EntitySet="SyncActions" />
+      <End Role="SyncActionLogs" EntitySet="SyncActionLogs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Collection" ed:Guid="67cb0d2a-7dd5-4262-833a-2bcdfbb2403b">
@@ -272,6 +278,35 @@
         <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
       </Documentation>
     </Property>
+    <Property Name="ActiveAspNetSessionId" Type="String" DefaultValue="''" Unicode="true" ed:ValidateRequired="false" ed:Guid="c6fbcd0a-9ea4-495f-8af8-89675c2fe3a4">
+      <Documentation>
+        <Summary>Enthält die ASP-Session ID falls der Benutzer nicht abgemeldet ist.</Summary>
+      </Documentation>
+    </Property>
+  </EntityType>
+  <EntityType Name="SyncAction" ed:Guid="c1118f9d-30af-4dee-99d6-ccbbdddc736c">
+    <Key>
+      <PropertyRef Name="SyncActionId" />
+    </Key>
+    <Property Name="SyncActionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="91039009-fed8-4925-b086-3822be3e965d" />
+    <Property Name="ArchiveRecordId" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bafd9cad-ca4b-4084-87c8-7bc046a5c07b" />
+    <Property Name="ActionType" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="7d81ac39-edbc-4cf6-b846-5bce1ca142f2" />
+    <Property Name="ActionStatus" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="62f51e2c-225e-4e55-9edd-938f36ba27f2" />
+    <Property Name="NumberOfTries" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="9b9bf0e8-2eef-4422-a6b4-3dc724481430" />
+    <Property Name="CreatedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="ac7d2bbd-665b-45cc-b0a0-fa5489a0dc50" />
+    <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="08d33dc1-a1d1-436a-87cb-c625a46bcde9" />
+    <NavigationProperty Name="SyncActionLogs" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncAction" ToRole="SyncActionLogs" ed:Guid="3f924bd2-75d0-465a-b7ad-1973021ab5d3" />
+  </EntityType>
+  <EntityType Name="SyncActionLog" ed:Guid="d0ae647d-11c1-482c-b421-edbe8d0ef511">
+    <Key>
+      <PropertyRef Name="SyncActionLogId" />
+    </Key>
+    <Property Name="SyncActionLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="57c9303d-66e7-4de9-a04c-252d0d7ca0dd" />
+    <Property Name="SyncActionId" Type="Int32" ed:ValidateRequired="false" ed:Guid="5ecc2011-d33b-4992-a7e3-745ea37c8a7c" />
+    <Property Name="LogDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="e6da0789-329d-4b7b-adb6-035bd9827a6e" />
+    <Property Name="ActionStatusHistory" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="5f638206-714c-4dd2-953f-961d5025218b" />
+    <Property Name="ErrorReason" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="7bbb401f-7d31-40d2-9945-245e7100bd21" />
+    <NavigationProperty Name="SyncAction" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncActionLogs" ToRole="SyncAction" ed:Guid="70d41131-b369-46ec-b369-2e1929c25eb5" />
   </EntityType>
   <Association Name="Collection_Collection" ed:Guid="fbe07d51-f04c-43f2-8c4e-e1f493f628db">
     <End Role="Parent" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="0..1" />
@@ -282,6 +317,20 @@
       </Principal>
       <Dependent Role="ChildCollections">
         <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SyncAction_SyncActionLog" ed:Guid="d8178ff7-c9a7-409e-9f80-a14bae4254a1">
+    <End Role="SyncAction" Type="CMI.Access.Sql.Lesesaal.EF.SyncAction" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SyncActionLogs" Type="CMI.Access.Sql.Lesesaal.EF.SyncActionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SyncAction">
+        <PropertyRef Name="SyncActionId" />
+      </Principal>
+      <Dependent Role="SyncActionLogs">
+        <PropertyRef Name="SyncActionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

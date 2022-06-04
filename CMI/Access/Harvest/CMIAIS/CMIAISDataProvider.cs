@@ -214,7 +214,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
         private async Task<SearchResponseType> GetChangeInfo(string indexName, long lastSequenceNr, int currentPage, int maxHits)
         {
-            var response = await cdwsRequestClient.GetAsync($"{indexName}/search?q=seq>{lastSequenceNr}&l=de-CH&s={currentPage}&m={maxHits}");
+            var response = await cdwsRequestClient.GetAsync($"{indexName}/getChanges?q=seq>{lastSequenceNr}&l=de-CH&s={currentPage}&m={maxHits}");
             response.EnsureSuccessStatusCode();
 
             var stringContent = await response.Content.ReadAsStringAsync();

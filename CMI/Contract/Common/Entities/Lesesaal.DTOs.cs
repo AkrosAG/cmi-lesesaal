@@ -186,7 +186,7 @@ namespace CMI.Contract.Common.Entities
         public ApplicationUserDto() {
         }
 
-        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool barInternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis) {
+        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool barInternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
 
           this.ID = iD;
           this.FamilyName = familyName;
@@ -224,6 +224,7 @@ namespace CMI.Contract.Common.Entities
           this.ReasonForRejectionDate = reasonForRejectionDate;
           this.DownloadLimitDisabledUntil = downloadLimitDisabledUntil;
           this.DigitalisierungsbeschraenkungAufgehobenBis = digitalisierungsbeschraenkungAufgehobenBis;
+          this.ActiveAspNetSessionId = activeAspNetSessionId;
         }
 
         #endregion
@@ -301,6 +302,94 @@ namespace CMI.Contract.Common.Entities
         public global::System.DateTime? DownloadLimitDisabledUntil { get; set; }
 
         public global::System.DateTime? DigitalisierungsbeschraenkungAufgehobenBis { get; set; }
+
+        public string ActiveAspNetSessionId { get; set; }
+
+        #endregion
+    }
+
+    public partial class SyncActionDto
+    {
+        #region Constructors
+
+        public SyncActionDto() {
+        }
+
+        public SyncActionDto(int syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
+
+          this.SyncActionId = syncActionId;
+          this.ArchiveRecordId = archiveRecordId;
+          this.ActionType = actionType;
+          this.ActionStatus = actionStatus;
+          this.NumberOfTries = numberOfTries;
+          this.CreatedOn = createdOn;
+          this.ModifiedOn = modifiedOn;
+          this.SyncActionLogs = syncActionLogs;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public int SyncActionId { get; set; }
+
+        public string ArchiveRecordId { get; set; }
+
+        public string ActionType { get; set; }
+
+        public int? ActionStatus { get; set; }
+
+        public int? NumberOfTries { get; set; }
+
+        public global::System.DateTime? CreatedOn { get; set; }
+
+        public global::System.DateTime? ModifiedOn { get; set; }
+
+        #endregion
+
+        #region Navigation Properties
+
+        public List<SyncActionLogDto> SyncActionLogs { get; set; }
+
+        #endregion
+    }
+
+    public partial class SyncActionLogDto
+    {
+        #region Constructors
+
+        public SyncActionLogDto() {
+        }
+
+        public SyncActionLogDto(int syncActionLogId, int? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
+
+          this.SyncActionLogId = syncActionLogId;
+          this.SyncActionId = syncActionId;
+          this.LogDate = logDate;
+          this.ActionStatusHistory = actionStatusHistory;
+          this.ErrorReason = errorReason;
+          this.SyncAction = syncAction;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public int SyncActionLogId { get; set; }
+
+        public int? SyncActionId { get; set; }
+
+        public global::System.DateTime? LogDate { get; set; }
+
+        public string ActionStatusHistory { get; set; }
+
+        public string ErrorReason { get; set; }
+
+        #endregion
+
+        #region Navigation Properties
+
+        public SyncActionDto SyncAction { get; set; }
 
         #endregion
     }

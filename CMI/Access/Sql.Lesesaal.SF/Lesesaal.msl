@@ -92,6 +92,31 @@
           <ScalarProperty Name="ReasonForRejectionDate" ColumnName="ReasonForRejectionDate" />
           <ScalarProperty Name="DownloadLimitDisabledUntil" ColumnName="DownloadLimitDisabledUntil" />
           <ScalarProperty Name="DigitalisierungsbeschraenkungAufgehobenBis" ColumnName="DigitalisierungsbeschraenkungAufgehobenBis" />
+          <ScalarProperty Name="ActiveAspNetSessionId" ColumnName="ActiveAspNetSessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SyncActions">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncAction">
+        <MappingFragment StoreEntitySet="SyncActions">
+          <ScalarProperty Name="SyncActionId" ColumnName="SyncActionId" />
+          <ScalarProperty Name="ArchiveRecordId" ColumnName="ArchiveRecordId" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="ActionStatus" ColumnName="ActionStatus" />
+          <ScalarProperty Name="NumberOfTries" ColumnName="NumberOfTries" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SyncActionLogs">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncActionLog">
+        <MappingFragment StoreEntitySet="SyncActionLogs">
+          <ScalarProperty Name="SyncActionLogId" ColumnName="SyncActionLogId" />
+          <ScalarProperty Name="SyncActionId" ColumnName="SyncActionId" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="ActionStatusHistory" ColumnName="ActionStatusHistory" />
+          <ScalarProperty Name="ErrorReason" ColumnName="ErrorReason" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
