@@ -22,7 +22,7 @@ namespace CMI.Manager.Lesesaal.Infrastructure
             RegisterBus(builder);
 
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
-            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString); ;
+            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
             builder.RegisterType<CollectionAccess>().As<ICollectionAccess>();
             builder.RegisterType<CollectionManager>().As<ICollectionManager>();

@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace CMI.Contract.Common.Entities
+namespace CMI.Access.Sql.Lesesaal.EF
 {
 
     public partial class CollectionDto
@@ -97,84 +97,6 @@ namespace CMI.Contract.Common.Entities
         public List<CollectionDto> ChildCollections { get; set; }
 
         public CollectionDto Parent { get; set; }
-
-        #endregion
-    }
-
-    public partial class CollectionListItemDto
-    {
-        #region Constructors
-
-        public CollectionListItemDto() {
-        }
-
-        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
-
-          this.CollectionId = collectionId;
-          this.ParentId = parentId;
-          this.Language = language;
-          this.Title = title;
-          this.DescriptionShort = descriptionShort;
-          this.Description = description;
-          this.ValidFrom = validFrom;
-          this.ValidTo = validTo;
-          this.CollectionTypeId = collectionTypeId;
-          this.ImageAltText = imageAltText;
-          this.ImageMimeType = imageMimeType;
-          this.Link = link;
-          this.CollectionPath = collectionPath;
-          this.SortOrder = sortOrder;
-          this.CreatedOn = createdOn;
-          this.CreatedBy = createdBy;
-          this.ModifiedOn = modifiedOn;
-          this.ModifiedBy = modifiedBy;
-          this.Parent = parent;
-          this.ChildCollections = childCollections;
-        }
-
-        #endregion
-
-        #region Properties
-
-        public int CollectionId { get; set; }
-
-        public int? ParentId { get; set; }
-
-        public string Language { get; set; }
-
-        public string Title { get; set; }
-
-        public string DescriptionShort { get; set; }
-
-        public string Description { get; set; }
-
-        public global::System.DateTime ValidFrom { get; set; }
-
-        public global::System.DateTime ValidTo { get; set; }
-
-        public int CollectionTypeId { get; set; }
-
-        public string ImageAltText { get; set; }
-
-        public string ImageMimeType { get; set; }
-
-        public string Link { get; set; }
-
-        public string CollectionPath { get; set; }
-
-        public int SortOrder { get; set; }
-
-        public global::System.DateTime CreatedOn { get; set; }
-
-        public string CreatedBy { get; set; }
-
-        public global::System.DateTime? ModifiedOn { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public string Parent { get; set; }
-
-        public string ChildCollections { get; set; }
 
         #endregion
     }
@@ -315,7 +237,7 @@ namespace CMI.Contract.Common.Entities
         public SyncActionDto() {
         }
 
-        public SyncActionDto(int syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
+        public SyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
 
           this.SyncActionId = syncActionId;
           this.ArchiveRecordId = archiveRecordId;
@@ -331,7 +253,7 @@ namespace CMI.Contract.Common.Entities
 
         #region Properties
 
-        public int SyncActionId { get; set; }
+        public long SyncActionId { get; set; }
 
         public string ArchiveRecordId { get; set; }
 
@@ -361,7 +283,7 @@ namespace CMI.Contract.Common.Entities
         public SyncActionLogDto() {
         }
 
-        public SyncActionLogDto(int syncActionLogId, int? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
+        public SyncActionLogDto(long syncActionLogId, long? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
 
           this.SyncActionLogId = syncActionLogId;
           this.SyncActionId = syncActionId;
@@ -375,9 +297,9 @@ namespace CMI.Contract.Common.Entities
 
         #region Properties
 
-        public int SyncActionLogId { get; set; }
+        public long SyncActionLogId { get; set; }
 
-        public int? SyncActionId { get; set; }
+        public long? SyncActionId { get; set; }
 
         public global::System.DateTime? LogDate { get; set; }
 
@@ -390,6 +312,84 @@ namespace CMI.Contract.Common.Entities
         #region Navigation Properties
 
         public SyncActionDto SyncAction { get; set; }
+
+        #endregion
+    }
+
+    public partial class CollectionListItemDto
+    {
+        #region Constructors
+
+        public CollectionListItemDto() {
+        }
+
+        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
+
+          this.CollectionId = collectionId;
+          this.ParentId = parentId;
+          this.Language = language;
+          this.Title = title;
+          this.DescriptionShort = descriptionShort;
+          this.Description = description;
+          this.ValidFrom = validFrom;
+          this.ValidTo = validTo;
+          this.CollectionTypeId = collectionTypeId;
+          this.ImageAltText = imageAltText;
+          this.ImageMimeType = imageMimeType;
+          this.Link = link;
+          this.CollectionPath = collectionPath;
+          this.SortOrder = sortOrder;
+          this.CreatedOn = createdOn;
+          this.CreatedBy = createdBy;
+          this.ModifiedOn = modifiedOn;
+          this.ModifiedBy = modifiedBy;
+          this.Parent = parent;
+          this.ChildCollections = childCollections;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public int CollectionId { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public string Language { get; set; }
+
+        public string Title { get; set; }
+
+        public string DescriptionShort { get; set; }
+
+        public string Description { get; set; }
+
+        public global::System.DateTime ValidFrom { get; set; }
+
+        public global::System.DateTime ValidTo { get; set; }
+
+        public int CollectionTypeId { get; set; }
+
+        public string ImageAltText { get; set; }
+
+        public string ImageMimeType { get; set; }
+
+        public string Link { get; set; }
+
+        public string CollectionPath { get; set; }
+
+        public int SortOrder { get; set; }
+
+        public global::System.DateTime CreatedOn { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public global::System.DateTime? ModifiedOn { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public string Parent { get; set; }
+
+        public string ChildCollections { get; set; }
 
         #endregion
     }
