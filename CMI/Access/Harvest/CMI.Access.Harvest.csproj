@@ -69,6 +69,7 @@
     <Compile Include="CMIAIS\CMIAISArchiveRecordBuilder.cs" />
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
+    <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
     <Compile Include="IAISSpecificRecordAccess.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\DetailDataBuilder.cs" />
