@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CMI.Access.Sql.Lesesaal.EF.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ViaducEntitiesStoreContainer">
+  <EntityContainer Name="LesesaalEntitiesStoreContainer">
     <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.Collection" store:Type="Tables" Schema="dbo" Table="Collection" />
-    <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
     <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.ApplicationUser" store:Type="Tables" Schema="dbo" Table="ApplicationUser" />
     <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction" store:Type="Tables" Schema="dbo" Table="SyncAction" />
     <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" store:Type="Tables" Schema="dbo" Table="SyncActionLog" />
+    <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
     <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
       <End Role="Collection" EntitySet="Collections" />
       <End Role="Collection1" EntitySet="Collections" />
@@ -44,7 +44,7 @@
         <Summary>A short description of the collection</Summary>
       </Documentation>
     </Property>
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false">
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="4000">
       <Documentation>
         <Summary>A full description of the collection in markup language</Summary>
       </Documentation>
@@ -64,12 +64,12 @@
         <Summary>Indicates the type of collections: Themenblöcke and Ausstellungen (Topics and Collections)</Summary>
       </Documentation>
     </Property>
-    <Property Name="Image" Type="varbinary(max)">
+    <Property Name="Image" Type="varbinary">
       <Documentation>
         <Summary>An image that gives a hint to the collection</Summary>
       </Documentation>
     </Property>
-    <Property Name="Thumbnail" Type="varbinary(max)">
+    <Property Name="Thumbnail" Type="varbinary">
       <Documentation>
         <Summary>The thumbnail to the image</Summary>
       </Documentation>
@@ -119,31 +119,6 @@
         <Summary>User that modified the record</Summary>
       </Documentation>
     </Property>
-  </EntityType>
-  <EntityType Name="v_CollectionList">
-    <Key>
-      <PropertyRef Name="CollectionId" />
-    </Key>
-    <Property Name="CollectionId" Type="int" Nullable="false" />
-    <Property Name="ParentId" Type="int" />
-    <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="2" />
-    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="DescriptionShort" Type="nvarchar" Nullable="false" MaxLength="512" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ValidFrom" Type="datetime2" Nullable="false" />
-    <Property Name="ValidTo" Type="datetime2" Nullable="false" />
-    <Property Name="CollectionTypeId" Type="int" Nullable="false" />
-    <Property Name="ImageAltText" Type="nvarchar" MaxLength="255" />
-    <Property Name="ImageMimeType" Type="nvarchar" MaxLength="255" />
-    <Property Name="Link" Type="nvarchar" MaxLength="4000" />
-    <Property Name="CollectionPath" Type="nvarchar" Nullable="false" MaxLength="400" />
-    <Property Name="SortOrder" Type="int" Nullable="false" />
-    <Property Name="CreatedOn" Type="datetime2" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="ModifiedOn" Type="datetime2" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="Parent" Type="nvarchar" MaxLength="255" />
-    <Property Name="ChildCollections" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ApplicationUser">
     <Documentation>
@@ -212,8 +187,8 @@
         <Summary>Der Benutzer kann diese Information selber erfassen</Summary>
       </Documentation>
     </Property>
-    <Property Name="Setting" Type="nvarchar(max)" />
-    <Property Name="Claims" Type="nvarchar(max)">
+    <Property Name="Setting" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Claims" Type="nvarchar" MaxLength="4000">
       <Documentation>
         <Summary>Claims (json) von der letzten Anmeldung</Summary>
       </Documentation>
@@ -259,7 +234,7 @@
     <Property Name="EiamRoles" Type="varchar" MaxLength="10" />
     <Property Name="ResearcherGroup" Type="bit" Nullable="false" devart:DefaultValue="0" />
     <Property Name="BarInternalConsultation" Type="bit" Nullable="false" devart:DefaultValue="0" />
-    <Property Name="IdentifierDocument" Type="varbinary(max)">
+    <Property Name="IdentifierDocument" Type="varbinary">
       <Documentation>
         <Summary>Beim erfolgreichem Onboarding mit Swisscom wird in dieses Feld automatisch ein von der Swisscom generiertes PDF abgelegt. Zudem kann in dieses Feld auch über den Management Client eine Datei hochgeladen werden.</Summary>
       </Documentation>
@@ -276,7 +251,7 @@
         <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
       </Documentation>
     </Property>
-    <Property Name="ActiveAspNetSessionId" Type="nvarchar(max)" devart:DefaultValue="''" DefaultValue="">
+    <Property Name="ActiveAspNetSessionId" Type="nvarchar" MaxLength="4000" devart:DefaultValue="''" DefaultValue="">
       <Documentation>
         <Summary>Enthält die ASP-Session ID falls der Benutzer nicht abgemeldet ist.</Summary>
       </Documentation>
@@ -286,7 +261,7 @@
     <Key>
       <PropertyRef Name="SyncActionId" />
     </Key>
-    <Property Name="SyncActionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SyncActionId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ArchiveRecordId" Type="nvarchar" MaxLength="255" />
     <Property Name="ActionType" Type="nvarchar" MaxLength="40" />
     <Property Name="ActionStatus" Type="int" DefaultValue="0" />
@@ -298,11 +273,47 @@
     <Key>
       <PropertyRef Name="SyncActionLogId" />
     </Key>
-    <Property Name="SyncActionLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="SyncActionId" Type="int" />
+    <Property Name="SyncActionLogId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SyncActionId" Type="bigint" />
     <Property Name="LogDate" Type="datetime2" devart:DefaultValue="getdate()" />
     <Property Name="ActionStatusHistory" Type="nvarchar" MaxLength="40" />
-    <Property Name="ErrorReason" Type="nvarchar(max)" />
+    <Property Name="ErrorReason" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="v_CollectionList">
+    <Key>
+      <PropertyRef Name="CollectionId" />
+      <PropertyRef Name="Language" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="DescriptionShort" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ValidFrom" />
+      <PropertyRef Name="ValidTo" />
+      <PropertyRef Name="CollectionTypeId" />
+      <PropertyRef Name="CollectionPath" />
+      <PropertyRef Name="SortOrder" />
+      <PropertyRef Name="CreatedOn" />
+      <PropertyRef Name="CreatedBy" />
+    </Key>
+    <Property Name="CollectionId" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DescriptionShort" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ValidFrom" Type="datetime2" Nullable="false" />
+    <Property Name="ValidTo" Type="datetime2" Nullable="false" />
+    <Property Name="CollectionTypeId" Type="int" Nullable="false" />
+    <Property Name="ImageAltText" Type="nvarchar" MaxLength="255" />
+    <Property Name="ImageMimeType" Type="nvarchar" MaxLength="255" />
+    <Property Name="Link" Type="nvarchar" MaxLength="4000" />
+    <Property Name="CollectionPath" Type="nvarchar" Nullable="false" MaxLength="400" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="ModifiedOn" Type="datetime2" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Parent" Type="nvarchar" MaxLength="255" />
+    <Property Name="ChildCollections" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="Collection_Collection">
     <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />

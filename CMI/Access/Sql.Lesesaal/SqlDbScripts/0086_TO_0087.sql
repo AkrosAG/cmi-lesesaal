@@ -2,7 +2,7 @@
 /* Add table "SyncAction"                                                 */
 /* ---------------------------------------------------------------------- */
 CREATE TABLE [SyncAction] (
-    [SyncActionId] INTEGER IDENTITY(1,1) NOT NULL,
+    [SyncActionId] BIGINT IDENTITY(1,1) NOT NULL,
     [ArchiveRecordId] NVARCHAR(255),
     [ActionType] NVARCHAR(40),
     [ActionStatus] INTEGER DEFAULT 0,
@@ -43,8 +43,8 @@ GO
 
 
 CREATE TABLE [SyncActionLog] (
-    [SyncActionLogId] INTEGER IDENTITY(1,1) NOT NULL,
-    [SyncActionId] INTEGER,
+    [SyncActionLogId] BIGINT IDENTITY(1,1) NOT NULL,
+    [SyncActionId] BIGINT,
     [LogDate] DATETIME2 DEFAULT getdate(),
     [ActionStatusHistory] NVARCHAR(40),
     [ErrorReason] NVARCHAR(max),
