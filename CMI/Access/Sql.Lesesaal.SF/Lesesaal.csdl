@@ -2,11 +2,17 @@
 <Schema Namespace="CMI.Access.Sql.Lesesaal.EF" Alias="Self" d1p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d1p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="LesesaalDb" annotation:LazyLoadingEnabled="true" ed:Guid="f6072421-c423-460d-a299-71dd6cecf252">
     <EntitySet Name="Collections" EntityType="CMI.Access.Sql.Lesesaal.EF.Collection" />
-    <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
     <EntitySet Name="ApplicationUsers" EntityType="CMI.Access.Sql.Lesesaal.EF.ApplicationUser" />
+    <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncAction" />
+    <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncActionLog" />
+    <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
     <AssociationSet Name="Collection_CollectionSet" Association="CMI.Access.Sql.Lesesaal.EF.Collection_Collection">
       <End Role="Parent" EntitySet="Collections" />
       <End Role="ChildCollections" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="SyncAction_SyncActionLogSet" Association="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog">
+      <End Role="SyncAction" EntitySet="SyncActions" />
+      <End Role="SyncActionLogs" EntitySet="SyncActionLogs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Collection" ed:Guid="67cb0d2a-7dd5-4262-833a-2bcdfbb2403b">
@@ -113,33 +119,8 @@
         <Summary>User that modified the record</Summary>
       </Documentation>
     </Property>
-    <NavigationProperty Name="ChildCollections" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="Parent" ToRole="ChildCollections" ed:Guid="e4f5bb98-a5f3-48d2-a7d9-039e748704e5" />
-    <NavigationProperty Name="Parent" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="ChildCollections" ToRole="Parent" ed:Guid="1ca9b2e0-1d45-4ffb-8b71-aebb8368668f" />
-  </EntityType>
-  <EntityType Name="CollectionListItem" ed:Guid="afca5f71-b259-4792-95d6-8c946be959dc">
-    <Key>
-      <PropertyRef Name="CollectionId" />
-    </Key>
-    <Property Name="CollectionId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="db6e7225-de75-4c4f-bd05-e34b37f04730" />
-    <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="455d2e5e-61f7-4044-abfa-542cd0a1d107" />
-    <Property Name="Language" Type="String" Nullable="false" MaxLength="2" Unicode="true" ed:ValidateMaxLength="2" ed:ValidateRequired="true" ed:Guid="08037c9e-8288-451c-957c-ba0655f69961" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="f2379e79-57fa-4d22-be69-f75485f68d95" />
-    <Property Name="DescriptionShort" Type="String" Nullable="false" MaxLength="512" Unicode="true" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="f4fdd445-e84d-4615-98a1-dfa5e45e16c3" />
-    <Property Name="Description" Type="String" Nullable="false" Unicode="true" ed:ValidateRequired="true" ed:Guid="f01f73fd-31f4-4c1f-a0b2-89c9bdb3d147" />
-    <Property Name="ValidFrom" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="605a9148-c5b0-44c8-ae8b-567f773b302a" />
-    <Property Name="ValidTo" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="3640f941-0989-40e6-95ba-95e8be3382e5" />
-    <Property Name="CollectionTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e858fb2c-e376-4c7d-9e9c-2916a0f470f0" />
-    <Property Name="ImageAltText" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="6ac13a3e-470a-4c70-a397-bdb2c8be7b43" />
-    <Property Name="ImageMimeType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7dbea88a-b41d-4543-a928-da47a14ae312" />
-    <Property Name="Link" Type="String" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="43ffa588-db5f-4ffd-a2ec-2ea406d28a2c" />
-    <Property Name="CollectionPath" Type="String" Nullable="false" MaxLength="400" Unicode="true" ed:ValidateMaxLength="400" ed:ValidateRequired="true" ed:Guid="a714595d-133f-4d81-9ecb-1f3ddec3bf38" />
-    <Property Name="SortOrder" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="636baaeb-1504-4d63-8c26-2676a562fe68" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="58a74588-5335-4fd1-a277-c958e33696de" />
-    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="f1fe75d0-65bc-4aaa-89e5-e38d1b37857a" />
-    <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="5f0a663f-9b44-4057-a987-87a38df14cf4" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="13e28751-e44d-40c7-b9be-68aa1f32e15f" />
-    <Property Name="Parent" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="45e785bb-8cf4-4501-8e10-17c925f718ef" />
-    <Property Name="ChildCollections" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="f966bf95-8823-46df-82f1-4ea9fb824b6b" />
+    <NavigationProperty Name="ChildCollections" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="Parent" ToRole="ChildCollections" ed:Guid="ccd43ddd-4014-465a-98d0-f10419768432" />
+    <NavigationProperty Name="Parent" Relationship="CMI.Access.Sql.Lesesaal.EF.Collection_Collection" FromRole="ChildCollections" ToRole="Parent" ed:Guid="338fa508-a0f8-4204-b48a-1ff76dc1e32e" />
   </EntityType>
   <EntityType Name="ApplicationUser" ed:Guid="a07476e2-aa46-462c-ba6c-723a75221978">
     <Documentation>
@@ -272,8 +253,73 @@
         <Summary>Gibt an, bis wann beim Benutzer die Digitalisierungsbeschränkung aufgehoben wird.</Summary>
       </Documentation>
     </Property>
+    <Property Name="ActiveAspNetSessionId" Type="String" DefaultValue="''" Unicode="true" ed:ValidateRequired="false" ed:Guid="c6fbcd0a-9ea4-495f-8af8-89675c2fe3a4">
+      <Documentation>
+        <Summary>Enthält die ASP-Session ID falls der Benutzer nicht abgemeldet ist.</Summary>
+      </Documentation>
+    </Property>
   </EntityType>
-  <Association Name="Collection_Collection" ed:Guid="fbe07d51-f04c-43f2-8c4e-e1f493f628db">
+  <EntityType Name="SyncAction" ed:Guid="c1118f9d-30af-4dee-99d6-ccbbdddc736c">
+    <Key>
+      <PropertyRef Name="SyncActionId" />
+    </Key>
+    <Property Name="SyncActionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="91039009-fed8-4925-b086-3822be3e965d" />
+    <Property Name="ArchiveRecordId" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bafd9cad-ca4b-4084-87c8-7bc046a5c07b" />
+    <Property Name="ActionType" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="7d81ac39-edbc-4cf6-b846-5bce1ca142f2" />
+    <Property Name="ActionStatus" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="62f51e2c-225e-4e55-9edd-938f36ba27f2" />
+    <Property Name="NumberOfTries" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="9b9bf0e8-2eef-4422-a6b4-3dc724481430" />
+    <Property Name="CreatedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="ac7d2bbd-665b-45cc-b0a0-fa5489a0dc50" />
+    <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="08d33dc1-a1d1-436a-87cb-c625a46bcde9" />
+    <NavigationProperty Name="SyncActionLogs" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncAction" ToRole="SyncActionLogs" ed:Guid="7f7d021a-76c0-4f89-b1b5-bafb75d84322" />
+  </EntityType>
+  <EntityType Name="SyncActionLog" ed:Guid="d0ae647d-11c1-482c-b421-edbe8d0ef511">
+    <Key>
+      <PropertyRef Name="SyncActionLogId" />
+    </Key>
+    <Property Name="SyncActionLogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="57c9303d-66e7-4de9-a04c-252d0d7ca0dd" />
+    <Property Name="SyncActionId" Type="Int64" ed:ValidateRequired="false" ed:Guid="5ecc2011-d33b-4992-a7e3-745ea37c8a7c" />
+    <Property Name="LogDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="e6da0789-329d-4b7b-adb6-035bd9827a6e" />
+    <Property Name="ActionStatusHistory" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="5f638206-714c-4dd2-953f-961d5025218b" />
+    <Property Name="ErrorReason" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="7bbb401f-7d31-40d2-9945-245e7100bd21" />
+    <NavigationProperty Name="SyncAction" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncActionLogs" ToRole="SyncAction" ed:Guid="d25d31de-2ddc-45db-b987-4ecf9a268912" />
+  </EntityType>
+  <EntityType Name="CollectionListItem" ed:Guid="256cabbe-054f-40a7-a8ab-006b39b6dd6f">
+    <Key>
+      <PropertyRef Name="CollectionId" />
+      <PropertyRef Name="Language" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="DescriptionShort" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ValidFrom" />
+      <PropertyRef Name="ValidTo" />
+      <PropertyRef Name="CollectionTypeId" />
+      <PropertyRef Name="CollectionPath" />
+      <PropertyRef Name="SortOrder" />
+      <PropertyRef Name="CreatedOn" />
+      <PropertyRef Name="CreatedBy" />
+    </Key>
+    <Property Name="CollectionId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="689c1628-ffc9-409b-9831-760c177440c4" />
+    <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="6b25e365-68be-4355-b73f-59b96ce43f0b" />
+    <Property Name="Language" Type="String" Nullable="false" MaxLength="2" Unicode="true" ed:ValidateMaxLength="2" ed:ValidateRequired="true" ed:Guid="e0418ec8-9240-4cf7-bee1-1ff8c3396114" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="c3233810-3cc2-4029-9060-e1b270e53567" />
+    <Property Name="DescriptionShort" Type="String" Nullable="false" MaxLength="512" Unicode="true" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="94f75304-4b53-4b28-99bb-270425cc772f" />
+    <Property Name="Description" Type="String" Nullable="false" Unicode="true" ed:ValidateRequired="true" ed:Guid="ea7072e1-1ff3-41eb-9272-e3a81ffc6d6c" />
+    <Property Name="ValidFrom" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="141a9fc6-71d4-44f1-9910-5a3aa076de4b" />
+    <Property Name="ValidTo" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="2bb54c90-202c-4858-8517-35028c0d44ed" />
+    <Property Name="CollectionTypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="9c4e7917-de27-4945-a4ec-1b340c790eb4" />
+    <Property Name="ImageAltText" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="b97c9f95-610c-43ef-8d42-c35c169e3843" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="8cd111ff-3f5d-4d3f-9309-5da3f2f4281c" />
+    <Property Name="Link" Type="String" MaxLength="4000" Unicode="true" ed:ValidateMaxLength="4000" ed:ValidateRequired="false" ed:Guid="a9e0784b-4bae-4e00-ac50-5c9512f47806" />
+    <Property Name="CollectionPath" Type="String" Nullable="false" MaxLength="400" Unicode="true" ed:ValidateMaxLength="400" ed:ValidateRequired="true" ed:Guid="f94bc630-75b3-465f-aef3-94b5f3538f4a" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="0225a547-b59e-40e5-bb82-6be56cd9403f" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="25efb41a-86db-48ce-85cc-7429c56cfad0" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="bb642cd9-86bb-4185-bf2d-d5c54e4c58e7" />
+    <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="c76bf9f2-6c1f-4d0a-b3f2-6528183a1793" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="a4ed4834-65a2-4c6a-b692-3d5b2382f855" />
+    <Property Name="Parent" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1deec219-4fba-4ba7-9997-7bac5d611b0f" />
+    <Property Name="ChildCollections" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="ed7eade1-489e-4017-8460-1ac7c222819f" />
+  </EntityType>
+  <Association Name="Collection_Collection" ed:Guid="937079a4-4a9f-49d3-b6a8-5c3dfc191ebf">
     <End Role="Parent" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="0..1" />
     <End Role="ChildCollections" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="*" />
     <ReferentialConstraint>
@@ -282,6 +328,20 @@
       </Principal>
       <Dependent Role="ChildCollections">
         <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SyncAction_SyncActionLog" ed:Guid="037564d6-155a-47d9-8352-2d41bc6beb2a">
+    <End Role="SyncAction" Type="CMI.Access.Sql.Lesesaal.EF.SyncAction" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SyncActionLogs" Type="CMI.Access.Sql.Lesesaal.EF.SyncActionLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SyncAction">
+        <PropertyRef Name="SyncActionId" />
+      </Principal>
+      <Dependent Role="SyncActionLogs">
+        <PropertyRef Name="SyncActionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
