@@ -9,6 +9,6 @@ namespace CMI.Access.Harvest
 {
     public interface IArchiveRecordProcessHandler
     {
-        Task ProcessArchiveRecord(ArchiveRecord record);
+        Task PostProcessArchiveRecord(ArchiveRecord record);
     }
 }

@@ -33,7 +33,7 @@ namespace CMI.Access.Harvest.CMIAIS
             
             var record = archiveRecordBuilder.Build();
 
-            await processHandler.ProcessArchiveRecord(record);
+            await processHandler.PostProcessArchiveRecord(record);
             await GetDisplayData(record);  // TODO: Review
 
             return record;

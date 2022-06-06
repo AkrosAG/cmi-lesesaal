@@ -12,7 +12,7 @@ namespace CMI.Access.Harvest.CMIAIS
             this.dataProvider = dataProvider;
         }
 
-        public async Task ProcessArchiveRecord(ArchiveRecord record)
+        public async Task PostProcessArchiveRecord(ArchiveRecord record)
         {
             record.Security = new ArchiveRecordSecurity();
             await Task.FromResult(record);
