@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ViaducEntitiesStoreContainer" CdmEntityContainer="LesesaalDb">
+  <EntityContainerMapping StorageEntityContainer="LesesaalEntitiesStoreContainer" CdmEntityContainer="LesesaalDb">
     <EntitySetMapping Name="Collections">
       <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.Collection">
         <MappingFragment StoreEntitySet="Collections">
           <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="DescriptionShort" ColumnName="DescriptionShort" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -13,33 +14,7 @@
           <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
           <ScalarProperty Name="CollectionTypeId" ColumnName="CollectionTypeId" />
           <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="ImageAltText" ColumnName="ImageAltText" />
-          <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
-          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
-          <ScalarProperty Name="CollectionPath" ColumnName="CollectionPath" />
-          <ScalarProperty Name="Language" ColumnName="Language" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CollectionList">
-      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.CollectionListItem">
-        <MappingFragment StoreEntitySet="v_CollectionLists">
-          <ScalarProperty Name="Parent" ColumnName="Parent" />
-          <ScalarProperty Name="ChildCollections" ColumnName="ChildCollections" />
-          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="DescriptionShort" ColumnName="DescriptionShort" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
-          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
-          <ScalarProperty Name="CollectionTypeId" ColumnName="CollectionTypeId" />
           <ScalarProperty Name="ImageAltText" ColumnName="ImageAltText" />
           <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
           <ScalarProperty Name="Link" ColumnName="Link" />
@@ -49,7 +24,6 @@
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="Language" ColumnName="Language" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,6 +66,57 @@
           <ScalarProperty Name="ReasonForRejectionDate" ColumnName="ReasonForRejectionDate" />
           <ScalarProperty Name="DownloadLimitDisabledUntil" ColumnName="DownloadLimitDisabledUntil" />
           <ScalarProperty Name="DigitalisierungsbeschraenkungAufgehobenBis" ColumnName="DigitalisierungsbeschraenkungAufgehobenBis" />
+          <ScalarProperty Name="ActiveAspNetSessionId" ColumnName="ActiveAspNetSessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SyncActions">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncAction">
+        <MappingFragment StoreEntitySet="SyncActions">
+          <ScalarProperty Name="SyncActionId" ColumnName="SyncActionId" />
+          <ScalarProperty Name="ArchiveRecordId" ColumnName="ArchiveRecordId" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="ActionStatus" ColumnName="ActionStatus" />
+          <ScalarProperty Name="NumberOfTries" ColumnName="NumberOfTries" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SyncActionLogs">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncActionLog">
+        <MappingFragment StoreEntitySet="SyncActionLogs">
+          <ScalarProperty Name="SyncActionLogId" ColumnName="SyncActionLogId" />
+          <ScalarProperty Name="SyncActionId" ColumnName="SyncActionId" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="ActionStatusHistory" ColumnName="ActionStatusHistory" />
+          <ScalarProperty Name="ErrorReason" ColumnName="ErrorReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionList">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.CollectionListItem">
+        <MappingFragment StoreEntitySet="v_CollectionLists">
+          <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DescriptionShort" ColumnName="DescriptionShort" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="CollectionTypeId" ColumnName="CollectionTypeId" />
+          <ScalarProperty Name="ImageAltText" ColumnName="ImageAltText" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="CollectionPath" ColumnName="CollectionPath" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="ChildCollections" ColumnName="ChildCollections" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

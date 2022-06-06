@@ -1,0 +1,34 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/changesResponse" targetNamespace="http://www.cmiag.ch/cdws/changesResponse" elementFormDefault="qualified">
+    <xsd:element name="ChangesResponse" type="ChangesResponseType" />
+    <xsd:complexType name="ChangesResponseType">
+        <xsd:sequence>
+            <xsd:element name="Change" type="ChangeType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+        <xsd:attribute name="IDXSEQ" type="xsd:unsignedInt" use="required" />
+        <xsd:attribute name="SEQ" type="xsd:unsignedInt" use="required" />
+        <xsd:attribute name="m" type="xsd:unsignedInt" use="required" />
+        <xsd:attribute name="numHits" type="xsd:unsignedInt" use="required" />
+        <xsd:attribute name="indexName" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="ChangeType">
+        <xsd:sequence>
+            <xsd:any minOccurs="1" maxOccurs="1" processContents="skip" />
+        </xsd:sequence>
+        <xsd:attribute name="Action" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="Delete" />
+                    <xsd:pattern value="InsertUpdate" />
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="Guid" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="[a-f0-9]{32}" />
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="SEQ" type="xsd:unsignedInt" use="required" />
+    </xsd:complexType>
+</xsd:schema>

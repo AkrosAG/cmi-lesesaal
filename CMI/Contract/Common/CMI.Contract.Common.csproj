@@ -77,7 +77,7 @@
     <Compile Include="ElasticRawLogRecord.cs" />
     <Compile Include="Entities\CollectionItemResult.cs" />
     <Compile Include="Entities\ImageInfo.cs" />
-    <Compile Include="Entities\Viaduc.DTOs.cs" />
+    <Compile Include="Entities\Lesesaal.DTOs.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GetElasticLogRecordsResult.cs" />
     <Compile Include="ICollectionManager.cs" />
