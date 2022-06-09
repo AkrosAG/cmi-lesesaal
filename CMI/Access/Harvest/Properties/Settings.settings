@@ -38,11 +38,11 @@
     <Setting Name="AisProvider" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.AisProvider@@</Value>
     </Setting>
-    <Setting Name="CdwsSearchEndpoint" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsSearchEndpoint@@</Value>
+    <Setting Name="CdwsEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsEndpoint@@</Value>
     </Setting>
-    <Setting Name="CdwsIndexNames" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsIndexNames@@</Value>
+    <Setting Name="CdwsIndexName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsIndexName@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>

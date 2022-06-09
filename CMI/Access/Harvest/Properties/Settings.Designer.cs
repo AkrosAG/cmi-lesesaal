@@ -135,19 +135,19 @@ namespace CMI.Access.Harvest.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsSearchEndpoint@@")]
-        public string CdwsSearchEndpoint {
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsEndpoint@@")]
+        public string CdwsEndpoint {
             get {
-                return ((string)(this["CdwsSearchEndpoint"]));
+                return ((string)(this["CdwsEndpoint"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsIndexNames@@")]
-        public string CdwsIndexNames {
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsIndexName@@")]
+        public string CdwsIndexName {
             get {
-                return ((string)(this["CdwsIndexNames"]));
+                return ((string)(this["CdwsIndexName"]));
             }
         }
     }

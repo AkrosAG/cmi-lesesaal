@@ -1,4 +1,5 @@
-﻿<xsd:schema targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveRecord" elementFormDefault="qualified" xmlns="http://www.cmiag.ch/cdws/CMIArchiveRecord" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveRecord" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveRecord">
 	<xsd:annotation>
 		<xsd:documentation>
 			<SearchField xsi:type="SearchFieldText" Name="DateiText" BoostFactor="2" Nrs="51" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
@@ -123,7 +124,7 @@
 			<xsd:element name="Benutzbarkeit" type="xsd:string" />
 			<xsd:element name="Publikation" type="xsd:string" />
 			<xsd:element name="Verwertungsrecht" type="xsd:string" />
-			<xsd:element name="AblaufVerwerstungsrecht" type="DateTimeFieldType" />
+			<xsd:element name="AblaufVerwertungsrecht" type="DateTimeFieldType" />
 			<xsd:element name="UrheberBekannt" type="xsd:boolean" nillable="true" />
 			<xsd:element name="TodesdatumUrheber" type="DateTimeFieldType" />
 			<xsd:element name="Urheber" type="xsd:string" />
@@ -466,7 +467,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="CustomField">
 		<xsd:sequence>
-			<xsd:element name="CustomTextField" type="xsd:string" />
+			<xsd:any minOccurs="0" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 	</xsd:complexType>

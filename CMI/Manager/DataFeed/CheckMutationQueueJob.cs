@@ -80,7 +80,7 @@ namespace CMI.Manager.DataFeed
                             updateList.Add(new MutationStatusInfo
                             {
                                 MutationId = record.MutationId, NewStatus = ActionStatus.SyncInProgress,
-                                ChangeFromStatus = ActionStatus.WaitingForSync
+                                ChangeFromStatus = ActionStatus.WaitingForSync, ArchiveRecordId = record.ArchiveRecordId, MutationType = record.Action
                             });
                             // We don't await the task. It is a great performance gain, with a little risk that the 
                             // message might not be acknowledged.

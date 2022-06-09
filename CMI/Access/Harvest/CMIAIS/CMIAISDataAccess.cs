@@ -24,12 +24,12 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public Task<int> UpdateMutationStatus(MutationStatusInfo info)
         {
-            throw new NotImplementedException();
+            return dataProvider.UpdateMutationStatus(info);
         }
 
         public Task<int> BulkUpdateMutationStatus(List<MutationStatusInfo> infos)
         {
-            throw new NotImplementedException();
+            return dataProvider.BulkUpdateMutationStatus(infos);
         }
 
         public Task<int> ResetFailedSyncOperations(int maxRetries)

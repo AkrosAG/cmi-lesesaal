@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CMI.Contract.Common.Entities
+namespace CMI.Access.Sql.Lesesaal.EF
 {
 
     public static partial class CollectionConverter
     {
 
-        public static CollectionDto ToDto(this CMI.Access.Sql.Lesesaal.EF.Collection source)
+        public static CollectionDto ToDto(this Collection source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static CollectionDto ToDtoWithRelated(this CMI.Access.Sql.Lesesaal.EF.Collection source, int level)
+        public static CollectionDto ToDtoWithRelated(this Collection source, int level)
         {
             if (source == null)
               return null;
@@ -63,12 +63,12 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static CMI.Access.Sql.Lesesaal.EF.Collection ToEntity(this CollectionDto source)
+        public static Collection ToEntity(this CollectionDto source)
         {
             if (source == null)
               return null;
 
-            var target = new CMI.Access.Sql.Lesesaal.EF.Collection();
+            var target = new Collection();
 
             // Properties
             target.CollectionId = source.CollectionId;
@@ -98,7 +98,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CollectionDto> ToDtos(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.Collection> source)
+        public static List<CollectionDto> ToDtos(this IEnumerable<Collection> source)
         {
             if (source == null)
               return null;
@@ -110,7 +110,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CollectionDto> ToDtosWithRelated(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.Collection> source, int level)
+        public static List<CollectionDto> ToDtosWithRelated(this IEnumerable<Collection> source, int level)
         {
             if (source == null)
               return null;
@@ -122,7 +122,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CMI.Access.Sql.Lesesaal.EF.Collection> ToEntities(this IEnumerable<CollectionDto> source)
+        public static List<Collection> ToEntities(this IEnumerable<CollectionDto> source)
         {
             if (source == null)
               return null;
@@ -134,141 +134,21 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        static partial void OnDtoCreating(CMI.Access.Sql.Lesesaal.EF.Collection source, CollectionDto target);
+        static partial void OnDtoCreating(Collection source, CollectionDto target);
 
-        static partial void OnEntityCreating(CollectionDto source, CMI.Access.Sql.Lesesaal.EF.Collection target);
-
-    }
-
-    public static partial class CollectionListItemConverter
-    {
-
-        public static CollectionListItemDto ToDto(this CMI.Access.Sql.Lesesaal.EF.CollectionListItem source)
-        {
-            return source.ToDtoWithRelated(0);
-        }
-
-        public static CollectionListItemDto ToDtoWithRelated(this CMI.Access.Sql.Lesesaal.EF.CollectionListItem source, int level)
-        {
-            if (source == null)
-              return null;
-
-            var target = new CollectionListItemDto();
-
-            // Properties
-            target.CollectionId = source.CollectionId;
-            target.ParentId = source.ParentId;
-            target.Language = source.Language;
-            target.Title = source.Title;
-            target.DescriptionShort = source.DescriptionShort;
-            target.Description = source.Description;
-            target.ValidFrom = source.ValidFrom;
-            target.ValidTo = source.ValidTo;
-            target.CollectionTypeId = source.CollectionTypeId;
-            target.ImageAltText = source.ImageAltText;
-            target.ImageMimeType = source.ImageMimeType;
-            target.Link = source.Link;
-            target.CollectionPath = source.CollectionPath;
-            target.SortOrder = source.SortOrder;
-            target.CreatedOn = source.CreatedOn;
-            target.CreatedBy = source.CreatedBy;
-            target.ModifiedOn = source.ModifiedOn;
-            target.ModifiedBy = source.ModifiedBy;
-            target.Parent = source.Parent;
-            target.ChildCollections = source.ChildCollections;
-
-            // User-defined partial method
-            OnDtoCreating(source, target);
-
-            return target;
-        }
-
-        public static CMI.Access.Sql.Lesesaal.EF.CollectionListItem ToEntity(this CollectionListItemDto source)
-        {
-            if (source == null)
-              return null;
-
-            var target = new CMI.Access.Sql.Lesesaal.EF.CollectionListItem();
-
-            // Properties
-            target.CollectionId = source.CollectionId;
-            target.ParentId = source.ParentId;
-            target.Language = source.Language;
-            target.Title = source.Title;
-            target.DescriptionShort = source.DescriptionShort;
-            target.Description = source.Description;
-            target.ValidFrom = source.ValidFrom;
-            target.ValidTo = source.ValidTo;
-            target.CollectionTypeId = source.CollectionTypeId;
-            target.ImageAltText = source.ImageAltText;
-            target.ImageMimeType = source.ImageMimeType;
-            target.Link = source.Link;
-            target.CollectionPath = source.CollectionPath;
-            target.SortOrder = source.SortOrder;
-            target.CreatedOn = source.CreatedOn;
-            target.CreatedBy = source.CreatedBy;
-            target.ModifiedOn = source.ModifiedOn;
-            target.ModifiedBy = source.ModifiedBy;
-            target.Parent = source.Parent;
-            target.ChildCollections = source.ChildCollections;
-
-            // User-defined partial method
-            OnEntityCreating(source, target);
-
-            return target;
-        }
-
-        public static List<CollectionListItemDto> ToDtos(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.CollectionListItem> source)
-        {
-            if (source == null)
-              return null;
-
-            var target = source
-              .Select(src => src.ToDto())
-              .ToList();
-
-            return target;
-        }
-
-        public static List<CollectionListItemDto> ToDtosWithRelated(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.CollectionListItem> source, int level)
-        {
-            if (source == null)
-              return null;
-
-            var target = source
-              .Select(src => src.ToDtoWithRelated(level))
-              .ToList();
-
-            return target;
-        }
-
-        public static List<CMI.Access.Sql.Lesesaal.EF.CollectionListItem> ToEntities(this IEnumerable<CollectionListItemDto> source)
-        {
-            if (source == null)
-              return null;
-
-            var target = source
-              .Select(src => src.ToEntity())
-              .ToList();
-
-            return target;
-        }
-
-        static partial void OnDtoCreating(CMI.Access.Sql.Lesesaal.EF.CollectionListItem source, CollectionListItemDto target);
-
-        static partial void OnEntityCreating(CollectionListItemDto source, CMI.Access.Sql.Lesesaal.EF.CollectionListItem target);
+        static partial void OnEntityCreating(CollectionDto source, Collection target);
 
     }
 
     public static partial class ApplicationUserConverter
     {
 
-        public static ApplicationUserDto ToDto(this CMI.Access.Sql.Lesesaal.EF.ApplicationUser source)
+        public static ApplicationUserDto ToDto(this ApplicationUser source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static ApplicationUserDto ToDtoWithRelated(this CMI.Access.Sql.Lesesaal.EF.ApplicationUser source, int level)
+        public static ApplicationUserDto ToDtoWithRelated(this ApplicationUser source, int level)
         {
             if (source == null)
               return null;
@@ -320,12 +200,12 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static CMI.Access.Sql.Lesesaal.EF.ApplicationUser ToEntity(this ApplicationUserDto source)
+        public static ApplicationUser ToEntity(this ApplicationUserDto source)
         {
             if (source == null)
               return null;
 
-            var target = new CMI.Access.Sql.Lesesaal.EF.ApplicationUser();
+            var target = new ApplicationUser();
 
             // Properties
             target.ID = source.ID;
@@ -372,7 +252,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<ApplicationUserDto> ToDtos(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.ApplicationUser> source)
+        public static List<ApplicationUserDto> ToDtos(this IEnumerable<ApplicationUser> source)
         {
             if (source == null)
               return null;
@@ -384,7 +264,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<ApplicationUserDto> ToDtosWithRelated(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.ApplicationUser> source, int level)
+        public static List<ApplicationUserDto> ToDtosWithRelated(this IEnumerable<ApplicationUser> source, int level)
         {
             if (source == null)
               return null;
@@ -396,7 +276,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CMI.Access.Sql.Lesesaal.EF.ApplicationUser> ToEntities(this IEnumerable<ApplicationUserDto> source)
+        public static List<ApplicationUser> ToEntities(this IEnumerable<ApplicationUserDto> source)
         {
             if (source == null)
               return null;
@@ -408,21 +288,21 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        static partial void OnDtoCreating(CMI.Access.Sql.Lesesaal.EF.ApplicationUser source, ApplicationUserDto target);
+        static partial void OnDtoCreating(ApplicationUser source, ApplicationUserDto target);
 
-        static partial void OnEntityCreating(ApplicationUserDto source, CMI.Access.Sql.Lesesaal.EF.ApplicationUser target);
+        static partial void OnEntityCreating(ApplicationUserDto source, ApplicationUser target);
 
     }
 
     public static partial class SyncActionConverter
     {
 
-        public static SyncActionDto ToDto(this CMI.Access.Sql.Lesesaal.EF.SyncAction source)
+        public static SyncActionDto ToDto(this SyncAction source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static SyncActionDto ToDtoWithRelated(this CMI.Access.Sql.Lesesaal.EF.SyncAction source, int level)
+        public static SyncActionDto ToDtoWithRelated(this SyncAction source, int level)
         {
             if (source == null)
               return null;
@@ -449,12 +329,12 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static CMI.Access.Sql.Lesesaal.EF.SyncAction ToEntity(this SyncActionDto source)
+        public static SyncAction ToEntity(this SyncActionDto source)
         {
             if (source == null)
               return null;
 
-            var target = new CMI.Access.Sql.Lesesaal.EF.SyncAction();
+            var target = new SyncAction();
 
             // Properties
             target.SyncActionId = source.SyncActionId;
@@ -471,7 +351,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<SyncActionDto> ToDtos(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.SyncAction> source)
+        public static List<SyncActionDto> ToDtos(this IEnumerable<SyncAction> source)
         {
             if (source == null)
               return null;
@@ -483,7 +363,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<SyncActionDto> ToDtosWithRelated(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.SyncAction> source, int level)
+        public static List<SyncActionDto> ToDtosWithRelated(this IEnumerable<SyncAction> source, int level)
         {
             if (source == null)
               return null;
@@ -495,7 +375,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CMI.Access.Sql.Lesesaal.EF.SyncAction> ToEntities(this IEnumerable<SyncActionDto> source)
+        public static List<SyncAction> ToEntities(this IEnumerable<SyncActionDto> source)
         {
             if (source == null)
               return null;
@@ -507,21 +387,21 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        static partial void OnDtoCreating(CMI.Access.Sql.Lesesaal.EF.SyncAction source, SyncActionDto target);
+        static partial void OnDtoCreating(SyncAction source, SyncActionDto target);
 
-        static partial void OnEntityCreating(SyncActionDto source, CMI.Access.Sql.Lesesaal.EF.SyncAction target);
+        static partial void OnEntityCreating(SyncActionDto source, SyncAction target);
 
     }
 
     public static partial class SyncActionLogConverter
     {
 
-        public static SyncActionLogDto ToDto(this CMI.Access.Sql.Lesesaal.EF.SyncActionLog source)
+        public static SyncActionLogDto ToDto(this SyncActionLog source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static SyncActionLogDto ToDtoWithRelated(this CMI.Access.Sql.Lesesaal.EF.SyncActionLog source, int level)
+        public static SyncActionLogDto ToDtoWithRelated(this SyncActionLog source, int level)
         {
             if (source == null)
               return null;
@@ -546,12 +426,12 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static CMI.Access.Sql.Lesesaal.EF.SyncActionLog ToEntity(this SyncActionLogDto source)
+        public static SyncActionLog ToEntity(this SyncActionLogDto source)
         {
             if (source == null)
               return null;
 
-            var target = new CMI.Access.Sql.Lesesaal.EF.SyncActionLog();
+            var target = new SyncActionLog();
 
             // Properties
             target.SyncActionLogId = source.SyncActionLogId;
@@ -566,7 +446,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<SyncActionLogDto> ToDtos(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.SyncActionLog> source)
+        public static List<SyncActionLogDto> ToDtos(this IEnumerable<SyncActionLog> source)
         {
             if (source == null)
               return null;
@@ -578,7 +458,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<SyncActionLogDto> ToDtosWithRelated(this IEnumerable<CMI.Access.Sql.Lesesaal.EF.SyncActionLog> source, int level)
+        public static List<SyncActionLogDto> ToDtosWithRelated(this IEnumerable<SyncActionLog> source, int level)
         {
             if (source == null)
               return null;
@@ -590,7 +470,7 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        public static List<CMI.Access.Sql.Lesesaal.EF.SyncActionLog> ToEntities(this IEnumerable<SyncActionLogDto> source)
+        public static List<SyncActionLog> ToEntities(this IEnumerable<SyncActionLogDto> source)
         {
             if (source == null)
               return null;
@@ -602,9 +482,129 @@ namespace CMI.Contract.Common.Entities
             return target;
         }
 
-        static partial void OnDtoCreating(CMI.Access.Sql.Lesesaal.EF.SyncActionLog source, SyncActionLogDto target);
+        static partial void OnDtoCreating(SyncActionLog source, SyncActionLogDto target);
 
-        static partial void OnEntityCreating(SyncActionLogDto source, CMI.Access.Sql.Lesesaal.EF.SyncActionLog target);
+        static partial void OnEntityCreating(SyncActionLogDto source, SyncActionLog target);
+
+    }
+
+    public static partial class CollectionListItemConverter
+    {
+
+        public static CollectionListItemDto ToDto(this CollectionListItem source)
+        {
+            return source.ToDtoWithRelated(0);
+        }
+
+        public static CollectionListItemDto ToDtoWithRelated(this CollectionListItem source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = new CollectionListItemDto();
+
+            // Properties
+            target.CollectionId = source.CollectionId;
+            target.ParentId = source.ParentId;
+            target.Language = source.Language;
+            target.Title = source.Title;
+            target.DescriptionShort = source.DescriptionShort;
+            target.Description = source.Description;
+            target.ValidFrom = source.ValidFrom;
+            target.ValidTo = source.ValidTo;
+            target.CollectionTypeId = source.CollectionTypeId;
+            target.ImageAltText = source.ImageAltText;
+            target.ImageMimeType = source.ImageMimeType;
+            target.Link = source.Link;
+            target.CollectionPath = source.CollectionPath;
+            target.SortOrder = source.SortOrder;
+            target.CreatedOn = source.CreatedOn;
+            target.CreatedBy = source.CreatedBy;
+            target.ModifiedOn = source.ModifiedOn;
+            target.ModifiedBy = source.ModifiedBy;
+            target.Parent = source.Parent;
+            target.ChildCollections = source.ChildCollections;
+
+            // User-defined partial method
+            OnDtoCreating(source, target);
+
+            return target;
+        }
+
+        public static CollectionListItem ToEntity(this CollectionListItemDto source)
+        {
+            if (source == null)
+              return null;
+
+            var target = new CollectionListItem();
+
+            // Properties
+            target.CollectionId = source.CollectionId;
+            target.ParentId = source.ParentId;
+            target.Language = source.Language;
+            target.Title = source.Title;
+            target.DescriptionShort = source.DescriptionShort;
+            target.Description = source.Description;
+            target.ValidFrom = source.ValidFrom;
+            target.ValidTo = source.ValidTo;
+            target.CollectionTypeId = source.CollectionTypeId;
+            target.ImageAltText = source.ImageAltText;
+            target.ImageMimeType = source.ImageMimeType;
+            target.Link = source.Link;
+            target.CollectionPath = source.CollectionPath;
+            target.SortOrder = source.SortOrder;
+            target.CreatedOn = source.CreatedOn;
+            target.CreatedBy = source.CreatedBy;
+            target.ModifiedOn = source.ModifiedOn;
+            target.ModifiedBy = source.ModifiedBy;
+            target.Parent = source.Parent;
+            target.ChildCollections = source.ChildCollections;
+
+            // User-defined partial method
+            OnEntityCreating(source, target);
+
+            return target;
+        }
+
+        public static List<CollectionListItemDto> ToDtos(this IEnumerable<CollectionListItem> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDto())
+              .ToList();
+
+            return target;
+        }
+
+        public static List<CollectionListItemDto> ToDtosWithRelated(this IEnumerable<CollectionListItem> source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDtoWithRelated(level))
+              .ToList();
+
+            return target;
+        }
+
+        public static List<CollectionListItem> ToEntities(this IEnumerable<CollectionListItemDto> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToEntity())
+              .ToList();
+
+            return target;
+        }
+
+        static partial void OnDtoCreating(CollectionListItem source, CollectionListItemDto target);
+
+        static partial void OnEntityCreating(CollectionListItemDto source, CollectionListItem target);
 
     }
 
