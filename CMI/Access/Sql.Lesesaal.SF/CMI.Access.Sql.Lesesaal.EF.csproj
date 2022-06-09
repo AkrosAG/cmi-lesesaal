@@ -8,8 +8,8 @@
     <ProjectGuid>{CED136DF-B922-481D-9F57-6E88BC91827D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CMI.Access.Sql.Viaduc.EF</RootNamespace>
-    <AssemblyName>CMI.Access.Sql.Viaduc.EF</AssemblyName>
+    <RootNamespace>CMI.Access.Sql.Lesesaal.EF</RootNamespace>
+    <AssemblyName>CMI.Access.Sql.Lesesaal.EF</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -62,32 +62,22 @@
   <ItemGroup>
     <Compile Include="CollectionAccess.cs" />
     <Compile Include="ICollectionAccess.cs" />
+    <Compile Include="Lesesaal.Converters.cs" />
+    <Compile Include="Lesesaal.Designer.cs" />
     <Compile Include="MissingDllWorkaround.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Viaduc.Converters.cs">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </Compile>
-    <Compile Include="Lesesaal.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </Compile>
     <Compile Include="LesesaalDbCommandInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Lesesaal.Diagram1.view" />
+    <None Include="Lesesaal.edps" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Lesesaal.csdl" />
-    <None Include="Viaduc.Diagram1.view">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </None>
     <DevartEntityDeploy Include="Lesesaal.edml">
       <Generator>DevartEfGenerator</Generator>
       <LastGenOutput>Lesesaal.cs</LastGenOutput>
     </DevartEntityDeploy>
-    <None Include="Viaduc.edps">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </None>
     <EmbeddedResource Include="Lesesaal.msl" />
     <EmbeddedResource Include="Lesesaal.ssdl" />
   </ItemGroup>

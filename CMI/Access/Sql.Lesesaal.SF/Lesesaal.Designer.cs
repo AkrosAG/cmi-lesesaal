@@ -49,7 +49,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Initialize a new LesesaalDb object.
         /// </summary>
         public LesesaalDb() :
-                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=True;User ID=eth;Password=eth123++""", "LesesaalDb")
+                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost,11433;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -104,22 +104,6 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CollectionListItem> CollectionList
-        {
-            get
-            {
-                if ((_CollectionList == null))
-                {
-                    _CollectionList = base.CreateObjectSet<CollectionListItem>("CollectionList");
-                }
-                return _CollectionList;
-            }
-        }
-        private ObjectSet<CollectionListItem> _CollectionList;
-
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<ApplicationUser> ApplicationUsers
         {
             get
@@ -165,6 +149,22 @@ namespace CMI.Access.Sql.Lesesaal.EF
         }
         private ObjectSet<SyncActionLog> _SyncActionLogs;
 
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CollectionListItem> CollectionList
+        {
+            get
+            {
+                if ((_CollectionList == null))
+                {
+                    _CollectionList = base.CreateObjectSet<CollectionListItem>("CollectionList");
+                }
+                return _CollectionList;
+            }
+        }
+        private ObjectSet<CollectionListItem> _CollectionList;
+
         #endregion
         #region AddTo Methods
 
@@ -174,14 +174,6 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public void AddToCollections(Collection collection)
         {
             base.AddObject("Collections", collection);
-        }
-
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CollectionList EntitySet.
-        /// </summary>
-        public void AddToCollectionList(CollectionListItem collectionListItem)
-        {
-            base.AddObject("CollectionList", collectionListItem);
         }
 
         /// <summary>
@@ -206,6 +198,14 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public void AddToSyncActionLogs(SyncActionLog syncActionLog)
         {
             base.AddObject("SyncActionLogs", syncActionLog);
+        }
+
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CollectionList EntitySet.
+        /// </summary>
+        public void AddToCollectionList(CollectionListItem collectionListItem)
+        {
+            base.AddObject("CollectionList", collectionListItem);
         }
 
         #endregion
@@ -934,658 +934,6 @@ namespace CMI.Access.Sql.Lesesaal.EF
                 }
             }
         }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// There are no comments for CMI.Access.Sql.Lesesaal.EF.CollectionListItem in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// CollectionId
-    /// </KeyProperties>
-    [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="CollectionListItem")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CollectionListItem : EntityObject    {
-        #region Factory Method
-
-        /// <summary>
-        /// Create a new CollectionListItem object.
-        /// </summary>
-        /// <param name="collectionId">Initial value of CollectionId.</param>
-        /// <param name="language">Initial value of Language.</param>
-        /// <param name="title">Initial value of Title.</param>
-        /// <param name="descriptionShort">Initial value of DescriptionShort.</param>
-        /// <param name="description">Initial value of Description.</param>
-        /// <param name="validFrom">Initial value of ValidFrom.</param>
-        /// <param name="validTo">Initial value of ValidTo.</param>
-        /// <param name="collectionTypeId">Initial value of CollectionTypeId.</param>
-        /// <param name="collectionPath">Initial value of CollectionPath.</param>
-        /// <param name="sortOrder">Initial value of SortOrder.</param>
-        /// <param name="createdOn">Initial value of CreatedOn.</param>
-        /// <param name="createdBy">Initial value of CreatedBy.</param>
-        public static CollectionListItem CreateCollectionListItem(int collectionId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy)
-        {
-            CollectionListItem collectionListItem = new CollectionListItem();
-            collectionListItem.CollectionId = collectionId;
-            collectionListItem.Language = language;
-            collectionListItem.Title = title;
-            collectionListItem.DescriptionShort = descriptionShort;
-            collectionListItem.Description = description;
-            collectionListItem.ValidFrom = validFrom;
-            collectionListItem.ValidTo = validTo;
-            collectionListItem.CollectionTypeId = collectionTypeId;
-            collectionListItem.CollectionPath = collectionPath;
-            collectionListItem.SortOrder = sortOrder;
-            collectionListItem.CreatedOn = createdOn;
-            collectionListItem.CreatedBy = createdBy;
-            return collectionListItem;
-        }
-
-        #endregion
-
-        #region Properties
-    
-        /// <summary>
-        /// There are no comments for CollectionId in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual int CollectionId
-        {
-            get
-            {
-                int value = _CollectionId;
-                OnGetCollectionId(ref value);
-                return value;
-            }
-            set
-            {
-                if (_CollectionId != value)
-                {
-                  OnCollectionIdChanging(ref value);
-                  ReportPropertyChanging("CollectionId");
-                  _CollectionId = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("CollectionId");
-                  OnCollectionIdChanged();
-              }
-            }
-        }
-        private int _CollectionId;
-        partial void OnGetCollectionId(ref int value);
-        partial void OnCollectionIdChanging(ref int value);
-        partial void OnCollectionIdChanged();
-    
-        /// <summary>
-        /// There are no comments for ParentId in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual int? ParentId
-        {
-            get
-            {
-                int? value = _ParentId;
-                OnGetParentId(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ParentId != value)
-                {
-                  OnParentIdChanging(ref value);
-                  ReportPropertyChanging("ParentId");
-                  _ParentId = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("ParentId");
-                  OnParentIdChanged();
-              }
-            }
-        }
-        private int? _ParentId;
-        partial void OnGetParentId(ref int? value);
-        partial void OnParentIdChanging(ref int? value);
-        partial void OnParentIdChanged();
-    
-        /// <summary>
-        /// There are no comments for Language in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string Language
-        {
-            get
-            {
-                string value = _Language;
-                OnGetLanguage(ref value);
-                return value;
-            }
-            set
-            {
-                if (_Language != value)
-                {
-                  OnLanguageChanging(ref value);
-                  ReportPropertyChanging("Language");
-                  _Language = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("Language");
-                  OnLanguageChanged();
-              }
-            }
-        }
-        private string _Language;
-        partial void OnGetLanguage(ref string value);
-        partial void OnLanguageChanging(ref string value);
-        partial void OnLanguageChanged();
-    
-        /// <summary>
-        /// There are no comments for Title in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string Title
-        {
-            get
-            {
-                string value = _Title;
-                OnGetTitle(ref value);
-                return value;
-            }
-            set
-            {
-                if (_Title != value)
-                {
-                  OnTitleChanging(ref value);
-                  ReportPropertyChanging("Title");
-                  _Title = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("Title");
-                  OnTitleChanged();
-              }
-            }
-        }
-        private string _Title;
-        partial void OnGetTitle(ref string value);
-        partial void OnTitleChanging(ref string value);
-        partial void OnTitleChanged();
-    
-        /// <summary>
-        /// There are no comments for DescriptionShort in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string DescriptionShort
-        {
-            get
-            {
-                string value = _DescriptionShort;
-                OnGetDescriptionShort(ref value);
-                return value;
-            }
-            set
-            {
-                if (_DescriptionShort != value)
-                {
-                  OnDescriptionShortChanging(ref value);
-                  ReportPropertyChanging("DescriptionShort");
-                  _DescriptionShort = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("DescriptionShort");
-                  OnDescriptionShortChanged();
-              }
-            }
-        }
-        private string _DescriptionShort;
-        partial void OnGetDescriptionShort(ref string value);
-        partial void OnDescriptionShortChanging(ref string value);
-        partial void OnDescriptionShortChanged();
-    
-        /// <summary>
-        /// There are no comments for Description in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string Description
-        {
-            get
-            {
-                string value = _Description;
-                OnGetDescription(ref value);
-                return value;
-            }
-            set
-            {
-                if (_Description != value)
-                {
-                  OnDescriptionChanging(ref value);
-                  ReportPropertyChanging("Description");
-                  _Description = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("Description");
-                  OnDescriptionChanged();
-              }
-            }
-        }
-        private string _Description;
-        partial void OnGetDescription(ref string value);
-        partial void OnDescriptionChanging(ref string value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// There are no comments for ValidFrom in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual global::System.DateTime ValidFrom
-        {
-            get
-            {
-                global::System.DateTime value = _ValidFrom;
-                OnGetValidFrom(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ValidFrom != value)
-                {
-                  OnValidFromChanging(ref value);
-                  ReportPropertyChanging("ValidFrom");
-                  _ValidFrom = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("ValidFrom");
-                  OnValidFromChanged();
-              }
-            }
-        }
-        private global::System.DateTime _ValidFrom;
-        partial void OnGetValidFrom(ref global::System.DateTime value);
-        partial void OnValidFromChanging(ref global::System.DateTime value);
-        partial void OnValidFromChanged();
-    
-        /// <summary>
-        /// There are no comments for ValidTo in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual global::System.DateTime ValidTo
-        {
-            get
-            {
-                global::System.DateTime value = _ValidTo;
-                OnGetValidTo(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ValidTo != value)
-                {
-                  OnValidToChanging(ref value);
-                  ReportPropertyChanging("ValidTo");
-                  _ValidTo = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("ValidTo");
-                  OnValidToChanged();
-              }
-            }
-        }
-        private global::System.DateTime _ValidTo;
-        partial void OnGetValidTo(ref global::System.DateTime value);
-        partial void OnValidToChanging(ref global::System.DateTime value);
-        partial void OnValidToChanged();
-    
-        /// <summary>
-        /// There are no comments for CollectionTypeId in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual int CollectionTypeId
-        {
-            get
-            {
-                int value = _CollectionTypeId;
-                OnGetCollectionTypeId(ref value);
-                return value;
-            }
-            set
-            {
-                if (_CollectionTypeId != value)
-                {
-                  OnCollectionTypeIdChanging(ref value);
-                  ReportPropertyChanging("CollectionTypeId");
-                  _CollectionTypeId = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("CollectionTypeId");
-                  OnCollectionTypeIdChanged();
-              }
-            }
-        }
-        private int _CollectionTypeId;
-        partial void OnGetCollectionTypeId(ref int value);
-        partial void OnCollectionTypeIdChanging(ref int value);
-        partial void OnCollectionTypeIdChanged();
-    
-        /// <summary>
-        /// There are no comments for ImageAltText in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string ImageAltText
-        {
-            get
-            {
-                string value = _ImageAltText;
-                OnGetImageAltText(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ImageAltText != value)
-                {
-                  OnImageAltTextChanging(ref value);
-                  ReportPropertyChanging("ImageAltText");
-                  _ImageAltText = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("ImageAltText");
-                  OnImageAltTextChanged();
-              }
-            }
-        }
-        private string _ImageAltText;
-        partial void OnGetImageAltText(ref string value);
-        partial void OnImageAltTextChanging(ref string value);
-        partial void OnImageAltTextChanged();
-    
-        /// <summary>
-        /// There are no comments for ImageMimeType in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string ImageMimeType
-        {
-            get
-            {
-                string value = _ImageMimeType;
-                OnGetImageMimeType(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ImageMimeType != value)
-                {
-                  OnImageMimeTypeChanging(ref value);
-                  ReportPropertyChanging("ImageMimeType");
-                  _ImageMimeType = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("ImageMimeType");
-                  OnImageMimeTypeChanged();
-              }
-            }
-        }
-        private string _ImageMimeType;
-        partial void OnGetImageMimeType(ref string value);
-        partial void OnImageMimeTypeChanging(ref string value);
-        partial void OnImageMimeTypeChanged();
-    
-        /// <summary>
-        /// There are no comments for Link in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string Link
-        {
-            get
-            {
-                string value = _Link;
-                OnGetLink(ref value);
-                return value;
-            }
-            set
-            {
-                if (_Link != value)
-                {
-                  OnLinkChanging(ref value);
-                  ReportPropertyChanging("Link");
-                  _Link = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("Link");
-                  OnLinkChanged();
-              }
-            }
-        }
-        private string _Link;
-        partial void OnGetLink(ref string value);
-        partial void OnLinkChanging(ref string value);
-        partial void OnLinkChanged();
-    
-        /// <summary>
-        /// There are no comments for CollectionPath in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string CollectionPath
-        {
-            get
-            {
-                string value = _CollectionPath;
-                OnGetCollectionPath(ref value);
-                return value;
-            }
-            set
-            {
-                if (_CollectionPath != value)
-                {
-                  OnCollectionPathChanging(ref value);
-                  ReportPropertyChanging("CollectionPath");
-                  _CollectionPath = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("CollectionPath");
-                  OnCollectionPathChanged();
-              }
-            }
-        }
-        private string _CollectionPath;
-        partial void OnGetCollectionPath(ref string value);
-        partial void OnCollectionPathChanging(ref string value);
-        partial void OnCollectionPathChanged();
-    
-        /// <summary>
-        /// There are no comments for SortOrder in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual int SortOrder
-        {
-            get
-            {
-                int value = _SortOrder;
-                OnGetSortOrder(ref value);
-                return value;
-            }
-            set
-            {
-                if (_SortOrder != value)
-                {
-                  OnSortOrderChanging(ref value);
-                  ReportPropertyChanging("SortOrder");
-                  _SortOrder = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("SortOrder");
-                  OnSortOrderChanged();
-              }
-            }
-        }
-        private int _SortOrder;
-        partial void OnGetSortOrder(ref int value);
-        partial void OnSortOrderChanging(ref int value);
-        partial void OnSortOrderChanged();
-    
-        /// <summary>
-        /// There are no comments for CreatedOn in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual global::System.DateTime CreatedOn
-        {
-            get
-            {
-                global::System.DateTime value = _CreatedOn;
-                OnGetCreatedOn(ref value);
-                return value;
-            }
-            set
-            {
-                if (_CreatedOn != value)
-                {
-                  OnCreatedOnChanging(ref value);
-                  ReportPropertyChanging("CreatedOn");
-                  _CreatedOn = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("CreatedOn");
-                  OnCreatedOnChanged();
-              }
-            }
-        }
-        private global::System.DateTime _CreatedOn;
-        partial void OnGetCreatedOn(ref global::System.DateTime value);
-        partial void OnCreatedOnChanging(ref global::System.DateTime value);
-        partial void OnCreatedOnChanged();
-    
-        /// <summary>
-        /// There are no comments for CreatedBy in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable=false)]
-        [DataMemberAttribute()]
-        public virtual string CreatedBy
-        {
-            get
-            {
-                string value = _CreatedBy;
-                OnGetCreatedBy(ref value);
-                return value;
-            }
-            set
-            {
-                if (_CreatedBy != value)
-                {
-                  OnCreatedByChanging(ref value);
-                  ReportPropertyChanging("CreatedBy");
-                  _CreatedBy = StructuralObject.SetValidValue(value, false);
-                  ReportPropertyChanged("CreatedBy");
-                  OnCreatedByChanged();
-              }
-            }
-        }
-        private string _CreatedBy;
-        partial void OnGetCreatedBy(ref string value);
-        partial void OnCreatedByChanging(ref string value);
-        partial void OnCreatedByChanged();
-    
-        /// <summary>
-        /// There are no comments for ModifiedOn in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual global::System.DateTime? ModifiedOn
-        {
-            get
-            {
-                global::System.DateTime? value = _ModifiedOn;
-                OnGetModifiedOn(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ModifiedOn != value)
-                {
-                  OnModifiedOnChanging(ref value);
-                  ReportPropertyChanging("ModifiedOn");
-                  _ModifiedOn = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("ModifiedOn");
-                  OnModifiedOnChanged();
-              }
-            }
-        }
-        private global::System.DateTime? _ModifiedOn;
-        partial void OnGetModifiedOn(ref global::System.DateTime? value);
-        partial void OnModifiedOnChanging(ref global::System.DateTime? value);
-        partial void OnModifiedOnChanged();
-    
-        /// <summary>
-        /// There are no comments for ModifiedBy in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string ModifiedBy
-        {
-            get
-            {
-                string value = _ModifiedBy;
-                OnGetModifiedBy(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ModifiedBy != value)
-                {
-                  OnModifiedByChanging(ref value);
-                  ReportPropertyChanging("ModifiedBy");
-                  _ModifiedBy = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("ModifiedBy");
-                  OnModifiedByChanged();
-              }
-            }
-        }
-        private string _ModifiedBy;
-        partial void OnGetModifiedBy(ref string value);
-        partial void OnModifiedByChanging(ref string value);
-        partial void OnModifiedByChanged();
-    
-        /// <summary>
-        /// There are no comments for Parent in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string Parent
-        {
-            get
-            {
-                string value = _Parent;
-                OnGetParent(ref value);
-                return value;
-            }
-            set
-            {
-                if (_Parent != value)
-                {
-                  OnParentChanging(ref value);
-                  ReportPropertyChanging("Parent");
-                  _Parent = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("Parent");
-                  OnParentChanged();
-              }
-            }
-        }
-        private string _Parent;
-        partial void OnGetParent(ref string value);
-        partial void OnParentChanging(ref string value);
-        partial void OnParentChanged();
-    
-        /// <summary>
-        /// There are no comments for ChildCollections in the schema.
-        /// </summary>
-        [EdmScalarPropertyAttribute()]
-        [DataMemberAttribute()]
-        public virtual string ChildCollections
-        {
-            get
-            {
-                string value = _ChildCollections;
-                OnGetChildCollections(ref value);
-                return value;
-            }
-            set
-            {
-                if (_ChildCollections != value)
-                {
-                  OnChildCollectionsChanging(ref value);
-                  ReportPropertyChanging("ChildCollections");
-                  _ChildCollections = StructuralObject.SetValidValue(value, true);
-                  ReportPropertyChanged("ChildCollections");
-                  OnChildCollectionsChanged();
-              }
-            }
-        }
-        private string _ChildCollections;
-        partial void OnGetChildCollections(ref string value);
-        partial void OnChildCollectionsChanging(ref string value);
-        partial void OnChildCollectionsChanged();
 
         #endregion
     }
@@ -2764,7 +2112,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Create a new SyncAction object.
         /// </summary>
         /// <param name="syncActionId">Initial value of SyncActionId.</param>
-        public static SyncAction CreateSyncAction(int syncActionId)
+        public static SyncAction CreateSyncAction(long syncActionId)
         {
             SyncAction syncAction = new SyncAction();
             syncAction.SyncActionId = syncActionId;
@@ -2780,11 +2128,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual int SyncActionId
+        public virtual long SyncActionId
         {
             get
             {
-                int value = _SyncActionId;
+                long value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -2800,9 +2148,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private int _SyncActionId;
-        partial void OnGetSyncActionId(ref int value);
-        partial void OnSyncActionIdChanging(ref int value);
+        private long _SyncActionId;
+        partial void OnGetSyncActionId(ref long value);
+        partial void OnSyncActionIdChanging(ref long value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
@@ -3030,7 +2378,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Create a new SyncActionLog object.
         /// </summary>
         /// <param name="syncActionLogId">Initial value of SyncActionLogId.</param>
-        public static SyncActionLog CreateSyncActionLog(int syncActionLogId)
+        public static SyncActionLog CreateSyncActionLog(long syncActionLogId)
         {
             SyncActionLog syncActionLog = new SyncActionLog();
             syncActionLog.SyncActionLogId = syncActionLogId;
@@ -3046,11 +2394,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual int SyncActionLogId
+        public virtual long SyncActionLogId
         {
             get
             {
-                int value = _SyncActionLogId;
+                long value = _SyncActionLogId;
                 OnGetSyncActionLogId(ref value);
                 return value;
             }
@@ -3066,9 +2414,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private int _SyncActionLogId;
-        partial void OnGetSyncActionLogId(ref int value);
-        partial void OnSyncActionLogIdChanging(ref int value);
+        private long _SyncActionLogId;
+        partial void OnGetSyncActionLogId(ref long value);
+        partial void OnSyncActionLogIdChanging(ref long value);
         partial void OnSyncActionLogIdChanged();
     
         /// <summary>
@@ -3076,11 +2424,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute()]
         [DataMemberAttribute()]
-        public virtual int? SyncActionId
+        public virtual long? SyncActionId
         {
             get
             {
-                int? value = _SyncActionId;
+                long? value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -3096,9 +2444,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private int? _SyncActionId;
-        partial void OnGetSyncActionId(ref int? value);
-        partial void OnSyncActionIdChanging(ref int? value);
+        private long? _SyncActionId;
+        partial void OnGetSyncActionId(ref long? value);
+        partial void OnSyncActionIdChanging(ref long? value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
@@ -3237,6 +2585,669 @@ namespace CMI.Access.Sql.Lesesaal.EF
                 }
             }
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// There are no comments for CMI.Access.Sql.Lesesaal.EF.CollectionListItem in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// CollectionId
+    /// Language
+    /// Title
+    /// DescriptionShort
+    /// Description
+    /// ValidFrom
+    /// ValidTo
+    /// CollectionTypeId
+    /// CollectionPath
+    /// SortOrder
+    /// CreatedOn
+    /// CreatedBy
+    /// </KeyProperties>
+    [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="CollectionListItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CollectionListItem : EntityObject    {
+        #region Factory Method
+
+        /// <summary>
+        /// Create a new CollectionListItem object.
+        /// </summary>
+        /// <param name="collectionId">Initial value of CollectionId.</param>
+        /// <param name="language">Initial value of Language.</param>
+        /// <param name="title">Initial value of Title.</param>
+        /// <param name="descriptionShort">Initial value of DescriptionShort.</param>
+        /// <param name="description">Initial value of Description.</param>
+        /// <param name="validFrom">Initial value of ValidFrom.</param>
+        /// <param name="validTo">Initial value of ValidTo.</param>
+        /// <param name="collectionTypeId">Initial value of CollectionTypeId.</param>
+        /// <param name="collectionPath">Initial value of CollectionPath.</param>
+        /// <param name="sortOrder">Initial value of SortOrder.</param>
+        /// <param name="createdOn">Initial value of CreatedOn.</param>
+        /// <param name="createdBy">Initial value of CreatedBy.</param>
+        public static CollectionListItem CreateCollectionListItem(int collectionId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy)
+        {
+            CollectionListItem collectionListItem = new CollectionListItem();
+            collectionListItem.CollectionId = collectionId;
+            collectionListItem.Language = language;
+            collectionListItem.Title = title;
+            collectionListItem.DescriptionShort = descriptionShort;
+            collectionListItem.Description = description;
+            collectionListItem.ValidFrom = validFrom;
+            collectionListItem.ValidTo = validTo;
+            collectionListItem.CollectionTypeId = collectionTypeId;
+            collectionListItem.CollectionPath = collectionPath;
+            collectionListItem.SortOrder = sortOrder;
+            collectionListItem.CreatedOn = createdOn;
+            collectionListItem.CreatedBy = createdBy;
+            return collectionListItem;
+        }
+
+        #endregion
+
+        #region Properties
+    
+        /// <summary>
+        /// There are no comments for CollectionId in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual int CollectionId
+        {
+            get
+            {
+                int value = _CollectionId;
+                OnGetCollectionId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CollectionId != value)
+                {
+                  OnCollectionIdChanging(ref value);
+                  ReportPropertyChanging("CollectionId");
+                  _CollectionId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("CollectionId");
+                  OnCollectionIdChanged();
+              }
+            }
+        }
+        private int _CollectionId;
+        partial void OnGetCollectionId(ref int value);
+        partial void OnCollectionIdChanging(ref int value);
+        partial void OnCollectionIdChanged();
+    
+        /// <summary>
+        /// There are no comments for ParentId in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual int? ParentId
+        {
+            get
+            {
+                int? value = _ParentId;
+                OnGetParentId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ParentId != value)
+                {
+                  OnParentIdChanging(ref value);
+                  ReportPropertyChanging("ParentId");
+                  _ParentId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ParentId");
+                  OnParentIdChanged();
+              }
+            }
+        }
+        private int? _ParentId;
+        partial void OnGetParentId(ref int? value);
+        partial void OnParentIdChanging(ref int? value);
+        partial void OnParentIdChanged();
+    
+        /// <summary>
+        /// There are no comments for Language in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string Language
+        {
+            get
+            {
+                string value = _Language;
+                OnGetLanguage(ref value);
+                return value;
+            }
+            set
+            {
+                if (_Language != value)
+                {
+                  OnLanguageChanging(ref value);
+                  ReportPropertyChanging("Language");
+                  _Language = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("Language");
+                  OnLanguageChanged();
+              }
+            }
+        }
+        private string _Language;
+        partial void OnGetLanguage(ref string value);
+        partial void OnLanguageChanging(ref string value);
+        partial void OnLanguageChanged();
+    
+        /// <summary>
+        /// There are no comments for Title in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string Title
+        {
+            get
+            {
+                string value = _Title;
+                OnGetTitle(ref value);
+                return value;
+            }
+            set
+            {
+                if (_Title != value)
+                {
+                  OnTitleChanging(ref value);
+                  ReportPropertyChanging("Title");
+                  _Title = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("Title");
+                  OnTitleChanged();
+              }
+            }
+        }
+        private string _Title;
+        partial void OnGetTitle(ref string value);
+        partial void OnTitleChanging(ref string value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// There are no comments for DescriptionShort in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string DescriptionShort
+        {
+            get
+            {
+                string value = _DescriptionShort;
+                OnGetDescriptionShort(ref value);
+                return value;
+            }
+            set
+            {
+                if (_DescriptionShort != value)
+                {
+                  OnDescriptionShortChanging(ref value);
+                  ReportPropertyChanging("DescriptionShort");
+                  _DescriptionShort = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("DescriptionShort");
+                  OnDescriptionShortChanged();
+              }
+            }
+        }
+        private string _DescriptionShort;
+        partial void OnGetDescriptionShort(ref string value);
+        partial void OnDescriptionShortChanging(ref string value);
+        partial void OnDescriptionShortChanged();
+    
+        /// <summary>
+        /// There are no comments for Description in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string Description
+        {
+            get
+            {
+                string value = _Description;
+                OnGetDescription(ref value);
+                return value;
+            }
+            set
+            {
+                if (_Description != value)
+                {
+                  OnDescriptionChanging(ref value);
+                  ReportPropertyChanging("Description");
+                  _Description = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("Description");
+                  OnDescriptionChanged();
+              }
+            }
+        }
+        private string _Description;
+        partial void OnGetDescription(ref string value);
+        partial void OnDescriptionChanging(ref string value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// There are no comments for ValidFrom in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime ValidFrom
+        {
+            get
+            {
+                global::System.DateTime value = _ValidFrom;
+                OnGetValidFrom(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ValidFrom != value)
+                {
+                  OnValidFromChanging(ref value);
+                  ReportPropertyChanging("ValidFrom");
+                  _ValidFrom = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ValidFrom");
+                  OnValidFromChanged();
+              }
+            }
+        }
+        private global::System.DateTime _ValidFrom;
+        partial void OnGetValidFrom(ref global::System.DateTime value);
+        partial void OnValidFromChanging(ref global::System.DateTime value);
+        partial void OnValidFromChanged();
+    
+        /// <summary>
+        /// There are no comments for ValidTo in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime ValidTo
+        {
+            get
+            {
+                global::System.DateTime value = _ValidTo;
+                OnGetValidTo(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ValidTo != value)
+                {
+                  OnValidToChanging(ref value);
+                  ReportPropertyChanging("ValidTo");
+                  _ValidTo = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ValidTo");
+                  OnValidToChanged();
+              }
+            }
+        }
+        private global::System.DateTime _ValidTo;
+        partial void OnGetValidTo(ref global::System.DateTime value);
+        partial void OnValidToChanging(ref global::System.DateTime value);
+        partial void OnValidToChanged();
+    
+        /// <summary>
+        /// There are no comments for CollectionTypeId in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual int CollectionTypeId
+        {
+            get
+            {
+                int value = _CollectionTypeId;
+                OnGetCollectionTypeId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CollectionTypeId != value)
+                {
+                  OnCollectionTypeIdChanging(ref value);
+                  ReportPropertyChanging("CollectionTypeId");
+                  _CollectionTypeId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("CollectionTypeId");
+                  OnCollectionTypeIdChanged();
+              }
+            }
+        }
+        private int _CollectionTypeId;
+        partial void OnGetCollectionTypeId(ref int value);
+        partial void OnCollectionTypeIdChanging(ref int value);
+        partial void OnCollectionTypeIdChanged();
+    
+        /// <summary>
+        /// There are no comments for ImageAltText in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ImageAltText
+        {
+            get
+            {
+                string value = _ImageAltText;
+                OnGetImageAltText(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ImageAltText != value)
+                {
+                  OnImageAltTextChanging(ref value);
+                  ReportPropertyChanging("ImageAltText");
+                  _ImageAltText = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ImageAltText");
+                  OnImageAltTextChanged();
+              }
+            }
+        }
+        private string _ImageAltText;
+        partial void OnGetImageAltText(ref string value);
+        partial void OnImageAltTextChanging(ref string value);
+        partial void OnImageAltTextChanged();
+    
+        /// <summary>
+        /// There are no comments for ImageMimeType in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ImageMimeType
+        {
+            get
+            {
+                string value = _ImageMimeType;
+                OnGetImageMimeType(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ImageMimeType != value)
+                {
+                  OnImageMimeTypeChanging(ref value);
+                  ReportPropertyChanging("ImageMimeType");
+                  _ImageMimeType = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ImageMimeType");
+                  OnImageMimeTypeChanged();
+              }
+            }
+        }
+        private string _ImageMimeType;
+        partial void OnGetImageMimeType(ref string value);
+        partial void OnImageMimeTypeChanging(ref string value);
+        partial void OnImageMimeTypeChanged();
+    
+        /// <summary>
+        /// There are no comments for Link in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string Link
+        {
+            get
+            {
+                string value = _Link;
+                OnGetLink(ref value);
+                return value;
+            }
+            set
+            {
+                if (_Link != value)
+                {
+                  OnLinkChanging(ref value);
+                  ReportPropertyChanging("Link");
+                  _Link = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("Link");
+                  OnLinkChanged();
+              }
+            }
+        }
+        private string _Link;
+        partial void OnGetLink(ref string value);
+        partial void OnLinkChanging(ref string value);
+        partial void OnLinkChanged();
+    
+        /// <summary>
+        /// There are no comments for CollectionPath in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string CollectionPath
+        {
+            get
+            {
+                string value = _CollectionPath;
+                OnGetCollectionPath(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CollectionPath != value)
+                {
+                  OnCollectionPathChanging(ref value);
+                  ReportPropertyChanging("CollectionPath");
+                  _CollectionPath = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("CollectionPath");
+                  OnCollectionPathChanged();
+              }
+            }
+        }
+        private string _CollectionPath;
+        partial void OnGetCollectionPath(ref string value);
+        partial void OnCollectionPathChanging(ref string value);
+        partial void OnCollectionPathChanged();
+    
+        /// <summary>
+        /// There are no comments for SortOrder in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual int SortOrder
+        {
+            get
+            {
+                int value = _SortOrder;
+                OnGetSortOrder(ref value);
+                return value;
+            }
+            set
+            {
+                if (_SortOrder != value)
+                {
+                  OnSortOrderChanging(ref value);
+                  ReportPropertyChanging("SortOrder");
+                  _SortOrder = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("SortOrder");
+                  OnSortOrderChanged();
+              }
+            }
+        }
+        private int _SortOrder;
+        partial void OnGetSortOrder(ref int value);
+        partial void OnSortOrderChanging(ref int value);
+        partial void OnSortOrderChanged();
+    
+        /// <summary>
+        /// There are no comments for CreatedOn in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime CreatedOn
+        {
+            get
+            {
+                global::System.DateTime value = _CreatedOn;
+                OnGetCreatedOn(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CreatedOn != value)
+                {
+                  OnCreatedOnChanging(ref value);
+                  ReportPropertyChanging("CreatedOn");
+                  _CreatedOn = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("CreatedOn");
+                  OnCreatedOnChanged();
+              }
+            }
+        }
+        private global::System.DateTime _CreatedOn;
+        partial void OnGetCreatedOn(ref global::System.DateTime value);
+        partial void OnCreatedOnChanging(ref global::System.DateTime value);
+        partial void OnCreatedOnChanged();
+    
+        /// <summary>
+        /// There are no comments for CreatedBy in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual string CreatedBy
+        {
+            get
+            {
+                string value = _CreatedBy;
+                OnGetCreatedBy(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CreatedBy != value)
+                {
+                  OnCreatedByChanging(ref value);
+                  ReportPropertyChanging("CreatedBy");
+                  _CreatedBy = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("CreatedBy");
+                  OnCreatedByChanged();
+              }
+            }
+        }
+        private string _CreatedBy;
+        partial void OnGetCreatedBy(ref string value);
+        partial void OnCreatedByChanging(ref string value);
+        partial void OnCreatedByChanged();
+    
+        /// <summary>
+        /// There are no comments for ModifiedOn in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime? ModifiedOn
+        {
+            get
+            {
+                global::System.DateTime? value = _ModifiedOn;
+                OnGetModifiedOn(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ModifiedOn != value)
+                {
+                  OnModifiedOnChanging(ref value);
+                  ReportPropertyChanging("ModifiedOn");
+                  _ModifiedOn = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ModifiedOn");
+                  OnModifiedOnChanged();
+              }
+            }
+        }
+        private global::System.DateTime? _ModifiedOn;
+        partial void OnGetModifiedOn(ref global::System.DateTime? value);
+        partial void OnModifiedOnChanging(ref global::System.DateTime? value);
+        partial void OnModifiedOnChanged();
+    
+        /// <summary>
+        /// There are no comments for ModifiedBy in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ModifiedBy
+        {
+            get
+            {
+                string value = _ModifiedBy;
+                OnGetModifiedBy(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ModifiedBy != value)
+                {
+                  OnModifiedByChanging(ref value);
+                  ReportPropertyChanging("ModifiedBy");
+                  _ModifiedBy = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ModifiedBy");
+                  OnModifiedByChanged();
+              }
+            }
+        }
+        private string _ModifiedBy;
+        partial void OnGetModifiedBy(ref string value);
+        partial void OnModifiedByChanging(ref string value);
+        partial void OnModifiedByChanged();
+    
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string Parent
+        {
+            get
+            {
+                string value = _Parent;
+                OnGetParent(ref value);
+                return value;
+            }
+            set
+            {
+                if (_Parent != value)
+                {
+                  OnParentChanging(ref value);
+                  ReportPropertyChanging("Parent");
+                  _Parent = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("Parent");
+                  OnParentChanged();
+              }
+            }
+        }
+        private string _Parent;
+        partial void OnGetParent(ref string value);
+        partial void OnParentChanging(ref string value);
+        partial void OnParentChanged();
+    
+        /// <summary>
+        /// There are no comments for ChildCollections in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ChildCollections
+        {
+            get
+            {
+                string value = _ChildCollections;
+                OnGetChildCollections(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ChildCollections != value)
+                {
+                  OnChildCollectionsChanging(ref value);
+                  ReportPropertyChanging("ChildCollections");
+                  _ChildCollections = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ChildCollections");
+                  OnChildCollectionsChanged();
+              }
+            }
+        }
+        private string _ChildCollections;
+        partial void OnGetChildCollections(ref string value);
+        partial void OnChildCollectionsChanging(ref string value);
+        partial void OnChildCollectionsChanged();
 
         #endregion
     }
