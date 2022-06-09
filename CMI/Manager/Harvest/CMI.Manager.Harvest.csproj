@@ -154,6 +154,10 @@
       <Project>{A208493F-92C2-4FA7-8A5C-358263CC8340}</Project>
       <Name>CMI.Access.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Access\Sql.Lesesaal.SF\CMI.Access.Sql.Lesesaal.EF.csproj">
+      <Project>{CED136DF-B922-481D-9F57-6E88BC91827D}</Project>
+      <Name>CMI.Access.Sql.Lesesaal.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Contract\Common\CMI.Contract.Common.csproj">
       <Project>{045835A1-50C3-4D61-947A-7398A9D70706}</Project>
       <Name>CMI.Contract.Common</Name>

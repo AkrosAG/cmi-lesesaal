@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace CMI.Contract.Common.Entities
+namespace CMI.Access.Sql.Lesesaal.EF
 {
 
     public partial class CollectionDto
@@ -101,84 +101,6 @@ namespace CMI.Contract.Common.Entities
         #endregion
     }
 
-    public partial class CollectionListItemDto
-    {
-        #region Constructors
-
-        public CollectionListItemDto() {
-        }
-
-        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
-
-          this.CollectionId = collectionId;
-          this.ParentId = parentId;
-          this.Language = language;
-          this.Title = title;
-          this.DescriptionShort = descriptionShort;
-          this.Description = description;
-          this.ValidFrom = validFrom;
-          this.ValidTo = validTo;
-          this.CollectionTypeId = collectionTypeId;
-          this.ImageAltText = imageAltText;
-          this.ImageMimeType = imageMimeType;
-          this.Link = link;
-          this.CollectionPath = collectionPath;
-          this.SortOrder = sortOrder;
-          this.CreatedOn = createdOn;
-          this.CreatedBy = createdBy;
-          this.ModifiedOn = modifiedOn;
-          this.ModifiedBy = modifiedBy;
-          this.Parent = parent;
-          this.ChildCollections = childCollections;
-        }
-
-        #endregion
-
-        #region Properties
-
-        public int CollectionId { get; set; }
-
-        public int? ParentId { get; set; }
-
-        public string Language { get; set; }
-
-        public string Title { get; set; }
-
-        public string DescriptionShort { get; set; }
-
-        public string Description { get; set; }
-
-        public global::System.DateTime ValidFrom { get; set; }
-
-        public global::System.DateTime ValidTo { get; set; }
-
-        public int CollectionTypeId { get; set; }
-
-        public string ImageAltText { get; set; }
-
-        public string ImageMimeType { get; set; }
-
-        public string Link { get; set; }
-
-        public string CollectionPath { get; set; }
-
-        public int SortOrder { get; set; }
-
-        public global::System.DateTime CreatedOn { get; set; }
-
-        public string CreatedBy { get; set; }
-
-        public global::System.DateTime? ModifiedOn { get; set; }
-
-        public string ModifiedBy { get; set; }
-
-        public string Parent { get; set; }
-
-        public string ChildCollections { get; set; }
-
-        #endregion
-    }
-
     public partial class ApplicationUserDto
     {
         #region Constructors
@@ -186,7 +108,7 @@ namespace CMI.Contract.Common.Entities
         public ApplicationUserDto() {
         }
 
-        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool barInternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis) {
+        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool barInternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
 
           this.ID = iD;
           this.FamilyName = familyName;
@@ -224,6 +146,7 @@ namespace CMI.Contract.Common.Entities
           this.ReasonForRejectionDate = reasonForRejectionDate;
           this.DownloadLimitDisabledUntil = downloadLimitDisabledUntil;
           this.DigitalisierungsbeschraenkungAufgehobenBis = digitalisierungsbeschraenkungAufgehobenBis;
+          this.ActiveAspNetSessionId = activeAspNetSessionId;
         }
 
         #endregion
@@ -301,6 +224,172 @@ namespace CMI.Contract.Common.Entities
         public global::System.DateTime? DownloadLimitDisabledUntil { get; set; }
 
         public global::System.DateTime? DigitalisierungsbeschraenkungAufgehobenBis { get; set; }
+
+        public string ActiveAspNetSessionId { get; set; }
+
+        #endregion
+    }
+
+    public partial class SyncActionDto
+    {
+        #region Constructors
+
+        public SyncActionDto() {
+        }
+
+        public SyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
+
+          this.SyncActionId = syncActionId;
+          this.ArchiveRecordId = archiveRecordId;
+          this.ActionType = actionType;
+          this.ActionStatus = actionStatus;
+          this.NumberOfTries = numberOfTries;
+          this.CreatedOn = createdOn;
+          this.ModifiedOn = modifiedOn;
+          this.SyncActionLogs = syncActionLogs;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public long SyncActionId { get; set; }
+
+        public string ArchiveRecordId { get; set; }
+
+        public string ActionType { get; set; }
+
+        public int? ActionStatus { get; set; }
+
+        public int? NumberOfTries { get; set; }
+
+        public global::System.DateTime? CreatedOn { get; set; }
+
+        public global::System.DateTime? ModifiedOn { get; set; }
+
+        #endregion
+
+        #region Navigation Properties
+
+        public List<SyncActionLogDto> SyncActionLogs { get; set; }
+
+        #endregion
+    }
+
+    public partial class SyncActionLogDto
+    {
+        #region Constructors
+
+        public SyncActionLogDto() {
+        }
+
+        public SyncActionLogDto(long syncActionLogId, long? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
+
+          this.SyncActionLogId = syncActionLogId;
+          this.SyncActionId = syncActionId;
+          this.LogDate = logDate;
+          this.ActionStatusHistory = actionStatusHistory;
+          this.ErrorReason = errorReason;
+          this.SyncAction = syncAction;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public long SyncActionLogId { get; set; }
+
+        public long? SyncActionId { get; set; }
+
+        public global::System.DateTime? LogDate { get; set; }
+
+        public string ActionStatusHistory { get; set; }
+
+        public string ErrorReason { get; set; }
+
+        #endregion
+
+        #region Navigation Properties
+
+        public SyncActionDto SyncAction { get; set; }
+
+        #endregion
+    }
+
+    public partial class CollectionListItemDto
+    {
+        #region Constructors
+
+        public CollectionListItemDto() {
+        }
+
+        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
+
+          this.CollectionId = collectionId;
+          this.ParentId = parentId;
+          this.Language = language;
+          this.Title = title;
+          this.DescriptionShort = descriptionShort;
+          this.Description = description;
+          this.ValidFrom = validFrom;
+          this.ValidTo = validTo;
+          this.CollectionTypeId = collectionTypeId;
+          this.ImageAltText = imageAltText;
+          this.ImageMimeType = imageMimeType;
+          this.Link = link;
+          this.CollectionPath = collectionPath;
+          this.SortOrder = sortOrder;
+          this.CreatedOn = createdOn;
+          this.CreatedBy = createdBy;
+          this.ModifiedOn = modifiedOn;
+          this.ModifiedBy = modifiedBy;
+          this.Parent = parent;
+          this.ChildCollections = childCollections;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public int CollectionId { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public string Language { get; set; }
+
+        public string Title { get; set; }
+
+        public string DescriptionShort { get; set; }
+
+        public string Description { get; set; }
+
+        public global::System.DateTime ValidFrom { get; set; }
+
+        public global::System.DateTime ValidTo { get; set; }
+
+        public int CollectionTypeId { get; set; }
+
+        public string ImageAltText { get; set; }
+
+        public string ImageMimeType { get; set; }
+
+        public string Link { get; set; }
+
+        public string CollectionPath { get; set; }
+
+        public int SortOrder { get; set; }
+
+        public global::System.DateTime CreatedOn { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public global::System.DateTime? ModifiedOn { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public string Parent { get; set; }
+
+        public string ChildCollections { get; set; }
 
         #endregion
     }

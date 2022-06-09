@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CMI.Access.Sql.Lesesaal.EF;
 
 namespace CMI.Contract.Common.Entities
 {

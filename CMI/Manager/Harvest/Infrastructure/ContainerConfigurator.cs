@@ -1,7 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Configuration;
+using System.Reflection;
 using Autofac;
 using CMI.Access.Harvest;
 using CMI.Access.Harvest.ScopeArchiv;
+using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
 using MassTransit;
@@ -27,6 +29,9 @@ namespace CMI.Manager.Harvest.Infrastructure
 
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
+            var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
+            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
+
 
             builder.Register(ctx =>
             {

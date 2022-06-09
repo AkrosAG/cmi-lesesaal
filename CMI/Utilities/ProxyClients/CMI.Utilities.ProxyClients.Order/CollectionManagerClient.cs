@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
+using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Entities;
 using CMI.Contract.Messaging;
