@@ -115,7 +115,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             try
             {
                 var tNodeContext = dataProvider.LoadNodeContext(recordId);
-           
+
                 display.ContainsImages = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image);
                 display.ContainsMedia = metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media);
                 // In scopeArchiv the Levels (Stufen) have an attribute called "Bestellbar". We now check this on the 
@@ -135,7 +135,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
                 display.NextArchiveRecordId = context.NextArchiveRecordId;
                 display.PreviousArchiveRecordId = context.PreviousArchiveRecordId;
                 display.ParentArchiveRecordId = context.ParentArchiveRecordId;
-        
+
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
             try
             {
                 retVal.Usage = ExtractUsageData(recordRow);
-                
+
                 var tDetailData = LoadDataElements(recordId);
                 var tNodeInfo = LoadNodeInfo(recordId);
                 var tContainer = LoadContainers(recordId);
