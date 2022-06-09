@@ -2,7 +2,13 @@
 <EntityDeveloper Version="6.12.1419.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
     <Connection ConnectionString="Data Source=localhost;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=True;User ID=eth;Password=eth123++" Provider="System.Data.SqlClient" />
-    <Generation />
+    <Generation>
+      <GeneratedFiles>
+        <File Name="Lesesaal.Designer.cs" />
+        <File Name="Lesesaal.DTOs.cs" DestinationFolder="..\..\Contract\Common\Entities" />
+        <File Name="Lesesaal.Converters.cs" />
+      </GeneratedFiles>
+    </Generation>
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
       <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" AddConstraintColumnsToNavigationPropertyName="False" RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
@@ -102,7 +108,7 @@
           <boolean>false</boolean>
         </ed:Property>
         <ed:Property Name="DtoNamespace" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <string d6p1:nil="true" xmlns:d6p1="http://www.w3.org/2001/XMLSchema-instance" />
+          <string>CMI.Contract.Common.Entities</string>
         </ed:Property>
         <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string>CM Informatik AG</string>
