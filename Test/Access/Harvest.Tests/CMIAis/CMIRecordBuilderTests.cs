@@ -206,7 +206,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("1").Result).Returns(parentParent);
 
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings);
+            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
 

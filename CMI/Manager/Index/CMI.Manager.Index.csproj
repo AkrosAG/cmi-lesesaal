@@ -134,6 +134,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveRecordProcessor.cs" />
+    <Compile Include="Compiler\DefaultScriptLocator.cs" />
+    <Compile Include="Compiler\DynamicScriptProvider.cs" />
+    <Compile Include="Compiler\IDynamicScript.cs" />
+    <Compile Include="Compiler\IDynamicScriptLocator.cs" />
+    <Compile Include="Compiler\IDynamicScriptProvider.cs" />
     <Compile Include="Config\CustomFieldsConfiguration.cs" />
     <Compile Include="Config\FieldConfiguration.cs" />
     <Compile Include="ElasticLogManager.cs" />
@@ -147,6 +153,7 @@
     <Compile Include="IndexManager.cs" />
     <Compile Include="IndexService.cs" />
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
+    <Compile Include="IArchiveRecordProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Documentation.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
