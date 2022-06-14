@@ -33,8 +33,8 @@ namespace CMI.Access.Harvest.CMIAIS
             
             var record = archiveRecordBuilder.Build();
 
+            await GetDisplaySection(cmiRecord, record);  // TODO: Review
             await processHandler.PostProcessArchiveRecord(record);
-            await GetDisplayData(record);  // TODO: Review
 
             return record;
         }
@@ -89,8 +89,6 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.Tektonikpfad), vz => vz.Tektonikpfad)
                 .FromCustomFields();
         }
-
-
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
         {
             var display = new ArchiveRecordDisplay

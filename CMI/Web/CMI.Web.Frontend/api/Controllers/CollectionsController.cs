@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Entities;
 using CMI.Web.Common.Helpers;
