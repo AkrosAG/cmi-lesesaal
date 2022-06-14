@@ -5,6 +5,7 @@ using Autofac;
 using CMI.Access.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Parameter;
+using CMI.Manager.Index.Compiler;
 using CMI.Manager.Index.Config;
 using CMI.Utilities.Bus.Configuration;
 using MassTransit;
@@ -24,6 +25,9 @@ namespace CMI.Manager.Index.Infrastructure
 
             // register the different consumers and classes
             builder.RegisterType<IndexManager>().As<IIndexManager>();
+            builder.RegisterType<ArchiveRecordProcessor>().As<IArchiveRecordProcessor>();
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.RegisterType<DefaultScriptLocator>().As<IDynamicScriptLocator>();
             builder.RegisterType<SearchIndexDataAccess>().AsImplementedInterfaces();
             builder.RegisterType<LogDataAccess>().As<ILogDataAccess>();
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();

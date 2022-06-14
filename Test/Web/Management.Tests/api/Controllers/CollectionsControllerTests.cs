@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Entities;
 using CMI.Utilities.Logging.Configurator;
