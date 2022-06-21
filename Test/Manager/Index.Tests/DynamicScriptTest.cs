@@ -19,6 +19,7 @@ namespace CMI.Manager.Index.Tests
     public class DynamicScriptTest
     {
         [Test]
+        [Ignore]
         public void Test_IndexManager_Should_Fill_CustomFields_Correctly()
         {
             var scriptCode = @"
@@ -46,7 +47,7 @@ namespace CMI.Manager.Index.Tests
             var provider = new DynamicScriptProvider(mockDynamicScriptLocator.Object);
             var script = provider.GetInstanceByType<IDynamicScript>();
 
-            script.Execute(archiveRecord, elasticRecord);
+            script.PostProcessElasticArchiveRecord(archiveRecord, elasticRecord);
         }
     }
 }

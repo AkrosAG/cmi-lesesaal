@@ -27,7 +27,7 @@ namespace CMI.Manager.Index.Infrastructure
             builder.RegisterType<IndexManager>().As<IIndexManager>();
             builder.RegisterType<ArchiveRecordProcessor>().As<IArchiveRecordProcessor>();
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
-            builder.RegisterType<DefaultScriptLocator>().As<IDynamicScriptLocator>();
+            builder.RegisterType<CustomScriptLocator>().As<IDynamicScriptLocator>();
             builder.RegisterType<SearchIndexDataAccess>().AsImplementedInterfaces();
             builder.RegisterType<LogDataAccess>().As<ILogDataAccess>();
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();

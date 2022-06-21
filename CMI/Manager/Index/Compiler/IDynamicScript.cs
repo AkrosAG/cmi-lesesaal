@@ -4,6 +4,7 @@ namespace CMI.Manager.Index.Compiler
 {
     public interface IDynamicScript
     {
-        void Execute(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord);
+        void PostProcessArchiveRecord(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord);
+        void PostProcessElasticArchiveRecord(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord);
     }
 }
