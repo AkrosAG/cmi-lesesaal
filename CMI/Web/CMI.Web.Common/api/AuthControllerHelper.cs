@@ -168,7 +168,7 @@ namespace CMI.Web.Common.api
             var identity = new Identity
             {
                 IssuedClaims = claims.ToArray(),
-                Roles = new[] {role},
+                Roles = new string[] {role},
                 IssuedAccessTokens = accessTokens,
                 AuthStatus = authStatus,
                 RedirectUrl = GetReturnUrl(authStatus, isPublicClient)
