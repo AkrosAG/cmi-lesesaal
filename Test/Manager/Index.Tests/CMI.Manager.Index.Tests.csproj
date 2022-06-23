@@ -286,6 +286,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicScriptTest.cs" />
     <Compile Include="IndexManagerTest.cs" />
     <Compile Include="RemoveArchiveRecordConsumerTests.cs" />
     <Compile Include="UpdateArchiveRecordConsumerTests.cs" />

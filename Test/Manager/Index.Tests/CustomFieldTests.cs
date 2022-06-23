@@ -37,6 +37,7 @@ namespace CMI.Manager.Index.Tests
             // Arrange
             var configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customFieldsConfig.json");
             var mockSearchIndexAccess = new Mock<ISearchIndexDataAccess>();
+            var mockRecordProcessor = new Mock<IArchiveRecordProcessor>();
 
             mockSearchIndexAccess.Setup(s => s
                     .UpdateDocument(It.IsAny<ElasticArchiveRecord>()))
@@ -47,7 +48,7 @@ namespace CMI.Manager.Index.Tests
                 .Callback(() => Console.WriteLine("Remove Document was called"));
 
             var config = new CustomFieldsConfiguration(configFile);
-            var indexmanager = new IndexManager(mockSearchIndexAccess.Object, config);
+            var indexmanager = new IndexManager(mockSearchIndexAccess.Object, mockRecordProcessor.Object, config);
             var archiveRecord = new ElasticArchiveRecord();
 
             var dataElementFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dataElements.json");
@@ -94,6 +95,7 @@ namespace CMI.Manager.Index.Tests
             // Arrange
             var configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customFieldsConfig.json");
             var mockSearchIndexAccess = new Mock<ISearchIndexDataAccess>();
+            var mockRecordProcessor = new Mock<IArchiveRecordProcessor>();
 
             mockSearchIndexAccess.Setup(s => s
                     .UpdateDocument(It.IsAny<ElasticArchiveRecord>()))
@@ -104,7 +106,7 @@ namespace CMI.Manager.Index.Tests
                 .Callback(() => Console.WriteLine("Remove Document was called"));
 
             var config = new CustomFieldsConfiguration(configFile);
-            var indexmanager = new IndexManager(mockSearchIndexAccess.Object, config);
+            var indexmanager = new IndexManager(mockSearchIndexAccess.Object, mockRecordProcessor.Object, config);
             var archiveRecord = new ElasticArchiveRecord();
 
             var dataElementFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dataElements.json");

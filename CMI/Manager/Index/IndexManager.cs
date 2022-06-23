@@ -17,6 +17,7 @@ namespace CMI.Manager.Index
     {
         private const string dossierLevelIdentifier = "Dossier";
         private readonly ISearchIndexDataAccess dbAccess;
+        private readonly IArchiveRecordProcessor archiveRecordProcessor;
         private readonly CustomFieldsConfiguration fieldsConfiguration;
 
         /// <summary>
@@ -24,10 +25,11 @@ namespace CMI.Manager.Index
         /// </summary>
         /// <param name="dbAccess">The database access object.</param>
         /// <param name="fieldsConfiguration">The fields configuration object.</param>
-        public IndexManager(ISearchIndexDataAccess dbAccess, CustomFieldsConfiguration fieldsConfiguration)
+        public IndexManager(ISearchIndexDataAccess dbAccess, IArchiveRecordProcessor processorInstance, CustomFieldsConfiguration fieldsConfiguration)
         {
             this.dbAccess = dbAccess;
             this.fieldsConfiguration = fieldsConfiguration;
+            this.archiveRecordProcessor = processorInstance;
         }
 
         /// <summary>
@@ -37,7 +39,9 @@ namespace CMI.Manager.Index
         public void UpdateArchiveRecord(ConsumeContext<IUpdateArchiveRecord> updateContext)
         {
             var archiveRecord = updateContext.Message.ArchiveRecord;
-            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord);
+            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell BAR , muss verallgemeinet werden
+
+            archiveRecordProcessor.PostProcessElasticArchiveRecord(archiveRecord, elasticArchiveRecord);
 
             // Save in elastic
             dbAccess.UpdateDocument(elasticArchiveRecord);

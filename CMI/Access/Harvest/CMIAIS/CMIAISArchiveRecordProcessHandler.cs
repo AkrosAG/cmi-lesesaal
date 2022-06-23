@@ -14,6 +14,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task PostProcessArchiveRecord(ArchiveRecord record)
         {
+            // TODO: Review Aufruf DynamicScript ?
             record.Security = new ArchiveRecordSecurity();
             await Task.FromResult(record);
         }
