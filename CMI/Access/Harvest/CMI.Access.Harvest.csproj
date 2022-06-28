@@ -79,6 +79,8 @@
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
+    <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.Designer.cs" />
+    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.Designer.cs" />
     <Compile Include="IAISSpecificRecordAccess.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\DetailDataBuilder.cs" />
@@ -88,12 +90,6 @@
     <Compile Include="CMIAIS\Mapping\ElementMappings\DateRangeMapping.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\TextMapping.cs" />
     <Compile Include="CMIAIS\Mapping\MetaDataBuilder.cs" />
-    <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.cs">
-      <DependentUpon>CMIArchiveRecord.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.cs">
-      <DependentUpon>SearchDetailResponse.xsd</DependentUpon>
-    </Compile>
     <Compile Include="CMIAIS\Schemas\SearchResponse.Designer.cs" />
     <Compile Include="IAISDataProviderFactory.cs" />
     <Compile Include="IArchiveRecordBuilder.cs" />
