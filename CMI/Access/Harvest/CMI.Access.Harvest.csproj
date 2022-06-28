@@ -91,7 +91,9 @@
     <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.cs">
       <DependentUpon>CMIArchiveRecord.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.cs" />
+    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.cs">
+      <DependentUpon>SearchDetailResponse.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CMIAIS\Schemas\SearchResponse.Designer.cs" />
     <Compile Include="IAISDataProviderFactory.cs" />
     <Compile Include="IArchiveRecordBuilder.cs" />
