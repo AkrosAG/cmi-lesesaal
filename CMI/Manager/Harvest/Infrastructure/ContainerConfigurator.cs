@@ -2,6 +2,7 @@
 using System.Reflection;
 using Autofac;
 using CMI.Access.Harvest;
+using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Harvest;
@@ -26,7 +27,8 @@ namespace CMI.Manager.Harvest.Infrastructure
             
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-
+            builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
+            builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
