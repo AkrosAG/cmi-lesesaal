@@ -41,7 +41,7 @@ namespace CMI.Manager.Index
             var archiveRecord = updateContext.Message.ArchiveRecord;
             var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell BAR , muss verallgemeinet werden
 
-            archiveRecordProcessor.PostProcessElasticArchiveRecord(archiveRecord, elasticArchiveRecord);
+            archiveRecordProcessor.PostProcessElasticArchiveRecord(elasticArchiveRecord, archiveRecord);
 
             // Save in elastic
             dbAccess.UpdateDocument(elasticArchiveRecord);

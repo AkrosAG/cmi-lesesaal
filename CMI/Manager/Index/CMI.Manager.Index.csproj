@@ -135,11 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveRecordProcessor.cs" />
-    <Compile Include="Compiler\CustomScriptLocator.cs" />
-    <Compile Include="Compiler\DynamicScriptProvider.cs" />
-    <Compile Include="Compiler\IDynamicScript.cs" />
-    <Compile Include="Compiler\IDynamicScriptLocator.cs" />
-    <Compile Include="Compiler\IDynamicScriptProvider.cs" />
     <Compile Include="Config\CustomFieldsConfiguration.cs" />
     <Compile Include="Config\FieldConfiguration.cs" />
     <Compile Include="ElasticLogManager.cs" />

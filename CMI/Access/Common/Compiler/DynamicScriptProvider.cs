@@ -5,7 +5,7 @@ using System.IO;
 
 using Microsoft.CSharp;
 
-namespace CMI.Manager.Index.Compiler
+namespace CMI.Access.Common.Compiler
 {
     public class DynamicScriptProvider : IDynamicScriptProvider
     {
@@ -13,7 +13,7 @@ namespace CMI.Manager.Index.Compiler
 
         public static string[] References => AppDomain.CurrentDomain.GetAssemblies()
                                                                      .Where(a => !a.IsDynamic)
-                                                                     .Select(a => $"{Path.GetFileName(a.Location)}").ToArray();
+                                                                     .Select(a => $"{a.Location}").ToArray();
 
         public DynamicScriptProvider(IDynamicScriptLocator scriptLocator)
         {
@@ -23,11 +23,13 @@ namespace CMI.Manager.Index.Compiler
         public T GetInstanceByType<T>() 
         {
             string script = scriptLocator.LoadScriptByDefault();
-
             using (var compiler = new CSharpCodeProvider())
             {
                 var options = new CompilerParameters() { GenerateInMemory = true };
-                options.ReferencedAssemblies.AddRange(DynamicScriptProvider.References);
+                foreach(var reference in DynamicScriptProvider.References)
+                {
+                    options.ReferencedAssemblies.Add(reference);
+                }
                 
                 var result = compiler.CompileAssemblyFromSource(options, script);
                 EnsureResult(result);
