@@ -1,4 +1,4 @@
-﻿namespace CMI.Manager.Index.Compiler
+﻿namespace CMI.Access.Common.Compiler
 {
     public interface IDynamicScriptLocator
     {

@@ -1,5 +1,4 @@
-﻿using CMI.Access.Harvest.CMIAIS.Schemas;
-using CMI.Contract.Common;
+﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 using Serilog;
 using System;
@@ -83,20 +82,24 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
         {
-            var response = await cdwsRequestClient.GetAsync($"{indexName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH");
+            var url = $"{indexName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH";
+            var response = await cdwsRequestClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var stringContent = await response.Content.ReadAsStringAsync();
             try
             {
-                var searchResponse = XMLConvert.FromXML<SearchDetailResponse>(stringContent);
-                return searchResponse.Hit?.Verzeichnungseinheit;
+                var searchResponse = XMLConvert.FromXML<SearchDetailResponseType>(stringContent);
+                if (searchResponse.Hit.Any())
+                {
+                    return XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}", id);
-                return null;
             }
+            return null;
         }
 
         public Task<string> GetDbVersion()

@@ -4,8 +4,8 @@ using System.Dynamic;
 using System.IO;
 using System.Reflection;
 using CMI.Access.Common;
+using CMI.Access.Common.Compiler;
 using CMI.Contract.Common;
-using CMI.Manager.Index.Compiler;
 using CMI.Manager.Index.Config;
 using FluentAssertions;
 using Microsoft.CSharp.RuntimeBinder;
@@ -23,14 +23,16 @@ namespace CMI.Manager.Index.Tests
         public void Test_IndexManager_Should_Fill_CustomFields_Correctly()
         {
             var scriptCode = @"
-            public class MyCustomClass : ICustomType
+            public class MyCustomClass : IDynamicScript
             {
-                public void Execute(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord)
+                public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
                 {
-                   elasticArchiveRecord.LastSyncDate = DateTime.UtcNow;
                 }
-            }
-            ";
+
+                public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
+                {
+                }
+            }";
 
             // Arrange
             var mockDynamicScriptLocator  = new Mock<IDynamicScriptLocator>();
@@ -47,7 +49,7 @@ namespace CMI.Manager.Index.Tests
             var provider = new DynamicScriptProvider(mockDynamicScriptLocator.Object);
             var script = provider.GetInstanceByType<IDynamicScript>();
 
-            script.PostProcessElasticArchiveRecord(archiveRecord, elasticRecord);
+            script.PostProcessElasticArchiveRecord(elasticRecord, archiveRecord);
         }
     }
 }
