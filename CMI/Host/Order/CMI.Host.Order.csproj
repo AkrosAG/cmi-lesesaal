@@ -74,6 +74,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj">
+      <Project>{713f2501-9065-454b-9e14-2599a1f3d4e8}</Project>
+      <Name>CMI.Access.Sql.Lesesaal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Manager\Order\CMI.Manager.Order.csproj">
       <Project>{7AC720AA-B1A6-4690-A5C7-669115EAF2B5}</Project>
       <Name>CMI.Manager.Order</Name>

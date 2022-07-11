@@ -5,5 +5,8 @@
     <Setting Name="LevelAggregationIdentifier" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Bestand</Value>
     </Setting>
+    <Setting Name="CustomScriptRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\Compiler</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

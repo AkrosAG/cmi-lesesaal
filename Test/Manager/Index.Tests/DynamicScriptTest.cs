@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
-using System.Reflection;
-using CMI.Access.Common;
-using CMI.Access.Common.Compiler;
-using CMI.Contract.Common;
-using CMI.Manager.Index.Config;
-using FluentAssertions;
-using Microsoft.CSharp.RuntimeBinder;
+﻿using CMI.Contract.Common;
+using CMI.Contract.Common.Compiler;
 using Moq;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace CMI.Manager.Index.Tests

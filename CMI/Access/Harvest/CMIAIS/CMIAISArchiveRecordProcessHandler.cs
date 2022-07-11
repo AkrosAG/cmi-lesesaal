@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-
-using CMI.Access.Common.Compiler;
 using CMI.Contract.Common;
+using CMI.Contract.Common.Compiler;
 using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS

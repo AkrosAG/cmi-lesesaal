@@ -1,5 +1,5 @@
-﻿using CMI.Access.Common.Compiler;
-using CMI.Contract.Common;
+﻿using CMI.Contract.Common;
+using CMI.Contract.Common.Compiler;
 
 namespace CMI.Manager.Index
 {

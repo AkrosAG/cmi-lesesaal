@@ -5,6 +5,7 @@ using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Manager.DataFeed.Properties;
 using MassTransit;
@@ -34,6 +35,14 @@ namespace CMI.Manager.DataFeed.Infrastructure
 
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
+
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.Register(ctx =>
+            {
+                var path = Settings.Default.CustomScriptRoot;
+                return new CustomScriptLocator(path);
+            }).AsImplementedInterfaces().AsSelf();
+
 
             builder.Register(ctx =>
             {

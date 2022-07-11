@@ -1,6 +1,6 @@
 ﻿using CMI.Contract.Common;
 
-namespace CMI.Access.Common.Compiler
+namespace CMI.Contract.Common.Compiler
 {
     public interface IDynamicScript
     {
