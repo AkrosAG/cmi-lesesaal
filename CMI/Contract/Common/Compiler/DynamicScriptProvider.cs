@@ -5,7 +5,7 @@ using System.IO;
 
 using Microsoft.CSharp;
 
-namespace CMI.Access.Common.Compiler
+namespace CMI.Contract.Common.Compiler
 {
     public class DynamicScriptProvider : IDynamicScriptProvider
     {

@@ -25,10 +25,10 @@ namespace CMI.Manager.Harvest {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Access\\Common\\Compiler")]
-        public string CustomScriptsRoot {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\Compiler")]
+        public string CustomScriptRoot {
             get {
-                return ((string)(this["CustomScriptsRoot"]));
+                return ((string)(this["CustomScriptRoot"]));
             }
         }
     }

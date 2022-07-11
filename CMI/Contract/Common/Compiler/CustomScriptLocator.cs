@@ -1,17 +1,18 @@
 ﻿using System.IO;
 
-namespace CMI.Access.Common.Compiler
+namespace CMI.Contract.Common.Compiler
 {
     public class CustomScriptLocator : IDynamicScriptLocator
     {
         public const string CustomScriptName = "CustomScript.cs";
         private readonly string rootPath;
 
-        public CustomScriptLocator(string root)
+        public CustomScriptLocator(string path)
         {
-            rootPath = root;
+            rootPath = path;
         }
-        
+
+
         public string LoadScriptByDefault()
         {
             var path = Path.Combine(rootPath, CustomScriptName);

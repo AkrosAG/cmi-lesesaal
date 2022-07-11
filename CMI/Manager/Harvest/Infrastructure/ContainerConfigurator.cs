@@ -6,9 +6,9 @@ using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
-using CMI.Access.Common.Compiler;
 
 using MassTransit;
 
@@ -30,7 +30,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            
             builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
             builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
@@ -38,9 +38,10 @@ namespace CMI.Manager.Harvest.Infrastructure
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
 
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
             builder.Register(ctx =>
             {
-               var path = Settings.Default.CustomScriptsRoot;
+               var path = Settings.Default.CustomScriptRoot;
                return new CustomScriptLocator(path);
             }).AsImplementedInterfaces().AsSelf();
 

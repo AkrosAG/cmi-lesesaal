@@ -49,10 +49,10 @@ namespace CMI.Access.Harvest.CMIAIS
                     NumberOfTries = 0,
                 };
                 dbContext.SyncActions.AddObject(newAction);
-                await dbContext.SaveChangesAsync();
+                // await dbContext.SaveChangesAsync();
             }
 
-            return infos.Count;
+            return await Task.FromResult(infos.Count);
         }
 
         public Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
@@ -134,6 +134,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 {
                     Log.Information("Fetching {maxHits} records from CDWS for index {indexName}, using seq = {lastSequenceNr} records...", maxHits, indexName, lastSequenceNr);
                     searchResponse = await GetChangeInfo(indexName, lastSequenceNr, maxHits);
+                    
                     foreach (var change in searchResponse.Change)
                     {
                         pendingMutations.Add(new MutationRecord
