@@ -2,6 +2,6 @@
 {
     public interface IDynamicScriptLocator
     {
-        string LoadScriptByDefault();
+        string GetCustomScript();
     }
 }

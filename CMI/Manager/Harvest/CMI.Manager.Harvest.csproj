@@ -134,6 +134,7 @@
     <Compile Include="Consumers\ArchiveRecordRemovedConsumer.cs" />
     <Compile Include="Consumers\ArchiveRecordUpdatedConsumer.cs" />
     <Compile Include="Consumers\HarvestLogInfoConsumer.cs" />
+    <Compile Include="HarvestCustomScriptLocator.cs" />
     <Compile Include="Infrastructure\CachedHarvesterSetting.cs" />
     <Compile Include="Infrastructure\HarvesterSettings.cs" />
     <Compile Include="HarvestService.cs" />

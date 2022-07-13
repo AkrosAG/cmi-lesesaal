@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="CustomScriptRoot" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\Compiler</Value>
+      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\bin\Debug\CustomScripts</Value>
     </Setting>
   </Settings>
 </SettingsFile>

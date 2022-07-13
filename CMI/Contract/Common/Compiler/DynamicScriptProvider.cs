@@ -7,13 +7,18 @@ using Microsoft.CSharp;
 
 namespace CMI.Contract.Common.Compiler
 {
-    public class DynamicScriptProvider : IDynamicScriptProvider
+    public class DynamicScriptProvider : IDynamicScriptProvider, IDynamicScriptLocator
     {
         private readonly IDynamicScriptLocator scriptLocator;
 
         public static string[] References => AppDomain.CurrentDomain.GetAssemblies()
                                                                      .Where(a => !a.IsDynamic)
                                                                      .Select(a => $"{a.Location}").ToArray();
+
+        public DynamicScriptProvider()
+        {
+                scriptLocator = this;
+        }
 
         public DynamicScriptProvider(IDynamicScriptLocator scriptLocator)
         {
@@ -22,7 +27,7 @@ namespace CMI.Contract.Common.Compiler
 
         public T GetInstanceByType<T>() 
         {
-            string script = scriptLocator.LoadScriptByDefault();
+            string script = scriptLocator.GetCustomScript();
             using (var compiler = new CSharpCodeProvider())
             {
                 var options = new CompilerParameters() { GenerateInMemory = true };
@@ -49,6 +54,20 @@ namespace CMI.Contract.Common.Compiler
                 var messages = result.Errors.Cast<CompilerError>().Select(e => $"{e.Line}:{e.ErrorNumber}|{e.ErrorText}");
                 throw new Exception(String.Join(";",messages));
             }
+        }
+
+        public string GetCustomScript()
+        {
+           return @"using System.Collections.Generic;
+                    namespace CMI.Contract.Common.Compiler
+                    {
+                        public class DefaultCustomScript : IDynamicScript
+                        {
+                            public void PostProcessArchiveRecord(ArchiveRecord archiveRecord){}
+
+                            public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord){}
+                            }
+                    }";
         }
     }
 }

@@ -137,6 +137,7 @@
     <Compile Include="ArchiveRecordProcessor.cs" />
     <Compile Include="Config\CustomFieldsConfiguration.cs" />
     <Compile Include="Config\FieldConfiguration.cs" />
+    <Compile Include="IndexCustomScriptLocator.cs" />
     <Compile Include="ElasticLogManager.cs" />
     <Compile Include="IElasticLogManager.cs" />
     <Compile Include="Consumer\TestElasticSearchRequestConsumer.cs" />

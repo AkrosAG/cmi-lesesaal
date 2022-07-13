@@ -34,7 +34,7 @@ namespace CMI.Manager.Index.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\Compiler")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts")]
         public string CustomScriptRoot {
             get {
                 return ((string)(this["CustomScriptRoot"]));

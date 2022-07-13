@@ -26,7 +26,6 @@ namespace CMI.Access.Harvest.CMIAIS
             cdwsRequestClient.BaseAddress = uri;
 
             indexName = Properties.Settings.Default.CdwsIndexName;
-
         }
 
         public async Task<int> BulkUpdateMutationStatus(List<MutationStatusInfo> infos)
