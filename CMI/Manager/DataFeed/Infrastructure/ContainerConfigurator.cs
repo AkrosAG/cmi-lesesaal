@@ -37,12 +37,6 @@ namespace CMI.Manager.DataFeed.Infrastructure
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
 
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
-            builder.Register(ctx =>
-            {
-                var path = Settings.Default.CustomScriptRoot;
-                return new CustomScriptLocator(path);
-            }).AsImplementedInterfaces().AsSelf();
-
 
             builder.Register(ctx =>
             {

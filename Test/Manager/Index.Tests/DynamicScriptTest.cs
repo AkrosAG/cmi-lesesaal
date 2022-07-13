@@ -28,7 +28,7 @@ namespace CMI.Manager.Index.Tests
             var mockDynamicScriptLocator  = new Mock<IDynamicScriptLocator>();
             
             mockDynamicScriptLocator.Setup(s => s
-                    .LoadScriptByDefault())
+                    .GetCustomScript())
                 .Returns(() => { return scriptCode; });
 
             // Act

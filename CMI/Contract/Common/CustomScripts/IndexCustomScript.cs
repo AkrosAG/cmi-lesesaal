@@ -2,17 +2,15 @@
 
 namespace CMI.Contract.Common.Compiler
 {
-    public class MyCustomClass : IDynamicScript
+    public class IndexCustomScript : IDynamicScript
     {
         public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
-            archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR" });
-            archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>();
-            archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>();
         }
 
         public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
+            elasticArchiveRecord.Title = string.Format("{0} - CustomScript", elasticArchiveRecord.Title);
         }
     }
 }

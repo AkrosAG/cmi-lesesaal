@@ -11,8 +11,5 @@
     <Setting Name="CheckQueueIntervalInSeconds" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">60</Value>
     </Setting>
-    <Setting Name="CustomScriptRoot" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\Compiler</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

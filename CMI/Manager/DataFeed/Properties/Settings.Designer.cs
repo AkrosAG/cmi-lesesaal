@@ -49,14 +49,5 @@ namespace CMI.Manager.DataFeed.Properties {
                 return ((int)(this["CheckQueueIntervalInSeconds"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\Compiler")]
-        public string CustomScriptRoot {
-            get {
-                return ((string)(this["CustomScriptRoot"]));
-            }
-        }
     }
 }

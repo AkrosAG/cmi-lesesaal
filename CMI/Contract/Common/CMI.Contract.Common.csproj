@@ -64,10 +64,12 @@
     <Compile Include="AssetFileBase.cs" />
     <Compile Include="CacheRetentionCategory.cs" />
     <Compile Include="AssetConversionFile.cs" />
-    <Compile Include="Compiler\CustomScript.cs">
+    <Compile Include="CustomScripts\IndexCustomScript.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Compiler\CustomScriptLocator.cs" />
+    <Compile Include="CustomScripts\HarvestCustomScript.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Compiler\DynamicScriptProvider.cs" />
     <Compile Include="Compiler\IDynamicScript.cs" />
     <Compile Include="Compiler\IDynamicScriptLocator.cs" />
