@@ -7,7 +7,7 @@ using Microsoft.CSharp;
 
 namespace CMI.Contract.Common.Compiler
 {
-    public class DynamicScriptProvider : IDynamicScriptProvider, IDynamicScriptLocator
+    public class DynamicScriptProvider : IDynamicScriptProvider
     {
         private readonly IDynamicScriptLocator scriptLocator;
 
@@ -15,9 +15,26 @@ namespace CMI.Contract.Common.Compiler
                                                                      .Where(a => !a.IsDynamic)
                                                                      .Select(a => $"{a.Location}").ToArray();
 
+        private class EmptyScriptLocator : IDynamicScriptLocator
+        {
+            public string GetCustomScript()
+            {
+                return @"using System.Collections.Generic;
+                    namespace CMI.Contract.Common.Compiler
+                    {
+                        public class DefaultCustomScript : IDynamicScript
+                        {
+                            public void PostProcessArchiveRecord(ArchiveRecord archiveRecord){}
+
+                            public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord){}
+                            }
+                    }";
+            }
+        }
+
         public DynamicScriptProvider()
         {
-                scriptLocator = this;
+                scriptLocator = new EmptyScriptLocator();
         }
 
         public DynamicScriptProvider(IDynamicScriptLocator scriptLocator)
@@ -56,18 +73,6 @@ namespace CMI.Contract.Common.Compiler
             }
         }
 
-        public string GetCustomScript()
-        {
-           return @"using System.Collections.Generic;
-                    namespace CMI.Contract.Common.Compiler
-                    {
-                        public class DefaultCustomScript : IDynamicScript
-                        {
-                            public void PostProcessArchiveRecord(ArchiveRecord archiveRecord){}
-
-                            public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord){}
-                            }
-                    }";
-        }
+        
     }
 }

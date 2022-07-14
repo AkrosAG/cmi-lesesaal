@@ -35,8 +35,8 @@ namespace CMI.Manager.Index.Infrastructure
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
             builder.Register(ctx =>
             {
-                var path = Settings.Default.CustomScriptRoot;
-                return new IndexCustomScriptLocator(path);
+                var path = Settings.Default.CustomScriptPath;
+                return new CustomScriptLocator(path);
             })
             .AsImplementedInterfaces().AsSelf();
 

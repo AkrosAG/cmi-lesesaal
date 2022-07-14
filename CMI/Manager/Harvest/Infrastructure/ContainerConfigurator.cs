@@ -41,9 +41,10 @@ namespace CMI.Manager.Harvest.Infrastructure
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
             builder.Register(ctx =>
             {
-               var path = Settings.Default.CustomScriptRoot;
-               return new HarvestCustomScriptLocator(path);
-            }).AsImplementedInterfaces().AsSelf();
+               var path = Settings.Default.CustomScriptPath;
+               return new CustomScriptLocator(path);
+            })
+            .AsImplementedInterfaces().AsSelf();
 
 
             builder.Register(ctx =>

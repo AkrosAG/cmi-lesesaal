@@ -34,10 +34,11 @@ namespace CMI.Manager.Index.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts")]
-        public string CustomScriptRoot {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts\\IndexCusto" +
+            "mScript.cs")]
+        public string CustomScriptPath {
             get {
-                return ((string)(this["CustomScriptRoot"]));
+                return ((string)(this["CustomScriptPath"]));
             }
         }
     }

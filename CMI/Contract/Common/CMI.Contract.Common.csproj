@@ -64,6 +64,7 @@
     <Compile Include="AssetFileBase.cs" />
     <Compile Include="CacheRetentionCategory.cs" />
     <Compile Include="AssetConversionFile.cs" />
+    <Compile Include="Compiler\CustomScriptLocator.cs" />
     <Compile Include="CustomScripts\IndexCustomScript.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
