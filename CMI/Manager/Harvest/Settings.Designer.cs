@@ -25,10 +25,11 @@ namespace CMI.Manager.Harvest {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts")]
-        public string CustomScriptRoot {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts\\HarvestCus" +
+            "tomScript.cs")]
+        public string CustomScriptPath {
             get {
-                return ((string)(this["CustomScriptRoot"]));
+                return ((string)(this["CustomScriptPath"]));
             }
         }
     }
