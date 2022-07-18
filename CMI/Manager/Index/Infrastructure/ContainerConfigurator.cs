@@ -38,7 +38,9 @@ namespace CMI.Manager.Index.Infrastructure
                 var path = Settings.Default.CustomScriptPath;
                 return new CustomScriptLocator(path);
             })
-            .AsImplementedInterfaces().AsSelf();
+            .AsImplementedInterfaces()
+            .AsSelf()
+            .SingleInstance();
 
             builder.RegisterType<ElasticLogManager>().As<IElasticLogManager>();
             builder.RegisterType<CustomFieldsConfiguration>().AsSelf().SingleInstance().WithParameter("configurationFile", configFile);

@@ -44,7 +44,9 @@ namespace CMI.Manager.Harvest.Infrastructure
                var path = Settings.Default.CustomScriptPath;
                return new CustomScriptLocator(path);
             })
-            .AsImplementedInterfaces().AsSelf();
+            .AsImplementedInterfaces()
+            .AsSelf()
+            .SingleInstance();
 
 
             builder.Register(ctx =>
