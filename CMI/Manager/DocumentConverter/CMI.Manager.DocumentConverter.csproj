@@ -271,4 +271,7 @@
   </Target>
   <Import Project="..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Import Project="..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>IF NOT '%25ON_BUILDSERVER%25'=='True' "$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(ProjectDir) " "$(SolutionDir)..\$(SolutionName)-secrets.json"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
