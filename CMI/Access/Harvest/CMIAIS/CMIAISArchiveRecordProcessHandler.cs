@@ -8,12 +8,10 @@ namespace CMI.Access.Harvest.CMIAIS
 {
     public class CMIAISArchiveRecordProcessHandler : IArchiveRecordProcessHandler
     {
-        private readonly IAISDataProvider dataProvider;
         private readonly IDynamicScriptProvider scriptProvider;
 
-        public CMIAISArchiveRecordProcessHandler(IAISDataProvider dataProvider, IDynamicScriptProvider scriptProvider)
+        public CMIAISArchiveRecordProcessHandler(IDynamicScriptProvider scriptProvider)
         {
-            this.dataProvider = dataProvider;
             this.scriptProvider = scriptProvider;
         }
 

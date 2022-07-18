@@ -48,7 +48,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     NumberOfTries = 0,
                 };
                 dbContext.SyncActions.AddObject(newAction);
-                // await dbContext.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
 
             return await Task.FromResult(infos.Count);
