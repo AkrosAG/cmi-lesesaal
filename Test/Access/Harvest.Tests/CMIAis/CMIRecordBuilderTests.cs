@@ -1,8 +1,10 @@
-﻿using CMI.Access.Harvest.CMIAIS;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CMI.Access.Harvest.CMIAIS;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using System.Threading.Tasks;
+
 
 namespace CMI.Access.Harvest.Tests.CMIAis
 {
@@ -49,7 +51,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             {
                 DisplayName = "Me",
                 OBJ_GUID = "123",
-                Children = new[]
+                Children = new List<Child>(new[]
                 {
                     new Child
                     {
@@ -63,8 +65,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         DisplayName = "Child 2",
                         Sortierung = "2"
                     }
-                },
-                Ancestors = new[]
+                }),
+                Ancestors = new List<ParentFieldType>(new[]
                 {
                     new ParentFieldType
                     {
@@ -76,14 +78,14 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         Depth = 1,
                         OBJ_GUID = "1"
                     }
-                },
+                }),
                 Tektonikpfad = "1 / 12 / 123"
             };
 
             var parent = new Verzeichnungseinheit
             {
                 OBJ_GUID = "12",
-                Children = new[]
+                Children = new List<Child>(new[]
                 {
                     new Child
                     {
@@ -103,7 +105,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         DisplayName = "sister",
                         Sortierung = "3"
                     }
-                }
+                })
             };
 
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);
@@ -114,7 +116,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var record = await sut.Build("123");
 
             var nodeInfo = record.Metadata.NodeInfo;
-            nodeInfo.ChildCount.Should().Be(cmiRecord.Children.Length);
+            nodeInfo.ChildCount.Should().Be(cmiRecord.Children.Count);
             nodeInfo.IsLeaf.Should().BeFalse();
             nodeInfo.IsRoot.Should().BeFalse();
             nodeInfo.ParentArchiveRecordId.Should().Be("12");
@@ -131,7 +133,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             {
                 DisplayName = "Me",
                 OBJ_GUID = "123",
-                Children = new[]
+                Children = new List<Child>(new[]
                 {
                     new Child
                     {
@@ -145,8 +147,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         DisplayName = "Child 2",
                         Sortierung = "2"
                     }
-                },
-                Ancestors = new[]
+                }),
+                Ancestors = new List<ParentFieldType>(new[]
                 {
                     new ParentFieldType
                     {
@@ -158,14 +160,14 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         Depth = 1,
                         OBJ_GUID = "1"
                     }
-                },
+                }),
                 Tektonikpfad = "1 / 12 / 123"
             };
 
             var parent = new Verzeichnungseinheit
             {
                 OBJ_GUID = "12",
-                Children = new[]
+                Children = new List<Child>(new[]
                 {
                     new Child
                     {
@@ -185,13 +187,13 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         DisplayName = "sister",
                         Sortierung = "3"
                     }
-                }
+                })
             };
             
             var parentParent = new Verzeichnungseinheit
             {
                 OBJ_GUID = "1",
-                Children = new[]
+                Children = new List<Child>(new[]
                 {
                     new Child
                     {
@@ -199,7 +201,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         DisplayName = "parent",
                         Sortierung = "1"
                     }
-                }
+                })
             };
 
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);

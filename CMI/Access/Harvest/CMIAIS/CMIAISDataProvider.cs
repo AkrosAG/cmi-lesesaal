@@ -1,5 +1,4 @@
-﻿using CMI.Access.Harvest.CMIAIS.Schemas;
-using CMI.Contract.Common;
+﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 using Serilog;
 using System;
@@ -27,7 +26,6 @@ namespace CMI.Access.Harvest.CMIAIS
             cdwsRequestClient.BaseAddress = uri;
 
             indexName = Properties.Settings.Default.CdwsIndexName;
-
         }
 
         public async Task<int> BulkUpdateMutationStatus(List<MutationStatusInfo> infos)
@@ -53,7 +51,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 await dbContext.SaveChangesAsync();
             }
 
-            return infos.Count;
+            return await Task.FromResult(infos.Count);
         }
 
         public Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
@@ -83,20 +81,24 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
         {
-            var response = await cdwsRequestClient.GetAsync($"{indexName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH");
+            var url = $"{indexName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH";
+            var response = await cdwsRequestClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var stringContent = await response.Content.ReadAsStringAsync();
             try
             {
-                var searchResponse = XMLConvert.FromXML<SearchDetailResponse>(stringContent);
-                return searchResponse.Hit?.Verzeichnungseinheit;
+                var searchResponse = XMLConvert.FromXML<SearchDetailResponseType>(stringContent);
+                if (searchResponse.Hit.Any())
+                {
+                    return XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}", id);
-                return null;
             }
+            return null;
         }
 
         public Task<string> GetDbVersion()
@@ -131,6 +133,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 {
                     Log.Information("Fetching {maxHits} records from CDWS for index {indexName}, using seq = {lastSequenceNr} records...", maxHits, indexName, lastSequenceNr);
                     searchResponse = await GetChangeInfo(indexName, lastSequenceNr, maxHits);
+                    
                     foreach (var change in searchResponse.Change)
                     {
                         pendingMutations.Add(new MutationRecord

@@ -1,7 +1,9 @@
-﻿using CMI.Access.Harvest.CMIAIS.Mapping;
-using CMI.Contract.Common;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+
+using CMI.Access.Harvest.CMIAIS.Mapping;
+using CMI.Contract.Common;
+using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
@@ -33,7 +35,7 @@ namespace CMI.Access.Harvest.CMIAIS
             
             var record = archiveRecordBuilder.Build();
 
-            await GetDisplaySection(cmiRecord, record);  // TODO: Review
+            await GetDisplaySection(cmiRecord, record);  
             await processHandler.PostProcessArchiveRecord(record);
 
             return record;
@@ -109,18 +111,24 @@ namespace CMI.Access.Harvest.CMIAIS
             if (string.IsNullOrWhiteSpace(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId))
                 return;
 
-            var parentRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId);
+            var parentRecordId = archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId;
+            var parentRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(parentRecordId);
+            if(parentRecord == null)
+            {
+                Log.Warning("ParentArchiveRecordId {0} konnte nict geladen werden", parentRecordId);
+                return;
+            }
             
             display.ParentArchiveRecordId = parentRecord.OBJ_GUID;            
             display.FirstChildArchiveRecordId = cmiRecord.Children.FirstOrDefault()?.OBJ_GUID;
 
-            if (parentRecord.Children.Length > 1)
+            if (parentRecord.Children.Any())
             {
                 var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
                 var indexNext = indexOfMe + 1;
                 var indexPrev = indexOfMe - 1;
 
-                if (parentRecord.Children.Length >= indexNext)
+                if (parentRecord.Children.Count >= indexNext)
                 {
                     display.NextArchiveRecordId = parentRecord.Children[indexNext].OBJ_GUID;
                 }
@@ -129,7 +137,6 @@ namespace CMI.Access.Harvest.CMIAIS
                 {
                     display.PreviousArchiveRecordId = parentRecord.Children[indexPrev].OBJ_GUID;
                 }
-                
             }
 
             display.ArchiveplanContext = new System.Collections.Generic.List<ArchiveplanContextItem>();

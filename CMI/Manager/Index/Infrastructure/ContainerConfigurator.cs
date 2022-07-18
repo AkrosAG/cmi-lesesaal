@@ -3,10 +3,11 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using CMI.Access.Common;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Messaging;
 using CMI.Contract.Parameter;
-using CMI.Manager.Index.Compiler;
 using CMI.Manager.Index.Config;
+using CMI.Manager.Index.Properties;
 using CMI.Utilities.Bus.Configuration;
 using MassTransit;
 
@@ -26,11 +27,20 @@ namespace CMI.Manager.Index.Infrastructure
             // register the different consumers and classes
             builder.RegisterType<IndexManager>().As<IIndexManager>();
             builder.RegisterType<ArchiveRecordProcessor>().As<IArchiveRecordProcessor>();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
-            builder.RegisterType<CustomScriptLocator>().As<IDynamicScriptLocator>();
+
             builder.RegisterType<SearchIndexDataAccess>().AsImplementedInterfaces();
             builder.RegisterType<LogDataAccess>().As<ILogDataAccess>();
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
+
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.Register(ctx =>
+            {
+                var path = Settings.Default.CustomScriptPath;
+                return new CustomScriptLocator(path);
+            })
+            .AsImplementedInterfaces()
+            .AsSelf()
+            .SingleInstance();
 
             builder.RegisterType<ElasticLogManager>().As<IElasticLogManager>();
             builder.RegisterType<CustomFieldsConfiguration>().AsSelf().SingleInstance().WithParameter("configurationFile", configFile);

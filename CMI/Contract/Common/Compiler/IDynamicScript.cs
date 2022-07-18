@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using CMI.Contract.Common;
 
-using CMI.Contract.Common;
-
-namespace CMI.Manager.Index
+namespace CMI.Contract.Common.Compiler
 {
-    public interface IArchiveRecordProcessor
+    public interface IDynamicScript
     {
         void PostProcessArchiveRecord(ArchiveRecord archiveRecord);
         void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord);

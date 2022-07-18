@@ -79,6 +79,8 @@
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
+    <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.Designer.cs" />
+    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.Designer.cs" />
     <Compile Include="IAISSpecificRecordAccess.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
     <Compile Include="CMIAIS\Mapping\DetailDataBuilder.cs" />
@@ -88,10 +90,6 @@
     <Compile Include="CMIAIS\Mapping\ElementMappings\DateRangeMapping.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\TextMapping.cs" />
     <Compile Include="CMIAIS\Mapping\MetaDataBuilder.cs" />
-    <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.cs">
-      <DependentUpon>CMIArchiveRecord.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="CMIAIS\Schemas\SearchDetailResponse.cs" />
     <Compile Include="CMIAIS\Schemas\SearchResponse.Designer.cs" />
     <Compile Include="IAISDataProviderFactory.cs" />
     <Compile Include="IArchiveRecordBuilder.cs" />
@@ -298,6 +296,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Manager\Index\CMI.Manager.Index.csproj">
+      <Project>{1E7C16A5-7236-407C-B0A0-0394EA9F3A21}</Project>
+      <Name>CMI.Manager.Index</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilities\Common\CMI.Utilities.Common.csproj">
       <Project>{1dcf43e7-a0ff-4506-9472-4dfd2b504a97}</Project>
       <Name>CMI.Utilities.Common</Name>
@@ -313,6 +315,10 @@
     <ProjectReference Include="..\..\Contract\Harvest\CMI.Contract.Harvest.csproj">
       <Project>{8DED5D20-4E2F-4EEC-AD38-A7A398D2D013}</Project>
       <Name>CMI.Contract.Harvest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\CMI.Access.Common.csproj">
+      <Project>{09318BF3-44CD-43B7-AC61-FAAE6B957B3A}</Project>
+      <Name>CMI.Access.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sql.Lesesaal.SF\CMI.Access.Sql.Lesesaal.EF.csproj">
       <Project>{CED136DF-B922-481D-9F57-6E88BC91827D}</Project>

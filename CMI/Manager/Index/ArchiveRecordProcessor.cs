@@ -1,5 +1,5 @@
 ﻿using CMI.Contract.Common;
-using CMI.Manager.Index.Compiler;
+using CMI.Contract.Common.Compiler;
 
 namespace CMI.Manager.Index
 {
@@ -12,16 +12,16 @@ namespace CMI.Manager.Index
             dynamicScriptProvider = provider;
         }
 
-        public void PostProcessArchiveRecord(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord)
+        public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
             var script = dynamicScriptProvider.GetInstanceByType<IDynamicScript>();
-            script.PostProcessArchiveRecord(archiveRecord, elasticArchiveRecord);
+            script.PostProcessArchiveRecord(archiveRecord);
         }
 
-        public void PostProcessElasticArchiveRecord(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord)
+        public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
             var script = dynamicScriptProvider.GetInstanceByType<IDynamicScript>();
-            script.PostProcessElasticArchiveRecord(archiveRecord, elasticArchiveRecord);
+            script.PostProcessElasticArchiveRecord(elasticArchiveRecord, archiveRecord);
         }
     }
 }

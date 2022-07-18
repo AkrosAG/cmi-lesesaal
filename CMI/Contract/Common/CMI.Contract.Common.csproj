@@ -64,6 +64,13 @@
     <Compile Include="AssetFileBase.cs" />
     <Compile Include="CacheRetentionCategory.cs" />
     <Compile Include="AssetConversionFile.cs" />
+    <Compile Include="Compiler\CustomScriptLocator.cs" />
+    <None Include="CustomScripts\IndexCustomScript.cs" />
+    <None Include="CustomScripts\HarvestCustomScript.cs" />
+    <Compile Include="Compiler\DynamicScriptProvider.cs" />
+    <Compile Include="Compiler\IDynamicScript.cs" />
+    <Compile Include="Compiler\IDynamicScriptLocator.cs" />
+    <Compile Include="Compiler\IDynamicScriptProvider.cs" />
     <Compile Include="DataSourceRequest.cs" />
     <Compile Include="Digitalisierungsauftrag.Designer.cs" />
     <Compile Include="DigitizationOrderDataResult.cs" />

@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
-using System.Reflection;
-using CMI.Access.Common;
-using CMI.Contract.Common;
-using CMI.Manager.Index.Compiler;
-using CMI.Manager.Index.Config;
-using FluentAssertions;
-using Microsoft.CSharp.RuntimeBinder;
+﻿using CMI.Contract.Common;
+using CMI.Contract.Common.Compiler;
 using Moq;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace CMI.Manager.Index.Tests
@@ -23,20 +13,22 @@ namespace CMI.Manager.Index.Tests
         public void Test_IndexManager_Should_Fill_CustomFields_Correctly()
         {
             var scriptCode = @"
-            public class MyCustomClass : ICustomType
+            public class MyCustomClass : IDynamicScript
             {
-                public void Execute(ArchiveRecord archiveRecord, ElasticArchiveRecord elasticArchiveRecord)
+                public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
                 {
-                   elasticArchiveRecord.LastSyncDate = DateTime.UtcNow;
                 }
-            }
-            ";
+
+                public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
+                {
+                }
+            }";
 
             // Arrange
             var mockDynamicScriptLocator  = new Mock<IDynamicScriptLocator>();
             
             mockDynamicScriptLocator.Setup(s => s
-                    .LoadScriptByDefault())
+                    .GetCustomScript())
                 .Returns(() => { return scriptCode; });
 
             // Act
@@ -47,7 +39,7 @@ namespace CMI.Manager.Index.Tests
             var provider = new DynamicScriptProvider(mockDynamicScriptLocator.Object);
             var script = provider.GetInstanceByType<IDynamicScript>();
 
-            script.PostProcessElasticArchiveRecord(archiveRecord, elasticRecord);
+            script.PostProcessElasticArchiveRecord(elasticRecord, archiveRecord);
         }
     }
 }

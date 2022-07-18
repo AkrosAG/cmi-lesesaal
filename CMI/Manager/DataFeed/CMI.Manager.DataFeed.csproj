@@ -159,6 +159,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Access\Common\CMI.Access.Common.csproj">
+      <Project>{09318BF3-44CD-43B7-AC61-FAAE6B957B3A}</Project>
+      <Name>CMI.Access.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Access\Harvest\CMI.Access.Harvest.csproj">
       <Project>{ED0D9A5D-AEF3-400F-9F17-C3E2E1D161B9}</Project>
       <Name>CMI.Access.Harvest</Name>

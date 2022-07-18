@@ -318,7 +318,7 @@
       <Name>CMI.Access.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj">
-      <Project>{713F2501-9065-454B-9E14-2599A1F3D4E8}</Project>
+      <Project>{713f2501-9065-454b-9e14-2599a1f3d4e8}</Project>
       <Name>CMI.Access.Sql.Lesesaal</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Contract\Asset\CMI.Contract.Asset.csproj">

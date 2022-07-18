@@ -1,11 +1,15 @@
 ﻿using System.Configuration;
 using System.Reflection;
 using Autofac;
+
 using CMI.Access.Harvest;
+using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
+
 using MassTransit;
 
 namespace CMI.Manager.Harvest.Infrastructure
@@ -26,11 +30,23 @@ namespace CMI.Manager.Harvest.Infrastructure
             
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-
+            
+            builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
+            builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
+
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.Register(ctx =>
+            {
+               var path = Settings.Default.CustomScriptPath;
+               return new CustomScriptLocator(path);
+            })
+            .AsImplementedInterfaces()
+            .AsSelf()
+            .SingleInstance();
 
 
             builder.Register(ctx =>
