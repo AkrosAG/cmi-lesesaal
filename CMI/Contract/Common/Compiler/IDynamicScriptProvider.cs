@@ -1,4 +1,4 @@
-﻿namespace CMI.Manager.Index.Compiler
+﻿namespace CMI.Contract.Common.Compiler
 {
     public interface IDynamicScriptProvider
     {

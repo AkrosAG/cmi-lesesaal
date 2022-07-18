@@ -72,6 +72,7 @@ namespace CMI.Manager.Order.Status
         {
             // https://devblogs.microsoft.com/pfxteam/should-i-expose-synchronous-wrappers-for-asynchronous-methods/
             // ToDo: await correctly, when state-machine is async
+            
             var kannAutomatischFreigeben = KannAutomatischFreigeben(Context.OrderItem, Context.Besteller)
                 .ConfigureAwait(false)
                 .GetAwaiter()

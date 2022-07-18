@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CMI.Manager.DataFeed.Properties {
+namespace CMI.Manager.Harvest {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,28 +25,10 @@ namespace CMI.Manager.DataFeed.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("120")]
-        public int RequeueJobIntervalInSeconds {
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Harvest.Settings.CustomScript@@")]
+        public string CustomScriptPath {
             get {
-                return ((int)(this["RequeueJobIntervalInSeconds"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int MaxNumberOfRetries {
-            get {
-                return ((int)(this["MaxNumberOfRetries"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("60")]
-        public int CheckQueueIntervalInSeconds {
-            get {
-                return ((int)(this["CheckQueueIntervalInSeconds"]));
+                return ((string)(this["CustomScriptPath"]));
             }
         }
     }

@@ -28,8 +28,8 @@ public class MetaDataBuilder
 
     public async Task<MetaDataBuilder> WithNodeInfos()
     {
-        var childrenCount = cmiRecord.Children?.Length ?? 0;
-        var ancestorsCount = cmiRecord.Ancestors?.Length ?? 0;
+        var childrenCount = cmiRecord.Children?.Count ?? 0;
+        var ancestorsCount = cmiRecord.Ancestors?.Count ?? 0;
 
         archiveRecord.Metadata.NodeInfo = new NodeInfo
         {
@@ -52,7 +52,7 @@ public class MetaDataBuilder
             return 0;
 
         var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetAisSpecificRecord(parent.OBJ_GUID);
-        var meAsChild = parentRecord.Children.FirstOrDefault(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+        var meAsChild = parentRecord?.Children.FirstOrDefault(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
         if (meAsChild == null)
             return 0;
 

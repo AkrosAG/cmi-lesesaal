@@ -20,6 +20,7 @@ public class ElementDataBuilder
         {
             { typeof(string), new TextMapping() },
             { typeof(bool?), new BoolMapping(languageSettings) },
+            { typeof(bool), new BoolMapping(languageSettings) },
             { typeof(DateTimeFieldType), new DateRangeMapping() },
             { typeof(XmlElement), new CustomFieldMapping() }
         };
