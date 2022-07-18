@@ -65,12 +65,8 @@
     <Compile Include="CacheRetentionCategory.cs" />
     <Compile Include="AssetConversionFile.cs" />
     <Compile Include="Compiler\CustomScriptLocator.cs" />
-    <None Include="CustomScripts\IndexCustomScript.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="CustomScripts\HarvestCustomScript.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="CustomScripts\IndexCustomScript.cs" />
+    <None Include="CustomScripts\HarvestCustomScript.cs" />
     <Compile Include="Compiler\DynamicScriptProvider.cs" />
     <Compile Include="Compiler\IDynamicScript.cs" />
     <Compile Include="Compiler\IDynamicScriptLocator.cs" />

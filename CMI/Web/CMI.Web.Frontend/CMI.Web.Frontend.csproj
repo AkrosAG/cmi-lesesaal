@@ -788,7 +788,15 @@
 RMDIR /Q /S "$(ProjectDir)App_Data"
 XCOPY "$(ProjectDir)App_Data_Template" "$(ProjectDir)App_Data" /E/I/Q
 "$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(ProjectDir)App_Data" "$(SolutionDir)..\$(SolutionName)-secrets.json"
-)</PostBuildEvent>
+)
+RMDIR /Q /S $(SolutionDir)Build\Release\Web\Frontend\
+XCOPY $(TargetDir)*.* $(SolutionDir)Build\Release\Web\Frontend\bin\ /R /Y /S /E
+XCOPY $(ProjectDir)App_Data_Template  $(SolutionDir)Build\Release\Web\Frontend\App_Data_Template\ /R /Y /S /E
+XCOPY $(ProjectDir)client  $(SolutionDir)Build\Release\Web\Frontend\client\ /R /Y /S /E
+XCOPY $(ProjectDir)content  $(SolutionDir)Build\Release\Web\Frontend\content\ /R /Y /S /E
+XCOPY $(ProjectDir)Scripts  $(SolutionDir)Build\Release\Web\Frontend\Scripts\ /R /Y /S /E
+XCOPY $(ProjectDir)Views  $(SolutionDir)Build\Release\Web\Frontend\Views\ /R /Y /S /E
+</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
