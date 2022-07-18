@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="CustomScriptPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\bin\Debug\CustomScripts\HarvestCustomScript.cs</Value>
+      <Value Profile="(Default)">@@CMI.Manager.Harvest.Settings.CustomScript@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>

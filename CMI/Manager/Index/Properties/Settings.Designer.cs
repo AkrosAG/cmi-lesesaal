@@ -34,8 +34,7 @@ namespace CMI.Manager.Index.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts\\IndexCusto" +
-            "mScript.cs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Index.Settings.CustomScript@@")]
         public string CustomScriptPath {
             get {
                 return ((string)(this["CustomScriptPath"]));

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Bestand</Value>
     </Setting>
     <Setting Name="CustomScriptPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Source\CMI\cmi-lesesaal\CMI\Contract\Common\bin\Debug\CustomScripts\IndexCustomScript.cs</Value>
+      <Value Profile="(Default)">@@CMI.Manager.Index.Settings.CustomScript@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>

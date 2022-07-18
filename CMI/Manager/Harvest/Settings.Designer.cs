@@ -25,8 +25,7 @@ namespace CMI.Manager.Harvest {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Source\\CMI\\cmi-lesesaal\\CMI\\Contract\\Common\\bin\\Debug\\CustomScripts\\HarvestCus" +
-            "tomScript.cs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Harvest.Settings.CustomScript@@")]
         public string CustomScriptPath {
             get {
                 return ((string)(this["CustomScriptPath"]));
