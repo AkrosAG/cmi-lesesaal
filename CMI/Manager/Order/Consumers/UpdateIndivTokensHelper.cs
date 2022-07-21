@@ -46,14 +46,14 @@ namespace CMI.Manager.Order.Consumers
             // die Property 'Context' NULL SEIN WIRD!
 
             var orderItemVeId = auftragStatus.Context.OrderItem.VeId;
-            if (!orderItemVeId.HasValue)
+            if (string.IsNullOrWhiteSpace(orderItemVeId))
             {
                 return; // Bei Aufträgen ohne Ve (=Formularbestellung) kann kein Token zurückgesetzt werden. 
             }
 
 
             var busAddress = auftragStatus.Context.Bus.Address;
-            var archiveRecordId = orderItemVeId.Value;
+            var archiveRecordId = orderItemVeId;
             var contextOrderDataAccess = auftragStatus.Context.OrderDataAccess;
             var sendEndpointProvider = auftragStatus.Context.Bus;
 

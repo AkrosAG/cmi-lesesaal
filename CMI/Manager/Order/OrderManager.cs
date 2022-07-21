@@ -135,7 +135,7 @@ namespace CMI.Manager.Order
             return sqlDataAccess.FindOrderItems(orderItemIds);
         }
 
-        public Task<bool> IsUniqueVeInBasket(int veId, string userId)
+        public Task<bool> IsUniqueVeInBasket(string veId, string userId)
         {
             return sqlDataAccess.IsUniqueVeInBasket(veId, userId);
         }
@@ -187,7 +187,7 @@ namespace CMI.Manager.Order
             return await sqlDataAccess.GetStatusHistoryForOrderItem(orderItemId);
         }
 
-        public Task<List<Bestellhistorie>> GetOrderingHistoryForVe(int veId)
+        public Task<List<Bestellhistorie>> GetOrderingHistoryForVe(string veId)
         {
             return sqlDataAccess.GetOrderingHistoryForVe(veId);
         }

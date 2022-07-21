@@ -14,7 +14,7 @@ namespace CMI.Access.Sql.Lesesaal
         Task<int> CreateOrUpdateAuftrag(PrimaerdatenAuftrag auftrag);
         Task<PrimaerdatenAuftrag> GetPrimaerdatenAuftrag(int primaerdatenAuftragId, bool loadLogEntries = false);
         Task<int> UpdateStatus(PrimaerdatenAuftragLog statusLog, int verarbeitungsKanal = 0);
-        Task<PrimaerdatenAuftragStatusInfo> GetLaufendenAuftrag(int veId, AufbereitungsArtEnum aufbereitungsArt);
+        Task<PrimaerdatenAuftragStatusInfo> GetLaufendenAuftrag(string veId, AufbereitungsArtEnum aufbereitungsArt);
         Task<Dictionary<int, int>> GetCurrentWorkload(AufbereitungsArtEnum aufbereitungsArt);
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace CMI.Access.Sql.Lesesaal
             }
         }
 
-        public async Task<PrimaerdatenAuftragStatusInfo> GetLaufendenAuftrag(int veId, AufbereitungsArtEnum aufbereitungsArt)
+        public async Task<PrimaerdatenAuftragStatusInfo> GetLaufendenAuftrag(string veId, AufbereitungsArtEnum aufbereitungsArt)
         {
             PrimaerdatenAuftragStatusInfo retVal = null;
             using (var connection = new SqlConnection(connectionString))
@@ -137,7 +137,7 @@ namespace CMI.Access.Sql.Lesesaal
                     {
                         ParameterName = "veId",
                         Value = veId,
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
@@ -516,7 +516,7 @@ namespace CMI.Access.Sql.Lesesaal
                 Service = (AufbereitungsServices)Enum.Parse(typeof(AufbereitungsServices), reader["Service"] as string ?? throw new InvalidOperationException()),
                 PackageId = reader["PackageId"] as string,
                 PackageMetadata = reader["PackageMetadata"] as string,
-                VeId = Convert.ToInt32(reader["VeId"]),
+                VeId = reader["VeId"] as string,
                 Abgeschlossen = Convert.ToBoolean(reader["Abgeschlossen"]),
                 AbgeschlossenAm = reader["AbgeschlossenAm"] == DBNull.Value ? null : (DateTime?)Convert.ToDateTime(reader["AbgeschlossenAm"]),
                 GeschaetzteAufbereitungszeit = reader["GeschaetzteAufbereitungszeit"] == DBNull.Value
@@ -539,7 +539,7 @@ namespace CMI.Access.Sql.Lesesaal
                 AufbereitungsArt = (AufbereitungsArtEnum)Enum.Parse(typeof(AufbereitungsArtEnum), reader["AufbereitungsArt"] as string ?? throw new InvalidOperationException()),
                 Status = (AufbereitungsStatusEnum)Enum.Parse(typeof(AufbereitungsStatusEnum), reader["Status"] as string ?? throw new InvalidOperationException()),
                 Service = (AufbereitungsServices)Enum.Parse(typeof(AufbereitungsServices), reader["Service"] as string ?? throw new InvalidOperationException()),
-                VeId = Convert.ToInt32(reader["VeId"]),
+                VeId = reader["VeId"] as string,
                 GeschaetzteAufbereitungszeit = reader["GeschaetzteAufbereitungszeit"] == DBNull.Value
                     ? null
                     : (int?)Convert.ToInt32(reader["GeschaetzteAufbereitungszeit"]),
@@ -610,7 +610,7 @@ namespace CMI.Access.Sql.Lesesaal
             {
                 ParameterName = "VeId",
                 Value = auftrag.VeId.ToDbParameterValue(),
-                SqlDbType = SqlDbType.Int
+                SqlDbType = SqlDbType.NVarChar
             });
             cmd.Parameters.Add(new SqlParameter
             {
