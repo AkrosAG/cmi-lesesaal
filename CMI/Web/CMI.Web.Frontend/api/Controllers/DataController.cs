@@ -41,7 +41,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetPermissions(int entityId)
+        public IHttpActionResult GetPermissions(string entityId)
         {
             var access = GetUserAccess(WebHelper.GetClientLanguage(Request));
 
@@ -69,7 +69,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
-        public string GetArchivplanHtml(int id)
+        public string GetArchivplanHtml(string id)
         {
             var role = GetUserPublicClientRole();
             var language = WebHelper.GetClientLanguage(Request);
@@ -79,7 +79,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
-        public string GetArchivplanChildrenHtml(int id)
+        public string GetArchivplanChildrenHtml(string id)
         {
             var role = GetUserPublicClientRole();
             var language = WebHelper.GetClientLanguage(Request);
@@ -88,7 +88,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
-        public Entity<DetailRecord> GetEntity(int id, string language = null, [FromUri] string paging = null)
+        public Entity<DetailRecord> GetEntity(string id, string language = null, [FromUri] string paging = null)
         {
             var access = GetUserAccess(language ?? WebHelper.GetClientLanguage(Request));
 
@@ -108,8 +108,8 @@ namespace CMI.Web.Frontend.api.Controllers
             var access = GetUserAccess(language ?? WebHelper.GetClientLanguage(Request));
 
             var idList = !string.IsNullOrEmpty(ids)
-                ? ids.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries).Select(i => int.Parse(i)).ToList()
-                : new List<int>();
+                ? ids.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries).ToList()
+                : new List<string>();
 
             return entityProvider.GetEntities<TreeRecord>(idList, access, paging);
         }

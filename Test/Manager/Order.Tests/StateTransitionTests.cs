@@ -36,7 +36,7 @@ namespace CMI.Manager.Order.Tests
             orderDataAccessMock.Setup(foo =>
                     foo.GetLatestDigitalisierungsTermine(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DigitalisierungsKategorie>()))
                 .ReturnsAsync(new List<DigitalisierungsTermin>());
-            orderDataAccessMock.Setup(foo => foo.GetIndividualAccessTokens(It.IsAny<int>(), It.IsAny<int>()))
+            orderDataAccessMock.Setup(foo => foo.GetIndividualAccessTokens(It.IsAny<string>(), It.IsAny<int>()))
                 .ReturnsAsync(new IndivTokens(new string [0], new string [0], new string[0]));
 
             var userDataAccessMock = new Mock<IUserDataAccess>();
@@ -56,13 +56,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string [0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -76,13 +76,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -108,13 +108,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -129,13 +129,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleOe2, "ALLOW", new string[0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -150,13 +150,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Lesesaalausleihen, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -171,13 +171,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User
                 {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Status = OrderStatesInternal.ImBestellkorb};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Lesesaalausleihen, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId.Value.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -191,13 +191,13 @@ namespace CMI.Manager.Order.Tests
             var currentUser = Users.Vecteur;
             var besteller = new User {Id = "besteller"};
 
-            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = 200, Benutzungskopie = true, Status = OrderStatesInternal.DigitalisierungExtern};
+            var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Benutzungskopie = true, Status = OrderStatesInternal.DigitalisierungExtern};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId?.ToString()
+                ArchiveRecordId = item.VeId
             };
 
             var auftragErledigtMock = new Mock<IConsumer<IDigitalisierungsAuftragErledigt>>();
@@ -229,13 +229,13 @@ namespace CMI.Manager.Order.Tests
             var besteller = new User {Id = "besteller"};
 
             var item = new OrderItem
-                {OrderId = 1, Id = 1001, VeId = 200, Benutzungskopie = false, Status = OrderStatesInternal.DigitalisierungExtern};
+                {OrderId = 1, Id = 1001, VeId = "200", Benutzungskopie = false, Status = OrderStatesInternal.DigitalisierungExtern};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId?.ToString()
+                ArchiveRecordId = item.VeId
             };
 
 

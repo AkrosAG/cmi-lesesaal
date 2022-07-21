@@ -81,16 +81,16 @@ namespace CMI.Web.Frontend.api.Controllers
         [SwaggerResponse(HttpStatusCode.BadRequest, typeof(string),
             Description = "If the request is somehow malformed, the reason of the cause is returned.")]
         [SwaggerResponse(HttpStatusCode.NotFound, typeof(void), Description = "If no record was found.")]
-        public IHttpActionResult GetEntity(int id, int? skip = null, int? take = null)
+        public IHttpActionResult GetEntity(string id, int? skip = null, int? take = null)
         {
             if (ControllerHelper.HasClaims())
             {
                 return BadRequest("request was authorized, but this API only accepts unauthorized requests");
             }
 
-            if (id <= 0)
+            if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Id must be a positive integer");
+                return BadRequest("Id must be a string");
             }
 
             if (take.HasValue && take > 500)
@@ -190,14 +190,14 @@ namespace CMI.Web.Frontend.api.Controllers
                             var val = int.Parse(i);
                             if (val >= 0)
                             {
-                                return val;
+                                return val.ToString();
                             }
 
                             throw new ArgumentOutOfRangeException();
                         })
                         .Distinct()
                         .ToList()
-                    : new List<int>();
+                    : new List<string>();
 
                 if (idList.Count > 1000)
                 {

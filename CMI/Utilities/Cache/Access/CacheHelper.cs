@@ -133,7 +133,7 @@ namespace CMI.Utilities.Cache.Access
                 return CacheRetentionCategory.UsageCopyBarOrAS;
             }
 
-            if (int.TryParse(archiveRecord.ArchiveRecordId, out var veId) && await orderDataAccess.HasEinsichtsbewilligung(veId))
+            if (!string.IsNullOrWhiteSpace(archiveRecord.ArchiveRecordId) && await orderDataAccess.HasEinsichtsbewilligung(archiveRecord.ArchiveRecordId))
             {
                 return CacheRetentionCategory.UsageCopyEB;
             }

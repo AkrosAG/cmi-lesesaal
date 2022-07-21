@@ -98,12 +98,12 @@ namespace CMI.Manager.Vecteur
                     return Content(HttpStatusCode.Forbidden, onlyFaultedItemsInDigipoolExceptionMessage);
                 }
 
-                if (digipoolEntry.VeId.HasValue)
+                if (!string.IsNullOrWhiteSpace(digipoolEntry.VeId))
                 {
                     // Hat die Bestellung eine VE-ID, so holen wir die Details zum Record aus Elastic und
                     // bereiten die Bestellung über den Dienst auf.
                     Log.Verbose($"Fetching ve {digipoolEntry.VeId} from elastic index");
-                    var orderedItemRecord = await messageBusCallHelper.GetElasticArchiveRecord(digipoolEntry.VeId.ToString());
+                    var orderedItemRecord = await messageBusCallHelper.GetElasticArchiveRecord(digipoolEntry.VeId);
 
                     if (orderedItemRecord == null)
                     {
