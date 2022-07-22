@@ -81,10 +81,10 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     var access = GetUserAccess(selectedLanguage);
 
-                    var ids = new List<int>();
+                    var ids = new List<string>();
                     foreach (var node in entryNodes.Children())
                     {
-                        ids.Add(JsonHelper.FindTokenValue<int>(node, "archiveRecordId"));
+                        ids.Add(JsonHelper.FindTokenValue<string>(node, "archiveRecordId"));
                     }
 
                     var result = entityProvider.GetEntities<TreeRecord>(ids, access);

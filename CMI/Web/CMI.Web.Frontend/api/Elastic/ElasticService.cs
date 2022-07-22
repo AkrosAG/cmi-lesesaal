@@ -47,7 +47,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
         protected string BaseUrl => elasticSettings.BaseUrl;
 
-        public ElasticQueryResult<T> QueryForId<T>(int id, UserAccess access) where T : TreeRecord
+        public ElasticQueryResult<T> QueryForId<T>(string id, UserAccess access) where T : TreeRecord
         {
             var query = new ElasticQuery
             {
@@ -63,14 +63,14 @@ namespace CMI.Web.Frontend.api.Elastic
                 Query = new TermQuery
                 {
                     Field = elasticSettings.IdField,
-                    Value = id.ToStringInvariant()
+                    Value = id
                 }
             };
 
             return RunQuery<T>(query, access);
         }
 
-        public List<TreeRecord> QueryForParentId(int id, UserAccess access)
+        public List<TreeRecord> QueryForParentId(string id, UserAccess access)
         {
             var client = clientProvider.GetElasticClient<TreeRecord>(elasticSettings);
             var result = new List<TreeRecord>();
@@ -83,7 +83,7 @@ namespace CMI.Web.Frontend.api.Elastic
                 .Query(q => GetQueryWithSecurity(new TermQuery
                 {
                     Field = elasticSettings.ParentIdField,
-                    Value = id.ToStringInvariant()
+                    Value = id
                 }, access))
                 .Size(10000)
                 .Scroll("15s"));
@@ -97,13 +97,13 @@ namespace CMI.Web.Frontend.api.Elastic
             return result;
         }
 
-        public ElasticQueryResult<T> QueryForIds<T>(IList<int> ids, UserAccess access, Paging p = null) where T : TreeRecord
+        public ElasticQueryResult<T> QueryForIds<T>(IList<string> ids, UserAccess access, Paging p = null) where T : TreeRecord
         {
             var query = BuildQueryForIds(ids, p);
             return RunQuery<T>(query, access);
         }
 
-        public ElasticQueryResult<T> QueryForIdsWithoutSecurityFilter<T>(IList<int> ids, Paging p = null) where T : TreeRecord
+        public ElasticQueryResult<T> QueryForIdsWithoutSecurityFilter<T>(IList<string> ids, Paging p = null) where T : TreeRecord
         {
             var query = BuildQueryForIds(ids, p);
             return RunQueryWithoutSecurityFilters<T>(query);
@@ -299,7 +299,7 @@ namespace CMI.Web.Frontend.api.Elastic
             return request;
         }
 
-        private ElasticQuery BuildQueryForIds(IList<int> ids, Paging p)
+        private ElasticQuery BuildQueryForIds(IList<string> ids, Paging p)
         {
             var query = new ElasticQuery
             {
@@ -320,7 +320,7 @@ namespace CMI.Web.Frontend.api.Elastic
                 query.Query = new TermsQuery
                 {
                     Field = elasticSettings.IdField,
-                    Terms = ids.Select(i => i.ToStringInvariant())
+                    Terms = ids
                 };
             }
             else

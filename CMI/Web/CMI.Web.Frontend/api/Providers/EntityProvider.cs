@@ -33,13 +33,13 @@ namespace CMI.Web.Frontend.api.Providers
             this.modelData = modelData;
         }
 
-        public string GetArchivplanHtml(int id, UserAccess access, string role, string language)
+        public string GetArchivplanHtml(string id, UserAccess access, string role, string language)
         {
             var entities = elasticService.QueryForId<TreeRecord>(id, access);
             return CreateHtml(entities.Entries.Select(e => e.Data), role, language);
         }
 
-        public string GetArchivplanChildrenHtml(int id, UserAccess access, string role, string language)
+        public string GetArchivplanChildrenHtml(string id, UserAccess access, string role, string language)
         {
             var stopwatch = new Stopwatch();
 
@@ -56,7 +56,7 @@ namespace CMI.Web.Frontend.api.Providers
             return html;
         }
 
-        public Entity<T> GetEntity<T>(int id, UserAccess access, Paging paging = null) where T : TreeRecord, new()
+        public Entity<T> GetEntity<T>(string id, UserAccess access, Paging paging = null) where T : TreeRecord, new()
         {
             var metaOptions = new EntityMetaOptions
             {
@@ -74,7 +74,7 @@ namespace CMI.Web.Frontend.api.Providers
             return result;
         }
 
-        public EntityResult<T> GetEntities<T>(List<int> ids, UserAccess access, Paging paging = null) where T : TreeRecord, new()
+        public EntityResult<T> GetEntities<T>(List<string> ids, UserAccess access, Paging paging = null) where T : TreeRecord, new()
         {
             var metaOptions = new EntityMetaOptions
             {

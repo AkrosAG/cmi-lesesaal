@@ -74,7 +74,7 @@ namespace CMI.Manager.Order.Consumers
                     Log.Information(
                         "Die VE mit Id {ArchiveRecordId} wurde digitalisiert, aber bis jetzt nicht neu synchronisiert. Wir schreiben sie in die Wait List",
                         message.ArchiveRecordId);
-                    await orderDataAccess.AddToOrderExecutedWaitList(Convert.ToInt32(message.ArchiveRecordId), JsonConvert.SerializeObject(message));
+                    await orderDataAccess.AddToOrderExecutedWaitList(message.ArchiveRecordId, JsonConvert.SerializeObject(message));
                 }
             }
         }

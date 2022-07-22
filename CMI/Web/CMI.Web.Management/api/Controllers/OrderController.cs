@@ -203,9 +203,9 @@ namespace CMI.Web.Management.api.Controllers
             var item = new OrderingFlatDetailItem();
             item.FromFlatItem(flatItem);
 
-            if (flatItem.VeId.HasValue)
+            if (!string.IsNullOrWhiteSpace(flatItem.VeId))
             {
-                var elasticItem = await GetElasticArchiveRecord(flatItem.VeId.Value.ToString());
+                var elasticItem = await GetElasticArchiveRecord(flatItem.VeId);
                 if (elasticItem != null)
                 {
                     var ancestors = GetAncestors(elasticItem);
@@ -222,7 +222,7 @@ namespace CMI.Web.Management.api.Controllers
                     Log.Warning("elasticRecord nicht gefunden ");
                 }
 
-                var orderHistory = (await orderManagerClient.GetOrderingHistoryForVe(flatItem.VeId.Value)).ToList();
+                var orderHistory = (await orderManagerClient.GetOrderingHistoryForVe(flatItem.VeId)).ToList();
                 item.OrderingHistory = orderHistory.Take(3);
                 item.HasMoreOrderingHistory = orderHistory.Count > 3;
             }
@@ -308,7 +308,7 @@ namespace CMI.Web.Management.api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetOrderingHistoryForVe(int id)
+        public async Task<IHttpActionResult> GetOrderingHistoryForVe(string id)
         {
             var orderHistory = (await orderManagerClient.GetOrderingHistoryForVe(id)).ToList();
             return Ok(orderHistory);
@@ -515,15 +515,15 @@ namespace CMI.Web.Management.api.Controllers
             var snapshots = new List<OrderingIndexSnapshot>();
             foreach (var item in items)
             {
-                if (!item.VeId.HasValue)
+                if (string.IsNullOrWhiteSpace(item.VeId))
                 {
                     return BadRequest("Formularbestellungen sind in dieser Funktion nicht zulässig");
                 }
 
-                var elasticItem = await GetElasticArchiveRecord(item.VeId.Value.ToString());
+                var elasticItem = await GetElasticArchiveRecord(item.VeId);
                 if (elasticItem == null)
                 {
-                    throw new Exception($"Ve with ID {item.VeId.Value} not found");
+                    throw new Exception($"Ve with ID {item.VeId} not found");
                 }
 
                 var snapshot = OrderHelper.GetOrderingIndexSnapshot(elasticItem);

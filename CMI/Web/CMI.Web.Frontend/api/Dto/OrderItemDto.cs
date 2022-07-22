@@ -27,7 +27,7 @@ namespace CMI.Web.Frontend.api.Dto
 
         public DateTime? BewilligungsDatum { get; set; }
 
-        public int? VeId { get; set; }
+        public string VeId { get; set; }
         public int Id { get; set; }
         public bool HasPersonendaten { get; set; }
         public string Standort { get; set; }
