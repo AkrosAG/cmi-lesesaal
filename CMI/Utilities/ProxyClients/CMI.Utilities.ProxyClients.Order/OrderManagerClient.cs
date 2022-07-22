@@ -131,7 +131,7 @@ namespace CMI.Utilities.ProxyClients.Order
             return result.Message.OrderItems;
         }
 
-        public async Task<bool> IsUniqueVeInBasket(int veId, string userId)
+        public async Task<bool> IsUniqueVeInBasket(string veId, string userId)
         {
             var client = GetRequestClient<IsUniqueVeInBasketRequest>();
             var result = await client.GetResponse<IsUniqueVeInBasketResponse>(new IsUniqueVeInBasketRequest {VeId = veId, UserId = userId});
@@ -164,7 +164,7 @@ namespace CMI.Utilities.ProxyClients.Order
             return result.Message.StatusHistory;
         }
 
-        public async Task<List<Bestellhistorie>> GetOrderingHistoryForVe(int veId)
+        public async Task<List<Bestellhistorie>> GetOrderingHistoryForVe(string veId)
         {
             var client = GetRequestClient<FindOrderingHistoryForVeRequest>(BusConstants
                 .OrderManagerFindOrderingHistoryForVeRequestQueue);

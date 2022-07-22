@@ -98,7 +98,7 @@ namespace CMI.Manager.Order.Status
             }
             else
             {
-                var veRecord = Context.IndexAccess.FindDocument(Context.OrderItem.VeId.Value.ToString(), false);
+                var veRecord = Context.IndexAccess.FindDocument(Context.OrderItem.VeId, false);
                 ((List<InElasticIndexierteVe>) emailExpando.VeList).Add(InElasticIndexierteVe.FromElasticArchiveRecord(veRecord));
             }
         }

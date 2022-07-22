@@ -54,12 +54,12 @@ namespace CMI.Web.Management.api.Controllers
             }
 
             var ipAdress = downloadHelper.GetClientIp(Request);
-            if (!downloadTokenDataAccess.CheckTokenIsValidAndClean(token, orderItemId, DownloadTokenType.OrderItem, ipAdress))
+            if (!downloadTokenDataAccess.CheckTokenIsValidAndClean(token, orderItemId.ToString(), DownloadTokenType.OrderItem, ipAdress))
             {
                 return BadRequest("Token expires or is not valid");
             }
 
-            var userId = downloadTokenDataAccess.GetUserIdByToken(token, orderItemId, DownloadTokenType.OrderItem, ipAdress);
+            var userId = downloadTokenDataAccess.GetUserIdByToken(token, orderItemId.ToString(), DownloadTokenType.OrderItem, ipAdress);
             if (string.IsNullOrWhiteSpace(userId))
             {
                 return Content(HttpStatusCode.Forbidden, "No User found for the requested Downloadtoken");
@@ -76,7 +76,7 @@ namespace CMI.Web.Management.api.Controllers
                 return BadRequest("OrderItem is not a Benutzungskopie");
             }
 
-            downloadTokenDataAccess.CleanUpOldToken(token, orderItemId, DownloadTokenType.OrderItem);
+            downloadTokenDataAccess.CleanUpOldToken(token, orderItemId.ToString(), DownloadTokenType.OrderItem);
 
             var downloadAssetResult = (await downloadClient.GetResponse<DownloadAssetResult>(new DownloadAssetRequest
             {
@@ -142,7 +142,7 @@ namespace CMI.Web.Management.api.Controllers
             var expires = DateTime.Now.AddMinutes(downloadHelper.GetConfigValueTokenValidTime());
             var token = downloadHelper.CreateDownloadToken();
 
-            downloadTokenDataAccess.CreateToken(token, orderItemId, DownloadTokenType.OrderItem, expires, ipAddress, userId);
+            downloadTokenDataAccess.CreateToken(token, orderItemId.ToString(), DownloadTokenType.OrderItem, expires, ipAddress, userId);
             return Content(HttpStatusCode.OK, token);
         }
     }

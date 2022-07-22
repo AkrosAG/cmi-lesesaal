@@ -113,7 +113,7 @@ namespace CMI.Manager.Order.Status
                 PrepareMailMitteilungBestellungMitTeilbewilligung();
             }
 
-            if (Context.OrderItem.VeId.HasValue)
+            if (!string.IsNullOrWhiteSpace(Context.OrderItem.VeId))
             {
                 UpdateIndivTokensHelper.RegisterActionForIndivTokensRefresh(this);
             }
@@ -250,16 +250,16 @@ namespace CMI.Manager.Order.Status
             builder.AddAuftraege(Context.Ordering, orderItems, propertyName);
         }
 
-        private bool VeLiegtDigitalVor(int? veId)
+        private bool VeLiegtDigitalVor(string veId)
         {
             // Für die Ermittlung von VeLiegtDigitalVor kann nicht OrderItem.IdentifikationDigitalesMagazin verwendet werden.
             // Darum werden Daten vom Elastic geholt.
 
             ElasticArchiveRecord archiveRecord = null;
 
-            if (veId.HasValue)
+            if (!string.IsNullOrWhiteSpace(veId))
             {
-                archiveRecord = Context.IndexAccess.FindDocument(veId.Value.ToString(), false);
+                archiveRecord = Context.IndexAccess.FindDocument(veId, false);
             }
 
             return !string.IsNullOrEmpty(archiveRecord?.PrimaryDataLink);
