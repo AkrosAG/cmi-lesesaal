@@ -22,6 +22,7 @@ public class CustomFieldMapping : BaseMapping
             ElementValue = new List<DataElementElementValue>(),
             ElementType = ToDataElementType(xmlElement.GetAttribute("type")),
             ElementName = name,
+            ElementId = name,
         };
 
         var elementValue = xmlElement.Value;

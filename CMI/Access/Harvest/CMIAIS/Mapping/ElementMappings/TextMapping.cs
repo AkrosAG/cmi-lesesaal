@@ -12,6 +12,7 @@ public class TextMapping : BaseMapping
             ElementValue = new List<DataElementElementValue>(),
             ElementType = DataElementElementType.text,
             ElementName = name,
+            ElementId = name
         };
 
         var text = value as string;
