@@ -128,7 +128,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 var indexNext = indexOfMe + 1;
                 var indexPrev = indexOfMe - 1;
 
-                if (parentRecord.Children.Count >= indexNext)
+                if (parentRecord.Children.Count > indexNext)
                 {
                     display.NextArchiveRecordId = parentRecord.Children[indexNext].OBJ_GUID;
                 }
