@@ -54,11 +54,11 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> AddToBasket(int veId)
+        public async Task<IHttpActionResult> AddToBasket(string veId)
         {
-            if (veId <= 0)
+            if (string.IsNullOrWhiteSpace(veId))
             {
-                return BadRequest($"{nameof(veId)} must be greater than 0");
+                return BadRequest($"{nameof(veId)} must be string");
             }
 
             var userId = ControllerHelper.GetCurrentUserId();
@@ -125,9 +125,9 @@ namespace CMI.Web.Frontend.api.Controllers
 
             var userId = ControllerHelper.GetCurrentUserId();
             // Check VE is exists already in basket
-            if (int.TryParse(entity.ArchiveRecordId, out var veId) && !await client.IsUniqueVeInBasket(veId, userId))
+            if (await client.IsUniqueVeInBasket(entity.ArchiveRecordId, userId))
             {
-                return Content(HttpStatusCode.OK, new OrderItemDto {VeId = veId});
+                return Content(HttpStatusCode.OK, new OrderItemDto {VeId = entity.ArchiveRecordId });
             }
 
             var settings = FrontendSettings.Instance;
@@ -312,8 +312,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     BestellerId = bestellerId
                 };
 
-                var veInfoList = basket.Where(item => item.VeId.HasValue && !orderItemIdsToExclude.Contains(item.Id))
-                    .Select(item => new VeInfo((int)item.VeId, item.Reason)).ToList();
+                var veInfoList = basket.Where(item => !orderItemIdsToExclude.Contains(item.Id))
+                    .Select(item => new VeInfo(item.VeId, item.Reason)).ToList();
 
                 await kontrollstellenInformer.InformIfNecessary(userAccess, veInfoList);
 
@@ -532,7 +532,7 @@ namespace CMI.Web.Frontend.api.Controllers
             // Fügt sicherheitsrelevante Informationen zum order item hinzu
             if (needsSecurityInfo)
             {
-                var veIdList = orderItemsDb.Where(item => item.VeId != null).Select(item => (int) item.VeId).ToList();
+                var veIdList = orderItemsDb.Where(item => item.VeId != null).Select(item => item.VeId).ToList();
 
                 UserAccess access = null;
                 List<Entity<ElasticArchiveRecord>> orderItemsElastic = null;
@@ -548,10 +548,10 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 if (orderItemsElastic != null)
                 {
-                    foreach (var itemDto in orderItemsRet.Where(i => i.VeId.HasValue))
+                    foreach (var itemDto in orderItemsRet.Where(i => !string.IsNullOrWhiteSpace(i.VeId)))
                     {
                         var elasticData = orderItemsElastic
-                            .FirstOrDefault(item => itemDto.VeId.ToString() == item.Data.ArchiveRecordId)?.Data;
+                            .FirstOrDefault(item => itemDto.VeId == item.Data.ArchiveRecordId)?.Data;
                         if (elasticData != null)
                         {
                             itemDto.EinsichtsbewilligungNotwendig = IsEinsichtsbewilligungNotwendig(elasticData, access,
