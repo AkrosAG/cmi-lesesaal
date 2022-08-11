@@ -48,7 +48,6 @@ namespace CMI.Manager.Harvest.Infrastructure
             .AsSelf()
             .SingleInstance();
 
-
             builder.Register(ctx =>
             {
                 var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
