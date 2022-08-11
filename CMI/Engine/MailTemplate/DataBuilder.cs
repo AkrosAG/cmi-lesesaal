@@ -150,9 +150,9 @@ namespace CMI.Engine.MailTemplate
             {
                 var ordering = GetOrdering(orderItem.OrderId);
 
-                auftraege.Add(orderItem.VeId.HasValue
-                    ? GetAuftragForOrderItemWithVeId(ordering, orderItem)
-                    : GetAuftragFormularbestellung(ordering, orderItem));
+                auftraege.Add(string.IsNullOrWhiteSpace(orderItem.VeId)
+                    ? GetAuftragFormularbestellung(ordering, orderItem)
+                    :  GetAuftragForOrderItemWithVeId(ordering, orderItem));
             }
 
             return auftraege;
@@ -200,9 +200,9 @@ namespace CMI.Engine.MailTemplate
 
         private Auftrag GetAuftrag(Ordering ordering, OrderItem orderItem)
         {
-            return orderItem.VeId.HasValue
-                ? GetAuftragForOrderItemWithVeId(ordering, orderItem)
-                : GetAuftragFormularbestellung(ordering, orderItem);
+            return string.IsNullOrWhiteSpace(orderItem.VeId)
+                ? GetAuftragFormularbestellung(ordering, orderItem)
+                : GetAuftragForOrderItemWithVeId(ordering, orderItem);
         }
 
         private Auftrag GetAuftragFormularbestellung(Ordering ordering, OrderItem orderItem)
