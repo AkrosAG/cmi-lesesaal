@@ -1,12 +1,11 @@
 ﻿using CMI.Utilities.Common;
 
-namespace CMI.Manager.Index.Properties
+namespace CMI.Manager.Harvest.Properties
 {
     public class Documentation : AbstractDocumentation
     {
         public override void LoadDescriptions()
         {
-            AddDescription<Settings>(x => x.LevelAggregationIdentifier, "Aggregationsebene für den Index");
             AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
         }
     }
