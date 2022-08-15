@@ -554,6 +554,7 @@ namespace CMI.Manager.Harvest.Tests
 
 
         [Test]
+        [Ignore("deaktiviert")]
         public async Task If_update_is_requested_for_inexisting_record_the_sync_is_aborted()
         {
             // Arrange
