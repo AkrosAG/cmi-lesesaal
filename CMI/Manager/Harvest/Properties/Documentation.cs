@@ -7,6 +7,7 @@ namespace CMI.Manager.Harvest.Properties
         public override void LoadDescriptions()
         {
             AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
+            AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
         }
     }
 }

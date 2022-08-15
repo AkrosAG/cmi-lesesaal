@@ -9,7 +9,7 @@ using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
-
+using CMI.Manager.Harvest.Properties;
 using MassTransit;
 
 namespace CMI.Manager.Harvest.Infrastructure
