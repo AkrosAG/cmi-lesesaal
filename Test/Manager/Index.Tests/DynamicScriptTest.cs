@@ -9,7 +9,7 @@ namespace CMI.Manager.Index.Tests
     public class DynamicScriptTest
     {
         [Test]
-        [Ignore("incomplete")]
+        [Ignore("deaktiviert")]
         public void Test_IndexManager_Should_Fill_CustomFields_Correctly()
         {
             var scriptCode = @"
