@@ -1,0 +1,54 @@
+name: CMI Lesesaal Release Build (Full)
+
+on:
+  pull_request:
+    branches: [ develop ]
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Gewünschter Branch (in allen Repositories)'
+        required: true
+        default: 'develop'
+
+jobs:
+  build-frontend-client:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: CMI/Web.Clients/web-frontend
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      run: |
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Test
+      run: npm run test-github
+      
+    - name: Build
+      run: npm run build-prod
+      
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: frontend-client
+        path: ./dist/**
+        retention-days: 1
