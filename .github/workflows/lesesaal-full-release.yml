@@ -182,7 +182,7 @@ jobs:
           name: lesesaal.complete.${{ env.GitBuildVersion }}
           path: ${{ github.workspace }}\BuildResult\Complete\lesesaal.complete.${{ env.GitBuildVersion }}.zip
 
-  release-and-deploy:
+  release:
     needs: build-services
     runs-on: ubuntu-latest
     steps:
