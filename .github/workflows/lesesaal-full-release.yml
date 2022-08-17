@@ -13,7 +13,94 @@ on:
         default: 'develop'
 
 jobs:
+  build-frontend-client:
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-frontend
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+      
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: frontend-client
+        path: ${{ env.WORKING_DIR }}/dist/**
+        retention-days: 1
+
+  build-management-client:
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-management
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+      
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: management-client
+        path: ${{ env.WORKING_DIR }}/dist/**
+        retention-days: 1
+
   build-services:
+    needs: [build-frontend-client, build-management-client]
     runs-on: windows-latest
     env:
       SOLUTION: cmi-lesesaal.sln
@@ -75,7 +162,7 @@ jobs:
         uses: dotnet/nbgv@v0.4.0
         id: nbgv
         with:
-          path: ./vservices/
+          path: ./
           
       - uses: mukunku/tag-exists-action@v1.0.0
         id: checkTag
@@ -85,13 +172,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Create Package
-        working-directory: ./vservices
         shell: pwsh
         run: |
-          .\BuildServices\createZipFile.ps1 -BuildConfiguration "Release" -DogFoodPath "${{ github.workspace }}\vservices\BuildResult" -SolutionDir "${{ github.workspace }}\vservices" -BuildNumber ${{ env.GitBuildVersion }}
+          .\BuildServices\createZipFile.ps1 -BuildConfiguration "Release" -DogFoodPath "${{ github.workspace }}\BuildResult" -SolutionDir "${{ github.workspace }}" -BuildNumber ${{ env.GitBuildVersion }}
           
       - name: Save Dist
         uses: actions/upload-artifact@v2
         with:
           name: viaduc.complete.${{ env.GitBuildVersion }}
-          path: ${{ github.workspace }}\vservices\BuildResult\Complete\viaduc.complete.${{ env.GitBuildVersion }}.zip
+          path: ${{ github.workspace }}\BuildResult\Complete\viaduc.complete.${{ env.GitBuildVersion }}.zip
