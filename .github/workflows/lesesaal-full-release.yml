@@ -37,10 +37,8 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm config set @cmi:registry https://myget.org/F/cmiag-nuget/npm
-        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm config set //myget.org/F/cmiag-nuget/npm/:_authToken ${{ secrets.MYGET_PUSH_APIKEY }}
         npm i --loglevel verbose
-      env:
-        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
