@@ -36,6 +36,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
+        npm config set @cmi:registry https://myget.org/F/cmiag-nuget/npm
         npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
         npm i --loglevel verbose
       env:
