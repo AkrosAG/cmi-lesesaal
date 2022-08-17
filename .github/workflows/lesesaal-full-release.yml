@@ -15,14 +15,11 @@ on:
 jobs:
   build-frontend-client:
     runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-frontend
     steps:
     - uses: actions/checkout@v2
-      with:
-        path: CMI/Web.Clients/web-frontend
     
-    - name: Test
-      run: ls -a
-
     - name: Setup Node 12.x
       uses: actions/setup-node@v1
       with:
@@ -37,6 +34,7 @@ jobs:
           ${{ runner.os }}-node-
     
     - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
         npm i
@@ -44,9 +42,11 @@ jobs:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
       run: npm run test-github
       
     - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
       run: npm run build-prod
       
     - name: Save Dist
