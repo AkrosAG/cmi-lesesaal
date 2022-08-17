@@ -32,7 +32,6 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
         
       - name: Restore Nugets
-        working-directory: ./vservices
         run: nuget restore ${{ env.SOLUTION }}
         
       - name: Build Services
@@ -59,4 +58,9 @@ jobs:
           path: ./coverage/**
           retention-days: 10
         
-     
+      - name: Restore Frontend from artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: ./frontendartefacts/client
+          name: frontend-client
+                
