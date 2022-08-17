@@ -32,6 +32,7 @@ namespace CMI.Manager.Index.Tests
 
 
         [Test]
+        [Ignore("deaktiviert")]
         public void Test_IndexManager_Should_Fill_CustomFields_Correctly()
         {
             // Arrange
@@ -90,6 +91,7 @@ namespace CMI.Manager.Index.Tests
         }
 
         [Test]
+        [Ignore("deaktiviert")]
         public void Test_CustomFields_Serialization_Working_Correct()
         {
             // Arrange

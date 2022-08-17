@@ -7,6 +7,7 @@ namespace CMI.Manager.Index.Properties
         public override void LoadDescriptions()
         {
             AddDescription<Settings>(x => x.LevelAggregationIdentifier, "Aggregationsebene für den Index");
+            AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
         }
     }
 }

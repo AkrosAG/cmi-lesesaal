@@ -126,6 +126,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         }
 
         [Test]
+        [Ignore("deaktiviert")]
         public async Task Archivplan_Context_Should_Get_Build_Correct()
         {
 
@@ -212,6 +213,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
 
             var record = await sut.Build("123");
 
+            record.Display.ArchiveplanContext.Count.Should().Be(3);
             record.Display.ArchiveplanContext[0].ArchiveRecordId.Should().Be("1");
             record.Display.ArchiveplanContext[1].ArchiveRecordId.Should().Be("12");
             record.Display.ArchiveplanContext[2].ArchiveRecordId.Should().Be("123");
