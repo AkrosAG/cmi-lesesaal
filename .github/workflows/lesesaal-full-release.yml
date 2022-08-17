@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+        registry-url: https://myget.org/F/cmiag-nuget/npm/
+        always-auth: true
         
     - name: Cache node modules
       uses: actions/cache@v1
@@ -36,9 +38,9 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm config set @cmi:registry https://myget.org/F/cmiag-nuget/npm/
-        npm config set //myget.org/F/cmiag-nuget/npm/:_authToken ${{ secrets.MYGET_PUSH_APIKEY }}
         npm i
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
