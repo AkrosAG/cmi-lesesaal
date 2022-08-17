@@ -13,45 +13,50 @@ on:
         default: 'develop'
 
 jobs:
-  build-frontend-client:
-    runs-on: ubuntu-latest
+  build-services:
+    runs-on: windows-latest
     env:
-      WORKING_DIR: ./CMI/Web.Clients/web-frontend
+      SOLUTION: cmi-lesesaal.sln
+    outputs:
+      version: ${{ env.GitBuildVersion }}
+      tagExists: ${{ steps.checkTag.outputs.exist }}
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup Node 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
         
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    
-    - name: Install Dependencies
-      working-directory: ${{ env.WORKING_DIR }}
-      run: |
-        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
-        npm i --loglevel verbose
-      env:
-        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
-
-    - name: Test
-      working-directory: ${{ env.WORKING_DIR }}
-      run: npm run test-github
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+        
+      - name: Restore Nugets
+        working-directory: ./vservices
+        run: nuget restore ${{ env.SOLUTION }}
+        
+      - name: Build Services
+        run: msbuild ${{ env.SOLUTION }} /t:Rebuild /p:Configuration=Release 
+        
+      - name: Publish Frontend API
+        run: msbuild "${{ github.workspace }}\CMI\Web\CMI.Web.Frontend\CMI.Web.Frontend.csproj" /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:ExcludeApp_Data=True /p:DeleteExistingFiles=True /p:publishUrl="${{ github.workspace }}\frontendartefacts"
+            
+      - name: Publish Management API
+        run: msbuild "${{ github.workspace }}\CMI\Web\CMI.Web.Management\CMI.Web.Management.csproj" /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:ExcludeApp_Data=True /p:DeleteExistingFiles=True /p:publishUrl="${{ github.workspace }}\managementartefacts"
+                     
+      - name: Test and Cover
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "https://download.jetbrains.com/resharper/dotUltimate.2021.2.1/JetBrains.dotCover.CommandLineTools.2021.2.1.zip" -OutFile "dotcover.zip"
+          Expand-Archive -Path dotcover.zip -DestinationPath .\dotcover
+          $assemblies = (ls -r Test\*\**\bin\release\*.Tests.dll | where-object { $_.FullName -notlike "*.Performance.Tests.dll" } | % { $_.FullName } | sort-object -Unique)
+          .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.14.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
       
-    - name: Build
-      working-directory: ${{ env.WORKING_DIR }}
-      run: npm run build-prod
-      
-    - name: Save Dist
-      uses: actions/upload-artifact@v2
-      with:
-        name: frontend-client
-        path: ${{ env.WORKING_DIR }}/dist/**
-        retention-days: 1
+      - name: Save Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: lesesaal-services-coverage
+          path: ./coverage/**
+          retention-days: 10
+        
+     
