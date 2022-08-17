@@ -53,5 +53,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: frontend-client
-        path: ./dist/**
+        path: ${{ env.WORKING_DIR }}/dist/**
         retention-days: 1
