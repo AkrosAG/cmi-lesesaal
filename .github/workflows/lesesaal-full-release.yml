@@ -20,6 +20,9 @@ jobs:
       with:
         path: CMI/Web.Clients/web-frontend
     
+    - name: Test
+      run: ls -a
+
     - name: Setup Node 12.x
       uses: actions/setup-node@v1
       with:
