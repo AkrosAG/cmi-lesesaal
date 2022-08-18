@@ -83,7 +83,7 @@ if (![System.IO.Directory]::Exists($completePath ))
      New-Item -ItemType Directory -Force -Path $completePath
 }
 
-$zipPath = [io.path]::combine($completePath, "viaduc.complete.$BuildNumber.zip")
+$zipPath = [io.path]::combine($completePath, "lesesaal.complete.$BuildNumber.zip")
 [io.compression.zipfile]::CreateFromDirectory($tempDir, $zipPath)
 
 # das Temp-Vereichnis löschen

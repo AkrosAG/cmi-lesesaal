@@ -1,0 +1,116 @@
+name: CMI Lesesaal CI Build (Full)
+
+on:
+  workflow_dispatch:
+    inputs:
+        comment:
+          description: 'Bemerkung'
+          required: false
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build-frontend-client:
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-frontend
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+
+  build-management-client:
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-management
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
+        npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+
+  build-services:
+    runs-on: windows-latest
+    env:
+      SOLUTION: cmi-lesesaal.sln
+      ON_BUILDSERVER: 'True'
+    outputs:
+      version: ${{ env.GitBuildVersion }}
+      tagExists: ${{ steps.checkTag.outputs.exist }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+        
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+        
+      - name: Restore Nugets
+        run: nuget restore ${{ env.SOLUTION }}
+        
+      - name: Build Services
+        run: msbuild ${{ env.SOLUTION }} /t:Rebuild /p:Configuration=Debug 
+        
+      - name: Test and Cover
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "https://download.jetbrains.com/resharper/dotUltimate.2021.2.1/JetBrains.dotCover.CommandLineTools.2021.2.1.zip" -OutFile "dotcover.zip"
+          Expand-Archive -Path dotcover.zip -DestinationPath .\dotcover
+          $assemblies = (ls -r Test\*\**\bin\debug\*.Tests.dll | where-object { $_.FullName -notlike "*.Performance.Tests.dll" } | % { $_.FullName } | sort-object -Unique)
+          .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.14.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
