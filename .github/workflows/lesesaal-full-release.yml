@@ -1,16 +1,15 @@
 name: CMI Lesesaal Release Build (Full)
 
 on:
-  pull_request:
-    branches: [ develop ]
-  push:
-    branches: [ master ]
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Gewünschter Branch (in allen Repositories)'
-        required: true
-        default: 'develop'
+        comment:
+          description: 'Bemerkung'
+          required: false
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ master ]
 
 jobs:
   build-frontend-client:
@@ -32,7 +31,7 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    
+
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |

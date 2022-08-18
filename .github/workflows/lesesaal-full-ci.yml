@@ -1,16 +1,13 @@
 name: CMI Lesesaal CI Build (Full)
 
 on:
-  pull_request:
-    branches: [ develop ]
-  push:
-    branches: [ master ]
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Gewünschter Branch (in allen Repositories)'
-        required: true
-        default: 'develop'
+        comment:
+          description: 'Bemerkung'
+          required: false
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build-frontend-client:
@@ -36,8 +33,10 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm run link
+        npm config set //www.myget.org/F/cmiag-nuget/npm/:_authToken $NPM_AUTH_TOKEN
         npm i
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
