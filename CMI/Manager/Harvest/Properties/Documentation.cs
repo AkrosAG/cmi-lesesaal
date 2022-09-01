@@ -8,6 +8,7 @@ namespace CMI.Manager.Harvest.Properties
         {
             AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
             AddDescription<Settings>(x => x.CustomScriptPath, "Vollständiger Pfad für CustomScript");
+            AddDescription<DbConnectionSetting>(x => x.ConnectionStringEF, "DB-Connectionstring zur Lesesaal DB im Entity-Framework Format");
         }
     }
 }
