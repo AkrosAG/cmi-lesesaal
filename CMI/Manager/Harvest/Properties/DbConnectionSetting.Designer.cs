@@ -13,11 +13,11 @@ namespace CMI.Manager.Harvest.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class DbConnectionSetting : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static DbConnectionSetting defaultInstance = ((DbConnectionSetting)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new DbConnectionSetting())));
         
-        public static Settings Default {
+        public static DbConnectionSetting Default {
             get {
                 return defaultInstance;
             }
@@ -25,10 +25,12 @@ namespace CMI.Manager.Harvest.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Harvest.Settings.CustomScript@@")]
-        public string CustomScriptPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("metadata=res://*/DbContext.csdl|res://*/DbContext.ssdl|res://*/DbContext.msl;prov" +
+            "ider=System.Data.SqlClient;provider connection string=&quot;@@CMI.SqlServer.DbCo" +
+            "nnectionSetting.ConnectionStringEF@@&quot;")]
+        public string ConnectionStringEF {
             get {
-                return ((string)(this["CustomScriptPath"]));
+                return ((string)(this["ConnectionStringEF"]));
             }
         }
     }

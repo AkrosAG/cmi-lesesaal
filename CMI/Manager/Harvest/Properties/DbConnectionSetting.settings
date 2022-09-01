@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMI.Manager.Harvest.Properties" GeneratedClassName="DbConnectionSetting">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionStringEF" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">metadata=res://*/DbContext.csdl|res://*/DbContext.ssdl|res://*/DbContext.msl;provider=System.Data.SqlClient;provider connection string=&amp;quot;@@CMI.SqlServer.DbConnectionSetting.ConnectionStringEF@@&amp;quot;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
