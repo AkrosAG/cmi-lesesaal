@@ -35,7 +35,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
-            var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
+            var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
 
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
