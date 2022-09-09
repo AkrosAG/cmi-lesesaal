@@ -7,8 +7,8 @@
     <ProjectGuid>{7F5AAD0F-1904-4427-9C6C-484826112D9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CMI.Manager.Viaduc</RootNamespace>
-    <AssemblyName>CMI.Manager.Viaduc</AssemblyName>
+    <RootNamespace>CMI.Manager.Lesesaal</RootNamespace>
+    <AssemblyName>CMI.Manager.Lesesaal</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
