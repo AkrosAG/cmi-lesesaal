@@ -25,9 +25,7 @@ namespace CMI.Manager.Harvest.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("metadata=res://*/DbContext.csdl|res://*/DbContext.ssdl|res://*/DbContext.msl;prov" +
-            "ider=System.Data.SqlClient;provider connection string=&quot;@@CMI.SqlServer.DbCo" +
-            "nnectionSetting.ConnectionStringEF@@&quot;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.csdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.ssdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""@@CMI.SqlServer.DbConnectionSetting.ConnectionStringEF@@""")]
         public string ConnectionStringEF {
             get {
                 return ((string)(this["ConnectionStringEF"]));

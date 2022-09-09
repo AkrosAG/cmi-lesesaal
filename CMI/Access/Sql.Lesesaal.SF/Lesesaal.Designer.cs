@@ -49,7 +49,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Initialize a new LesesaalDb object.
         /// </summary>
         public LesesaalDb() :
-                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost,11433;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
+                base(@"metadata=res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.csdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.ssdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost,11433;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
