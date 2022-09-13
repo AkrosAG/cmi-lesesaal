@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{277443B8-8FDA-411D-AFCA-54E1094252E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CMI.Host.Viaduc</RootNamespace>
-    <AssemblyName>CMI.Host.Viaduc</AssemblyName>
+    <RootNamespace>CMI.Host.Lesesaal</RootNamespace>
+    <AssemblyName>CMI.Host.Lesesaal</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
