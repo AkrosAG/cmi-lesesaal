@@ -10,23 +10,18 @@ GO
 
 
 
-USE [Lesesaal]
 ALTER TABLE [OrderItem] 
 ALTER COLUMN [Ve] nvarchar(255) NOT  NULL;
 GO
-USE [Lesesaal]
 ALTER TABLE [Favorite] 
 ALTER COLUMN [Ve] nvarchar(255);
 GO
-USE [Lesesaal]
 ALTER TABLE [PrimaerdatenAuftrag] 
 ALTER COLUMN [VeId] nvarchar(255) NOT  NULL;
 GO
-USE [Lesesaal]
 ALTER TABLE [DownloadReasonHistory] 
 ALTER COLUMN [VeId] nvarchar(255);
 GO
-USE [Lesesaal]
 ALTER TABLE [OrderExecutedWaitList] 
 ALTER COLUMN [VeId] nvarchar(255);
 

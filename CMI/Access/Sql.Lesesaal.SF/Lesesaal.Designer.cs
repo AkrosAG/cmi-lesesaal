@@ -49,7 +49,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Initialize a new LesesaalDb object.
         /// </summary>
         public LesesaalDb() :
-                base(@"metadata=res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.csdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.ssdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost,11433;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
+                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -2112,7 +2112,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Create a new SyncAction object.
         /// </summary>
         /// <param name="syncActionId">Initial value of SyncActionId.</param>
-        public static SyncAction CreateSyncAction(long syncActionId)
+        public static SyncAction CreateSyncAction(int syncActionId)
         {
             SyncAction syncAction = new SyncAction();
             syncAction.SyncActionId = syncActionId;
@@ -2128,11 +2128,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual long SyncActionId
+        public virtual int SyncActionId
         {
             get
             {
-                long value = _SyncActionId;
+                int value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -2148,9 +2148,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private long _SyncActionId;
-        partial void OnGetSyncActionId(ref long value);
-        partial void OnSyncActionIdChanging(ref long value);
+        private int _SyncActionId;
+        partial void OnGetSyncActionId(ref int value);
+        partial void OnSyncActionIdChanging(ref int value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
@@ -2378,7 +2378,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Create a new SyncActionLog object.
         /// </summary>
         /// <param name="syncActionLogId">Initial value of SyncActionLogId.</param>
-        public static SyncActionLog CreateSyncActionLog(long syncActionLogId)
+        public static SyncActionLog CreateSyncActionLog(int syncActionLogId)
         {
             SyncActionLog syncActionLog = new SyncActionLog();
             syncActionLog.SyncActionLogId = syncActionLogId;
@@ -2394,11 +2394,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual long SyncActionLogId
+        public virtual int SyncActionLogId
         {
             get
             {
-                long value = _SyncActionLogId;
+                int value = _SyncActionLogId;
                 OnGetSyncActionLogId(ref value);
                 return value;
             }
@@ -2414,9 +2414,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private long _SyncActionLogId;
-        partial void OnGetSyncActionLogId(ref long value);
-        partial void OnSyncActionLogIdChanging(ref long value);
+        private int _SyncActionLogId;
+        partial void OnGetSyncActionLogId(ref int value);
+        partial void OnSyncActionLogIdChanging(ref int value);
         partial void OnSyncActionLogIdChanged();
     
         /// <summary>
@@ -2424,11 +2424,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute()]
         [DataMemberAttribute()]
-        public virtual long? SyncActionId
+        public virtual int? SyncActionId
         {
             get
             {
-                long? value = _SyncActionId;
+                int? value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -2444,9 +2444,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private long? _SyncActionId;
-        partial void OnGetSyncActionId(ref long? value);
-        partial void OnSyncActionIdChanging(ref long? value);
+        private int? _SyncActionId;
+        partial void OnGetSyncActionId(ref int? value);
+        partial void OnSyncActionIdChanging(ref int? value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
