@@ -26,15 +26,14 @@ namespace CMI.Manager.DataFeed
             this.dbMutationQueueAccess = dbMutationQueueAccess;
         }
 
-        public Task Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             Log.Information("Starting to check if re-queuing records can be found.");
 
             var maxRetries = Settings.Default.MaxNumberOfRetries;
-            var recordsAffected = dbMutationQueueAccess.ResetFailedSyncOperations(maxRetries);
+            var recordsAffected = await dbMutationQueueAccess.ResetFailedSyncOperations(maxRetries);
 
             Log.Information("Reset {recordsAffected} records to initial status.", recordsAffected);
-            return Task.CompletedTask;
         }
     }
 }
