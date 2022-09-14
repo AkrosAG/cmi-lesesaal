@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Reflection;
+using System.Runtime.Caching;
 using Autofac;
 
 using CMI.Access.Harvest;
@@ -23,6 +24,7 @@ namespace CMI.Manager.Harvest.Infrastructure
         {
             var builder = new ContainerBuilder();
 
+
             // register the different consumers and classes
             builder.RegisterType<LanguageSettings>().AsSelf();
             builder.RegisterType<ApplicationSettings>().AsSelf();
@@ -30,6 +32,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
+            builder.RegisterInstance<MemoryCache>(MemoryCache.Default);
             
             builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
             builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();

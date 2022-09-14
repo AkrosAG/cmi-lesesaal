@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Reflection;
+using System.Runtime.Caching;
 using Autofac;
 using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
@@ -24,6 +25,7 @@ namespace CMI.Manager.DataFeed.Infrastructure
             builder.RegisterType<CachedLookupData>().AsSelf();
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
+            builder.RegisterInstance<MemoryCache>(MemoryCache.Default);
 
             builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
             builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
