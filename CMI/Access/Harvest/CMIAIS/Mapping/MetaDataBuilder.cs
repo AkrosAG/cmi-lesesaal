@@ -38,7 +38,7 @@ public class MetaDataBuilder
             IsRoot = ancestorsCount == 0,
             Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors!.Max(a => a.Depth) + 1 : 0),
             ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
-            Path = cmiRecord.Tektonikpfad,
+            Path = cmiRecord.Ancestors != null ? string.Join("", cmiRecord.Ancestors.Select(a => a.OBJ_GUID)) + cmiRecord.OBJ_GUID : null,
             Sequence = await GetSequence(cmiRecord)
         };
 

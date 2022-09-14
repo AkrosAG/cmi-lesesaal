@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Caching;
 using System.Threading.Tasks;
 using CMI.Access.Sql.Lesesaal.EF;
 
@@ -15,12 +16,14 @@ namespace CMI.Access.Harvest.CMIAIS
     public class CMIAISDataProvider : IAISDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit>
     {
         private readonly LesesaalDb dbContext;
+        private readonly MemoryCache cache;
         private readonly HttpClient cdwsRequestClient;
         private readonly string indexName;
 
-        public CMIAISDataProvider(LesesaalDb dbContext)
+        public CMIAISDataProvider(LesesaalDb dbContext, MemoryCache cache)
         {
             this.dbContext = dbContext;
+            this.cache = cache;
             var uri = new Uri(Properties.Settings.Default.CdwsEndpoint);
             cdwsRequestClient = new HttpClient();
             cdwsRequestClient.BaseAddress = uri;
@@ -81,6 +84,13 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
         {
+            var cachedItem = cache.Get(id);
+            if (cachedItem != null)
+            {
+                return cachedItem as Verzeichnungseinheit;
+            }
+
+            // No cache, then fetch it
             var url = $"{indexName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH";
             var response = await cdwsRequestClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -91,14 +101,18 @@ namespace CMI.Access.Harvest.CMIAIS
                 var searchResponse = XMLConvert.FromXML<SearchDetailResponseType>(stringContent);
                 if (searchResponse.Hit.Any())
                 {
-                    return XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                    var item = XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                    cache.Add(id, item, new CacheItemPolicy() {SlidingExpiration = TimeSpan.FromSeconds(60)});
+                    return item;
                 }
+
+                throw new InvalidOperationException($"Record with id {id} does not exist in CDWS. Aborting sync of record in method {nameof(GetAisSpecificRecord)}.");
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}", id);
+                throw;
             }
-            return null;
         }
 
         public Task<string> GetDbVersion()
@@ -207,7 +221,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public Task<int> ResetFailedSyncOperations(int maxRetries)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(0);
         }
 
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)

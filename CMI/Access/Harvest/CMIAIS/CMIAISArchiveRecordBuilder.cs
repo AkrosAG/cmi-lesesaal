@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CMI.Access.Harvest.CMIAIS.Mapping;
@@ -23,7 +25,12 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task<ArchiveRecord> Build(string archiveRecordId)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             var cmiRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecordId);
+            Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to fetch detail record from CDWS with id {archiveRecordId}");
+            stopwatch.Restart();
+
             var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, languageSettings, aisSpecificRecordAccess);
             
             var metaDataBuilder = await archiveRecordBuilder
@@ -34,9 +41,16 @@ namespace CMI.Access.Harvest.CMIAIS
             AddDetailData(metaDataBuilder);
             
             var record = archiveRecordBuilder.Build();
+            Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to add metadata to the record with id {archiveRecordId}");
+            stopwatch.Restart();
 
-            await GetDisplaySection(cmiRecord, record);  
+            record.Display = await GetDisplaySection(cmiRecord, record);  
+            Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to get the display section of the record with id {archiveRecordId}");
+            stopwatch.Restart();
+
             await processHandler.PostProcessArchiveRecord(record);
+            Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to post process the record with id {archiveRecordId}");
+            stopwatch.Stop();
 
             return record;
         }
@@ -143,6 +157,12 @@ namespace CMI.Access.Harvest.CMIAIS
 
             foreach(var ancestor in cmiRecord.Ancestors.OrderByDescending(b => b.Depth))
             {
+                // Mandant is never published, so we skip it
+                if (ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    continue;
+                }
+
                 var ancestorRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(ancestor.OBJ_GUID);
                 ArchiveplanContextItem contextItem;
 
