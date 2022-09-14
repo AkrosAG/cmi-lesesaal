@@ -34,7 +34,8 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public Task<int> ResetFailedSyncOperations(int maxRetries)
         {
-            throw new NotImplementedException();
+            // Nothing to do with CMI
+            return Task.FromResult(0);
         }
     }
 }
