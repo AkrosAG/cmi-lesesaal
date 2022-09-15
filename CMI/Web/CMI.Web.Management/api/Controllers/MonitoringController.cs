@@ -74,10 +74,12 @@ namespace CMI.Web.Management.api.Controllers
         {
             var tasks = new List<Task<MonitoringResult>>();
 
+            var excludedService  = WebHelper.GetStringSetting("monitoringExcludedService", "").Split(',');
+
             try
             {
                 // Send heartbeat request async to every service
-                foreach (var serviceName in Enum.GetNames(typeof(MonitoredServices)).Where(n => n != MonitoredServices.NotMonitored.ToString()))
+                foreach (var serviceName in Enum.GetNames(typeof(MonitoredServices)).Where(n => n != MonitoredServices.NotMonitored.ToString() && !excludedService.Contains(n)))
                 {
                     var t = GetHeartbeatFromService(bus, serviceName);
                     tasks.Add(t);
