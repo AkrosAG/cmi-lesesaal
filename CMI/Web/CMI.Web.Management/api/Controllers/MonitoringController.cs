@@ -11,7 +11,6 @@ using System.Web.Http;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
-using CMI.Contract.Monitoring.Properties;
 using CMI.Utilities.Bus.Configuration;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Common.Helpers;
@@ -74,12 +73,11 @@ namespace CMI.Web.Management.api.Controllers
         private async Task<MonitoringResult[]> GetMonitoringResultForServiceStatus()
         {
             var tasks = new List<Task<MonitoringResult>>();
-            var ignored = MonitoringSettings.Default.ExcludedService.Split(','); 
-           
+
             try
             {
                 // Send heartbeat request async to every service
-                foreach (var serviceName in Enum.GetNames(typeof(MonitoredServices)).Where(n => n != MonitoredServices.NotMonitored.ToString() && !ignored.Contains(n)))
+                foreach (var serviceName in Enum.GetNames(typeof(MonitoredServices)).Where(n => n != MonitoredServices.NotMonitored.ToString()))
                 {
                     var t = GetHeartbeatFromService(bus, serviceName);
                     tasks.Add(t);
