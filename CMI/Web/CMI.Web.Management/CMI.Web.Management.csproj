@@ -374,6 +374,9 @@
     <Content Include="App_Data_Template\app.mailtemplate.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data_Template\app.monitoring.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="App_Data_Template\web.kentor.local.config">
       <SubType>Designer</SubType>
     </None>
