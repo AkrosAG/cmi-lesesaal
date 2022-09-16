@@ -71,12 +71,14 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                     new ParentFieldType
                     {
                         Depth = 0,
-                        OBJ_GUID = "12"
+                        OBJ_GUID = "12",
+                        TypeKey = ""
                     },
                     new ParentFieldType
                     {
                         Depth = 1,
-                        OBJ_GUID = "1"
+                        OBJ_GUID = "1", 
+                        TypeKey = ""
                     }
                 }),
                 Tektonikpfad = "1 / 12 / 123"
@@ -121,7 +123,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             nodeInfo.IsRoot.Should().BeFalse();
             nodeInfo.ParentArchiveRecordId.Should().Be("12");
             nodeInfo.Level.Should().Be(2);
-            nodeInfo.Path.Should().Be(cmiRecord.Tektonikpfad);
+            nodeInfo.Path.Should().Be("112123");
             nodeInfo.Sequence.Should().Be(2);
         }
 
