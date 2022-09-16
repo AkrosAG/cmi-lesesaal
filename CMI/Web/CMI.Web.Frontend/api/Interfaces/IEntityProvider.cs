@@ -10,6 +10,7 @@ namespace CMI.Web.Frontend.api.Interfaces
 {
     public interface IEntityProvider
     {
+        string[] GetArchivplanRootNodes(UserAccess access, string role, string language);
         string GetArchivplanHtml(string id, UserAccess access, string role, string language);
         string GetArchivplanChildrenHtml(string id, UserAccess access, string role, string language);
         Entity<T> GetEntity<T>(string id, UserAccess access, Paging paging = null) where T : TreeRecord, new();

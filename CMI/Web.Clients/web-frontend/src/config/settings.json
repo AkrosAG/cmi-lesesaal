@@ -176,14 +176,7 @@
 	"authentication": {
 	},
 	"archivplan": {
-		"pagingSize": 100,
-		"entryNodes": [
-			{
-				"archiveRecordId": 1,
-				"title": "CH-BAR#Unterlagen*  Gesamtbestand des schweizerischen Bundesarchivs (1798-)",
-				"level": "archiv"
-			}
-		]
+		"pagingSize": 100
 	},
 	"search": {
 		"defaultSearchFieldLines": 3,

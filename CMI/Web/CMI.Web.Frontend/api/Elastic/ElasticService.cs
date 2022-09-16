@@ -47,6 +47,29 @@ namespace CMI.Web.Frontend.api.Elastic
 
         protected string BaseUrl => elasticSettings.BaseUrl;
 
+        public ElasticQueryResult<T> QueryForRootNodes<T>(UserAccess access) where T : TreeRecord
+        {
+            var query = new ElasticQuery
+            {
+                SearchParameters = new SearchParameters
+                {
+                    Options = new SearchOptions
+                    {
+                        EnableExplanations = false,
+                        EnableHighlighting = false,
+                        EnableAggregations = false
+                    }
+                },
+                Query = new MatchQuery
+                {
+                    Field = elasticSettings.TreeLevelField,
+                    Query = "2"
+                }
+            };
+
+            return RunQuery<T>(query, access);
+        }
+
         public ElasticQueryResult<T> QueryForId<T>(string id, UserAccess access) where T : TreeRecord
         {
             var query = new ElasticQuery

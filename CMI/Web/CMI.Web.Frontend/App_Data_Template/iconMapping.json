@@ -1,0 +1,14 @@
+{
+  "dossie2": "typeicon glyphicon glyphicon-folder-open",
+  "dossier": "typeicon glyphicon glyphicon-article",
+  "subdossier": "typeicon glyphicon glyphicon-folder-minus",
+  "dokument": "typeicon glyphicon glyphicon-article",
+  "teilserie": "typeicon glyphicon glyphicon-sort",
+  "serie": "typeicon glyphicon glyphicon-sort",
+  "teilbestand": "typeicon glyphicon glyphicon-cube-empty",
+  "hauptabteilung": "typeicon glyphicon glyphicon-show-big-thumbnails",
+  "beständeserie": "typeicon glyphicon glyphicon-show-big-thumbnails",
+  "akzession": "typeicon glyphicon glyphicon-show-big-thumbnails",
+  "archiv": "typeicon glyphicon glyphicon-show-big-thumbnails",
+  "bestand": "typeicon glyphicon glyphicon-show-big-thumbnails"
+}
