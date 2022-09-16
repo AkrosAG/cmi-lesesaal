@@ -36,9 +36,12 @@ public class MetaDataBuilder
             ChildCount = childrenCount,
             IsLeaf = childrenCount == 0,
             IsRoot = ancestorsCount == 0,
-            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors!.Max(a => a.Depth) + 1 : 0),
+            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors!.Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+                .Max(a => a.Depth) + 1 : 0),
             ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
-            Path = cmiRecord.Ancestors != null ? string.Join("", cmiRecord.Ancestors.Where(a => a.Depth > 0).OrderByDescending(a => a.Depth).Select(a => a.OBJ_GUID)) + cmiRecord.OBJ_GUID : null,
+            Path = cmiRecord.Ancestors != null ? string.Join("", cmiRecord.Ancestors.
+                Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+                .OrderByDescending(a => a.Depth).Select(a => a.OBJ_GUID)) + cmiRecord.OBJ_GUID : null,
             Sequence = await GetSequence(cmiRecord)
         };
 

@@ -110,7 +110,7 @@ namespace CMI.Access.Harvest.CMIAIS
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}", id);
+                Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}. Fehler ist {Message}", id, ex.Message);
                 throw;
             }
         }
