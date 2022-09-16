@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientContext, ConfigService, Entity, TranslationService } from '@cmi/viaduc-web-core';
+import { ClientContext, Entity, TranslationService } from '@cmi/viaduc-web-core';
 import { EntityService, SeoService, UrlService } from '../../modules/client/services';
 
 @Component({
@@ -11,7 +11,6 @@ import { EntityService, SeoService, UrlService } from '../../modules/client/serv
 export class ArchivplanPageComponent implements OnInit {
 
 	public crumbs: any[] = [];
-	public nodes: Entity[];
 	public nodesToOpen: string[] = [];
 	public loading: boolean = true;
 	public init: boolean = true;
@@ -26,7 +25,6 @@ export class ArchivplanPageComponent implements OnInit {
 
 	constructor(private _txt: TranslationService,
 		private _url: UrlService,
-		private _cfg: ConfigService,
 		private _route: ActivatedRoute,
 		private _entityService: EntityService,
 		private _seoService: SeoService,
@@ -37,7 +35,6 @@ export class ArchivplanPageComponent implements OnInit {
 	private async _openNode(id: string) {
 		this.loading = true;
 		this.param = id;
-		this.nodes = this._cfg.getSetting('archivplan.entryNodes');
 		if (id) {
 			try {
 				let entity = await this._entityService.get(id);

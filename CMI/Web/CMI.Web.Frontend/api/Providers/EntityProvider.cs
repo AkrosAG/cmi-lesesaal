@@ -33,6 +33,12 @@ namespace CMI.Web.Frontend.api.Providers
             this.modelData = modelData;
         }
 
+        public string[] GetArchivplanRootNodes(UserAccess access, string role, string language)
+        {
+            var entities = elasticService.QueryForRootNodes<TreeRecord>(access);
+            return entities.Entries.Select(e => e.Data.ArchiveRecordId).ToArray();
+        }
+
         public string GetArchivplanHtml(string id, UserAccess access, string role, string language)
         {
             var entities = elasticService.QueryForId<TreeRecord>(id, access);
@@ -83,7 +89,7 @@ namespace CMI.Web.Frontend.api.Providers
                 ChildrenPaging = paging
             };
 
-            var found = elasticService.QueryForIds<T>(ids, access, new Paging {Take = ElasticService.ELASTIC_SEARCH_HIT_LIMIT, Skip = 0});
+            var found = elasticService.QueryForIds<T>(ids, access, new Paging { Take = ElasticService.ELASTIC_SEARCH_HIT_LIMIT, Skip = 0 });
             var result = CreateEntitiesResult(access, null, found, metaOptions);
 
             return result;
@@ -96,7 +102,7 @@ namespace CMI.Web.Frontend.api.Providers
             stopwatch.Start();
             if (search.Paging == null)
             {
-                search.Paging = new Paging {Skip = 0, Take = 10};
+                search.Paging = new Paging { Skip = 0, Take = 10 };
             }
 
 
@@ -206,37 +212,37 @@ namespace CMI.Web.Frontend.api.Providers
             var containsAllField = false;
 
             foreach (var searchGroup in searchParameters.Query.SearchGroups.IfNullReturnEmpty())
-            foreach (var searchField in searchGroup.SearchFields.IfNullReturnEmpty())
-            {
-                if (searchField.Key == "allData")
+                foreach (var searchField in searchGroup.SearchFields.IfNullReturnEmpty())
                 {
-                    containsAllField = true;
-                }
-
-                if (!string.IsNullOrEmpty(searchField.Value))
-                {
-                    var withoutWildcards = searchField.Value.Replace("*", string.Empty).Replace("?", string.Empty);
-
                     if (searchField.Key == "allData")
                     {
-                        if (withoutWildcards.Length < 2)
-                        {
-                            return translator.GetTranslation(language, "search.termToShortForAll",
-                                "Bitte geben Sie für eine Suche nach allem mindestens 2 Zeichen ein.");
-                        }
-                    }
-                    else
-                    {
-                        if (withoutWildcards.Length < 1)
-                        {
-                            return translator.GetTranslation(language, "search.termToShort",
-                                "Bitte geben Sie für eine Suche mindestens 1 Zeichen ein.");
-                        }
+                        containsAllField = true;
                     }
 
-                    foundQueryTerm = true;
+                    if (!string.IsNullOrEmpty(searchField.Value))
+                    {
+                        var withoutWildcards = searchField.Value.Replace("*", string.Empty).Replace("?", string.Empty);
+
+                        if (searchField.Key == "allData")
+                        {
+                            if (withoutWildcards.Length < 2)
+                            {
+                                return translator.GetTranslation(language, "search.termToShortForAll",
+                                    "Bitte geben Sie für eine Suche nach allem mindestens 2 Zeichen ein.");
+                            }
+                        }
+                        else
+                        {
+                            if (withoutWildcards.Length < 1)
+                            {
+                                return translator.GetTranslation(language, "search.termToShort",
+                                    "Bitte geben Sie für eine Suche mindestens 1 Zeichen ein.");
+                            }
+                        }
+
+                        foundQueryTerm = true;
+                    }
                 }
-            }
 
             if (!foundQueryTerm)
             {
@@ -309,28 +315,13 @@ namespace CMI.Web.Frontend.api.Providers
 
         private string GetIconName(string type)
         {
-            switch (type.ToLower())
+            if (modelData.IconMapping.ContainsKey(type.ToLower()))
             {
-                case "dossier":
-                    return "typeicon glyphicon glyphicon-folder-open";
-                case "subdossier":
-                    return "typeicon glyphicon glyphicon-folder-minus";
-                case "dokument":
-                    return "typeicon glyphicon glyphicon-article";
-                case "teilserie":
-                case "serie":
-                    return "typeicon glyphicon glyphicon-sort";
-                case "teilbestand":
-                    return "typeicon glyphicon glyphicon-cube-empty";
-                case "hauptabteilung":
-                case "beständeserie":
-                case "akzession":
-                case "archiv":
-                case "bestand":
-                    return "typeicon glyphicon glyphicon-show-big-thumbnails";
-                default:
-                    return "typeicon";
+                return modelData.IconMapping[type.ToLower()];
             }
+
+            // Default
+            return "typeicon";
         }
 
 

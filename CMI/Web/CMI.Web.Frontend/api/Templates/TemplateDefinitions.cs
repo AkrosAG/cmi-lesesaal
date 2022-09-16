@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CMI.Utilities.Common.Helpers;
 using CMI.Web.Common.Helpers;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace CMI.Web.Frontend.api.Templates
@@ -12,9 +13,11 @@ namespace CMI.Web.Frontend.api.Templates
     public static class TemplateDefinitions
     {
         private const string TemplatesDefinitionFilename = "templates.json";
+        private const string IconDefinitionFilename = "iconMapping.json";
         private static List<Template> templates;
 
         private static Dictionary<string, Template> templatesById;
+        private static Dictionary<string, string> iconMappings;
 
         private static readonly object lockObject = new object();
 
@@ -30,6 +33,15 @@ namespace CMI.Web.Frontend.api.Templates
             }
         }
 
+        public static Dictionary<string, string> IconMappings
+        {
+            get
+            {
+                AssertInited();
+                return iconMappings;
+            }
+        }
+
         public static Dictionary<string, Template> TemplatesById
         {
             get
@@ -41,13 +53,14 @@ namespace CMI.Web.Frontend.api.Templates
 
         private static void AssertInited()
         {
-            if (templatesById == null || !WebHelper.EnableModelDataCaching)
+            if (templatesById == null || iconMappings == null || !WebHelper.EnableModelDataCaching)
             {
                 lock (lockObject)
                 {
                     if (templates == null)
                     {
                         InitTemplates();
+                        InitIconMapping();
                     }
                 }
             }
@@ -79,6 +92,25 @@ namespace CMI.Web.Frontend.api.Templates
             catch (Exception ex)
             {
                 Log.Error(ex, "TemplateDefinitions.InitTemplates: failed to init templates");
+            }
+        }
+
+        private static void InitIconMapping()
+        {
+            iconMappings = new Dictionary<string, string>();
+            try
+            {
+                var path = StringHelper.AddToString(DirectoryHelper.Instance.ConfigDirectory, @"\", IconDefinitionFilename);
+                if (!File.Exists(path))
+                {
+                    path = StringHelper.AddToString(DirectoryHelper.Instance.ClientConfigDirectory, @"\", IconDefinitionFilename);
+                }
+
+                iconMappings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "TemplateDefinitions.InitIconMapping: failed to init icon mappings");
             }
         }
 

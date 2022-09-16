@@ -79,6 +79,16 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
+        public string[] GetArchivplanRootNodes()
+        {
+            var role = GetUserPublicClientRole();
+            var language = WebHelper.GetClientLanguage(Request);
+            var access = GetUserAccess(language);
+
+            return entityProvider.GetArchivplanRootNodes(access, role, language);
+        }
+
+        [HttpGet]
         public string GetArchivplanChildrenHtml(string id)
         {
             var role = GetUserPublicClientRole();
