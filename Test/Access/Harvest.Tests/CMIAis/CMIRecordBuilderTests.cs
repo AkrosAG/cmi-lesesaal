@@ -50,18 +50,18 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var cmiRecord = new Verzeichnungseinheit
             {
                 DisplayName = "Me",
-                OBJ_GUID = "123",
+                OBJ_GUID = "402",
                 Children = new List<Child>(new[]
                 {
                     new Child
                     {
-                        OBJ_GUID = "1231",
+                        OBJ_GUID = "501",
                         DisplayName = "Child 1",
                         Sortierung = "1"
                     },
                     new Child
                     {
-                        OBJ_GUID = "1232",
+                        OBJ_GUID = "502",
                         DisplayName = "Child 2",
                         Sortierung = "2"
                     }
@@ -71,60 +71,66 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                     new ParentFieldType
                     {
                         Depth = 0,
-                        OBJ_GUID = "12",
+                        OBJ_GUID = "300",
                         TypeKey = ""
                     },
                     new ParentFieldType
                     {
                         Depth = 1,
-                        OBJ_GUID = "1", 
+                        OBJ_GUID = "200", 
                         TypeKey = ""
+                    },
+                    new ParentFieldType
+                    {
+                        Depth = 2,
+                        OBJ_GUID = "100",
+                        TypeKey = "mandant"
                     }
                 }),
-                Tektonikpfad = "1 / 12 / 123"
+                Tektonikpfad = "100 / 200 / 300 / 402"
             };
 
             var parent = new Verzeichnungseinheit
             {
-                OBJ_GUID = "12",
+                OBJ_GUID = "300",
                 Children = new List<Child>(new[]
                 {
                     new Child
                     {
-                        OBJ_GUID = "122",
+                        OBJ_GUID = "400",
                         DisplayName = "brother",
                         Sortierung = "1"
                     },
                     new Child
                     {
-                        OBJ_GUID = "123",
+                        OBJ_GUID = "401",
                         DisplayName = "Me",
                         Sortierung = "2"
                     },
                     new Child
                     {
-                        OBJ_GUID = "124",
+                        OBJ_GUID = "402",
                         DisplayName = "sister",
                         Sortierung = "3"
                     }
                 })
             };
 
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("402").Result).Returns(cmiRecord);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("300").Result).Returns(parent);
 
             var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 
-            var record = await sut.Build("123");
+            var record = await sut.Build("402");
 
             var nodeInfo = record.Metadata.NodeInfo;
             nodeInfo.ChildCount.Should().Be(cmiRecord.Children.Count);
             nodeInfo.IsLeaf.Should().BeFalse();
             nodeInfo.IsRoot.Should().BeFalse();
-            nodeInfo.ParentArchiveRecordId.Should().Be("12");
+            nodeInfo.ParentArchiveRecordId.Should().Be("300");
             nodeInfo.Level.Should().Be(2);
-            nodeInfo.Path.Should().Be("112123");
-            nodeInfo.Sequence.Should().Be(2);
+            nodeInfo.Path.Should().Be("200300402");
+            nodeInfo.Sequence.Should().Be(3);
         }
 
         [Test]
