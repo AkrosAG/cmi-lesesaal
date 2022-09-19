@@ -1,5 +1,4 @@
 import {
-	AfterViewInit,
 	Component,
 	EventEmitter,
 	Input,
@@ -8,7 +7,7 @@ import {
 	ViewEncapsulation
 } from '@angular/core';
 import {EntityService} from '../../services';
-import {ConfigService, TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/viaduc-web-core';
 import {Router} from '@angular/router';
 import {UrlService} from '../../services/url.service';
 
@@ -18,7 +17,7 @@ import {UrlService} from '../../services/url.service';
 	styleUrls: ['./treeNode.component.less'],
 	encapsulation: ViewEncapsulation.None
 })
-export class TreeNodeComponent implements OnInit, AfterViewInit {
+export class TreeNodeComponent implements OnInit {
 	@Input()
 	public nodesToLoad: string[];
 	@Output()
@@ -31,7 +30,6 @@ export class TreeNodeComponent implements OnInit, AfterViewInit {
 	}
 
 	constructor(private _entityService: EntityService,
-				private _cfg: ConfigService,
 				private _router: Router,
 				private _url: UrlService,
 				private _txt: TranslationService) {
@@ -96,16 +94,16 @@ export class TreeNodeComponent implements OnInit, AfterViewInit {
 
 	public ngOnInit(): void {
 		if (!(this.nodesToLoad && this.nodesToLoad.length > 0)) {
-			this.nodesToLoad = this._cfg.getSetting('archivplan.entryNodes').map(e => e.archiveRecordId);
+			this._entityService.getArchivplanRootNodes().then(r => {
+				this.nodesToLoad = r;
+				// Even though there could be more than one root node, we load only the first one returned
+				this.getRootNode(this.nodesToLoad[0]).then(() => {
+					if (this.nodesToLoad.length > 0) {
+						setTimeout(() => this.getNodesAsync(), 1);
+					}
+				});
+			});
 		}
-	}
-
-	public ngAfterViewInit(): void {
-		this.getRootNode(this.nodesToLoad[0]).then(() => {
-			if (this.nodesToLoad.length > 0) {
-				setTimeout(() => this.getNodesAsync(), 1);
-			}
-		});
 	}
 
 	public async innerHtmlClicked($event: any) {

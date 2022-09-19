@@ -23,6 +23,7 @@ namespace CMI.Web.Frontend.api.Entities
         {
             modelData = null;
             typesByNameCamelCased = new Dictionary<string, ModelType>();
+            iconMapping = new Dictionary<string, string>();
         }
 
         public ModelType GetTypeByName(string typeName)
@@ -45,7 +46,7 @@ namespace CMI.Web.Frontend.api.Entities
                 else if (!string.IsNullOrEmpty(entity.ExternalDisplayTemplateName))
                 {
                     var formId = entity.ExternalDisplayTemplateName.Split(':')[0];
-                    var templatetypeName = string.Format(TemplateBaseSubNamePattern, formId);
+                    var templatetypeName = string.Format(TemplateBaseSubNamePattern, formId.ToLowerCamelCase());
                     type = GetTypeByName(templatetypeName) ?? type;
                 }
             }
@@ -87,6 +88,17 @@ namespace CMI.Web.Frontend.api.Entities
             {
                 AssertInited();
                 return typesByNameCamelCased;
+            }
+        }
+
+        private Dictionary<string, string> iconMapping;
+
+        public IDictionary<string, string> IconMapping
+        {
+            get
+            {
+                AssertInited();
+                return iconMapping;
             }
         }
 
@@ -137,6 +149,12 @@ namespace CMI.Web.Frontend.api.Entities
             {
                 var t = ModelType.CreateFrom(template);
                 typesByNameCamelCased[t.Name.ToLowerCamelCase()] = t;
+            }
+
+            // icons
+            foreach (var mapping in TemplateDefinitions.IconMappings)
+            {
+                iconMapping[mapping.Key] = mapping.Value;
             }
 
             // setup Super

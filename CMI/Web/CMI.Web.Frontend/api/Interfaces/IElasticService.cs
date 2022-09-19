@@ -8,6 +8,7 @@ namespace CMI.Web.Frontend.api.Interfaces
 {
     public interface IElasticService
     {
+        ElasticQueryResult<T> QueryForRootNodes<T>(UserAccess access) where T : TreeRecord;
         ElasticQueryResult<T> QueryForId<T>(string id, UserAccess access) where T : TreeRecord;
         List<TreeRecord> QueryForParentId(string id, UserAccess access);
         ElasticQueryResult<T> QueryForIds<T>(IList<string> ids, UserAccess access, Paging p = null) where T : TreeRecord;
