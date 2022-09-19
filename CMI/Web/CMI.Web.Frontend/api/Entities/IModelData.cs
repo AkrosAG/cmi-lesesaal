@@ -8,6 +8,7 @@ namespace CMI.Web.Frontend.api.Entities
     {
         JObject Data { get; }
         IDictionary<string, ModelType> TypesByName { get; }
+        IDictionary<string, string> IconMapping { get; }
         void Reset();
 
         ModelType GetTypeByName(string typeName);

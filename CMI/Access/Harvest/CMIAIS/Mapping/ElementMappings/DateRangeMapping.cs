@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CMI.Contract.Common;
+using System;
 using System.Collections.Generic;
-using CMI.Contract.Common;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings;
 
-public class DateRangeMapping: BaseMapping
+public class DateRangeMapping : BaseMapping
 {
     public override DataElement CreateElement(string name, object value)
     {
@@ -34,12 +34,25 @@ public class DateRangeMapping: BaseMapping
                 To = datetime.End != null ? datetime.End.Value.ToString("+yyyyMMdd") : "+0",
                 FromApproxIndicator = false,
                 ToApproxIndicator = false
-            }
+            },
+            TextValues = GetReadableTextFromDate(datetime)
         };
 
         element.ElementValue.Add(elementElement);
         return element;
     }
 
-
+    private List<DataElementElementValueTextValue> GetReadableTextFromDate(DateTimeFieldType datetime)
+    {
+        var retVal = new List<DataElementElementValueTextValue>
+        {
+            new()
+            {
+                Value = $"{datetime.Text}",
+                IsDefaultLang = true,
+                Lang = "de-CH"
+            }
+        };
+        return retVal;
+    }
 }

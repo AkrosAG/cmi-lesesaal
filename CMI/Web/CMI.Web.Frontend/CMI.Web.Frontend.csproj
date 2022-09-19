@@ -539,6 +539,7 @@
     <Content Include="App_Data_Template\app.mailtemplate.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data_Template\iconMapping.json" />
     <None Include="App_Data_Template\web.kentor.local.config" />
     <None Include="Properties\PublishProfiles\Publish local.pubxml">
       <SubType>Designer</SubType>

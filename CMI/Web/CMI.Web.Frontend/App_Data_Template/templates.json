@@ -1,7 +1,107 @@
 {
   "FormTemplates": [
     {
-      "FormId": "Abteilung",
+      "FormId": "dossier_Extern",
+      "Sections": [
+        {
+          "SectionLabels": {
+            "de": "Details",
+            "en": "Details",
+            "fr": "Détails",
+            "it": "Dettagli"
+          },
+          "Fields": [
+            {
+              "DbFieldName": "ReferenceCode",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Signatur",
+                "en": "Reference code",
+                "fr": "Cote",
+                "it": "Segnatura"
+              }
+            },
+            {
+              "DbFieldName": "Title",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Titel",
+                "en": "Title",
+                "fr": "Titre",
+                "it": "Titolo"
+              }
+            },
+            {
+              "DbFieldName": "CreationPeriod",
+              "DbType": "Datumsbereich",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Entstehungszeitraum",
+                "en": "Creation period",
+                "fr": "Date de création",
+                "it": "Periodo di costituzione"
+              }
+            },
+            {
+              "DbFieldName": "CustomFields.BemerkungZurVe",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Zusätzliche Informationen",
+                "en": "Additional information",
+                "fr": "Informations complémentaires",
+                "it": "Informazioni supplementari"
+              }
+            },
+            {
+              "DbFieldName": "WithinInfo",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Darin",
+                "en": "Contains",
+                "fr": "Contenu",
+                "it": "Contiene"
+              }
+            },
+            {
+              "DbFieldName": "CustomFields.Publikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Publikation",
+                "en": "Publication",
+                "fr": "Publikation fr",
+                "it": "Publikation it"
+              }
+            },
+            {
+              "DbFieldName": "CustomFields.Benutzbarkeit",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Benutzbarkeit",
+                "en": "Benutzbarkeit en",
+                "fr": "Benutzbarkeit fr",
+                "it": "Benutzbarkeit it"
+              }
+            }
+          ],
+          "SubSections": []
+        }
+      ]
+    },
+    {
+      "FormId": "Abteilung_Extern",
       "Sections": [
         {
           "SectionLabels": {
@@ -65,7 +165,7 @@
       ]
     },
     {
-      "FormId": "Archiv",
+      "FormId": "Archiv_Extern",
       "Sections": [
         {
           "SectionLabels": {
@@ -492,7 +592,7 @@
       ]
     },
     {
-      "FormId": "Bestand",
+      "FormId": "Bestand_Extern",
       "Sections": [
         {
           "SectionLabels": {
@@ -979,7 +1079,7 @@
       ]
     },
     {
-      "FormId": "Dossier",
+      "FormId": "Dossier_Extern_old",
       "Sections": [
         {
           "SectionLabels": {
@@ -1466,7 +1566,7 @@
       ]
     },
     {
-      "FormId": "Einzelstueck",
+      "FormId": "Einzelstueck_Extern",
       "Sections": [
         {
           "SectionLabels": {
@@ -1943,7 +2043,7 @@
       ]
     },
     {
-      "FormId": "Serie",
+      "FormId": "Serie_Extern",
       "Sections": [
         {
           "SectionLabels": {
