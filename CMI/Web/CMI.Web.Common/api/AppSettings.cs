@@ -177,6 +177,23 @@ namespace CMI.Web.Common.api
                 }
             }
 
+            var iconMapping = JsonHelper.FindTokenValue<JObject>(newSettings, "iconMapping");
+            if (iconMapping == null)
+            {
+                iconMapping = new JObject();
+                newSettings.Add("iconMapping", iconMapping);
+            }
+
+            path = StringHelper.AddToString(configDirectory, @"\", "iconMapping.json");
+            if (File.Exists(path))
+            {
+                var customConfiguration = JsonHelper.GetJsonFromFile(path);
+                if (customConfiguration != null)
+                {
+                    SettingsHelper.UpdateSettingsWith(iconMapping, customConfiguration, allowInternal);
+                }
+            }
+
             return newSettings;
         }
 
