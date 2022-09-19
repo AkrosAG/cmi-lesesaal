@@ -1,14 +1,51 @@
 {
-  "dossie2": "typeicon glyphicon glyphicon-folder-open",
-  "dossier": "typeicon glyphicon glyphicon-article",
-  "subdossier": "typeicon glyphicon glyphicon-folder-minus",
-  "dokument": "typeicon glyphicon glyphicon-article",
-  "teilserie": "typeicon glyphicon glyphicon-sort",
-  "serie": "typeicon glyphicon glyphicon-sort",
-  "teilbestand": "typeicon glyphicon glyphicon-cube-empty",
-  "hauptabteilung": "typeicon glyphicon glyphicon-show-big-thumbnails",
-  "beständeserie": "typeicon glyphicon glyphicon-show-big-thumbnails",
-  "akzession": "typeicon glyphicon glyphicon-show-big-thumbnails",
-  "archiv": "typeicon glyphicon glyphicon-show-big-thumbnails",
-  "bestand": "typeicon glyphicon glyphicon-show-big-thumbnails"
+  "dossier": "glyphicon glyphicon-folder-open",
+  "dossiers": "glyphicon glyphicon-folder-open",
+
+  "subdossier": "glyphicon glyphicon-folder-minus",
+  "sous-dossier": "glyphicon glyphicon-folder-minus",
+  "sezione di dossier": "glyphicon glyphicon-folder-minus",
+  "sub-dossiers": "glyphicon glyphicon-folder-minus",
+
+  "dokument": "glyphicon glyphicon-article",
+  "document": "glyphicon glyphicon-article",
+  "documento": "glyphicon glyphicon-article",
+  "documents": "glyphicon glyphicon-article",
+
+  "teilserie": "glyphicon glyphicon-sort",
+  "serie": "glyphicon glyphicon-sort",
+  "serie": "glyphicon glyphicon-sort",
+  "série": "glyphicon glyphicon-sort",
+  "series": "glyphicon glyphicon-sort",
+
+  "teilbestand": "glyphicon glyphicon-cube-empty",
+  "sous-fonds": "glyphicon glyphicon-cube-empty",
+  "sezione di fondo": "glyphicon glyphicon-cube-empty",
+  "sub-fonds": "glyphicon glyphicon-cube-empty",
+
+  "hauptabteilung": "glyphicon glyphicon-show-big-thumbnails",
+  "division": "glyphicon glyphicon-show-big-thumbnails",
+  "sezione principale": "glyphicon glyphicon-show-big-thumbnails",
+  "main departments": "glyphicon glyphicon-show-big-thumbnails",
+
+  "beständeserie": "glyphicon glyphicon-show-big-thumbnails",
+  "série des fonds": "glyphicon glyphicon-show-big-thumbnails",
+  "serie di fondi": "glyphicon glyphicon-show-big-thumbnails",
+  "fonds series": "glyphicon glyphicon-show-big-thumbnails",
+
+  "akzession": "glyphicon glyphicon-show-big-thumbnails",
+  "versement": "glyphicon glyphicon-show-big-thumbnails",
+  "accessione": "glyphicon glyphicon-show-big-thumbnails",
+  "accessions": "glyphicon glyphicon-show-big-thumbnails",
+
+  "archiv": "glyphicon glyphicon-show-big-thumbnails",
+  "archives": "glyphicon glyphicon-show-big-thumbnails",
+  "archivio": "glyphicon glyphicon-show-big-thumbnails",
+
+  "bestand": "glyphicon glyphicon-show-big-thumbnails",
+  "fonds": "glyphicon glyphicon-show-big-thumbnails",
+  "fondo": "glyphicon glyphicon-show-big-thumbnails",
+
+  "einzelstueck": "fa-duotone fa-file",
+  "abteilung":  "fa-solid fa-apartment" 
 }
