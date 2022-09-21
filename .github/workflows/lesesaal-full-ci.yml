@@ -34,7 +34,7 @@ jobs:
     - name: Build and install web-core
       working-directory: ${{ env.WORKING_DIR_CORE }}
       run: |
-        npm i
+        npm install -g
         npm run build
       
     - name: Install Dependencies
@@ -43,6 +43,10 @@ jobs:
         npm run link
         npm i
 
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
     - name: Build
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run build-prod
