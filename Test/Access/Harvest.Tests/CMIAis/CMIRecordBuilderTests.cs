@@ -35,7 +35,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             };
 
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord(It.IsAny<string>()).Result).Returns(cmiRecord);
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
+            var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
 
@@ -119,7 +119,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("402").Result).Returns(cmiRecord);
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("300").Result).Returns(parent);
 
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
+            var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("402");
 
@@ -217,7 +217,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
             aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("1").Result).Returns(parentParent);
 
-            var sut = new CMIAISArchiveRecordBuilder(mockAisDataProvider.Object, aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
+            var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
 

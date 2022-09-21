@@ -18,7 +18,7 @@ public class DateRangeMapping : BaseMapping
 
         var datetime = value as DateTimeFieldType;
 
-        if (datetime == null)
+        if (datetime == null || (datetime.Start == null && datetime.End == null))
             return element;
 
         var elementElement = new DataElementElementValue
