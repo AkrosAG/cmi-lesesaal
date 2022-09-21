@@ -43,10 +43,6 @@ jobs:
         npm run link
         npm i
 
-    - name: Test
-      working-directory: ${{ env.WORKING_DIR }}
-      run: npm run test-github
-      
     - name: Build
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run build-prod
