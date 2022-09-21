@@ -34,14 +34,14 @@ jobs:
     - name: Build and install web-core
       working-directory: ${{ env.WORKING_DIR_CORE }}
       run: |
-        npm install -g
+        npm ci
         npm run build
       
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm run link
-        npm i
+        npm ci
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
