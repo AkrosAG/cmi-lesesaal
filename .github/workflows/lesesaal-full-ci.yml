@@ -10,42 +10,11 @@ on:
     branches: [ develop ]
 
 jobs:
-  build-core:
-    runs-on: ubuntu-latest
-    env:
-      WORKING_DIR: ./CMI/Web.Clients/web-core
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup Node 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    
-    - name: Install Dependencies
-      working-directory: ${{ env.WORKING_DIR }}
-      run: |
-        npm i
-      env:
-        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
-      
-    - name: Build
-      working-directory: ${{ env.WORKING_DIR }}
-      run: npm run build
-
   build-frontend-client:
-    needs: build-core
     runs-on: ubuntu-latest
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-frontend
+      WORKING_DIR_CORE: ./CMI/Web.Clients/web-core
     steps:
     - uses: actions/checkout@v2
     
@@ -61,14 +30,18 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    
+
+    - name: Build and install web-core
+      working-directory: ${{ env.WORKING_DIR_CORE }}
+      run: |
+        npm i
+        npm run build
+      
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm run link
         npm i
-      env:
-        NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
