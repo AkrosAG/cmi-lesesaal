@@ -52,7 +52,6 @@ jobs:
       run: npm run build-prod
 
   build-management-client:
-    needs: build-core
     runs-on: ubuntu-latest
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-management
