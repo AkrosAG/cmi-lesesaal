@@ -34,22 +34,18 @@ jobs:
     - name: Build and install web-core
       working-directory: ${{ env.WORKING_DIR_CORE }}
       run: |
-        npm ci
+        npm i
         npm run build
       
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm run link
-        npm ci
+        npm i
 
-    - name: Test
-      working-directory: ${{ env.WORKING_DIR }}
-      run: npm run test-github
-      
     - name: Build
       working-directory: ${{ env.WORKING_DIR }}
-      run: npm run build-prod
+      run: npm run build
 
   build-management-client:
     runs-on: ubuntu-latest
