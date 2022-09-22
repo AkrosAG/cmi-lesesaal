@@ -12,9 +12,6 @@
     "types": [
       "file-saver"
     ],
-		"paths": {
-			"@cmi/lesesaal-web-core/*": ["../web-core/src/*"]
-		},
     "typeRoots": [
       "node_modules/@types",
       "node_modules"
