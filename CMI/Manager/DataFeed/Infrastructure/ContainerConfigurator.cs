@@ -10,6 +10,7 @@ using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Manager.DataFeed.Properties;
 using MassTransit;
+using Microsoft.CSharp;
 
 namespace CMI.Manager.DataFeed.Infrastructure
 {
@@ -33,12 +34,16 @@ namespace CMI.Manager.DataFeed.Infrastructure
             builder.RegisterType<RequeueMutationJob>().AsSelf();
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
-            
-
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
-
+            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.Register(ctx =>
+            {
+                return new EmptyScriptLocator();
+            })
+            .AsImplementedInterfaces()
+            .SingleInstance();
 
             builder.Register(ctx =>
             {
