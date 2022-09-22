@@ -25,7 +25,7 @@ namespace CMI.Manager.DataFeed.Infrastructure
             builder.RegisterType<CachedLookupData>().AsSelf();
             builder.RegisterType<SipDateBuilder>().AsSelf();
             builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterInstance<MemoryCache>(MemoryCache.Default);
+            builder.RegisterInstance<MemoryCache>(MemoryCache.Default).SingleInstance();
 
             builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
             builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
