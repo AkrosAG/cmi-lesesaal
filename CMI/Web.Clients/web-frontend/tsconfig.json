@@ -12,6 +12,9 @@
     "types": [
       "file-saver"
     ],
+		"paths": {
+			"@cmi/viaduc-web-core/*": ["../web-core/src/*"]
+		},
     "typeRoots": [
       "node_modules/@types",
       "node_modules"

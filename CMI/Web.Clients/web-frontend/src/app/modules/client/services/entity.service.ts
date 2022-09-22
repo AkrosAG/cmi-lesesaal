@@ -18,7 +18,10 @@ export class EntityService {
 		const url = `${apiDataUrl}/GetEntity${queryString}`;
 		return this._http.get<Entity>(url, this._http.noCaching)
 			.pipe(
-				map(r => this._decorator.decorate(r)))
+				map(r => {
+					console.log('here we are again', r);
+					return this._decorator.decorate(r);
+				}))
 			.toPromise();
 	}
 

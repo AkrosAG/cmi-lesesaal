@@ -63,7 +63,7 @@ namespace CMI.Web.Frontend.api.Elastic
                 Query = new MatchQuery
                 {
                     Field = elasticSettings.TreeLevelField,
-                    Query = "2"
+                    Query = "0"
                 }
             };
 
