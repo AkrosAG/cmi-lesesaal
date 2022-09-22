@@ -6,7 +6,7 @@ import {
 import {
 	ClientContext, Facet, FacetteAction, FacetteFilter, FacetteFilterItem,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-facette-list',

@@ -1,6 +1,6 @@
 import { UserService } from '../../../services';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { Countries, CountriesService, ClientContext } from '@cmi/viaduc-web-core';
+import { Countries, CountriesService, ClientContext } from '@cmi/lesesaal-web-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

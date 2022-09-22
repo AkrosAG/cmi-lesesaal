@@ -1,4 +1,4 @@
-import {Paging} from '@cmi/viaduc-web-core';
+import {Paging} from '@cmi/lesesaal-web-core';
 
 export interface PagedResult<T> {
 	items: T[];

@@ -13,7 +13,7 @@ import {
 	ShippingType,
 	StammdatenService,
 	TranslationService
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadService, UiService, UrlService, UserService} from '../../../shared/services';
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';

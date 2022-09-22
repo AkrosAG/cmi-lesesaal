@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserSettingSection} from '../../../model/account/userSettingSection';
 import {UrlService} from '../../../services/url.service';
-import {ClientContext, ConfigService} from '@cmi/viaduc-web-core';
+import {ClientContext, ConfigService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-usersetting-list',

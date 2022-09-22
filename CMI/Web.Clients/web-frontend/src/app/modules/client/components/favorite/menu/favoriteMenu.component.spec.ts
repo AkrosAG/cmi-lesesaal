@@ -1,5 +1,5 @@
-import {CoreModule} from '@cmi/viaduc-web-core/';
-import {TranslationService, ClientContext, ClientModel} from '@cmi/viaduc-web-core';
+import {CoreModule} from '@cmi/lesesaal-web-core/';
+import {TranslationService, ClientContext, ClientModel} from '@cmi/lesesaal-web-core';
 import {AuthenticationService, FavoriteService} from '../../../services/index';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';

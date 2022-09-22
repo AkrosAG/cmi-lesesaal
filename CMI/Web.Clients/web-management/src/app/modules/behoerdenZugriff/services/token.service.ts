@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {AsToken} from '../model/asToken';
 import {Observable} from 'rxjs';
 import {AblieferndeStelleToken} from '../../shared/model/ablieferndeStelleToken';

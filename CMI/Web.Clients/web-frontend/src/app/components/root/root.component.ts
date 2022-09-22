@@ -1,7 +1,7 @@
 import { MatomoInjector, MatomoTracker } from 'ngx-matomo';
 import { AfterViewInit, Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
-import { ClientContext, ConfigService, PreloadService } from '@cmi/viaduc-web-core';
+import { ClientContext, ConfigService, PreloadService } from '@cmi/lesesaal-web-core';
 import {
 	AuthenticationService,
 	ContextService,

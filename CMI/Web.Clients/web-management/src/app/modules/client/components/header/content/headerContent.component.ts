@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../../services';
-import {ClientContext, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-header-content',

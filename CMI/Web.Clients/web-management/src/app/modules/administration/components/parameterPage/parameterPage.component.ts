@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Parameter} from '../../model/parameter';
 import {ParameterService} from '../../services';
-import {ComponentCanDeactivate, TranslationService} from '@cmi/viaduc-web-core';
+import {ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
 import {UrlService} from '../../../shared/services';
 import {ParameterComponent} from '../parameter/parameter.component';
 

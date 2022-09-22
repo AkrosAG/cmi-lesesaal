@@ -2,7 +2,7 @@ import {OrdersListPageComponent, OrdersDetailPageComponent} from './components';
 import {OrdersEinsichtListPageComponent, OrdersEinsichtDetailPageComponent} from './components';
 import {DigipoolListPageComponent} from './components';
 import {ApplicationFeatureGuard} from '../client';
-import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/lesesaal-web-core';
 
 export const ROUTES: any = [
 	{

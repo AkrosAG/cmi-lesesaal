@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Router} from '@angular/router';
-import {ClientContext, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {Observable} from 'rxjs';
 import {DefaultContextGuard} from './defaultContextGuard';
 import {ContextService} from '../services/context.service';

@@ -1,7 +1,7 @@
 import {
 	Component, Input, forwardRef, EventEmitter, Output, ViewEncapsulation
 } from '@angular/core';
-import { AdvancedSearchField, SearchField, Utilities as _util } from '@cmi/viaduc-web-core';
+import { AdvancedSearchField, SearchField, Utilities as _util } from '@cmi/lesesaal-web-core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 

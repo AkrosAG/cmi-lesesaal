@@ -3,7 +3,7 @@ import {AuthPageComponent} from './components/authPage/authPage.component';
 import {HomePageComponent} from './components/homePage/homePage.component';
 import {ErrorPageComponent} from './components/errorPage/errorPage.component';
 import {NewsManagementPageComponent} from './components/communication/newsManagementPage/newsManagementPage.component';
-import {Utilities as _util, Routing, CountriesResolver, ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/viaduc-web-core';
+import {Utilities as _util, Routing, CountriesResolver, ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/lesesaal-web-core';
 import {NewsManagementDetailsPageComponent} from './components/communication/newsManagementDetailPage/newsManagementDetailsPage.component';
 import {
 	DefaultContextGuard, DefaultRedirectGuard, PreloadedResolver, ApplicationFeatureGuard, AuthGuard // , DefaultAuthenticatedGuard,

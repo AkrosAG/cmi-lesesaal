@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AggregationEntry, Facet, FacetteAction, FacetteFilterItem, Utilities as _util} from '@cmi/viaduc-web-core';
+import {AggregationEntry, Facet, FacetteAction, FacetteFilterItem, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({

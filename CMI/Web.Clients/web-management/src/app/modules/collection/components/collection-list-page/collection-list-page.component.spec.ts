@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {CollectionListPageComponent} from './collection-list-page.component';
-import {ClientContext, ClientModel, CollectionListItem, ConfigService, CoreModule, TranslationService, UserUiSettings} from '@cmi/viaduc-web-core';
+import {ClientContext, ClientModel, CollectionListItem, ConfigService, CoreModule, TranslationService, UserUiSettings} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, SharedModule, UiService, UrlService, User, UserService} from '../../../shared';
 import {CollectionService} from '../../services';
 import {Router} from '@angular/router';

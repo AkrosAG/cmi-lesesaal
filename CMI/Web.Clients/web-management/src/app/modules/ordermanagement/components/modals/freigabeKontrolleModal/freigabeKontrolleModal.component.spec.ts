@@ -1,6 +1,6 @@
 import {FreigabeKontrolleModalComponent} from './freigabeKontrolleModal.component';
 import { ComponentFixture, TestBed,  waitForAsync } from '@angular/core/testing';
-import {ApproveStatus, EntityDecoratorService, TranslationService, CoreModule, UiService} from '@cmi/viaduc-web-core';
+import {ApproveStatus, EntityDecoratorService, TranslationService, CoreModule, UiService} from '@cmi/lesesaal-web-core';
 import {OrderService} from '../../../services';
 import {ErrorService, SharedModule} from '../../../../shared';
 import {ToastrService} from 'ngx-toastr';

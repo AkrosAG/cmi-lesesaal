@@ -7,7 +7,7 @@ import {
 	SearchFavorite,
 	VeFavorite
 } from '../model/favorite/favorite';
-import {CoreOptions, HttpService, TranslationService} from '@cmi/viaduc-web-core';
+import {CoreOptions, HttpService, TranslationService} from '@cmi/lesesaal-web-core';
 import {tap} from 'rxjs/operators';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {ConfigService, Paging, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ConfigService, Paging, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-pagination',

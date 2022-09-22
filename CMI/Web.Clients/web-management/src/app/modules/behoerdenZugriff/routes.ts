@@ -1,7 +1,7 @@
 import {AblieferndeStellePageComponent, TokenDetailPageComponent, TokenListPageComponent} from './components';
 import {AblieferndeStelleDetailPageComponent} from './components/ablieferndeStelleDetailPage/ablieferndeStelleDetailPage.component';
 import {ApplicationFeatureGuard} from '../client';
-import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/lesesaal-web-core';
 
 export const ROUTES: any = [
 	{

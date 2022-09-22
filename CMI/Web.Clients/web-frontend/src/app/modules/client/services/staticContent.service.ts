@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ApplicationFeatureEnum, ClientContext, CoreOptions} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, ClientContext, CoreOptions} from '@cmi/lesesaal-web-core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthorizationService} from './authorization.service';

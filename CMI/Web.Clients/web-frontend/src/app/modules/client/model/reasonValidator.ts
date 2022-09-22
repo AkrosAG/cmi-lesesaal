@@ -1,5 +1,5 @@
 import {AbstractControl, ValidationErrors} from '@angular/forms';
-import {Utilities as _util} from '@cmi/viaduc-web-core';
+import {Utilities as _util} from '@cmi/lesesaal-web-core';
 
 export class ReasonValidator {
 	public static missingReason(c: AbstractControl): ValidationErrors {

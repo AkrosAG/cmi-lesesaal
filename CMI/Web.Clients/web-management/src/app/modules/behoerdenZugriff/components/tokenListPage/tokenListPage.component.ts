@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {TokenService} from '../../services';
-import {ApplicationFeatureEnum, CmiGridComponent, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, CmiGridComponent, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {UrlService, ErrorService, AuthorizationService} from '../../../shared/services';
 import {AsToken} from '../../model/asToken';
 import {AblieferndeStelleToken} from '../../../shared/model/ablieferndeStelleToken';

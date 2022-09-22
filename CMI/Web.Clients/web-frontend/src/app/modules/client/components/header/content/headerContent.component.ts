@@ -1,6 +1,6 @@
 import {Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ClientContext, TranslationService, Utilities as _util, CookieService} from '@cmi/viaduc-web-core';
+import {ClientContext, TranslationService, Utilities as _util, CookieService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, FavoriteService, ShoppingCartService} from '../../../services';
 import {UrlService} from '../../../services';
 import {AuthenticationService} from '../../../services';

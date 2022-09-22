@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClientContext, Routing, SearchRequest, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Routing, SearchRequest, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {Params, Router, UrlTree} from '@angular/router';
 
 const externalLinkPart = 'link';

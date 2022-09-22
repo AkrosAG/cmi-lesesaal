@@ -5,7 +5,7 @@ import {
 	CoreOptions, EntityDecoratorService, ExternalStatus, InternalStatus, ShippingType,
 	WijmoService, TranslationService, Utilities as _util, Abbruchgrund, EntscheidGesuchStatus, StammdatenService,
 	ZugaenglichkeitGemaessBga, Eingangsart, DigitalisierungsKategorie, CmiGridComponent, GebrauchskopieStatus
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {Column, DataMap} from '@grapecity//wijmo.grid';
 import {DetailPagingService, ErrorService, UrlService} from '../../../shared/services';
 import {ODataCollectionView} from '@grapecity/wijmo.odata';

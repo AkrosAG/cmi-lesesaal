@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Entity} from '@cmi/viaduc-web-core';
+import {Entity} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-entity-menu',

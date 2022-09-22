@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {News} from '../model/communication/News';
 
 @Injectable()

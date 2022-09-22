@@ -1,6 +1,6 @@
 import {StatisticsReportsComponent} from './components/statisticsReports/statisticsReports.component';
 import {ApplicationFeatureGuard} from '../client';
-import {ApplicationFeatureEnum} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 import {ConverterProgressComponent} from './components';
 
 export const ROUTES: any = [

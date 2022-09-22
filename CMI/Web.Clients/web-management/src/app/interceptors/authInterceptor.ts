@@ -3,7 +3,7 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, of} from 'rxjs';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService} from '../modules/client';
 
 @Injectable()

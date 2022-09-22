@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {
 	ApproveStatus,
 	EntityDecoratorService, EntscheidGesuchStatus, ShippingType,
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {Bestellhistorie, StatusHistory} from '../../model';
 import * as moment from 'moment';
 

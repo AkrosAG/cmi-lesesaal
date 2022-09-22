@@ -9,7 +9,7 @@ import {
 	Reason, ShippingType,
 	StammdatenService,
 	TranslationService, UiService, WijmoService,
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {DataMap} from '@grapecity/wijmo.grid';
 import {SeoService, ShoppingCartService, UrlService} from '../../../modules/client/services';
 import * as moment from 'moment';

@@ -1,5 +1,5 @@
 import {Component, ElementRef, AfterViewInit, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
-import {ClientContext, ConfigService, PreloadService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, ConfigService, PreloadService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {NavigationStart, Router} from '@angular/router';
 import {ShoppingCartService, UrlService, AuthenticationService} from '../../../services';
 import {UnbluService} from '../../../services/unblu.service';

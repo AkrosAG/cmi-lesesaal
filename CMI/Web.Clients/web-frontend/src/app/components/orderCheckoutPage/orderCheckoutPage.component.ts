@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {OrderItem, TranslationService} from '@cmi/viaduc-web-core';
+import {OrderItem, TranslationService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, SeoService, ShoppingCartService, UrlService} from '../../modules/client/services';
 import {ToastrService} from 'ngx-toastr';
 

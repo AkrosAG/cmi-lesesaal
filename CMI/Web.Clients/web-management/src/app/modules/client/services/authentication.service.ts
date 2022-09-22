@@ -10,7 +10,7 @@ import {
 	PreloadService,
 	Session,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 import {SessionStorageService} from './sessionStorage.service';
 import {UserService} from '../../shared/services/user.service';

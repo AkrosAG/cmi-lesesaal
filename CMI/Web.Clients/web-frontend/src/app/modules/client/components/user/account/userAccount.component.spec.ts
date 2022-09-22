@@ -6,7 +6,7 @@ import {
 	TranslationService,
 	ConfigService,
 	ClientContext
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
 	UrlService,
