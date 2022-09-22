@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cmi-viaduc-web-core": {
+    "cmi-lesesaal-web-core": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "library",
@@ -43,18 +43,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cmi-viaduc-web-core:build"
+            "browserTarget": "cmi-lesesaal-web-core:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cmi-viaduc-web-core:build:production"
+              "browserTarget": "cmi-lesesaal-web-core:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cmi-viaduc-web-core:build"
+            "browserTarget": "cmi-lesesaal-web-core:build"
           }
         },
         "test": {
@@ -90,7 +90,7 @@
       }
     }
   },
-  "defaultProject": "cmi-viaduc-web-core",
+  "defaultProject": "cmi-lesesaal-web-core",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "cmi",

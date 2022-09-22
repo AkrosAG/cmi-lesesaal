@@ -1,16 +1,17 @@
 {
-  "name": "@cmi/viaduc-web-core",
+  "name": "@cmi/lesesaal-web-core",
   "version": "0.1.0",
   "license": "MIT",
   "description": "CMI Lesesaal Web Core",
   "repository": {
     "type": "git",
-    "url": "git@github.com:CMInformatik/cmi-viaduc-web-core.git"
+    "url": "git@github.com:CMInformatik/cmi-lesesaal.git"
   },
   "scripts": {
     "ng": "ng",
     "start": "ng lint && ng build --watch",
     "build": "ng lint && ng build",
+		"build-prod": "ng build --configuration production",
     "test": "ng test",
     "test-github": "ng test --karmaConfig=karma.github.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage",
     "test-teamcity": "ng test --karmaConfig=karma.teamcity.conf.js --watch=false --code-coverage",

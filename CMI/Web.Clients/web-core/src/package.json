@@ -1,5 +1,5 @@
 {
-  "name": "@cmi/viaduc-web-core",
+  "name": "@cmi/lesesaal-web-core",
   "version": "1.1.2",
   "typings": "typings.d.ts",
   "main": "public_api.ts",
