@@ -12,6 +12,7 @@ using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
 using CMI.Manager.Harvest.Properties;
 using MassTransit;
+using Microsoft.CSharp;
 
 namespace CMI.Manager.Harvest.Infrastructure
 {
@@ -40,7 +41,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
-
+            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
             builder.Register(ctx =>
             {
@@ -48,7 +49,6 @@ namespace CMI.Manager.Harvest.Infrastructure
                return new CustomScriptLocator(path);
             })
             .AsImplementedInterfaces()
-            .AsSelf()
             .SingleInstance();
 
             builder.Register(ctx =>
