@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslationService } from '@cmi/viaduc-web-core';
+import { TranslationService } from '@cmi/lesesaal-web-core';
 import { UrlService, UiService } from '../../../shared/services';
 import { LogService } from '../../services';
 import * as moment from 'moment';

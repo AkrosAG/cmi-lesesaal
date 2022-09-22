@@ -1,6 +1,6 @@
 import {Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import {SearchService} from '../../services/search.service';
-import {ConfigService, Paging, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ConfigService, Paging, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-pagination',

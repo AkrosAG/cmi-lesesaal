@@ -6,7 +6,7 @@ import {
 	Collection, CollectionListItem,
 	ConfigService,
 	TranslationService
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, CollectionSettings, ErrorService, ManagementUserSettings, UiService,  UrlService, UserService} from '../../../shared';
 import {Router} from '@angular/router';
 import {CollectionService} from '../../services';

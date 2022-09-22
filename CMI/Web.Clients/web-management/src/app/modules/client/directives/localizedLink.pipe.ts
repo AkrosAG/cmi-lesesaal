@@ -1,6 +1,6 @@
 import {Directive, HostListener, Input} from '@angular/core';
 import {Router} from '@angular/router';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 import {UrlService} from '../../shared/services';
 
 @Directive({

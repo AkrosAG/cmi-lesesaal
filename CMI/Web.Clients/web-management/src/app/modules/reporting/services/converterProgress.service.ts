@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {Observable, Subject, timer} from 'rxjs';
 import {ProgressDetail} from '../model/progressDetail';
 import {retry, share, switchMap, takeUntil, takeWhile} from 'rxjs/operators';

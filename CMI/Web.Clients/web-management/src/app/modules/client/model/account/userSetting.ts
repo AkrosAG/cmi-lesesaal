@@ -1,4 +1,4 @@
-import {Utilities as _util} from '@cmi/viaduc-web-core';
+import {Utilities as _util} from '@cmi/lesesaal-web-core';
 
 export class UserSetting {
 	constructor(private _captionDefault: string,

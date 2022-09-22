@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {AblieferndeStelleService, UrlService, UiService} from '../../../shared/services';
 import {AblieferndeStelle} from '../../../shared/model/ablieferndeStelle';
 import {TokenService} from '../../services';

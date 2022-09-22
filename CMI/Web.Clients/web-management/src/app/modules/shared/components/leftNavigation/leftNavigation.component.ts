@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientContext, ApplicationFeatureEnum} from '@cmi/viaduc-web-core';
+import {ClientContext, ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 import {AuthorizationService} from '../../services';
 
 @Component({

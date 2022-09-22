@@ -4,7 +4,7 @@ import {
 import {
 	AdvancedSearchField, SearchField, FieldType, SearchFieldDefinition, TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {AdvancedSearchService} from '../../../../services/advancedSearch.service';
 import {SearchSynonymeIconComponent} from '../../searchSynonyme/searchSynonymeIcon/searchSynonymeIcon.component';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UiService, UrlService} from '../../../shared/index';
 import * as moment from 'moment';
-import {TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/lesesaal-web-core';
 import {HttpErrorResponse, HttpEventType} from '@angular/common/http';
 import * as fileSaver from 'file-saver';
 import { StatisticReportService } from '../../services';

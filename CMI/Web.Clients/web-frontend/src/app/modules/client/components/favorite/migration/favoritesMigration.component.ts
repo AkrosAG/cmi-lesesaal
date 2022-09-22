@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ClientContext, TranslationService } from '@cmi/viaduc-web-core';
+import { ClientContext, TranslationService } from '@cmi/lesesaal-web-core';
 import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({

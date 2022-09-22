@@ -7,7 +7,7 @@ import {ALL_COMPONENTS} from './components/_all';
 import {ROUTES, initRoutes} from './routes';
 import {SharedModule} from './modules/shared';
 import {ClientModule} from './modules/client';
-import {ClientContext, CoreModule} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreModule} from '@cmi/lesesaal-web-core';
 import {ToastrModule} from 'ngx-toastr';
 import {AuthenticationService} from './modules/client/services';
 import {MarkdownModule} from 'ngx-markdown';

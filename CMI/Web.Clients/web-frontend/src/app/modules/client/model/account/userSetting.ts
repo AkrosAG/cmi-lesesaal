@@ -1,4 +1,4 @@
-import {Utilities as _util} from '@cmi/viaduc-web-core';
+import {Utilities as _util} from '@cmi/lesesaal-web-core';
 
 export enum UserSettingType {
 	FamilyName,

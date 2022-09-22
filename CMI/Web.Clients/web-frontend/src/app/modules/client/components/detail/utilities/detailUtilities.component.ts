@@ -1,6 +1,6 @@
 import {Component, ElementRef, Input} from '@angular/core';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
-import {Entity, UiService} from '@cmi/viaduc-web-core';
+import {Entity, UiService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-detail-utilities',

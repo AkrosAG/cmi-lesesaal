@@ -8,7 +8,7 @@ import {
 	EntityDecoratorService,
 	SearchFieldDefinition,
 	SearchGroup
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {of} from 'rxjs';
 import {SearchService} from './search.service';
 import {AdvancedSearchService} from './advancedSearch.service';

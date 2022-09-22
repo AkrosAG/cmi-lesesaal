@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { ClientContext, PreloadService } from '@cmi/viaduc-web-core';
+import { ClientContext, PreloadService } from '@cmi/lesesaal-web-core';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

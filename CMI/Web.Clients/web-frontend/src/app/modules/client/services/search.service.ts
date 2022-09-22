@@ -12,7 +12,7 @@ import {
 	SearchResponse, TranslationService,
 	Utilities as _util,
 	BooleanResponse
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {map} from 'rxjs/operators';
 import {AdvancedSearchService} from './advancedSearch.service';
 

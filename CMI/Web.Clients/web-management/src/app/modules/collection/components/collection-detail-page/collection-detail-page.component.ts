@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Collection, ComponentCanDeactivate, TranslationService} from '@cmi/viaduc-web-core';
+import {Collection, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {combineLatest, Observable, of} from 'rxjs';

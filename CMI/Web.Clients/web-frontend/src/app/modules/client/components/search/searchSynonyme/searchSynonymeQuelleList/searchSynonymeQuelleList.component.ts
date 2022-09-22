@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-synonyme-quelle',

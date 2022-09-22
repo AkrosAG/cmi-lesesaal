@@ -11,7 +11,7 @@ import {
 	SearchRequest,
 	TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {AdvancedSearchService, SeoService, UrlService} from '../../modules/client/services';
 
 @Component({

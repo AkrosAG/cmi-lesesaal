@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CoreOptions, Entity, HttpService} from '@cmi/viaduc-web-core';
+import {CoreOptions, Entity, HttpService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-access-token',

@@ -7,7 +7,7 @@ import {
 	Country,
 	TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import { User, UserSetting, UserSettingType } from '../../../model';
 import { AuthorizationService, UrlService, UserService } from '../../../services';
 import * as moment from 'moment';

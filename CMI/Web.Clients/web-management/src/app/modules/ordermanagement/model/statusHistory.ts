@@ -1,4 +1,4 @@
-import {InternalStatus} from '@cmi/viaduc-web-core';
+import {InternalStatus} from '@cmi/lesesaal-web-core';
 
 export class StatusHistory {
 	public id: number;

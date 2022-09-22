@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {Collection, CoreModule, TranslationService} from '@cmi/viaduc-web-core';
+import {Collection, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
 import {ActivatedRoute, ParamMap,  Router} from '@angular/router';
 import {CollectionPageComponent} from './collection-page.component';
 import {CollectionService} from '../../../modules/client/services/collection.service';

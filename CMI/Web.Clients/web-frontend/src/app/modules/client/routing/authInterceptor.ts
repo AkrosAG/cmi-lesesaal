@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AuthenticationService} from '../services';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

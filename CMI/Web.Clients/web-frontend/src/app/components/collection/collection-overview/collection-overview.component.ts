@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CollectionService} from '../../../modules/client/services/collection.service';
-import {CollectionListItem, UiService} from '@cmi/viaduc-web-core';
-import {ICollectionListItem} from '@cmi/viaduc-web-core/lib/core/model/collection/collectionListItem';
+import {CollectionListItem, UiService} from '@cmi/lesesaal-web-core';
+import {ICollectionListItem} from '@cmi/lesesaal-web-core/lib/core/model/collection/collectionListItem';
 
 @Component({
 	selector: 'cmi-collection-overview',

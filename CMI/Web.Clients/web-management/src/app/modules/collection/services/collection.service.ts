@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Collection, CollectionListItem, CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {Collection, CollectionListItem, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 

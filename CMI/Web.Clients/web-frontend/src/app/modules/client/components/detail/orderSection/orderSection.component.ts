@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
-import {ClientContext, Entity, TranslationService} from '@cmi/viaduc-web-core';
+import {ClientContext, Entity, TranslationService} from '@cmi/lesesaal-web-core';
 import {UrlService} from '../../../services';
 
 @Component({

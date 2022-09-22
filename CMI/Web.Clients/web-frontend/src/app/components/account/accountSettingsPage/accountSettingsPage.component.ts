@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfigService, TranslationService, UserUiSettings} from '@cmi/viaduc-web-core';
+import {ConfigService, TranslationService, UserUiSettings} from '@cmi/lesesaal-web-core';
 import {SeoService, UrlService, UserService} from '../../../modules/client/services';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FileSaverService, TranslationService} from '@cmi/viaduc-web-core';
+import {FileSaverService, TranslationService} from '@cmi/lesesaal-web-core';
 import {FavoriteList} from '../../../../modules/client/model';
 import {FavoriteListsComponent} from '../../../../modules/client/components';
 import {FavoriteService, SeoService, UrlService} from '../../../../modules/client/services';

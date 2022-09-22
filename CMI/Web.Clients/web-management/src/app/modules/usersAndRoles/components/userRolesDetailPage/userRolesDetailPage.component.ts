@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WjListBox} from '@grapecity//wijmo.angular2.input';
-import {ApplicationFeatureEnum, ClientContext, ComponentCanDeactivate, CountriesService, HttpService, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, ClientContext, ComponentCanDeactivate, CountriesService, HttpService, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiService, UrlService,
 	UserService

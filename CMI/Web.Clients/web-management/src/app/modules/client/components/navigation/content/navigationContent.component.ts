@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Output} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/index';
-import {ClientContext, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-nav-content',

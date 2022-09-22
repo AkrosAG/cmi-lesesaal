@@ -10,7 +10,7 @@ import {ALL_SERVICES} from './services/_all';
 import {ALL_GUARDS} from './routing/_all';
 import {ALL_RESOLVERS} from './routing/_all';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CoreModule, WijmoModule} from '@cmi/viaduc-web-core';
+import {CoreModule, WijmoModule} from '@cmi/lesesaal-web-core';
 
 @NgModule({
 	declarations: [

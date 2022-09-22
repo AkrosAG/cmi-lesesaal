@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {
 	ClientContext, CookieOptions, CookieService, PreloadService, Session, TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {SeoService} from './seo.service';
 
 const languageKey = 'viaduc_language';

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EntityDecoratorService, EntscheidGesuchStatus} from '@cmi/viaduc-web-core';
+import {EntityDecoratorService, EntscheidGesuchStatus} from '@cmi/lesesaal-web-core';
 import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';

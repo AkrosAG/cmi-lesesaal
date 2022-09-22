@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Abbruchgrund, ApproveStatus, CoreOptions, EntscheidGesuchStatus, HttpService} from '@cmi/viaduc-web-core';
+import {Abbruchgrund, ApproveStatus, CoreOptions, EntscheidGesuchStatus, HttpService} from '@cmi/lesesaal-web-core';
 import {Observable} from 'rxjs';
 import {EinsichtsGesuchEmailVorlage, Bestellhistorie, OrderingFlatDetailItem, PagingRequestParameter} from '../model';
 import {OrderingFlatItem} from '../model/orderingFlatItem';

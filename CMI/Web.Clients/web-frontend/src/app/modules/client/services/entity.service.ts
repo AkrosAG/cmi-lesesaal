@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
-import {ClientContext, CoreOptions, EntitiesResult, Entity, EntityDecoratorService, HttpService, Paging} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreOptions, EntitiesResult, Entity, EntityDecoratorService, HttpService, Paging} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class EntityService {
@@ -18,10 +18,7 @@ export class EntityService {
 		const url = `${apiDataUrl}/GetEntity${queryString}`;
 		return this._http.get<Entity>(url, this._http.noCaching)
 			.pipe(
-				map(r => {
-					console.log('here we are again', r);
-					return this._decorator.decorate(r);
-				}))
+				map(r => this._decorator.decorate(r)))
 			.toPromise();
 	}
 

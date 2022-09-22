@@ -1,4 +1,4 @@
-import {Entity} from '@cmi/viaduc-web-core';
+import {Entity} from '@cmi/lesesaal-web-core';
 
 export class SectionRow {
 	public markup: string;
