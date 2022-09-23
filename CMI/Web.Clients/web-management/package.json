@@ -11,7 +11,7 @@
     "test-github": "ng test --karmaConfig=karma.github.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage",
     "test-teamcity": "ng test --karmaConfig=karma.teamcity.conf.js --watch=false --code-coverage",
     "lint": "ng lint",
-    "link": "npm link ../cmi-viaduc-web-core/dist/@cmi/viaduc-web-core"
+    "link": "npm link ../web-core/dist/@cmi/viaduc-web-core"
   },
   "dependencies": {
     "@angular/animations": "12.0.4",
@@ -33,7 +33,6 @@
     "@angular/cli": "^12.0.4",
     "@angular/compiler-cli": "12.0.4",
     "@angular/language-service": "12.0.4",
-    "@cmi/viaduc-web-core": "2.0.1040",
     "@grapecity/wijmo.angular2.all": "^5.20213.824",
     "@types/file-saver": "^2.0.2",
     "@types/jasmine": "~3.10.3",
