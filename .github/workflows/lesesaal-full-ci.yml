@@ -40,12 +40,17 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
+        ls ../web-core/dist/@cmi/viaduc-web-core/dist
         npm run link
         npm i
 
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
     - name: Build
       working-directory: ${{ env.WORKING_DIR }}
-      run: npm run build
+      run: npm run build-prod
 
   build-management-client:
     runs-on: ubuntu-latest
