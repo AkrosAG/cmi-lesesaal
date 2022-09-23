@@ -12,7 +12,45 @@ on:
     branches: [ master ]
 
 jobs:
+  build-core:
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-core
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm i
+
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm run build
+
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: web-core
+        path: ${{ env.WORKING_DIR }}/dist/@cmi/viaduc-web-core/**
+        retention-days: 1
+        
   build-frontend-client:
+    needs: build-core
     runs-on: ubuntu-latest
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-frontend
@@ -40,6 +78,12 @@ jobs:
       env:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
+    - name: Restore Core from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/viaduc-web-core
+        name: web-core
+
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run test-github
@@ -56,6 +100,7 @@ jobs:
         retention-days: 1
 
   build-management-client:
+    needs: build-core
     runs-on: ubuntu-latest
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-management
@@ -82,6 +127,12 @@ jobs:
         npm i
       env:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
+
+    - name: Restore Core from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/viaduc-web-core
+        name: web-core
 
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
