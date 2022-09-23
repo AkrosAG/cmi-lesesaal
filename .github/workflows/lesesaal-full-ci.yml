@@ -77,7 +77,7 @@ jobs:
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v2
       with:
-        path: ./node_modules/@cmi/viaduc-web-core
+        path: ./CMI/Web.Clients/web-frontend/node_modules/@cmi/viaduc-web-core
         name: web-core
 
     - name: Install Dependencies
