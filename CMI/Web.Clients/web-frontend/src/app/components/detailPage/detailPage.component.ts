@@ -102,7 +102,6 @@ export class DetailPageComponent implements OnInit {
 			this.items = [];
 			console.log('here', entity);
 
-
 			if (!_util.isEmpty(entity)) {
 				this._buildCrumbs(entity);
 
