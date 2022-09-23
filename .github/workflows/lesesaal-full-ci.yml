@@ -41,7 +41,7 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
       run: |
         npm i
-        mkdir ./node_modules/@cmi/viaduc-web-core -p 
+        mkdir ./node_modules/@cmi -p 
         cp ../web-core/dist/@cmi/viaduc-web-core ./node_modules/@cmi/viaduc-web-core -r
 
         ls ./node_modules/@cmi/viaduc-web-core
