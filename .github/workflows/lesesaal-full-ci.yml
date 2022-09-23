@@ -111,7 +111,6 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm run link
         npm i
       env:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
