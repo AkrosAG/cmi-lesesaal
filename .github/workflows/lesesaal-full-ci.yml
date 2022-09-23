@@ -40,6 +40,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
+        mkdir ./node_modules/@cmi/viaduc-web-cor -p 
         cp ../web-core/dist/@cmi/viaduc-web-core ./node_modules/@cmi/viaduc-web-core -r
 
         ls ./node_modules/@cmi/viaduc-web-core
