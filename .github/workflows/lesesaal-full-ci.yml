@@ -40,7 +40,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        ls 
+        ls ../web-core/dist/@cmi/viaduc-web-core
         npm run link
         npm i
 
