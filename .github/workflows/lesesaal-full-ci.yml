@@ -48,6 +48,7 @@ jobs:
         retention-days: 1
       
   build-frontend-client:
+    needs: build-core
     runs-on: ubuntu-latest
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-frontend
