@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ArchiveModel, ClientContext, Entity, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ArchiveModel, ClientContext, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
 	EntityRenderService,
@@ -95,12 +95,9 @@ export class DetailPageComponent implements OnInit {
 		this._error = undefined;
 
 		try {
-			console.log('here before load', idOrReference);
 			const id = this._url.getDetailIdFromReference(idOrReference);
-			console.log('here id', id);
 			let entity = this.entity = await this._entityService.get(id);
 			this.items = [];
-			console.log('here', entity);
 
 			if (!_util.isEmpty(entity)) {
 				this._buildCrumbs(entity);

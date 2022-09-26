@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class DownloadTokenService {

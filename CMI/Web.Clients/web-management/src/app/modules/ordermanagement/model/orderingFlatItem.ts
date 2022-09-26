@@ -4,7 +4,7 @@ import {
 	InternalStatus,
 	ShippingType,
 	DigitalisierungsKategorie, EntscheidGesuchStatus, Abbruchgrund, GebrauchskopieStatus
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 export class OrderingFlatItem {
 	public orderingType: ShippingType;
 	public orderingComment: string;

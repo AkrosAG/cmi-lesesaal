@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {UnbluService} from '../../services/unblu.service';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {ChatBotService} from '../../services';
-import {PreloadService, ClientContext, ConfigService} from '@cmi/viaduc-web-core';
+import {PreloadService, ClientContext, ConfigService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-engagement-bubbles',

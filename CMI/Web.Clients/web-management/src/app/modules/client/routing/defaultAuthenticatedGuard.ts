@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate} from '@angular/router';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService} from '../services';
 
 @Injectable()

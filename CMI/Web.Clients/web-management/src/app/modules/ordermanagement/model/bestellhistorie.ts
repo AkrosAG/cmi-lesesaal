@@ -2,7 +2,7 @@ import {
 	ApproveStatus,
 	EntscheidGesuchStatus,
 	ShippingType
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 export class Bestellhistorie {
 	public auftragsId: number;

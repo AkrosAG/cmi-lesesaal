@@ -15,7 +15,7 @@ import {
 	FileSaverService,
 	UserUiSettings,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {SearchFacetteListComponent} from '../../modules/client/components';
 import {SearchService, SeoService, UrlService} from '../../modules/client/services';
 

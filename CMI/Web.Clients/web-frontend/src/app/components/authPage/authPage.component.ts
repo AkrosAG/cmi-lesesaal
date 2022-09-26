@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService, SeoService} from '../../modules/client/services';
-import {TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-auth-page',

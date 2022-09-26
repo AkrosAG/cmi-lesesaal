@@ -1,6 +1,6 @@
 import {PaginationComponent} from './pagination.component';
 import {EventEmitter} from '@angular/core';
-import {ConfigService, Paging, UserUiSettings} from '@cmi/viaduc-web-core';
+import {ConfigService, Paging, UserUiSettings} from '@cmi/lesesaal-web-core';
 
 describe('PaginationComponent', () => {
 

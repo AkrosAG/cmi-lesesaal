@@ -5,7 +5,7 @@ import {
 	OrderItem,
 	SearchField, SelfMadeOrderItem, TranslationService, UiService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
 import {EntityService, SearchService, SeoService, ShoppingCartService, UrlService} from '../../modules/client/services';
 import {tap} from 'rxjs/operators';

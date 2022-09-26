@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ShoppingCartService, UserService} from '../../../services';
-import {ClientContext, ShippingType, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, ShippingType, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {User} from '../../../model';
 import {WjAutoComplete} from '@grapecity/wijmo.angular2.input';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';

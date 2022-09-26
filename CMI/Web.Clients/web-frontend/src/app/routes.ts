@@ -12,7 +12,7 @@ import {AccountSettingsPageComponent} from './components/account/accountSettings
 import {ShoppingCartPageComponent} from './components/shoppingCartPage/shoppingCartPage.component';
 import {OrderCheckoutPageComponent} from './components/orderCheckoutPage/orderCheckoutPage.component';
 import {OrderOverviewPage} from './components/account/orderOverviewPage/orderOverviewPage.component';
-import {Routing, Utilities as _util, CountriesResolver, CanDeactivateGuard} from '@cmi/viaduc-web-core';
+import {Routing, Utilities as _util, CountriesResolver, CanDeactivateGuard} from '@cmi/lesesaal-web-core';
 import {Route, UrlMatchResult, UrlSegment} from '@angular/router';
 import {AccountFavoritesListPageComponent} from './components/account/favorites/favoritesListPage/favoritesListPage.component';
 import {AuthGuard, DefaultContextGuard, DefaultRedirectGuard, DetailContextGuard} from './modules/client/routing';

@@ -1,7 +1,7 @@
 import {Directive, HostListener, Input} from '@angular/core';
 import {Router} from '@angular/router';
 import {UrlService} from '../services/url.service';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 
 @Directive({
 	selector: '[localizedLink]'

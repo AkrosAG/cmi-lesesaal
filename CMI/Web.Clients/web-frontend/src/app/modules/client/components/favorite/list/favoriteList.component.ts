@@ -4,7 +4,7 @@ import {Favorite, FavoriteKind, SearchFavorite, VeFavorite} from '../../../model
 import * as moment from 'moment';
 import {FavoriteService} from '../../../services/favorite.service';
 import {FavoriteList} from '../../../model/favorite/favoriteList';
-import {Entity, Utilities as _util} from '@cmi/viaduc-web-core';
+import {Entity, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
 @Component({
 	selector: 'cmi-viaduc-favorite-list',

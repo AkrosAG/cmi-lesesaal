@@ -7,7 +7,7 @@ import {
 	SearchOptions,
 	SearchRequest,
 	SimpleSearchModel
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-simple-search',

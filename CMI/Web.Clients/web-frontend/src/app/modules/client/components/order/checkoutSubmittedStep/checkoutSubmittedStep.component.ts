@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Ordering, OrderItem, ShippingType, TranslationService} from '@cmi/viaduc-web-core';
+import {Ordering, OrderItem, ShippingType, TranslationService} from '@cmi/lesesaal-web-core';
 import {ShoppingCartService, UrlService, AuthorizationService} from '../../../services';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter} from '@angular/core';
 import {DeviceDetectorService} from 'ngx-device-detector';
-import {ConfigService} from '@cmi/viaduc-web-core';
+import {ConfigService} from '@cmi/lesesaal-web-core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({

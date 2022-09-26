@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '../model/user';
 import {Subject, Observable} from 'rxjs';
-import {ConfigService, CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {ConfigService, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class UserService {

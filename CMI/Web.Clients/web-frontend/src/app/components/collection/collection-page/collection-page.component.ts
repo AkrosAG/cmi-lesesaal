@@ -3,7 +3,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CollectionService} from '../../../modules/client/services/collection.service';
 import {switchMap} from 'rxjs/operators';
 import {combineLatest} from 'rxjs';
-import {Collection, TranslationService} from '@cmi/viaduc-web-core';
+import {Collection, TranslationService} from '@cmi/lesesaal-web-core';
 import {SeoService, UrlService} from '../../../modules/client';
 
 @Component({

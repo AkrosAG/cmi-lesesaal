@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
 	ClientContext, EntityResult, Paging, SearchBrowseState, SearchRequest,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {SearchService} from '../../../services';
 import {UrlService} from '../../../services';
 @Component({

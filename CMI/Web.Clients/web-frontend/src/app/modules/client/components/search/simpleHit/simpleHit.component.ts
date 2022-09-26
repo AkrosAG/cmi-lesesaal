@@ -1,6 +1,6 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
-import {ClientContext, Entity, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Entity, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {UrlService} from '../../../services/url.service';
 import {EntityService} from '../../../services/entity.service';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';

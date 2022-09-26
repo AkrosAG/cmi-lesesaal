@@ -17,7 +17,7 @@ import {
 	ShippingType,
 	TranslationService,
 	BooleanResponse
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
 import {UrlService} from './url.service';
 import * as moment from 'moment';

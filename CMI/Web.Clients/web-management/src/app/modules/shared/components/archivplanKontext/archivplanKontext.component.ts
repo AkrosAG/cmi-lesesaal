@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Entity} from '@cmi/viaduc-web-core';
+import {Entity} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-archivplan-context',

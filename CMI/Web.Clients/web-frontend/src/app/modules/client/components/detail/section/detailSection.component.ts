@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SectionRow} from '../../../model/detail/sectionRow';
 import {EntityRenderService} from '../../../services/entityRender.service';
-import {Entity, EntityMetadata} from '@cmi/viaduc-web-core';
+import {Entity, EntityMetadata} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-detail-section',

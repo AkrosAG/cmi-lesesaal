@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientContext} from '@cmi/viaduc-web-core';
+import {ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService} from '../../modules/client/services/authentication.service';
 import {AuthorizationService, UrlService} from '../../modules/shared/services';
 
@@ -46,15 +46,15 @@ export class HomePageComponent implements OnInit {
 				r => {
 					if (r) {
 						this._authentication.isSigningIn = false;
-						this._authenticating = false;					
+						this._authenticating = false;
 						this._authentication.onSignedIn.next(r);
 						this.redirectToOriginBeforeLogin();
 					} else {
 						this._authenticating = false;
 						this._authentication.login();
-					}					
+					}
 				},
-				() => {					
+				() => {
 					this._authentication.isSigningIn = false;
 					this._authenticating = false;
 					this._authentication.onSignedIn.next(false);

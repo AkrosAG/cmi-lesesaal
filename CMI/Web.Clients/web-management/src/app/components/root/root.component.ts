@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import {ClientContext, ConfigService, PreloadService} from '@cmi/viaduc-web-core';
+import {ClientContext, ConfigService, PreloadService} from '@cmi/lesesaal-web-core';
 import {ContextService} from '../../modules/client/services/context.service';
 
 @Component({

@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivateChild} from '@angular/router';
 import {DefaultContextGuard} from './defaultContextGuard';
 import {ContextService, AuthenticationService} from '../services';
-import {ClientContext, PreloadService} from '@cmi/viaduc-web-core';
+import {ClientContext, PreloadService} from '@cmi/lesesaal-web-core';
 import {mergeMap, skip} from 'rxjs/operators';
 
 @Injectable()

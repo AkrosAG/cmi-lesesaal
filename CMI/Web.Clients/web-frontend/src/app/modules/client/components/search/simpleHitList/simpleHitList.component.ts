@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {UserService} from '../../../services';
 import {UserUiSettings} from '../../../model';
-import {ClientContext, ConfigService, Entity, TranslationService} from '@cmi/viaduc-web-core';
+import {ClientContext, ConfigService, Entity, TranslationService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-simple-hitlist',

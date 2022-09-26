@@ -10,7 +10,7 @@ import {
 	StammdatenService,
 	TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {UrlService, AuthenticationService, AuthorizationService, ShoppingCartService} from '../../../services';
 import {DownloadTokenService} from '../../../services/downloadToken.service';
 import {ActivatedRoute} from '@angular/router';

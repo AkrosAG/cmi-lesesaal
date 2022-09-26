@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 declare const jQuery: any;
 

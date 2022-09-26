@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 import {UrlService} from '../../../services/url.service';
-import {Entity} from '@cmi/viaduc-web-core';
+import {Entity} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-detail-hierarchy',

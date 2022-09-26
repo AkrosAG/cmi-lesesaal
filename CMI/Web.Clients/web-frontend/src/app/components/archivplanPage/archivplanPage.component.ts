@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientContext, Entity, TranslationService } from '@cmi/viaduc-web-core';
+import { ClientContext, Entity, TranslationService } from '@cmi/lesesaal-web-core';
 import { EntityService, SeoService, UrlService } from '../../modules/client/services';
 
 @Component({

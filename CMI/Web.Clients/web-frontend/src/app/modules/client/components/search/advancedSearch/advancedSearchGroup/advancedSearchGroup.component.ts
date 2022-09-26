@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, ElementRef, AfterViewInit} from '@angular/core';
-import {AdvancedSearchGroup, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {AdvancedSearchGroup, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {AdvancedSearchService} from '../../../../services/advancedSearch.service';
 
 @Component({

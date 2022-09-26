@@ -1,4 +1,4 @@
-import {UserUiSettings} from '@cmi/viaduc-web-core';
+import {UserUiSettings} from '@cmi/lesesaal-web-core';
 
 export interface ManagementUserSettings extends UserUiSettings {
 	orderSettings: OrderUserSettings;

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Entity, EntityImage, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {Entity, EntityImage, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {SectionRow} from '../model/detail/sectionRow';
 import * as moment from 'moment';
 

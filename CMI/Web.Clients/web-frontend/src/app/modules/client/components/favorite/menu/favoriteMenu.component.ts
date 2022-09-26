@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ClientContext, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {FavoriteList} from '../../../model';
 import {AuthenticationService} from '../../../services';
 import {FavoriteService} from '../../../services';

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
-import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/viaduc-web-core';
+import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ParameterService} from '../../services';
 import {Parameter} from '../../model/parameter';
 import {AuthorizationService, UiService} from '../../../shared/services';
-import {ApplicationFeatureEnum} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

@@ -4,7 +4,7 @@ import {Router, RouterModule} from '@angular/router';
 import {RootComponent} from './components/root/root.component';
 import {ALL_COMPONENTS} from './components/_all';
 import {ROUTES, initRoutes} from './routes';
-import {CoreModule, OrdersModule, PreloadService, ClientContext} from '@cmi/viaduc-web-core';
+import {CoreModule, OrdersModule, PreloadService, ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService, ClientModule, ContextService} from './modules/client';
 import {ToastrModule} from 'ngx-toastr';
 import { DeviceDetectorModule } from 'ngx-device-detector';
