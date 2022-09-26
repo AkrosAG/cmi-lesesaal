@@ -3,8 +3,9 @@ import { ComponentFixture, TestBed,  waitForAsync } from '@angular/core/testing'
 import {ApproveStatus, EntityDecoratorService, TranslationService, CoreModule, UiService} from '@cmi/lesesaal-web-core';
 import {OrderService} from '../../../services';
 import {ErrorService, SharedModule} from '../../../../shared';
-import {ToastrService} from 'ngx-toastr';
 import {By} from '@angular/platform-browser';
+import {ConfigService} from '@cmi/viaduc-web-core';
+import {ToastrService} from 'ngx-toastr';
 
 describe('FreigabeKontrolleModalPage', () => {
 	let fixture: ComponentFixture<FreigabeKontrolleModalComponent>;
@@ -15,6 +16,7 @@ describe('FreigabeKontrolleModalPage', () => {
 	let errorService: ErrorService;
 	let entityDecoratorService: EntityDecoratorService;
 	let uiService: UiService;
+	let configService: ConfigService;
 
 	txt = <TranslationService>{
 		translate(text: string, key?: string, ...args): string {
@@ -25,7 +27,11 @@ describe('FreigabeKontrolleModalPage', () => {
 		}
 	};
 
-	entityDecoratorService  = new EntityDecoratorService(txt);
+	configService = <ConfigService>{
+
+	};
+
+	entityDecoratorService  = new EntityDecoratorService(txt, configService);
 
 	orderService = <OrderService>{
 
