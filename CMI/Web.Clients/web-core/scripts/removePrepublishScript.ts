@@ -9,7 +9,7 @@ const path = require('path');
 	Zukünftig sollte der Publish mit Ivy möglich sein und dann kann dieses Script entfernt werden.
 	*/
 // Define absolute paths for original pkg and temporary pkg.
-const ORIG_PKG_PATH = path.resolve(__dirname, '../dist/@cmi/viaduc-web-core/package.json');
+const ORIG_PKG_PATH = path.resolve(__dirname, '../dist/@cmi/lesesaal-web-core/package.json');
 // Obtain original `package.json` contents.
 const pkgData = require(ORIG_PKG_PATH);
 // Delete Scripts
