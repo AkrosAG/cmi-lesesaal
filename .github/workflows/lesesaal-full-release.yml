@@ -46,7 +46,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: web-core
-        path: ${{ env.WORKING_DIR }}/dist/@cmi/viaduc-web-core/**
+        path: ${{ env.WORKING_DIR }}/dist/@cmi/lesesaal-web-core/**
         retention-days: 1
         
   build-frontend-client:
@@ -78,7 +78,7 @@ jobs:
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v2
       with:
-        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/viaduc-web-core
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
 
     - name: Test
@@ -125,7 +125,7 @@ jobs:
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v2
       with:
-        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/viaduc-web-core
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
 
     - name: Test
