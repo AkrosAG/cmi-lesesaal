@@ -4,7 +4,7 @@ import {ApproveStatus, EntityDecoratorService, TranslationService, CoreModule, U
 import {OrderService} from '../../../services';
 import {ErrorService, SharedModule} from '../../../../shared';
 import {By} from '@angular/platform-browser';
-import {ConfigService} from '@cmi/viaduc-web-core';
+import {ConfigService} from '@cmi/lesesaal-web-core';
 import {ToastrService} from 'ngx-toastr';
 
 describe('FreigabeKontrolleModalPage', () => {
