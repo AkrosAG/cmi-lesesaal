@@ -1,6 +1,6 @@
 import {PipeTransform, Pipe} from '@angular/core';
 import {UrlService} from '../services/url.service';
-import {ClientContext, Routing, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Routing, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Pipe({
 	name: 'localizeLink'

@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ElementRef, EventEmitter, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services';
-import {OrderItem, Utilities as _util} from '@cmi/viaduc-web-core';
+import {OrderItem, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-shoppingcart-list',

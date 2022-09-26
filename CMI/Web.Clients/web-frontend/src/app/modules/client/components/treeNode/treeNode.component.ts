@@ -7,7 +7,7 @@ import {
 	ViewEncapsulation
 } from '@angular/core';
 import {EntityService} from '../../services';
-import {TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
 import {UrlService} from '../../services/url.service';
 

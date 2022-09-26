@@ -1,4 +1,4 @@
-import {Collection} from '@cmi/viaduc-web-core';
+import {Collection} from '@cmi/lesesaal-web-core';
 
 export class CollectionItemResult implements ICollectionItemResult {
 	public item?: Collection | undefined;

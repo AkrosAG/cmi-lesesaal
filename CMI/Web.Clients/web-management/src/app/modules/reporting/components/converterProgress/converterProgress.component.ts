@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConverterProgressService} from '../../services';
 import {UrlService} from '../../../shared';
-import {TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/lesesaal-web-core';
 import {NavigationStart, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {ProgressDetail} from '../../model/progressDetail';

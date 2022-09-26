@@ -5,7 +5,7 @@ import {
 	ConfigService,
 	TranslationService,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {
 	AblieferndeStelleService,
 	UrlService,

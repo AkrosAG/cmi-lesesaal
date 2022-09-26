@@ -1,4 +1,4 @@
-import {Ordering} from '@cmi/viaduc-web-core';
+import {Ordering} from '@cmi/lesesaal-web-core';
 
 export interface OrderCreationRequest extends Ordering {
 	orderIdsToExclude: number[];

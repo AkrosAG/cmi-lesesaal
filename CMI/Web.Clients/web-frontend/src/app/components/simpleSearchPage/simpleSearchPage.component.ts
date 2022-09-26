@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ClientContext, SearchRequest, TranslationService} from '@cmi/viaduc-web-core';
+import {ClientContext, SearchRequest, TranslationService} from '@cmi/lesesaal-web-core';
 import {SeoService, UrlService} from '../../modules/client/services';
 
 @Component({

@@ -23,9 +23,11 @@ export class EntityDecoratorService {
 
 	public getIconForType(type: string): string {
 		let icon = '';
-		const mappings = this._cfg.getSetting('iconMapping', undefined);
+		if (type) {
+			const mappings = this._cfg.getSetting('iconMapping', undefined);
 
-		icon = mappings[type.toLowerCase()];
+			icon = mappings[type.toLowerCase()];
+		}
 		return icon ? icon : '';
 	}
 

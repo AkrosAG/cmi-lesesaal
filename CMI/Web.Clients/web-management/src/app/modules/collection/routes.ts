@@ -1,5 +1,5 @@
 import {ApplicationFeatureGuard} from '../client';
-import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, CanDeactivateGuard} from '@cmi/lesesaal-web-core';
 import {CollectionDetailPageComponent, CollectionListPageComponent} from './components';
 
 export const ROUTES: any = [

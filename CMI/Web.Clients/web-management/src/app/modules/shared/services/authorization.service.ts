@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClientContext, ApplicationFeatureEnum, Session, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, ApplicationFeatureEnum, Session, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class AuthorizationService {

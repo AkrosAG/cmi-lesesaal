@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClientContext, CoreOptions, HttpService, Paging} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreOptions, HttpService, Paging} from '@cmi/lesesaal-web-core';
 import {DetailResult, PagedResult} from '../../shared/model/apiModels';
 import {Observable} from 'rxjs';
 

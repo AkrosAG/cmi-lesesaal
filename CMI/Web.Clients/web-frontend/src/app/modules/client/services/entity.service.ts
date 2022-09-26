@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
-import {ClientContext, CoreOptions, EntitiesResult, Entity, EntityDecoratorService, HttpService, Paging} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreOptions, EntitiesResult, Entity, EntityDecoratorService, HttpService, Paging} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class EntityService {

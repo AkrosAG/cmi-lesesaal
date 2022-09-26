@@ -5,7 +5,7 @@ import {
 	DropdownSearchField, DropdownSearchFieldValue,
 	ConfigService, ClientContext, Utilities as _util,
 	CountriesService, TranslationService
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class AdvancedSearchService {

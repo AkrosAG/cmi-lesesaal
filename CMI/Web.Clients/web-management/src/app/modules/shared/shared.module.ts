@@ -4,7 +4,7 @@ import {ALL_COMPONENTS} from './components/_all';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ALL_SERVICES} from './services/_all';
 import {ALL_PIPES} from './pipes/_all';
-import {WijmoModule, CoreModule} from '@cmi/viaduc-web-core';
+import {WijmoModule, CoreModule} from '@cmi/lesesaal-web-core';
 import {MarkdownModule} from 'ngx-markdown';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import {ActiveToast, ToastrService} from 'ngx-toastr';
-import {CoreOptions, Entity, OrderItem} from '@cmi/viaduc-web-core';
+import {CoreOptions, Entity, OrderItem} from '@cmi/lesesaal-web-core';
 import {AuthenticationService} from './authentication.service';
 import {Router} from '@angular/router';
 import {UrlService} from './url.service';

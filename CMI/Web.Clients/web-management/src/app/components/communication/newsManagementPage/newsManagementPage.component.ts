@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {ApplicationFeatureEnum, CmiGridComponent, TranslationService} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, CmiGridComponent, TranslationService} from '@cmi/lesesaal-web-core';
 import {News, NewsForEditor} from '../../../modules/client/model';
 import {NewsService} from '../../../modules/client/services';
 import {AuthorizationService, ErrorService, UrlService} from '../../../modules/shared/services';

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
-import {ClientContext, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-footer-content',

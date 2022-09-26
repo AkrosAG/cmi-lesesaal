@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CmiGridComponent, ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {CmiGridComponent, ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {UrlService, AuthorizationService, ErrorService, UiService} from '../../../shared/services';
 import {PagedResult} from '../../../shared/model/apiModels';
 import {RoleService} from '../../services/role.service';

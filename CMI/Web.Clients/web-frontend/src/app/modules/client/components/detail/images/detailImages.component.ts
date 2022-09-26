@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
-import {EntityImage, Paging, Utilities as _util} from '@cmi/viaduc-web-core';
+import {EntityImage, Paging, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-detail-images',

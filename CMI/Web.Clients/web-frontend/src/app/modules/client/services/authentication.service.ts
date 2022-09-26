@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {
 	ConfigService, CoreOptions, HttpService, PreloadService, Session,
 	Utilities as _util
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {ContextService} from './context.service';
 import {AuthorizationService} from './authorization.service';
 import {SessionStorageService} from './sessionStorage.service';

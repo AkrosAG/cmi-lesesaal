@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {SearchFacetteComponent} from '../searchFacette/searchFacette.component';
-import {AggregationEntry, TranslationService} from '@cmi/viaduc-web-core';
+import {AggregationEntry, TranslationService} from '@cmi/lesesaal-web-core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({

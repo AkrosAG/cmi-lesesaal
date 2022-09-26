@@ -3,7 +3,7 @@ import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';
 import {EinsichtsGesuchEmailVorlage} from '../../../model';
-import {ClientContext, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, Utilities as _util} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-in-vorlage-exportieren-modal',

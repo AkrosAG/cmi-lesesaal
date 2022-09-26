@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
 import {AuthorizationService} from '../../../services/authorization.service';
-import {Ordering, OrderItem, ShippingType, ConfigService} from '@cmi/viaduc-web-core';
+import {Ordering, OrderItem, ShippingType, ConfigService} from '@cmi/lesesaal-web-core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {KontingentResult, OrderCreationRequest} from '../../../model';
 

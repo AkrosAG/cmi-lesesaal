@@ -5,7 +5,7 @@ import {
 	ApplicationFeatureEnum,
 	EntscheidGesuchStatus,
 	Abbruchgrund, StammdatenService, ArtDerArbeit, ShippingType, ApproveStatus, ComponentCanDeactivate
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, DetailPagingService, ErrorService, UrlService} from '../../../shared/services';
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';

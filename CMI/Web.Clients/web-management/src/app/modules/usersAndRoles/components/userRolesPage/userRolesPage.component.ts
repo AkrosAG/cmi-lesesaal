@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {
 	ClientContext, ConfigService, CoreOptions, TranslationService, CountriesService, CmiGridComponent
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {ErrorService, UrlService, UserService} from '../../../shared/services/index';
 import {DataType, SortDescription} from '@grapecity/wijmo';
 import {UserListUserSettings} from '../../../shared/model';

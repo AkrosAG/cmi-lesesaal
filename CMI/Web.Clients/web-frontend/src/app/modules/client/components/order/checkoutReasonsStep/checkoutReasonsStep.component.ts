@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
-import {OrderItem, Reason, StammdatenService} from '@cmi/viaduc-web-core';
+import {OrderItem, Reason, StammdatenService} from '@cmi/lesesaal-web-core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ReasonValidator} from '../../../model/reasonValidator';
 

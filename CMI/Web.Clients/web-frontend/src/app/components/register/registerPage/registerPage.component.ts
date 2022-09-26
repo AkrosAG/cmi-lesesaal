@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService, UrlService, UserService, SeoService} from '../../../modules/client/services';
 import {User} from '../../../modules/client/model';
-import {ClientContext, CountriesService, TranslationService, ComponentCanDeactivate} from '@cmi/viaduc-web-core';
+import {ClientContext, CountriesService, TranslationService, ComponentCanDeactivate} from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';

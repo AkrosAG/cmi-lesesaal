@@ -32,8 +32,8 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
-              "node_modules/@cmi/viaduc-web-core/lib/core/core.styles.less",
-              "node_modules/@cmi/viaduc-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
+              "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
+              "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"
             ],
             "scripts": [
@@ -151,8 +151,8 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
-              "node_modules/@cmi/viaduc-web-core/lib/core/core.styles.less",
-              "node_modules/@cmi/viaduc-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
+              "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
+              "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"
             ],
             "assets": [

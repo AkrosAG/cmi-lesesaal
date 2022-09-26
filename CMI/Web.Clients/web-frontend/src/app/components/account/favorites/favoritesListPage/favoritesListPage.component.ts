@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TranslationService, Utilities as _util } from '@cmi/viaduc-web-core';
+import { TranslationService, Utilities as _util } from '@cmi/lesesaal-web-core';
 import { FavoriteListsComponent } from '../../../../modules/client/components';
 import { FavoriteService, SeoService, UrlService } from '../../../../modules/client/services';
 

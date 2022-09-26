@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, AfterViewInit} from '@angular/core';
-import {ClientContext, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {FavoriteService, AuthenticationService} from '../../../services';
 import {FavoriteList, FavoriteKind, SearchFavorite} from '../../../model';
 import {ToastrService} from 'ngx-toastr';

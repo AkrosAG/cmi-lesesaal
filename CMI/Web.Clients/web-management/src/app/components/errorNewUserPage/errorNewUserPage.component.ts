@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ErrorInfo, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ErrorInfo, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {SessionStorageService} from '../../modules/client/services';
 
 @Component({

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClientContext, CoreOptions, HttpService} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {INewsForOneLanguage} from '../model';
 
 @Injectable()

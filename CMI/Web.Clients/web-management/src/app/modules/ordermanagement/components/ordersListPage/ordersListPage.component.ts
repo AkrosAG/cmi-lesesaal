@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ApplicationFeatureEnum, ConfigService, InternalStatus, ShippingType, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum, ConfigService, InternalStatus, ShippingType, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, UiService, UrlService, UserService} from '../../../shared/services';
 import {OrderingFlatItem, SelectionPreFilter} from '../../model';
 import {WjMenu} from '@grapecity/wijmo.angular2.input';

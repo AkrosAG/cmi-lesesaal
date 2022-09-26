@@ -1,5 +1,5 @@
 import {Component, Input, SimpleChange, OnChanges, ViewEncapsulation} from '@angular/core';
-import {ClientContext, CoreOptions, TranslationService, Utilities as _util} from '@cmi/viaduc-web-core';
+import {ClientContext, CoreOptions, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {StaticContentService} from '../../services';
 import {SeoService} from '../../services';
 
@@ -40,7 +40,7 @@ export class StaticContentComponent implements OnChanges {
 		if (changes['url'] && this.url !== undefined) {
 			const oldRoute = this._static.getStaticRouteInfo(changes['url']['previousValue']);
 			const newRoute = this._static.getStaticRouteInfo(changes['url']['currentValue']);
-			
+
 			if (oldRoute.route !== newRoute.route || oldRoute.query !== newRoute.query) {
 				this._loadContent();
 			} else {

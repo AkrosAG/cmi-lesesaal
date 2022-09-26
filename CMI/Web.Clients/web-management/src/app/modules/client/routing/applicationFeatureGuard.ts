@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
-import {ApplicationFeatureEnum} from '@cmi/viaduc-web-core';
+import {ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, UrlService} from '../../shared/services';
 
 @Injectable()

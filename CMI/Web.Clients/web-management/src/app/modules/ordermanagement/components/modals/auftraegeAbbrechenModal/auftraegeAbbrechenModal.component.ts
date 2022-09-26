@@ -5,7 +5,7 @@ import {ErrorService} from '../../../../shared/services';
 import {
 	Abbruchgrund,
 	EntityDecoratorService,
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-auftraege-abbrechen-modal',

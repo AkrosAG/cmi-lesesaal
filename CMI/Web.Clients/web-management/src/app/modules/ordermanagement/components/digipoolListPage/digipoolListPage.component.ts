@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {
 	ConfigService, TranslationService, WijmoService, ApplicationFeatureEnum, DigitalisierungsKategorie,
 	EntityDecoratorService, CmiGridComponent
-} from '@cmi/viaduc-web-core';
+} from '@cmi/lesesaal-web-core';
 import {CollectionView} from '@grapecity/wijmo';
 import {DigipoolEntry} from '../../model';
 import {OrderService} from '../../services';

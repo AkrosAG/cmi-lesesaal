@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TranslationService} from '@cmi/viaduc-web-core';
+import {TranslationService} from '@cmi/lesesaal-web-core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {SearchFacetteComponent} from '../searchFacette/searchFacette.component';
 

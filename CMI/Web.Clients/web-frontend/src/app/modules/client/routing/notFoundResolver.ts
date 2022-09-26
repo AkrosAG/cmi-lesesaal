@@ -1,6 +1,6 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from '@angular/core';
-import {ErrorInfo, TranslationService} from '@cmi/viaduc-web-core';
+import {ErrorInfo, TranslationService} from '@cmi/lesesaal-web-core';
 
 @Injectable()
 export class NotFoundResolver implements Resolve<ErrorInfo> {

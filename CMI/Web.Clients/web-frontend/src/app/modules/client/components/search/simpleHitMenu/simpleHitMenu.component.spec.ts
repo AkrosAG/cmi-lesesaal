@@ -1,6 +1,6 @@
 import {SimpleHitMenuComponent} from '../..';
 import {ElementRef} from '@angular/core';
-import {CoreOptions, Entity, UiService} from '@cmi/viaduc-web-core';
+import {CoreOptions, Entity, UiService} from '@cmi/lesesaal-web-core';
 import {AuthenticationService, AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
