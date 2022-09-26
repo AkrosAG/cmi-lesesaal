@@ -10,58 +10,35 @@ namespace CMI.Contract.Common.Compiler
     public class DynamicScriptProvider : IDynamicScriptProvider
     {
         private readonly IDynamicScriptLocator scriptLocator;
+        private readonly CSharpCodeProvider compiler;
 
         public static string[] References => AppDomain.CurrentDomain.GetAssemblies()
                                                                      .Where(a => !a.IsDynamic)
                                                                      .Select(a => $"{a.Location}").ToArray();
 
-        private class EmptyScriptLocator : IDynamicScriptLocator
+        public DynamicScriptProvider(CSharpCodeProvider compilerInstance, IDynamicScriptLocator scriptLocatorInstance)
         {
-            public string GetCustomScript()
-            {
-                return @"using System.Collections.Generic;
-                    namespace CMI.Contract.Common.Compiler
-                    {
-                        public class DefaultCustomScript : IDynamicScript
-                        {
-                            public void PostProcessArchiveRecord(ArchiveRecord archiveRecord){}
-
-                            public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord){}
-                            }
-                    }";
-            }
-        }
-
-        public DynamicScriptProvider()
-        {
-                scriptLocator = new EmptyScriptLocator();
-        }
-
-        public DynamicScriptProvider(IDynamicScriptLocator scriptLocator)
-        {
-            this.scriptLocator = scriptLocator;
+            scriptLocator = scriptLocatorInstance;
+            compiler = compilerInstance;
         }
 
         public T GetInstanceByType<T>() 
         {
             string script = scriptLocator.GetCustomScript();
-            using (var compiler = new CSharpCodeProvider())
+            var options = new CompilerParameters() { GenerateInMemory = true };
+            foreach(var reference in DynamicScriptProvider.References)
             {
-                var options = new CompilerParameters() { GenerateInMemory = true };
-                foreach(var reference in DynamicScriptProvider.References)
-                {
-                    options.ReferencedAssemblies.Add(reference);
-                }
-                
-                var result = compiler.CompileAssemblyFromSource(options, script);
-                EnsureResult(result);
-
-                var targetType = result.CompiledAssembly.GetTypes()
-                                                    .Where(t => typeof(T).IsAssignableFrom(t))
-                                                    .FirstOrDefault();
-
-                return (T) Activator.CreateInstance(targetType); 
+                options.ReferencedAssemblies.Add(reference);
             }
+                
+            var result = compiler.CompileAssemblyFromSource(options, script);
+            EnsureResult(result);
+
+            var targetType = result.CompiledAssembly.GetTypes()
+                                                .Where(t => typeof(T).IsAssignableFrom(t))
+                                                .FirstOrDefault();
+
+            return (T) Activator.CreateInstance(targetType); 
         }
 
         private void EnsureResult(CompilerResults result)
@@ -72,7 +49,21 @@ namespace CMI.Contract.Common.Compiler
                 throw new Exception(String.Join(";",messages));
             }
         }
+    }
+    public class EmptyScriptLocator : IDynamicScriptLocator
+    {
+        public string GetCustomScript()
+        {
+            return @"using System.Collections.Generic;
+                    namespace CMI.Contract.Common.Compiler
+                    {
+                        public class DefaultCustomScript : IDynamicScript
+                        {
+                            public void PostProcessArchiveRecord(ArchiveRecord archiveRecord){}
 
-        
+                            public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord){}
+                            }
+                    }";
+        }
     }
 }

@@ -10,6 +10,7 @@ using CMI.Manager.Index.Config;
 using CMI.Manager.Index.Properties;
 using CMI.Utilities.Bus.Configuration;
 using MassTransit;
+using Microsoft.CSharp;
 
 namespace CMI.Manager.Index.Infrastructure
 {
@@ -31,7 +32,7 @@ namespace CMI.Manager.Index.Infrastructure
             builder.RegisterType<SearchIndexDataAccess>().AsImplementedInterfaces();
             builder.RegisterType<LogDataAccess>().As<ILogDataAccess>();
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
-
+            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
             builder.Register(ctx =>
             {
@@ -39,7 +40,6 @@ namespace CMI.Manager.Index.Infrastructure
                 return new CustomScriptLocator(path);
             })
             .AsImplementedInterfaces()
-            .AsSelf()
             .SingleInstance();
 
             builder.RegisterType<ElasticLogManager>().As<IElasticLogManager>();
