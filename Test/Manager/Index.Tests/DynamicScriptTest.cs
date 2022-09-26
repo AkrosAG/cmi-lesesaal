@@ -1,5 +1,6 @@
 ﻿using CMI.Contract.Common;
 using CMI.Contract.Common.Compiler;
+using Microsoft.CSharp;
 using Moq;
 using NUnit.Framework;
 
@@ -35,8 +36,9 @@ namespace CMI.Manager.Index.Tests
 
             var archiveRecord = new ArchiveRecord();
             var elasticRecord = new ElasticArchiveRecord();
-            
-            var provider = new DynamicScriptProvider(mockDynamicScriptLocator.Object);
+
+
+            var provider = new DynamicScriptProvider(new CSharpCodeProvider(), mockDynamicScriptLocator.Object);
             var script = provider.GetInstanceByType<IDynamicScript>();
 
             script.PostProcessElasticArchiveRecord(elasticRecord, archiveRecord);
