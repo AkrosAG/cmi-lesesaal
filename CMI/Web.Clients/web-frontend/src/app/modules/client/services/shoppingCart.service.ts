@@ -144,7 +144,6 @@ export class ShoppingCartService {
 			this._showNotLoggedInToast();
 			return;
 		}
-
 		const url = `${this._apiUrl}/AddToBasket`;
 		let newItem: OrderItem = null;
 		await this._http.post<OrderItem>(url, selfMadeItem).toPromise().then((data => {
@@ -212,8 +211,10 @@ export class ShoppingCartService {
 
 	private _addIndexItemToBasket(items: Observable<OrderItem[]>, ve: Entity): Observable<OrderItem> {
 		const url = `${this._apiUrl}/AddToBasket?veId=${ve.archiveRecordId}`;
+		console.log(url);
+
 		return this._http.post<OrderItem>(url, null).pipe(map(newItem => {
-			if (parseInt(newItem.id, 10) === 0) {
+			if (newItem.id === undefined || newItem.id === '') {
 				this._showAlreadyInCartToast(ve.title);
 				return null;
 			} else {
