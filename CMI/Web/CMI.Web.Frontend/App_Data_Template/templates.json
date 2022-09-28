@@ -1,106 +1,6 @@
 {
   "FormTemplates": [
     {
-      "FormId": "dossier_Extern",
-      "Sections": [
-        {
-          "SectionLabels": {
-            "de": "Details",
-            "en": "Details",
-            "fr": "Détails",
-            "it": "Dettagli"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "ReferenceCode",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Signatur",
-                "en": "Reference code",
-                "fr": "Cote",
-                "it": "Segnatura"
-              }
-            },
-            {
-              "DbFieldName": "Title",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Titel",
-                "en": "Title",
-                "fr": "Titre",
-                "it": "Titolo"
-              }
-            },
-            {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Datumsbereich",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Entstehungszeitraum",
-                "en": "Creation period",
-                "fr": "Date de création",
-                "it": "Periodo di costituzione"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.BemerkungZurVe",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Zusätzliche Informationen",
-                "en": "Additional information",
-                "fr": "Informations complémentaires",
-                "it": "Informazioni supplementari"
-              }
-            },
-            {
-              "DbFieldName": "WithinInfo",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Darin",
-                "en": "Contains",
-                "fr": "Contenu",
-                "it": "Contiene"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Publikation",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Publikation",
-                "en": "Publication",
-                "fr": "Publikation fr",
-                "it": "Publikation it"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Benutzbarkeit",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Benutzbarkeit",
-                "en": "Benutzbarkeit en",
-                "fr": "Benutzbarkeit fr",
-                "it": "Benutzbarkeit it"
-              }
-            }
-          ],
-          "SubSections": []
-        }
-      ]
-    },
-    {
       "FormId": "Abteilung_Extern",
       "Sections": [
         {
@@ -110,17 +10,19 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Kuerzel",
+              "DbFieldName": "CustomFields.allgemeineAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Kürzel",
-                "fr": "Sigle"
+                "de": "Zusätzliche Informationen",
+                "en": "Additional information",
+                "fr": "Informations complémentaires",
+                "it": "Informazioni supplementari"
               }
             },
             {
-              "DbFieldName": "CustomFields.EntstehungsZeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -184,7 +86,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.EntstehungsZeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -601,7 +503,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Signatur",
+              "DbFieldName": "referenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -641,7 +543,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Titel",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -651,7 +553,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -682,7 +584,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Text",
+              "DbType": "Boolean",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -808,7 +710,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -1079,7 +981,7 @@
       ]
     },
     {
-      "FormId": "Dossier_Extern_old",
+      "FormId": "Dossier_Extern",
       "Sections": [
         {
           "SectionLabels": {
@@ -1088,7 +990,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Signatur",
+              "DbFieldName": "referenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1128,7 +1030,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Titel",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1138,7 +1040,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -1169,7 +1071,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Text",
+              "DbType": "Boolean",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1295,7 +1197,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -1570,471 +1472,94 @@
       "Sections": [
         {
           "SectionLabels": {
-            "de": "Identifikation",
-            "fr": "Identification"
+            "de": "Details",
+            "en": "Details",
+            "fr": "Détails",
+            "it": "Dettagli"
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Signatur",
+              "DbFieldName": "ReferenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
-                "fr": "Référence"
+                "en": "Reference code",
+                "fr": "Cote",
+                "it": "Segnatura"
               }
             },
             {
-              "DbFieldName": "CustomFields.AlteSignatur",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Alte Signatur",
-                "fr": "Ancienne signature"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "fr": "PID"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Verzeichnungsstufe",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verzeichnungsstufe",
-                "fr": "Niveau de description"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Titel",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
-                "fr": "Titre"
+                "en": "Title",
+                "fr": "Titre",
+                "it": "Titolo"
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
-              "DbType": "Date",
+              "DbFieldName": "CreationPeriod",
+              "DbType": "Datumsbereich",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création",
+                "it": "Periodo di costituzione"
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
+              "DbFieldName": "CustomFields.allgemeineAnmerkungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
               "FieldLabels": {
-                "de": "Bezugszeitraum",
-                "fr": "Période de référence"
+                "de": "Zusätzliche Informationen",
+                "en": "Additional information",
+                "fr": "Informations complémentaires",
+                "it": "Informazioni supplementari"
               }
             },
             {
-              "DbFieldName": "CustomFields.DatierungBemerkungen",
+              "DbFieldName": "WithinInfo",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Bemerkungen zur Datierung",
-                "fr": "Remarques sur la datation"
+                "de": "Darin",
+                "en": "Contains",
+                "fr": "Contenu",
+                "it": "Contiene"
               }
             },
             {
-              "DbFieldName": "CustomFields.Tektonikpfad",
+              "DbFieldName": "CustomFields.Publikation",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Tektonikpfad",
-                "fr": "Chemin tectonique"
+                "de": "Publikation",
+                "en": "Publication",
+                "fr": "Publikation fr",
+                "it": "Publikation it"
               }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Kontext",
-            "fr": "Contexte"
-          },
-          "Fields": [
+            },
             {
-              "DbFieldName": "CustomFields.BemerkungenProvenienz",
+              "DbFieldName": "CustomFields.Benutzbarkeit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Bemerkungen Provenienz",
-                "fr": "Remarques provenance"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Verwaltungsgeschichte",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verwaltungsgeschichte / Biografische Angaben",
-                "fr": "Histoire administrative / Notice biographique"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Bestandsgeschichte",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bestandesgeschichte",
-                "fr": "Historique de la conservation"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.AbgebendeStellen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abgebende Stellen",
-                "fr": "Modalités d'entrée"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Inhalt und innere Ordnung",
-            "fr": "Contenu et structure"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.FormInhalt",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Form und Inhalt",
-                "fr": "Présentation du contenu"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.BewertungKassation",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bewertung und Kassation",
-                "fr": "Évaluation, tris et éliminations, sort final"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Neuzugaenge",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Neuzugänge",
-                "fr": "Accroissements"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.OrdnungKlassifikation",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ordnung und Klassifikation",
-                "fr": "Mode de classement"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Zugangs- und Benutzungsbedingungen",
-            "fr": "Conditions d'accès et d'utilisation"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.Zugangsbestimmungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Zugangsbestimmungen",
-                "fr": "Conditions d'accès"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.BasisdatumSchutzfrist",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Basisdatum Schutzfrist",
-                "fr": "Date de base du délai de protection"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.AblaufSchutzfrist",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Schutzfrist",
-                "fr": "Expiration du délai de protection"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.AblaufVerwertungsrecht",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Verwertungsrecht",
-                "fr": "Expiration du droit d'exploitation"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.TodesdatumUrheber",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Basisdatum Verwertungsrecht",
-                "fr": "Date de décès de l'auteur"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Urheber",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Urheber",
-                "fr": "Auteur"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.DateiVorhanden",
-              "DbType": "Boolean",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Datei vorhanden",
-                "fr": "Fichier existant"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.DigitalVorhanden",
-              "DbType": "Boolean",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Digital vorhanden",
-                "fr": "Existe sous forme numérique"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Reproduktionsbestimmungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Reproduktionsbestimmungen",
-                "fr": "Conditions de reproduction"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.PhysischeBeschaffenheit",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Physische Beschaffenheit und technische Anforderungen",
-                "fr": "Caractéristiques matérielles et contraintes techniques"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Findmittel",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Findmittel",
-                "fr": "Instruments de recherche"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Sachverwandte Unterlagen",
-            "fr": "Sources complémentaires"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.AufbewahrungsortOriginale",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Aufbewahrungsort der Originale",
-                "fr": "Lieu de conservation des originaux"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.KopienReproduktionen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Kopien / Reproduktionen",
-                "fr": "Copies / reproductions"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "fr": "Sources complémentaires"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Veroeffentlichungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Veröffentlichungen",
-                "fr": "Bibliographie"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Anmerkungen",
-            "fr": "Remarques"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.AllgemeineAnmerkungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Allgemeine Anmerkungen",
-                "fr": "Remarques générales"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Verzeichnungskontrolle",
-            "fr": "Contrôle de description"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.BearbeiterZeitraum",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bearbeiter und Zeitraum der Verzeichnung",
-                "fr": "Archivistes et période de description"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.interneAnmerkungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Verzeichnungsgrundsaetze",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verzeichnungsgrundsätze",
-                "fr": "Règles ou conventions"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.Schadenserhebung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Schadenserhebung",
-                "fr": "Évaluation des dommages"
-              }
-            }
-          ],
-          "SubSections": []
-        },
-        {
-          "SectionLabels": {
-            "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
-            "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "CustomFields.StandortBemerkungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Standort",
-                "fr": "Remarques sur le lieu"
-              }
-            },
-            {
-              "DbFieldName": "CustomFields.UmfangBemerkungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "fr": "Remarques sur l'importance matérielle"
+                "de": "Benutzbarkeit",
+                "en": "Usability",
+                "fr": "Utilisabilité",
+                "it": "Usabilità"
               }
             }
           ],
@@ -2052,7 +1577,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Signatur",
+              "DbFieldName": "referenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2092,7 +1617,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Titel",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2102,7 +1627,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -2133,7 +1658,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Text",
+              "DbType": "Boolean",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -2259,7 +1784,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Entstehungszeitraum",
+              "DbFieldName": "CreationPeriod",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
