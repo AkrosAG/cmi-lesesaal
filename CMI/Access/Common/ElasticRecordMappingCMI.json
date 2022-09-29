@@ -189,42 +189,8 @@
       },
       "customFields": {
         "properties": {
-          "abdeckung": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
           "aipId": {
             "type": "keyword"
-          },
-          "aktenzeichen": {
-            "copy_to": [
-              "all_Metadata_Keyword"
-            ],
-            "type": "keyword"
-          },
-          "anhang3": {
-            "type": "boolean"
-          },
-          "bemerkungZurVe": {
-            "type": "text"
-          },
-          "beteiligtePersonenKörperschaften": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
           },
           "bildAnsicht": {
             "properties": {
@@ -246,130 +212,6 @@
               }
             }
           },
-          "digitaleVersion": {
-            "properties": {
-              "text": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "url": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "digitalesFindmittelBeschreibung": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "digitalesFindmittelLink": {
-            "properties": {
-              "text": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "url": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "entstehungszeitraumAnmerkung": {
-            "type": "text"
-          },
-          "form": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "keyword"
-          },
-          "format": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "früheresAktenzeichen": {
-            "copy_to": [
-              "all_Metadata_Keyword"
-            ],
-            "type": "keyword"
-          },
-          "geschichteDerUnterlagen": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "kategorieDia": {
-            "type": "long"
-          },
-          "land": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "nachfolgerbehörden": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "nichtOnlineRecherchierbareDossiers": {
-            "type": "keyword"
-          },
-          "publikationsrechte": {
-            "type": "keyword"
-          },
-          "signaturArchivplan": {
-            "type": "keyword"
-          },
-          "thema": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
           "urheber": {
             "copy_to": [
               "all_Metadata_Text"
@@ -381,129 +223,31 @@
               }
             }
           },
-          "veAblieferungLink": {
-            "properties": {
-              "entityRecordId": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "entityType": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "value": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "veOrdnungskomponenteLink": {
-            "properties": {
-              "entityRecordId": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "entityType": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "value": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "verleger": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "verwandteVe": {
-            "type": "text"
-          },
-          "vorgängerbehörden": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "zugänglichkeitGemässBga": {
-            "type": "keyword"
-          },
-          "zuständigeStelle": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "zusatzkomponenteZac1": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-
           "typeName": {
             "type": "text"
           },
           "displayName": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
             "type": "text"
           },
           "alteSignatur": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
             "type": "text"
           },
           "verwaltungssignatur": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
             "type": "text"
           },
           "pID": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
             "type": "text"
           },
           "bezugszeitraum": {
@@ -589,10 +333,10 @@
             "type": "text"
           },
           "benutzbarkeit": {
-            "type": "text"
+            "type": "keyword"
           },
           "publikation": {
-            "type": "text"
+            "type": "keyword"
           },
           "verwertungsrecht": {
             "type": "text"
@@ -610,7 +354,7 @@
             "type": "text"
           },
           "verzeichnungsstatus": {
-            "type": "text"
+            "type": "keyword"
           },
           "bearbeiterzeitraum": {
             "type": "text"
@@ -625,10 +369,10 @@
             "type": "text"
           },
           "dateiVorhanden": {
-            "type": "text"
+            "type": "boolean"
           },
           "digitalVorhanden": {
-            "type": "text"
+            "type": "boolean"
           },
           "tektonikpfad": {
             "type": "text"

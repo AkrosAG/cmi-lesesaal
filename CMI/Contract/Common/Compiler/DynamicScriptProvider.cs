@@ -45,8 +45,8 @@ namespace CMI.Contract.Common.Compiler
         {
             if(result.Errors.Count > 0)
             {
-                var messages = result.Errors.Cast<CompilerError>().Select(e => $"{e.Line}:{e.ErrorNumber}|{e.ErrorText}");
-                throw new Exception(String.Join(";",messages));
+                var messages = result.Errors.Cast<CompilerError>().Select(e => $"{e.ToString()}");
+                throw new Exception(String.Join(Environment.NewLine, messages));
             }
         }
     }
