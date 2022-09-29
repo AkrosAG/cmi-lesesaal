@@ -237,7 +237,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public SyncActionDto() {
         }
 
-        public SyncActionDto(int syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
+        public SyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
 
           this.SyncActionId = syncActionId;
           this.ArchiveRecordId = archiveRecordId;
@@ -253,7 +253,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         #region Properties
 
-        public int SyncActionId { get; set; }
+        public long SyncActionId { get; set; }
 
         public string ArchiveRecordId { get; set; }
 
@@ -283,7 +283,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public SyncActionLogDto() {
         }
 
-        public SyncActionLogDto(int syncActionLogId, int? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
+        public SyncActionLogDto(int syncActionLogId, long? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
 
           this.SyncActionLogId = syncActionLogId;
           this.SyncActionId = syncActionId;
@@ -299,7 +299,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public int SyncActionLogId { get; set; }
 
-        public int? SyncActionId { get; set; }
+        public long? SyncActionId { get; set; }
 
         public global::System.DateTime? LogDate { get; set; }
 

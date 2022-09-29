@@ -1430,7 +1430,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>efb363de-2194-4c1c-ad1a-e9aba4ac3a97</Path>
+                      <Path>cf26cf5a-2c8f-4a8d-80e1-0277400de8d5</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1607,7 +1607,7 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>ad3881b0-e366-4103-8dd2-9dac1ed6a3ee</Path>
+                      <Path>642e468d-b213-4eb3-b84d-218f9cb83f99</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -2184,7 +2184,7 @@
             </PortAnchors>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
-              <Path>12f2931c-c8c0-4da9-96bd-ad9b719348d4</Path>
+              <Path>f4d575f5-ede3-4551-8a0f-6cc9187d039e</Path>
               <TypeName>EntityDeveloper.EntityFramework.EntityAssociation</TypeName>
             </Oid>
           </Model>
