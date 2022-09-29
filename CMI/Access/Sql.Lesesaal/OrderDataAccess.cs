@@ -1030,7 +1030,7 @@ namespace CMI.Access.Sql.Lesesaal
                     {
                         ParameterName = "veId",
                         Value = veId,
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
@@ -1082,7 +1082,7 @@ namespace CMI.Access.Sql.Lesesaal
                     {
                         ParameterName = "veId",
                         Value = veId,
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
 
                     using (var reader = await cmd.ExecuteReaderAsync())
@@ -1296,7 +1296,7 @@ namespace CMI.Access.Sql.Lesesaal
                         {
                             ParameterName = "pVeId",
                             Value = veId,
-                            SqlDbType = SqlDbType.Int
+                            SqlDbType = SqlDbType.NVarChar
                         }
                     );
 
@@ -1408,7 +1408,7 @@ namespace CMI.Access.Sql.Lesesaal
                         {
                             ParameterName = "p2",
                             Value = veId,
-                            SqlDbType = SqlDbType.Int
+                            SqlDbType = SqlDbType.NVarChar
                         }
                     );
 
@@ -1624,7 +1624,7 @@ namespace CMI.Access.Sql.Lesesaal
                     {
                         ParameterName = "veId",
                         Value = ToDb(indexSnapshot.VeId),
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {

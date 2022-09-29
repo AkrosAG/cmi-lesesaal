@@ -207,7 +207,7 @@ namespace CMI.Access.Sql.Lesesaal
                 {
                     Value = veFavorite.VeId,
                     ParameterName = "p2",
-                    SqlDbType = SqlDbType.Int
+                    SqlDbType = SqlDbType.NVarChar
                 });
                 cmd.Parameters.Add(new SqlParameter
                 {
