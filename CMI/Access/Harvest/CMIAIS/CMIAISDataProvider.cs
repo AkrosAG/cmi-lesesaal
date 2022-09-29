@@ -102,7 +102,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 if (searchResponse.Hit.Any())
                 {
                     var item = XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
-                    cache.Add(id, item, new CacheItemPolicy() {SlidingExpiration = TimeSpan.FromSeconds(60)});
+                    cache.Add(id, item, new CacheItemPolicy {SlidingExpiration = TimeSpan.FromSeconds(120)});
                     return item;
                 }
 

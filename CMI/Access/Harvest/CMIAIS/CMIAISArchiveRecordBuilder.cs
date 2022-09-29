@@ -116,7 +116,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 ExternalDisplayTemplateName = $"{cmiRecord.TypeName}_Extern",
                 ContainsImages = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image),
                 ContainsMedia = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media),
-                CanBeOrdered = true, // ToDo: Abklären, wie sich das ermittelt
+                CanBeOrdered = false, // Wird im Custom Script gesetzt/überschrieben
             };
 
             await CalculateTreeContext(display, cmiRecord, archiveRecord);
