@@ -644,6 +644,10 @@
     "errorPhone": "Telephone numbers can begin with a \"+\", may contain numbers, spaces and \\\"-\\\", and must be between 6 and 20 characters long"
   },
   "metadata": {
+		"boolean": {
+			"ja": "Yes",
+			"nein": "No"
+		},
     "label": {
       "creationPeriod": "Creation period",
       "customFields": {

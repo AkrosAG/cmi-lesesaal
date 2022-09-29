@@ -636,6 +636,10 @@
     "errorPhone": "Telefonnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \"-\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein"
   },
   "metadata": {
+		"boolean": {
+			"ja": "Ja",
+			"nein": "Nein"
+		},
     "label": {
       "creationPeriod": "Entstehungszeitraum",
       "customFields": {
