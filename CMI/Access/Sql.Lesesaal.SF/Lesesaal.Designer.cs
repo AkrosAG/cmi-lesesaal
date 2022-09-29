@@ -2112,7 +2112,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Create a new SyncAction object.
         /// </summary>
         /// <param name="syncActionId">Initial value of SyncActionId.</param>
-        public static SyncAction CreateSyncAction(int syncActionId)
+        public static SyncAction CreateSyncAction(long syncActionId)
         {
             SyncAction syncAction = new SyncAction();
             syncAction.SyncActionId = syncActionId;
@@ -2128,11 +2128,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual int SyncActionId
+        public virtual long SyncActionId
         {
             get
             {
-                int value = _SyncActionId;
+                long value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -2148,9 +2148,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private int _SyncActionId;
-        partial void OnGetSyncActionId(ref int value);
-        partial void OnSyncActionIdChanging(ref int value);
+        private long _SyncActionId;
+        partial void OnGetSyncActionId(ref long value);
+        partial void OnSyncActionIdChanging(ref long value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
@@ -2424,11 +2424,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute()]
         [DataMemberAttribute()]
-        public virtual int? SyncActionId
+        public virtual long? SyncActionId
         {
             get
             {
-                int? value = _SyncActionId;
+                long? value = _SyncActionId;
                 OnGetSyncActionId(ref value);
                 return value;
             }
@@ -2444,9 +2444,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private int? _SyncActionId;
-        partial void OnGetSyncActionId(ref int? value);
-        partial void OnSyncActionIdChanging(ref int? value);
+        private long? _SyncActionId;
+        partial void OnGetSyncActionId(ref long? value);
+        partial void OnSyncActionIdChanging(ref long? value);
         partial void OnSyncActionIdChanged();
     
         /// <summary>
