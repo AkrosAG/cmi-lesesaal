@@ -644,6 +644,10 @@
     "errorPhone": "Votre numéro de téléphone peut commencer par \"+\", contenir des chiffres, des espaces et le signe \\\"-\\\". Il doit comporter entre 6 et 20 signes."
   },
   "metadata": {
+		"boolean": {
+			"ja": "Oui",
+			"nein": "Non"
+		},
     "label": {
       "creationPeriod": "Date de création",
       "customFields": {
