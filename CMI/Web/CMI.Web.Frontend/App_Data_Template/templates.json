@@ -584,7 +584,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Boolean",
+              "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -782,7 +782,7 @@
             {
               "DbFieldName": "CustomFields.DateiVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
@@ -792,7 +792,7 @@
             {
               "DbFieldName": "CustomFields.DigitalVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",
@@ -1071,7 +1071,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Boolean",
+              "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1269,7 +1269,7 @@
             {
               "DbFieldName": "CustomFields.DateiVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
@@ -1279,7 +1279,7 @@
             {
               "DbFieldName": "CustomFields.DigitalVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",
@@ -1658,7 +1658,7 @@
             },
             {
               "DbFieldName": "CustomFields.Tektonikpfad",
-              "DbType": "Boolean",
+              "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1856,7 +1856,7 @@
             {
               "DbFieldName": "CustomFields.DateiVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
@@ -1866,7 +1866,7 @@
             {
               "DbFieldName": "CustomFields.DigitalVorhanden",
               "DbType": "Boolean",
-              "ElasticType": "string",
+              "ElasticType": "boolean",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",

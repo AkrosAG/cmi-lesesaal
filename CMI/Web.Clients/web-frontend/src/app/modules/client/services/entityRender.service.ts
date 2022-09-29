@@ -94,6 +94,8 @@ export class EntityRenderService {
 					s = this._renderEntityLink(row, path, val);
 				} else if (t.indexOf('base64') >= 0) {
 					s = this._renderBase64(row, path, val);
+				}  else if (t.indexOf('boolean') >= 0) {
+					s = this._renderBoolean(row, path, val);
 				} else if (val.value && _util.isArray(val.value)) {
 					s = this._renderArray(row, path, val.value, this._renderValue.bind(this));
 				} else {
@@ -166,6 +168,15 @@ export class EntityRenderService {
 				return '<cmi-viaduc-detail-images [images]="context.data.images"></cmi-viaduc-detail-images>';
 			}
 			return null;
+		}
+	}
+
+	private _renderBoolean(row: SectionRow, path: string, val: any): string {
+		if (_util.isArray(val.value)) {
+			return this._renderArray(row, path, val.value, this._renderBoolean.bind(this));
+		} else  {
+			const text = this._txt.get('metadata.boolean.' + (val.value ? 'ja' : 'nein'), val.value);
+			return '<span class="boolean-value">' +  text  + '</span>';
 		}
 	}
 

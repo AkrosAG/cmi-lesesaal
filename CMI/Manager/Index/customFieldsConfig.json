@@ -312,11 +312,11 @@
   {
     "ElementId": "Tektonikpfad",
     "ElementName": "Tektonikpfad",
-    "SourceType": "Ja/Nein-Feld",
+    "SourceType": "Text (max. 4000 Z.)",
     "Label": "Tektonikpfad",
     "TargetField": "Tektonikpfad",
     "IsDefaultField": 0,
-    "Type": "bool?",
+    "Type": "string",
     "IsRepeatable": 0
   },
   {
