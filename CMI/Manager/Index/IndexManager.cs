@@ -245,7 +245,7 @@ namespace CMI.Manager.Index
                     if ((fieldConfiguration.TargetField == "ReferenceCode" || fieldConfiguration.TargetField == "Title") &&
                         string.IsNullOrWhiteSpace(value as string))
                     {
-                        value = "Keine Angabe";
+                        value = "\u200A";   // Hair space
                     }
 
                     if (value != null)
