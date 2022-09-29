@@ -44,7 +44,7 @@ namespace CMI.Access.Harvest.CMIAIS
             {
                 var newAction = new SyncAction
                 {
-                    SyncActionId = (int) info.MutationId,
+                    SyncActionId = info.MutationId,
                     ActionStatus = (int) info.NewStatus,
                     ActionType = info.MutationType,
                     ArchiveRecordId = info.ArchiveRecordId,
@@ -245,7 +245,7 @@ namespace CMI.Access.Harvest.CMIAIS
                         : info.ErrorMessage + Environment.NewLine + Environment.NewLine + info.StackTrace;
                     var logEntry = new SyncActionLog()
                     {
-                        SyncActionId = (int) info.MutationId,
+                        SyncActionId = info.MutationId,
                         ActionStatusHistory = info.NewStatus.ToString(),
                         ErrorReason = error
                     };
