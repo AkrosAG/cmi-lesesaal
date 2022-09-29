@@ -2,9 +2,12 @@
 /* Drop and add table "SyncAction"                                                 */
 /* ---------------------------------------------------------------------- */
 
--- pass table name and object type to OBJECT_ID - a NULL is returned if there is no object id and DROP TABLE is ignored 
+IF OBJECT_ID(N'dbo.[SyncActionLog]', N'U') IS NOT NULL  
+   DROP TABLE [dbo].[SyncActionLog];   
+GO
+
 IF OBJECT_ID(N'dbo.[SyncAction]', N'U') IS NOT NULL  
-   DROP TABLE [dbo].[SyncAction];  
+   DROP TABLE [dbo].[SyncAction]  
 GO
 
 CREATE TABLE [SyncAction] (
@@ -46,11 +49,6 @@ GO
 /* ---------------------------------------------------------------------- */
 
 GO
-
-IF OBJECT_ID(N'dbo.[[SyncActionLog]]', N'U') IS NOT NULL  
-   DROP TABLE [dbo].[SyncAction];  
-GO
-
 
 CREATE TABLE [SyncActionLog] (
     [SyncActionLogId] INTEGER IDENTITY(1,1) NOT NULL,
