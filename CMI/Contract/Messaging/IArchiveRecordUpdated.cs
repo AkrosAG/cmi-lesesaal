@@ -2,7 +2,7 @@
 {
     public interface IArchiveRecordUpdated
     {
-        int MutationId { get; set; }
+        long MutationId { get; set; }
         bool ActionSuccessful { get; set; }
         string ErrorMessage { get; set; }
         string StackTrace { get; set; }
