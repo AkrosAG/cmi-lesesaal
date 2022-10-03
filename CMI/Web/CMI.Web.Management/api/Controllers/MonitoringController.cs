@@ -181,20 +181,14 @@ namespace CMI.Web.Management.api.Controllers
                 new Uri(address, BusConstants.MonitoringDirCheckQueue), timeout);
             var aisDbTest = monitoringBus.CreateRequestClient<AisDbCheckRequest>(
                 new Uri(address, BusConstants.MonitoringAisDbCheckQueue), timeout);
-            var documentConverterInfo = monitoringBus.CreateRequestClient<DocumentConverterInfoRequest>(
-                new Uri(address, BusConstants.MonitoringDocumentConverterInfoQueue), timeout);
-            var abbyyOcrTest = monitoringBus.CreateRequestClient<AbbyyOcrTestRequest>(
-                new Uri(address, BusConstants.MonitoringAbbyyOcrTestQueue), timeout);
-
+            
             var t1 = Task.Run(() => TestDb());
             var t2 = TestRabbitMq();
             var t3 = TestElasticsearch(elasticSearch);
             var t4 = TestDir(dirTest);
             var t5 = TestAisDb(aisDbTest);
-            var t6 = TestAbbyyLicence(documentConverterInfo);
-            var t7 = TestAbbyyExecute(abbyyOcrTest);
-
-            var results = await Task.WhenAll(t1, t2, t3, t4, t5, t6, t7);
+            
+            var results = await Task.WhenAll(t1, t2, t3, t4, t5);
             return results;
         }
 
