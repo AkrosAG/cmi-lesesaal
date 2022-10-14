@@ -19,8 +19,6 @@ export class TranslationService {
 		let supported: any[] = [];
 		supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
 		supported.push(<Language>{key: 'fr', short: 'FR', name: 'Français'});
-		supported.push(<Language>{key: 'it', short: 'IT', name: 'Italiano'});
-		supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
 		this._supportedLanguages = supported;
 
 		this._setup();
