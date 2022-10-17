@@ -165,6 +165,22 @@ namespace CMI.Access.Sql.Lesesaal.EF
         }
         private ObjectSet<CollectionListItem> _CollectionList;
 
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SyncInfo> SyncInfos
+        {
+            get
+            {
+                if ((_SyncInfos == null))
+                {
+                    _SyncInfos = base.CreateObjectSet<SyncInfo>("SyncInfos");
+                }
+                return _SyncInfos;
+            }
+        }
+        private ObjectSet<SyncInfo> _SyncInfos;
+
         #endregion
         #region AddTo Methods
 
@@ -206,6 +222,14 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public void AddToCollectionList(CollectionListItem collectionListItem)
         {
             base.AddObject("CollectionList", collectionListItem);
+        }
+
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SyncInfos EntitySet.
+        /// </summary>
+        public void AddToSyncInfos(SyncInfo syncInfo)
+        {
+            base.AddObject("SyncInfos", syncInfo);
         }
 
         #endregion
@@ -3248,6 +3272,66 @@ namespace CMI.Access.Sql.Lesesaal.EF
         partial void OnGetChildCollections(ref string value);
         partial void OnChildCollectionsChanging(ref string value);
         partial void OnChildCollectionsChanged();
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Enthält die letzte verarbeitete Sequenz Nummer des CDWS.
+    /// </summary>
+    /// <KeyProperties>
+    /// LastSequenceNumber
+    /// </KeyProperties>
+    [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="SyncInfo")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SyncInfo : EntityObject    {
+        #region Factory Method
+
+        /// <summary>
+        /// Create a new SyncInfo object.
+        /// </summary>
+        /// <param name="lastSequenceNumber">Initial value of LastSequenceNumber.</param>
+        public static SyncInfo CreateSyncInfo(long lastSequenceNumber)
+        {
+            SyncInfo syncInfo = new SyncInfo();
+            syncInfo.LastSequenceNumber = lastSequenceNumber;
+            return syncInfo;
+        }
+
+        #endregion
+
+        #region Properties
+    
+        /// <summary>
+        /// There are no comments for LastSequenceNumber in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual long LastSequenceNumber
+        {
+            get
+            {
+                long value = _LastSequenceNumber;
+                OnGetLastSequenceNumber(ref value);
+                return value;
+            }
+            set
+            {
+                if (_LastSequenceNumber != value)
+                {
+                  OnLastSequenceNumberChanging(ref value);
+                  ReportPropertyChanging("LastSequenceNumber");
+                  _LastSequenceNumber = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("LastSequenceNumber");
+                  OnLastSequenceNumberChanged();
+              }
+            }
+        }
+        private long _LastSequenceNumber;
+        partial void OnGetLastSequenceNumber(ref long value);
+        partial void OnLastSequenceNumberChanging(ref long value);
+        partial void OnLastSequenceNumberChanged();
 
         #endregion
     }

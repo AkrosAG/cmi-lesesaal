@@ -10,6 +10,7 @@
           <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction" store:Type="Tables" Schema="dbo" Table="SyncAction" />
           <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" store:Type="Tables" Schema="dbo" Table="SyncActionLog" />
           <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
+          <EntitySet Name="SyncInfos" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncInfo" store:Type="Tables" Schema="dbo" Table="SyncInfo" />
           <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
             <End Role="Collection" EntitySet="Collections" />
             <End Role="Collection1" EntitySet="Collections" />
@@ -319,6 +320,15 @@
           <Property Name="Parent" Type="nvarchar" MaxLength="255" />
           <Property Name="ChildCollections" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="SyncInfo">
+          <Documentation>
+            <Summary>Enthält die letzte verarbeitete Sequenz Nummer des CDWS.</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="LastSequenceNumber" />
+          </Key>
+          <Property Name="LastSequenceNumber" Type="bigint" Nullable="false" />
+        </EntityType>
         <Association Name="Collection_Collection">
           <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />
           <End Role="Collection1" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="*" />
@@ -356,6 +366,7 @@
           <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncAction" />
           <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncActionLog" />
           <EntitySet Name="CollectionList" EntityType="CMI.Access.Sql.Lesesaal.EF.CollectionListItem" />
+          <EntitySet Name="SyncInfos" EntityType="CMI.Access.Sql.Lesesaal.EF.SyncInfo" />
           <AssociationSet Name="Collection_CollectionSet" Association="CMI.Access.Sql.Lesesaal.EF.Collection_Collection">
             <End Role="Parent" EntitySet="Collections" />
             <End Role="ChildCollections" EntitySet="Collections" />
@@ -669,6 +680,15 @@
           <Property Name="Parent" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="1deec219-4fba-4ba7-9997-7bac5d611b0f" />
           <Property Name="ChildCollections" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="ed7eade1-489e-4017-8460-1ac7c222819f" />
         </EntityType>
+        <EntityType Name="SyncInfo" ed:Guid="ee4b2743-e7f1-4386-a39e-2419aa4fae1e">
+          <Documentation>
+            <Summary>Enthält die letzte verarbeitete Sequenz Nummer des CDWS.</Summary>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="LastSequenceNumber" />
+          </Key>
+          <Property Name="LastSequenceNumber" Type="Int64" Nullable="false" ed:ValidateRequired="true" ed:Guid="b89938b5-b8d1-4737-985c-9faa9ca8da85" />
+        </EntityType>
         <Association Name="Collection_Collection" ed:Guid="937079a4-4a9f-49d3-b6a8-5c3dfc191ebf">
           <End Role="Parent" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="0..1" />
           <End Role="ChildCollections" Type="CMI.Access.Sql.Lesesaal.EF.Collection" Multiplicity="*" />
@@ -817,6 +837,13 @@
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="Parent" ColumnName="Parent" />
                 <ScalarProperty Name="ChildCollections" ColumnName="ChildCollections" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SyncInfos">
+            <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncInfo">
+              <MappingFragment StoreEntitySet="SyncInfos">
+                <ScalarProperty Name="LastSequenceNumber" ColumnName="LastSequenceNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
