@@ -608,4 +608,86 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
     }
 
+    public static partial class SyncInfoConverter
+    {
+
+        public static SyncInfoDto ToDto(this SyncInfo source)
+        {
+            return source.ToDtoWithRelated(0);
+        }
+
+        public static SyncInfoDto ToDtoWithRelated(this SyncInfo source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = new SyncInfoDto();
+
+            // Properties
+            target.LastSequenceNumber = source.LastSequenceNumber;
+
+            // User-defined partial method
+            OnDtoCreating(source, target);
+
+            return target;
+        }
+
+        public static SyncInfo ToEntity(this SyncInfoDto source)
+        {
+            if (source == null)
+              return null;
+
+            var target = new SyncInfo();
+
+            // Properties
+            target.LastSequenceNumber = source.LastSequenceNumber;
+
+            // User-defined partial method
+            OnEntityCreating(source, target);
+
+            return target;
+        }
+
+        public static List<SyncInfoDto> ToDtos(this IEnumerable<SyncInfo> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDto())
+              .ToList();
+
+            return target;
+        }
+
+        public static List<SyncInfoDto> ToDtosWithRelated(this IEnumerable<SyncInfo> source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDtoWithRelated(level))
+              .ToList();
+
+            return target;
+        }
+
+        public static List<SyncInfo> ToEntities(this IEnumerable<SyncInfoDto> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToEntity())
+              .ToList();
+
+            return target;
+        }
+
+        static partial void OnDtoCreating(SyncInfo source, SyncInfoDto target);
+
+        static partial void OnEntityCreating(SyncInfoDto source, SyncInfo target);
+
+    }
+
 }

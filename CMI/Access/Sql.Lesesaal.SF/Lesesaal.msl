@@ -120,5 +120,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SyncInfos">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.SyncInfo">
+        <MappingFragment StoreEntitySet="SyncInfos">
+          <ScalarProperty Name="LastSequenceNumber" ColumnName="LastSequenceNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
