@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	Component,
 	EventEmitter,
 	Input,
@@ -17,7 +18,7 @@ import {UrlService} from '../../services/url.service';
 	styleUrls: ['./treeNode.component.less'],
 	encapsulation: ViewEncapsulation.None
 })
-export class TreeNodeComponent implements OnInit {
+export class TreeNodeComponent implements OnInit, AfterViewInit {
 	@Input()
 	public nodesToLoad: string[];
 	@Output()
@@ -104,6 +105,14 @@ export class TreeNodeComponent implements OnInit {
 				});
 			});
 		}
+	}
+
+	public ngAfterViewInit(): void {
+		this.getRootNode(this.nodesToLoad[0]).then(() => {
+			if (this.nodesToLoad.length > 0) {
+				setTimeout(() => this.getNodesAsync(), 1);
+			}
+		});
 	}
 
 	public async innerHtmlClicked($event: any) {
