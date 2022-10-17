@@ -394,4 +394,25 @@ namespace CMI.Access.Sql.Lesesaal.EF
         #endregion
     }
 
+    public partial class SyncInfoDto
+    {
+        #region Constructors
+
+        public SyncInfoDto() {
+        }
+
+        public SyncInfoDto(long lastSequenceNumber) {
+
+          this.LastSequenceNumber = lastSequenceNumber;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public long LastSequenceNumber { get; set; }
+
+        #endregion
+    }
+
 }
