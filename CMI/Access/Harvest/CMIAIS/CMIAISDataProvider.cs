@@ -266,17 +266,23 @@ namespace CMI.Access.Harvest.CMIAIS
 
         private void SaveLastSequenceNr(long sequenceNr)
         {
-            var fileName = "lastSequenceNr.txt";
-            File.WriteAllText(fileName, sequenceNr.ToString());
+            var info = dbContext.SyncInfos.FirstOrDefault();
+            if (info == null)
+            {
+                info = new SyncInfo();
+                dbContext.AddToSyncInfos(info);
+            }
+
+            info.LastSequenceNumber = sequenceNr;
+            dbContext.SaveChanges();
         }
 
         private long ReadLastSequenceNr()
         {
-            var fileName = "lastSequenceNr.txt";
-            if (File.Exists(fileName))
+            var info = dbContext.SyncInfos.FirstOrDefault();
+            if (info != null)
             {
-                var num = File.ReadAllText(fileName);
-                return Convert.ToInt64(num);
+                return info.LastSequenceNumber;
             }
 
             return 0;

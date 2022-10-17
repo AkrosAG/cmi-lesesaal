@@ -6,6 +6,7 @@
     <EntitySet Name="SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncAction" store:Type="Tables" Schema="dbo" Table="SyncAction" />
     <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" store:Type="Tables" Schema="dbo" Table="SyncActionLog" />
     <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
+    <EntitySet Name="SyncInfos" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncInfo" store:Type="Tables" Schema="dbo" Table="SyncInfo" />
     <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
       <End Role="Collection" EntitySet="Collections" />
       <End Role="Collection1" EntitySet="Collections" />
@@ -314,6 +315,15 @@
     <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
     <Property Name="Parent" Type="nvarchar" MaxLength="255" />
     <Property Name="ChildCollections" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SyncInfo">
+    <Documentation>
+      <Summary>Enthält die letzte verarbeitete Sequenz Nummer des CDWS.</Summary>
+    </Documentation>
+    <Key>
+      <PropertyRef Name="LastSequenceNumber" />
+    </Key>
+    <Property Name="LastSequenceNumber" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="Collection_Collection">
     <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />
