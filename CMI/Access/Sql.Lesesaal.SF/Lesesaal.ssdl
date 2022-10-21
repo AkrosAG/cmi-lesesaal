@@ -317,13 +317,11 @@
     <Property Name="ChildCollections" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SyncInfo">
-    <Documentation>
-      <Summary>Enthält die letzte verarbeitete Sequenz Nummer des CDWS.</Summary>
-    </Documentation>
     <Key>
-      <PropertyRef Name="LastSequenceNumber" />
+      <PropertyRef Name="SyncInfoId" />
     </Key>
-    <Property Name="LastSequenceNumber" Type="bigint" Nullable="false" />
+    <Property Name="SyncInfoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LastSequenceNumber" Type="bigint" />
   </EntityType>
   <Association Name="Collection_Collection">
     <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />
