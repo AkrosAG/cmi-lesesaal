@@ -10,7 +10,7 @@ namespace CMI.Contract.Common.Compiler
 
         public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
-            elasticArchiveRecord.Title = string.Format("{0} - CustomScript", elasticArchiveRecord.Title);
+            
         }
     }
 }
