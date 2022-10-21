@@ -77,8 +77,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 return Content(HttpStatusCode.NotFound, $"No Ve found with id {veId}");
             }
 
-            if (!entity.CanBeOrdered ||
-                !(entity.Level == "Dossier" || entity.Level == "Subdossier" || entity.Level == "Dokument"))
+            if (!entity.CanBeOrdered)
             {
                 return Content(HttpStatusCode.Conflict, "Ve can not be ordered according to index");
             }
