@@ -5,7 +5,8 @@ import {
 	CoreModule,
 	TranslationService,
 	ConfigService,
-	ClientContext
+	ClientContext,
+    Language
 } from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
@@ -16,6 +17,7 @@ import {ToastrService} from 'ngx-toastr';
 import {User} from '../../../model';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
+import {ChangeDetectorRef} from '@angular/core';
 
 describe('UserAccount', () => {
 	let sut: UserAccountComponent;
@@ -87,6 +89,12 @@ describe('UserAccount', () => {
 			},
 			get(key: string, defaultValue?: string, ...args): string {
 				return defaultValue;
+			},
+			get supportedLanguages(): Language[] {
+				let supported: Language[] = [];
+				supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
+				supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
+				return supported;
 			}
 		};
 
@@ -102,7 +110,8 @@ describe('UserAccount', () => {
 				{ provide: CountriesService, useValue: countriesService },
 				{ provide: AuthorizationService, useValue: authorizationService },
 				{ provide: UrlService, useValue: url },
-				{ provide: ClientContext, useValue: context }
+				{ provide: ClientContext, useValue: context },
+				{ provide: ChangeDetectorRef, useValue: {}}
 			],
 			declarations: [
 				UserAccountComponent
