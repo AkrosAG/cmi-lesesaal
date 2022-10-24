@@ -1,4 +1,5 @@
-﻿using CMI.Access.Sql.Lesesaal;
+﻿using System;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -7,8 +8,7 @@ namespace CMI.Web.Frontend.api.Controllers
     {
         protected bool IsEinsichtsbewilligungNotwendig(ElasticArchiveRecord record, UserAccess access, bool hasBewilligungsDatum)
         {
-            return record.HasCustomProperty("zugänglichkeitGemässBga")
-                   && record.CustomFields.zugänglichkeitGemässBga == "In Schutzfrist"
+            return record.ProtectionEndDate.Date > DateTime.Today 
                    && !access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens)
                    && !hasBewilligungsDatum;
         }
