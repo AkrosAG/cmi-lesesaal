@@ -91,7 +91,7 @@ export class UserAccountComponent implements OnInit {
 	private _emailRegexPattern: string = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
 	private _allowEditingUserSettings: boolean = false;
 	private _languageDependantCountries: Countries = <Countries>{};
-	private _languages: any;
+	private _languages: any = [];
 
 	constructor(private _context: ClientContext,
 		private _authorization: AuthorizationService,
@@ -122,10 +122,9 @@ export class UserAccountComponent implements OnInit {
 		this._errorMandatoryField = this._txt.get('account.mandatoryFieldError', 'Dieses Feld muss ausgefüllt werden.');
 		this._errorWrongFormat = this._txt.get('account.wrongFormat', 'Das Format entspricht keiner Telefonnummer');
 		this._errorDateFieldFormat = this._txt.get('account.dateFieldFormat', 'Das Format entspricht keinem gültigen Datum (tt.mm.jjjj).');
-		this._languages = [{ name: this._txt.get('languages.de', 'Deutsch'), code: 'de' },
-							{ name: this._txt.get('languages.fr', 'Französisch'), code: 'fr' },
-							{ name: this._txt.get('languages.it', 'Italienisch'), code: 'it' },
-							{ name: this._txt.get('languages.en', 'Englisch'), code: 'en' }];
+		this._txt.supportedLanguages.forEach(l => {
+			this.languages.push({ name: this._txt.get('languages.' + l.key, l.name), code: l.key });
+		});
 		this._callLoadOrReload();
 	}
 
