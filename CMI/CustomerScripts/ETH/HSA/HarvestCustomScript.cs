@@ -15,8 +15,8 @@ namespace CMI.Contract.Common.Compiler
             {
                 case "sofort":
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR", "AS", "BVW", "Ö1", "Ö2", "Ö3" });
-                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "BAR", "AS", "BVW", "Ö1", "Ö2", "Ö3" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "BAR", "AS", "BVW", "Ö1", "Ö2", "Ö3" });
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "BAR", "AS", "BVW" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "BAR", "AS", "BVW" });
                     break;
                 default:
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR" });
