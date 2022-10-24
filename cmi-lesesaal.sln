@@ -384,6 +384,16 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web-management", "CMI\Web.C
 		SlnRelativePath = "CMI\Web.Clients\web-management\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomerScripts", "CustomerScripts", "{89068AED-0954-4B5B-AB3F-B9E2D2E5517D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETH", "ETH", "{2E869907-6876-49CD-97D5-C07C1021DA42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9F-42F8-8640-F5BD77F21326}"
+	ProjectSection(SolutionItems) = preProject
+		CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs
+		CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -879,6 +889,8 @@ Global
 		{146C0BBB-42E7-4F51-BAC5-71A8AB429464} = {565802BB-B072-43F1-83BD-CDB83DE5BA70}
 		{AA978769-8910-4F3F-8919-51A0322B40F4} = {565802BB-B072-43F1-83BD-CDB83DE5BA70}
 		{18961680-CCC4-48F7-80DF-2EA109A04B6E} = {565802BB-B072-43F1-83BD-CDB83DE5BA70}
+		{2E869907-6876-49CD-97D5-C07C1021DA42} = {89068AED-0954-4B5B-AB3F-B9E2D2E5517D}
+		{5F9AD745-4B9F-42F8-8640-F5BD77F21326} = {2E869907-6876-49CD-97D5-C07C1021DA42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94FF0BA7-507D-45AD-A448-D34E2C5341FE}

@@ -32,24 +32,24 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 		let order = this._scs.getActiveOrder();
 		this._scs.getItemsWhereEinsichtsGesuchNoeting().subscribe(items => {
 			this._items = items;
-		});
-		if (order.type === ShippingType.Einsichtsgesuch) {
-			this._scs.orderEinsichtsgesuch(order).subscribe(() => {
+			if (order.type === ShippingType.Einsichtsgesuch) {
+				this._scs.orderEinsichtsgesuch(order).subscribe(() => {
 					this._setText(order);
 					this.loading = false;
-			}, (error) => {
+				}, (error) => {
 					this.showError = true;
 					this.loading = false;
-			});
-		} else {
-			this._scs.order(order).subscribe(() => {
-				this._setText(order);
-				this.loading = false;
-			}, (error) => {
-				this.showError = true;
-				this.loading = false;
-			});
-		}
+				});
+			} else {
+				this._scs.order(order).subscribe(() => {
+					this._setText(order);
+					this.loading = false;
+				}, (error) => {
+					this.showError = true;
+					this.loading = false;
+				});
+			}
+		});
 	}
 
 	private _setText(order: Ordering) {
