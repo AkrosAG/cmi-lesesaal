@@ -401,8 +401,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public SyncInfoDto() {
         }
 
-        public SyncInfoDto(long lastSequenceNumber) {
+        public SyncInfoDto(long syncInfoId, long? lastSequenceNumber) {
 
+          this.SyncInfoId = syncInfoId;
           this.LastSequenceNumber = lastSequenceNumber;
         }
 
@@ -410,7 +411,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         #region Properties
 
-        public long LastSequenceNumber { get; set; }
+        public long SyncInfoId { get; set; }
+
+        public long? LastSequenceNumber { get; set; }
 
         #endregion
     }

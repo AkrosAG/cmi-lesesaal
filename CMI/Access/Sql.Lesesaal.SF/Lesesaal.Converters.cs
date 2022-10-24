@@ -624,6 +624,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             var target = new SyncInfoDto();
 
             // Properties
+            target.SyncInfoId = source.SyncInfoId;
             target.LastSequenceNumber = source.LastSequenceNumber;
 
             // User-defined partial method
@@ -640,6 +641,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             var target = new SyncInfo();
 
             // Properties
+            target.SyncInfoId = source.SyncInfoId;
             target.LastSequenceNumber = source.LastSequenceNumber;
 
             // User-defined partial method

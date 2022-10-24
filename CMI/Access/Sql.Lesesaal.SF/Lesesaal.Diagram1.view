@@ -2215,6 +2215,25 @@
                       <Height>18 px</Height>
                     </Size>
                     <Oid xsi:type="SchemaModelOID">
+                      <Path>76ab44c6-b428-46bc-8139-7cdd7226947b</Path>
+                      <TypeName>EntityDeveloper.EntityFramework.EntityProperty</TypeName>
+                    </Oid>
+                  </Model>
+                  <Model xsi:type="PropertyVwModel">
+                    <CustomProperties>
+                      <OID>118</OID>
+                      <Parent>116</Parent>
+                    </CustomProperties>
+                    <Children />
+                    <Location>
+                      <X>0.5 px</X>
+                      <Y>18.5 px</Y>
+                    </Location>
+                    <Size>
+                      <Width>144 px</Width>
+                      <Height>18 px</Height>
+                    </Size>
+                    <Oid xsi:type="SchemaModelOID">
                       <Path>b89938b5-b8d1-4737-985c-9faa9ca8da85</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityProperty</TypeName>
                     </Oid>
@@ -2222,22 +2241,22 @@
                 </Children>
                 <Size>
                   <Width>145 px</Width>
-                  <Height>19 px</Height>
+                  <Height>37 px</Height>
                 </Size>
                 <MaxSize>
                   <Width>0 px</Width>
-                  <Height>19 px</Height>
+                  <Height>37 px</Height>
                 </MaxSize>
               </Model>
               <Model xsi:type="RelationPropertiesVwModel">
                 <CustomProperties>
-                  <OID>118</OID>
+                  <OID>119</OID>
                   <Parent>115</Parent>
                 </CustomProperties>
                 <Children />
                 <Location>
                   <X>0 px</X>
-                  <Y>18 px</Y>
+                  <Y>36 px</Y>
                 </Location>
                 <Size>
                   <Width>145 px</Width>
@@ -2256,15 +2275,15 @@
             </Location>
             <Size>
               <Width>150 px</Width>
-              <Height>86 px</Height>
+              <Height>104 px</Height>
             </Size>
             <MinSize>
               <Width>100 px</Width>
-              <Height>86 px</Height>
+              <Height>104 px</Height>
             </MinSize>
             <MaxSize>
               <Width>800 px</Width>
-              <Height>86 px</Height>
+              <Height>104 px</Height>
             </MaxSize>
             <Ports />
             <Oid xsi:type="SchemaModelOID">

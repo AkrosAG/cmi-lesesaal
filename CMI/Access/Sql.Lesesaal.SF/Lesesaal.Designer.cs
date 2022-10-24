@@ -3277,10 +3277,10 @@ namespace CMI.Access.Sql.Lesesaal.EF
     }
 
     /// <summary>
-    /// Enthält die letzte verarbeitete Sequenz Nummer des CDWS.
+    /// There are no comments for CMI.Access.Sql.Lesesaal.EF.SyncInfo in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// LastSequenceNumber
+    /// SyncInfoId
     /// </KeyProperties>
     [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="SyncInfo")]
     [Serializable()]
@@ -3291,11 +3291,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// <summary>
         /// Create a new SyncInfo object.
         /// </summary>
-        /// <param name="lastSequenceNumber">Initial value of LastSequenceNumber.</param>
-        public static SyncInfo CreateSyncInfo(long lastSequenceNumber)
+        /// <param name="syncInfoId">Initial value of SyncInfoId.</param>
+        public static SyncInfo CreateSyncInfo(long syncInfoId)
         {
             SyncInfo syncInfo = new SyncInfo();
-            syncInfo.LastSequenceNumber = lastSequenceNumber;
+            syncInfo.SyncInfoId = syncInfoId;
             return syncInfo;
         }
 
@@ -3304,15 +3304,45 @@ namespace CMI.Access.Sql.Lesesaal.EF
         #region Properties
     
         /// <summary>
-        /// There are no comments for LastSequenceNumber in the schema.
+        /// There are no comments for SyncInfoId in the schema.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual long LastSequenceNumber
+        public virtual long SyncInfoId
         {
             get
             {
-                long value = _LastSequenceNumber;
+                long value = _SyncInfoId;
+                OnGetSyncInfoId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_SyncInfoId != value)
+                {
+                  OnSyncInfoIdChanging(ref value);
+                  ReportPropertyChanging("SyncInfoId");
+                  _SyncInfoId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("SyncInfoId");
+                  OnSyncInfoIdChanged();
+              }
+            }
+        }
+        private long _SyncInfoId;
+        partial void OnGetSyncInfoId(ref long value);
+        partial void OnSyncInfoIdChanging(ref long value);
+        partial void OnSyncInfoIdChanged();
+    
+        /// <summary>
+        /// There are no comments for LastSequenceNumber in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual long? LastSequenceNumber
+        {
+            get
+            {
+                long? value = _LastSequenceNumber;
                 OnGetLastSequenceNumber(ref value);
                 return value;
             }
@@ -3328,9 +3358,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
               }
             }
         }
-        private long _LastSequenceNumber;
-        partial void OnGetLastSequenceNumber(ref long value);
-        partial void OnLastSequenceNumberChanging(ref long value);
+        private long? _LastSequenceNumber;
+        partial void OnGetLastSequenceNumber(ref long? value);
+        partial void OnLastSequenceNumberChanging(ref long? value);
         partial void OnLastSequenceNumberChanged();
 
         #endregion
