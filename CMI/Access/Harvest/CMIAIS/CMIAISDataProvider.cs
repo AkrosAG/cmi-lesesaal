@@ -282,7 +282,7 @@ namespace CMI.Access.Harvest.CMIAIS
             var info = dbContext.SyncInfos.FirstOrDefault();
             if (info != null)
             {
-                return info.LastSequenceNumber;
+                return info.LastSequenceNumber ?? 0;
             }
 
             return 0;
