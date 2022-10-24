@@ -174,7 +174,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     contextItem = new ArchiveplanContextItem
                     {
                         ArchiveRecordId = ancestorRecord.OBJ_GUID,
-                        Level = ancestorRecord.TypeName,
+                        Level = ancestorRecord.Verzeichnungsstufe,
                         Title = ancestorRecord.Titel,
                         DateRangeText = ancestorRecord.Entstehungszeitraum?.Text,
                         RefCode = ancestorRecord.Signatur,
@@ -201,7 +201,7 @@ namespace CMI.Access.Harvest.CMIAIS
             display.ArchiveplanContext.Add(new ArchiveplanContextItem
             {
                 ArchiveRecordId = cmiRecord.OBJ_GUID,
-                Level = cmiRecord.TypeName,
+                Level = cmiRecord.Verzeichnungsstufe,
                 Title = cmiRecord.Titel,
                 DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
                 RefCode = cmiRecord.Signatur,
