@@ -262,7 +262,7 @@
     <Key>
       <PropertyRef Name="SyncActionId" />
     </Key>
-    <Property Name="SyncActionId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SyncActionId" Type="bigint" Nullable="false" />
     <Property Name="ArchiveRecordId" Type="nvarchar" MaxLength="255" />
     <Property Name="ActionType" Type="nvarchar" MaxLength="40" />
     <Property Name="ActionStatus" Type="int" DefaultValue="0" />

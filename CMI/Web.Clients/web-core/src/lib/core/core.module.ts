@@ -12,7 +12,6 @@ import {ALL_RESOLVERS} from './routing/_all';
 import {WijmoModule} from '../wijmo/index';
 import JSZip from 'jszip';
 import {TooltipModule} from '../tooltip/tooltip.module';
-import { ArchiveModel } from './services/archiveModel';
 import { ClientModel } from './services/clientModel';
 import { CoreOptions } from './services/coreOptions';
 import {ClientContext} from './services/clientContext';
@@ -54,7 +53,6 @@ export class CoreModule {
 		return {
 			ngModule: CoreModule,
 			providers: [
-				{ provide: ArchiveModel, useClass: ArchiveModel },
 				{ provide: ClientModel, useClass: ClientModel },
 				{ provide: CoreOptions, useClass: CoreOptions },
 				{ provide: ClientContext, useClass: ClientContext, deps: [ClientModel] },
