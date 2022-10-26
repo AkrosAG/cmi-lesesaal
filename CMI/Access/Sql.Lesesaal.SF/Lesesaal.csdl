@@ -264,14 +264,14 @@
     <Key>
       <PropertyRef Name="SyncActionId" />
     </Key>
-    <Property Name="SyncActionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="91039009-fed8-4925-b086-3822be3e965d" />
+    <Property Name="SyncActionId" Type="Int64" Nullable="false" ed:ValidateRequired="true" ed:Guid="91039009-fed8-4925-b086-3822be3e965d" />
     <Property Name="ArchiveRecordId" Type="String" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bafd9cad-ca4b-4084-87c8-7bc046a5c07b" />
     <Property Name="ActionType" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="7d81ac39-edbc-4cf6-b846-5bce1ca142f2" />
     <Property Name="ActionStatus" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="62f51e2c-225e-4e55-9edd-938f36ba27f2" />
     <Property Name="NumberOfTries" Type="Int32" DefaultValue="0" ed:ValidateRequired="false" ed:Guid="9b9bf0e8-2eef-4422-a6b4-3dc724481430" />
     <Property Name="CreatedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="ac7d2bbd-665b-45cc-b0a0-fa5489a0dc50" />
     <Property Name="ModifiedOn" Type="DateTime" ed:ValidateRequired="false" ed:Guid="08d33dc1-a1d1-436a-87cb-c625a46bcde9" />
-    <NavigationProperty Name="SyncActionLogs" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncAction" ToRole="SyncActionLogs" ed:Guid="cf26cf5a-2c8f-4a8d-80e1-0277400de8d5" />
+    <NavigationProperty Name="SyncActionLogs" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncAction" ToRole="SyncActionLogs" ed:Guid="6bd82a5c-ce1f-4adf-8130-216817ecb6cf" />
   </EntityType>
   <EntityType Name="SyncActionLog" ed:Guid="d0ae647d-11c1-482c-b421-edbe8d0ef511">
     <Key>
@@ -282,7 +282,7 @@
     <Property Name="LogDate" Type="DateTime" ed:ValidateRequired="false" ed:Guid="e6da0789-329d-4b7b-adb6-035bd9827a6e" />
     <Property Name="ActionStatusHistory" Type="String" MaxLength="40" Unicode="true" ed:ValidateMaxLength="40" ed:ValidateRequired="false" ed:Guid="5f638206-714c-4dd2-953f-961d5025218b" />
     <Property Name="ErrorReason" Type="String" Unicode="true" ed:ValidateRequired="false" ed:Guid="7bbb401f-7d31-40d2-9945-245e7100bd21" />
-    <NavigationProperty Name="SyncAction" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncActionLogs" ToRole="SyncAction" ed:Guid="642e468d-b213-4eb3-b84d-218f9cb83f99" />
+    <NavigationProperty Name="SyncAction" Relationship="CMI.Access.Sql.Lesesaal.EF.SyncAction_SyncActionLog" FromRole="SyncActionLogs" ToRole="SyncAction" ed:Guid="cf73c4f4-5845-4a97-b239-20899132b98c" />
   </EntityType>
   <EntityType Name="CollectionListItem" ed:Guid="256cabbe-054f-40a7-a8ab-006b39b6dd6f">
     <Key>
@@ -339,7 +339,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="SyncAction_SyncActionLog" ed:Guid="f4d575f5-ede3-4551-8a0f-6cc9187d039e">
+  <Association Name="SyncAction_SyncActionLog" ed:Guid="08e72e7c-f289-4b1d-a4ab-c196a4a0e4fa">
     <End Role="SyncAction" Type="CMI.Access.Sql.Lesesaal.EF.SyncAction" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
