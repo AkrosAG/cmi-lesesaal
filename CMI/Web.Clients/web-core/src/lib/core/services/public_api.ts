@@ -4,7 +4,6 @@ export {ClientContext} from './clientContext';
 export {StammdatenService} from './stammdaten.service';
 export {UiService} from './ui.service';
 export {ConfigService} from './config.service';
-export {ArchiveModel} from './archiveModel';
 export {CountriesService} from './countries.service';
 export {FileSaverService} from './fileSaver.service';
 export {CoreOptions} from './coreOptions';

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ArchiveModel, ClientContext, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
+import {ClientContext, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
 	EntityRenderService,
@@ -17,9 +17,7 @@ import {
 })
 export class DetailPageComponent implements OnInit {
 	public loading: boolean;
-
 	public entity: Entity;
-
 	public crumbs: any[] = [];
 	public sections: any[] = [];
 	public deepLinkUrl: string;
@@ -29,9 +27,9 @@ export class DetailPageComponent implements OnInit {
 	public isBarUser: boolean = false;
 
 	private _error: any;
+	private _rootId: string;
 
-	constructor(private _archive: ArchiveModel,
-				private _context: ClientContext,
+	constructor(private _context: ClientContext,
 				private _entityService: EntityService,
 				private _renderService: EntityRenderService,
 				private _txt: TranslationService,
@@ -50,7 +48,6 @@ export class DetailPageComponent implements OnInit {
 	}
 
 	private _buildCrumbs(entity?: Entity): void {
-		const rootId = this._archive.ROOT_ID;
 		const lang = this._context.language;
 		this.crumbs = [];
 		this.crumbs.push(
@@ -79,13 +76,18 @@ export class DetailPageComponent implements OnInit {
 				url: this._url.getSearchResultUrl()
 			});
 		} else {
+			this._entityService.getArchivplanRootNodes().then(r => {
+				this._rootId = r[0];
+				console.log(this._rootId);
+			});
+
 			this.crumbs.push({
 				label: this._txt.get('breadcrumb.archiveHome', 'Gesamtbestand'),
-				url: '/' + lang + '/archiv/einheit/' + rootId
+				url: '/' + lang + '/archiv/einheit/' + this._rootId
 			});
 		}
 
-		if (entity && entity.archiveRecordId !== rootId) {
+		if (entity && entity.archiveRecordId !== this._rootId) {
 			this.crumbs.push({label: entity.title, itemClasses: 'active'});
 		}
 	}

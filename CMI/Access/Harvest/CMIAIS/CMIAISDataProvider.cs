@@ -49,6 +49,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     ActionType = info.MutationType,
                     ArchiveRecordId = info.ArchiveRecordId,
                     NumberOfTries = 0,
+                    CreatedOn = DateTime.Now
                 };
                 dbContext.SyncActions.AddObject(newAction);
                 await dbContext.SaveChangesAsync();
@@ -229,15 +230,16 @@ namespace CMI.Access.Harvest.CMIAIS
             try
             {
                 var record = dbContext.SyncActions.FirstOrDefault(s => s.SyncActionId == info.MutationId &&
-                                                                       // If the status udpate is only allowed from a specific existing status, 
+                                                                       // If the status update is only allowed from a specific existing status, 
                                                                        // add the required where clause.
-                                                                       info.ChangeFromStatus.HasValue
+                                                                       (info.ChangeFromStatus.HasValue
                                                                         ? s.ActionStatus == (int) info.ChangeFromStatus.Value
-                                                                        : s.ActionStatus > 0);
+                                                                        : s.ActionStatus > 0));
                 if (record != null)
                 {
                     record.ActionStatus = (int) info.NewStatus;
                     record.NumberOfTries++;
+                    record.ModifiedOn = DateTime.Now;
 
                     // Add the a log entry
                     var error = string.IsNullOrEmpty(info.ErrorMessage)
@@ -247,6 +249,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     {
                         SyncActionId = info.MutationId,
                         ActionStatusHistory = info.NewStatus.ToString(),
+                        LogDate = DateTime.Now,
                         ErrorReason = error
                     };
                     record.SyncActionLogs.Add(logEntry);
