@@ -6,7 +6,7 @@ import {
 	TranslationService,
 	ConfigService,
 	ClientContext,
-    Language
+	Language
 } from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
