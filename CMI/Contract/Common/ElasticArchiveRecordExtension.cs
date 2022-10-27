@@ -99,6 +99,27 @@ namespace CMI.Contract.Common
             return null;
         }
 
+        public static string Benutzbarkeit(this ElasticArchiveRecord record)
+        {
+            Log.Verbose("Getting property Benutzbarkeit.");
+            if (record.HasCustomProperty("benutzbarkeit"))
+            {
+                Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}",
+                    JsonConvert.SerializeObject(record.CustomFields.benutzbarkeit));
+                if (record.CustomFields.benutzbarkeit is string)
+                {
+                    return record.CustomFields.benutzbarkeit;
+                }
+
+                if (record.CustomFields.benutzbarkeit is List<object>)
+                {
+                    return string.Join(", ", record.CustomFields.benutzbarkeit);
+                }
+            }
+
+            return null;
+        }
+
         public static string Form(this ElasticArchiveRecord record)
         {
             Log.Verbose("Getting property form.");
