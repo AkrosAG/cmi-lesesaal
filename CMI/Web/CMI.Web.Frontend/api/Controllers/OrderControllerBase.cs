@@ -8,8 +8,8 @@ namespace CMI.Web.Frontend.api.Controllers
     {
         protected bool IsEinsichtsbewilligungNotwendig(ElasticArchiveRecord record, UserAccess access, bool hasBewilligungsDatum)
         {
-            return record.ProtectionEndDate.Date > DateTime.Today 
-                   && !access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens)
+            return (record.Benutzbarkeit() == null 
+                   || record.Benutzbarkeit().Equals("Gesuchspflichtig", StringComparison.InvariantCultureIgnoreCase))
                    && !hasBewilligungsDatum;
         }
     }
