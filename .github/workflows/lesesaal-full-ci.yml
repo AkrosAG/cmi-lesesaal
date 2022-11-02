@@ -36,7 +36,7 @@ jobs:
         npm i
     
     - name: Replace licenses
-      working-directory: ${{ env.WORKING_DIR/src/lib/wijmo }}
+      working-directory: ${{ env.WORKING_DIR }}/src/lib/wijmo 
       run: |
         sed -i "s/secrets.WIJMO_LICENSEKEY/${{ secrets.WIJMO_LICENSEKEY }}/" wijmo.licensekey.ts
 
