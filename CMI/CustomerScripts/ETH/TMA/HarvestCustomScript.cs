@@ -1,0 +1,133 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace CMI.Contract.Common.Compiler
+{
+    public class HarvestCustomScript : IDynamicScript
+    {
+        public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
+        {
+
+            // Metadata Tokens
+            var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
+            switch (publikation.ToLower())
+            {
+                case "sofort":
+                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR", "AS", "BVW", "Ö1", "Ö2", "Ö3" });
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "BAR", "AS", "BVW" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "BAR", "AS", "BVW" });
+                    break;
+                default:
+                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR" });
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "BAR" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "BAR" });
+                    break;
+            }
+
+            // Benutzbarkeit
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+            var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
+
+            switch (level.ToLower())
+            {
+                case "klassifikation":
+                    archiveRecord.Display.CanBeOrdered = false;
+                    break;
+                case "bestand":
+                case "serie":
+                    switch (benutzbarkeit.ToLower())
+                    {
+                        case "frei einsehbar":
+                        case "gesuchspflichtig":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            break;
+                    }
+
+                    break;
+                case "dossier":
+                case "einzelstück":
+                case "einzelstueck":
+                    switch (benutzbarkeit.ToLower())
+                    {
+                        case "frei einsehbar":
+                        case "gesuchspflichtig":
+                            archiveRecord.Display.CanBeOrdered = true;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            break;
+                    }
+
+                    break;
+                default:
+                    archiveRecord.Display.CanBeOrdered = false;
+                    break;
+            }
+
+            var dateRange = GetDateRangeValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
+            var dateRangeText = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
+            if (dateRange != null)
+            {
+                // Offene Zeiträume?
+                if (dateRangeText.Trim().StartsWith("-"))
+                {
+                    dateRange.FromDate = dateRange.ToDate.AddYears(-10);
+                    dateRange.SearchFromDate = dateRange.FromDate;
+                    dateRange.From = dateRange.FromDate.ToString("+yyyyMMdd");
+                }
+
+                if (dateRangeText.Trim().EndsWith("-"))
+                {
+                    dateRange.ToDate = dateRange.FromDate.AddYears(10);
+                    dateRange.SearchToDate = dateRange.ToDate;
+                    dateRange.To = dateRange.ToDate.ToString("+yyyyMMdd");
+                }
+            }
+        }
+
+        public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
+        {
+        }
+
+
+        private string GetDefaultElementValue(List<DataElement> detailData, string fieldName)
+        {
+            var element = detailData.FirstOrDefault(d => d.ElementName.Equals(fieldName, StringComparison.InvariantCultureIgnoreCase));
+            if (element != null)
+            {
+                var elementValues = element.ElementValue.FirstOrDefault(e => e.Sequence == 0);
+                if (elementValues != null)
+                {
+                    var value = elementValues.TextValues.FirstOrDefault(t => t.IsDefaultLang).Value;
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        return value;
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private DateRange GetDateRangeValue(List<DataElement> detailData, string fieldName)
+        {
+            var element = detailData.FirstOrDefault(d => d.ElementName.Equals(fieldName, StringComparison.InvariantCultureIgnoreCase));
+            if (element != null)
+            {
+                var elementValues = element.ElementValue.FirstOrDefault(e => e.Sequence == 0);
+                if (elementValues != null)
+                {
+                    var value = elementValues.DateRange;
+                    return value;
+                }
+            }
+
+            return null;
+        }
+
+    }
+}
