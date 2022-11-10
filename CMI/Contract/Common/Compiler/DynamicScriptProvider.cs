@@ -26,7 +26,7 @@ namespace CMI.Contract.Common.Compiler
         {
             string script = scriptLocator.GetCustomScript();
             var options = new CompilerParameters() { GenerateInMemory = true };
-            foreach(var reference in DynamicScriptProvider.References)
+            foreach(var reference in References)
             {
                 options.ReferencedAssemblies.Add(reference);
             }
