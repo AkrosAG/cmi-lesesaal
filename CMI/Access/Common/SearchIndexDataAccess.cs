@@ -18,13 +18,15 @@ namespace CMI.Access.Common
         public SearchIndexDataAccess()
         {
             var uri = Settings.Default.ElasticSearchUrl;
+            var name = Settings.Default.ElasticIndexName;
+            
             var node = new Uri(uri);
-            helper = new ElasticIndexHelper(node);
+            helper = new ElasticIndexHelper(node,name);
         }
 
-        public SearchIndexDataAccess(Uri address)
+        public SearchIndexDataAccess(Uri address, string name)
         {
-            helper = new ElasticIndexHelper(address);
+            helper = new ElasticIndexHelper(address, name);
         }
 
         public void UpdateDocument(ElasticArchiveRecord elasticArchiveRecord)

@@ -5,5 +5,8 @@
     <Setting Name="ElasticSearchUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticUrl@@</Value>
     </Setting>
+    <Setting Name="ElasticIndexName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticIndex@@</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
