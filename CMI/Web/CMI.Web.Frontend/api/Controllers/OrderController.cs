@@ -240,7 +240,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     // It is called twice the method in rare cases. So far we don't know why, but it can't be that two orders are placed within 5 seconds. 
                     var ordersFormUser = await client.GetOrderings(bestellerId);
-                    if (ordersFormUser.Any(o => o.OrderDate.HasValue && o.OrderDate.Value.AddSeconds(5) > DateTime.UtcNow))
+                    if (ordersFormUser.Any(o => o.OrderDate.HasValue && o.OrderDate.Value.AddSeconds(5) > DateTime.Now))
                     {
                         return Content<object>(HttpStatusCode.NoContent, null);
                     }
@@ -407,9 +407,15 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             var basket = await GetBasket();
-
+            var userAccess = GetUserAccess();
             if (basket == null || basket.Count(i => i.EinsichtsbewilligungNotwendig) == 0)
             {
+                // It is called twice the method in rare cases. So far we don't know why, but it can't be that two orders are placed within 5 seconds. 
+                var ordersFormUser = await client.GetOrderings(userAccess.UserId);
+                if (ordersFormUser.Any(o => o.OrderDate.HasValue && o.OrderDate.Value.AddSeconds(5) > DateTime.Now))
+                {
+                    return Content<object>(HttpStatusCode.NoContent, null);
+                }
                 throw new BadRequestException("Order not is allowed, because there are no items in basket");
             }
 
@@ -418,7 +424,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 .Select(item => item.Id)
                 .ToList();
 
-            var userAccess = GetUserAccess();
+         
             if (userAccess.RolePublicClient == AccessRoles.RoleAS)
             {
                 orderEinsichtsgesuchParams.ArtDerArbeit = (int)verwaltungsausleiheSettings.ArtDerArbeitFuerAmtsBestellung;
