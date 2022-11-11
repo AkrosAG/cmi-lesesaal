@@ -12,7 +12,7 @@ namespace CMI.Manager.Order.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
     internal sealed partial class ElasticConnectionSetting : global::System.Configuration.ApplicationSettingsBase {
         
         private static ElasticConnectionSetting defaultInstance = ((ElasticConnectionSetting)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ElasticConnectionSetting())));
@@ -29,6 +29,15 @@ namespace CMI.Manager.Order.Properties {
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticIndex@@")]
+        public string ElasticIndexName {
+            get {
+                return ((string)(this["ElasticIndexName"]));
             }
         }
     }
