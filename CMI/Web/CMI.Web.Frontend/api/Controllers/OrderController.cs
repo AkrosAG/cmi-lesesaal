@@ -231,10 +231,20 @@ namespace CMI.Web.Frontend.api.Controllers
             Log.Information("Recieved Order Request from User with id {UserId}", orderParams.UserId );
             try
             {
+                var bestellerId = !string.IsNullOrWhiteSpace(orderParams.UserId)
+                    ? orderParams.UserId
+                    : ControllerHelper.GetCurrentUserId();
                 // Diese Prüfung soll immer für den aktuellen Benutzer (also nicht für den Besteller) ablaufen gemäss Telefonat mit Marlies Hertig 
                 var basket = await GetBasket();
                 if (basket == null || basket.Count(i => !i.EinsichtsbewilligungNotwendig) == 0)
                 {
+                    // It is called twice the method in rare cases. So far we don't know why, but it can't be that two orders are placed within 5 seconds. 
+                    var ordersFormUser = await client.GetOrderings(bestellerId);
+                    if (ordersFormUser.Any(o => o.OrderDate.HasValue && o.OrderDate.Value.AddSeconds(5) > DateTime.Now))
+                    {
+                        return Content<object>(HttpStatusCode.NoContent, null);
+                    }
+
                     var ex = new BadRequestException("Order not is allowed, because there are no items in basket");
                     Log.Error(ex,
                         "OrderController_Order: Bestellkorb Einträge: " + basket?.Length + " EinsichtsbewilligungNotwendig: " +
@@ -244,12 +254,10 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 Log.Debug("Bestellkorb Einträge: " + basket.Length + " EinsichtsbewilligungNotwendig: " +
                           basket.Count(i => !i.EinsichtsbewilligungNotwendig));
+
                 var userAccess = GetUserAccess();
 
-                var bestellerId = !string.IsNullOrWhiteSpace(orderParams.UserId)
-                    ? orderParams.UserId
-                    : ControllerHelper.GetCurrentUserId();
-                var bestellungIstFuerAndererBenutzer = ControllerHelper.GetCurrentUserId() != bestellerId;
+                var bestellungIstFuerAndererBenutzer = userAccess.UserId != bestellerId;
                 if (bestellungIstFuerAndererBenutzer)
                 {
                     if (GetCurrentUserAccess().RolePublicClient != AccessRoles.RoleBAR)
@@ -399,9 +407,15 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             var basket = await GetBasket();
-
+            var userAccess = GetUserAccess();
             if (basket == null || basket.Count(i => i.EinsichtsbewilligungNotwendig) == 0)
             {
+                // It is called twice the method in rare cases. So far we don't know why, but it can't be that two orders are placed within 5 seconds. 
+                var ordersFormUser = await client.GetOrderings(userAccess.UserId);
+                if (ordersFormUser.Any(o => o.OrderDate.HasValue && o.OrderDate.Value.AddSeconds(5) > DateTime.Now))
+                {
+                    return Content<object>(HttpStatusCode.NoContent, null);
+                }
                 throw new BadRequestException("Order not is allowed, because there are no items in basket");
             }
 
@@ -410,7 +424,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 .Select(item => item.Id)
                 .ToList();
 
-            var userAccess = GetUserAccess();
+         
             if (userAccess.RolePublicClient == AccessRoles.RoleAS)
             {
                 orderEinsichtsgesuchParams.ArtDerArbeit = (int)verwaltungsausleiheSettings.ArtDerArbeitFuerAmtsBestellung;
