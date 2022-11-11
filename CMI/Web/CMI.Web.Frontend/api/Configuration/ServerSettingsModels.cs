@@ -9,7 +9,7 @@ namespace CMI.Web.Frontend.api.Configuration
     {
         public static string RelativePath = "configuration.elastic";
 
-        public string DefaultIndex { get; } = "archive";
+        public string DefaultIndex { get; set; } = "archive";
         public string DefaultTypeName { get; } = "elasticarchiverecord";
 
         public string IdKey { get; } = nameof(ElasticArchiveRecord.ArchiveRecordId).ToLowerCamelCase();
