@@ -31,5 +31,14 @@ namespace CMI.Access.Common.Properties {
                 return ((string)(this["ElasticSearchUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticIndex@@")]
+        public string ElasticIndexName {
+            get {
+                return ((string)(this["ElasticIndexName"]));
+            }
+        }
     }
 }
