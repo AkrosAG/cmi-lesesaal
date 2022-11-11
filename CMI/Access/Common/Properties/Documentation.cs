@@ -7,6 +7,7 @@ namespace CMI.Access.Common.Properties
         public override void LoadDescriptions()
         {
             AddDescription<Settings>(x => x.ElasticSearchUrl, "URL zum Elastic Search");
+            AddDescription<Settings>(x => x.ElasticIndexName, "Name Elastic Index");
         }
     }
 }
