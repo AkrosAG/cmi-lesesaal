@@ -165,4 +165,4 @@ jobs:
           Invoke-WebRequest "https://download.jetbrains.com/resharper/dotUltimate.2021.2.1/JetBrains.dotCover.CommandLineTools.2021.2.1.zip" -OutFile "dotcover.zip"
           Expand-Archive -Path dotcover.zip -DestinationPath .\dotcover
           $assemblies = (ls -r Test\*\**\bin\debug\*.Tests.dll | where-object { $_.FullName -notlike "*.Performance.Tests.dll" } | % { $_.FullName } | sort-object -Unique)
-          .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.14.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
+          .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.16.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
