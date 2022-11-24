@@ -6,7 +6,8 @@
         {
           "SectionLabels": {
             "de": "Details",
-            "fr": "Détails"
+            "fr": "Détails",
+            "en": "Details"
           },
           "Fields": [
             {
@@ -28,7 +29,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -38,6 +40,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezeichnung",
+                "en": "Description",
                 "fr": "Désignation"
               }
             },
@@ -48,7 +51,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen",
-                "fr": "Remarques"
+                "fr": "Remarques",
+                "en": "Comments"
               }
             },
             {
@@ -58,7 +62,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
+                "fr": "Remarques internes",
+                "en": "Internal remarks"
               }
             }
           ],
@@ -72,7 +77,8 @@
         {
           "SectionLabels": {
             "de": "Identität",
-            "fr": "Identité"
+            "fr": "Identité",
+            "en": "Identity"
           },
           "Fields": [
             {
@@ -82,7 +88,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Identifikator",
-                "fr": "Identificateur"
+                "fr": "Identificateur",
+                "en": "Identifier"
               }
             },
             {
@@ -92,7 +99,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -102,6 +110,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "PID",
+                "en": "PID",
                 "fr": "PID"
               }
             },
@@ -309,6 +318,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangs- und Benutzungsbedingungen",
+                "en": "Conditions of access and use",
                 "fr": "Conditions d'accès et d'utilisation"
               }
             }
@@ -417,7 +427,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
+                "fr": "Remarques internes",
+                "en": "Internal remarks"
               }
             }
           ],
@@ -499,6 +510,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
+            "en": "Identification",
             "fr": "Identification"
           },
           "Fields": [
@@ -509,6 +521,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
+                "en": "Reference code",
                 "fr": "Référence"
               }
             },
@@ -519,6 +532,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Alte Signatur",
+                "en": "Old signature",
                 "fr": "Ancienne signature"
               }
             },
@@ -529,6 +543,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "PID",
+                "en": "PID",
                 "fr": "PID"
               }
             },
@@ -539,6 +554,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
+                "en": "Distortion level",
                 "fr": "Niveau de description"
               }
             },
@@ -549,6 +565,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
+                "en": "Title",
                 "fr": "Titre"
               }
             },
@@ -559,7 +576,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -569,6 +587,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
+                "en": "Reference period",
                 "fr": "Période de référence"
               }
             },
@@ -579,6 +598,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
+                "en": "Remarks on the dating",
                 "fr": "Remarques sur la datation"
               }
             },
@@ -589,6 +609,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Tektonikpfad",
+                "en": "Tectonic trail",
                 "fr": "Chemin tectonique"
               }
             }
@@ -598,6 +619,7 @@
         {
           "SectionLabels": {
             "de": "Kontext",
+            "en": "Context",
             "fr": "Contexte"
           },
           "Fields": [
@@ -608,6 +630,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
+                "en": "Remarks Provenance",
                 "fr": "Remarques provenance"
               }
             },
@@ -618,6 +641,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwaltungsgeschichte / Biografische Angaben",
+                "en": "Administrative history / Biographical information",
                 "fr": "Histoire administrative / Notice biographique"
               }
             },
@@ -628,6 +652,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
+                "en": "Inventory history",
                 "fr": "Historique de la conservation"
               }
             },
@@ -638,6 +663,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
+                "en": "Issuing bodies",
                 "fr": "Modalités d'entrée"
               }
             }
@@ -647,6 +673,7 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
+            "en": "Content and structure",
             "fr": "Contenu et structure"
           },
           "Fields": [
@@ -657,6 +684,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
+                "en": "Form and content",
                 "fr": "Présentation du contenu"
               }
             },
@@ -667,6 +695,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bewertung und Kassation",
+                "en": "Evaluation and cassation",
                 "fr": "Évaluation, tris et éliminations, sort final"
               }
             },
@@ -677,6 +706,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Neuzugänge",
+                "en": "Increases",
                 "fr": "Accroissements"
               }
             },
@@ -687,6 +717,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ordnung und Klassifikation",
+                "en": "Order and classification",
                 "fr": "Mode de classement"
               }
             }
@@ -696,6 +727,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
+            "en": "Conditions of access and use",
             "fr": "Conditions d'accès et d'utilisation"
           },
           "Fields": [
@@ -706,6 +738,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
+                "en": "Access regulations",
                 "fr": "Conditions d'accès"
               }
             },
@@ -716,7 +749,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -726,6 +760,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Schutzfrist",
+                "en": "Base date closure-period",
                 "fr": "Date de base du délai de protection"
               }
             },
@@ -736,6 +771,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
+                "en": "Procedure closure-period",
                 "fr": "Expiration du délai de protection"
               }
             },
@@ -746,6 +782,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist berechnen aus jüngstem Datum Kinder",
+                "en": "Calculate expiry of protection period from most recent date Children",
                 "fr": "Calculer l'expiration du délai de protection à partir de la date Enfant la plus récente"
               }
             },
@@ -756,6 +793,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Verwertungsrecht",
+                "en": "Expiry of the exploitation right",
                 "fr": "Expiration du droit d'exploitation"
               }
             },
@@ -766,6 +804,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Verwertungsrecht",
+                "en": "Base date exploitation right",
                 "fr": "Date de décès de l'auteur"
               }
             },
@@ -776,6 +815,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Urheber",
+                "en": "Originator",
                 "fr": "Auteur"
               }
             },
@@ -786,6 +826,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
+                "en": "File available",
                 "fr": "Fichier existant"
               }
             },
@@ -796,6 +837,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",
+                "en": "Digital available",
                 "fr": "Existe sous forme numérique"
               }
             },
@@ -806,6 +848,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
+                "en": "Reproduction regulations",
                 "fr": "Conditions de reproduction"
               }
             },
@@ -816,6 +859,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
+                "en": "Physical condition and technical requirements",
                 "fr": "Caractéristiques matérielles et contraintes techniques"
               }
             },
@@ -826,6 +870,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Findmittel",
+                "en": "Finding aid",
                 "fr": "Instruments de recherche"
               }
             }
@@ -835,6 +880,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
+            "en": "Related documents",
             "fr": "Sources complémentaires"
           },
           "Fields": [
@@ -845,6 +891,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
+                "en": "Storage location of the originals",
                 "fr": "Lieu de conservation des originaux"
               }
             },
@@ -855,6 +902,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
+                "en": "Copies / reproductions",
                 "fr": "Copies / reproductions"
               }
             },
@@ -865,6 +913,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwandtes Material",
+                "en": "Related material",
                 "fr": "Sources complémentaires"
               }
             },
@@ -875,6 +924,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
+                "en": "Publications",
                 "fr": "Bibliographie"
               }
             }
@@ -884,6 +934,7 @@
         {
           "SectionLabels": {
             "de": "Anmerkungen",
+            "en": "Notes",
             "fr": "Remarques"
           },
           "Fields": [
@@ -894,6 +945,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Allgemeine Anmerkungen",
+                "en": "General remarks",
                 "fr": "Remarques générales"
               }
             }
@@ -903,6 +955,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
+            "en": "Directory control",
             "fr": "Contrôle de description"
           },
           "Fields": [
@@ -913,6 +966,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bearbeiter und Zeitraum der Verzeichnung",
+                "en": "Processor and period of processing",
                 "fr": "Archivistes et période de description"
               }
             },
@@ -923,7 +977,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
+                "fr": "Remarques internes",
+                "en": "Internal remarks"
               }
             },
             {
@@ -933,6 +988,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsgrundsätze",
+                "en": "Distortion principles",
                 "fr": "Règles ou conventions"
               }
             },
@@ -943,6 +999,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schadenserhebung",
+                "en": "Damage survey",
                 "fr": "Évaluation des dommages"
               }
             }
@@ -952,6 +1009,7 @@
         {
           "SectionLabels": {
             "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
+            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
             "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
           },
           "Fields": [
@@ -962,6 +1020,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
+                "en": "Comments on the location",
                 "fr": "Remarques sur le lieu"
               }
             },
@@ -972,6 +1031,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
+                "en": "Scope remarks",
                 "fr": "Remarques sur l'importance matérielle"
               }
             }
@@ -986,6 +1046,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
+            "en": "Identification",
             "fr": "Identification"
           },
           "Fields": [
@@ -996,6 +1057,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
+                "en": "Reference code",
                 "fr": "Référence"
               }
             },
@@ -1006,6 +1068,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Alte Signatur",
+                "en": "Old signature",
                 "fr": "Ancienne signature"
               }
             },
@@ -1016,6 +1079,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "PID",
+                "en": "PID",
                 "fr": "PID"
               }
             },
@@ -1026,6 +1090,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
+                "en": "Distortion level",
                 "fr": "Niveau de description"
               }
             },
@@ -1036,6 +1101,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
+                "en": "Title",
                 "fr": "Titre"
               }
             },
@@ -1046,7 +1112,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -1056,6 +1123,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
+                "en": "Reference period",
                 "fr": "Période de référence"
               }
             },
@@ -1066,6 +1134,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
+                "en": "Remarks on the dating",
                 "fr": "Remarques sur la datation"
               }
             },
@@ -1076,6 +1145,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Tektonikpfad",
+                "en": "Tectonic trail",
                 "fr": "Chemin tectonique"
               }
             }
@@ -1085,6 +1155,7 @@
         {
           "SectionLabels": {
             "de": "Kontext",
+            "en": "Context",
             "fr": "Contexte"
           },
           "Fields": [
@@ -1095,6 +1166,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
+                "en": "Remarks Provenance",
                 "fr": "Remarques provenance"
               }
             },
@@ -1105,6 +1177,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwaltungsgeschichte / Biografische Angaben",
+                "en": "Administrative history / Biographical information",
                 "fr": "Histoire administrative / Notice biographique"
               }
             },
@@ -1115,6 +1188,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
+                "en": "Inventory history",
                 "fr": "Historique de la conservation"
               }
             },
@@ -1125,6 +1199,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
+                "en": "Issuing bodies",
                 "fr": "Modalités d'entrée"
               }
             }
@@ -1134,6 +1209,7 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
+            "en": "Content and structure",
             "fr": "Contenu et structure"
           },
           "Fields": [
@@ -1144,6 +1220,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
+                "en": "Form and content",
                 "fr": "Présentation du contenu"
               }
             },
@@ -1154,6 +1231,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bewertung und Kassation",
+                "en": "Evaluation and cassation",
                 "fr": "Évaluation, tris et éliminations, sort final"
               }
             },
@@ -1164,6 +1242,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Neuzugänge",
+                "en": "Increases",
                 "fr": "Accroissements"
               }
             },
@@ -1174,6 +1253,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ordnung und Klassifikation",
+                "en": "Order and classification",
                 "fr": "Mode de classement"
               }
             }
@@ -1183,6 +1263,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
+            "en": "Conditions of access and use",
             "fr": "Conditions d'accès et d'utilisation"
           },
           "Fields": [
@@ -1193,6 +1274,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
+                "en": "Access regulations",
                 "fr": "Conditions d'accès"
               }
             },
@@ -1203,7 +1285,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -1213,6 +1296,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Schutzfrist",
+                "en": "Base date closure-period",
                 "fr": "Date de base du délai de protection"
               }
             },
@@ -1223,6 +1307,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
+                "en": "Procedure closure-period",
                 "fr": "Expiration du délai de protection"
               }
             },
@@ -1233,6 +1318,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist berechnen aus jüngstem Datum Kinder",
+                "en": "Calculate expiry of protection period from most recent date Children",
                 "fr": "Calculer l'expiration du délai de protection à partir de la date Enfant la plus récente"
               }
             },
@@ -1243,6 +1329,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Verwertungsrecht",
+                "en": "Expiry of the exploitation right",
                 "fr": "Expiration du droit d'exploitation"
               }
             },
@@ -1253,6 +1340,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Verwertungsrecht",
+                "en": "Base date exploitation right",
                 "fr": "Date de décès de l'auteur"
               }
             },
@@ -1263,6 +1351,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Urheber",
+                "en": "Originator",
                 "fr": "Auteur"
               }
             },
@@ -1273,6 +1362,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
+                "en": "File available",
                 "fr": "Fichier existant"
               }
             },
@@ -1283,6 +1373,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",
+                "en": "Digital available",
                 "fr": "Existe sous forme numérique"
               }
             },
@@ -1293,6 +1384,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
+                "en": "Reproduction regulations",
                 "fr": "Conditions de reproduction"
               }
             },
@@ -1303,6 +1395,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
+                "en": "Physical condition and technical requirements",
                 "fr": "Caractéristiques matérielles et contraintes techniques"
               }
             },
@@ -1313,6 +1406,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Findmittel",
+                "en": "Finding aid",
                 "fr": "Instruments de recherche"
               }
             }
@@ -1322,6 +1416,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
+            "en": "Related documents",
             "fr": "Sources complémentaires"
           },
           "Fields": [
@@ -1332,6 +1427,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
+                "en": "Storage location of the originals",
                 "fr": "Lieu de conservation des originaux"
               }
             },
@@ -1342,6 +1438,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
+                "en": "Copies / reproductions",
                 "fr": "Copies / reproductions"
               }
             },
@@ -1352,6 +1449,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwandtes Material",
+                "en": "Related material",
                 "fr": "Sources complémentaires"
               }
             },
@@ -1362,6 +1460,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
+                "en": "Publications",
                 "fr": "Bibliographie"
               }
             }
@@ -1371,6 +1470,7 @@
         {
           "SectionLabels": {
             "de": "Anmerkungen",
+            "en": "Notes",
             "fr": "Remarques"
           },
           "Fields": [
@@ -1381,6 +1481,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Allgemeine Anmerkungen",
+                "en": "Additional information",
                 "fr": "Remarques générales"
               }
             }
@@ -1390,6 +1491,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
+            "en": "Directory control",
             "fr": "Contrôle de description"
           },
           "Fields": [
@@ -1400,6 +1502,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bearbeiter und Zeitraum der Verzeichnung",
+                "en": "Processor and period of processing",
                 "fr": "Archivistes et période de description"
               }
             },
@@ -1410,7 +1513,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
+                "fr": "Remarques internes",
+                "en": "Internal remarks"
               }
             },
             {
@@ -1420,6 +1524,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsgrundsätze",
+                "en": "Distortion principles",
                 "fr": "Règles ou conventions"
               }
             },
@@ -1430,6 +1535,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schadenserhebung",
+                "en": "Damage survey",
                 "fr": "Évaluation des dommages"
               }
             }
@@ -1439,6 +1545,7 @@
         {
           "SectionLabels": {
             "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
+            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
             "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
           },
           "Fields": [
@@ -1449,6 +1556,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
+                "en": "Comments on the location",
                 "fr": "Remarques sur le lieu"
               }
             },
@@ -1459,6 +1567,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
+                "en": "Scope remarks",
                 "fr": "Remarques sur l'importance matérielle"
               }
             }
@@ -1573,6 +1682,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
+            "en": "Identification",
             "fr": "Identification"
           },
           "Fields": [
@@ -1583,6 +1693,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
+                "en": "Reference code",
                 "fr": "Référence"
               }
             },
@@ -1593,6 +1704,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Alte Signatur",
+                "en": "Old signature",
                 "fr": "Ancienne signature"
               }
             },
@@ -1603,6 +1715,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "PID",
+                "en": "PID",
                 "fr": "PID"
               }
             },
@@ -1613,6 +1726,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
+                "en": "Distortion level",
                 "fr": "Niveau de description"
               }
             },
@@ -1623,6 +1737,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
+                "en": "Title",
                 "fr": "Titre"
               }
             },
@@ -1633,7 +1748,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -1643,6 +1759,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
+                "en": "Reference period",
                 "fr": "Période de référence"
               }
             },
@@ -1653,6 +1770,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
+                "en": "Remarks on the dating",
                 "fr": "Remarques sur la datation"
               }
             },
@@ -1663,6 +1781,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Tektonikpfad",
+                "en": "Tectonic trail",
                 "fr": "Chemin tectonique"
               }
             }
@@ -1672,6 +1791,7 @@
         {
           "SectionLabels": {
             "de": "Kontext",
+            "en": "Context",
             "fr": "Contexte"
           },
           "Fields": [
@@ -1682,6 +1802,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
+                "en": "Remarks Provenance",
                 "fr": "Remarques provenance"
               }
             },
@@ -1692,6 +1813,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwaltungsgeschichte / Biografische Angaben",
+                "en": "Administrative history / Biographical information",
                 "fr": "Histoire administrative / Notice biographique"
               }
             },
@@ -1702,6 +1824,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
+                "en": "Inventory history",
                 "fr": "Historique de la conservation"
               }
             },
@@ -1712,6 +1835,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
+                "en": "Issuing bodies",
                 "fr": "Modalités d'entrée"
               }
             }
@@ -1721,6 +1845,7 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
+            "en": "Content and structure",
             "fr": "Contenu et structure"
           },
           "Fields": [
@@ -1731,6 +1856,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
+                "en": "Form and content",
                 "fr": "Présentation du contenu"
               }
             },
@@ -1741,6 +1867,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bewertung und Kassation",
+                "en": "Evaluation and cassation",
                 "fr": "Évaluation, tris et éliminations, sort final"
               }
             },
@@ -1751,6 +1878,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Neuzugänge",
+                "en": "Increases",
                 "fr": "Accroissements"
               }
             },
@@ -1761,6 +1889,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ordnung und Klassifikation",
+                "en": "Order and classification",
                 "fr": "Mode de classement"
               }
             }
@@ -1770,6 +1899,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
+            "en": "Order and classification",
             "fr": "Conditions d'accès et d'utilisation"
           },
           "Fields": [
@@ -1780,6 +1910,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
+                "en": "Access regulations",
                 "fr": "Conditions d'accès"
               }
             },
@@ -1790,7 +1921,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "fr": "Période de développement"
+                "en": "Creation period",
+                "fr": "Date de création"
               }
             },
             {
@@ -1800,6 +1932,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Schutzfrist",
+                "en": "Base date closure-period",
                 "fr": "Date de base du délai de protection"
               }
             },
@@ -1810,6 +1943,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
+                "en": "Procedure closure-period",
                 "fr": "Expiration du délai de protection"
               }
             },
@@ -1820,6 +1954,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist berechnen aus jüngstem Datum Kinder",
+                "en": "Calculate expiry of protection period from most recent date Children",
                 "fr": "Calculer l'expiration du délai de protection à partir de la date Enfant la plus récente"
               }
             },
@@ -1830,6 +1965,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Verwertungsrecht",
+                "en": "Expiry of the exploitation right",
                 "fr": "Expiration du droit d'exploitation"
               }
             },
@@ -1840,6 +1976,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Verwertungsrecht",
+                "en": "Base date exploitation right",
                 "fr": "Date de décès de l'auteur"
               }
             },
@@ -1850,6 +1987,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Urheber",
+                "en": "Originator",
                 "fr": "Auteur"
               }
             },
@@ -1860,6 +1998,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Datei vorhanden",
+                "en": "File available",
                 "fr": "Fichier existant"
               }
             },
@@ -1870,6 +2009,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Digital vorhanden",
+                "en": "Digital available",
                 "fr": "Existe sous forme numérique"
               }
             },
@@ -1880,6 +2020,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
+                "en": "Reproduction regulations",
                 "fr": "Conditions de reproduction"
               }
             },
@@ -1890,6 +2031,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
+                "en": "Physical condition and technical requirements",
                 "fr": "Caractéristiques matérielles et contraintes techniques"
               }
             },
@@ -1900,6 +2042,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Findmittel",
+                "en": "Finding aid",
                 "fr": "Instruments de recherche"
               }
             }
@@ -1909,6 +2052,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
+            "en": "Related documents",
             "fr": "Sources complémentaires"
           },
           "Fields": [
@@ -1919,6 +2063,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
+                "en": "Storage location of the originals",
                 "fr": "Lieu de conservation des originaux"
               }
             },
@@ -1929,6 +2074,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
+                "en": "Copies / reproductions",
                 "fr": "Copies / reproductions"
               }
             },
@@ -1939,6 +2085,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwandtes Material",
+                "en": "Related material",
                 "fr": "Sources complémentaires"
               }
             },
@@ -1949,6 +2096,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
+                "en": "Publications",
                 "fr": "Bibliographie"
               }
             }
@@ -1958,6 +2106,7 @@
         {
           "SectionLabels": {
             "de": "Anmerkungen",
+            "en": "Notes",
             "fr": "Remarques"
           },
           "Fields": [
@@ -1968,6 +2117,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Allgemeine Anmerkungen",
+                "en": "Additional information",
                 "fr": "Remarques générales"
               }
             }
@@ -1977,6 +2127,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
+            "en": "Directory control",
             "fr": "Contrôle de description"
           },
           "Fields": [
@@ -1987,6 +2138,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bearbeiter und Zeitraum der Verzeichnung",
+                "en": "Processor and period of processing",
                 "fr": "Archivistes et période de description"
               }
             },
@@ -1997,7 +2149,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes"
+                "fr": "Remarques internes",
+                "en": "Internal remarks"
               }
             },
             {
@@ -2007,6 +2160,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsgrundsätze",
+                "en": "Distortion principles",
                 "fr": "Règles ou conventions"
               }
             },
@@ -2017,6 +2171,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schadenserhebung",
+                "en": "Damage survey",
                 "fr": "Évaluation des dommages"
               }
             }
@@ -2026,6 +2181,7 @@
         {
           "SectionLabels": {
             "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
+            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
             "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
           },
           "Fields": [
@@ -2036,6 +2192,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
+                "en": "Comments on the location",
                 "fr": "Remarques sur le lieu"
               }
             },
@@ -2046,6 +2203,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
+                "en": "Scope remarks",
                 "fr": "Remarques sur l'importance matérielle"
               }
             }
