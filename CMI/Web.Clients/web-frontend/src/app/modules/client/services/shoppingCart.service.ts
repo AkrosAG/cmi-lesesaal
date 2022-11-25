@@ -211,10 +211,10 @@ export class ShoppingCartService {
 
 	private _addIndexItemToBasket(items: Observable<OrderItem[]>, ve: Entity): Observable<OrderItem> {
 		const url = `${this._apiUrl}/AddToBasket?veId=${ve.archiveRecordId}`;
-		console.log(url);
 
 		return this._http.post<OrderItem>(url, null).pipe(map(newItem => {
-			if (newItem.id === undefined || newItem.id === '') {
+
+			if (parseInt(newItem.id, 10) === 0) {
 				this._showAlreadyInCartToast(ve.title);
 				return null;
 			} else {
