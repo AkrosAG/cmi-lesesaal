@@ -25,8 +25,6 @@ namespace CMI.Contract.Common.Compiler
                     break;
             }
 
-            // Benutzbarkeit
-            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
 
             switch (level.ToLower())
@@ -36,32 +34,10 @@ namespace CMI.Contract.Common.Compiler
                     break;
                 case "bestand":
                 case "serie":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
-                    break;
                 case "dossier":
                 case "einzelstück":
                 case "einzelstueck":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = true;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
+                    archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
                     break;
                 default:
                     archiveRecord.Display.CanBeOrdered = false;
