@@ -44,7 +44,7 @@ namespace CMI.Manager.Cache
 
         [Description(
             "Gibt die EMailadresse an, an welche das System Warnungen schickt, wenn die Grösse des Caches die WarningThresholdCacheSize überschreitet.")]
-        [DefaultValue("marco.majoleth@bar.admin.ch; christa.ackermann@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public string MailRecipient { get; set; }
     }
 }

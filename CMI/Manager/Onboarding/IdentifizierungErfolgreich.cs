@@ -13,7 +13,7 @@ namespace CMI.Manager.Onboarding
 
         [DefaultValue("")] public override string Cc { get; set; }
 
-        [DefaultValue("benutzer-admin@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string Bcc { get; set; }
 
         [DefaultValue("{{#User.IstDeutsch}}" +

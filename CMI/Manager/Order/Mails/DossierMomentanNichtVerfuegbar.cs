@@ -6,7 +6,7 @@ namespace CMI.Manager.Order.Mails
 {
     public class DossierMomentanNichtVerfuegbar : EmailTemplate
     {
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string From { get; set; }
 
         [DefaultValue("{{User.EmailAddress}}")]

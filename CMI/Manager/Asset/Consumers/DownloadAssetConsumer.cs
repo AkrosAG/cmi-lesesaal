@@ -126,7 +126,7 @@ namespace CMI.Manager.Asset.Consumers
                     .Create();
 
                 // Beim Download der Benutzungskopie muss dass Passwort an den auslösenden Benutzer geschickt werden.
-                // Im Template ist die allgemeine bestellung@bar.admin.ch hinterlegt.
+                // Im Template ist die allgemeine archiv@library.ethz.ch hinterlegt.
                 if (changeEmailRecipient)
                 {
                     template.To = dataContext.User.EmailAddress;
