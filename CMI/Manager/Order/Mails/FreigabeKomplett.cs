@@ -12,7 +12,7 @@ namespace CMI.Manager.Order.Mails
 
         [DefaultValue("")] public override string Cc { get; set; }
 
-        [DefaultValue("einsichtsgesuch@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string Bcc { get; set; }
 
         [ReadDefaultFromResource] public override string Subject { get; set; }

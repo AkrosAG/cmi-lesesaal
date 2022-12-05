@@ -7,10 +7,10 @@ namespace CMI.Manager.Asset.Mails
     public class GebrauchskopieZumDownloadBereit : EmailTemplate
     {
         [DefaultValue("{{#User.IstDeutsch}}" +
-                      "bestellung@bar.admin.ch" +
+                      "archiv@library.ethz.ch" +
                       "{{/User.IstDeutsch}}" +
                       "{{^User.IstDeutsch}}" +
-                      "bar.admin.ch@bar.admin.ch" +
+                      "archiv@library.ethz.ch" +
                       "{{/User.IstDeutsch}}")]
         public override string From { get; set; }
 

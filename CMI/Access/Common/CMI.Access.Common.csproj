@@ -121,4 +121,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT '%25ON_BUILDSERVER%25'=='True' "$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(TargetDir) " "$(SolutionDir)..\$(SolutionName)-secrets.json"
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
