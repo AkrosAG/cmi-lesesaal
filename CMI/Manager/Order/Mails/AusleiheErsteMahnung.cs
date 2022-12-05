@@ -6,14 +6,14 @@ namespace CMI.Manager.Order.Mails
 {
     public class AusleiheErsteMahnung : EmailTemplate
     {
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string From { get; set; }
 
         [DefaultValue("")] public override string To { get; set; }
 
         [DefaultValue("")] public override string Cc { get; set; }
 
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string Bcc { get; set; }
 
         [DefaultValue("{{#Sprachen}}" +

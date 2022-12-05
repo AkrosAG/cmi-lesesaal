@@ -8,7 +8,7 @@ namespace CMI.Manager.Order.Mails
     {
         [DefaultValue("")] public override string From { get; set; }
 
-        [DefaultValue("einsichtsgesuch@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string To { get; set; }
 
         [DefaultValue("")] public override string Cc { get; set; }

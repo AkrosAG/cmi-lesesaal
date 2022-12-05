@@ -9,9 +9,9 @@ namespace CMI.Manager.Asset.Mails
     /// </summary>
     public class AufbereitetenBenutzungskopieProblem : EmailTemplate
     {
-        [DefaultValue("noreply@bar.admin.ch")] public override string From { get; set; }
+        [DefaultValue("archiv@library.ethz.ch")] public override string From { get; set; }
 
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string To { get; set; }
 
         [DefaultValue("")] public override string Cc { get; set; }
