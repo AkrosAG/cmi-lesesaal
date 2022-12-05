@@ -6,7 +6,7 @@ namespace CMI.Manager.Asset.Mails
 {
     public class GebrauchskopiePasswort : EmailTemplate
     {
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string From { get; set; }
 
         [DefaultValue("{{User.EmailAddress}}")]

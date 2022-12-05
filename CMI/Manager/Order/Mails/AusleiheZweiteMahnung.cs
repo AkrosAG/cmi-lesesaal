@@ -6,7 +6,7 @@ namespace CMI.Manager.Order.Mails
 {
     public class AusleiheZweiteMahnung : EmailTemplate
     {
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string From { get; set; }
 
         [DefaultValue("")] public override string To { get; set; }

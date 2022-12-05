@@ -220,16 +220,17 @@ namespace CMI.Manager.Order.Status
             var absender = Context.Ordering.Items.Max(item => FreigabeKomplettAbsender(item));
             switch (absender)
             {
+                // ToDo: Either there are different email addresses again or the switch case must be removed. 
                 case MailFrom.KeinMail:
                     return;
                 case MailFrom.Einsichtsgesuch:
-                    expando.From = "einsichtsgesuch@bar.admin.ch";
+                    expando.From = "archiv@library.ethz.ch";
                     break;
                 case MailFrom.Bestellung:
-                    expando.From = "bestellung@bar.admin.ch";
+                    expando.From = "archiv@library.ethz.ch";
                     break;
                 case MailFrom.DoNotReply:
-                    expando.From = "do_not_reply@bar.admin.ch";
+                    expando.From = "archiv@library.ethz.ch";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -8,7 +8,7 @@ namespace CMI.Manager.Vecteur
     {
         [DefaultValue("")] public override string From { get; set; }
 
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("Either there are different email addresses again or the switch case must be removed.")]
         public override string To { get; set; }
 
         [DefaultValue("")] public override string Cc { get; set; }

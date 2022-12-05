@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using CMI.Contract.Parameter.AdditionalParameterTypes;
 using CMI.Contract.Parameter.Attributes;
 
@@ -11,14 +6,14 @@ namespace CMI.Manager.Order.Mails
 {
     public class ErinnerungTerminLesesaal : EmailTemplate
     {
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string From { get; set; }
 
         [DefaultValue("")] public override string To { get; set; }
 
         [DefaultValue("")] public override string Cc { get; set; }
 
-        [DefaultValue("bestellung@bar.admin.ch")]
+        [DefaultValue("archiv@library.ethz.ch")]
         public override string Bcc { get; set; }
 
         [DefaultValue("{{#Sprachen}}" +
