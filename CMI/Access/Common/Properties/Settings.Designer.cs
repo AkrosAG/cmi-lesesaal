@@ -34,7 +34,7 @@ namespace CMI.Access.Common.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Order.Properties.ElasticConnectionSetting.ElasticIndexName@@")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticIndex@@")]
         public string ElasticIndexName {
             get {
                 return ((string)(this["ElasticIndexName"]));
