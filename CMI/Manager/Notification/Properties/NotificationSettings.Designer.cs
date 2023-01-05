@@ -70,7 +70,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
         public long Port {
             get {
                 return ((long)(this["Port"]));
@@ -79,7 +79,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("smtp.sparkpostmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("bernina.ethz.ch")]
         public string Host {
             get {
                 return ((string)(this["Host"]));
@@ -88,7 +88,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("do-not-reply@viaduc.evelix.ch")]
+        [global::System.Configuration.DefaultSettingValueAttribute("archiv@library.ethz.ch")]
         public string DefaultFromAddress {
             get {
                 return ((string)(this["DefaultFromAddress"]));
