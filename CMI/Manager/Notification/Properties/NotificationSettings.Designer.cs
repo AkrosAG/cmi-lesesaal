@@ -70,7 +70,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Notification.Properties.NotificationSettings.Port@@")]
         public long Port {
             get {
                 return ((long)(this["Port"]));
@@ -79,7 +79,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("bernina.ethz.ch")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Notification.Properties.NotificationSettings.Host@@")]
         public string Host {
             get {
                 return ((string)(this["Host"]));
@@ -88,7 +88,7 @@ namespace CMI.Manager.Notification.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("archiv@library.ethz.ch")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Notification.Properties.NotificationSettings.DefaultFromAddress@@")]
         public string DefaultFromAddress {
             get {
                 return ((string)(this["DefaultFromAddress"]));
