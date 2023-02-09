@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IdentityModel.Metadata;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
@@ -14,7 +17,10 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend;
 using CMI.Web.Frontend.api.Configuration;
 using CMI.Web.Frontend.api.Controllers;
+using Kentor.AuthServices;
+using Kentor.AuthServices.Configuration;
 using Kentor.AuthServices.Owin;
+using Kentor.AuthServices.WebSso;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -114,10 +120,35 @@ namespace CMI.Web.Frontend
 
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            var authOptions = new KentorAuthServicesAuthenticationOptions(true)
+            var loginServiceUrl = WebHelper.GetStringSetting("loginServiceUrl", string.Empty);
+            KentorAuthServicesAuthenticationOptions authOptions;
+            if (string.IsNullOrEmpty(loginServiceUrl))
             {
-                SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
-            };
+                authOptions = new KentorAuthServicesAuthenticationOptions(true)
+                {
+                    SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
+                };
+
+            }
+            else
+            {
+                var spOptions = new SPOptions
+                {
+                    Logger = new SeriLogAdapter(Log.Logger),
+                    EntityId = new EntityId(loginServiceUrl)
+                };
+
+                authOptions = new KentorAuthServicesAuthenticationOptions(false)
+                {
+                    SPOptions = spOptions
+                };
+
+                // It's enough to just create the federation and associate it
+                // with the options. The federation will load the metadata and
+                // update the options with any identity providers found.
+                new Federation("~/App_Data/metadata.switchaai+idp.xml", true, authOptions);
+            }
+            
 
             var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, true);
             authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
