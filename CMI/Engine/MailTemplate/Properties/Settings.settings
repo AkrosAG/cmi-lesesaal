@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="PublicClientUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">viaducdev.cmiag.ch/clientdev</Value>
+      <Value Profile="(Default)">@@CMI.Engine.MailTemplate.Properties.Settings.PublicClientUrl@@</Value>
     </Setting>
     <Setting Name="ManagementClientUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">viaducdev.cmiag.ch/management</Value>
+      <Value Profile="(Default)">@@CMI.Engine.MailTemplate.Properties.Settings.ManagementClientUrl@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>
