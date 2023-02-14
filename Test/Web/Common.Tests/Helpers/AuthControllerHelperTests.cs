@@ -135,7 +135,7 @@ namespace CMI.Web.Common.Tests.Helpers
             result.AuthStatus.Should().Be(AuthStatus.NeuerBenutzer);
             result.Roles.Should().ContainInOrder("ALLOW");
             result.IssuedAccessTokens.Length.Should().Be(0);
-            result.RedirectUrl.Should().Be("www.recherche.bar.admin.ch/recherche");
+            result.RedirectUrl.Should().Be("https://recherche.library.ethz.ch/client");
         }
 
 
