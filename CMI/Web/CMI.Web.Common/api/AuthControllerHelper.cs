@@ -360,7 +360,7 @@ namespace CMI.Web.Common.api
         private string GetPublicClientUrl()
         {
             return webCmiConfigProvider.GetStringSetting("publicClientUrl",
-                "www.recherche.bar.admin.ch/recherche");
+                "https://recherche.library.ethz.ch/client");
         }
 
         private string GetReturnUrl(AuthStatus authStatus, bool isPublicClient)
