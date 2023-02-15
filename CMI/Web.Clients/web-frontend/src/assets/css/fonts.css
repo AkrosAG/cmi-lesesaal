@@ -3263,10 +3263,6 @@
 	content: "\e800"
 }
 
-.glyphicon-dice-6:before {
-	content: "\e800"
-}
-
 *, :after, :before {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box
