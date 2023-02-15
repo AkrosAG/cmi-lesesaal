@@ -135,6 +135,9 @@
   <data name="Dossier" xml:space="preserve">
     <value>Dossiers</value>
   </data>
+  <data name="Einzelstück" xml:space="preserve">
+    <value>single item</value>
+  </data>
   <data name="Frei zugänglich" xml:space="preserve">
     <value>Without restriction</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="In Schutzfrist" xml:space="preserve">
     <value>Subject to closure period</value>
+  </data>
+  <data name="Klassifikation" xml:space="preserve">
+    <value>Classification</value>
   </data>
   <data name="Prüfung nötig" xml:space="preserve">
     <value>Review necessary</value>
