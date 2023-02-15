@@ -1,6 +1,10 @@
 {
   "dossier": "glyphicon glyphicon-folder-open",
   "dossiers": "glyphicon glyphicon-folder-open",
+  "einzelstück": "glyphicon glyphicon-file",
+  "single item": "glyphicon glyphicon-file",
+  "klassifikation": "glyphicon glyphicon-paragraph",
+  "classification": "glyphicon glyphicon-paragraph",
 
   "subdossier": "glyphicon glyphicon-folder-minus",
   "sous-dossier": "glyphicon glyphicon-folder-minus",
@@ -45,7 +49,5 @@
   "bestand": "glyphicon glyphicon-show-big-thumbnails",
   "fonds": "glyphicon glyphicon-show-big-thumbnails",
   "fondo": "glyphicon glyphicon-show-big-thumbnails",
-
-  "einzelstueck": "fa-duotone fa-file",
-  "abteilung":  "fa-solid fa-apartment" 
+  "abteilung": "fa-solid fa-apartment"
 }
