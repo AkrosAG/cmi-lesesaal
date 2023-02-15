@@ -136,7 +136,7 @@
     <value>Dossiers</value>
   </data>
   <data name="Einzelstück" xml:space="preserve">
-    <value>single item</value>
+    <value>Single item</value>
   </data>
   <data name="Frei zugänglich" xml:space="preserve">
     <value>Without restriction</value>
