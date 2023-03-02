@@ -95,7 +95,7 @@ namespace CMI.Utilities.Logging.Configurator
                 Exchange = "CMI.Logging",
                 ExchangeType = ExchangeType.Fanout,
                 DeliveryMode = RabbitMQDeliveryMode.Durable,
-                Port = uri.IsDefaultPort ? 5672 : uri.Port,
+                Port = uri.IsDefaultPort ? 15672 : uri.Port,
                 Heartbeat = 60
             };
             rabbitConfiguration.Hostnames.Add(uri.Host);
@@ -123,7 +123,7 @@ namespace CMI.Utilities.Logging.Configurator
                     VirtualHost = uri.AbsolutePath.Replace("/", ""),
                     UserName = BusConfigurator.UserName,
                     Password = BusConfigurator.Password,
-                    Port = uri.IsDefaultPort ? 5672 : uri.Port
+                    Port = uri.IsDefaultPort ? 15672 : uri.Port
                 };
 
                 using (var connection = factory.CreateConnection())

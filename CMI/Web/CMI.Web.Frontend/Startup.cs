@@ -2,9 +2,7 @@
 using System.IdentityModel.Metadata;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
@@ -20,7 +18,6 @@ using CMI.Web.Frontend.api.Controllers;
 using Kentor.AuthServices;
 using Kentor.AuthServices.Configuration;
 using Kentor.AuthServices.Owin;
-using Kentor.AuthServices.WebSso;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;

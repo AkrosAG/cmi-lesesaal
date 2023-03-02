@@ -25,6 +25,7 @@ namespace CMI.Web.Frontend.api.Controllers
             IWebCmiConfigProvider webCmiConfigProvider,
             IApplicationRoleUserDataAccess applicationRoleUserDataAccess)
         {
+            Log.Information("AuthController");
             authControllerHelper = new AuthControllerHelper(applicationRoleUserDataAccess, userDataAccess, ControllerHelper, authenticationHelper,
                 webCmiConfigProvider);
         }
@@ -36,6 +37,7 @@ namespace CMI.Web.Frontend.api.Controllers
         {
             try
             {
+                Log.Information("OnExternalSignIn");
                 await authControllerHelper.OnExternalSignIn(Request.GetOwinContext(), true);
             }
             catch (AuthenticationException e)
@@ -47,12 +49,32 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [AllowAnonymous]
+        [Route("AuthServices/SignIn")]
+        [HttpGet]
+        public async Task<IHttpActionResult> SignIn()
+        {
+            try
+            {
+                Log.Information("SignIn");
+                await authControllerHelper.OnExternalSignIn(Request.GetOwinContext(), true);
+            }
+            catch (AuthenticationException e)
+            {
+                Log.Error(e, "Fehler beim Anmelden");
+            }
+
+            return Redirect(WebHelper.FrontendAuthReturnUrl);
+        }
+
+
+        [AllowAnonymous]
         [Route("Auth/ExternalSignOut")]
         [HttpGet]
         public IHttpActionResult OnExternalSignOut()
         {
             try
             {
+                Log.Information("ExternalSignOut");
                 authControllerHelper.OnExternalSignOut(Request.GetOwinContext(), true);
             }
             catch (AuthenticationException e)
@@ -70,6 +92,7 @@ namespace CMI.Web.Frontend.api.Controllers
         {
             try
             {
+                Log.Information("GetIdentity");
                 var identity = authControllerHelper.GetIdentity(Request, User, true);
                 return Ok(identity);
             }

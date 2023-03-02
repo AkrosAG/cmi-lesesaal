@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng lint && ng build --watch",
+    "start": "ng lint && set NODE_OPTIONS=--openssl-legacy-provider && ng serve --watch",
     "build": "ng lint && ng build",
     "build-prod": "ng build --configuration production",
     "test": "ng test",

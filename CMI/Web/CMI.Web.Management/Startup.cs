@@ -27,6 +27,9 @@ using Owin;
 using Serilog;
 using SameSiteMode = Microsoft.Owin.SameSiteMode;
 using Swashbuckle.Application;
+using Kentor.AuthServices.Configuration;
+using Kentor.AuthServices;
+using System.IdentityModel.Metadata;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -122,10 +125,34 @@ namespace CMI.Web.Management
 
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            var authOptions = new KentorAuthServicesAuthenticationOptions(true)
+            var loginServiceUrl = WebHelper.GetStringSetting("loginServiceUrl", string.Empty);
+            KentorAuthServicesAuthenticationOptions authOptions;
+            if (string.IsNullOrEmpty(loginServiceUrl))
             {
-                SPOptions = {Logger = new SeriLogAdapter(Log.Logger)}
-            };
+                authOptions = new KentorAuthServicesAuthenticationOptions(true)
+                {
+                    SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
+                };
+
+            }
+            else
+            {
+                var spOptions = new SPOptions
+                {
+                    Logger = new SeriLogAdapter(Log.Logger),
+                    EntityId = new EntityId(loginServiceUrl)
+                };
+
+                authOptions = new KentorAuthServicesAuthenticationOptions(false)
+                {
+                    SPOptions = spOptions
+                };
+
+                // It's enough to just create the federation and associate it
+                // with the options. The federation will load the metadata and
+                // update the options with any identity providers found.
+                new Federation("~/App_Data/metadata.switchaai+idp.xml", true, authOptions);
+            }
 
             var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, false);
             authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
