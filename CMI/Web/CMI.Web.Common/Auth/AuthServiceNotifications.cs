@@ -5,12 +5,11 @@ using System.Security.Claims;
 using System.Web;
 using System.Xml;
 using CMI.Web.Common.Helpers;
-using Kentor.AuthServices.Configuration;
-using Kentor.AuthServices.Saml2P;
-using Kentor.AuthServices.WebSso;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using Newtonsoft.Json;
+using Serilog;
+using Sustainsys.Saml2.Configuration;
+using Sustainsys.Saml2.Saml2P;
+using Sustainsys.Saml2.WebSso;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace CMI.Web.Common.Auth
@@ -28,10 +27,14 @@ namespace CMI.Web.Common.Auth
 
         public void AcsCommandResultCreated(CommandResult result, Saml2Response response)
         {
+            Log.Information("AcsCommandResultCreated");
+            Log.Information("SAML2 {Saml2Response}:" + JsonConvert.SerializeObject(response, Formatting.Indented));
+            Log.Information("ReturnUrl: " + spOptions.ReturnUrl.ToString());
             spOptions.Logger.WriteVerbose("SAML2 {Saml2Response}:" + JsonConvert.SerializeObject(response, Formatting.Indented));
             // Bereits in Anwendung auf Mandant BAR vorhanden
             if (!HasValidMandant(result))
             {
+                Log.Information("HasValidMandant false");
                 spOptions.Logger.WriteInformation("User hat noch keinen Antrag gestellt");
                 HttpContext.Current.Response.Redirect(GetLoginMandantErstellenUrl(), false);
                 return;
@@ -39,12 +42,16 @@ namespace CMI.Web.Common.Auth
 
             var assertion = response.XmlElement.ChildNodes.OfType<XmlNode>()
                 .First(node => node.Name == "saml2:Assertion");
+            Log.Information(assertion.Value);
             var authnStatement = assertion.ChildNodes.OfType<XmlNode>()
                 .First(node => node.Name == "saml2:AuthnStatement");
+            Log.Information(authnStatement.Value);
             var authnContext = authnStatement.ChildNodes.OfType<XmlNode>()
                 .First(node => node.Name == "saml2:AuthnContext");
+            Log.Information(authnContext.Value);
             var authnContextClassRef = authnContext.ChildNodes.OfType<XmlNode>()
                 .First(node => node.Name == "saml2:AuthnContextClassRef");
+            Log.Information(authnContextClassRef.Value);
             var authType = authnContextClassRef.InnerText;
 
             var roles = result.Principal.Claims.Where(
@@ -82,7 +89,7 @@ namespace CMI.Web.Common.Auth
 
             spOptions.Logger.WriteVerbose("(AuthServiceNotifications:AcsCommandResultCreated()): {COMMANDRESULT}" +
                                           JsonConvert.SerializeObject(result, Formatting.Indented,
-                                              new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
+                                              new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
             spOptions.Logger.WriteVerbose("(AuthServiceNotifications:AcsCommandResultCreated()): {Saml2Response}" +
                                           JsonConvert.SerializeObject(response, Formatting.Indented));
 
@@ -94,10 +101,10 @@ namespace CMI.Web.Common.Auth
                 var claims = identity.Claims ?? Enumerable.Empty<Claim>();
                 foreach (var claim in claims)
                 {
-                    if (!((ClaimsIdentity) result.Principal.Identity).HasClaim(claim.Type, claim.Value))
+                    if (!((ClaimsIdentity)result.Principal.Identity).HasClaim(claim.Type, claim.Value))
                     {
                         spOptions.Logger.WriteVerbose("Adding Claim, because it is missing {CLAIM}: " + claim);
-                        ((ClaimsIdentity) result.Principal.Identity).AddClaim(claim);
+                        ((ClaimsIdentity)result.Principal.Identity).AddClaim(claim);
                     }
                     else
                     {
@@ -105,10 +112,10 @@ namespace CMI.Web.Common.Auth
                     }
                 }
             }
-            
+
             spOptions.Logger.WriteVerbose("(AuthServiceNotifications:AcsCommandResultCreated()): {READCLAIMS}" +
-                                              JsonConvert.SerializeObject(((ClaimsIdentity) result.Principal.Identity).Claims, Formatting.Indented,
-                                                  new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore}));
+                                              JsonConvert.SerializeObject(((ClaimsIdentity)result.Principal.Identity).Claims, Formatting.Indented,
+                                                  new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }));
         }
 
         private bool HasValidMandant(CommandResult result)
@@ -120,6 +127,7 @@ namespace CMI.Web.Common.Auth
 
         internal bool IsValidLoginType(string authType)
         {
+            Log.Information("authType: " + authType);
             if (string.IsNullOrWhiteSpace(authType))
             {
                 return false;

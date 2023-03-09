@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Authentication;
@@ -9,7 +10,6 @@ using System.Threading.Tasks;
 using System.Web;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
-using CMI.Manager.Order.Status;
 using CMI.Web.Common.Auth;
 using CMI.Web.Common.Helpers;
 using Microsoft.AspNet.Identity;
@@ -52,10 +52,13 @@ namespace CMI.Web.Common.api
         /// <returns></returns>
         public async Task OnExternalSignIn(IOwinContext owinContext, bool isPublicClient)
         {
+            Log.Information("1. OnExternalSignIn ");
             var authManager = owinContext.Authentication;
+            Log.Information("2. OnExternalSignIn ", authManager?.User);
             var authResult = await authManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
             if (authResult == null)
-            {
+            {               
+                Log.Information("No identity Found: " +  owinContext.Environment.ToString());
                 return;
             }
                
@@ -97,8 +100,7 @@ namespace CMI.Web.Common.api
 
             var userId = owinContext.Request.Cookies[cookieUserIdKey];
             userDataAccess.UpdateActiveSessionId(userId, null);
-
-            var authManager = owinContext.Authentication;
+            var authManager =  owinContext.Authentication;
             authManager.SignOut(appCookieKey);
             owinContext.Response.Cookies.Delete(cookieUserIdKey, new CookieOptions
             {
@@ -120,10 +122,29 @@ namespace CMI.Web.Common.api
         public Identity GetIdentity(HttpRequestMessage request, IPrincipal user, bool isPublicClient)
         {
             var userId = controllerHelper.GetCurrentUserId();
-            var claims = authenticationHelper.GetClaimsForRequest(user, request);
-            
-            if (!HasValidMandant(claims))
+            Log.Information($"user {user} {user.Identity}");
+            Log.Information($"Name {user.Identity?.Name} ID  {user.Identity?.GetUserId()} {user.Identity.IsAuthenticated}");
+            var claimsIdentity = (GenericIdentity)user.Identity;
+            Log.Information($"NameClaimType {claimsIdentity.NameClaimType}");
+
+            if (claimsIdentity != null)
             {
+                Log.Information($"Name:{claimsIdentity?.Name}");
+                
+                foreach (var claim in claimsIdentity.Claims)
+                {
+                    Log.Information($"Type: {claim.Type} Value: {claim.Value}" );
+                }
+            }
+            var claims = authenticationHelper.GetClaimsForRequest(user, request);
+
+            Log.Information("Clains: " + claims.ToArray());
+            foreach (var claim in claims)
+            {
+                Log.Information($"Type: {claim.Type} Value: {claim.Value} Issuer {claim.Issuer}");
+            }
+            if (!HasValidMandant(claims))
+            {                
                 Log.Warning("User hat noch keinen Antrag gestellt");
                 throw new AuthenticationException("User hat noch keinen Antrag gestellt");
             }
@@ -347,7 +368,7 @@ namespace CMI.Web.Common.api
         private bool HasValidMandant(IList<ClaimInfo> claims)
         {
             var claimsRoles = claims.FirstOrDefault(c => c.Type.EndsWith("/identity/claims/e-id/profile/role"))?.Value;
-            Log.Information($"Claim Rolle {claimsRoles}");
+            Log.Information($"Claim Role {claimsRoles}");
             return !string.IsNullOrWhiteSpace(claimsRoles);
         }
 

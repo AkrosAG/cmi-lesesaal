@@ -15,7 +15,7 @@ using CMI.Web.Common.Auth;
 using CMI.Web.Common.Helpers;
 using CMI.Web.Management;
 using CMI.Web.Management.api.Configuration;
-using Kentor.AuthServices.Owin;
+using Sustainsys.Saml2.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -27,9 +27,6 @@ using Owin;
 using Serilog;
 using SameSiteMode = Microsoft.Owin.SameSiteMode;
 using Swashbuckle.Application;
-using Kentor.AuthServices.Configuration;
-using Kentor.AuthServices;
-using System.IdentityModel.Metadata;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -97,69 +94,40 @@ namespace CMI.Web.Management
         {
             app.Use(async (context, next) => { await next.Invoke(); });
             
-            app.UseKentorOwinCookieSaver();
-            
             app.Use(async (context, next) => { await next.Invoke(); });            
 
             var connectionString = ManagementSettings.Instance.SqlConnectionString;
             var userDataAccess = new UserDataAccess(connectionString);
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = WebHelper.CookieMcAppliationCookieKey,
-                AuthenticationMode = AuthenticationMode.Active,
-                CookieSameSite = SameSiteMode.Strict,
-                CookieSecure = CookieSecureOption.Always,
-                CookieHttpOnly = true,
-                ExpireTimeSpan = TimeSpan.FromMinutes(ManagementSettings.Instance.CookieExpireTimeInMinutes),
-                SlidingExpiration = true,
-                Provider = new CookieAuthenticationProvider
-                {
-                    OnValidateIdentity = context => ValidateSessionIdIsActive(context, userDataAccess)
-                }
-            });
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = WebHelper.CookieMcAppliationCookieKey,
+            //    AuthenticationMode = AuthenticationMode.Active,
+            //    CookieSameSite = SameSiteMode.Strict,
+            //    CookieSecure = CookieSecureOption.Always,
+            //    CookieHttpOnly = true,
+            //    ExpireTimeSpan = TimeSpan.FromMinutes(ManagementSettings.Instance.CookieExpireTimeInMinutes),
+            //    SlidingExpiration = true,
+            //    Provider = new CookieAuthenticationProvider
+            //    {
+            //        OnValidateIdentity = context => ValidateSessionIdIsActive(context, userDataAccess)
+            //    }
+            //});
             
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            app.Use(async (context, next) => { await next.Invoke(); });
+            //app.Use(async (context, next) => { await next.Invoke(); });
+            //var authOptions = new Saml2AuthenticationOptions(true);
+            //var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, true);
+            //authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
 
-            var loginServiceUrl = WebHelper.GetStringSetting("loginServiceUrl", string.Empty);
-            KentorAuthServicesAuthenticationOptions authOptions;
-            if (string.IsNullOrEmpty(loginServiceUrl))
-            {
-                authOptions = new KentorAuthServicesAuthenticationOptions(true)
-                {
-                    SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
-                };
+            //Log.Information("authOptions " + authOptions.AuthenticationMode);
 
-            }
-            else
-            {
-                var spOptions = new SPOptions
-                {
-                    Logger = new SeriLogAdapter(Log.Logger),
-                    EntityId = new EntityId(loginServiceUrl)
-                };
+            // app.UseSaml2Authentication(authOptions);
 
-                authOptions = new KentorAuthServicesAuthenticationOptions(false)
-                {
-                    SPOptions = spOptions
-                };
-
-                // It's enough to just create the federation and associate it
-                // with the options. The federation will load the metadata and
-                // update the options with any identity providers found.
-                new Federation("~/App_Data/metadata.switchaai+idp.xml", true, authOptions);
-            }
-
-            var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, false);
-            authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
-
-            app.UseKentorAuthServicesAuthentication(authOptions);
-
-            app.Use(async (context, next) => { await next.Invoke(); });
+            //app.Use(async (context, next) => { await next.Invoke(); });
 
             Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}", ManagementSettings.Instance.CookieExpireTimeInMinutes);
         }

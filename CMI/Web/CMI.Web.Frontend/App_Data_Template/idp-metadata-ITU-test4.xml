@@ -1,4 +1,4 @@
-<EntityDescriptor xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" cacheDuration="PT15M" validUntil="2019-02-22T15:57:56.9158548Z" entityID="@@CMI.Web.Frontend.AppData_Template.IdpMetadata.Url@@/Metadata" ID="_bdeae985b92d4daf8d7493e0d1aa5df9">
+<EntityDescriptor xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" cacheDuration="PT15M" validUntil="2019-02-22T15:57:56.9158548Z" entityID="https://recherche.library.ethz.ch/shibboleth" ID="_bdeae985b92d4daf8d7493e0d1aa5df9">
   <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
     <SignedInfo>
       <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>

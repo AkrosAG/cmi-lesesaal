@@ -1,15 +1,23 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Security.Authentication;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.ModelBinding;
+using System.Web.SessionState;
+using System.Web.UI.WebControls;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Web.Common.api;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Common.Auth;
 using CMI.Web.Common.Helpers;
+using System.Xml;
 using Serilog;
+using System.IO;
 
 namespace CMI.Web.Frontend.api.Controllers
 {
@@ -87,12 +95,45 @@ namespace CMI.Web.Frontend.api.Controllers
 
 
         // This method is called when IAM-authentication was successful
+        [AllowAnonymous]
         [HttpGet]
         public IHttpActionResult GetIdentity()
         {
             try
             {
-                Log.Information("GetIdentity");
+                string URLString = "https://recherche-dev.library.ethz.ch/Shibboleth.sso/Session";
+                string html = File.ReadAllText(URLString);
+
+                Log.Information($"GetIdentity {html} " );
+                Log.Information("Server Variables ");
+
+
+                var items = HttpContext.Current.Items.Keys;
+                foreach (var key in items)
+                {
+                    if(key.ToString()== "AspSession")
+                    {
+                        Log.Information((HttpContext.Current.Items[key] as HttpSessionState).CookieMode.ToString());
+                    }
+                    else if (key.ToString() == "owin.Environment")
+                    {
+                        Log.Information($"owin.Environment");
+                        var owin = HttpContext.Current.Items[key] as IDictionary<string, object>;
+                            foreach (var kw in owin.Keys)
+                        {
+                            Log.Information($"{kw} {owin[kw]}");
+                        }
+
+                     
+                    }
+                    Log.Information($"Item: {key}: {HttpContext.Current.Items[key]}");
+                }               
+                foreach (var key in HttpContext.Current.Request.ServerVariables.AllKeys)
+                {
+                    // Log.Debug($"variable: {variable}");
+                    Log.Information($"ServerVariable: {key}: {HttpContext.Current.Request.ServerVariables[key]}");
+                }
+
                 var identity = authControllerHelper.GetIdentity(Request, User, true);
                 return Ok(identity);
             }
