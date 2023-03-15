@@ -83,9 +83,10 @@ public class MetaDataBuilder
             ProtectionEndDate = cmiRecord.SchutzfristEnddatum?.Start,
             Permission = cmiRecord.Zugangsbestimmungen,
             PhysicalUsability = cmiRecord.PhysischeBeschaffenheit,
-            Accessibility = cmiRecord.Zugangsbestimmungen,
+            Accessibility = cmiRecord.Benutzbarkeit,
             UsageNotes = cmiRecord.AllgemeineAnmerkungen,
-            License = GetLicense(cmiRecord)
+            License = GetLicense(cmiRecord),
+            PublicationRights = cmiRecord.Verwertungsrecht
         };
 
         return this;
