@@ -540,6 +540,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data_Template\iconMapping.json" />
+    <Content Include="App_Data_Template\templates_tma.json" />
+    <Content Include="App_Data_Template\templates_hsa.json" />
     <None Include="App_Data_Template\web.kentor.local.config" />
     <None Include="Properties\PublishProfiles\Publish local.pubxml">
       <SubType>Designer</SubType>
