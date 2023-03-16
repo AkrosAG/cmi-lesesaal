@@ -72,7 +72,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Kürzel",
+              "DbFieldName": "CustomFields.Kuerzel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
