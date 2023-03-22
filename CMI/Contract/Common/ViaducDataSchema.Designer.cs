@@ -982,7 +982,7 @@ namespace CMI.Contract.Common
         /// The sequence defines the order in which the current item is positioned within all the childs of the parent receord.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("sequence")]
-        public int Sequence { get; set; }
+        public long Sequence { get; set; }
         /// <summary>
         /// A leaf is a node without a child
         /// </summary>
