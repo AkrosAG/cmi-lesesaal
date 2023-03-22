@@ -48,7 +48,7 @@ public class MetaDataBuilder
         return this;
     }
 
-    private async Task<int> GetSequence(Verzeichnungseinheit cmiRecord)
+    private async Task<long> GetSequence(Verzeichnungseinheit cmiRecord)
     {
         var parent = cmiRecord.Ancestors?.FirstOrDefault(a => a.Depth == 0);
         if (parent == null)
@@ -59,7 +59,7 @@ public class MetaDataBuilder
         if (meAsChild == null)
             return 0;
 
-        return int.TryParse(meAsChild.Sortierung, out var result) ? result : 0;
+        return long.TryParse(meAsChild.Sortierung, out var result) ? result : 0;
     }
 
     private ArchiveRecordMetadataUsageLicense GetLicense(Verzeichnungseinheit cmiRecord)
