@@ -306,7 +306,7 @@ Examples for the token can be:
                 <xs:element maxOccurs="1" minOccurs="0" name="primaryData">
                     <xs:annotation>
                         <xs:documentation>The actual "pyhisical" records. In our case these are either digital born data, or scanned files.
-</xs:documentation>
+						</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
@@ -625,7 +625,7 @@ This is required for the best possible search experience using date ranges.
                         <xs:documentation>The path is the concatenated string containing the archive record ids from the root down to the current level. </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="sequence" type="xs:int">
+                <xs:element name="sequence" type="xs:long">
                     <xs:annotation>
                         <xs:documentation>The sequence defines the order in which the current item is positioned within all the childs of the parent receord.</xs:documentation>
                     </xs:annotation>
