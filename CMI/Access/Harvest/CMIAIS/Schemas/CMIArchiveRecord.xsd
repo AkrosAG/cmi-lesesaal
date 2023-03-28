@@ -195,27 +195,13 @@
 			</xsd:element>
 			<xsd:element name="CustomFields">
 				<xsd:complexType>
-					<xsd:choice minOccurs="0" maxOccurs="1">
-						<xsd:element name="CustomField" type="CustomField" />
-					</xsd:choice>
+					<xsd:sequence>
+						<xsd:any minOccurs="0" />
+					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="SchutzfristBasisdatum" type="DateTimeFieldType" />
 			<xsd:element name="SchutzfristEnddatum" type="DateTimeFieldType" />
-			<xsd:element name="LinkZuPrimaerdaten" type="xsd:string" />
-			<xsd:element name="LinkZuDigitalisat" type="xsd:string" />
-			<xsd:element name="LinkAufDigitalesOriginal" type="xsd:string" />
-			<xsd:element name="URL" type="xsd:string" />
-			<xsd:element name="Erlaeuterung" type="xsd:string" />
-			<xsd:element name="BemerkungStandort" type="xsd:string" />
-			<xsd:element name="Lizenz" type="xsd:string" />
-			<xsd:element name="BemerkungSprache" type="xsd:string" />
-			<xsd:element name="ParentObject" type="xsd:string" />
-			<xsd:element name="BemerkungUmfang" type="xsd:string" />
-			<xsd:element name="Erwerbsarten" type="xsd:string" />
-			<xsd:element name="Schadenserhebung" type="xsd:string" />
-			<xsd:element name="Kuerzel" type="xsd:string" />
-			<xsd:element name="Zustandskategorie" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional" />
@@ -373,6 +359,8 @@
 			</xsd:element>
 			<xsd:element name="ExterneID2" type="xsd:string" />
 			<xsd:element name="GND-ID" type="xsd:decimal" nillable="true" />
+			<xsd:element name="Geburtsdatum" type="xsd:string" />
+			<xsd:element name="Sterbedatum" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 	</xsd:complexType>
@@ -482,6 +470,18 @@
 	<xsd:complexType name="CustomField">
 		<xsd:sequence>
 			<xsd:element name="CustomTextField" type="xsd:string" />
+			<xsd:element name="Erlaeuterung" type="xsd:string" />
+			<xsd:element name="Lizenz" type="xsd:string" />
+			<xsd:element name="BemerkungSprache" type="xsd:string" />
+			<xsd:element name="BemerkungStandort" type="xsd:string" />
+			<xsd:element name="Erwerbsarten" type="xsd:string" />
+			<xsd:element name="Zustandskategorie" type="xsd:string" />
+			<xsd:element name="Schadenserhebung" type="xsd:string" />
+			<xsd:element name="Kuerzel" type="xsd:string" />
+			<xsd:element name="LinkZuPrimaerdaten" type="xsd:string" />
+			<xsd:element name="LinkZuDigitalisat" type="xsd:string" />
+			<xsd:element name="LinkAufDigitalesOriginal" type="xsd:string" />
+			<xsd:element name="URL" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 	</xsd:complexType>
