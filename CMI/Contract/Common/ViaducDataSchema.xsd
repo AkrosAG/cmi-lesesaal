@@ -278,6 +278,65 @@ Examples for the token can be:
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
+                            <xs:element maxOccurs="1" minOccurs="0" name="files">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="file">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="fileName" type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>The full file name as found on the disk</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="title" type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>The title of the document</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="description"
+                                                  type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>An optional description or remark</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element minOccurs="0" name="kind"
+                                                  type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Specifies the kind of document</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="mimeType" type="xs:string"/>
+                                                  <xs:element name="fileExtension" type="xs:string"/>
+                                                  <xs:element name="fileType" type="xs:string"
+                                                  minOccurs="0">
+                                                  <xs:annotation>
+                                                  <xs:documentation>An optional file type. For example "Image" for all type of image files png, jpg</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="fileSize" type="xs:long"/>
+                                                  <xs:element name="contentBinary"
+                                                  type="xs:base64Binary">
+                                                  <xs:annotation>
+                                                  <xs:documentation>The document encoded as base64Binary</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="contentText" type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>The extracted full text of the document</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="sortOrder" type="xs:int">
+                                                  <xs:annotation>
+                                                  <xs:documentation>The order in which the documents are displayed in the web frontend</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="accessionDate" type="xs:int">
                                 <xs:annotation>
                                     <xs:documentation>The year in which this record was added to the archive collection.</xs:documentation>
@@ -625,7 +684,7 @@ This is required for the best possible search experience using date ranges.
                         <xs:documentation>The path is the concatenated string containing the archive record ids from the root down to the current level. </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="sequence" type="xs:int">
+                <xs:element name="sequence" type="xs:long">
                     <xs:annotation>
                         <xs:documentation>The sequence defines the order in which the current item is positioned within all the childs of the parent receord.</xs:documentation>
                     </xs:annotation>
