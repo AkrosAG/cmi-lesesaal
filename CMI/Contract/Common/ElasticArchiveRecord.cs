@@ -19,7 +19,7 @@ namespace CMI.Contract.Common
         public string Level { get; set; }
         public long ChildCount { get; set; }
         public string ArchiveRecordId { get; set; }
-        public int TreeSequence { get; set; }
+        public long TreeSequence { get; set; }
         public List<ElasticArchiveplanContextItem> ArchiveplanContext { get; set; }
         public ElasticTimePeriod CreationPeriod { get; set; }
         public string ExternalDisplayTemplateName { get; set; }
