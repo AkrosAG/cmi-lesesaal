@@ -161,20 +161,20 @@ namespace CMI.Contract.Common
             return null;
         }
 
-        public static string Publikationsrechte(this ElasticArchiveRecord record)
+        public static string Verwertungsrecht(this ElasticArchiveRecord record)
         {
-            Log.Verbose("Getting property publikationsrechte.");
-            if (record.HasCustomProperty("publikationsrechte"))
+            Log.Verbose("Getting property Verwertungsrecht.");
+            if (record.HasCustomProperty("verwertungsrecht"))
             {
-                Log.Verbose("Property publikationsrechte: {publikationsrechte}", JsonConvert.SerializeObject(record.CustomFields.publikationsrechte));
-                if (record.CustomFields.publikationsrechte is string)
+                Log.Verbose("Property verwertungsrecht: {verwertungsrecht}", JsonConvert.SerializeObject(record.CustomFields.verwertungsrecht));
+                if (record.CustomFields.verwertungsrecht is string)
                 {
-                    return record.CustomFields.publikationsrechte;
+                    return record.CustomFields.verwertungsrecht;
                 }
 
-                if (record.CustomFields.publikationsrechte is List<object>)
+                if (record.CustomFields.verwertungsrecht is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.publikationsrechte);
+                    return string.Join(", ", record.CustomFields.verwertungsrecht);
                 }
             }
 
