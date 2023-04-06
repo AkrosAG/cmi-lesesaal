@@ -85,8 +85,7 @@ public class MetaDataBuilder
             PhysicalUsability = cmiRecord.PhysischeBeschaffenheit,
             Accessibility = cmiRecord.Zugangsbestimmungen,
             UsageNotes = cmiRecord.AllgemeineAnmerkungen,
-            License = GetLicense(cmiRecord),
-            PublicationRights = cmiRecord.Verwertungsrecht
+            License = GetLicense(cmiRecord)
         };
 
         return this;
