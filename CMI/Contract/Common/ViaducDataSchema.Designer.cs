@@ -910,13 +910,6 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("accessibility")]
         public string Accessibility { get; set; }
-
-        /// <summary>
-        /// Indication about the Publication rights of the item. (Publikationsrechte)
-        /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("accessibility")]
-        public string PublicationRights { get; set; }
-
         /// <summary>
         /// Optionl notes about the usage.
         /// </summary>
