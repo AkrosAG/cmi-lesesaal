@@ -48,14 +48,6 @@
           }
         }
       },
-      "publicationRights": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          }
-        }
-      },
       "accessionDate": {
         "copy_to": [
           "all_Metadata_Text"
