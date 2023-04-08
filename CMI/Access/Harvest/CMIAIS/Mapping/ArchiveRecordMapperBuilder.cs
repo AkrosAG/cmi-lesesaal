@@ -32,7 +32,6 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
             archiveRecord.Metadata = new ArchiveRecordMetadata
             {
                 AccessionDate = cmiRecord.Akzession?.FirstOrDefault()?.Datum?.Start?.Year ?? 0,
-                PrimaryDataLink = cmiRecord.LinkZuPrimaerdaten,
                 References = GetReferences(cmiRecord),
                 Descriptors = GetDescriptors(cmiRecord),
                 Containers = GetContainers(cmiRecord),
