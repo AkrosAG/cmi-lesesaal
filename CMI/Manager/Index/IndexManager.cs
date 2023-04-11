@@ -199,7 +199,7 @@ namespace CMI.Manager.Index
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
 
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
-
+            
             // Add the creation period aggregation records
             // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
             // According to elastic documentation histograms are calculated with this formula

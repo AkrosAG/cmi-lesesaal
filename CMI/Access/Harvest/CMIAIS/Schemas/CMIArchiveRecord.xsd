@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xsd:schema targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveRecord" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveRecord">
+﻿<xsd:schema targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveRecord" elementFormDefault="qualified" xmlns="http://www.cmiag.ch/cdws/CMIArchiveRecord" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:annotation>
 		<xsd:documentation>
 			<SearchField xsi:type="SearchFieldText" Name="DateiText" BoostFactor="2" Nrs="51" xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
@@ -203,7 +202,6 @@
 			</xsd:element>
 			<xsd:element name="SchutzfristBasisdatum" type="DateTimeFieldType" />
 			<xsd:element name="SchutzfristEnddatum" type="DateTimeFieldType" />
-			<xsd:element name="LinkZuPrimaerdaten" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional" />
@@ -359,6 +357,10 @@
 					</xsd:choice>
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="ExterneID2" type="xsd:string" />
+			<xsd:element name="GND-ID" type="xsd:decimal" nillable="true" />
+			<xsd:element name="Geburtsdatum" type="xsd:string" />
+			<xsd:element name="Sterbedatum" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 	</xsd:complexType>
@@ -467,7 +469,19 @@
 	</xsd:complexType>
 	<xsd:complexType name="CustomField">
 		<xsd:sequence>
-			<xsd:any minOccurs="0" />
+			<xsd:element name="CustomTextField" type="xsd:string" />
+			<xsd:element name="Erlaeuterung" type="xsd:string" />
+			<xsd:element name="Lizenz" type="xsd:string" />
+			<xsd:element name="BemerkungSprache" type="xsd:string" />
+			<xsd:element name="BemerkungStandort" type="xsd:string" />
+			<xsd:element name="Erwerbsarten" type="xsd:string" />
+			<xsd:element name="Zustandskategorie" type="xsd:string" />
+			<xsd:element name="Schadenserhebung" type="xsd:string" />
+			<xsd:element name="Kuerzel" type="xsd:string" />
+			<xsd:element name="LinkZuPrimaerdaten" type="xsd:string" />
+			<xsd:element name="LinkZuDigitalisat" type="xsd:string" />
+			<xsd:element name="LinkAufDigitalesOriginal" type="xsd:string" />
+			<xsd:element name="URL" type="xsd:string" />
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required" />
 	</xsd:complexType>
