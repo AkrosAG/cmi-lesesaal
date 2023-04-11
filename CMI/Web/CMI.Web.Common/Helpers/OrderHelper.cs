@@ -19,13 +19,11 @@ namespace CMI.Web.Common.Helpers
                 IdentifikationDigitalesMagazin = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.PrimaryDataLink,
                 Signatur = entity.ReferenceCode,
                 VeId = entity.ArchiveRecordId,
-                ZugaenglichkeitGemaessBga = entity.HasCustomProperty("zugänglichkeitGemässBga")
-                    ? entity.CustomFields.zugänglichkeitGemässBga
-                    : "",
+                ZugaenglichkeitGemaessBga = entity.Benutzbarkeit(),
                 ZusaetzlicheInformationen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Extent,
                 ZeitraumDossier = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.CreationPeriod?.Text,
                 Schutzfristverzeichnung = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.GetSchutzfristenVerzeichnung(),
-                Publikationsrechte = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Publikationsrechte(),
+                Publikationsrechte = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Verwertungsrecht(),
                 ZustaendigeStelle = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.ZuständigeStelle(),
                 Aktenzeichen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Aktenzeichen()
             };
