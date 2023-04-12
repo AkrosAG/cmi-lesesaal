@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -63,15 +62,18 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property aktenzeichen.");
             if (record.HasCustomProperty("aktenzeichen"))
             {
-                Log.Verbose("Property aktenzeichen: {aktenzeichen}", JsonConvert.SerializeObject(record.CustomFields.aktenzeichen));
+               
                 if (record.CustomFields.aktenzeichen is string)
                 {
+                    Log.Verbose("Property aktenzeichen: {aktenzeichen}", record.CustomFields.aktenzeichen);
                     return record.CustomFields.aktenzeichen;
                 }
 
                 if (record.CustomFields.aktenzeichen is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.aktenzeichen);
+                    var aktenzeichen = string.Join(", ", record.CustomFields.aktenzeichen);
+                    Log.Verbose("Property aktenzeichen: {aktenzeichen}", aktenzeichen);
+                    return aktenzeichen;
                 }
             }
 
@@ -83,16 +85,18 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property zusatzkomponenteZac1.");
             if (record.HasCustomProperty("zusatzkomponenteZac1"))
             {
-                Log.Verbose("Property zusatzkomponenteZac1: {zusatzkomponenteZac1}",
-                    JsonConvert.SerializeObject(record.CustomFields.zusatzkomponenteZac1));
+                
                 if (record.CustomFields.zusatzkomponenteZac1 is string)
                 {
+                    Log.Verbose("Property zusatzkomponenteZac1: {zusatzkomponenteZac1}",record.CustomFields.zusatzkomponenteZac1);
                     return record.CustomFields.zusatzkomponenteZac1;
                 }
 
                 if (record.CustomFields.zusatzkomponenteZac1 is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.zusatzkomponenteZac1);
+                    var zusatzkomponenteZac1 = string.Join(", ", record.CustomFields.zusatzkomponenteZac1);
+                    Log.Verbose("Property zusatzkomponenteZac1: {zusatzkomponenteZac1}", zusatzkomponenteZac1);
+                    return zusatzkomponenteZac1;
                 }
             }
 
@@ -104,16 +108,10 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property Benutzbarkeit.");
             if (record.HasCustomProperty("benutzbarkeit"))
             {
-                Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}",
-                    JsonConvert.SerializeObject(record.CustomFields.benutzbarkeit));
+                Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}", record.CustomFields.benutzbarkeit);
                 if (record.CustomFields.benutzbarkeit is string)
                 {
                     return record.CustomFields.benutzbarkeit;
-                }
-
-                if (record.CustomFields.benutzbarkeit is List<object>)
-                {
-                    return string.Join(", ", record.CustomFields.benutzbarkeit);
                 }
             }
 
@@ -128,12 +126,15 @@ namespace CMI.Contract.Common
                 Log.Verbose("Property form: {form}", JsonConvert.SerializeObject(record.CustomFields.form));
                 if (record.CustomFields.form is string)
                 {
+                    Log.Verbose("Property form: {form}",  record.CustomFields.form);
                     return record.CustomFields.form;
                 }
 
                 if (record.CustomFields.form is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.form);
+                    var form = string.Join(", ", record.CustomFields.form);
+                    Log.Verbose("Property form: {form}", form);
+                    return form;
                 }
             }
 
@@ -145,16 +146,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property entstehungszeitraumAnmerkung.");
             if (record.HasCustomProperty("entstehungszeitraumAnmerkung"))
             {
-                Log.Verbose("Property entstehungszeitraumAnmerkung: {entstehungszeitraumAnmerkung}",
-                    JsonConvert.SerializeObject(record.CustomFields.entstehungszeitraumAnmerkung));
                 if (record.CustomFields.entstehungszeitraumAnmerkung is string)
                 {
+                    Log.Verbose("Property entstehungszeitraumAnmerkung: {entstehungszeitraumAnmerkung}",record.CustomFields.entstehungszeitraumAnmerkung);
                     return record.CustomFields.entstehungszeitraumAnmerkung;
                 }
 
                 if (record.CustomFields.entstehungszeitraumAnmerkung is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.entstehungszeitraumAnmerkung);
+                    var entstehungszeitraumAnmerkung = string.Join(", ", record.CustomFields.entstehungszeitraumAnmerkung);
+                    Log.Verbose("Property entstehungszeitraumAnmerkung: {entstehungszeitraumAnmerkung}", entstehungszeitraumAnmerkung);
+                    return entstehungszeitraumAnmerkung;
                 }
             }
 
@@ -166,15 +168,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property Verwertungsrecht.");
             if (record.HasCustomProperty("verwertungsrecht"))
             {
-                Log.Verbose("Property verwertungsrecht: {verwertungsrecht}", JsonConvert.SerializeObject(record.CustomFields.verwertungsrecht));
                 if (record.CustomFields.verwertungsrecht is string)
                 {
+                    Log.Verbose("Property verwertungsrecht: {verwertungsrecht}", record.CustomFields.verwertungsrecht);
                     return record.CustomFields.verwertungsrecht;
                 }
 
                 if (record.CustomFields.verwertungsrecht is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.verwertungsrecht);
+                    var verwertungsrecht = string.Join(", ", record.CustomFields.verwertungsrecht);
+                    Log.Verbose("Property verwertungsrecht: {verwertungsrecht}", verwertungsrecht);
+                    return verwertungsrecht;
                 }
             }
 
@@ -186,15 +190,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property zuständigeStelle.");
             if (record.HasCustomProperty("zuständigeStelle"))
             {
-                Log.Verbose("Property zuständigeStelle: {zuständigeStelle}", JsonConvert.SerializeObject(record.CustomFields.zuständigeStelle));
                 if (record.CustomFields.zuständigeStelle is string)
                 {
+                    Log.Verbose("Property zuständigeStelle: {zuständigeStelle}", JsonConvert.SerializeObject(record.CustomFields.zuständigeStelle));
                     return record.CustomFields.zuständigeStelle;
                 }
 
                 if (record.CustomFields.zuständigeStelle is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.zuständigeStelle);
+                    var zuständigeStelle = string.Join(", ", record.CustomFields.zuständigeStelle);
+                    Log.Verbose("Property zuständigeStelle: {zuständigeStelle}", zuständigeStelle);
+                    return zuständigeStelle;
                 }
             }
 
@@ -206,7 +212,7 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property bemerkungZurVe.");
             if (record.HasCustomProperty("bemerkungZurVe"))
             {
-                Log.Verbose("Property bemerkungZurVe: {bemerkungZurVe}", JsonConvert.SerializeObject(record.CustomFields.bemerkungZurVe));
+                Log.Verbose("Property bemerkungZurVe: {bemerkungZurVe}", record.CustomFields.bemerkungZurVe);
                 if (record.CustomFields.bemerkungZurVe is string)
                 {
                     return record.CustomFields.bemerkungZurVe;
@@ -214,7 +220,9 @@ namespace CMI.Contract.Common
 
                 if (record.CustomFields.bemerkungZurVe is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.bemerkungZurVe);
+                    var bemerkungZurVe = string.Join(", ", record.CustomFields.bemerkungZurVe);
+                    Log.Verbose("Property bemerkungZurVe: {bemerkungZurVe}", bemerkungZurVe);
+                    return bemerkungZurVe;
                 }
             }
 
@@ -226,15 +234,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property land.");
             if (record.HasCustomProperty("land"))
             {
-                Log.Verbose("Property land: {land}", JsonConvert.SerializeObject(record.CustomFields.land));
                 if (record.CustomFields.land is string)
                 {
+                    Log.Verbose("Property land: {land}", record.CustomFields.land);
                     return record.CustomFields.land;
                 }
 
                 if (record.CustomFields.land is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.land);
+                    var land = string.Join(", ", record.CustomFields.land);
+                    Log.Verbose("Property land: {land}", land);
+                    return land;
                 }
             }
 
@@ -246,16 +256,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property früheresAktenzeichen.");
             if (record.HasCustomProperty("früheresAktenzeichen"))
             {
-                Log.Verbose("Property früheresAktenzeichen: {früheresAktenzeichen}",
-                    JsonConvert.SerializeObject(record.CustomFields.früheresAktenzeichen));
                 if (record.CustomFields.früheresAktenzeichen is string)
                 {
+                    Log.Verbose("Property früheresAktenzeichen: {früheresAktenzeichen}", record.CustomFields.früheresAktenzeichen);
                     return record.CustomFields.früheresAktenzeichen;
                 }
 
                 if (record.CustomFields.früheresAktenzeichen is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.früheresAktenzeichen);
+                    var früheresAktenzeichen = string.Join(", ", record.CustomFields.früheresAktenzeichen);
+                    Log.Verbose("Property früheresAktenzeichen: {früheresAktenzeichen}", früheresAktenzeichen);
+                    return früheresAktenzeichen;
                 }
             }
 
@@ -267,15 +278,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property thema.");
             if (record.HasCustomProperty("thema"))
             {
-                Log.Verbose("Property thema: {thema}", JsonConvert.SerializeObject(record.CustomFields.thema));
                 if (record.CustomFields.thema is string)
                 {
+                    Log.Verbose("Property früheresAktenzeichen: {früheresAktenzeichen}",  record.CustomFields.thema);
                     return record.CustomFields.thema;
                 }
 
                 if (record.CustomFields.thema is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.thema);
+                    var thema = string.Join(", ", record.CustomFields.thema);
+                    Log.Verbose("Property thema: {thema}", thema);
+                    return thema;
                 }
             }
 
@@ -287,15 +300,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property format.");
             if (record.HasCustomProperty("format"))
             {
-                Log.Verbose("Property format: {format}", JsonConvert.SerializeObject(record.CustomFields.format));
                 if (record.CustomFields.format is string)
                 {
+                    Log.Verbose("Property format: {format}", record.CustomFields.format);
                     return record.CustomFields.format;
                 }
 
                 if (record.CustomFields.format is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.format);
+                    var format = string.Join(", ", record.CustomFields.format);
+                    Log.Verbose("Property format: {format}", format);
+                    return format;
                 }
             }
 
@@ -307,15 +322,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property urheber.");
             if (record.HasCustomProperty("urheber"))
             {
-                Log.Verbose("Property urheber: {urheber}", JsonConvert.SerializeObject(record.CustomFields.urheber));
                 if (record.CustomFields.urheber is string)
                 {
+                    Log.Verbose("Property urheber: {urheber}",  record.CustomFields.urheber);
                     return record.CustomFields.urheber;
                 }
 
                 if (record.CustomFields.urheber is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.urheber);
+                    var urheber = string.Join(", ", record.CustomFields.urheber);
+                    Log.Verbose("Property urheber: {urheber}", urheber);
+                    return urheber;
                 }
             }
 
@@ -327,15 +344,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property verleger.");
             if (record.HasCustomProperty("verleger"))
             {
-                Log.Verbose("Property verleger: {verleger}", JsonConvert.SerializeObject(record.CustomFields.verleger));
                 if (record.CustomFields.verleger is string)
                 {
+                    Log.Verbose("Property verleger: {verleger}", record.CustomFields.verleger);
                     return record.CustomFields.verleger;
                 }
 
                 if (record.CustomFields.verleger is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.verleger);
+                    var verleger = string.Join(", ", record.CustomFields.verleger);
+                    Log.Verbose("Property verleger: {verleger}", verleger);
+                    return verleger;
                 }
             }
 
@@ -347,15 +366,17 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property abdeckung.");
             if (record.HasCustomProperty("abdeckung"))
             {
-                Log.Verbose("Property abdeckung: {abdeckung}", JsonConvert.SerializeObject(record.CustomFields.abdeckung));
                 if (record.CustomFields.abdeckung is string)
                 {
+                    Log.Verbose("Property abdeckung: {abdeckung}", record.CustomFields.abdeckung);
                     return record.CustomFields.abdeckung;
                 }
 
                 if (record.CustomFields.abdeckung is List<object>)
                 {
-                    return string.Join(", ", record.CustomFields.abdeckung);
+                    var abdeckung = string.Join(", ", record.CustomFields.abdeckung);
+                    Log.Verbose("Property abdeckung: {abdeckung}", abdeckung);
+                    return abdeckung;
                 }
             }
 
@@ -367,7 +388,6 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property veAblieferungLink.");
             if (record.HasCustomProperty("veAblieferungLink"))
             {
-                Log.Verbose("Property veAblieferungLink: {veAblieferungLink}", JsonConvert.SerializeObject(record.CustomFields.veAblieferungLink));
                 var veAblieferungLink = record.CustomFields.veAblieferungLink;
 
                 if (veAblieferungLink is List<object>)
@@ -381,11 +401,14 @@ namespace CMI.Contract.Common
                         }
                     }
 
+                    Log.Verbose("Property veAblieferungLink: {veAblieferungLink}", string.Join(", ", ablieferung));
+
                     return string.Join(", ", ablieferung);
                 }
 
                 if (HasProperty(veAblieferungLink, "value"))
                 {
+                    Log.Verbose("Property veAblieferungLink: {veAblieferungLink}", veAblieferungLink.value);
                     return veAblieferungLink.value;
                 }
             }
