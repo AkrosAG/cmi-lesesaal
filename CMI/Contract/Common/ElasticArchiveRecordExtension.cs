@@ -108,10 +108,16 @@ namespace CMI.Contract.Common
             Log.Verbose("Getting property Benutzbarkeit.");
             if (record.HasCustomProperty("benutzbarkeit"))
             {
-                Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}", record.CustomFields.benutzbarkeit);
                 if (record.CustomFields.benutzbarkeit is string)
                 {
+                    Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}", record.CustomFields.benutzbarkeit);
                     return record.CustomFields.benutzbarkeit;
+                }
+                if (record.CustomFields.benutzbarkeit is List<object>)
+                {
+                    var benutzbarkeit= string.Join(", ", record.CustomFields.benutzbarkeit);
+                    Log.Verbose("Property Benutzbarkeit: {benutzbarkeit}", benutzbarkeit);
+                    return benutzbarkeit;
                 }
             }
 
