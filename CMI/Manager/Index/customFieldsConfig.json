@@ -1,15 +1,5 @@
 ﻿[
   {
-    "ElementId": "Titel",
-    "ElementName": "Titel",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Titel",
-    "TargetField": "Title",
-    "IsDefaultField": 1,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementId": "Signatur",
     "ElementName": "Signatur",
     "SourceType": "Text (max. 4000 Z.)",
@@ -20,21 +10,51 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "AlteSignatur",
+    "ElementName": "AlteSignatur",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Alte Signatur",
+    "TargetField": "FormerReferenceCode",
+    "IsDefaultField": 1,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementId": "Verwaltungssignatur",
     "ElementName": "Verwaltungssignatur",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Signatur Archivplan",
-    "TargetField": "SignaturArchivplan",
+    "Label": "Verwaltungssignatur",
+    "TargetField": "Verwaltungssignatur",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Verzeichnungsstufe",
-    "ElementName": "Verzeichnungsstufe",
+    "ElementId": "ID",
+    "ElementName": "ID",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Stufe",
-    "TargetField": "Level",
+    "Label": "ID",
+    "TargetField": "ID",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "PID",
+    "ElementName": "PID",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "PID",
+    "TargetField": "PID",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Titel",
+    "ElementName": "Titel",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Titel",
+    "TargetField": "Title",
     "IsDefaultField": 1,
     "Type": "string",
     "IsRepeatable": 0
@@ -50,63 +70,33 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "FormInhalt",
-    "ElementName": "FormInhalt",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Darin",
-    "TargetField": "WithinInfo",
-    "IsDefaultField": 1,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "_todo_datei",
-    "ElementName": "BILD_VORSCHAU",
-    "SourceType": "Bild",
-    "Label": "Vorschaubild",
-    "TargetField": "BildVorschau",
-    "IsDefaultField": 0,
-    "Type": "ElasticBase64",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "_todo_datei2",
-    "ElementName": "BILD_VORSCHAU",
-    "SourceType": "Bild",
-    "Label": "Vorschaubild",
-    "TargetField": "Thumbnail",
-    "IsDefaultField": 1,
-    "Type": "ElasticBase64",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "_todo_datei3",
-    "ElementName": "BILD_ANSICHT",
-    "SourceType": "Bild",
-    "Label": "Ansichtsbild",
-    "TargetField": "BildAnsicht",
-    "IsDefaultField": 0,
-    "Type": "ElasticBase64",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "AlteSignatur",
-    "ElementName": "AlteSignatur",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Frühere Signaturen",
-    "TargetField": "FormerReferenceCode",
-    "IsDefaultField": 1,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementId": "Bezugszeitraum",
     "ElementName": "Bezugszeitraum",
     "SourceType": "Datumsbereich (von/bis)",
-    "Label": "Ablieferung (Link)",
-    "TargetField": "Bezugszeitraum",
+    "Label": "Bezugszeitraum",
+    "TargetField": "ReferencePeriod",
     "IsDefaultField": 0,
     "Type": "ElasticTimePeriod",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Verzeichnungsstufe",
+    "ElementName": "Verzeichnungsstufe",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Verzeichnungsstufe",
+    "TargetField": "Level",
+    "IsDefaultField": 1,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Umfang",
+    "ElementName": "Umfang",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Umfang",
+    "TargetField": "Umfang",
+    "IsDefaultField": 0,
+    "Type": "string",
     "IsRepeatable": 0
   },
   {
@@ -140,6 +130,16 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "FormInhalt",
+    "ElementName": "FormInhalt",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Darin",
+    "TargetField": "WithinInfo",
+    "IsDefaultField": 1,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementId": "BewertungKassation",
     "ElementName": "BewertungKassation",
     "SourceType": "Text (max. 4000 Z.)",
@@ -160,6 +160,17 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "Zugangsbestimmungen",
+    "ElementName": "Zugangsbestimmungen",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Zugangsbestimmungen",
+    "TargetField": "Zugangsbestimmungen",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+
     "ElementId": "Reproduktionsbestimmungen",
     "ElementName": "Reproduktionsbestimmungen",
     "SourceType": "Text (max. 4000 Z.)",
@@ -170,6 +181,29 @@
     "IsRepeatable": 0
   },
   {
+
+    "ElementId": "Sprache",
+    "ElementName": "Sprache",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Sprache",
+    "TargetField": "Sprache",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+
+    "ElementId": "Schrift",
+    "ElementName": "Schrift",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Schrift",
+    "TargetField": "Schrift",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+
     "ElementId": "PhysischeBeschaffenheit",
     "ElementName": "PhysischeBeschaffenheit",
     "SourceType": "Text (max. 4000 Z.)",
@@ -180,11 +214,23 @@
     "IsRepeatable": 0
   },
   {
+
     "ElementId": "Findmittel",
     "ElementName": "Findmittel",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Findmittel",
     "TargetField": "Findmittel",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+
+    "ElementId": "Standort",
+    "ElementName": "Standort",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Standort",
+    "TargetField": "Standort",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -240,11 +286,91 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "BemerkungEntstehungszeitraum",
+    "ElementName": "BemerkungEntstehungszeitraum",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Bemerkung Entstehungszeitraum",
+    "TargetField": "BemerkungEntstehungszeitraum",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Dateien",
+    "ElementName": "Dateien",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Dateien",
+    "TargetField": "Dateien",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementId": "Verwertungsrecht",
     "ElementName": "Verwertungsrecht",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verwertungsrecht",
     "TargetField": "Verwertungsrecht",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "ArchivalienartenGuids",
+    "ElementName": "ArchivalienartenGuids",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "ArchivalienartenGuids",
+    "TargetField": "ArchivalienartenGuids",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Provenienz",
+    "ElementName": "Provenienz",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Provenienz",
+    "TargetField": "Provenienz",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Akzession",
+    "ElementName": "Akzession",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Akzession",
+    "TargetField": "Akzession",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "UeberlieferungsformenGuids",
+    "ElementName": "UeberlieferungsformenGuids",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "UeberlieferungsformenGuids",
+    "TargetField": "UeberlieferungsformenGuids",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Ueberlieferungsform",
+    "ElementName": "Ueberlieferungsform",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Ueberlieferungsform",
+    "TargetField": "Ueberlieferungsform",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Ueberlieferungsform",
+    "ElementName": "Ueberlieferungsform",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Ueberlieferungsform",
+    "TargetField": "Ueberlieferungsform",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -270,13 +396,23 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Urheber",
-    "ElementName": "Urheber",
+    "ElementId": "Verwertungsrecht",
+    "ElementName": "Verwertungsrecht",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Urheber",
-    "TargetField": "Urheber",
+    "Label": "Verwertungsrecht",
+    "TargetField": "Verwertungsrecht",
     "IsDefaultField": 0,
     "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "AblaufVerwertungsrecht",
+    "ElementName": "AblaufVerwertungsrecht",
+    "SourceType": "Datumsbereich (von/bis)",
+    "Label": "AblaufVerwertungsrecht",
+    "TargetField": "AblaufVerwertungsrecht",
+    "IsDefaultField": 0,
+    "Type": "ElasticTimePeriod",
     "IsRepeatable": 0
   },
   {
@@ -290,11 +426,141 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "TodesdatumUrheber",
+    "ElementName": "TodesdatumUrheber",
+    "SourceType": "Datumsbereich (von/bis)",
+    "Label": "Todesdatum Urheber",
+    "TargetField": "TodesdatumUrheber",
+    "IsDefaultField": 0,
+    "Type": "ElasticTimePeriod",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Urheber",
+    "ElementName": "Urheber",
+    "SourceType": "Text (max. 4000 Z.",
+    "Label": "Urheber",
+    "TargetField": "Urheber",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "AufbewahrungsortOriginale",
+    "ElementName": "AufbewahrungsortOriginale",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "AufbewahrungsortOriginale",
+    "TargetField": "AufbewahrungsortOriginale",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Reproduktionsart",
+    "ElementName": "Reproduktionsart",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Reproduktionsart",
+    "TargetField": "Reproduktionsart",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementId": "Verzeichnungsstatus",
     "ElementName": "Verzeichnungsstatus",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verzeichnungsstatus",
     "TargetField": "Verzeichnungsstatus",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Erschliessungszustand",
+    "ElementName": "Erschliessungszustand",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Erschliessungszustand",
+    "TargetField": "Erschliessungszustand",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Digitalisierungsgrad",
+    "ElementName": "Digitalisierungsgrad",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Digitalisierungsgrad",
+    "TargetField": "Digitalisierungsgrad",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Bearbeiterzeitraum",
+    "ElementName": "Bearbeiterzeitraum",
+    "SourceType": "Datumsbereich (von/bis)",
+    "Label": "Bearbeiterzeitraum",
+    "TargetField": "Bearbeiterzeitraum",
+    "IsDefaultField": 0,
+    "Type": "ElasticTimePeriod",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "InterneAnmerkungen",
+    "ElementName": "InterneAnmerkungen",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "InterneAnmerkungen",
+    "TargetField": "InterneAnmerkungen",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Registerzuordnung",
+    "ElementName": "Registerzuordnung",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Registerzuordnung",
+    "TargetField": "Registerzuordnung",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "BemerkungDatierung",
+    "ElementName": "BemerkungDatierung",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "BemerkungDatierung",
+    "TargetField": "BemerkungDatierung",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "BemerkungProvenienz",
+    "ElementName": "BemerkungProvenienz",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "BemerkungProvenienz",
+    "TargetField": "BemerkungProvenienz",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "Verfuegbarkeit",
+    "ElementName": "Verfuegbarkeit",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Verfuegbarkeit",
+    "TargetField": "Verfuegbarkeit",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "VerfuegbarkeitGuids",
+    "ElementName": "VerfuegbarkeitGuids",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "VerfuegbarkeitGuids",
+    "TargetField": "VerfuegbarkeitGuids",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
