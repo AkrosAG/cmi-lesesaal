@@ -306,16 +306,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Verwertungsrecht",
-    "ElementName": "Verwertungsrecht",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Verwertungsrecht",
-    "TargetField": "Verwertungsrecht",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementId": "ArchivalienartenGuids",
     "ElementName": "ArchivalienartenGuids",
     "SourceType": "Text (max. 4000 Z.)",
