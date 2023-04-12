@@ -286,7 +286,7 @@ namespace CMI.Contract.Common
             {
                 if (record.CustomFields.thema is string)
                 {
-                    Log.Verbose("Property früheresAktenzeichen: {früheresAktenzeichen}",  record.CustomFields.thema);
+                    Log.Verbose("Property thema: {thema}",  record.CustomFields.thema);
                     return record.CustomFields.thema;
                 }
 
