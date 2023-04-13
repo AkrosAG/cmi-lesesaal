@@ -41,7 +41,7 @@ namespace CMI.Web.Common.Helpers
         #endregion
 
         public static string LanguageCookieName => GetStringSetting("languageCookieName", "viaduc_language");
-        public static string ClientTypeCookieName => GetStringSetting("clientTypeCookieName", "viaduc_client");
+        public static string TemplatesDefinitionDirectory => GetStringSetting("templatesDefinitionDirectory");
 
         public static bool EnableIndexPageCaching => GetBooleanSetting("enableIndexPageCaching", true);
 
