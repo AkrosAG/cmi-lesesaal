@@ -13,6 +13,8 @@ namespace CMI.Web.Frontend.api.Templates
     public static class TemplateDefinitions
     {
         private const string TemplatesDefinitionFilename = "templates.json";
+        private static readonly string TemplatesDefinitionDirectory = WebHelper.TemplatesDefinitionDirectory;
+
         private const string IconDefinitionFilename = "iconMapping.json";
         private static List<Template> templates;
 
@@ -72,7 +74,7 @@ namespace CMI.Web.Frontend.api.Templates
             templatesById = new Dictionary<string, Template>();
             try
             {
-                var path = StringHelper.AddToString(DirectoryHelper.Instance.ConfigDirectory, @"\", TemplatesDefinitionFilename);
+                var path = StringHelper.AddToString(TemplatesDefinitionDirectory, @"\", TemplatesDefinitionFilename);
                 if (!File.Exists(path))
                 {
                     path = StringHelper.AddToString(DirectoryHelper.Instance.ClientConfigDirectory, @"\", TemplatesDefinitionFilename);
