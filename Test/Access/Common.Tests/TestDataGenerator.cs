@@ -21,7 +21,7 @@ namespace CMI.Access.Common.Tests
                 id);
 
             record.CreationPeriod = GetTimePeriod(id);
-            record.WithinInfo =
+            record.Contains =
                 PickFromArray(
                     new[] {"Diverse", "Gut erhaltene", "Teilweise historisch interessante", "Von Säure zerfressene"}, id) +
                 " " +

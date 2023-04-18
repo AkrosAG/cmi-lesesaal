@@ -36,13 +36,8 @@ namespace CMI.Access.Common.Tests
             ear.PrimaryData[0].Items[0].Content = "PrimaryDataContent";
 
             ear.Title = "Title";
-            ear.WithinInfo = "WithinInfo";
-            ear.CustomFields = new
-            {
-                zugänglichkeitGemässBga = "In Schutzfrist",
-                publikationsrechte = "ABC"
-            };
-
+            ear.Contains = "WithinInfo";
+           
             helper.Index(ear);
 
             // Wait till index is ready
@@ -79,16 +74,7 @@ namespace CMI.Access.Common.Tests
             XShouldBeInField("PrimaryDataContent", "all_\\*");
             XShouldBeInField("PrimaryDataContent", "all_Primarydata");
         }
-
-        [Test]
-        public void TestUpperLowerCase()
-        {
-            var searchResponse = Search("ABC", "customFields.publikationsrechte");
-            var result = searchResponse.Hits.First().Source.GetCustomValueOrDefault<string>("publikationsrechte");
-            result.Should().Be("ABC");
-        }
-
-
+        
         private void XShouldBeInField(string x, string field)
         {
             var searchResponse = Search(x, field);

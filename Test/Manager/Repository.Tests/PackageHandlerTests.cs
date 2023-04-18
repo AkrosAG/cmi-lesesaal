@@ -64,13 +64,9 @@ namespace CMI.Manager.Repository.Tests
             var sut = GetSampleArchiveRecord();
 
             // Act
-            var value = sut.Aktenzeichen();
-            var value2 = sut.ZusätzlicheInformationen();
             var value3 = sut.CreationPeriod;
 
             // Assert
-            value.Should().Be("Ein Beispiel");
-            value2.Should().BeNullOrEmpty();
             value3.StartDate.Should().Be(DateTime.Today);
         }
 
@@ -182,9 +178,9 @@ namespace CMI.Manager.Repository.Tests
             var record = new ElasticArchiveRecord
             {
                 CreationPeriod = new ElasticTimePeriod {StartDate = DateTime.Today},
-                CustomFields = new ExpandoObject()
+                DetailData = new ExpandoObject()
             };
-            record.CustomFields.aktenzeichen = "Ein Beispiel";
+            record.DetailData.aktenzeichen = "Ein Beispiel";
             return record;
         }
     }

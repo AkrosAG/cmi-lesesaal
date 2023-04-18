@@ -129,14 +129,14 @@ namespace CMI.Utilities.FormTemplate.Helper
                     }
                     else
                     {
-                        var elasticFieldName = GetElasticFieldName(field.DataElementId);
+                        var elasticFieldName = GetElasticFieldName(field.DataElementName);
                         if (!string.IsNullOrEmpty(elasticFieldName))
                         {
                             var newField = new FieldType
                             {
                                 DbFieldName = elasticFieldName,
                                 DbType = field.DataElementType.ToString(),
-                                ElasticType = GetElasticTypeName(field.DataElementId),
+                                ElasticType = GetElasticTypeName(field.DataElementName),
                                 Visibility = field.AccessLevel == 1 ? FieldTypeVisibility.@internal : FieldTypeVisibility.@public,
                                 FieldLabels = GetLabelsForAllLanguages(field.XmlCd)
                             };
@@ -149,12 +149,12 @@ namespace CMI.Utilities.FormTemplate.Helper
             return retVal;
         }
 
-        private string GetElasticFieldName(int dataElementId)
+        private string GetElasticFieldName(string dataElementName)
         {
-            var elasticField = fieldConfigurations.FirstOrDefault(f => f.ElementId == dataElementId.ToString());
+            var elasticField = fieldConfigurations.FirstOrDefault(f => f.ElementName == dataElementName);
             if (elasticField == null)
             {
-                Console.WriteLine($@"No field mapping found for dataelement id {dataElementId}");
+                Console.WriteLine($@"No field mapping found for dataelement id {dataElementName}");
                 return null;
             }
 
@@ -166,12 +166,12 @@ namespace CMI.Utilities.FormTemplate.Helper
             return $"CustomFields.{elasticField.TargetField}";
         }
 
-        private string GetElasticTypeName(int dataElementId)
+        private string GetElasticTypeName(string dataElementName)
         {
-            var elasticField = fieldConfigurations.FirstOrDefault(f => f.ElementId == dataElementId.ToString());
+            var elasticField = fieldConfigurations.FirstOrDefault(f => f.ElementName == dataElementName);
             if (elasticField == null)
             {
-                Console.WriteLine($@"No type mapping found for dataelement id {dataElementId}");
+                Console.WriteLine($@"No type mapping found for dataelement id {dataElementName}");
                 return null;
             }
 

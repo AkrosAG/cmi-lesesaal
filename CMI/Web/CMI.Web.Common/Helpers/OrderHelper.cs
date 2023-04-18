@@ -13,19 +13,19 @@ namespace CMI.Web.Common.Helpers
         {
             var indexSnapShot = new OrderingIndexSnapshot
             {
-                Darin = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.WithinInfo,
+                Darin = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Contains,
                 Dossiertitel = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Title,
                 Hierarchiestufe = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Level,
                 IdentifikationDigitalesMagazin = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.PrimaryDataLink,
                 Signatur = entity.ReferenceCode,
                 VeId = entity.ArchiveRecordId,
-                ZugaenglichkeitGemaessBga = entity.Benutzbarkeit(),
+                ZugaenglichkeitGemaessBga = "", //entity.Benutzbarkeit(),
                 ZusaetzlicheInformationen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Extent,
                 ZeitraumDossier = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.CreationPeriod?.Text,
-                Schutzfristverzeichnung = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.GetSchutzfristenVerzeichnung(),
-                Publikationsrechte = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Verwertungsrecht(),
-                ZustaendigeStelle = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.ZuständigeStelle(),
-                Aktenzeichen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Aktenzeichen()
+                Schutzfristverzeichnung = "", //!string.IsNullOrEmpty(unknowText) ? unknowText : entity.GetSchutzfristenVerzeichnung(),
+                Publikationsrechte = "", // !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Verwertungsrecht(),
+                ZustaendigeStelle = "", //!string.IsNullOrEmpty(unknowText) ? unknowText : entity.ZuständigeStelle(),
+                Aktenzeichen = "", // !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Aktenzeichen()
             };
 
             if (entity.Containers != null && entity.Containers.Any())

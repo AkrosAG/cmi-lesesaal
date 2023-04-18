@@ -90,7 +90,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Umfang",
     "ElementName": "Umfang",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Umfang",
@@ -100,22 +99,20 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Verwaltungsgeschichte",
     "ElementName": "Verwaltungsgeschichte",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verwaltungsgeschichte",
-    "TargetField": "Verwaltungsgeschichte",
-    "IsDefaultField": 0,
+    "TargetField": "administrativeHistory",
+    "IsDefaultField": 1,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Bestandsgeschichte",
     "ElementName": "Bestandsgeschichte",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Bestandsgeschichte",
-    "TargetField": "Bestandsgeschichte",
-    "IsDefaultField": 0,
+    "TargetField": "archivalHistory",
+    "IsDefaultField": 1,
     "Type": "string",
     "IsRepeatable": 0
   },
@@ -181,7 +178,6 @@
     "IsRepeatable": 0
   },
   {
-
     "ElementId": "Sprache",
     "ElementName": "Sprache",
     "SourceType": "Text (max. 4000 Z.)",

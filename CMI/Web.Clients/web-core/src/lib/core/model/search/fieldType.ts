@@ -3,5 +3,5 @@ export enum FieldType {
 	Datespan,
 	Text,
 	Date,
-	Dropdown,
+	Dropdown
 }

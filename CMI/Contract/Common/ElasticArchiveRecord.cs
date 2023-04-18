@@ -12,17 +12,18 @@ namespace CMI.Contract.Common
     /// </summary>
     public class TreeRecord
     {
-        public string Title { get; set; }
+        public string ArchiveRecordId { get; set; }
         public string ReferenceCode { get; set; }
+        public string Title { get; set; }
         public bool IsLeaf { get; set; }
         public string ParentArchiveRecordId { get; set; }
         public string Level { get; set; }
+        public string Author { get; set; }
         public long ChildCount { get; set; }
-        public string ArchiveRecordId { get; set; }
         public long TreeSequence { get; set; }
         public List<ElasticArchiveplanContextItem> ArchiveplanContext { get; set; }
         public ElasticTimePeriod CreationPeriod { get; set; }
-        public string ExternalDisplayTemplateName { get; set; }
+        public string DisplayTemplateName { get; set; }
         public string NichtOnlineRecherchierbareDossiers { get; set; }
         public List<string> PrimaryDataDownloadAccessTokens { get; set; }
         public List<string> PrimaryDataFulltextAccessTokens { get; set; }
@@ -35,10 +36,23 @@ namespace CMI.Contract.Common
     {
         public string PrimaryDataLink { get; set; }
         public bool CanBeOrdered { get; set; }
-        public string WithinInfo { get; set; }
+        public string Contains { get; set; }
 
-        [JsonConverter(typeof(ExpandoObjectConverter))]
-        public dynamic CustomFields { get; set; }
+        public List<ElasticDetailData> DetailData { get; set; }
+    }
+
+    public class ElasticDetailData
+    {
+        public string ElementName {get; set; }
+        public string TypeName { get; set; }
+        public List<string> TextValues { get; set; }
+        public List<ElasticTimePeriod> DateRangeValues { get; set; }
+        public bool BoolValue { get; set; }
+        public long Int64Values { get; set; }
+        public float FloatValue { get; set; }
+        public ElasticHyperlink HyperlinkValue { get; set; }
+        public ElasticEntityLink EntityLinkValue { get; set; }
+        public ElasticBase64 BlobValues { get; set; }
     }
 
     /// <summary>
@@ -52,9 +66,16 @@ namespace CMI.Contract.Common
         public int AccessionDate { get; set; }
         public List<ElasticParentContentInfo> ParentContentInfos { get; set; }
         public ElasticBase64 Thumbnail { get; set; }
+
+        public string PhysicalUsability { get; set; }
+
         public ElasticDateWithYear ProtectionEndDate { get; set; }
         public string ProtectionCategory { get; set; }
         public int? ProtectionDuration { get; set; }
+
+        public string AdministrativeHistory { get; set; }
+        public string ArchivalHistory { get; set; }
+
     }
 
     public class ElasticArchiveRecord : DetailRecord
@@ -78,14 +99,16 @@ namespace CMI.Contract.Common
         public int TreeLevel { get; set; }
         public bool IsRoot { get; set; }
         public List<ElasticPlace> Places { get; set; }
-        public string InternalDisplayTemplateName { get; set; }
         public string PreviousArchiveRecordId { get; set; }
         public string NextArchiveRecordId { get; set; }
         public string FirstChildArchiveRecordId { get; set; }
         public bool ContainsPersonRelatedInformation { get; set; }
-        public bool IsPhysicalyUsable { get; set; }
         public string Permission { get; set; }
-        public string PhysicalUsability { get; set; }
+      
+
+
+        public bool IsPhysicalyUsable { get; set; }
+
         public string Accessibility { get; set; }
         public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticContainer> Containers { get; set; }
@@ -95,7 +118,7 @@ namespace CMI.Contract.Common
         public List<ElasticArchiveRecordPackage> PrimaryData { get; set; }
 
         public DateTime LastSyncDate { get; set; }
-        public ElasticAggregationFields AggregationFields { get; set; }
+        public ElasticFacetten Facetten { get; set; }
     }
 
 
@@ -106,7 +129,7 @@ namespace CMI.Contract.Common
         public string[] PrimaryDataFulltextAccessTokens { get; set; }
     }
 
-    public class ElasticAggregationFields
+    public class ElasticFacetten
     {
         public string Bestand { get; set; }
         public List<string> Ordnungskomponenten { get; set; }
@@ -226,8 +249,6 @@ namespace CMI.Contract.Common
         {
             Items = new List<ElasticRepositoryObject>();
         }
-
-        public string FileFormatsInpackage { get; set; }
         public long SizeInBytes { get; set; }
         public int FileCount { get; set; }
         public string PackageId { get; set; }

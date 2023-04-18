@@ -20,21 +20,22 @@ namespace CMI.Web.Frontend.api.Controllers
         /// </summary>
         internal static bool CouldNeedAReason(ElasticArchiveRecord record, UserAccess access)
         {
-            return record.HasCustomProperty("zugänglichkeitGemässBga")
-                   && access.RolePublicClient == AccessRoles.RoleAS
-                   && access.HasAsTokenFor(record.PrimaryDataDownloadAccessTokens)
-                   && (record.CustomFields.zugänglichkeitGemässBga == "In Schutzfrist" ||
-                       record.CustomFields.zugänglichkeitGemässBga == "Prüfung nötig");
+            return false;
+/* Todo record.HasCustomProperty("zugänglichkeitGemässBga")
+   && access.RolePublicClient == AccessRoles.RoleAS
+   && access.HasAsTokenFor(record.PrimaryDataDownloadAccessTokens)
+   && (record.DetailData.zugänglichkeitGemässBga == "In Schutzfrist" ||
+       record.DetailData.zugänglichkeitGemässBga == "Prüfung nötig"); */
         }
 
-        protected UserAccess GetUserAccess(string language = null, string userId = null)
-        {
-            userAccessProvider = userAccessProvider ?? new UserAccessProvider(ControllerHelper.UserDataAccess);
+protected UserAccess GetUserAccess(string language = null, string userId = null)
+{
+userAccessProvider = userAccessProvider ?? new UserAccessProvider(ControllerHelper.UserDataAccess);
 
-            userId = userId ?? ControllerHelper.GetCurrentUserId();
-            language = language ?? WebHelper.GetClientLanguage(Request);
+userId = userId ?? ControllerHelper.GetCurrentUserId();
+language = language ?? WebHelper.GetClientLanguage(Request);
 
-            return userAccessProvider.GetUserAccess(language, userId);
-        }
-    }
+return userAccessProvider.GetUserAccess(language, userId);
+}
+}
 }

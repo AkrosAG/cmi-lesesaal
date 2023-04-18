@@ -43,9 +43,9 @@ namespace CMI.Web.Frontend.api.Entities
                 {
                     type = GetTypeByName(entity.Level) ?? type;
                 }
-                else if (!string.IsNullOrEmpty(entity.ExternalDisplayTemplateName))
+                else if (!string.IsNullOrEmpty(entity.DisplayTemplateName))
                 {
-                    var formId = entity.ExternalDisplayTemplateName.Split(':')[0];
+                    var formId = entity.DisplayTemplateName.Split(':')[0];
                     var templatetypeName = string.Format(TemplateBaseSubNamePattern, formId.ToLowerCamelCase());
                     type = GetTypeByName(templatetypeName) ?? type;
                 }

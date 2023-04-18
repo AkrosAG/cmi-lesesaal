@@ -463,22 +463,18 @@ namespace CMI.Engine.PackageMetadata
             ElasticArchiveRecord dossierRecord, bool addDateiRefList, List<RepositoryFile> filesToIgnore)
         {
             Log.Verbose("Adding Dossier data with metadata: {extensions} and index record customfields {dossierRecord}",
-                JsonConvert.SerializeObject(extensions), JsonConvert.SerializeObject(dossierRecord?.CustomFields));
+                JsonConvert.SerializeObject(extensions), JsonConvert.SerializeObject(dossierRecord?.DetailData));
 
             var dossier = new DossierDIP
             {
-                Aktenzeichen = string.IsNullOrEmpty(dossierRecord?.Aktenzeichen())
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Aktenzeichen")
-                    : dossierRecord.Aktenzeichen(),
-                Zusatzmerkmal = string.IsNullOrEmpty(dossierRecord?.Zusatzmerkmal())
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Zusatzmerkmal")
-                    : dossierRecord.Zusatzmerkmal(),
+                Aktenzeichen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Aktenzeichen"),
+                Zusatzmerkmal = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Zusatzmerkmal"),
                 Titel = string.IsNullOrEmpty(dossierRecord?.Title)
                     ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Titel")
                     : dossierRecord.Title,
-                Inhalt = string.IsNullOrEmpty(dossierRecord?.WithinInfo)
+                Inhalt = string.IsNullOrEmpty(dossierRecord?.Contains)
                     ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Inhalt")
-                    : dossierRecord.WithinInfo,
+                    : dossierRecord.Contains,
                 Id = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"),
                 Erscheinungsform =
                     Enum.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Erscheinungsform"), true,
@@ -493,9 +489,7 @@ namespace CMI.Engine.PackageMetadata
                 Entstehungszeitraum = dossierRecord?.CreationPeriod == null
                     ? metadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Dossier/Dossier/Entstehungszeitraum")
                     : GetEntstehungszeitraum(dossierRecord.CreationPeriod),
-                EntstehungszeitraumAnmerkung = string.IsNullOrEmpty(dossierRecord?.EntstehungszeitraumAnmerkung())
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/EntstehungszeitraumAnmerkung")
-                    : dossierRecord.EntstehungszeitraumAnmerkung(),
+                EntstehungszeitraumAnmerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/EntstehungszeitraumAnmerkung"),
                 Klassifizierungskategorie = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Klassifizierungskategorie"),
                 Datenschutz = bool.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Datenschutz"),
                     out var datenschutz) && datenschutz,
@@ -505,9 +499,7 @@ namespace CMI.Engine.PackageMetadata
                 SonstigeBestimmungen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/SonstigeBestimmungen"),
                 // ToDO: In order to handle Vorgang we would need code that can handle collections. Currently we don't need that property.
                 // Vorgang = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Vorgang"),  
-                Bemerkung = string.IsNullOrEmpty(dossierRecord?.ZusätzlicheInformationen())
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Bemerkung")
-                    : dossierRecord.ZusätzlicheInformationen(),
+                Bemerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Bemerkung"),
                 DateiRef = addDateiRefList
                     ? GetFilteredDateiRef(metadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dossier/Dossier/DateiRef"), filesToIgnore)
                     : null
@@ -534,22 +526,7 @@ namespace CMI.Engine.PackageMetadata
                 dossier.zusatzDaten.Add(new ZusatzDatenMerkmal
                     {Name = "Archivplankontext", Value = JsonConvert.SerializeObject(dossierRecord.ArchiveplanContext)});
             }
-
-            if (!string.IsNullOrEmpty(dossierRecord?.Land()))
-            {
-                dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Land", Value = dossierRecord.Land()});
-            }
-
-            if (!string.IsNullOrEmpty(dossierRecord?.Form()))
-            {
-                dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Form", Value = dossierRecord.Form()});
-            }
-
-            if (!string.IsNullOrEmpty(dossierRecord?.FrüheresAktenzeichen()))
-            {
-                dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Früheres Aktenzeichen", Value = dossierRecord.FrüheresAktenzeichen()});
-            }
-
+            
             if (!string.IsNullOrEmpty(dossierRecord?.PrimaryDataLink))
             {
                 dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Identifikation digitales Magazin", Value = dossierRecord.PrimaryDataLink});
@@ -604,9 +581,7 @@ namespace CMI.Engine.PackageMetadata
                 OeffentlichkeitsstatusBegruendung =
                     metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/OeffentlichkeitsstatusBegruendung"),
                 SonstigeBestimmungen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/SonstigeBestimmungen"),
-                Bemerkung = string.IsNullOrEmpty(documentRecord?.ZusätzlicheInformationen())
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Bemerkung")
-                    : documentRecord.ZusätzlicheInformationen(),
+                Bemerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Bemerkung"),
                 DateiRef = GetFilteredDateiRef(metadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dokument/Dokument/DateiRef"),
                     filesToIgnore)
             };
@@ -631,41 +606,6 @@ namespace CMI.Engine.PackageMetadata
             {
                 dokument.zusatzDaten.Add(new ZusatzDatenMerkmal
                     {Name = "Archivplankontext", Value = JsonConvert.SerializeObject(documentRecord.ArchiveplanContext)});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Form()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Form", Value = documentRecord.Form()});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.WithinInfo))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Darin", Value = documentRecord.WithinInfo});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Thema()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Thema", Value = documentRecord.Thema()});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Format()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Format", Value = documentRecord.Format()});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Urheber()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Urheber", Value = documentRecord.Urheber()});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Verleger()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Verleger", Value = documentRecord.Verleger()});
-            }
-
-            if (!string.IsNullOrEmpty(documentRecord?.Abdeckung()))
-            {
-                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Abdeckung", Value = documentRecord.Abdeckung()});
             }
 
             if (!string.IsNullOrEmpty(documentRecord?.PrimaryDataLink))

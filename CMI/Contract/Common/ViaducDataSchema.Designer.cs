@@ -523,11 +523,7 @@ namespace CMI.Contract.Common
 
         [System.Xml.Serialization.XmlElementAttribute("elementValue", ElementName = "elementValue")]
         public List<DataElementElementValue> ElementValue { get; set; }
-        /// <summary>
-        /// Optionally the internal id of the element if any.
-        /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "elementId")]
-        public string ElementId { get; set; }
+
         /// <summary>
         /// A unique name for an element.
         /// </summary>
