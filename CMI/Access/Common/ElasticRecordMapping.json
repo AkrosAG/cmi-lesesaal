@@ -35,12 +35,10 @@
         "type": "keyword",
         "store": true
       },
-      "all_Primarydata": {
-        "type": "text",
-        "store": true,
-        "term_vector": "with_positions_offsets"
-      },
-      "accessibility": {
+      "all_fieldTextValues": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
         "type": "text",
         "fields": {
           "keyword": {
@@ -48,107 +46,49 @@
           }
         }
       },
-      "accessionDate": {
+      "all_fieldKeywordValues": {
         "copy_to": [
-          "all_Metadata_Text"
+          "all_Metadata_Keyword"
         ],
-        "type": "long"
+        "type": "keyword"
       },
-      "aggregationFields": {
-        "properties": {
-          "bestand": {
-            "type": "keyword"
-          },
-          "ordnungskomponenten": {
-            "type": "keyword"
-          },
-          "hasPrimaryData": {
-            "type": "boolean"
-          },
-          "creationPeriodYears001": {
-            "type": "integer"
-          },
-          "creationPeriodYears005": {
-            "type": "integer"
-          },
-          "creationPeriodYears010": {
-            "type": "integer"
-          },
-          "creationPeriodYears025": {
-            "type": "integer"
-          },
-          "creationPeriodYears100": {
-            "type": "integer"
-          }
-        }
+      "all_Primarydata": {
+        "type": "text",
+        "store": true,
+        "term_vector": "with_positions_offsets"
       },
+
       "archiveRecordId": {
         "type": "keyword"
       },
-      "archiveplanContext": {
-        "properties": {
-          "archiveRecordId": {
+      "referenceCode": {
+        "copy_to": [
+          "all_Metadata_Keyword"
+        ],
+        "type": "keyword",
+        "fields": {
+          "sort": {
+            "type": "text",
+            "fielddata": true,
+            "analyzer": "sort_icu"
+          }
+        }
+      },
+      "title": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
+        "type": "text",
+        "fields": {
+          "keyword": {
             "type": "keyword"
           },
-          "dateRangeText": {
-            "type": "keyword",
-            "index": false
-          },
-          "iconId": {
-            "type": "long"
-          },
-          "level": {
-            "type": "keyword",
-            "index": false
-          },
-          "refCode": {
-            "copy_to": [
-              "all_Metadata_Keyword"
-            ],
-            "type": "keyword",
-            "index": false
-          },
-          "title": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
+          "sort": {
             "type": "text",
-            "index": false
+            "fielddata": true,
+            "analyzer": "sort_icu"
           }
         }
-      },
-      "canBeOrdered": {
-        "type": "boolean"
-      },
-      "childCount": {
-        "type": "long"
-      },
-      "containers": {
-        "properties": {
-          "containerLocation": {
-            "type": "keyword",
-            "index": false
-          },
-          "containerType": {
-            "type": "keyword",
-            "index": false
-          },
-          "idName": {
-            "type": "text",
-            "index": false
-          },
-          "containerCode": {
-            "type": "keyword",
-            "index": false
-          },
-          "containerCarrierMaterial": {
-            "type": "keyword",
-            "index": false
-          }
-        }
-      },
-      "containsPersonRelatedInformation": {
-        "type": "boolean"
       },
       "creationPeriod": {
         "properties": {
@@ -187,308 +127,278 @@
           }
         }
       },
-      "customFields": {
+      "level": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "extent": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "author": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "administrativeHistory": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
+        "type": "text"
+      },
+      "archivalHistory": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
+        "type": "text"
+      },
+      "immediateSource": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "contains": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
+        "type": "text"
+      },
+      "accessibility": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "accessionDate": {
+        "copy_to": [
+          "all_Metadata_Text"
+        ],
+        "type": "long"
+      },
+      "formerReferenceCode": {
+        "copy_to": [
+          "all_Metadata_Keyword"
+        ],
+        "type": "keyword"
+      },
+      "thumbnail": {
         "properties": {
-          "abdeckung": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "aipId": {
+          "mimeType": {
             "type": "keyword"
           },
-          "aktenzeichen": {
-            "copy_to": [
-              "all_Metadata_Keyword"
-            ],
+          "value": {
+            "type": "binary"
+          }
+        }
+      },
+      "physicalUsability": {
+        "type": "text",
+        "fields": {
+          "keyword": {
             "type": "keyword"
+          }
+        }
+      },
+      "protectionCategory": {
+        "type": "keyword"
+      },
+      "protectionDuration": {
+        "type": "long"
+      },
+      "protectionEndDate": {
+        "properties": {
+          "date": {
+            "type": "date"
           },
-          "anhang3": {
-            "type": "boolean"
-          },
-          "bemerkungZurVe": {
-            "type": "text"
-          },
-          "beteiligtePersonenKörperschaften": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "bildAnsicht": {
-            "properties": {
-              "mimeType": {
-                "type": "keyword"
-              },
-              "value": {
-                "type": "binary"
-              }
-            }
-          },
-          "bildVorschau": {
-            "properties": {
-              "mimeType": {
-                "type": "keyword"
-              },
-              "value": {
-                "type": "binary"
-              }
-            }
-          },
-          "digitaleVersion": {
-            "properties": {
-              "text": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "url": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "digitalesFindmittelBeschreibung": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "digitalesFindmittelLink": {
-            "properties": {
-              "text": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "url": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
-          },
-          "entstehungszeitraumAnmerkung": {
-            "type": "text"
-          },
-          "form": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "keyword"
-          },
-          "format": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "früheresAktenzeichen": {
-            "copy_to": [
-              "all_Metadata_Keyword"
-            ],
-            "type": "keyword"
-          },
-          "geschichteDerUnterlagen": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "kategorieDia": {
+          "year": {
             "type": "long"
-          },
-          "land": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "nachfolgerbehörden": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "nichtOnlineRecherchierbareDossiers": {
+          }
+        }
+      },
+      "permission": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+
+      "detailData": {
+        "type": "nested",
+        "properties": {
+          "elementName": {
             "type": "keyword"
           },
-          "publikationsrechte": {
+          "typeName": {
             "type": "keyword"
           },
-          "signaturArchivplan": {
-            "type": "keyword"
-          },
-          "thema": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "urheber": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "veAblieferungLink": {
+          "blobValues": {
             "properties": {
+              "base64Value": {
+                "type": "binary"
+              },
+              "mimeType": {
+                "type": "keyword"
+              }
+            }
+          },
+          "textValues": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "dateRangeValues": {
+            "properties": {
+              "endDate": {
+                "type": "date"
+              },
+              "searchEndDate": {
+                "type": "date"
+              },
+              "searchStartDate": {
+                "type": "date"
+              },
+              "startDate": {
+                "type": "date"
+              },
+              "startDateText": {
+                "type": "keyword",
+                "index": false
+              },
+              "endDateText": {
+                "type": "keyword",
+                "index": false
+              },
+              "text": {
+                "type": "keyword",
+                "index": false
+              },
+              "startDateApproxIndicator": {
+                "type": "boolean"
+              },
+              "EndDateApproxIndicator": {
+                "type": "boolean"
+              },
+              "years": {
+                "type": "long"
+              }
+            }
+          },
+          "booleanValues": {
+            "type": "boolean",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "Int64Values": {
+            "type": "long",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "floatValues": {
+            "type": "float",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "durationInSecondsValues": {
+            "type": "integer",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "dateValues": {
+            "type": "date",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "timeValues": {
+            "type": "date",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "link": {
+            "properties": {
+              "href": {
+                "type": "text"
+              },
+              "name": {
+                "type": "text"
+              }
+            }
+          },
+          "entiylink": {
+            "properties": {
+              "href": {
+                "type": "text"
+              },
               "entityRecordId": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
+                "type": "text"
               },
               "entityType": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "value": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
+                "type": "text"
               }
             }
+          }
+        }
+      },
+
+      "containers": {
+        "properties": {
+          "containerLocation": {
+            "type": "keyword",
+            "index": false
           },
-          "veOrdnungskomponenteLink": {
-            "properties": {
-              "entityRecordId": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "entityType": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              },
-              "value": {
-                "copy_to": [
-                  "all_Metadata_Text"
-                ],
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword"
-                  }
-                }
-              }
-            }
+          "containerType": {
+            "type": "keyword",
+            "index": false
           },
-          "verleger": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
+          "idName": {
             "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
+            "index": false
           },
-          "verwandteVe": {
-            "type": "text"
+          "containerCode": {
+            "type": "keyword",
+            "index": false
           },
-          "vorgängerbehörden": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "zugänglichkeitGemässBga": {
-            "type": "keyword"
-          },
-          "zuständigeStelle": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          },
-          "zusatzkomponenteZac1": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
+          "containerCarrierMaterial": {
+            "type": "keyword",
+            "index": false
           }
         }
       },
@@ -544,57 +454,108 @@
           }
         }
       },
-      "extent": {
-        "type": "text",
-        "fields": {
-          "keyword": {
+      "references": {
+        "properties": {
+          "archiveRecordId": {
             "type": "keyword"
+          },
+          "referenceName": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
+            "type": "text"
+          },
+          "role": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
           }
         }
       },
-      "externalDisplayTemplateName": {
-        "type": "keyword",
-        "index": false
-      },
-      "firstChildArchiveRecordId": {
-        "type": "keyword"
-      },
-      "formerReferenceCode": {
-        "copy_to": [
-          "all_Metadata_Keyword"
-        ],
-        "type": "keyword"
-      },
-      "hasAudioVideo": {
-        "type": "boolean"
-      },
-      "hasImage": {
-        "type": "boolean"
-      },
-      "internalDisplayTemplateName": {
-        "type": "keyword",
-        "index": false
-      },
-      "isLeaf": {
-        "type": "boolean"
-      },
-      "isPhysicalyUsable": {
-        "type": "boolean"
-      },
-      "isRoot": {
-        "type": "boolean"
-      },
-      "lastSyncDate": {
-        "type": "date"
-      },
-      "level": {
-        "type": "text",
-        "fields": {
-          "keyword": {
+
+      "facetten": {
+        "properties": {
+          "text01": {
             "type": "keyword"
+          },
+          "text02": {
+            "type": "keyword"
+          },
+          "text03": {
+            "type": "keyword"
+          },
+          "text04": {
+            "type": "keyword"
+          },
+          "text05": {
+            "type": "keyword"
+          },
+          "text06": {
+            "type": "keyword"
+          },
+          "text07": {
+            "type": "keyword"
+          },
+          "text08": {
+            "type": "keyword"
+          },
+          "text09": {
+            "type": "keyword"
+          },
+          "text10": {
+            "type": "keyword"
+          },
+          "boolean01": {
+            "type": "boolean"
+          },
+          "boolean02": {
+            "type": "boolean"
+          },
+          "boolean03": {
+            "type": "boolean"
+          },
+          "boolean04": {
+            "type": "boolean"
+          },
+          "boolean05": {
+            "type": "boolean"
+          },
+          "long01": {
+            "type": "long"
+          },
+          "long02": {
+            "type": "long"
+          },
+          "long03": {
+            "type": "long"
+          },
+          "long04": {
+            "type": "long"
+          },
+          "long05": {
+            "type": "long"
+          },
+          "creationPeriodYears001": {
+            "type": "integer"
+          },
+          "creationPeriodYears005": {
+            "type": "integer"
+          },
+          "creationPeriodYears010": {
+            "type": "integer"
+          },
+          "creationPeriodYears025": {
+            "type": "integer"
+          },
+          "creationPeriodYears100": {
+            "type": "integer"
           }
         }
       },
+
       "metadataAccessTokens": {
         "type": "keyword"
       },
@@ -604,47 +565,94 @@
       "primaryDataFulltextAccessTokens": {
         "type": "keyword"
       },
-      "nextArchiveRecordId": {
+
+      "canBeOrdered": {
+        "type": "boolean"
+      },
+      "containsPersonRelatedInformation": {
+        "type": "boolean"
+      },
+      "hasAudioVideo": {
+        "type": "boolean"
+      },
+      "hasImage": {
+        "type": "boolean"
+      },
+      "isPhysicalyUsable": {
+        "type": "boolean"
+      },
+
+      "treeLevel": {
+        "type": "long"
+      },
+      "treePath": {
         "type": "keyword"
       },
-      "nichtOnlineRecherchierbareDossiers": {
-        "type": "keyword"
+      "treeSequence": {
+        "type": "long"
       },
       "parentArchiveRecordId": {
         "type": "keyword"
       },
-      "parentContentInfos": {
-        "properties": {
-          "title": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          }
-        }
-      },
-      "permission": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          }
-        }
-      },
-      "physicalUsability": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          }
-        }
-      },
-      "playingLengthInS": {
-        "type": "long"
+      "nextArchiveRecordId": {
+        "type": "keyword"
       },
       "previousArchiveRecordId": {
         "type": "keyword"
       },
+      "firstChildArchiveRecordId": {
+        "type": "keyword"
+      },
+      "isLeaf": {
+        "type": "boolean"
+      },
+      "isRoot": {
+        "type": "boolean"
+      },
+      "childCount": {
+        "type": "long"
+      },
+      "archiveplanContext": {
+        "properties": {
+          "archiveRecordId": {
+            "type": "keyword"
+          },
+          "dateRangeText": {
+            "type": "keyword",
+            "index": false
+          },
+          "iconId": {
+            "type": "long"
+          },
+          "level": {
+            "type": "keyword",
+            "index": false
+          },
+          "refCode": {
+            "copy_to": [
+              "all_Metadata_Keyword"
+            ],
+            "type": "keyword",
+            "index": false
+          },
+          "title": {
+            "copy_to": [
+              "all_Metadata_Text"
+            ],
+            "type": "text",
+            "index": false
+          }
+        }
+      },
+
+      "displayTemplateName": {
+        "type": "keyword",
+        "index": false
+      },
+      "lastSyncDate": {
+        "type": "date"
+      },
+
       "primaryData": {
         "properties": {
           "fileCount": {
@@ -716,97 +724,6 @@
             "type": "keyword"
           }
         }
-      },
-      "protectionCategory": {
-        "type": "keyword"
-      },
-      "protectionDuration": {
-        "type": "long"
-      },
-      "protectionEndDate": {
-        "properties": {
-          "date": {
-            "type": "date"
-          },
-          "year": {
-            "type": "long"
-          }
-        }
-      },
-      "referenceCode": {
-        "copy_to": [
-          "all_Metadata_Keyword"
-        ],
-        "type": "keyword",
-        "fields": {
-          "sort": {
-            "type": "text",
-            "fielddata": true,
-            "analyzer": "sort_icu"
-          }
-        }
-      },
-      "references": {
-        "properties": {
-          "archiveRecordId": {
-            "type": "keyword"
-          },
-          "referenceName": {
-            "copy_to": [
-              "all_Metadata_Text"
-            ],
-            "type": "text"
-          },
-          "role": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword"
-              }
-            }
-          }
-        }
-      },
-      "thumbnail": {
-        "properties": {
-          "mimeType": {
-            "type": "keyword"
-          },
-          "value": {
-            "type": "binary"
-          }
-        }
-      },
-      "title": {
-        "copy_to": [
-          "all_Metadata_Text"
-        ],
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          },
-          "sort": {
-            "type": "text",
-            "fielddata": true,
-            "analyzer": "sort_icu"
-          }
-        }
-      },
-      "treeLevel": {
-        "type": "long"
-      },
-      "treePath": {
-        "type": "keyword"
-      },
-      "treeSequence": {
-        "type": "long"
-      },
-      "withinInfo": {
-        "copy_to": [
-          "all_Metadata_Text"
-        ],
-        "type": "text"
       }
     }
   }

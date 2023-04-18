@@ -205,7 +205,7 @@ namespace CMI.Web.Frontend.api.Entities
             var type = modelData.GetEntityType(entity);
             if (type == null)
             {
-                Log.Information($"No type found for entiy level {entity?.Level} and external template {entity.ExternalDisplayTemplateName}");
+                Log.Information($"No type found for entiy level {entity?.Level} and external template {entity.DisplayTemplateName}");
                 return null;
             }
 

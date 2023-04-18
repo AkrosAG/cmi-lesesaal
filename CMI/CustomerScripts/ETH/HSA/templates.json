@@ -11,7 +11,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DisplayName",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -35,7 +35,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Bezeichnung",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -83,7 +83,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezeichnung",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -306,7 +306,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.FormInhalt",
+              "DbFieldName": "withinInfo",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,

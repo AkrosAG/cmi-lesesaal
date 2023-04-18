@@ -188,7 +188,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
         {
             retVal.DetailData = tDetailData.Result;
             // Get the accession year from the reserved data element with id 505
-            var accessionDataElement = retVal.DetailData.FirstOrDefault(d => d.ElementId == ((int)ScopeArchivDatenElementId.AblieferungLink).ToString());
+            var accessionDataElement = retVal.DetailData.FirstOrDefault(d => d.ElementName == ((int)ScopeArchivDatenElementId.AblieferungLink).ToString());
             if (accessionDataElement != null && accessionDataElement.ElementValue.Any())
             {
                 var textValue = accessionDataElement.ElementValue.First().TextValues.First().Value;
@@ -200,7 +200,7 @@ namespace CMI.Access.Harvest.ScopeArchiv
 
             // Get the digital repository identifier
             var repositoryDataElement =
-                retVal.DetailData.FirstOrDefault(d => d.ElementId == applicationSettings.DigitalRepositoryElementIdentifier);
+                retVal.DetailData.FirstOrDefault(d => d.ElementName == applicationSettings.DigitalRepositoryElementIdentifier);
             if (repositoryDataElement != null && repositoryDataElement.ElementValue.Any())
             {
                 var textValue = repositoryDataElement.ElementValue.First().TextValues.First().Value;
@@ -468,7 +468,6 @@ namespace CMI.Access.Harvest.ScopeArchiv
                         var element = new DataElement
                         {
                             // All the attributes
-                            ElementId = ((int)row.DATEN_ELMNT_ID).ToString(),
                             ElementName = row.XML_CD,
                             EadCode = row.EAD_CD,
                             ElementType = MapperHelper.MapDataElementType((ScopeArchivDatenElementTyp)(int)row.DATEN_ELMNT_TYP_ID),

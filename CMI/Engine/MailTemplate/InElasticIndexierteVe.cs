@@ -50,7 +50,7 @@ namespace CMI.Engine.MailTemplate
 
         public override string Entstehungszeitraum => elasticArchiveRecord.CreationPeriod.Text;
 
-        public override string Aktenzeichen => elasticArchiveRecord.Aktenzeichen() ?? "";
+        public override string Aktenzeichen =>  "";
 
         public override string Schutzfristkategorie => elasticArchiveRecord?.ProtectionCategory;
         public override int? Schutzfristdauer => elasticArchiveRecord?.ProtectionDuration;
@@ -58,7 +58,7 @@ namespace CMI.Engine.MailTemplate
 
         public override bool IdDir => !string.IsNullOrEmpty(elasticArchiveRecord?.PrimaryDataLink);
 
-        public override string ZustaendigeStelle => elasticArchiveRecord.ZuständigeStelle() ?? "";
+        public override string ZustaendigeStelle => "";
 
         public override Behältnis[] Behältnisse
         {
@@ -97,7 +97,7 @@ namespace CMI.Engine.MailTemplate
             }
         }
 
-        public override string Ablieferung => elasticArchiveRecord.Ablieferung();
+        public override string Ablieferung => "";
 
         public static InElasticIndexierteVe FromElasticArchiveRecord(ElasticArchiveRecord r)
         {

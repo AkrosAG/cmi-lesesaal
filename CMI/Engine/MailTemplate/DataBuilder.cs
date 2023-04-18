@@ -194,68 +194,68 @@ namespace CMI.Engine.MailTemplate
                 ArchiveRecordId = archiveRecordId,
                 Title = "Record not found in Elastic",
                 CreationPeriod = new ElasticTimePeriod(),
-                CustomFields = new { aktenzeichen = "" }
-            };
-        }
+// Todo DetailData = new { aktenzeichen = "" }
+};
+}
 
-        private Auftrag GetAuftrag(Ordering ordering, OrderItem orderItem)
-        {
-            return string.IsNullOrWhiteSpace(orderItem.VeId)
-                ? GetAuftragFormularbestellung(ordering, orderItem)
-                : GetAuftragForOrderItemWithVeId(ordering, orderItem);
-        }
+private Auftrag GetAuftrag(Ordering ordering, OrderItem orderItem)
+{
+return string.IsNullOrWhiteSpace(orderItem.VeId)
+? GetAuftragFormularbestellung(ordering, orderItem)
+: GetAuftragForOrderItemWithVeId(ordering, orderItem);
+}
 
-        private Auftrag GetAuftragFormularbestellung(Ordering ordering, OrderItem orderItem)
-        {
-            var x = new BestellformularVe(orderItem);
-            var besteller = GetPerson(ordering.UserId);
-            var auftrag = new Auftrag(orderItem,
-                ordering,
-                x,
-                x,
-                besteller);
-            return auftrag;
-        }
+private Auftrag GetAuftragFormularbestellung(Ordering ordering, OrderItem orderItem)
+{
+var x = new BestellformularVe(orderItem);
+var besteller = GetPerson(ordering.UserId);
+var auftrag = new Auftrag(orderItem,
+ordering,
+x,
+x,
+besteller);
+return auftrag;
+}
 
-        private Auftrag GetAuftragForOrderItemWithVeId(Ordering ordering, OrderItem orderItem)
-        {
-            var bestellterRecord = GetElasticArchiveRecord(orderItem.VeId.ToString());
-            ElasticArchiveRecord auszuhebenderRecord = null;
-            var besteller = GetPerson(ordering.UserId);
+private Auftrag GetAuftragForOrderItemWithVeId(Ordering ordering, OrderItem orderItem)
+{
+var bestellterRecord = GetElasticArchiveRecord(orderItem.VeId.ToString());
+ElasticArchiveRecord auszuhebenderRecord = null;
+var besteller = GetPerson(ordering.UserId);
 
-            if (ordering.Type == OrderType.Digitalisierungsauftrag)
-            {
-                var dossierId = bestellterRecord.GetAuszuhebendeArchiveRecordId();
-                if (dossierId != null)
-                {
-                    auszuhebenderRecord = GetElasticArchiveRecord(dossierId);
-                }
-            }
-            else
-            {
-                auszuhebenderRecord = bestellterRecord;
-            }
+if (ordering.Type == OrderType.Digitalisierungsauftrag)
+{
+var dossierId = bestellterRecord.GetAuszuhebendeArchiveRecordId();
+if (dossierId != null)
+{
+    auszuhebenderRecord = GetElasticArchiveRecord(dossierId);
+}
+}
+else
+{
+auszuhebenderRecord = bestellterRecord;
+}
 
-            var auftrag = new Auftrag(orderItem,
-                ordering,
-                InElasticIndexierteVe.FromElasticArchiveRecord(bestellterRecord),
-                InElasticIndexierteVe.FromElasticArchiveRecord(auszuhebenderRecord),
-                besteller);
-            return auftrag;
-        }
+var auftrag = new Auftrag(orderItem,
+ordering,
+InElasticIndexierteVe.FromElasticArchiveRecord(bestellterRecord),
+InElasticIndexierteVe.FromElasticArchiveRecord(auszuhebenderRecord),
+besteller);
+return auftrag;
+}
 
 
-        public static IRequestClient<T1> CreateRequestClient<T1>(IBus busControl, string relativeUri) where T1 : class
-        {
-            var client = busControl.CreateRequestClient<T1>(new Uri(busControl.Address, relativeUri), TimeSpan.FromSeconds(10));
-            return client;
-        }
+public static IRequestClient<T1> CreateRequestClient<T1>(IBus busControl, string relativeUri) where T1 : class
+{
+var client = busControl.CreateRequestClient<T1>(new Uri(busControl.Address, relativeUri), TimeSpan.FromSeconds(10));
+return client;
+}
 
-        private Ordering GetOrdering(int orderingId)
-        {
-            var client = CreateRequestClient<GetOrderingRequest>(bus, BusConstants.OrderManagerGetOrderingRequestQueue);
-            var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest {OrderingId = orderingId}).GetAwaiter().GetResult().Message;
-            return result.Ordering;
-        }
-    }
+private Ordering GetOrdering(int orderingId)
+{
+var client = CreateRequestClient<GetOrderingRequest>(bus, BusConstants.OrderManagerGetOrderingRequestQueue);
+var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest {OrderingId = orderingId}).GetAwaiter().GetResult().Message;
+return result.Ordering;
+}
+}
 }

@@ -12,8 +12,7 @@ public class DateRangeMapping : BaseMapping
         {
             ElementValue = new List<DataElementElementValue>(),
             ElementType = DataElementElementType.dateRange,
-            ElementName = name,
-            ElementId = name,
+            ElementName = name
         };
 
         var datetime = value as DateTimeFieldType;
