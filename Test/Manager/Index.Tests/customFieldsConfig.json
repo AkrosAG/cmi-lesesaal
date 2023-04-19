@@ -131,7 +131,7 @@
     "ElementName": "FormInhalt",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Darin",
-    "TargetField": "WithinInfo",
+    "TargetField": "Contains",
     "IsDefaultField": 1,
     "Type": "string",
     "IsRepeatable": 0
@@ -157,16 +157,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Zugangsbestimmungen",
-    "ElementName": "Zugangsbestimmungen",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Zugangsbestimmungen",
-    "TargetField": "Zugangsbestimmungen",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
 
     "ElementId": "Reproduktionsbestimmungen",
     "ElementName": "Reproduktionsbestimmungen",
@@ -181,8 +171,8 @@
     "ElementId": "Sprache",
     "ElementName": "Sprache",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Sprache",
-    "TargetField": "Sprache",
+    "Label": "Sprachen",
+    "TargetField": "Sprachen",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -199,7 +189,6 @@
     "IsRepeatable": 0
   },
   {
-
     "ElementId": "PhysischeBeschaffenheit",
     "ElementName": "PhysischeBeschaffenheit",
     "SourceType": "Text (max. 4000 Z.)",
@@ -302,14 +291,16 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "ArchivalienartenGuids",
-    "ElementName": "ArchivalienartenGuids",
+    "ElementId": "Archivalienart",
+    "ElementName": "Archivalienart",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "ArchivalienartenGuids",
-    "TargetField": "ArchivalienartenGuids",
+    "Label": "Archivalienart",
+    "TargetField": "Archivalienart",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "Provenienz",
@@ -352,26 +343,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Ueberlieferungsform",
-    "ElementName": "Ueberlieferungsform",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Ueberlieferungsform",
-    "TargetField": "Ueberlieferungsform",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "Benutzbarkeit",
-    "ElementName": "Benutzbarkeit",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Benutzbarkeit",
-    "TargetField": "Benutzbarkeit",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementId": "Publikation",
     "ElementName": "Publikation",
     "SourceType": "Text (max. 4000 Z.)",
@@ -379,7 +350,9 @@
     "TargetField": "Publikation",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+   "IsRepeatable": 0, 
+   "CopyTo_fieldTextValues": 1, 
+   "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "Verwertungsrecht",
@@ -389,7 +362,9 @@
     "TargetField": "Verwertungsrecht",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+   "IsRepeatable": 0, 
+ "CopyTo_fieldTextValues": 1, 
+"CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "AblaufVerwertungsrecht",
@@ -459,7 +434,9 @@
     "TargetField": "Verzeichnungsstatus",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+   "IsRepeatable": 0, 
+   "CopyTo_fieldTextValues": 1, 
+   "CopyTo_fieldKeywordValues": 0
   },
   {
     "ElementId": "Erschliessungszustand",
@@ -469,7 +446,9 @@
     "TargetField": "Erschliessungszustand",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+   "IsRepeatable": 0, 
+ "CopyTo_fieldTextValues": 1, 
+"CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "Digitalisierungsgrad",
@@ -579,7 +558,9 @@
     "TargetField": "Tektonikpfad",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
+   "IsRepeatable": 0, 
+ "CopyTo_fieldTextValues": 1, 
+"CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": -1,

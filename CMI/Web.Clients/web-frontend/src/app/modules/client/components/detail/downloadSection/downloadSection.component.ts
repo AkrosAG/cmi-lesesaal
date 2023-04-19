@@ -139,10 +139,11 @@ export class DownloadSectionComponent implements OnInit, OnDestroy, AfterViewIni
 			}, 15000);
 		}
 
-		this.innerhalbSchutzfrist = (this.entity
-			&& this.entity.customFields['zugänglichkeitGemässBga']
+		this.innerhalbSchutzfrist = true; // ToDo
+		/*		(this.entity
+		&& this.entity.customFields['zugänglichkeitGemässBga']
 			&& (this.entity.customFields['zugänglichkeitGemässBga'] === 'In Schutzfrist'
-				|| this.entity.customFields['zugänglichkeitGemässBga'] === 'Prüfung nötig'));
+				|| this.entity.customFields['zugänglichkeitGemässBga'] === 'Prüfung nötig'));*/
 
 		this._stm.getReasons().subscribe(data => {
 			this.reasons = data;

@@ -129,6 +129,7 @@ namespace CMI.Manager.Index
                     Year = archiveRecord.Metadata.Usage.ProtectionEndDate.Value.Year
                 }
                 : null;
+            
             elasticArchiveRecord.ProtectionCategory = archiveRecord.Metadata.Usage.ProtectionCategory;
             elasticArchiveRecord.ProtectionDuration = archiveRecord.Metadata.Usage.ProtectionDuration;
             elasticArchiveRecord.Accessibility = archiveRecord.Metadata.Usage.Accessibility;
@@ -241,7 +242,7 @@ namespace CMI.Manager.Index
                         value = "\u200A";   // Hair space
                     }
 
-                    if (value != null)
+                    if (value != null && !(fieldConfiguration.Type == ElasticFieldTypes.TypeString && string.IsNullOrEmpty(value.ToString())))
                     {
                         if (fieldConfiguration.IsDefaultField)
                         {
@@ -255,6 +256,16 @@ namespace CMI.Manager.Index
                         else
                         {
                             elasticArchiveRecord.DetailData.Add(ConvertToDetailData(detailData, fieldConfiguration));
+                            if (fieldConfiguration.CopyTo_fieldKeywordValues)
+                            {
+                                elasticArchiveRecord.All_FieldKeywordValues += $"{value} ";
+                            }
+
+                            if (fieldConfiguration.CopyTo_fieldTextValues)
+                            {
+                                elasticArchiveRecord.All_FieldTextValues += $"{value} ";
+                            }
+
                         }
                     }
                 }
