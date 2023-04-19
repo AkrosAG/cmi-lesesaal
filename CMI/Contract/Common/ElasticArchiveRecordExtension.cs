@@ -33,10 +33,10 @@ namespace CMI.Contract.Common
             try
             {
                 var cultureInfo = new CultureInfo(language);
-                if (record is SearchRecord searchRecord)
-                {
-                    searchRecord.TranslateCustomFieldZugaenglichkeitGemässBga(cultureInfo);
-                }
+                //if (record is SearchRecord searchRecord)
+                //{
+                //    searchRecord.TranslateCustomFieldZugaenglichkeitGemässBga(cultureInfo);
+                //}
               
                 var level = ResourceManager.GetString(record.Level ?? "", cultureInfo) ;
                 if (!string.IsNullOrEmpty(level))

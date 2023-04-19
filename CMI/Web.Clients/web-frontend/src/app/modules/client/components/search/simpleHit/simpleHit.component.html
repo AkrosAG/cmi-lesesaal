@@ -38,10 +38,10 @@
 						{{entity?.creationPeriod?.text}}
 					</p>
 					<p *ngIf="entity?.level">{{entity.level}}</p>
-					<p *ngIf="entity?.customFields['zugänglichkeitGemässBga']"
+					<p *ngIf="entity.permission"
 					   data-toggle="tooltip"
-					    tooltip="{{'Zugänglichkeit gemäss BGA' | translate:'simpleHit.zugangTooltip' }}">
-						{{entity.customFields["zugänglichkeitGemässBga"]}}
+					    tooltip="{{'Benutzbarkeit' | translate:'simpleHit.zugangTooltip' }}">
+						{{entity.permission}}
 					</p>
 
 					<cmi-viaduc-simple-hit-menu (menuClicked)="onMenuClicked($event)" [entity]="entity"></cmi-viaduc-simple-hit-menu>

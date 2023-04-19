@@ -106,6 +106,14 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.DateiVorhanden), vz => vz.DateiVorhanden)
                 .From(nameof(Verzeichnungseinheit.DigitalVorhanden), vz => vz.DigitalVorhanden)
                 .From(nameof(Verzeichnungseinheit.Tektonikpfad), vz => vz.Tektonikpfad)
+                // ToDo: Review
+                .From(nameof(Verzeichnungseinheit.Sprache), vz => vz.Sprache?.Aggregate(string.Empty, (current, sprache) => current +  sprache.Bezeichnung + Environment.NewLine))
+                .From(nameof(Verzeichnungseinheit.Ueberlieferungsform), vz => vz.Ueberlieferungsform?.Aggregate(string.Empty, (current, ueberlieferungsform) => current + ueberlieferungsform.Bezeichnung + Environment.NewLine))
+                .From(nameof(Verzeichnungseinheit.Archivalienart), vz => vz.Archivalienart?.Aggregate(string.Empty, (current, archivalienart) => current + archivalienart.Bezeichnung + Environment.NewLine))
+                
+           //     .From(nameof(Verzeichnungseinheit.Digitalisierungsgrad), vz => vz.Digitalisierungsgrad.)
+
+            
                 .FromCustomFields();
         }
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)

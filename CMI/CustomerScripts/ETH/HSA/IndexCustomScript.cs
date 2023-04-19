@@ -11,7 +11,7 @@ namespace CMI.Contract.Common.Compiler
         public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
             // Facetten
-            // elasticArchiveRecord.Facetten.Text01 = archiveRecord.DetailData.Where(f => f.fieldName == "Test").TextValue;
+            elasticArchiveRecord.Facetten.Text01 = elasticArchiveRecord.Permission;
 
             // All Text Values Field all keywords Value Fields
 

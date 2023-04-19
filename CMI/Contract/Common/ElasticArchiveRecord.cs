@@ -27,6 +27,8 @@ namespace CMI.Contract.Common
         public string NichtOnlineRecherchierbareDossiers { get; set; }
         public List<string> PrimaryDataDownloadAccessTokens { get; set; }
         public List<string> PrimaryDataFulltextAccessTokens { get; set; }
+        //ToDo: Review
+        public List<ElasticDetailData> DetailData { get; set; }
     }
 
     /// <summary>
@@ -37,8 +39,8 @@ namespace CMI.Contract.Common
         public string PrimaryDataLink { get; set; }
         public bool CanBeOrdered { get; set; }
         public string Contains { get; set; }
-
-        public List<ElasticDetailData> DetailData { get; set; }
+        public string Permission { get; set; }
+        public string Accessibility { get; set; }
     }
 
     public class ElasticDetailData
@@ -92,6 +94,8 @@ namespace CMI.Contract.Common
         }
 
         public string All { get; set; }
+        public string All_FieldTextValues { get; set; }
+        public string All_FieldKeywordValues { get; set; }
         public List<string> MetadataAccessTokens { get; set; }
         public bool HasAudioVideo { get; set; }
         public int PlayingLengthInS { get; set; }
@@ -103,13 +107,7 @@ namespace CMI.Contract.Common
         public string NextArchiveRecordId { get; set; }
         public string FirstChildArchiveRecordId { get; set; }
         public bool ContainsPersonRelatedInformation { get; set; }
-        public string Permission { get; set; }
-      
-
-
         public bool IsPhysicalyUsable { get; set; }
-
-        public string Accessibility { get; set; }
         public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticContainer> Containers { get; set; }
         public List<ElasticReference> References { get; set; }
@@ -131,8 +129,29 @@ namespace CMI.Contract.Common
 
     public class ElasticFacetten
     {
-        public string Bestand { get; set; }
-        public List<string> Ordnungskomponenten { get; set; }
+        public string Text01 { get; set; }
+        public string Text02 { get; set; }
+        public string Text03 { get; set; }
+        public string Text04 { get; set; }
+        public string Text05 { get; set; }
+        public string Text06 { get; set; }
+        public string Text07 { get; set; }
+        public string Text08 { get; set; }
+        public string Text09 { get; set; }
+        public string Text10 { get; set; }
+
+        public long Long01 { get; set; }
+        public long Long02 { get; set; }
+        public long Long03 { get; set; }
+        public long Long04 { get; set; }
+        public long Long05 { get; set; }
+
+        public bool Boolean01 { get; set; }
+        public bool Boolean02 { get; set; }
+        public bool Boolean03 { get; set; }
+        public bool Boolean04 { get; set; }
+        public bool Boolean05 { get; set; }
+
         public bool HasPrimaryData { get; set; }
         public List<int> CreationPeriodYears001 { get; set; }
         public List<int> CreationPeriodYears005 { get; set; }

@@ -81,7 +81,7 @@ public class MetaDataBuilder
             ProtectionBaseDate = cmiRecord.SchutzfristBasisdatum?.Text,
             ProtectionDuration =  (int?)cmiRecord.Schutzfrist?.Item?.Frist ?? 0, 
             ProtectionEndDate = cmiRecord.SchutzfristEnddatum?.Start,
-            Permission = cmiRecord.Zugangsbestimmungen,
+            Permission = cmiRecord.Benutzbarkeit,
             PhysicalUsability = cmiRecord.PhysischeBeschaffenheit,
             Accessibility = cmiRecord.Zugangsbestimmungen,
             UsageNotes = cmiRecord.AllgemeineAnmerkungen,

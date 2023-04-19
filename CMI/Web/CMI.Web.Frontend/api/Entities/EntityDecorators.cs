@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
@@ -22,9 +23,9 @@ namespace CMI.Web.Frontend.api.Entities
         private const string childrenKey = "children";
         private const string childrenPagingKey = "childrenPaging";
 
-        // Custom fields
-        private const string customFieldKey = "customFields";
-        private const string customFieldPrefix = customFieldKey + ".";
+        // detailData fields
+        private const string detailDataKey = "detailData";
+        private const string detailDataPrefix = detailDataKey + ".";
 
         private readonly IElasticService elasticService;
         private readonly IElasticSettings elasticSettings;
@@ -213,7 +214,8 @@ namespace CMI.Web.Frontend.api.Entities
 
             JObject metadata = null;
             var jsonEntity = JObject.FromObject(entity);
-            var customFields = JsonHelper.GetTokenValue<JObject>(jsonEntity, customFieldKey, true) ?? new JObject();
+            
+
 
             var categories = type.MetaCategories ?? new List<ModelTypeMetaCategory>();
 
@@ -236,12 +238,53 @@ namespace CMI.Web.Frontend.api.Entities
 
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
-                        if (name.StartsWith(customFieldPrefix, StringComparison.OrdinalIgnoreCase))
+                        if (name.StartsWith(detailDataKey, StringComparison.OrdinalIgnoreCase))
                         {
-                            var subKey = field.Key.Substring(customFieldPrefix.Length);
-                            var subName = name.Substring(customFieldPrefix.Length);
-                            name = subName.ToLowerCamelCase();
-                            token = customFields.GetTokenByKey(subName, true) ?? customFields.GetTokenByKey(subKey, true);
+                            var subName = name.Substring(detailDataPrefix.Length);
+                             // ToDo: Review
+                            if (entity.DetailData.Any(d => d.ElementName.ToLowerInvariant() == subName))
+                            {
+                                var detailData = entity.DetailData.First(d => d.ElementName.ToLowerInvariant() == subName);
+
+                                var value = string.Empty;
+                                switch (detailData.TypeName)
+                                {
+
+                                    case ElasticFieldTypes.TypeString:
+                                        value = string.Join(Environment.NewLine, detailData.TextValues.ToArray());
+                                        break;
+                                    case ElasticFieldTypes.TypeTimePeriod:
+                                        value = detailData.DateRangeValues.Aggregate(value, (current, range) => current + range.Text + Environment.NewLine);
+
+                                        break;
+                                    case ElasticFieldTypes.TypeInt + "?":
+                                    case ElasticFieldTypes.TypeInt:
+                                        value = detailData.Int64Values.ToString();
+                                        break;
+                                    case ElasticFieldTypes.TypeBool + "?":
+                                    case ElasticFieldTypes.TypeBool:
+                                        value = detailData.BoolValue.ToString();
+                                        break;
+                                    case ElasticFieldTypes.TypeFloat + "?":
+                                    case ElasticFieldTypes.TypeFloat:
+                                        value = detailData.FloatValue.ToString(CultureInfo.InvariantCulture);
+                                        break;
+                                    case ElasticFieldTypes.TypeHyperlink:
+                                        value = detailData.HyperlinkValue.Text + Environment.NewLine + detailData.HyperlinkValue.Url;
+                                        break;
+                                    case ElasticFieldTypes.TypeEntityLink:
+                                        value = detailData.EntityLinkValue.EntityRecordId
+                                                + Environment.NewLine + detailData.EntityLinkValue.Value
+                                                + Environment.NewLine + detailData.EntityLinkValue.EntityType;
+                                        break;
+                                    default:
+                                        throw new NotImplementedException($"Wrong ElasticFieldTypes: {detailData.TypeName} ");
+                                }
+                                if (detailData != null)
+                                {
+                                    attributes.Add(detailData.ElementName, value);
+                                }
+                            }
                         }
                         else
                         {
