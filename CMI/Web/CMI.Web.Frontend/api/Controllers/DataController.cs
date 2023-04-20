@@ -368,12 +368,12 @@ namespace CMI.Web.Frontend.api.Controllers
             return searchResults.Select(item => new VeExportRecord
             {
                 ReferenceCode = item.ReferenceCode,
-                FileReference = VeExportRecordHelper.GetCustomField(item.DetailData, "aktenzeichen"),
+                FileReference = item.ReferenceCode, // ToDo: Review
                 Title = item.Title,
                 CreationPeriod = item.CreationPeriod?.Text,
                 WithinInfo = item.Contains,
                 Level = item.Level,
-                Accessibility = VeExportRecordHelper.GetCustomField(item.DetailData, "zugänglichkeitGemässBga")
+                Accessibility = item.Accessibility
             }).ToList();
         }
     }

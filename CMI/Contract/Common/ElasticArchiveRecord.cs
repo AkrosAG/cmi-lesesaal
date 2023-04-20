@@ -27,8 +27,6 @@ namespace CMI.Contract.Common
         public string NichtOnlineRecherchierbareDossiers { get; set; }
         public List<string> PrimaryDataDownloadAccessTokens { get; set; }
         public List<string> PrimaryDataFulltextAccessTokens { get; set; }
-        //ToDo: Review
-        public List<ElasticDetailData> DetailData { get; set; }
     }
 
     /// <summary>
@@ -51,7 +49,7 @@ namespace CMI.Contract.Common
         public List<ElasticTimePeriod> DateRangeValues { get; set; }
         public bool BoolValue { get; set; }
         public long Int64Values { get; set; }
-        public float FloatValue { get; set; }
+        public ElasticFloat FloatValue { get; set; }
         public ElasticHyperlink HyperlinkValue { get; set; }
         public ElasticEntityLink EntityLinkValue { get; set; }
         public ElasticBase64 BlobValues { get; set; }
@@ -68,16 +66,12 @@ namespace CMI.Contract.Common
         public int AccessionDate { get; set; }
         public List<ElasticParentContentInfo> ParentContentInfos { get; set; }
         public ElasticBase64 Thumbnail { get; set; }
-
         public string PhysicalUsability { get; set; }
 
         public ElasticDateWithYear ProtectionEndDate { get; set; }
         public string ProtectionCategory { get; set; }
         public int? ProtectionDuration { get; set; }
-
-        public string AdministrativeHistory { get; set; }
-        public string ArchivalHistory { get; set; }
-
+        public List<ElasticDetailData> DetailData { get; set; }
     }
 
     public class ElasticArchiveRecord : DetailRecord

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings;
 using CMI.Contract.Common;
 
@@ -30,6 +31,13 @@ public class ElementDataBuilder
     {
         var value = func(cmiRecord);
         CreateValueInternal(name, value);
+        return this;
+    }
+
+    public ElementDataBuilder FromCollection<T>(string name, Func<Verzeichnungseinheit, IEnumerable<T>> func)
+    {
+        var value = func(cmiRecord);
+        CreateValueListInternal(name, value);
         return this;
     }
 
@@ -72,4 +80,18 @@ public class ElementDataBuilder
         detailData.Add(data);
     }
 
+    private void CreateValueListInternal<T>(string name, IEnumerable<T> values)
+    {
+        if (values == null)
+            return;
+
+        if (!mappingsByType.TryGetValue(typeof(T), out var mapping))
+            throw new NotImplementedException($"No Builder is implemented for Type {typeof(T)}");
+
+        foreach (var value in values)
+        {
+            var data = mapping.CreateElement(name, value);
+            detailData.Add(data);
+        }
+    }
 }

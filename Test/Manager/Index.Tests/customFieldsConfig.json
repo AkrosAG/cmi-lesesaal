@@ -350,9 +350,9 @@
     "TargetField": "Publikation",
     "IsDefaultField": 0,
     "Type": "string",
-   "IsRepeatable": 0, 
-   "CopyTo_fieldTextValues": 1, 
-   "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "Verwertungsrecht",
@@ -362,9 +362,9 @@
     "TargetField": "Verwertungsrecht",
     "IsDefaultField": 0,
     "Type": "string",
-   "IsRepeatable": 0, 
- "CopyTo_fieldTextValues": 1, 
-"CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "AblaufVerwertungsrecht",
@@ -434,9 +434,9 @@
     "TargetField": "Verzeichnungsstatus",
     "IsDefaultField": 0,
     "Type": "string",
-   "IsRepeatable": 0, 
-   "CopyTo_fieldTextValues": 1, 
-   "CopyTo_fieldKeywordValues": 0
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 0
   },
   {
     "ElementId": "Erschliessungszustand",
@@ -446,9 +446,9 @@
     "TargetField": "Erschliessungszustand",
     "IsDefaultField": 0,
     "Type": "string",
-   "IsRepeatable": 0, 
- "CopyTo_fieldTextValues": 1, 
-"CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": "Digitalisierungsgrad",
@@ -541,16 +541,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "DigitalVorhanden",
-    "ElementName": "DigitalVorhanden",
-    "SourceType": "Ja/Nein-Feld",
-    "Label": "Digital vorhanden",
-    "TargetField": "DigitalVorhanden",
-    "IsDefaultField": 0,
-    "Type": "bool?",
-    "IsRepeatable": 0
-  },
-  {
     "ElementId": "Tektonikpfad",
     "ElementName": "Tektonikpfad",
     "SourceType": "Text (max. 4000 Z.)",
@@ -558,9 +548,9 @@
     "TargetField": "Tektonikpfad",
     "IsDefaultField": 0,
     "Type": "string",
-   "IsRepeatable": 0, 
- "CopyTo_fieldTextValues": 1, 
-"CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0,
+    "CopyTo_fieldTextValues": 1,
+    "CopyTo_fieldKeywordValues": 1
   },
   {
     "ElementId": -1,

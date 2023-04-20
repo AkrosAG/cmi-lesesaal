@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
@@ -138,8 +137,8 @@ namespace CMI.Web.Frontend.api.Entities
 
         public EntityResult<T> GetChildren(T entity, int setDepth, UserAccess access, Paging paging)
         {
-            paging ??= new Paging {OrderBy = "treeSequence", SortOrder = "Ascending"};
-            
+            paging ??= new Paging { OrderBy = "treeSequence", SortOrder = "Ascending" };
+
             var result = new EntityResult<T>
             {
                 Items = new List<Entity<T>>(),
@@ -175,7 +174,7 @@ namespace CMI.Web.Frontend.api.Entities
             };
 
             query.SearchParameters.Paging = paging;
-            query.SearchParameters.Options = new SearchOptions {EnableAggregations = false, EnableExplanations = false, EnableHighlighting = false};
+            query.SearchParameters.Options = new SearchOptions { EnableAggregations = false, EnableExplanations = false, EnableHighlighting = false };
 
             var queryResult = elasticService.RunQuery<T>(query, access);
             if (queryResult.Entries != null)
@@ -214,8 +213,9 @@ namespace CMI.Web.Frontend.api.Entities
 
             JObject metadata = null;
             var jsonEntity = JObject.FromObject(entity);
-            
 
+            
+            var detailDatas = JsonHelper.GetTokenValue(jsonEntity, detailDataKey, true) ?? new JArray();
 
             var categories = type.MetaCategories ?? new List<ModelTypeMetaCategory>();
 
@@ -225,65 +225,26 @@ namespace CMI.Web.Frontend.api.Entities
 
                 // Nur wenn die Sektion (category) Felder hat und wir mindestens ein öffentliches Feld haben, oder der Benutzer ein BAR Benutzer ist, gehen wir überhaupt weiter.
                 // (Fall abfangen, dass eine Kategorie nur interne Felder hat
-                if (category?.Fields != null && (category.Fields.Any(f => f.Visibility == (int) DataElementVisibility.@public) ||
+                if (category?.Fields != null && (category.Fields.Any(f => f.Visibility == (int)DataElementVisibility.@public) ||
                                                  access.RolePublicClient == AccessRoles.RoleBAR))
                 {
                     foreach (var field in category.Fields)
                     {
                         // Interne Felder sind nur für BAR Benutzer sichtbar
-                        if (field.Visibility == (int) DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleBAR)
+                        if (field.Visibility == (int)DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleBAR)
                         {
                             continue;
                         }
 
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
-                        if (name.StartsWith(detailDataKey, StringComparison.OrdinalIgnoreCase))
+                        if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
                             var subName = name.Substring(detailDataPrefix.Length);
-                             // ToDo: Review
-                            if (entity.DetailData.Any(d => d.ElementName.ToLowerInvariant() == subName))
+                            name = subName.ToLowerCamelCase();
+                            if (detailDatas.Any(a => a.Path == subName))
                             {
-                                var detailData = entity.DetailData.First(d => d.ElementName.ToLowerInvariant() == subName);
-
-                                var value = string.Empty;
-                                switch (detailData.TypeName)
-                                {
-
-                                    case ElasticFieldTypes.TypeString:
-                                        value = string.Join(Environment.NewLine, detailData.TextValues.ToArray());
-                                        break;
-                                    case ElasticFieldTypes.TypeTimePeriod:
-                                        value = detailData.DateRangeValues.Aggregate(value, (current, range) => current + range.Text + Environment.NewLine);
-
-                                        break;
-                                    case ElasticFieldTypes.TypeInt + "?":
-                                    case ElasticFieldTypes.TypeInt:
-                                        value = detailData.Int64Values.ToString();
-                                        break;
-                                    case ElasticFieldTypes.TypeBool + "?":
-                                    case ElasticFieldTypes.TypeBool:
-                                        value = detailData.BoolValue.ToString();
-                                        break;
-                                    case ElasticFieldTypes.TypeFloat + "?":
-                                    case ElasticFieldTypes.TypeFloat:
-                                        value = detailData.FloatValue.ToString(CultureInfo.InvariantCulture);
-                                        break;
-                                    case ElasticFieldTypes.TypeHyperlink:
-                                        value = detailData.HyperlinkValue.Text + Environment.NewLine + detailData.HyperlinkValue.Url;
-                                        break;
-                                    case ElasticFieldTypes.TypeEntityLink:
-                                        value = detailData.EntityLinkValue.EntityRecordId
-                                                + Environment.NewLine + detailData.EntityLinkValue.Value
-                                                + Environment.NewLine + detailData.EntityLinkValue.EntityType;
-                                        break;
-                                    default:
-                                        throw new NotImplementedException($"Wrong ElasticFieldTypes: {detailData.TypeName} ");
-                                }
-                                if (detailData != null)
-                                {
-                                    attributes.Add(field.Labels[language], value);
-                                }
+                                token = detailDatas.First(a => a.Path == subName);
                             }
                         }
                         else
