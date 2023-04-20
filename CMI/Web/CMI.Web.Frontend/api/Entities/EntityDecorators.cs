@@ -282,7 +282,7 @@ namespace CMI.Web.Frontend.api.Entities
                                 }
                                 if (detailData != null)
                                 {
-                                    attributes.Add(detailData.ElementName, value);
+                                    attributes.Add(field.Labels[language], value);
                                 }
                             }
                         }
