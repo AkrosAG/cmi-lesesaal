@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
+using System.Linq;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Manager.Index.Config;
@@ -64,30 +65,30 @@ namespace CMI.Manager.Index.Tests
 
             Assert.Throws<RuntimeBinderException>(() =>
                 {
-                    var test = archiveRecord.DetailData.Title;
+                    var test = archiveRecord.DetailData.First(d => d.ElementName == "Title");
                 },
                 "Title is not a custom field, so it should not be in the dynamic property");
 
             Assert.DoesNotThrow(() =>
                 {
-                    var test = archiveRecord.DetailData.ZugänglichkeitGemässBga;
+                    var test = archiveRecord.DetailData.First(d => d.ElementName == "ZugänglichkeitGemässBga");
                 },
                 "ZugänglichkeitGemässBga is a custom field (with special chars), and so it should not throw on access");
 
             Assert.Throws<RuntimeBinderException>(() =>
                 {
-                    var testYear = archiveRecord.DetailData.DummyElasticdatewithyear;
+                    var testYear = archiveRecord.DetailData.First(d => d.ElementName == "DummyElasticdatewithyear");
                 },
                 "DummyElasticDateWithYear is not available, as there is no data for it.");
 
-            Assert.IsNotNull(archiveRecord.DetailData.Form);
-            Assert.AreEqual("Fotografie", archiveRecord.DetailData.Form);
+            Assert.IsTrue(archiveRecord.DetailData.Any(d => d.ElementName == "Form"));
+            Assert.AreEqual("Fotografie", archiveRecord.DetailData.Where(d => d.ElementName == "Form"));
 
-            Assert.IsAssignableFrom<List<ElasticHyperlink>>(archiveRecord.DetailData.DigitaleVersion);
+            Assert.IsAssignableFrom<List<ElasticHyperlink>>(archiveRecord.DetailData.Where(d => d.ElementName == "DigitaleVersion"));
             Assert.AreEqual("https://commons.wikimedia.org/wiki/File:Flugzeug_Grandjean_vor_dem_Aufstieg_-_CH-BAR_-_3236769.tif",
-                archiveRecord.DetailData.DigitaleVersion[0].Url);
+                archiveRecord.DetailData.First(d => d.ElementName == "DigitaleVersion"));
             Assert.AreEqual("E27#1000/721#14093#5489* (Wikimedia Commons)",
-                archiveRecord.DetailData.DigitaleVersion[0].Text);
+                archiveRecord.DetailData.First(d => d.ElementName == "DigitaleVersion").HyperlinkValue.Url);
         }
 
         [Test]
@@ -129,17 +130,17 @@ namespace CMI.Manager.Index.Tests
             // - nicht weiter schlimm, wir können es weiterhin als dynamic ansprechen
             Assert.DoesNotThrow(() =>
             {
-                var test = record.DetailData.Form;
+                var test = record.DetailData.First(d => d.ElementName =="Form");
                 Console.WriteLine(test);
             });
 
             // - und die properties auslesen
-            var form = record.DetailData.Form;
+            var form = record.DetailData.First(d => d.ElementName == "Form"); ;
             Assert.IsNotNull(form);
             Assert.AreEqual("Fotografie", form);
 
-            Assert.IsAssignableFrom<List<dynamic>>(record.DetailData.DigitaleVersion);
-            var hyperlink = record.DetailData.DigitaleVersion[0];
+            Assert.IsAssignableFrom<List<dynamic>>(record.DetailData.First(d => d.ElementName == "DigitaleVersion"));
+            var hyperlink = record.DetailData.First(d => d.ElementName == "DigitaleVersion").HyperlinkValue;
 
             Assert.AreEqual("https://commons.wikimedia.org/wiki/File:Flugzeug_Grandjean_vor_dem_Aufstieg_-_CH-BAR_-_3236769.tif",
                 hyperlink.Url);

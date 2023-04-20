@@ -19,13 +19,15 @@ namespace CMI.Web.Common.Helpers
                 IdentifikationDigitalesMagazin = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.PrimaryDataLink,
                 Signatur = entity.ReferenceCode,
                 VeId = entity.ArchiveRecordId,
-                ZugaenglichkeitGemaessBga = "", //entity.Benutzbarkeit(),
+                ZugaenglichkeitGemaessBga = entity.Permission,
                 ZusaetzlicheInformationen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Extent,
                 ZeitraumDossier = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.CreationPeriod?.Text,
-                Schutzfristverzeichnung = "", //!string.IsNullOrEmpty(unknowText) ? unknowText : entity.GetSchutzfristenVerzeichnung(),
-                Publikationsrechte = "", // !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Verwertungsrecht(),
-                ZustaendigeStelle = "", //!string.IsNullOrEmpty(unknowText) ? unknowText : entity.ZuständigeStelle(),
-                Aktenzeichen = "", // !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Aktenzeichen()
+
+                // ToDo: Review
+                Schutzfristverzeichnung = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "SchutzfristenVerzeichnung")?.TextValues.ToArray()),
+                Publikationsrechte =  !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Verwertungsrecht")?.TextValues.ToArray()),
+                ZustaendigeStelle = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "ZuständigeStelle")?.TextValues.ToArray()), 
+                Aktenzeichen = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Aktenzeichen")?.TextValues.ToArray()), 
             };
 
             if (entity.Containers != null && entity.Containers.Any())

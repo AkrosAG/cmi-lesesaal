@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
+using System.Linq;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Engine.PackageMetadata;
@@ -49,7 +49,7 @@ namespace CMI.Manager.Repository.Tests
             var sut = GetNullArchiveRecord();
 
             // Act
-            var value = sut?.Aktenzeichen();
+            var value = sut?.DetailData.Where(d => d.ElementName == "aktenzeichen");
             var value2 = sut?.CreationPeriod;
 
             // Assert
@@ -64,6 +64,7 @@ namespace CMI.Manager.Repository.Tests
             var sut = GetSampleArchiveRecord();
 
             // Act
+            var value = sut?.DetailData.Where(d => d.ElementName == "aktenzeichen");
             var value3 = sut.CreationPeriod;
 
             // Assert
@@ -177,10 +178,19 @@ namespace CMI.Manager.Repository.Tests
         {
             var record = new ElasticArchiveRecord
             {
-                CreationPeriod = new ElasticTimePeriod {StartDate = DateTime.Today},
-                DetailData = new ExpandoObject()
+                CreationPeriod = new ElasticTimePeriod { StartDate = DateTime.Today },
+                DetailData = new List<ElasticDetailData>
+                {
+                    new()
+                    {
+                        ElementName = "aktenzeichen",
+                        TextValues = new List<string>
+                        {
+                            "Ein Beispiel"
+                        }
+                    }
+                }
             };
-            record.DetailData.aktenzeichen = "Ein Beispiel";
             return record;
         }
     }
