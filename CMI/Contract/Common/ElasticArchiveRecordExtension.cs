@@ -51,20 +51,6 @@ namespace CMI.Contract.Common
             }
         }
 
-        private static void TranslateCustomFieldZugaenglichkeitGemässBga(this SearchRecord record, CultureInfo cultureInfo)
-        {
-            dynamic customFields = record.DetailData;
-            var fields = (IDictionary<string, object>)customFields;
-
-            if (fields.ContainsKey("zugänglichkeitGemässBga"))
-            {
-                var value = fields["zugänglichkeitGemässBga"].ToString();
-                fields.Remove("zugänglichkeitGemässBga");
-                var result = ResourceManager.GetString(value, cultureInfo); 
-                ((IDictionary<string, object>)customFields).Add("zugänglichkeitGemässBga", result != string.Empty ? result : value);
-            }
-        }
-
         private static bool HasProperty(dynamic expandoObject, string propertyName)
         {
             return ((IDictionary<string, object>) expandoObject).ContainsKey(propertyName);

@@ -274,7 +274,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Provenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -368,7 +368,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BasisdatumSchutzfrist",
+              "DbFieldName": "ProtectionBaseDate",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -379,9 +379,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schutzfrist",
-              "DbType": "Text",
-              "ElasticType": "string",
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schutzfrist",
@@ -389,9 +389,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AblaufSchutzfrist",
+              "DbFieldName": "ProtectionEndDate",
               "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "ElasticType": "ProtectionEndDate",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
@@ -405,8 +405,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verfügbarkeit",
-                "en": "Verfügbarkeit",
-                "fr": "Évaluation, tris et éliminations, sort final"
+                "en": "Verfügbarkeit"
               }
             },
             {
@@ -441,13 +440,13 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Lang",
+                "en": "Langunages",
                 "fr": "Instruments de recherche"
               }
             },
@@ -548,7 +547,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.interneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1288,7 +1287,7 @@
               }
             },
             {
-              "DbFieldName": "Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -1308,9 +1307,9 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "CreationPeriod.Text",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
@@ -1413,7 +1412,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.FormInhalt",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1487,7 +1486,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1772,7 +1771,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AlteSignatur",
+              "DbFieldName": "formerReferenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1783,7 +1782,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Verzeichnungsstufe",
+              "DbFieldName": "Level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1808,12 +1807,12 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Verwaltungssignatur",
-                "en": "Distortion nw"
+                "de": "PID",
+                "en": "PID"
               }
             },
             {
-              "DbFieldName": "Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -1833,9 +1832,9 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "CreationPeriod.Text",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
@@ -1906,7 +1905,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.BemerkungenProvenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1938,7 +1937,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.FormInhalt",
+              "DbFieldName": "contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1949,7 +1948,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Überlieferungsformen",
+              "DbFieldName": "DetailData.Ueberlieferungsformen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2012,14 +2011,13 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Lang",
-                "fr": "Instruments de recherche"
+                "en": "Language"
               }
             },
             {

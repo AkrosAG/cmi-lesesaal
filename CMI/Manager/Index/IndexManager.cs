@@ -314,7 +314,7 @@ namespace CMI.Manager.Index
                 case ElasticFieldTypes.TypeFloat:
                     var floatExtractor = new FloatExtractor();
                     var floatValue = floatExtractor.GetValue(detailData, fieldConfiguration.ElementName);
-                    elasticDetailData.FloatValue = floatValue.Value;
+                    elasticDetailData.FloatValue = floatValue;
                     break;
                 case ElasticFieldTypes.TypeHyperlink:
                     var hyperlinkExtractor = new HyperlinkExtractor();

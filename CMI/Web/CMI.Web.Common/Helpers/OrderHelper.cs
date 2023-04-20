@@ -24,10 +24,11 @@ namespace CMI.Web.Common.Helpers
                 ZeitraumDossier = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.CreationPeriod?.Text,
 
                 // ToDo: Review
-                Schutzfristverzeichnung = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "SchutzfristenVerzeichnung")?.TextValues.ToArray()),
-                Publikationsrechte =  !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Verwertungsrecht")?.TextValues.ToArray()),
-                ZustaendigeStelle = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "ZuständigeStelle")?.TextValues.ToArray()), 
-                Aktenzeichen = !string.IsNullOrEmpty(unknowText) ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Aktenzeichen")?.TextValues.ToArray()), 
+                Schutzfristverzeichnung = entity.ProtectionCategory,
+                Publikationsrechte = !entity.DetailData.Any(d => d.ElementName == "Verwertungsrecht") ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Verwertungsrecht")?.TextValues.ToArray()),
+                ZustaendigeStelle = !entity.DetailData.Any(d => d.ElementName == "ZuständigeStelle") ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "ZuständigeStelle")?.TextValues.ToArray()), 
+
+                Aktenzeichen = !entity.DetailData.Any(d => d.ElementName == "Verwaltungssignatur") ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Verwaltungssignatur")?.TextValues.ToArray()), 
             };
 
             if (entity.Containers != null && entity.Containers.Any())
