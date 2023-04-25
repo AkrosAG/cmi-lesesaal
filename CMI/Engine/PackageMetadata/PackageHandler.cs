@@ -526,7 +526,18 @@ namespace CMI.Engine.PackageMetadata
                 dossier.zusatzDaten.Add(new ZusatzDatenMerkmal
                     {Name = "Archivplankontext", Value = JsonConvert.SerializeObject(dossierRecord.ArchiveplanContext)});
             }
+
+            if (dossierRecord != null && dossierRecord.DetailData.Any(d => d.ElementName == "Land"))
+            {
+                dossier.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Land", Value = dossierRecord.DetailData.First(d => d.ElementName == "Land").TextValues.First() });
+            }
             
+            if (dossierRecord != null && !string.IsNullOrEmpty(dossierRecord.FormerReferenceCode))
+            {
+                dossier.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Früheres Aktenzeichen", Value = dossierRecord.FormerReferenceCode });
+            }
+
+
             if (!string.IsNullOrEmpty(dossierRecord?.PrimaryDataLink))
             {
                 dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "Identifikation digitales Magazin", Value = dossierRecord.PrimaryDataLink});
@@ -606,6 +617,26 @@ namespace CMI.Engine.PackageMetadata
             {
                 dokument.zusatzDaten.Add(new ZusatzDatenMerkmal
                     {Name = "Archivplankontext", Value = JsonConvert.SerializeObject(documentRecord.ArchiveplanContext)});
+            }
+            
+            if (!string.IsNullOrEmpty(documentRecord?.Contains))
+            {
+                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Darin", Value = documentRecord.Contains });
+            }
+
+            if (documentRecord != null && documentRecord.DetailData.Any(d => d.ElementName == "Thema"))
+            {
+                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Thema", Value = string.Join(",", documentRecord.DetailData.First(d => d.ElementName == "Thema").TextValues.ToArray()) });
+            }
+
+            if (documentRecord != null && documentRecord.DetailData.Any(d => d.ElementName == "Format"))
+            {
+                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Format", Value = string.Join(",", documentRecord.DetailData.First(d => d.ElementName == "Format").TextValues.ToArray()) });
+            }
+
+            if (documentRecord != null && documentRecord.DetailData.Any(d => d.ElementName == "Urheber"))
+            {
+                dokument.zusatzDaten.Add(new ZusatzDatenMerkmal { Name = "Urheber", Value = string.Join(",", documentRecord.DetailData.First(d => d.ElementName == "Urheber").TextValues.ToArray()) });
             }
 
             if (!string.IsNullOrEmpty(documentRecord?.PrimaryDataLink))
