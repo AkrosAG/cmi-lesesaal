@@ -930,7 +930,7 @@ FROM ApplicationUser ";
                     var bestandString = bestandItem == null ? string.Empty : bestandItem.RefCode + " " + bestandItem.Title;
                     var teilbestandItem = record.ArchiveplanContext.FirstOrDefault(p => p.Level == "Teilbestand");
                     var teilbestandString = teilbestandItem == null ? string.Empty : teilbestandItem.RefCode + " " + teilbestandItem.Title;
-                    string zugaenglichkeitGemaessBga = ""; //record.HasCustomProperty("zugänglichkeitGemässBga") ? record.DetailData.zugänglichkeitGemässBga : string.Empty;
+                    string zugaenglichkeitGemaessBga = record.Permission;
                     var asTokens = string.Join(", ", access.AsTokens);
                     var ablieferndeStellen = string.Join(", ", user.AblieferndeStelleList.Select(a => a.Kuerzel));
 

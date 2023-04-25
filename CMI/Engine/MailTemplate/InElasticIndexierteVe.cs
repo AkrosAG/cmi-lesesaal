@@ -50,15 +50,14 @@ namespace CMI.Engine.MailTemplate
 
         public override string Entstehungszeitraum => elasticArchiveRecord.CreationPeriod.Text;
 
-        public override string Aktenzeichen =>  "";
-
+        public override string Aktenzeichen => ""; // ToDo: Rethink;
         public override string Schutzfristkategorie => elasticArchiveRecord?.ProtectionCategory;
         public override int? Schutzfristdauer => elasticArchiveRecord?.ProtectionDuration;
         public override string Schutzfristende => elasticArchiveRecord?.ProtectionEndDate?.Date.ToString("dd.MM.yyyy");
 
         public override bool IdDir => !string.IsNullOrEmpty(elasticArchiveRecord?.PrimaryDataLink);
 
-        public override string ZustaendigeStelle => "";
+        public override string ZustaendigeStelle => ""; // ToDo: Rethink;
 
         public override Behältnis[] Behältnisse
         {

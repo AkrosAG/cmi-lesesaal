@@ -74,7 +74,7 @@ namespace CMI.Engine.MailTemplate
         /// <param name="sprachCode">Z.B. de</param>
         public IDataBuilder AddSprache(string sprachCode)
         {
-            expando.Sprachen = new[] {new Sprache(sprachCode)};
+            expando.Sprachen = new[] { new Sprache(sprachCode) };
             return this;
         }
 
@@ -82,12 +82,12 @@ namespace CMI.Engine.MailTemplate
         {
             var neueAuftraege = GetAuftraege(orderItemIds);
 
-            if (!((IDictionary<string, object>) expando).ContainsKey("Aufträge"))
+            if (!((IDictionary<string, object>)expando).ContainsKey("Aufträge"))
             {
                 expando.Aufträge = new List<Auftrag>();
             }
 
-            var auftragsliste = (List<Auftrag>) expando.Aufträge;
+            var auftragsliste = (List<Auftrag>)expando.Aufträge;
             auftragsliste.AddRange(neueAuftraege);
 
 
@@ -114,7 +114,7 @@ namespace CMI.Engine.MailTemplate
 
         public IDataBuilder AddValue(string propertyName, object value)
         {
-            ((IDictionary<string, object>) (ExpandoObject) expando)[propertyName] = value;
+            ((IDictionary<string, object>)(ExpandoObject)expando)[propertyName] = value;
             return this;
         }
 
@@ -141,7 +141,7 @@ namespace CMI.Engine.MailTemplate
         {
             var requestClient =
                 CreateRequestClient<FindOrderItemsRequest>(bus, BusConstants.OrderManagerFindOrderItemsRequestQueue);
-            var task = requestClient.GetResponse<FindOrderItemsResponse>(new FindOrderItemsRequest {OrderItemIds = orderItemIds.ToArray()});
+            var task = requestClient.GetResponse<FindOrderItemsResponse>(new FindOrderItemsRequest { OrderItemIds = orderItemIds.ToArray() });
             task.Wait();
             var response = task.Result.Message;
             var auftraege = new List<Auftrag>();
@@ -152,7 +152,7 @@ namespace CMI.Engine.MailTemplate
 
                 auftraege.Add(string.IsNullOrWhiteSpace(orderItem.VeId)
                     ? GetAuftragFormularbestellung(ordering, orderItem)
-                    :  GetAuftragForOrderItemWithVeId(ordering, orderItem));
+                    : GetAuftragForOrderItemWithVeId(ordering, orderItem));
             }
 
             return auftraege;
@@ -172,7 +172,7 @@ namespace CMI.Engine.MailTemplate
         {
             var requestClient =
                 CreateRequestClient<ReadUserInformationRequest>(bus, BusConstants.ReadUserInformationQueue);
-            var task = requestClient.GetResponse<ReadUserInformationResponse>(new ReadUserInformationRequest {UserId = userId});
+            var task = requestClient.GetResponse<ReadUserInformationResponse>(new ReadUserInformationRequest { UserId = userId });
             task.Wait();
             var response = task.Result.Message;
             return Person.FromUser(response?.User);
@@ -187,75 +187,74 @@ namespace CMI.Engine.MailTemplate
         private ElasticArchiveRecord GetElasticArchiveRecord(string archiveRecordId)
         {
             var requestClient = CreateRequestClient<FindArchiveRecordRequest>(bus, BusConstants.IndexManagerFindArchiveRecordMessageQueue);
-            var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest {ArchiveRecordId = archiveRecordId});
+            var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
             task.Wait();
             return task.Result.Message.ElasticArchiveRecord ?? new ElasticArchiveRecord
             {
                 ArchiveRecordId = archiveRecordId,
                 Title = "Record not found in Elastic",
-                CreationPeriod = new ElasticTimePeriod(),
-// Todo DetailData = new { aktenzeichen = "" }
-};
-}
+                CreationPeriod = new ElasticTimePeriod()
+            };
+        }
 
-private Auftrag GetAuftrag(Ordering ordering, OrderItem orderItem)
-{
-return string.IsNullOrWhiteSpace(orderItem.VeId)
-? GetAuftragFormularbestellung(ordering, orderItem)
-: GetAuftragForOrderItemWithVeId(ordering, orderItem);
-}
+        private Auftrag GetAuftrag(Ordering ordering, OrderItem orderItem)
+        {
+            return string.IsNullOrWhiteSpace(orderItem.VeId)
+                ? GetAuftragFormularbestellung(ordering, orderItem)
+                : GetAuftragForOrderItemWithVeId(ordering, orderItem);
+        }
 
-private Auftrag GetAuftragFormularbestellung(Ordering ordering, OrderItem orderItem)
-{
-var x = new BestellformularVe(orderItem);
-var besteller = GetPerson(ordering.UserId);
-var auftrag = new Auftrag(orderItem,
-ordering,
-x,
-x,
-besteller);
-return auftrag;
-}
+        private Auftrag GetAuftragFormularbestellung(Ordering ordering, OrderItem orderItem)
+        {
+            var x = new BestellformularVe(orderItem);
+            var besteller = GetPerson(ordering.UserId);
+            var auftrag = new Auftrag(orderItem,
+                ordering,
+                x,
+                x,
+                besteller);
+            return auftrag;
+        }
 
-private Auftrag GetAuftragForOrderItemWithVeId(Ordering ordering, OrderItem orderItem)
-{
-var bestellterRecord = GetElasticArchiveRecord(orderItem.VeId.ToString());
-ElasticArchiveRecord auszuhebenderRecord = null;
-var besteller = GetPerson(ordering.UserId);
+        private Auftrag GetAuftragForOrderItemWithVeId(Ordering ordering, OrderItem orderItem)
+        {
+            var bestellterRecord = GetElasticArchiveRecord(orderItem.VeId.ToString());
+            ElasticArchiveRecord auszuhebenderRecord = null;
+            var besteller = GetPerson(ordering.UserId);
 
-if (ordering.Type == OrderType.Digitalisierungsauftrag)
-{
-var dossierId = bestellterRecord.GetAuszuhebendeArchiveRecordId();
-if (dossierId != null)
-{
-    auszuhebenderRecord = GetElasticArchiveRecord(dossierId);
-}
-}
-else
-{
-auszuhebenderRecord = bestellterRecord;
-}
+            if (ordering.Type == OrderType.Digitalisierungsauftrag)
+            {
+                var dossierId = bestellterRecord.GetAuszuhebendeArchiveRecordId();
+                if (dossierId != null)
+                {
+                    auszuhebenderRecord = GetElasticArchiveRecord(dossierId);
+                }
+            }
+            else
+            {
+                auszuhebenderRecord = bestellterRecord;
+            }
 
-var auftrag = new Auftrag(orderItem,
-ordering,
-InElasticIndexierteVe.FromElasticArchiveRecord(bestellterRecord),
-InElasticIndexierteVe.FromElasticArchiveRecord(auszuhebenderRecord),
-besteller);
-return auftrag;
-}
+            var auftrag = new Auftrag(orderItem,
+                ordering,
+                InElasticIndexierteVe.FromElasticArchiveRecord(bestellterRecord),
+                InElasticIndexierteVe.FromElasticArchiveRecord(auszuhebenderRecord),
+                besteller);
+            return auftrag;
+        }
 
 
-public static IRequestClient<T1> CreateRequestClient<T1>(IBus busControl, string relativeUri) where T1 : class
-{
-var client = busControl.CreateRequestClient<T1>(new Uri(busControl.Address, relativeUri), TimeSpan.FromSeconds(10));
-return client;
-}
+        public static IRequestClient<T1> CreateRequestClient<T1>(IBus busControl, string relativeUri) where T1 : class
+        {
+            var client = busControl.CreateRequestClient<T1>(new Uri(busControl.Address, relativeUri), TimeSpan.FromSeconds(10));
+            return client;
+        }
 
-private Ordering GetOrdering(int orderingId)
-{
-var client = CreateRequestClient<GetOrderingRequest>(bus, BusConstants.OrderManagerGetOrderingRequestQueue);
-var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest {OrderingId = orderingId}).GetAwaiter().GetResult().Message;
-return result.Ordering;
-}
-}
+        private Ordering GetOrdering(int orderingId)
+        {
+            var client = CreateRequestClient<GetOrderingRequest>(bus, BusConstants.OrderManagerGetOrderingRequestQueue);
+            var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest { OrderingId = orderingId }).GetAwaiter().GetResult().Message;
+            return result.Ordering;
+        }
+    }
 }
