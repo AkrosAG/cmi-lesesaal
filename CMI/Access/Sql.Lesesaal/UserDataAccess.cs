@@ -940,7 +940,7 @@ FROM ApplicationUser ";
                         "Schutzfristverzeichnung, ZugaenglichkeitGemaessBga, " +
                         "FirstName, FamilyName, Organization, EmailAddress, RolePublicClient, AsAccessTokensUser, ZustaendigeStellenUser) " +
                         "VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21)";
-
+                    // ToDO: Felder P7 P11-P13 überarbeiten
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p1", Value = access.UserId, SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p2", Value = DateTime.Now, SqlDbType = SqlDbType.DateTime});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p3", Value = reasonId, SqlDbType = SqlDbType.Int});

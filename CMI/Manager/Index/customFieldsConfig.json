@@ -399,8 +399,9 @@
   {
     "ElementId": "Urheber",
     "ElementName": "Urheber",
-    "SourceType": "Text (max. 4000 Z.",
+    "SourceType": "Text (max. 4000 Z.)",
     "Label": "Urheber",
+    "TargetField": "Urheber",
     "TargetField": "Urheber",
     "IsDefaultField": 0,
     "Type": "string",
