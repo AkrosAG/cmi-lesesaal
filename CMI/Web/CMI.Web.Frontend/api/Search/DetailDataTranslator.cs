@@ -1,5 +1,4 @@
 ﻿using CMI.Access.Sql.Lesesaal;
-using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
 using Nest;
 
