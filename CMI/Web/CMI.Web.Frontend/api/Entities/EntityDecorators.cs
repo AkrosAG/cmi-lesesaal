@@ -255,13 +255,11 @@ namespace CMI.Web.Frontend.api.Entities
                                     {
                                         break;
                                     }
-                                    if (te.Name == "textValues" )
+                                    if (te.Name == "textValues")
                                     {
                                         attributes.Add(field.Label, te.Value.First.ToString());
                                         break;
                                     }
-                                   
-                                   
                                 }
                             }
                         }
