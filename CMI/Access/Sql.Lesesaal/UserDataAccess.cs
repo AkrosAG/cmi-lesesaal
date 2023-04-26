@@ -930,9 +930,7 @@ FROM ApplicationUser ";
                     var bestandString = bestandItem == null ? string.Empty : bestandItem.RefCode + " " + bestandItem.Title;
                     var teilbestandItem = record.ArchiveplanContext.FirstOrDefault(p => p.Level == "Teilbestand");
                     var teilbestandString = teilbestandItem == null ? string.Empty : teilbestandItem.RefCode + " " + teilbestandItem.Title;
-                    string zugaenglichkeitGemaessBga = record.HasCustomProperty("zugänglichkeitGemässBga")
-                        ? record.CustomFields.zugänglichkeitGemässBga
-                        : string.Empty;
+                    string zugaenglichkeitGemaessBga = record.Permission;
                     var asTokens = string.Join(", ", access.AsTokens);
                     var ablieferndeStellen = string.Join(", ", user.AblieferndeStelleList.Select(a => a.Kuerzel));
 
@@ -942,23 +940,23 @@ FROM ApplicationUser ";
                         "Schutzfristverzeichnung, ZugaenglichkeitGemaessBga, " +
                         "FirstName, FamilyName, Organization, EmailAddress, RolePublicClient, AsAccessTokensUser, ZustaendigeStellenUser) " +
                         "VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21)";
-
+                    // ToDO: Felder P7 P11-P13 überarbeiten
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p1", Value = access.UserId, SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p2", Value = DateTime.Now, SqlDbType = SqlDbType.DateTime});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p3", Value = reasonId, SqlDbType = SqlDbType.Int});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p4", Value = ToDb(record.ArchiveRecordId), SqlDbType = SqlDbType.Int});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p5", Value = ToDb(record.ReferenceCode), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p6", Value = ToDb(record.Title), SqlDbType = SqlDbType.NVarChar});
-                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p7", Value = ToDb(record.Aktenzeichen()), SqlDbType = SqlDbType.NVarChar});
+                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p7", Value = ToDb("record.Aktenzeichen()"), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter
                         {ParameterName = "p8", Value = ToDb(record.CreationPeriod.Text), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p9", Value = ToDb(bestandString), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p10", Value = ToDb(teilbestandString), SqlDbType = SqlDbType.NVarChar});
-                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p11", Value = ToDb(record.Ablieferung()), SqlDbType = SqlDbType.NVarChar});
+                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p11", Value = ToDb("record.Ablieferung()"), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter
-                        {ParameterName = "p12", Value = ToDb(record.ZuständigeStelle()), SqlDbType = SqlDbType.NVarChar});
+                        {ParameterName = "p12", Value = ToDb("record.ZuständigeStelle()"), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter
-                        {ParameterName = "p13", Value = ToDb(record.GetSchutzfristenVerzeichnung()), SqlDbType = SqlDbType.NVarChar});
+                        {ParameterName = "p13", Value = ToDb("record.GetSchutzfristenVerzeichnung()"), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter
                         {ParameterName = "p14", Value = ToDb(zugaenglichkeitGemaessBga), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p15", Value = ToDb(user.FirstName), SqlDbType = SqlDbType.NVarChar});

@@ -37,7 +37,8 @@ namespace CMI.Web.Common.Tests.Helpers
             {
                 nameof(OrderingIndexSnapshot.VeId),
                 nameof(OrderingIndexSnapshot.Signatur),
-                nameof(OrderingIndexSnapshot.ZugaenglichkeitGemaessBga)
+                nameof(OrderingIndexSnapshot.ZugaenglichkeitGemaessBga),
+                nameof(OrderingIndexSnapshot.Schutzfristverzeichnung)
             };
 
             // act

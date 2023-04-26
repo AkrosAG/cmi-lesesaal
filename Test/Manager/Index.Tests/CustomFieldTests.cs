@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
+using System.Linq;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Manager.Index.Config;
@@ -60,34 +61,34 @@ namespace CMI.Manager.Index.Tests
             indexmanager.TransferDataFromPropertyBag(archiveRecord, dataElements);
 
             // Assert
-            Assert.IsNotNull(archiveRecord.CustomFields, "CustomField Property should be filled correctly");
+            Assert.IsNotNull(archiveRecord.DetailData, "CustomField Property should be filled correctly");
 
             Assert.Throws<RuntimeBinderException>(() =>
                 {
-                    var test = archiveRecord.CustomFields.Title;
+                    var test = archiveRecord.DetailData.First(d => d.ElementName == "Title");
                 },
                 "Title is not a custom field, so it should not be in the dynamic property");
 
             Assert.DoesNotThrow(() =>
                 {
-                    var test = archiveRecord.CustomFields.ZugänglichkeitGemässBga;
+                    var test = archiveRecord.DetailData.First(d => d.ElementName == "ZugänglichkeitGemässBga");
                 },
                 "ZugänglichkeitGemässBga is a custom field (with special chars), and so it should not throw on access");
 
             Assert.Throws<RuntimeBinderException>(() =>
                 {
-                    var testYear = archiveRecord.CustomFields.DummyElasticdatewithyear;
+                    var testYear = archiveRecord.DetailData.First(d => d.ElementName == "DummyElasticdatewithyear");
                 },
                 "DummyElasticDateWithYear is not available, as there is no data for it.");
 
-            Assert.IsNotNull(archiveRecord.CustomFields.Form);
-            Assert.AreEqual("Fotografie", archiveRecord.CustomFields.Form);
+            Assert.IsTrue(archiveRecord.DetailData.Any(d => d.ElementName == "Form"));
+            Assert.AreEqual("Fotografie", archiveRecord.DetailData.Where(d => d.ElementName == "Form"));
 
-            Assert.IsAssignableFrom<List<ElasticHyperlink>>(archiveRecord.CustomFields.DigitaleVersion);
+            Assert.IsAssignableFrom<List<ElasticHyperlink>>(archiveRecord.DetailData.Where(d => d.ElementName == "DigitaleVersion"));
             Assert.AreEqual("https://commons.wikimedia.org/wiki/File:Flugzeug_Grandjean_vor_dem_Aufstieg_-_CH-BAR_-_3236769.tif",
-                archiveRecord.CustomFields.DigitaleVersion[0].Url);
+                archiveRecord.DetailData.First(d => d.ElementName == "DigitaleVersion"));
             Assert.AreEqual("E27#1000/721#14093#5489* (Wikimedia Commons)",
-                archiveRecord.CustomFields.DigitaleVersion[0].Text);
+                archiveRecord.DetailData.First(d => d.ElementName == "DigitaleVersion").HyperlinkValue.Url);
         }
 
         [Test]
@@ -124,22 +125,22 @@ namespace CMI.Manager.Index.Tests
             Assert.IsNotNull(record);
 
             //  Beim deserialisieren via Elastic hat das dynamic Property ein ExpandoObject
-            Assert.IsAssignableFrom<ExpandoObject>(record.CustomFields);
+            Assert.IsAssignableFrom<ExpandoObject>(record.DetailData);
 
             // - nicht weiter schlimm, wir können es weiterhin als dynamic ansprechen
             Assert.DoesNotThrow(() =>
             {
-                var test = record.CustomFields.Form;
+                var test = record.DetailData.First(d => d.ElementName =="Form");
                 Console.WriteLine(test);
             });
 
             // - und die properties auslesen
-            var form = record.CustomFields.Form;
+            var form = record.DetailData.First(d => d.ElementName == "Form"); ;
             Assert.IsNotNull(form);
             Assert.AreEqual("Fotografie", form);
 
-            Assert.IsAssignableFrom<List<dynamic>>(record.CustomFields.DigitaleVersion);
-            var hyperlink = record.CustomFields.DigitaleVersion[0];
+            Assert.IsAssignableFrom<List<dynamic>>(record.DetailData.First(d => d.ElementName == "DigitaleVersion"));
+            var hyperlink = record.DetailData.First(d => d.ElementName == "DigitaleVersion").HyperlinkValue;
 
             Assert.AreEqual("https://commons.wikimedia.org/wiki/File:Flugzeug_Grandjean_vor_dem_Aufstieg_-_CH-BAR_-_3236769.tif",
                 hyperlink.Url);

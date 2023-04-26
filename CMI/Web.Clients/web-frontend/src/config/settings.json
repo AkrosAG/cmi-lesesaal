@@ -213,12 +213,6 @@
 			},
 			{
 				"type": "Text",
-				"key": "withinInfo",
-				"displayName": "Darin",
-				"translatorType": "StandardTranslator"
-			},
-			{
-				"type": "Text",
 				"key": "referenceCode",
 				"displayName": "Signatur",
 				"translatorType": "StandardTranslator"
@@ -230,33 +224,45 @@
 				"translatorType": "StandardTranslator"
 			},
 			{
-				"type": "Dropdown",
-				"key": "customFields.land",
-				"displayName": "Land",
+				"type": "Text",
+				"key": "detailData.verwaltungssignatur",
+				"displayName": "Verwaltungssignatur",
 				"translatorType": "StandardTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "customFields.zusatzkomponenteZac1",
-				"displayName": "Zusatzkomponente",
+				"key": "withinInfo",
+				"displayName": "Form und Inhalt",
 				"translatorType": "StandardTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "customFields.aktenzeichen",
-				"displayName": "Aktenzeichen",
-				"translatorType": "StandardTranslator"
-			},
-			{
-				"type": "Text",
-				"key": "customFields.früheresAktenzeichen",
-				"displayName": "Früheres Aktenzeichen",
+				"key": "detailData.ueberlieferungsform",
+				"displayName": "Überlieferungsform",
 				"translatorType": "StandardTranslator"
 			},
 			{
 				"type": "Dropdown",
-				"key": "customFields.zugänglichkeitGemässBga",
-				"displayName": "Zugänglichkeit gemäss BGA",
+				"key": "detailData.sprachen",
+				"displayName": "Sprachen",
+				"translatorType": "StandardTranslator"
+			},
+			{
+				"type": "Dropdown",
+				"key": "detailData.archivalienart",
+				"displayName": "Archivalienart",
+				"translatorType": "StandardTranslator"
+			},
+			{
+				"type": "Text",
+				"key": "detailData.benutzbarkeit",
+				"displayName": "Benutzbarkeit",
+				"translatorType": "StandardTranslator"
+			},
+			{
+				"type": "Text",
+				"key": "descriptors.Name",
+				"displayName": "Personenregister",
 				"translatorType": "StandardTranslator"
 			}
 		],

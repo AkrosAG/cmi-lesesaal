@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using CMI.Access.Common;
 using CMI.Contract.Common;
@@ -130,6 +129,7 @@ namespace CMI.Manager.Index
                     Year = archiveRecord.Metadata.Usage.ProtectionEndDate.Value.Year
                 }
                 : null;
+            
             elasticArchiveRecord.ProtectionCategory = archiveRecord.Metadata.Usage.ProtectionCategory;
             elasticArchiveRecord.ProtectionDuration = archiveRecord.Metadata.Usage.ProtectionDuration;
             elasticArchiveRecord.Accessibility = archiveRecord.Metadata.Usage.Accessibility;
@@ -154,15 +154,11 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.PreviousArchiveRecordId = archiveRecord.Display.PreviousArchiveRecordId;
             elasticArchiveRecord.NextArchiveRecordId = archiveRecord.Display.NextArchiveRecordId;
             elasticArchiveRecord.ParentArchiveRecordId = archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId;
-            elasticArchiveRecord.ExternalDisplayTemplateName = archiveRecord.Display.ExternalDisplayTemplateName;
-            elasticArchiveRecord.InternalDisplayTemplateName = archiveRecord.Display.InternalDisplayTemplateName;
+            elasticArchiveRecord.DisplayTemplateName = archiveRecord.Display.ExternalDisplayTemplateName;
             elasticArchiveRecord.LastSyncDate = DateTime.Now;
-            elasticArchiveRecord.AggregationFields = new ElasticAggregationFields
+            elasticArchiveRecord.Facetten = new ElasticFacetten
             {
-                Bestand = archiveRecord.Display.ArchiveplanContext
-                    .LastOrDefault(a => a.Level.Equals(levelIdentifier, StringComparison.InvariantCultureIgnoreCase))?.Title,
-                Ordnungskomponenten = archiveRecord.Metadata.AggregationFields.FirstOrDefault(a => a.AggregationName == "FondsOverview")?.Values,
-                HasPrimaryData = !string.IsNullOrEmpty(archiveRecord.Metadata.PrimaryDataLink) || ContainsCustomFieldDigitaleVersion(elasticArchiveRecord.CustomFields)
+                // ToDo: Facetten create in IndexCustomScript.cs
             };
             elasticArchiveRecord.References = archiveRecord.Metadata.References.Select(s => new ElasticReference
                 {
@@ -197,7 +193,7 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.PrimaryData = archiveRecord.ElasticPrimaryData != null && archiveRecord.ElasticPrimaryData.Any()
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
-
+            
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
             
             // Add the creation period aggregation records
@@ -217,25 +213,23 @@ namespace CMI.Manager.Index
         {
             if (elasticArchiveRecord.CreationPeriod != null && elasticArchiveRecord.CreationPeriod.Years.Any())
             {
-                elasticArchiveRecord.AggregationFields.CreationPeriodYears001 =
+                elasticArchiveRecord.Facetten.CreationPeriodYears001 =
                     elasticArchiveRecord.CreationPeriod.Years;
-                elasticArchiveRecord.AggregationFields.CreationPeriodYears005 =
+                elasticArchiveRecord.Facetten.CreationPeriodYears005 =
                     elasticArchiveRecord.CreationPeriod.Years.Select(year => (int) Math.Floor(year / 5m) * 5).Distinct().ToList();
-                elasticArchiveRecord.AggregationFields.CreationPeriodYears010 =
+                elasticArchiveRecord.Facetten.CreationPeriodYears010 =
                     elasticArchiveRecord.CreationPeriod.Years.Select(year => (int) Math.Floor(year / 10m) * 10).Distinct().ToList();
-                elasticArchiveRecord.AggregationFields.CreationPeriodYears025 =
+                elasticArchiveRecord.Facetten.CreationPeriodYears025 =
                     elasticArchiveRecord.CreationPeriod.Years.Select(year => (int) Math.Floor(year / 25m) * 25).Distinct().ToList();
-                elasticArchiveRecord.AggregationFields.CreationPeriodYears100 =
+                elasticArchiveRecord.Facetten.CreationPeriodYears100 =
                     elasticArchiveRecord.CreationPeriod.Years.Select(year => (int) Math.Floor(year / 100m) * 100).Distinct().ToList();
             }
         }
 
         public void TransferDataFromPropertyBag(ElasticArchiveRecord elasticArchiveRecord, List<DataElement> detailData)
         {
-            var customFields = new ExpandoObject() as IDictionary<string, object>;
-
-            var defaultProperties = elasticArchiveRecord.GetType().GetProperties();
-
+            elasticArchiveRecord.DetailData = new List<ElasticDetailData>();
+           var defaultProperties = elasticArchiveRecord.GetType().GetProperties();
             foreach (var fieldConfiguration in fieldsConfiguration.Fields)
             {
                 try
@@ -248,7 +242,7 @@ namespace CMI.Manager.Index
                         value = "\u200A";   // Hair space
                     }
 
-                    if (value != null)
+                    if (value != null && !(fieldConfiguration.Type == ElasticFieldTypes.TypeString && string.IsNullOrEmpty(value.ToString())))
                     {
                         if (fieldConfiguration.IsDefaultField)
                         {
@@ -261,7 +255,17 @@ namespace CMI.Manager.Index
                         }
                         else
                         {
-                            customFields.Add(fieldConfiguration.TargetField, value);
+                            elasticArchiveRecord.DetailData.Add(ConvertToDetailData(detailData, fieldConfiguration));
+                            if (fieldConfiguration.CopyTo_fieldKeywordValues)
+                            {
+                                elasticArchiveRecord.All_FieldKeywordValues += $"{value} ";
+                            }
+
+                            if (fieldConfiguration.CopyTo_fieldTextValues)
+                            {
+                                elasticArchiveRecord.All_FieldTextValues += $"{value} ";
+                            }
+
                         }
                     }
                 }
@@ -270,9 +274,61 @@ namespace CMI.Manager.Index
                     Log.Error(ex.Message);
                 }
             }
+        }
 
-            // Add the customer fields to the "main" record
-            elasticArchiveRecord.CustomFields = customFields;
+        private static ElasticDetailData ConvertToDetailData(List<DataElement> detailData, FieldConfiguration fieldConfiguration)
+        {
+            var elasticDetailData = new ElasticDetailData();
+            elasticDetailData.ElementName = fieldConfiguration.ElementName;
+            elasticDetailData.TypeName = fieldConfiguration.Type;
+
+            switch (fieldConfiguration.Type)
+            {
+                case ElasticFieldTypes.TypeString:
+                    var textExtractor = new TextExtractor();
+                    elasticDetailData.TextValues = textExtractor.GetListValues(detailData, fieldConfiguration.ElementName);
+                    break;
+                case ElasticFieldTypes.TypeTimePeriod:
+                    var timePeriodExtractor = new TimePeriodExtractor();
+                    elasticDetailData.DateRangeValues = timePeriodExtractor.GetListValues(detailData, fieldConfiguration.ElementName);
+                    break;
+                case ElasticFieldTypes.TypeBase64:
+                    var elasticBase64Extractor = new Base64Extractor();
+                    elasticDetailData.BlobValues = elasticBase64Extractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    break;
+                case ElasticFieldTypes.TypeInt + "?":
+                case ElasticFieldTypes.TypeInt:
+                    var intExtractor = new IntExtractor();
+                    var intValue = intExtractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    // ReSharper disable once PossibleInvalidOperationException
+                    elasticDetailData.Int64Values = intValue.Value;
+                    break;
+                case ElasticFieldTypes.TypeBool + "?":
+                case ElasticFieldTypes.TypeBool:
+                    var boolExtractor = new BoolExtractor();
+                    var boolValue = boolExtractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    // ReSharper disable once PossibleInvalidOperationException
+                    elasticDetailData.BoolValue = boolValue.Value;
+                    break;
+                case ElasticFieldTypes.TypeFloat + "?":
+                case ElasticFieldTypes.TypeFloat:
+                    var floatExtractor = new FloatExtractor();
+                    var floatValue = floatExtractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    elasticDetailData.FloatValue = floatValue;
+                    break;
+                case ElasticFieldTypes.TypeHyperlink:
+                    var hyperlinkExtractor = new HyperlinkExtractor();
+                    elasticDetailData.HyperlinkValue = hyperlinkExtractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    break;
+                case ElasticFieldTypes.TypeEntityLink:
+                    var entityLinkExtractor = new EntityLinkExtractor();
+                    elasticDetailData.EntityLinkValue = entityLinkExtractor.GetValue(detailData, fieldConfiguration.ElementName);
+                    break;
+                default:
+                    throw new NotImplementedException($"Wrong ElasticFieldTypes: {fieldConfiguration.Type} ");
+            }
+
+            return elasticDetailData;
         }
 
         private object GetValue(List<DataElement> detailData, FieldConfiguration fieldConfiguration)
@@ -339,13 +395,13 @@ namespace CMI.Manager.Index
             // that stiches the data together in one field.
             if (detailData.First().ElementType == DataElementElementType.memo)
             {
-                retVal = extractor.GetValue(detailData, fieldConfiguration.ElementId);
+                retVal = extractor.GetValue(detailData, fieldConfiguration.ElementName);
             }
             else
             {
                 retVal = fieldConfiguration.IsRepeatable
-                    ? (object) extractor.GetListValues(detailData, fieldConfiguration.ElementId)
-                    : extractor.GetValue(detailData, fieldConfiguration.ElementId);
+                    ? (object) extractor.GetListValues(detailData, fieldConfiguration.ElementName)
+                    : extractor.GetValue(detailData, fieldConfiguration.ElementName);
             }
 
             if (fieldConfiguration.IsDefaultField && retVal is List<string>)

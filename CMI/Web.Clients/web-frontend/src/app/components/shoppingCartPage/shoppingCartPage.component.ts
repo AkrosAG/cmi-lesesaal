@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
-import {
-	Entity,
-	OrderItem,
+import {OrderItem, Entity,
 	SearchField, SelfMadeOrderItem, TranslationService, UiService,
 	Utilities as _util
 } from '@cmi/lesesaal-web-core';

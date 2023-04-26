@@ -74,7 +74,7 @@ namespace CMI.Engine.MailTemplate
         /// <param name="sprachCode">Z.B. de</param>
         public IDataBuilder AddSprache(string sprachCode)
         {
-            expando.Sprachen = new[] {new Sprache(sprachCode)};
+            expando.Sprachen = new[] { new Sprache(sprachCode) };
             return this;
         }
 
@@ -82,12 +82,12 @@ namespace CMI.Engine.MailTemplate
         {
             var neueAuftraege = GetAuftraege(orderItemIds);
 
-            if (!((IDictionary<string, object>) expando).ContainsKey("Aufträge"))
+            if (!((IDictionary<string, object>)expando).ContainsKey("Aufträge"))
             {
                 expando.Aufträge = new List<Auftrag>();
             }
 
-            var auftragsliste = (List<Auftrag>) expando.Aufträge;
+            var auftragsliste = (List<Auftrag>)expando.Aufträge;
             auftragsliste.AddRange(neueAuftraege);
 
 
@@ -114,7 +114,7 @@ namespace CMI.Engine.MailTemplate
 
         public IDataBuilder AddValue(string propertyName, object value)
         {
-            ((IDictionary<string, object>) (ExpandoObject) expando)[propertyName] = value;
+            ((IDictionary<string, object>)(ExpandoObject)expando)[propertyName] = value;
             return this;
         }
 
@@ -141,7 +141,7 @@ namespace CMI.Engine.MailTemplate
         {
             var requestClient =
                 CreateRequestClient<FindOrderItemsRequest>(bus, BusConstants.OrderManagerFindOrderItemsRequestQueue);
-            var task = requestClient.GetResponse<FindOrderItemsResponse>(new FindOrderItemsRequest {OrderItemIds = orderItemIds.ToArray()});
+            var task = requestClient.GetResponse<FindOrderItemsResponse>(new FindOrderItemsRequest { OrderItemIds = orderItemIds.ToArray() });
             task.Wait();
             var response = task.Result.Message;
             var auftraege = new List<Auftrag>();
@@ -152,7 +152,7 @@ namespace CMI.Engine.MailTemplate
 
                 auftraege.Add(string.IsNullOrWhiteSpace(orderItem.VeId)
                     ? GetAuftragFormularbestellung(ordering, orderItem)
-                    :  GetAuftragForOrderItemWithVeId(ordering, orderItem));
+                    : GetAuftragForOrderItemWithVeId(ordering, orderItem));
             }
 
             return auftraege;
@@ -172,7 +172,7 @@ namespace CMI.Engine.MailTemplate
         {
             var requestClient =
                 CreateRequestClient<ReadUserInformationRequest>(bus, BusConstants.ReadUserInformationQueue);
-            var task = requestClient.GetResponse<ReadUserInformationResponse>(new ReadUserInformationRequest {UserId = userId});
+            var task = requestClient.GetResponse<ReadUserInformationResponse>(new ReadUserInformationRequest { UserId = userId });
             task.Wait();
             var response = task.Result.Message;
             return Person.FromUser(response?.User);
@@ -187,14 +187,13 @@ namespace CMI.Engine.MailTemplate
         private ElasticArchiveRecord GetElasticArchiveRecord(string archiveRecordId)
         {
             var requestClient = CreateRequestClient<FindArchiveRecordRequest>(bus, BusConstants.IndexManagerFindArchiveRecordMessageQueue);
-            var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest {ArchiveRecordId = archiveRecordId});
+            var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
             task.Wait();
             return task.Result.Message.ElasticArchiveRecord ?? new ElasticArchiveRecord
             {
                 ArchiveRecordId = archiveRecordId,
                 Title = "Record not found in Elastic",
-                CreationPeriod = new ElasticTimePeriod(),
-                CustomFields = new { aktenzeichen = "" }
+                CreationPeriod = new ElasticTimePeriod()
             };
         }
 
@@ -254,7 +253,7 @@ namespace CMI.Engine.MailTemplate
         private Ordering GetOrdering(int orderingId)
         {
             var client = CreateRequestClient<GetOrderingRequest>(bus, BusConstants.OrderManagerGetOrderingRequestQueue);
-            var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest {OrderingId = orderingId}).GetAwaiter().GetResult().Message;
+            var result = client.GetResponse<GetOrderingResponse>(new GetOrderingRequest { OrderingId = orderingId }).GetAwaiter().GetResult().Message;
             return result.Ordering;
         }
     }

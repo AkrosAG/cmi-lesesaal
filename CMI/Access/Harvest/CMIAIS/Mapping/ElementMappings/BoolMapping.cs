@@ -21,8 +21,7 @@ public class BoolMapping : BaseMapping
         var element = new DataElement
         {
             ElementType = DataElementElementType.boolean,
-            ElementName = name,
-            ElementId = name,
+            ElementName = name
         };
 
         var boolVal = (bool?) value;
