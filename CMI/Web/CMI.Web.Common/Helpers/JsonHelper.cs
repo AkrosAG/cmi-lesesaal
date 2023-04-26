@@ -156,7 +156,7 @@ namespace CMI.Web.Common.Helpers
         }
 
 
-        public static JArray GetTokenValue(JToken parent, string key, bool ignoreCase = false)
+        public static JArray GetTokenValues(JToken parent, string key, bool ignoreCase = false)
         {
             if (parent == null)
             {
