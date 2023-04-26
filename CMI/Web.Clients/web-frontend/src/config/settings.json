@@ -215,47 +215,47 @@
 				"type": "Text",
 				"key": "referenceCode",
 				"displayName": "Signatur",
-				"translatorType": "StandardTranslator"
+				"translatorType": "KeywordTranslator"
 			},
 			{
 				"type": "Text",
 				"key": "formerReferenceCode",
 				"displayName": "Frühere Signaturen",
-				"translatorType": "StandardTranslator"
+				"translatorType": "KeywordTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "detailData.verwaltungssignatur",
+				"key": "verwaltungssignatur",
 				"displayName": "Verwaltungssignatur",
-				"translatorType": "StandardTranslator"
+				"translatorType": "DetailDataTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "withinInfo",
+				"key": "Contains",
 				"displayName": "Form und Inhalt",
 				"translatorType": "StandardTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "detailData.ueberlieferungsform",
+				"key": "ueberlieferungsform",
 				"displayName": "Überlieferungsform",
-				"translatorType": "StandardTranslator"
-			},
-			{
-				"type": "Dropdown",
-				"key": "detailData.sprachen",
-				"displayName": "Sprachen",
-				"translatorType": "StandardTranslator"
-			},
-			{
-				"type": "Dropdown",
-				"key": "detailData.archivalienart",
-				"displayName": "Archivalienart",
-				"translatorType": "StandardTranslator"
+				"translatorType": "DetailDataTranslator"
 			},
 			{
 				"type": "Text",
-				"key": "detailData.benutzbarkeit",
+				"key": "Sprache",
+				"displayName": "Sprachen",
+				"translatorType": "DetailDataTranslator"
+			},
+			{
+				"type": "Text",
+				"key": "archivalienart",
+				"displayName": "Archivalienart",
+				"translatorType": "DetailDataTranslator"
+			},
+			{
+				"type": "Dropdown",
+				"key": "permission",
 				"displayName": "Benutzbarkeit",
 				"translatorType": "StandardTranslator"
 			},
