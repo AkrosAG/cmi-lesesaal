@@ -1,10 +1,5 @@
 ﻿using CMI.Access.Sql.Lesesaal;
-using CMI.Utilities.Common.Helpers;
 using Nest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CMI.Web.Frontend.api.Search
 {
@@ -29,7 +24,7 @@ namespace CMI.Web.Frontend.api.Search
                         Value = field.Value, // .Escape("formerReferenceCode")
                         Boost = 1.0,
                         CaseInsensitive = false,
-                        Field = "referenceCode"
+                        Field = field.Key
                     }
                 }
             };
