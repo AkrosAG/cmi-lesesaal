@@ -306,7 +306,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "withinInfo",
+              "DbFieldName": "contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -379,9 +379,9 @@
               }
             },
             {
-              "DbFieldName": "ProtectionEndDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldNameText": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schutzfrist",
@@ -389,9 +389,9 @@
               }
             },
             {
-              "DbFieldName": "ProtectionEndDate",
+              "DbFieldName": "protectionEndDate",
               "DbType": "Date",
-              "ElasticType": "ProtectionEndDate",
+              "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
