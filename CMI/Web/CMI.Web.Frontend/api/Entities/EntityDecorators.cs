@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
@@ -11,7 +12,9 @@ using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
 using Nest;
 using Newtonsoft.Json.Linq;
+using NJsonSchema.Infrastructure;
 using Serilog;
+using static Nest.JoinField;
 
 namespace CMI.Web.Frontend.api.Entities
 {
@@ -22,9 +25,9 @@ namespace CMI.Web.Frontend.api.Entities
         private const string childrenKey = "children";
         private const string childrenPagingKey = "childrenPaging";
 
-        // Custom fields
-        private const string customFieldKey = "customFields";
-        private const string customFieldPrefix = customFieldKey + ".";
+        // detailData fields
+        private const string detailDataKey = "detailData";
+        private const string detailDataPrefix = detailDataKey + ".";
 
         private readonly IElasticService elasticService;
         private readonly IElasticSettings elasticSettings;
@@ -137,8 +140,8 @@ namespace CMI.Web.Frontend.api.Entities
 
         public EntityResult<T> GetChildren(T entity, int setDepth, UserAccess access, Paging paging)
         {
-            paging ??= new Paging {OrderBy = "treeSequence", SortOrder = "Ascending"};
-            
+            paging ??= new Paging { OrderBy = "treeSequence", SortOrder = "Ascending" };
+
             var result = new EntityResult<T>
             {
                 Items = new List<Entity<T>>(),
@@ -174,7 +177,7 @@ namespace CMI.Web.Frontend.api.Entities
             };
 
             query.SearchParameters.Paging = paging;
-            query.SearchParameters.Options = new SearchOptions {EnableAggregations = false, EnableExplanations = false, EnableHighlighting = false};
+            query.SearchParameters.Options = new SearchOptions { EnableAggregations = false, EnableExplanations = false, EnableHighlighting = false };
 
             var queryResult = elasticService.RunQuery<T>(query, access);
             if (queryResult.Entries != null)
@@ -205,7 +208,7 @@ namespace CMI.Web.Frontend.api.Entities
             var type = modelData.GetEntityType(entity);
             if (type == null)
             {
-                Log.Information($"No type found for entiy level {entity?.Level} and external template {entity.ExternalDisplayTemplateName}");
+                Log.Information($"No type found for entiy level {entity?.Level} and external template {entity.DisplayTemplateName}");
                 return null;
             }
 
@@ -213,7 +216,7 @@ namespace CMI.Web.Frontend.api.Entities
 
             JObject metadata = null;
             var jsonEntity = JObject.FromObject(entity);
-            var customFields = JsonHelper.GetTokenValue<JObject>(jsonEntity, customFieldKey, true) ?? new JObject();
+            var detailDatas = JsonHelper.GetTokenValues(jsonEntity, detailDataKey, true) ?? new JArray();
 
             var categories = type.MetaCategories ?? new List<ModelTypeMetaCategory>();
 
@@ -223,25 +226,44 @@ namespace CMI.Web.Frontend.api.Entities
 
                 // Nur wenn die Sektion (category) Felder hat und wir mindestens ein öffentliches Feld haben, oder der Benutzer ein BAR Benutzer ist, gehen wir überhaupt weiter.
                 // (Fall abfangen, dass eine Kategorie nur interne Felder hat
-                if (category?.Fields != null && (category.Fields.Any(f => f.Visibility == (int) DataElementVisibility.@public) ||
+                if (category?.Fields != null && (category.Fields.Any(f => f.Visibility == (int)DataElementVisibility.@public) ||
                                                  access.RolePublicClient == AccessRoles.RoleBAR))
                 {
                     foreach (var field in category.Fields)
                     {
                         // Interne Felder sind nur für BAR Benutzer sichtbar
-                        if (field.Visibility == (int) DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleBAR)
+                        if (field.Visibility == (int)DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleBAR)
                         {
                             continue;
                         }
 
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
-                        if (name.StartsWith(customFieldPrefix, StringComparison.OrdinalIgnoreCase))
+
+
+
+                        if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
-                            var subKey = field.Key.Substring(customFieldPrefix.Length);
-                            var subName = name.Substring(customFieldPrefix.Length);
-                            name = subName.ToLowerCamelCase();
-                            token = customFields.GetTokenByKey(subName, true) ?? customFields.GetTokenByKey(subKey, true);
+                            var subName = name.Substring(detailDataPrefix.Length);
+
+                            foreach (var ch in detailDatas.Children())
+                            {
+                                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
+                                foreach (JProperty te in toke)
+                                {
+                                    if (te.Name == "elementName" && te.Value.ToString().ToUpper() != subName.ToUpper())
+                                    {
+                                        break;
+                                    }
+                                    if (te.Name == "textValues")
+                                    {
+                                        attributes.Add(field.Label, te.Value.First.ToString());
+                                        break;
+                                    }
+
+
+                                }
+                            }
                         }
                         else
                         {

@@ -11,7 +11,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DisplayName",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -35,7 +35,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Bezeichnung",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -46,7 +46,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bemerkungen",
+              "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -72,7 +72,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Kuerzel",
+              "DbFieldName": "DetailData.Kuerzel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -83,7 +83,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezeichnung",
+              "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -94,7 +94,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Erlaeuterung",
+              "DbFieldName": "DetailData.Erlaeuterung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -104,7 +104,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.InterneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -161,7 +161,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verwaltungssignatur",
+              "DbFieldName": "DetailData.Verwaltungssignatur",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -171,7 +171,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PID",
+              "DbFieldName": "DetailData.PID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -181,7 +181,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -212,7 +212,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezugszeitraum",
+              "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -223,7 +223,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.BemerkungEntstehungszeitraum",
+              "DbFieldName": "DetailData.BemerkungEntstehungszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -234,7 +234,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.LinkZuDigitalisat",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -245,7 +245,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.LinkZuPrimaerdaten",
+              "DbFieldName": "DetailData.LinkZuPrimaerdaten",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -255,7 +255,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.URL",
+              "DbFieldName": "DetailData.URL",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -274,7 +274,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Provenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -285,7 +285,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bestandsgeschichte",
+              "DbFieldName": "DetailData.archivalHistory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -306,7 +306,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.FormInhalt",
+              "DbFieldName": "contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -317,18 +317,18 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Ueberlieferungsform",
+              "DbFieldName": "DetailData.Ueberlieferungsform",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsformen",
+                "de": "Überlieferungsform",
                 "en": "Increases",
                 "fr": "Accroissements"
               }
             },
             {
-              "DbFieldName": "CustomFields.BewertungKassation",
+              "DbFieldName": "DetailData.BewertungKassation",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -339,14 +339,13 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.OrdnungKlassifikation",
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ordnung und Klassifikation",
-                "en": "Order and classification",
-                "fr": "Mode de classement"
+                "en": "Order and classification"
               }
             }
           ],
@@ -355,23 +354,21 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use",
-            "fr": "Conditions d'accès et d'utilisation"
+            "en": "Conditions of access and use"
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Zugangsbestimmungen",
+              "DbFieldName": "accessibility",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations",
-                "fr": "Conditions d'accès"
+                "en": "Access regulations"
               }
             },
             {
-              "DbFieldName": "CustomFields.BasisdatumSchutzfrist",
+              "DbFieldName": "ProtectionBaseDate",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -382,7 +379,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Schutzfrist",
+              "DbFieldNameText": "protectionCategory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -392,29 +389,27 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.AblaufSchutzfrist",
+              "DbFieldName": "protectionEndDate",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
-                "en": "Procedure closure-period",
-                "fr": "Expiration du délai de protection"
+                "en": "Procedure closure-period"
               }
             },
             {
-              "DbFieldName": "CustomFields.Verfuegbarkeit",
+              "DbFieldName": "DetailData.Verfuegbarkeit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verfügbarkeit",
-                "en": "Verfügbarkeit",
-                "fr": "Évaluation, tris et éliminations, sort final"
+                "en": "Verfügbarkeit"
               }
             },
             {
-              "DbFieldName": "CustomFields.Benutzbarkeit",
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -424,7 +419,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Lizenz",
+              "DbFieldName": "License",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -434,7 +429,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Reproduktionsbestimmungen",
+              "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -445,18 +440,18 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Lang",
+                "en": "Langunages",
                 "fr": "Instruments de recherche"
               }
             },
             {
-              "DbFieldName": "CustomFields.Schriften",
+              "DbFieldName": "DetailData.Schriften",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -466,7 +461,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PhysischeBeschaffenheit",
+              "DbFieldName": "DetailData.PhysischeBeschaffenheit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -477,7 +472,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Findmittel",
+              "DbFieldName": "DetailData.Findmittel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -498,7 +493,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.AufbewahrungsortOriginale",
+              "DbFieldName": "DetailData.AufbewahrungsortOriginale",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -509,7 +504,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.KopienReproduktionen",
+              "DbFieldName": "DetailData.KopienReproduktionen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -520,7 +515,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.VerwandtesMaterial",
+              "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -531,7 +526,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Veroeffentlichungen",
+              "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -552,7 +547,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.interneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -573,7 +568,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Standort",
+              "DbFieldName": "DetailData.Standort",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -584,7 +579,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.BemerkungStandort",
+              "DbFieldName": "DetailData.BemerkungStandort",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -595,7 +590,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Umfang",
+              "DbFieldName": "DetailData.Umfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -615,7 +610,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Registereinträge.Registertyp",
+              "DbFieldName": "DetailData.Registereinträge.Registertyp",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -625,7 +620,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Bezeichnung",
+              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -635,7 +630,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.GND-ID",
+              "DbFieldName": "DetailData.Registereinträge.GND-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -645,7 +640,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Externe-ID",
+              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -664,7 +659,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Dateien.Art",
+              "DbFieldName": "DetailData.Dateien.Art",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -674,7 +669,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Titel",
+              "DbFieldName": "DetailData.Dateien.Titel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -684,7 +679,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Bemerkung",
+              "DbFieldName": "DetailData.Dateien.Bemerkung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -694,7 +689,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Typ",
+              "DbFieldName": "DetailData.Dateien.Typ",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -751,7 +746,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verwaltungssignatur",
+              "DbFieldName": "DetailData.Verwaltungssignatur",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -761,17 +756,17 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PID",
+              "DbFieldName": "DetailData.PID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Verwaltungssignatur",
-                "en": "Distortion nw"
+                "de": "PID",
+                "en": "PID"
               }
             },
             {
-              "DbFieldName": "Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -797,12 +792,11 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "en": "Creation period",
-                "fr": "Date de création"
+                "en": "Creation period"
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezugszeitraum",
+              "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -813,7 +807,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.BemerkungDatierung",
+              "DbFieldName": "DetailData.BemerkungDatierung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -824,7 +818,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.LinkZuDigitalisat",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -835,7 +829,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.LinkAufDigitalesOriginal",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -845,7 +839,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.URL",
+              "DbFieldName": "DetailData.URL",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -864,7 +858,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.BemerkungProvenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -875,7 +869,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bestandsgeschichte",
+              "DbFieldName": "DetailData.archivalHistory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -896,18 +890,17 @@
           },
           "Fields": [
             {
-              "DbFieldName": "WithinInfo",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Form and content"
               }
             },
             {
-              "DbFieldName": "CustomFields.Ueberlieferungsform",
+              "DbFieldName": "DetailData.Ueberlieferungsform",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -928,18 +921,17 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Zugangsbestimmungen",
+              "DbFieldName": "accessibility",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations",
-                "fr": "Conditions d'accès"
+                "en": "Access regulations"
               }
             },
             {
-              "DbFieldName": "CustomFields.Benutzbarkeit",
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -949,7 +941,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Lizenz",
+              "DbFieldName": "License",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -959,7 +951,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Reproduktionsbestimmungen",
+              "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -970,7 +962,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Sprache",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -980,7 +972,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Schrift",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -990,7 +982,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PhysischeBeschaffenheit",
+              "DbFieldName": "DetailData.PhysischeBeschaffenheit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1001,7 +993,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Findmittel",
+              "DbFieldName": "DetailData.Findmittel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1022,7 +1014,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.AufbewahrungsortOriginale",
+              "DbFieldName": "DetailData.AufbewahrungsortOriginale",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1033,7 +1025,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.KopienReproduktionen",
+              "DbFieldName": "DetailData.KopienReproduktionen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1044,7 +1036,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.VerwandtesMaterial",
+              "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1055,7 +1047,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Veroeffentlichungen",
+              "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1076,7 +1068,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.InterneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1097,7 +1089,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Standort",
+              "DbFieldName": "DetailData.Standort",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1108,7 +1100,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.StandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1119,7 +1111,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.UmfangBemerkungen",
+              "DbFieldName": "DetailData.UmfangBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1139,7 +1131,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Registereinträge.Registertyp",
+              "DbFieldName": "DetailData.Registereinträge.Registertyp",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1149,7 +1141,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Bezeichnung",
+              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1159,7 +1151,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.GND-ID",
+              "DbFieldName": "DetailData.Registereinträge.GND-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1169,7 +1161,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Externe-ID",
+              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1188,7 +1180,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Dateien.Art",
+              "DbFieldName": "DetailData.Dateien.Art",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1198,7 +1190,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Titel",
+              "DbFieldName": "DetailData.Dateien.Titel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1208,7 +1200,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Bemerkung",
+              "DbFieldName": "DetailData.Dateien.Bemerkung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1218,7 +1210,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Typ",
+              "DbFieldName": "DetailData.Dateien.Typ",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1254,7 +1246,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.AlteSignatur",
+              "DbFieldName": "DetailData.AlteSignatur",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1265,7 +1257,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verzeichnungsstufe",
+              "DbFieldName": "DetailData.Verzeichnungsstufe",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1275,7 +1267,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verwaltungssignatur",
+              "DbFieldName": "DetailData.Verwaltungssignatur",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1285,7 +1277,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PID",
+              "DbFieldName": "DetailData.PID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1295,7 +1287,7 @@
               }
             },
             {
-              "DbFieldName": "Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -1315,9 +1307,9 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "CreationPeriod.Text",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
@@ -1326,7 +1318,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezugszeitraum",
+              "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -1337,7 +1329,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.DatierungBemerkungen",
+              "DbFieldName": "DetailData.DatierungBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1388,7 +1380,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.BemerkungenProvenienz",
+              "DbFieldName": "DetailData.BemerkungenProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1399,7 +1391,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bestandsgeschichte",
+              "DbFieldName": "DetailData.archivalHistory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1420,7 +1412,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.FormInhalt",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1431,7 +1423,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Überlieferungsformen",
+              "DbFieldName": "DetailData.Überlieferungsformen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1452,7 +1444,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Zugangsbestimmungen",
+              "DbFieldName": "accessibility",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1463,7 +1455,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Benutzbarkeit",
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1473,7 +1465,7 @@
               }
             },
             {
-              "DbFieldName": "Lizenz",
+              "DbFieldName": "Licence",
               "DbType": "Text",
               "ElasticType": "Lizenz",
               "Visibility": 0,
@@ -1483,7 +1475,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Reproduktionsbestimmungen",
+              "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1494,7 +1486,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1505,7 +1497,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Schriften",
+              "DbFieldName": "DetailData.Schriften",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1515,7 +1507,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PhysischeBeschaffenheit",
+              "DbFieldName": "DetailData.PhysischeBeschaffenheit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1526,7 +1518,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Findmittel",
+              "DbFieldName": "DetailData.Findmittel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1547,7 +1539,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.AufbewahrungsortOriginale",
+              "DbFieldName": "DetailData.AufbewahrungsortOriginale",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1558,7 +1550,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.KopienReproduktionen",
+              "DbFieldName": "DetailData.KopienReproduktionen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1569,7 +1561,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.VerwandtesMaterial",
+              "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1580,7 +1572,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Veroeffentlichungen",
+              "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1601,7 +1593,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.InterneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1622,7 +1614,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Standort",
+              "DbFieldName": "DetailData.Standort",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1633,7 +1625,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.StandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1644,7 +1636,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.UmfangBemerkungen",
+              "DbFieldName": "DetailData.UmfangBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1664,7 +1656,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Registereinträge.Registertyp",
+              "DbFieldName": "DetailData.Registereinträge.Registertyp",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1674,7 +1666,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Bezeichnung",
+              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1684,7 +1676,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.GND-ID",
+              "DbFieldName": "DetailData.Registereinträge.GND-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1694,7 +1686,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Externe-ID",
+              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1713,7 +1705,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Dateien.Art",
+              "DbFieldName": "DetailData.Dateien.Art",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1723,7 +1715,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Titel",
+              "DbFieldName": "DetailData.Dateien.Titel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1733,7 +1725,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Bemerkung",
+              "DbFieldName": "DetailData.Dateien.Bemerkung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1743,7 +1735,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Typ",
+              "DbFieldName": "DetailData.Dateien.Typ",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1779,7 +1771,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.AlteSignatur",
+              "DbFieldName": "formerReferenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1790,7 +1782,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verzeichnungsstufe",
+              "DbFieldName": "Level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1800,7 +1792,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Verwaltungssignatur",
+              "DbFieldName": "DetailData.Verwaltungssignatur",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1810,17 +1802,17 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PID",
+              "DbFieldName": "DetailData.PID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Verwaltungssignatur",
-                "en": "Distortion nw"
+                "de": "PID",
+                "en": "PID"
               }
             },
             {
-              "DbFieldName": "Archivalienart",
+              "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
               "FieldLabels": {
@@ -1840,9 +1832,9 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "CreationPeriod.Text",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
@@ -1851,7 +1843,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bezugszeitraum",
+              "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
@@ -1862,7 +1854,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.DatierungBemerkungen",
+              "DbFieldName": "DetailData.DatierungBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1913,7 +1905,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.BemerkungenProvenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1924,7 +1916,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Bestandsgeschichte",
+              "DbFieldName": "DetailData.archivalHistory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1945,7 +1937,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.FormInhalt",
+              "DbFieldName": "contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1956,7 +1948,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Überlieferungsformen",
+              "DbFieldName": "DetailData.Ueberlieferungsformen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1977,7 +1969,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Zugangsbestimmungen",
+              "DbFieldName": "accessibility",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1988,7 +1980,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Benutzbarkeit",
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2008,7 +2000,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Reproduktionsbestimmungen",
+              "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2019,18 +2011,17 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Sprachen",
+              "DbFieldName": "DetailData.Sprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Lang",
-                "fr": "Instruments de recherche"
+                "en": "Language"
               }
             },
             {
-              "DbFieldName": "CustomFields.Schriften",
+              "DbFieldName": "DetailData.Schriften",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2040,7 +2031,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.PhysischeBeschaffenheit",
+              "DbFieldName": "DetailData.PhysischeBeschaffenheit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2051,7 +2042,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Findmittel",
+              "DbFieldName": "DetailData.Findmittel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2072,7 +2063,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.AufbewahrungsortOriginale",
+              "DbFieldName": "DetailData.AufbewahrungsortOriginale",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2083,7 +2074,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.KopienReproduktionen",
+              "DbFieldName": "DetailData.KopienReproduktionen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2094,7 +2085,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.VerwandtesMaterial",
+              "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2105,7 +2096,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Veroeffentlichungen",
+              "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2126,7 +2117,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.InterneAnmerkungen",
+              "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2147,7 +2138,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Standort",
+              "DbFieldName": "DetailData.Standort",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2158,7 +2149,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.StandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2169,7 +2160,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.UmfangBemerkungen",
+              "DbFieldName": "DetailData.UmfangBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2189,7 +2180,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Registereinträge.Registertyp",
+              "DbFieldName": "DetailData.Registereinträge.Registertyp",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2199,7 +2190,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Bezeichnung",
+              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2209,7 +2200,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.GND-ID",
+              "DbFieldName": "DetailData.Registereinträge.GND-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2219,7 +2210,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Registereinträge.Externe-ID",
+              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2238,7 +2229,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "CustomFields.Dateien.Art",
+              "DbFieldName": "DetailData.Dateien.Art",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2248,7 +2239,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Titel",
+              "DbFieldName": "DetailData.Dateien.Titel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2258,7 +2249,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Bemerkung",
+              "DbFieldName": "DetailData.Dateien.Bemerkung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2268,7 +2259,7 @@
               }
             },
             {
-              "DbFieldName": "CustomFields.Dateien.Typ",
+              "DbFieldName": "DetailData.Dateien.Typ",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,

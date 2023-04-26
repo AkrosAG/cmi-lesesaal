@@ -189,8 +189,8 @@ namespace CMI.Web.Frontend.api.Controllers
                         continue;
                     }
 
-                    veFavorite.CustomFields = elasticHit.Data?.CustomFields; 
-                    veFavorite.WithinInfo = elasticHit.Data?.WithinInfo;
+                    veFavorite.CustomFields = elasticHit.Data?.DetailData; 
+                    veFavorite.WithinInfo = elasticHit.Data?.Contains;
                     veFavorite.Title = elasticHit.Data?.Title;
                     veFavorite.Level = elasticHit.Data?.Level;
                     veFavorite.CreationPeriod = elasticHit.Data?.CreationPeriod?.Text;

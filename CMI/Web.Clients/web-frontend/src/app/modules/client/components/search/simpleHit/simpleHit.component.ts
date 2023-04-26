@@ -117,10 +117,6 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 	}
 
 	public getPictureAsBase64(): string {
-		if (!this.entity || !this.entity.customFields['bildAnsicht']) {
-			return null;
-		}
-		let img = this.entity.customFields['bildAnsicht'];
-		return `data:${img['mimeType']};base64,${img['value']}`;
+		return null;
 	}
 }

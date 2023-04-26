@@ -1,5 +1,6 @@
 import {EntityMetadata} from './entityMetadata';
 import {Highlight} from '../search/highlight';
+import {DetailData} from './detailData';
 
 export interface Entity {
 	_context?: any;
@@ -18,7 +19,8 @@ export interface Entity {
 	canBeOrdered?: boolean;
 	isPhysicalyUsable?: boolean;
 	containsPersonRelatedInformation?: boolean;
-	customFields: any[];
+	detailData: DetailData[];
+	permission: string;
 	primaryDataLink?: any[];
 	itemClasses?: string;
 	iconClasses?: string;

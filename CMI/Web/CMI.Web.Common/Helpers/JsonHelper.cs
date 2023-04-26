@@ -155,6 +155,29 @@ namespace CMI.Web.Common.Helpers
             return token;
         }
 
+
+        public static JArray GetTokenValues(JToken parent, string key, bool ignoreCase = false)
+        {
+            if (parent == null)
+            {
+                return null;
+            }
+
+            if (parent.Type == JTokenType.Property)
+            {
+                parent = ((JProperty)parent).Value;
+            }
+
+            var token = parent.Type == JTokenType.Object ? (parent as JObject).GetTokenByKey(key, ignoreCase) : null;
+            if (token is JArray array)
+            {
+                return array;
+            }
+            
+            return null;
+        }
+
+
         public static R GetTokenValue<R>(JToken parent, string key, bool ignoreCase = false)
         {
             if (parent == null)
