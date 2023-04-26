@@ -166,7 +166,7 @@ export class AdvancedSearchService {
 				this._toDropdownSearchFieldValue('frei*', this._txt.translate('Frei zugänglich', 'search.advanced.field.permission.freiZugaenglich')),
 				this._toDropdownSearchFieldValue('Gesuchspflichtig', this._txt.translate('In Schutzfrist', 'search.advanced.field.permission.inSchutzfrist'))
 			];
-		} else if (def.key.indexOf('detailData.sprachen') >= 0) {
+		} else if (def.key.indexOf('Keine Dropdown! detailData.sprachen') >= 0) {
 			this.getElasticCountries(field);
 		}
 
