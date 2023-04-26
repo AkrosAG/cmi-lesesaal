@@ -690,13 +690,13 @@
       "allMetaData": "Metadaten",
       "allPrimaryData": "Volltext (Primärdaten)",
       "creationPeriod": "Entstehungszeitraum",
-      "customFields": {
-        "aktenzeichen": "Aktenzeichen",
-        "benutzerkommentare": "Benutzerkommentare",
-        "digitalisate": "Digitalisate",
-        "form": "Form",
-        "frueheresAktenzeichen": "Früheres Aktenzeichen",
-        "land": "Land",
+      "detailData": {
+        "ueberlieferungsform": "Überlieferungsform",
+        "sprachen": "Sprachen ",
+        "archivalienart": "Archivalienart",
+        "permission": "Permission",
+        "descriptors.name": "Personenregister",
+        "verwaltungssignatur": "Verwaltungssignatur",
         "metadaten": "Metadaten",
         "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
         "zusatzkomponenteZac1": "Zusatzkomponente"
@@ -704,7 +704,7 @@
       "formerReferenceCode": "Frühere Signaturen",
       "referenceCode": "Signatur",
       "title": "Titel",
-      "withinInfo": "Form und Inhalt"
+      "Contains": "Form und Inhalt"
     },
     "sortFields": {
       "creationPeriod": {
@@ -930,10 +930,9 @@
     "advanced": {
       "addNewGroup": "Weitere Suchgruppe hinzufügen",
       "field": {
-        "zugaenglichkeitGemaessBga": {
-          "freiZugaenglich": "Frei zugänglich",
-          "inSchutzfrist": "In Schutzfrist",
-          "pruefungNoetig": "Prüfung nötig"
+        "permission": {
+          "freiZugaenglich": "Frei einsehbar",
+          "inSchutzfrist": "Gesuchspflichtig"
         }
       },
       "group": {

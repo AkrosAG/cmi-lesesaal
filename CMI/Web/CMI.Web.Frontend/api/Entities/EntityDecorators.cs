@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
@@ -11,7 +12,9 @@ using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
 using Nest;
 using Newtonsoft.Json.Linq;
+using NJsonSchema.Infrastructure;
 using Serilog;
+using static Nest.JoinField;
 
 namespace CMI.Web.Frontend.api.Entities
 {
@@ -213,9 +216,7 @@ namespace CMI.Web.Frontend.api.Entities
 
             JObject metadata = null;
             var jsonEntity = JObject.FromObject(entity);
-
-            
-            var detailDatas = JsonHelper.GetTokenValue(jsonEntity, detailDataKey, true) ?? new JArray();
+            var detailDatas = JsonHelper.GetTokenValues(jsonEntity, detailDataKey, true) ?? new JArray();
 
             var categories = type.MetaCategories ?? new List<ModelTypeMetaCategory>();
 
@@ -238,13 +239,30 @@ namespace CMI.Web.Frontend.api.Entities
 
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
+
+
+
                         if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
                             var subName = name.Substring(detailDataPrefix.Length);
-                            name = subName.ToLowerCamelCase();
-                            if (detailDatas.Any(a => a.Path == subName))
+
+                            foreach (var ch in detailDatas.Children())
                             {
-                                token = detailDatas.First(a => a.Path == subName);
+                                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
+                                foreach (JProperty te in toke)
+                                {
+                                    if (te.Name == "elementName" && te.Value.ToString().ToUpper() != subName.ToUpper())
+                                    {
+                                        break;
+                                    }
+                                    if (te.Name == "textValues" )
+                                    {
+                                        attributes.Add(field.Label, te.Value.First.ToString());
+                                        break;
+                                    }
+                                   
+                                   
+                                }
                             }
                         }
                         else

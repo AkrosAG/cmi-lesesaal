@@ -941,10 +941,9 @@
     "advanced": {
       "addNewGroup": "Add another search group",
       "field": {
-        "zugaenglichkeitGemaessBga": {
+        "permission": {
           "freiZugaenglich": "Without restriction",
-          "inSchutzfrist": "Subject to closure period",
-          "pruefungNoetig": "Review necessary"
+          "inSchutzfrist": "Subject to request"
         }
       },
       "group": {
