@@ -67,8 +67,20 @@ export class ConfigService {
 		return _util.isObject(this._preloadService.settings) ? this._preloadService.settings : {};
 	}
 
+	private getCustomerSettings(): any {
+		if (!this._preloadService.settingsCustomer) {
+			return null;
+		}
+		return _util.isObject(this._preloadService.settingsCustomer) ? this._preloadService.settingsCustomer : {};
+	}
+
 	public getSetting(key: string, defaultValue?: any): any {
-		const val = this._findSetting(this.getSettings(), key);
+		let val = this._findSetting(this.getSettings(), key);
+
+		if (val === undefined) {
+			val = this._findSetting(this.getCustomerSettings(), key);
+		}
+
 		return  (val === undefined) ? defaultValue : val;
 	}
 

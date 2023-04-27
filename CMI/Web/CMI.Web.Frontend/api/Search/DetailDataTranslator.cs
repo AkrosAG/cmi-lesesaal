@@ -14,36 +14,19 @@ namespace CMI.Web.Frontend.api.Search
                 Path = "detailData",
                 Query = new BoolQuery
                 {
-                    MinimumShouldMatch = 1,
-                    Should = new QueryContainer[]
+                    Must = new QueryContainer[]
                     {
-                        new BoolQuery
+                        new MatchQuery
                         {
-                            //Filter = new QueryContainer[]
-                            //{
-                            //    new TermsQuery
-                            //    {
-                            //        Field = "primaryDataFulltextAccessTokens",
-                            //        Terms = access.CombinedTokens
-                            //    }
-                            //},
-                            Must = new QueryContainer[]
-                            {
-                                new QueryStringQuery
-                                {
-                                    Query = field.Key,
-                                    DefaultField = "detailData.elementName",
-                                    DefaultOperator = Operator.And,
-                                    AllowLeadingWildcard = false
-                                },
-                                new QueryStringQuery
-                                {
-                                    Query = field.Value.Escape(field.Key),
-                                    DefaultField = "detailData.textValues",
-                                    DefaultOperator = Operator.And,
-                                    AllowLeadingWildcard = false
-                                }
-                            }
+                            Query = field.Key,
+                            Field = "detailData.elementName"
+                        },
+                        new QueryStringQuery
+                        {
+                            Query = field.Value.Escape(field.Key),
+                            DefaultField = "detailData.textValues",
+                            DefaultOperator = Operator.And,
+                            AllowLeadingWildcard = false
                         }
                     }
                 }

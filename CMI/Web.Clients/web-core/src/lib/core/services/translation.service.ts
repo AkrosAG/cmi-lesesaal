@@ -64,8 +64,17 @@ export class TranslationService {
 		}
 
 		let selected: Translations = this._preloadService.translationsByLanguage[language];
+		let selected2: Translations = this._preloadService.translationsCustomerByLanguage[language];
 		this._language = language;
-		this._texts = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
+		const trans = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
+		const transCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
+		console.log('Texte', trans, transCustomer);
+
+		if (transCustomer) {
+			this._texts = _util.mergeKeys(trans, transCustomer);
+		} else {
+			this._texts = trans;
+		}
 	}
 
 	public update(): void {
@@ -118,6 +127,7 @@ export class TranslationService {
 		let t = this._findText(key);
 
 		if (!t) {
+
 			t = defaultValue || key;
 			if (this._showMissingInfo && (this._language !== this._context.defaultLanguage)) {
 				t = this.getMissingInfo(this._context.language, t);

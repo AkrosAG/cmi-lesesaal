@@ -56,6 +56,12 @@ namespace CMI.Web.Frontend.api.Controllers
             return Settings.GetTranslations(info.language);
         }
 
+        [HttpGet]
+        public JObject GetCustomerTranslations([FromUri] ApiClientInfo info)
+        {
+            return Settings.GetCustomerTranslations(info.language);
+        }
+
         internal class TranslatedFrontendDynamicTextSettings
         {
             public string DeliveryTypeDigital { get; set; }
@@ -96,6 +102,13 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
             }
 
+            return settings;
+        }
+
+        [HttpGet]
+        public JObject GetCustomerSettings([FromUri] ApiClientInfo info)
+        {
+            var settings = Settings.GetCustomerSettings().DeepClone() as JObject;
             return settings;
         }
 
