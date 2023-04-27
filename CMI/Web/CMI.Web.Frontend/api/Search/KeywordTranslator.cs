@@ -1,4 +1,5 @@
 ﻿using CMI.Access.Sql.Lesesaal;
+using CMI.Utilities.Common.Helpers;
 using Nest;
 
 namespace CMI.Web.Frontend.api.Search
@@ -9,19 +10,11 @@ namespace CMI.Web.Frontend.api.Search
         {
             return new BoolQuery
             {
-                //Filter = new QueryContainer[]
-                //{
-                //    new TermsQuery
-                //    {
-                //        Field = "primaryDataFulltextAccessTokens",
-                //        Terms = access.CombinedTokens
-                //    }
-                //},
                 Should = new QueryContainer[]
                 {
                     new WildcardQuery
                     {
-                        Value = field.Value, // .Escape("formerReferenceCode")
+                        Value = field.Value.Escape(field.Key), 
                         Boost = 1.0,
                         CaseInsensitive = false,
                         Field = field.Key

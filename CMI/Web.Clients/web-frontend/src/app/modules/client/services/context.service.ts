@@ -41,6 +41,21 @@ export class ContextService {
 				this._onLanguageUpdated(this._context.loadingLanguage);
 			}
 		});
+
+		this._preloadService.translationsLoaded.subscribe(translations => {
+			if (!translations) {
+				return;
+			}
+			this._preloadService.translationsCustomerLoaded.subscribe(translationsC => {
+				if (!translationsC) {
+					return;
+				}
+
+				if (translations && translations.language === this._context.loadingLanguage) {
+					this._onLanguageUpdated(this._context.loadingLanguage);
+				}
+			});
+		});
 	}
 
 	public updateLanguage(language: string): Observable<boolean> {
@@ -52,8 +67,10 @@ export class ContextService {
 			if (this._preloadService.hasTranslationsFor(language)) {
 				this._onLanguageUpdated(language);
 			} else {
-				return observableFrom(this._preloadService.loadTranslationsFor(language).then(() => {
-					return true;
+				observableFrom(this._preloadService.loadCustomerTranslationsFor(language).then(() => {
+					return observableFrom(this._preloadService.loadTranslationsFor(language).then(() => {
+						return true;
+					}));
 				}));
 			}
 		}
