@@ -123,6 +123,14 @@ export class Utilities {
 		}, {});
 	}
 
+	public static mergeKeys(obj: any, obj2: any): any {
+		return Object.keys(obj2).reduce(function (newObj, key) {
+			let val = obj2[key];
+			obj[key] = val;
+			return obj;
+		}, {});
+	}
+
 	public static forEach(obj: any, fn: any) {
 		if (Utilities.isArray(obj)) {
 			obj.forEach(fn);

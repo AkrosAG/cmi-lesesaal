@@ -870,7 +870,7 @@ namespace CMI.Web.Frontend.api.Elastic
                             ? item["key"]?.ToString()
                             : item["keyAsString"].ToString();
 
-                        if (aggregationName == "customFields.zugänglichkeitGemässBga" || aggregationName == "level")
+                        if (aggregationName == "level")
                         {
                             item["key"] = "search.facetteEntry." + key;
                         }

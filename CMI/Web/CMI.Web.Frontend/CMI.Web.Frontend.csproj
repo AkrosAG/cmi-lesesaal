@@ -612,6 +612,9 @@
     <Compile Include="api\KontingentResult.cs" />
     <Compile Include="api\MockFileSystem.cs" />
     <Compile Include="api\PhysicalFileSystem.cs" />
+    <Compile Include="api\Search\DetailDataTranslator.cs" />
+    <Compile Include="api\Search\KeywordTranslator.cs" />
+    <Compile Include="api\Search\ThesaurusTranslator.cs" />
     <Compile Include="api\Source.cs" />
     <Compile Include="api\SynonymGroup.cs" />
     <Compile Include="api\Interfaces\IElasticClientProvider.cs" />

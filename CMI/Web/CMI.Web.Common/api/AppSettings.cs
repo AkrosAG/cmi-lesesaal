@@ -11,7 +11,7 @@ namespace CMI.Web.Common.api
 {
     public class AppSettings : ITranslator
     {
-        private readonly Dictionary<string, JObject> translations = new Dictionary<string, JObject>();
+        private readonly Dictionary<string, JObject[]> translations = new Dictionary<string, JObject[]>();
         private JObject serverSettings;
         private JObject settings;
 
@@ -43,6 +43,19 @@ namespace CMI.Web.Common.api
 
             if (string.IsNullOrWhiteSpace(text))
             {
+                texts = GetCustomerTranslations(language);
+                if (texts != null)
+                {
+                    var token = JsonHelper.GetByPath(texts, path);
+                    if (token != null)
+                    {
+                        text = token.ToString();
+                    }
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
                 text = language != "de"
                     ? $"(!{language}){defaultText}"
                     : defaultText;
@@ -58,7 +71,18 @@ namespace CMI.Web.Common.api
                 InitTranslationsFor(language);
             }
 
-            return translations[language];
+            return translations[language][0];
+        }
+
+
+        public JObject GetCustomerTranslations(string language)
+        {
+            if (!translations.ContainsKey(language))
+            {
+                InitTranslationsFor(language);
+            }
+            
+            return translations[language][1];
         }
 
         public JObject GetSettings()
@@ -81,6 +105,20 @@ namespace CMI.Web.Common.api
                 InjectSettingsForRequest(settings);
                 return settings;
             }
+        }
+
+
+        public JObject GetCustomerSettings()
+        {
+            var customerSettings = new JObject();
+            var path = StringHelper.AddToString(ClientConfigDirectory, @"\", "customer.settings.json");
+
+            if (File.Exists(path))
+            {
+                customerSettings = JsonHelper.GetJsonFromFile(path);
+            }
+
+            return customerSettings;
         }
 
         public JObject GetServerSettings()
@@ -126,7 +164,7 @@ namespace CMI.Web.Common.api
         {
             try
             {
-                translations[language] = new JObject();
+                translations[language] = new JObject[2];
                 var path = StringHelper.AddToString(ClientConfigDirectory, @"\", $"translations.{language.ToLower()}.json");
 
                 if (!File.Exists(path))
@@ -137,12 +175,26 @@ namespace CMI.Web.Common.api
                 var trans = JsonHelper.GetJsonFromFile(path);
                 if (trans != null)
                 {
-                    translations[language] = trans;
+                    translations[language][0] = trans;
+                }
+
+                path = StringHelper.AddToString(ClientConfigDirectory, @"\", $"customer.translations.{language.ToLower()}.json");
+
+                if (!File.Exists(path))
+                {
+                    return;
+                }
+
+                var customerTrans = JsonHelper.GetJsonFromFile(path);
+
+                if (customerTrans != null)
+                {
+                    translations[language][1] = customerTrans;
                 }
             }
             catch (Exception ex)
             {
-                Log.Debug(ex, "Could not init translations for {language}", language);
+                Log.Debug(ex, "Coul5d not init translations for {language}", language);
             }
         }
 

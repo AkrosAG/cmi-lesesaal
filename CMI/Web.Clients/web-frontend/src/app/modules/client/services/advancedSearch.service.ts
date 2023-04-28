@@ -3,8 +3,8 @@ import {
 	FieldType, SearchFieldDefinition, SearchModel, SearchField,
 	AdvancedSearchField, AdvancedSearchGroup, AdvancedSearchModel,
 	DropdownSearchField, DropdownSearchFieldValue,
-	ConfigService, ClientContext, Utilities as _util,
-	CountriesService, TranslationService
+	ConfigService, Utilities as _util,
+	TranslationService
 } from '@cmi/lesesaal-web-core';
 
 @Injectable()
@@ -12,8 +12,6 @@ export class AdvancedSearchService {
 	private possibleSearchDefinitions: SearchFieldDefinition[];
 
 	constructor(private _config: ConfigService,
-				private _context: ClientContext,
-				private _countries: CountriesService,
 				private _txt: TranslationService) {
 	}
 
@@ -24,7 +22,14 @@ export class AdvancedSearchService {
 		let field: AdvancedSearchField;
 		switch (type) {
 			case FieldType.Dropdown:
-				field = this._createDropdownSearchField(def, this._context.language);
+				let fieldDrop = new DropdownSearchField();
+				if (def.items) {
+					fieldDrop.values = [];
+					def.items.forEach(item => {
+						fieldDrop.values.push(this._toDropdownSearchFieldValue(item.searchKey, this._txt.translate(item.defaultLabel, item.translationKey)));
+					});
+				}
+				field = fieldDrop;
 				break;
 			default:
 				field = new AdvancedSearchField();
@@ -145,7 +150,7 @@ export class AdvancedSearchService {
 					type = FieldType.Text;
 			}
 
-			let fieldDef = new SearchFieldDefinition(type, f.key, f.displayName);
+			let fieldDef = new SearchFieldDefinition(type, f.key, f.displayName, f.items);
 
 			this.possibleSearchDefinitions.push(fieldDef);
 		}
@@ -157,28 +162,6 @@ export class AdvancedSearchService {
 			value: value || label,
 			label: label || value
 		};
-	}
-
-	private _createDropdownSearchField(def: SearchFieldDefinition, language: string): DropdownSearchField {
-		const field = new DropdownSearchField();
-		if (def.key.indexOf('zugänglichkeitGemässBga') >= 0) {
-			field.values = [
-				this._toDropdownSearchFieldValue('Frei*', this._txt.translate('Frei zugänglich', 'search.advanced.field.zugaenglichkeitGemaessBga.freiZugaenglich')),
-				this._toDropdownSearchFieldValue('In*', this._txt.translate('In Schutzfrist', 'search.advanced.field.zugaenglichkeitGemaessBga.inSchutzfrist')),
-				this._toDropdownSearchFieldValue('Prüfung*', this._txt.translate('Prüfung nötig', 'search.advanced.field.zugaenglichkeitGemaessBga.pruefungNoetig'))
-			];
-		} else if (def.key.indexOf('land') >= 0) {
-			this.getElasticCountries(field);
-		}
-
-		return field;
-	}
-
-	private getElasticCountries(field: any)  {
-		this._countries.getElasticCountries().toPromise().then(countries => {
-			field.values = countries.map(c => this._toDropdownSearchFieldValue(c));
-			}
-		);
 	}
 
 	public getModelForQuery(viewModel: SearchModel): SearchModel {
