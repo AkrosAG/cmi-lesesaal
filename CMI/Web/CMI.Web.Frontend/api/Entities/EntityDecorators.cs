@@ -260,8 +260,6 @@ namespace CMI.Web.Frontend.api.Entities
                                         attributes.Add(field.Label, te.Value.First.ToString());
                                         break;
                                     }
-
-
                                 }
                             }
                         }

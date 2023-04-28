@@ -107,8 +107,12 @@ namespace CMI.Web.Frontend.api.Search
         public static void InitDictionaries()
         {
             var settings = FrontendSettings.Instance.GetServerSettings().DeepClone() as JObject;
+            var customerSettings = FrontendSettings.Instance.GetCustomerSettings().DeepClone() as JObject;
             var searchSettings = SettingsHelper.GetSettingsFor<SearchSetting>(settings, "search");
-
+            if (searchSettings == null)
+            {
+                searchSettings = SettingsHelper.GetSettingsFor<SearchSetting>(customerSettings, "search");
+            }
             searchFieldDefinitionsByKey = searchSettings.AdvancedSearchFields.ToDictionary(s => s.Key);
             translatorsByKey = new Dictionary<string, IFieldTranslator>();
 

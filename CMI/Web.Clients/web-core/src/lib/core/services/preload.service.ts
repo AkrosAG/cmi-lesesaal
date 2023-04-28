@@ -13,7 +13,9 @@ const inlinedModelDataId = 'viaduc-model';
 export class PreloadService {
 
 	public translationsByLanguage: { [key: string]: Translations } = {};
+	public translationsCustomerByLanguage: { [key: string]: Translations } = {};
 	public settings: any = null;
+	public settingsCustomer: any = null;
 	public modelData: any = null;
 
 	private _isPreloading = false;
@@ -27,27 +29,31 @@ export class PreloadService {
 	}
 
 	public translationsLoaded: BehaviorSubject<Translations>; // behavioursubject, because translations are loaded with app_initializer
+	public translationsCustomerLoaded: BehaviorSubject<Translations>;
 	public settingsloaded: Subject<any>;
 	public modelDataLoaded: Subject<any>;
 	public preloaded: Subject<boolean>;
 
 	private _apiDataUrl: string;
 	private _translations: Translations;
+	private _translationsCustomer: Translations;
 
 	constructor(private _options: CoreOptions,
 				private _http: HttpService) {
 		this.translationsLoaded = new BehaviorSubject<Translations>(this._translations);
+		this.translationsCustomerLoaded = new BehaviorSubject<Translations>(this._translationsCustomer);
 		this.settingsloaded = new Subject<any>();
 		this.modelDataLoaded = new Subject<any>();
 		this.preloaded = new Subject<boolean>();
-
 		this._apiDataUrl = _util.addToString(this._options.serverUrl + this._options.publicPort, '/', 'api/Public');
 	}
 
-	public preload(lang: string, loadModelData: boolean = true): Promise<boolean> {
+	public preload(lang: string, loadModelData: boolean = true): Promise<any> {
 		this._isPreloading = true;
 		return Promise.all([
+			this._loadCustomerTranslations(lang),
 			this._loadTranslations(lang),
+			this._loadCustomerSettings(),
 			this._loadSettings(),
 			loadModelData ? this._loadModelData() : () => void 0,
 		]).then(() => {
@@ -64,6 +70,10 @@ export class PreloadService {
 
 	public loadTranslationsFor(language: string): Promise<any> {
 		return this._loadTranslations(language);
+	}
+
+	public loadCustomerTranslationsFor(language: string): Promise<any> {
+		return this._loadCustomerTranslations(language);
 	}
 
 	private _loadTranslations(language: string): Promise<any> {
@@ -97,6 +107,24 @@ export class PreloadService {
 		});
 	}
 
+	private _loadCustomerTranslations(language: string): Promise<any> {
+		let promise: Promise<any> = null;
+		if (promise === null) {
+			const queryString = `?language=${language}`;
+			const url = `${this._apiDataUrl}/GetCustomerTranslations${queryString}`;
+			promise = this._http.get<any>(url, this._http.noCaching).toPromise();
+		}
+
+		return promise.then(translations => {
+			const ts = this.translationsCustomerByLanguage[language] = <Translations>{
+				language: language,
+				translations: translations
+			};
+			this._translationsCustomer = ts;
+			this.translationsLoaded.next(this._translationsCustomer);
+		});
+	}
+
 	private _loadSettings(): Promise<any> {
 		let promise: Promise<any> = null;
 
@@ -121,6 +149,32 @@ export class PreloadService {
 		return promise.then(settings => {
 			this.settings = settings;
 			this.settingsloaded.next(settings);
+		});
+	}
+
+	private _loadCustomerSettings(): Promise<any> {
+		let promise: Promise<any> = null;
+
+		const inlined = document.getElementById(inlinedSettingsId);
+		if (inlined && inlined.innerHTML) {
+			try {
+				const settings = JSON.parse(inlined.innerHTML);
+				promise = new Promise((resolve, reject) => {
+					resolve(settings);
+				});
+			} catch (ex) {
+				console.error('PreloadService._loadSettings: failed to load inlined translations.', ex);
+			}
+		}
+
+		if (promise === null) {
+			const queryString = ``;
+			const url = `${this._apiDataUrl}/GetCustomerSettings${queryString}`;
+			promise = this._http.get<any>(url, this._http.noCaching).toPromise();
+		}
+
+		return promise.then(settings => {
+			this.settingsCustomer = settings;
 		});
 	}
 
