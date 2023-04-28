@@ -2,7 +2,6 @@
 using CMI.Utilities.Common.Helpers;
 using Nest;
 
-
 namespace CMI.Web.Frontend.api.Search
 {
     public class DetailDataTranslator : IFieldTranslator
