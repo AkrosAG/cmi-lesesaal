@@ -77,10 +77,10 @@
 			}
 			]
 		}, {
-			"type": "Text",
-			"key": "descriptors.Name",
+			"type": "Thesaurus",
+			"key": "Personenregister",
 			"displayName": "Personenregister",
-			"translatorType": "StandardTranslator"
+			"translatorType": "ThesaurusTranslator"
 		}
 		],
 		"simpleSearchSortingFields": [{

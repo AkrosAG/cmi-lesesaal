@@ -30,7 +30,7 @@ namespace CMI.Utilities.Common.Helpers
             string[] escapeArray;
             var retValue = value;
 
-            if (fieldName == "formerReferenceCode" || fieldName == "referenceCode")
+            if (fieldName == "formerReferenceCode" || fieldName == "referenceCode" || fieldName == "descriptors")
             {
                 escapeArray = escapeArraySpecialFields;
             }
