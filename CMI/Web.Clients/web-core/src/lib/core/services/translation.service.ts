@@ -68,7 +68,6 @@ export class TranslationService {
 		this._language = language;
 		const trans = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
 		const transCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
-		console.log('Texte', trans, transCustomer);
 
 		if (transCustomer) {
 			this._texts = _util.mergeKeys(trans, transCustomer);

@@ -100,7 +100,7 @@ export class PreloadService {
 		return promise.then(translations => {
 			const ts = this.translationsByLanguage[language] = <Translations>{
 				language: language,
-				translations: translations,
+				translations: translations
 			};
 			this._translations = ts;
 			this.translationsLoaded.next(this._translations);
@@ -108,29 +108,20 @@ export class PreloadService {
 	}
 
 	private _loadCustomerTranslations(language: string): Promise<any> {
-		console.log('_loadCustomerTranslations');
 		let promise: Promise<any> = null;
 		if (promise === null) {
-			console.log('GetCustomerTranslations 1');
 			const queryString = `?language=${language}`;
 			const url = `${this._apiDataUrl}/GetCustomerTranslations${queryString}`;
-
-			console.log('GetCustomerTranslations', url);
 			promise = this._http.get<any>(url, this._http.noCaching).toPromise();
-
-			console.log('GetCustomerTranslations', promise);
 		}
 
 		return promise.then(translations => {
-
-			console.log('GetCustomerTranslations 2');
 			const ts = this.translationsCustomerByLanguage[language] = <Translations>{
 				language: language,
-				translations: translations,
+				translations: translations
 			};
 			this._translationsCustomer = ts;
 			this.translationsLoaded.next(this._translationsCustomer);
-			console.log(this.translationsCustomerByLanguage[language]);
 		});
 	}
 
