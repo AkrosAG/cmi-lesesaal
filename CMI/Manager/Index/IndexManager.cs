@@ -187,8 +187,8 @@ namespace CMI.Manager.Index
                     Name = s.Name,
                     SeeAlso = s.SeeAlso,
                     Source = s.Source,
-                    YearOfBirth = s.DateOfBirth.Year,
-                    YearOfDeath = s.DateOfDeath.Year,
+                    YearOfBirth = s.DateOfBirth?.Year ?? 0,
+                    YearOfDeath = s.DateOfDeath?.Year ?? 0,
                     Thesaurus = s.Thesaurus
                 })
                 .ToList();
