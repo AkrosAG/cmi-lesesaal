@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
-using CMI.Access.Sql.Lesesaal;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
 using CMI.Utilities.Logging.Configurator;
 using CMI.Web.Common.api;
 using CMI.Web.Common.Helpers;
-using CMI.Web.Frontend.api.Configuration;
 using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
 using Elasticsearch.Net;
-using Microsoft.Ajax.Utilities;
 using Nest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Elastic
@@ -29,12 +28,10 @@ namespace CMI.Web.Frontend.api.Elastic
         // ReSharper disable once InconsistentNaming
         public const int ELASTIC_SEARCH_HIT_LIMIT = 10000;
 
-        private static readonly string[] allowedFacetFields =
-        {
-            "level", "customFields.zugänglichkeitGemässBga", "aggregationFields.ordnungskomponenten", "aggregationFields.bestand",
-            "aggregationFields.hasPrimaryData", "aggregationFields.creationPeriodYears001", "aggregationFields.creationPeriodYears005",
-            "aggregationFields.creationPeriodYears005", "aggregationFields.creationPeriodYears025", "aggregationFields.creationPeriodYears100"
-        };
+        private const string facettenConfigFilename = "Facetten.json";
+        private static readonly string templatesDefinitionDirectory = WebHelper.TemplatesDefinitionDirectory;
+        private readonly List<Facette> facetten;
+
 
         private readonly IElasticClientProvider clientProvider;
         private readonly IElasticSettings elasticSettings;
@@ -43,6 +40,8 @@ namespace CMI.Web.Frontend.api.Elastic
         {
             this.clientProvider = clientProvider;
             this.elasticSettings = elasticSettings;
+            var jsonText = File.ReadAllText(StringHelper.AddToString(templatesDefinitionDirectory, @"\", facettenConfigFilename));
+            facetten = JsonConvert.DeserializeObject<List<Facette>>(jsonText, new JsonSerializerSettings());
         }
 
         protected string BaseUrl => elasticSettings.BaseUrl;
@@ -441,52 +440,42 @@ namespace CMI.Web.Frontend.api.Elastic
             searchRequest.Sort.Add(new FieldSort(){ Field = "referenceCode", Order = SortOrder.Ascending });
         }
 
-        private static void AddAggregations(SearchRequest<ElasticArchiveRecord> searchRequest, FacetFilters[] facetsFilters )
+        private void AddAggregations(SearchRequest<ElasticArchiveRecord> searchRequest, FacetFilters[] facetsFilters )
         {
-            var aggregations = CreateFacet(new TermsAggregation("level") {Field = "level.keyword", Size = int.MaxValue}, facetsFilters);
-            aggregations &=
-                CreateFacet(new TermsAggregation("customFields.zugänglichkeitGemässBga") {Field = "customFields.zugänglichkeitGemässBga", Size = 25}, facetsFilters);
-
-            aggregations &= CreateFacet(
-                new TermsAggregation("aggregationFields.ordnungskomponenten") {Field = "aggregationFields.ordnungskomponenten", 
-                Size = facetsFilters != null && facetsFilters.Any(fac => fac.Facet.Equals("aggregationFields.ordnungskomponenten") && fac.ShowAll) ? int.MaxValue : 25 }, facetsFilters);
-            aggregations &= CreateFacet(new TermsAggregation("aggregationFields.bestand") {Field = "aggregationFields.bestand",
-                Size = facetsFilters != null && facetsFilters.Any(fac => fac.Facet.Equals("aggregationFields.bestand") && fac.ShowAll) ? int.MaxValue : 25 }, facetsFilters); // Performance: Limit to 25
-            aggregations &=
-                CreateFacet(new TermsAggregation("aggregationFields.hasPrimaryData") {Field = "aggregationFields.hasPrimaryData", Missing = "false"},
-                    facetsFilters);
-
+            AggregationBase aggregations = null;
             // Zeitraum Filter
             // Für die feinen Filter reicht, wenn wir maximal 10 Stück zurückliefern. Da wir am Ende nur die Facette zurückliefern, die  weniger als 10 Buckets haben
-            var order = new List<TermsOrder> {new TermsOrder {Key = "_term"}};
-            aggregations &=
-                CreateFacet(
-                    new TermsAggregation("aggregationFields.creationPeriodYears001")
-                        {Field = "aggregationFields.creationPeriodYears001", Size = 10, Missing = "0", Order = order}, facetsFilters);
-            aggregations &=
-                CreateFacet(
-                    new TermsAggregation("aggregationFields.creationPeriodYears005")
-                        {Field = "aggregationFields.creationPeriodYears005", Size = 10, Missing = "0", Order = order}, facetsFilters);
-            aggregations &=
-                CreateFacet(
-                    new TermsAggregation("aggregationFields.creationPeriodYears010")
-                        {Field = "aggregationFields.creationPeriodYears005", Size = 10, Missing = "0", Order = order}, facetsFilters);
-            aggregations &=
-                CreateFacet(
-                    new TermsAggregation("aggregationFields.creationPeriodYears025")
-                        {Field = "aggregationFields.creationPeriodYears025", Size = 10, Missing = "0", Order = order}, facetsFilters);
-            aggregations &=
-                CreateFacet(
-                    new TermsAggregation("aggregationFields.creationPeriodYears100")
-                        {Field = "aggregationFields.creationPeriodYears100", Size = int.MaxValue, Order = order, Missing = "0"}, facetsFilters);
-
-
-            aggregations &= new FilterAggregation("bestellbare_einheiten")
+        
+            foreach (var facet in facetten)
             {
-                Filter = new TermQuery {Field = "canBeOrdered", Value = "true"},
-                Aggregations = new TermsAggregation("nach_level") {Field = "level.keyword"}
-            };
+                switch (facet.Type)
+                {
+                    case "Term":
+                        if (string.IsNullOrEmpty(facet.Missing))
+                        {
+                            aggregations &= CreateFacet(new TermsAggregation(facet.Title)
+                            {
+                                Field = $"{facet.Field}", Order = new List<TermsOrder> { new() { Key = facet.Sort } },
+                                Size = facetsFilters != null && facetsFilters.Any(fac => fac.Facet.Equals(facet.Title) && fac.ShowAll)
+                                    ? int.MaxValue
+                                    : facet.Size
+                            }, facetsFilters);
+                        }
+                        else
+                        {
+                            aggregations &= CreateFacet(new TermsAggregation(facet.Title)
+                            {
+                                Field = $"{facet.Field}", Order = new List<TermsOrder> { new() { Key = facet.Sort } },
+                                Missing = facet.Missing,
+                                Size = facetsFilters != null && facetsFilters.Any(fac => fac.Facet.Equals(facet.Title) && fac.ShowAll)
+                                    ? int.MaxValue
+                                    : facet.Size
+                            }, facetsFilters);
+                        }
 
+                        break;
+                }
+            }
             searchRequest.Aggregations = aggregations;
         }
 
@@ -558,34 +547,10 @@ namespace CMI.Web.Frontend.api.Elastic
                     throw new BadRequestException("Every filters array entry must contain a colon.");
                 }
 
-                if (!IsFacetFilterLegal(splited))
-                {
-                    throw new BadRequestException("Filters contains an illegal field or syntax.");
-                }
-
                 secured.Add($"{splited[0]}:{splited[1].Escape()}");
             }
 
             return secured;
-        }
-
-        private static bool IsFacetFilterLegal(string[] splited)
-        {
-            if (allowedFacetFields.Contains(splited[0]))
-            {
-                return true;
-            }
-
-            if (splited[1].Length == 0)
-            {
-                return false;
-            }
-
-            var lastCharRemoved = splited[1].Remove(splited[1].Length - 1);
-
-            return (splited[0] == "(_exists_" || splited[0] == "(!_exists_") &&
-                   allowedFacetFields.Contains(lastCharRemoved) &&
-                   splited[1].EndsWith(")");
         }
 
         private static void AddHighlighting(SearchRequest<ElasticArchiveRecord> searchRequest)
@@ -797,7 +762,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
             foreach (var entry in aggs.OrderBy(t => t.Key))
             {
-                if (entry.Key.StartsWith("facet_aggregationFields.creationPeriodYears"))
+                if (entry.Key.StartsWith("facet_creationPeriodYears"))
                 {
                     if (!found)
                     {
@@ -805,11 +770,11 @@ namespace CMI.Web.Frontend.api.Elastic
 
                         // Wähle den Bucket, der weniger als 10 Einträge hat. Oder dann ganz am Ende den Jahrhundertfilter
                         if (GetSelectedCreationPeriod(facetsFilters) == string.Empty && (((BucketAggregate) primaryAggregation).Items.Count < 10 ||
-                                                                                         entry.Key == "facet_aggregationFields.creationPeriodYears100"
+                                                                                         entry.Key == "facet_facetten.creationPeriodYears100"
                             ) ||
                             GetSelectedCreationPeriod(facetsFilters) == entry.Key)
                         {
-                            filteredAggregations.Add("aggregationFields.creationPeriodYears", primaryAggregation);
+                            filteredAggregations.Add("facetten.creationPeriodYears", primaryAggregation);
                             found = true;
                             chosenCreationPeriodAggregation = entry.Key.Remove(0, 6);
                         }
@@ -836,7 +801,7 @@ namespace CMI.Web.Frontend.api.Elastic
                 var aggregationName = ((JProperty) aggregation).Name;
                 var itemCollection = aggregation.Children()["items"].Children();
 
-                if (aggregationName == "aggregationFields.creationPeriodYears")
+                if (aggregationName == "facetten.creationPeriodYears")
                 {
                     var itemRange = Convert.ToInt32(chosenCreationPeriodAggregation.Substring(chosenCreationPeriodAggregation.Length - 3));
 
@@ -870,16 +835,18 @@ namespace CMI.Web.Frontend.api.Elastic
                             ? item["key"]?.ToString()
                             : item["keyAsString"].ToString();
 
-                        if (aggregationName == "level")
+
+                        var fac = facetten.First(f => f.Title.Equals(aggregationName));
+                        
+                        if (!string.IsNullOrEmpty(key) )
                         {
                             item["key"] = "search.facetteEntry." + key;
                         }
-                        else if (aggregationName == "aggregationFields.ordnungskomponenten")
+                        else if (string.IsNullOrEmpty(key))
                         {
-                            item["key"] = "search.facetteEntry.thematicInventoryOverview." + key;
+                            item["key"] = $"search.facetteEntry.resultateOhne{aggregationName}";
                         }
-
-                        item["filter"] = $"{aggregationName}:\"{key}\"";
+                        item["filter"] = $"{fac.Field}:\"{key}\"";
                     }
                 }
             }
@@ -887,7 +854,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
         private static string GetSelectedCreationPeriod(FacetFilters[] facetsFilters)
         {
-            var creationPeriod = facetsFilters?.FirstOrDefault(item => item.Facet == "aggregationFields.creationPeriodYears");
+            var creationPeriod = facetsFilters?.FirstOrDefault(item => item.Facet == "facetten.creationPeriodYears");
 
             if (creationPeriod?.Filters == null)
             {
@@ -897,7 +864,7 @@ namespace CMI.Web.Frontend.api.Elastic
             foreach (var filter in creationPeriod.Filters)
             {
                 var aggregation = filter.Substring(0, filter.IndexOf(':'));
-                if (aggregation.StartsWith("aggregationFields.creationPeriodYears", StringComparison.InvariantCultureIgnoreCase))
+                if (aggregation.StartsWith("facetten.creationPeriodYears", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return $"facet_{aggregation}";
                 }

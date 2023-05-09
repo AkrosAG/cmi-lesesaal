@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CMI.Contract.Common;
 using System.Linq;
 
@@ -74,6 +75,11 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Name = register.Bezeichnung,
                     Description = register.Bemerkung,
                     Thesaurus = register.Registertyp?.Item?.Bezeichnung,
+                    Function = register.Rolle,
+                    DateOfBirth = DateTime.ParseExact(register.Geburtsdatum, "yyyy -MM-dd HH:mm:ss",
+                        System.Globalization.CultureInfo.InvariantCulture),
+                    DateOfDeath = DateTime.ParseExact(register.Sterbedatum, "yyyy -MM-dd HH:mm:ss",
+                        System.Globalization.CultureInfo.InvariantCulture)
                 };
             })
             .Where(r => r != null)

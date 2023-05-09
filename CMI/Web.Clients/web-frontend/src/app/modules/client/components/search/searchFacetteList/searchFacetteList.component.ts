@@ -16,6 +16,7 @@ import {
 })
 
 export class SearchFacetteListComponent implements OnInit, OnChanges {
+	public enumerableFacetts: Facet[];
 	get collapsed(): boolean {
 		return this._collapsed;
 	}
@@ -69,10 +70,12 @@ export class SearchFacetteListComponent implements OnInit, OnChanges {
 				this.activeFacets.push(af);
 			}
 		}
+		this.facettsPreparation();
 	}
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		this.RemoveOutdatedFacetts();
+		this.facettsPreparation();
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -125,14 +128,14 @@ export class SearchFacetteListComponent implements OnInit, OnChanges {
 		}
 	}
 
-	public getActiveFacetCount(): number {
-		let facets = [];
-		for (let f of this.activeFacets) {
-			for (let filter of f.filters) {
-				facets.push(filter);
-			}
+	public facettsPreparation() {
+		this.enumerableFacetts = Array.from(Object.values(this.facetts));
+		const keys = Object.keys(this.facetts);
+		for (let i = 0; i < keys.length; i++) {
+			this.enumerableFacetts[i].key = keys[i];
+			const trans = keys[i].includes('.') ? keys[i].split('.', 2)[1] : keys[i];
+			this.enumerableFacetts[i].translationPath =  'facette.' +  trans;
 		}
-		return facets.length;
 	}
 
 	public getActiveFilterStringsForFacette(key: string) {

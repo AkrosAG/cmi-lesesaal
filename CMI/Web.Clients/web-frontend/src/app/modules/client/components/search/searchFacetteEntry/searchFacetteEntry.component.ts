@@ -59,11 +59,13 @@ export class SearchFacetteEntryComponent implements OnInit {
 			const key = this.agg.key;
 			// The key is usually the keyword for the translation if there is no translation for the facet, it is the German text.
 			let translated = (this._txt.has(key) ) ? this._txt.get(key) : key;
-			if (this.facette.key === 'aggregationFields.creationPeriodYears' && translated.indexOf('-') > 0 ) {
+			if (this.facette.key === 'facetten.creationPeriodYears' && translated.indexOf('-') > 0 ) {
 				// - für screenreader durch 'bis' ersetzen..
 				const bis = this._txt.get('search.facetteEntry.bis', 'bis');
 				translated =  translated.replace('-', '<span class="sr-only">' + bis + '</span><span aria-hidden="true"> - </span>');
 			}
+
+			translated = translated.substring(translated.lastIndexOf('.') + 1);
 			return this.sanitizer.bypassSecurityTrustHtml(translated);
 		}
 	}

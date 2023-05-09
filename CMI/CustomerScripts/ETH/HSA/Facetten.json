@@ -1,0 +1,82 @@
+[
+  {
+      "Field": "level.keyword",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "level",
+      "Type": "Term",
+      "Missing": ""
+    },
+    {
+      "Field": "permission.keyword",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "permission",
+      "Type": "Term",
+      "Missing": ""
+    },
+    {
+      "Field": "facetten.text01",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "Personenregister",
+      "Type": "Term",
+      "Missing": ""
+    },
+	{
+      "Field": "facetten.text02",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "Sprachen",
+      "Type": "Term",
+      "Missing": ""
+    },
+    {
+      "Field": "facetten.text03",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "Archivalienart",
+      "Type": "Term",
+      "Missing": ""
+    },
+    {
+      "Field": "facetten.text04",
+      "Size": 500,
+      "Sort": "_term",
+      "Title": "Körperschaftsregister",
+      "Type": "Term",
+      "Missing": ""
+    },
+    {
+      "Field": "facetten.creationPeriodYears001",
+      "Size": 10,
+      "Sort": "_term",
+      "Title": "creationPeriodYears001",
+      "Type": "Term",
+      "Missing": "0"
+    },
+	{
+      "Field": "facetten.creationPeriodYears005",
+      "Size": 10,
+      "Sort": "_term",
+      "Title": "creationPeriodYears005",
+      "Type": "Term",
+      "Missing": "0"
+    },
+	{
+      "Field": "facetten.creationPeriodYears025",
+      "Size": 10,
+      "Sort": "_term",
+      "Title": "creationPeriodYears025",
+      "Type": "Term",
+      "Missing": "0"
+    },
+	{
+      "Field": "facetten.creationPeriodYears100",
+      "Size": 10,
+      "Sort": "_term",
+      "Title": "creationPeriodYears100",
+      "Type": "Term",
+      "Missing": "0"
+    }
+]

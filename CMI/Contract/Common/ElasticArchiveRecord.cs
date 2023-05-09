@@ -123,28 +123,28 @@ namespace CMI.Contract.Common
 
     public class ElasticFacetten
     {
-        public string Text01 { get; set; }
-        public string Text02 { get; set; }
-        public string Text03 { get; set; }
-        public string Text04 { get; set; }
-        public string Text05 { get; set; }
-        public string Text06 { get; set; }
-        public string Text07 { get; set; }
-        public string Text08 { get; set; }
-        public string Text09 { get; set; }
-        public string Text10 { get; set; }
+        public List<string> Text01 { get; set; }
+        public List<string> Text02 { get; set; }
+        public List<string> Text03 { get; set; }
+        public List<string> Text04 { get; set; }
+        public List<string> Text05 { get; set; }
+        public List<string> Text06 { get; set; }
+        public List<string> Text07 { get; set; }
+        public List<string> Text08 { get; set; }
+        public List<string> Text09 { get; set; }
+        public List<string> Text10 { get; set; }
 
-        public long Long01 { get; set; }
-        public long Long02 { get; set; }
-        public long Long03 { get; set; }
-        public long Long04 { get; set; }
-        public long Long05 { get; set; }
+        public List<long> Long01 { get; set; }
+        public List<long> Long02 { get; set; }
+        public List<long> Long03 { get; set; }
+        public List<long> Long04 { get; set; }
+        public List<long> Long05 { get; set; }
 
-        public bool Boolean01 { get; set; }
-        public bool Boolean02 { get; set; }
-        public bool Boolean03 { get; set; }
-        public bool Boolean04 { get; set; }
-        public bool Boolean05 { get; set; }
+        public List<bool> Boolean01 { get; set; }
+        public List<bool> Boolean02 { get; set; }
+        public List<bool> Boolean03 { get; set; }
+        public List<bool> Boolean04 { get; set; }
+        public List<bool> Boolean05 { get; set; }
 
         public bool HasPrimaryData { get; set; }
         public List<int> CreationPeriodYears001 { get; set; }
@@ -219,6 +219,8 @@ namespace CMI.Contract.Common
         public string Function { get; set; }
         public string Thesaurus { get; set; }
         public string Source { get; set; }
+        public int YearOfBirth { get; set; }
+        public int YearOfDeath { get; set; }
     }
 
     public class ElasticDateWithYear
