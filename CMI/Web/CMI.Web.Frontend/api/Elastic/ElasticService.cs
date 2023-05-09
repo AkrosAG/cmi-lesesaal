@@ -41,8 +41,10 @@ namespace CMI.Web.Frontend.api.Elastic
             this.elasticSettings = elasticSettings;
 
             // Workaround für Unit-Test
-            var templatesDefinitionDirectory = string.IsNullOrEmpty(uniteTestConfig) ? WebHelper.TemplatesDefinitionDirectory : uniteTestConfig + @"\\Resources\\";
-            var jsonText = File.ReadAllText(StringHelper.AddToString(templatesDefinitionDirectory, @"\", facettenConfigFilename));
+            var jsonText = string.IsNullOrEmpty(uniteTestConfig) ? 
+                File.ReadAllText(StringHelper.AddToString(WebHelper.TemplatesDefinitionDirectory, @"\", facettenConfigFilename)) 
+                : uniteTestConfig;
+
             facetten = JsonConvert.DeserializeObject<List<Facette>>(jsonText, new JsonSerializerSettings());
         }
         protected string BaseUrl => elasticSettings.BaseUrl;

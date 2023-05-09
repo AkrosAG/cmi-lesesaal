@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
@@ -80,8 +82,7 @@ namespace CMI.Web.Frontend.API.Tests.api
             };
 
             var clientProvider = CreateClientProvider(mockResponse);
-
-            var service = new ElasticService(clientProvider, elasticSettings.Object, Environment.CurrentDirectory);
+            var service = new ElasticService(clientProvider, elasticSettings.Object, TestResources.Facetten);
 
            // act
            var result = service.RunQuery<TreeRecord>(query, userAccess);
@@ -145,7 +146,7 @@ namespace CMI.Web.Frontend.API.Tests.api
 
             var clientProvider = CreateClientProvider(mockResponse);
 
-            var service = new ElasticService(clientProvider, elasticSettings.Object, Environment.CurrentDirectory);
+            var service = new ElasticService(clientProvider, elasticSettings.Object, TestResources.Facetten);
 
             // act
             var result = service.RunQuery<TreeRecord>(query, userAccess);
@@ -203,7 +204,7 @@ namespace CMI.Web.Frontend.API.Tests.api
 
             var clientProvider = CreateClientProvider(mockResponse);
 
-            var service = new ElasticService(clientProvider, elasticSettings.Object, Environment.CurrentDirectory);
+            var service = new ElasticService(clientProvider, elasticSettings.Object, TestResources.Facetten);
 
             // act
             var result = service.RunQuery<TreeRecord>(query, userAccess);
@@ -264,7 +265,7 @@ namespace CMI.Web.Frontend.API.Tests.api
 
             var clientProvider = CreateClientProvider(mockResponse);
 
-            var service = new ElasticService(clientProvider, elasticSettings.Object, Environment.CurrentDirectory);
+            var service = new ElasticService(clientProvider, elasticSettings.Object, TestResources.Facetten);
 
             // act
             var result = service.RunQuery<TreeRecord>(query, userAccess);
@@ -321,7 +322,7 @@ namespace CMI.Web.Frontend.API.Tests.api
 
             var clientProvider = CreateClientProvider(mockResponse);
 
-            var service = new ElasticService(clientProvider, elasticSettings.Object, Environment.CurrentDirectory);
+            var service = new ElasticService(clientProvider, elasticSettings.Object, TestResources.Facetten);
 
             // act
             var result = service.RunQuery<TreeRecord>(query, userAccess);
