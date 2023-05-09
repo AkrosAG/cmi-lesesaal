@@ -69,17 +69,14 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 var register = r.Registereintrag?.Item;
                 if (register == null)
                     return null;
-                
                 return new Descriptor
                 {
                     Name = register.Bezeichnung,
                     Description = register.Bemerkung,
                     Thesaurus = register.Registertyp?.Item?.Bezeichnung,
                     Function = register.Rolle,
-                    DateOfBirth = DateTime.ParseExact(register.Geburtsdatum, "yyyy -MM-dd HH:mm:ss",
-                        System.Globalization.CultureInfo.InvariantCulture),
-                    DateOfDeath = DateTime.ParseExact(register.Sterbedatum, "yyyy -MM-dd HH:mm:ss",
-                        System.Globalization.CultureInfo.InvariantCulture)
+                    DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
+                    DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null
                 };
             })
             .Where(r => r != null)
