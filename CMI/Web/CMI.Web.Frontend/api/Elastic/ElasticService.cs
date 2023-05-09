@@ -27,23 +27,23 @@ namespace CMI.Web.Frontend.api.Elastic
         // Official Elastic "take" Limit, when skip = 0 - change with care!
         // ReSharper disable once InconsistentNaming
         public const int ELASTIC_SEARCH_HIT_LIMIT = 10000;
-
         private const string facettenConfigFilename = "Facetten.json";
-        private static readonly string templatesDefinitionDirectory = WebHelper.TemplatesDefinitionDirectory;
         private readonly List<Facette> facetten;
 
 
         private readonly IElasticClientProvider clientProvider;
         private readonly IElasticSettings elasticSettings;
 
-        public ElasticService(IElasticClientProvider clientProvider, IElasticSettings elasticSettings)
+        public ElasticService(IElasticClientProvider clientProvider, IElasticSettings elasticSettings, string uniteTestConfig = null)
         {
             this.clientProvider = clientProvider;
             this.elasticSettings = elasticSettings;
+
+            // Workaround für Unit-Test
+            var templatesDefinitionDirectory = string.IsNullOrEmpty(uniteTestConfig) ? WebHelper.TemplatesDefinitionDirectory : uniteTestConfig  +@"\Resources";
             var jsonText = File.ReadAllText(StringHelper.AddToString(templatesDefinitionDirectory, @"\", facettenConfigFilename));
             facetten = JsonConvert.DeserializeObject<List<Facette>>(jsonText, new JsonSerializerSettings());
         }
-
         protected string BaseUrl => elasticSettings.BaseUrl;
 
         public ElasticQueryResult<T> QueryForRootNodes<T>(UserAccess access) where T : TreeRecord
