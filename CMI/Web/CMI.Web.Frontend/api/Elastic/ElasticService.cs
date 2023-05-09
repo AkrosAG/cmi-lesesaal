@@ -1,4 +1,5 @@
-﻿using CMI.Access.Sql.Lesesaal;
+﻿using Castle.Core.Resource;
+using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
 using CMI.Utilities.Logging.Configurator;
@@ -40,7 +41,7 @@ namespace CMI.Web.Frontend.api.Elastic
             this.elasticSettings = elasticSettings;
 
             // Workaround für Unit-Test
-            var templatesDefinitionDirectory = string.IsNullOrEmpty(uniteTestConfig) ? WebHelper.TemplatesDefinitionDirectory : uniteTestConfig  +@"\Resources";
+            var templatesDefinitionDirectory = string.IsNullOrEmpty(uniteTestConfig) ? WebHelper.TemplatesDefinitionDirectory : uniteTestConfig + @"\\Resources\\";
             var jsonText = File.ReadAllText(StringHelper.AddToString(templatesDefinitionDirectory, @"\", facettenConfigFilename));
             facetten = JsonConvert.DeserializeObject<List<Facette>>(jsonText, new JsonSerializerSettings());
         }
