@@ -238,6 +238,8 @@ Examples for the token can be:
                                                   type="xs:string"/>
                                                   <xs:element name="containerType" type="xs:string"/>
                                                   <xs:element name="idName" type="xs:string"/>
+                                                  <xs:element name="dateOfBirth" type="xs:date"/>
+                                                  <xs:element name="dateOfDeath" type="xs:date"/>
                                                   <xs:element minOccurs="0" name="containerCode"
                                                   type="xs:string"/>
                                                   <xs:element minOccurs="0"

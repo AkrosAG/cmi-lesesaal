@@ -602,6 +602,7 @@
     <Compile Include="api\Controllers\ApiFrontendControllerBase.cs" />
     <Compile Include="api\Controllers\PublicController.cs" />
     <Compile Include="api\Controllers\SystemController.cs" />
+    <Compile Include="api\Elastic\Facetten.cs" />
     <Compile Include="api\Interfaces\IElasticService.cs" />
     <Compile Include="api\Entities\EntityDecorators.cs" />
     <Compile Include="api\Entities\EntityMetaOptions.cs" />

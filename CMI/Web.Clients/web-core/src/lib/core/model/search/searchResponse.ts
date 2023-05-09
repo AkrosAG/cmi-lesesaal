@@ -10,6 +10,10 @@ export interface Facet {
 	aggregations: Aggregation[];
 	items: AggregationEntry[];
 	sumOtherDocCount: number;
+	key: string;
+	translationPath: string;
+	defaultText: string;
+	collapsed: boolean;
 }
 
 export interface Aggregation {

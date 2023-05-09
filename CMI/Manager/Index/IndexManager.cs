@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
@@ -9,6 +10,7 @@ using CMI.Manager.Index.Properties;
 using CMI.Manager.Index.ValueExtractors;
 using MassTransit;
 using Serilog;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CMI.Manager.Index
 {
@@ -41,7 +43,7 @@ namespace CMI.Manager.Index
             var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell BAR , muss verallgemeinet werden
 
             archiveRecordProcessor.PostProcessElasticArchiveRecord(elasticArchiveRecord, archiveRecord);
-
+            
             // Save in elastic
             dbAccess.UpdateDocument(elasticArchiveRecord);
         }
@@ -185,6 +187,8 @@ namespace CMI.Manager.Index
                     Name = s.Name,
                     SeeAlso = s.SeeAlso,
                     Source = s.Source,
+                    YearOfBirth = s.DateOfBirth.Year,
+                    YearOfDeath = s.DateOfDeath.Year,
                     Thesaurus = s.Thesaurus
                 })
                 .ToList();
