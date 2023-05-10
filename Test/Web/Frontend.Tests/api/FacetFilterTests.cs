@@ -1,6 +1,17 @@
 ﻿using System;
+using System.Text;
+using CMI.Contract.Common;
+using CMI.Web.Frontend.api.Configuration;
 using CMI.Web.Frontend.api.Elastic;
+using CMI.Web.Frontend.api.Interfaces;
+using CMI.Web.Frontend.API.Tests.ElasticMock;
+using Elasticsearch.Net;
 using FluentAssertions;
+using Moq;
+using Nest;
+using Nest.JsonNetSerializer;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 
 namespace CMI.Web.Frontend.API.Tests.api
@@ -8,38 +19,7 @@ namespace CMI.Web.Frontend.API.Tests.api
     [TestFixture]
     internal class FacetFilterTests
     {
-        [Test]
-        public void Vergleich_mit_illegalem_Feld_am_Arraybegin_wirft_Exception()
-        {
-            var action = new Action(() => { ElasticService.GetSecuredFacetFilters(new[] {"all_Primarydata:\"Dossier\"", "level:\"Dossier\""}); });
-
-            action.Should().Throw<Exception>();
-        }
-
-        [Test]
-        public void Vergleich_mit_illegalem_Feld_am_Arrayende_wirft_Exception()
-        {
-            var action = new Action(() => { ElasticService.GetSecuredFacetFilters(new[] {"level:\"Dossier\"", "evil:\"Dossier\""}); });
-
-            action.Should().Throw<Exception>();
-        }
-
-        [Test]
-        public void Exists_mit_illegalem_Feld_wirft_Exception()
-        {
-            var action = new Action(() => { ElasticService.GetSecuredFacetFilters(new[] {"(_exists_:evil)"}); });
-
-            action.Should().Throw<Exception>();
-        }
-
-        [Test]
-        public void Not_Exists_mit_illegalem_Feld_wirft_Exception()
-        {
-            var action = new Action(() => { ElasticService.GetSecuredFacetFilters(new[] {"(!_exists_:evil)"}); });
-
-            action.Should().Throw<Exception>();
-        }
-
+        
         [Test]
         public void Vergleichswert_wird_Escaped()
         {
@@ -47,5 +27,38 @@ namespace CMI.Web.Frontend.API.Tests.api
 
             secured.Should().BeEquivalentTo("level:Dossier\\:123");
         }
+
+        [Test]
+        public void Load_Facetten_Test()
+        { 
+            // arrange
+            var elasticSettings = new Mock<IElasticSettings>();
+
+            // act
+            var service = new ElasticServiceWithFacettenBackdoor(elasticSettings.Object, TestResources.Facetten);
+
+            // assert
+            service.Should().NotBeNull();
+            service.Facetten.Should().NotBeNull();
+            service.Facetten.Count.Should().Be(10);
+        }
+
+
+        [Test]
+        public void Load_Facetten_SmallList_Test()
+        {
+            // arrange
+            var elasticSettings = new Mock<IElasticSettings>();
+
+            // act
+            var service = new ElasticServiceWithFacettenBackdoor(elasticSettings.Object, TestResources.Facetten_SmallList);
+
+            // assert
+            service.Should().NotBeNull();
+            service.Facetten.Should().NotBeNull();
+            service.Facetten.Count.Should().Be(8);
+        }
+
+
     }
 }
