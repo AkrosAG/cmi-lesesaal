@@ -187,6 +187,7 @@ namespace CMI.Manager.Index
                     Name = s.Name,
                     SeeAlso = s.SeeAlso,
                     Source = s.Source,
+                    Thesaurus = s.Thesaurus,
                     DateOfBirth = s.DateOfBirth.HasValue
                         ? new ElasticDateWithYear
                         {
