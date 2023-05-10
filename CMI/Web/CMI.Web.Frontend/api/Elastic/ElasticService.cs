@@ -1,5 +1,4 @@
-﻿using Castle.Core.Resource;
-using CMI.Access.Sql.Lesesaal;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
 using CMI.Utilities.Logging.Configurator;
@@ -29,7 +28,7 @@ namespace CMI.Web.Frontend.api.Elastic
         // ReSharper disable once InconsistentNaming
         public const int ELASTIC_SEARCH_HIT_LIMIT = 10000;
         private const string facettenConfigFilename = "Facetten.json";
-        private readonly List<Facette> facetten;
+        protected readonly List<Facette> facetten;
 
 
         private readonly IElasticClientProvider clientProvider;
@@ -448,7 +447,6 @@ namespace CMI.Web.Frontend.api.Elastic
             AggregationBase aggregations = null;
             // Zeitraum Filter
             // Für die feinen Filter reicht, wenn wir maximal 10 Stück zurückliefern. Da wir am Ende nur die Facette zurückliefern, die  weniger als 10 Buckets haben
-        
             foreach (var facet in facetten)
             {
                 switch (facet.Type)
@@ -763,16 +761,16 @@ namespace CMI.Web.Frontend.api.Elastic
             var found = false;
             chosenCreationPeriodAggregation = string.Empty;
 
-            foreach (var entry in aggs.OrderBy(t => t.Key))
+            foreach (var entry in aggs.OrderBy(ag => facetten.First(f => ag.Key.Contains(f.Title)).Index))
             {
                 if (entry.Key.StartsWith("facet_creationPeriodYears"))
                 {
                     if (!found)
                     {
-                        var primaryAggregation = ((SingleBucketAggregate) entry.Value).First().Value;
+                        var primaryAggregation = ((SingleBucketAggregate)entry.Value).First().Value;
 
                         // Wähle den Bucket, der weniger als 10 Einträge hat. Oder dann ganz am Ende den Jahrhundertfilter
-                        if (GetSelectedCreationPeriod(facetsFilters) == string.Empty && (((BucketAggregate) primaryAggregation).Items.Count < 10 ||
+                        if (GetSelectedCreationPeriod(facetsFilters) == string.Empty && (((BucketAggregate)primaryAggregation).Items.Count < 10 ||
                                                                                          entry.Key == "facet_facetten.creationPeriodYears100"
                             ) ||
                             GetSelectedCreationPeriod(facetsFilters) == entry.Key)
@@ -785,7 +783,7 @@ namespace CMI.Web.Frontend.api.Elastic
                 }
                 else if (entry.Key.StartsWith("facet_"))
                 {
-                    var primaryAggregation = ((SingleBucketAggregate) entry.Value).First().Value;
+                    var primaryAggregation = ((SingleBucketAggregate)entry.Value).First().Value;
                     filteredAggregations.Add(entry.Key.Remove(0, 6), primaryAggregation);
                 }
                 else
@@ -799,6 +797,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
         private void ComplementAggregations(JObject aggregations, string chosenCreationPeriodAggregation)
         {
+            
             foreach (var aggregation in aggregations.Children())
             {
                 var aggregationName = ((JProperty) aggregation).Name;

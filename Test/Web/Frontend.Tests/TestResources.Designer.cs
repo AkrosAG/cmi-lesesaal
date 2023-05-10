@@ -63,35 +63,72 @@ namespace CMI.Web.Frontend.API.Tests {
         /// <summary>
         ///   Looks up a localized string similar to [
         ///  {
-        ///      &quot;Field&quot;: &quot;level.keyword&quot;,
-        ///      &quot;Size&quot;: 500,
-        ///      &quot;Sort&quot;: &quot;_term&quot;,
-        ///      &quot;Title&quot;: &quot;level&quot;,
-        ///      &quot;Type&quot;: &quot;Term&quot;,
-        ///      &quot;Missing&quot;: &quot;&quot;
-        ///    },
-        ///    {
-        ///      &quot;Field&quot;: &quot;permission.keyword&quot;,
-        ///      &quot;Size&quot;: 500,
-        ///      &quot;Sort&quot;: &quot;_term&quot;,
-        ///      &quot;Title&quot;: &quot;permission&quot;,
-        ///      &quot;Type&quot;: &quot;Term&quot;,
-        ///      &quot;Missing&quot;: &quot;&quot;
-        ///    },
-        ///    {
-        ///      &quot;Field&quot;: &quot;facetten.text01&quot;,
-        ///      &quot;Size&quot;: 500,
-        ///      &quot;Sort&quot;: &quot;_term&quot;,
-        ///      &quot;Title&quot;: &quot;Personenregister&quot;,
-        ///      &quot;Type&quot;: &quot;Term&quot;,
-        ///      &quot;Missing&quot;: &quot;&quot;
-        ///    },
-        ///	{
-        ///  [rest of string was truncated]&quot;;.
+        ///    &quot;Field&quot;: &quot;level.keyword&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;level&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;1&quot;
+        ///  },
+        ///  {
+        ///    &quot;Field&quot;: &quot;permission.keyword&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;permission&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;2&quot;
+        ///  },
+        ///  {
+        ///    &quot;Field&quot;: &quot;facetten.text01&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;Personenregister&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;6&quot;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Facetten {
             get {
                 return ResourceManager.GetString("Facetten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [
+        ///  {
+        ///    &quot;Field&quot;: &quot;level.keyword&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;level&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;1&quot;
+        ///  },
+        ///  {
+        ///    &quot;Field&quot;: &quot;permission.keyword&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;permission&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;2&quot;
+        ///  },
+        ///  {
+        ///    &quot;Field&quot;: &quot;facetten.text03&quot;,
+        ///    &quot;Size&quot;: 500,
+        ///    &quot;Sort&quot;: &quot;_term&quot;,
+        ///    &quot;Title&quot;: &quot;Archivalienart&quot;,
+        ///    &quot;Type&quot;: &quot;Term&quot;,
+        ///    &quot;Missing&quot;: &quot;&quot;,
+        ///    &quot;Index&quot;: &quot;4&quot;
+        ///   [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Facetten_SmallList {
+            get {
+                return ResourceManager.GetString("Facetten_SmallList", resourceCulture);
             }
         }
         

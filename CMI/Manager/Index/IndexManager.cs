@@ -187,9 +187,21 @@ namespace CMI.Manager.Index
                     Name = s.Name,
                     SeeAlso = s.SeeAlso,
                     Source = s.Source,
-                    YearOfBirth = s.DateOfBirth?.Year ?? 0,
-                    YearOfDeath = s.DateOfDeath?.Year ?? 0,
-                    Thesaurus = s.Thesaurus
+                    DateOfBirth = s.DateOfBirth.HasValue
+                        ? new ElasticDateWithYear
+                        {
+                            Date = s.DateOfBirth.Value,
+                            Year = s.DateOfBirth.Value.Year
+                        }
+                        : null,
+                    DateOfDeath = s.DateOfDeath.HasValue
+                        ? new ElasticDateWithYear
+                        {
+                            Date = s.DateOfDeath.Value,
+                            Year = s.DateOfDeath.Value.Year
+                        }
+                        : null
+
                 })
                 .ToList();
 
