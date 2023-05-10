@@ -57,15 +57,7 @@ namespace CMI.Web.Frontend.API.Tests.ElasticMock
         {
         }
 
-        internal List<Facette> Facetten
-        {
-            get
-            {
-                return facetten;
-
-
-            }
-        }
+        internal List<Facette> Facetten => facetten;
 
 
         private static IElasticClientProvider CreateClientProvider(object responseMock)
