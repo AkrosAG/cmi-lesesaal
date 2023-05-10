@@ -383,6 +383,10 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "source")]
         public string Source { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfBirth")]
+        public System.DateTime? DateOfBirth { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfDeath")]
+        public System.DateTime? DateOfDeath { get; set; }
     }
 
     /// <summary>

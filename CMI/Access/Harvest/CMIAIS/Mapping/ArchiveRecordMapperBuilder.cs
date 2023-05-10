@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CMI.Contract.Common;
 using System.Linq;
 
@@ -68,12 +69,14 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 var register = r.Registereintrag?.Item;
                 if (register == null)
                     return null;
-                
                 return new Descriptor
                 {
                     Name = register.Bezeichnung,
                     Description = register.Bemerkung,
                     Thesaurus = register.Registertyp?.Item?.Bezeichnung,
+                    Function = register.Rolle,
+                    DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
+                    DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null
                 };
             })
             .Where(r => r != null)
