@@ -797,7 +797,6 @@ namespace CMI.Web.Frontend.api.Elastic
 
         private void ComplementAggregations(JObject aggregations, string chosenCreationPeriodAggregation)
         {
-            
             foreach (var aggregation in aggregations.Children())
             {
                 var aggregationName = ((JProperty) aggregation).Name;

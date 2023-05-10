@@ -23,7 +23,7 @@ namespace CMI.Contract.Common.Compiler
                 {
                     var text = new StringBuilder();
                     text.Append(descriptor.Name);
-                    if (descriptor.DateOfBirth != null && (descriptor.DateOfDeath > 0)
+                    if (descriptor.DateOfBirth != null && (descriptor.DateOfDeath != null)
                     {
                         text.Append(" (" + descriptor.DateOfBirth.Year + "-" + descriptor.DateOfDeath.Year + ")");
                     }
