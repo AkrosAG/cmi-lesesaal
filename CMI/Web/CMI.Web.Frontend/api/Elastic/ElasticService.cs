@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Elastic
@@ -838,16 +839,22 @@ namespace CMI.Web.Frontend.api.Elastic
 
 
                         var fac = facetten.First(f => f.Title.Equals(aggregationName));
-                        
-                        if (!string.IsNullOrEmpty(key) )
+
+                        if (!string.IsNullOrEmpty(key) && fac.Missing.Equals(key))
                         {
                             item["key"] = "search.facetteEntry." + key;
+                            item["filter"] = $"(!_exists_:{fac.Field})";
+                        }
+                        else if (!string.IsNullOrEmpty(key))
+                        {
+                            item["key"] = "search.facetteEntry." + key;
+                            item["filter"] = $"{fac.Field}:\"{key}\"";
                         }
                         else if (string.IsNullOrEmpty(key))
                         {
                             item["key"] = $"search.facetteEntry.resultateOhne{aggregationName}";
+                            item["filter"] = $"{fac.Field}:\"{key}\"";
                         }
-                        item["filter"] = $"{fac.Field}:\"{key}\"";
                     }
                 }
             }
