@@ -219,8 +219,8 @@ namespace CMI.Contract.Common
         public string Function { get; set; }
         public string Thesaurus { get; set; }
         public string Source { get; set; }
-        public int YearOfBirth { get; set; }
-        public int YearOfDeath { get; set; }
+        public ElasticDateWithYear DateOfBirth { get; set; }
+        public ElasticDateWithYear DateOfDeath { get; set; }
     }
 
     public class ElasticDateWithYear

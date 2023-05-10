@@ -23,14 +23,14 @@ namespace CMI.Contract.Common.Compiler
                 {
                     var text = new StringBuilder();
                     text.Append(descriptor.Name);
-                    if (descriptor.YearOfBirth > 0 && descriptor.YearOfDeath > 0)
+                    if (descriptor.DateOfBirth != null && (descriptor.DateOfDeath > 0)
                     {
-                        text.Append(" (" + descriptor.YearOfBirth + "-" + descriptor.YearOfDeath + ")");
+                        text.Append(" (" + descriptor.DateOfBirth.Year + "-" + descriptor.DateOfDeath.Year + ")");
                     }
 
                     if (!string.IsNullOrEmpty(descriptor.Function))
                     {
-                        text.Append(" : " + descriptor.Function);
+                        text.Append(": " + descriptor.Function);
                     }
                     elasticArchiveRecord.Facetten.Text01.Add(text.ToString());
                 }
