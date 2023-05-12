@@ -442,7 +442,7 @@ namespace CMI.Web.Frontend.api.Elastic
             searchRequest.Sort.Add(new FieldSort(){ Field = "referenceCode", Order = SortOrder.Ascending });
         }
 
-        private void AddAggregations(SearchRequest<ElasticArchiveRecord> searchRequest, FacetFilters[] facetsFilters )
+        protected void AddAggregations(SearchRequest<ElasticArchiveRecord> searchRequest, FacetFilters[] facetsFilters )
         {
             AggregationBase aggregations = null;
             // Zeitraum Filter
