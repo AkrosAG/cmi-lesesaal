@@ -1,9 +1,11 @@
 ﻿using System;
 using CMI.Web.Frontend.api.Elastic;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using CMI.Contract.Common;
 using CMI.Web.Frontend.api.Interfaces;
+using CMI.Web.Frontend.api.Search;
 using Elasticsearch.Net;
 using Moq;
 using Nest;
@@ -59,6 +61,13 @@ namespace CMI.Web.Frontend.API.Tests.ElasticMock
 
         internal List<Facette> Facetten => facetten;
 
+
+        internal AggregationDictionary TestAggregationCreation(FacetFilters[] filters)
+        {
+            var searchRequest = new Mock<SearchRequest<ElasticArchiveRecord>>();
+            AddAggregations(searchRequest.Object, filters);
+            return searchRequest.Object.Aggregations;
+        }
 
         private static IElasticClientProvider CreateClientProvider(object responseMock)
         {
