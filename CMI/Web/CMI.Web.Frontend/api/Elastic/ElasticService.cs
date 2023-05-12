@@ -18,7 +18,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Elastic
@@ -871,8 +870,13 @@ namespace CMI.Web.Frontend.api.Elastic
 
             foreach (var filter in creationPeriod.Filters)
             {
-                var aggregation = filter.Substring(0, filter.IndexOf(':'));
-                if (aggregation.StartsWith("facetten.creationPeriodYears", StringComparison.InvariantCultureIgnoreCase))
+                if (filter.Length < 10)
+                {
+                    continue;
+                }
+
+                var aggregation = filter.Substring(9, filter.IndexOf(':') - 9);
+                if (aggregation.StartsWith("creationPeriodYears", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return $"facet_{aggregation}";
                 }

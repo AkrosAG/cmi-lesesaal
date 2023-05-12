@@ -65,7 +65,9 @@ export class SearchFacetteEntryComponent implements OnInit {
 				translated =  translated.replace('-', '<span class="sr-only">' + bis + '</span><span aria-hidden="true"> - </span>');
 			}
 
-			translated = translated.substring(translated.lastIndexOf('.') + 1);
+			if (translated.includes('search.facetteEntry.')) {
+				translated = translated.substring(20);
+			}
 			return this.sanitizer.bypassSecurityTrustHtml(translated);
 		}
 	}
