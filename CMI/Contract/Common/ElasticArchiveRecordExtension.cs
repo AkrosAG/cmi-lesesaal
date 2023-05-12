@@ -33,16 +33,38 @@ namespace CMI.Contract.Common
             try
             {
                 var cultureInfo = new CultureInfo(language);
-                if (record is SearchRecord searchRecord)
-                {
-                    searchRecord.Permission = ResourceManager.GetString(searchRecord.Permission ?? "", cultureInfo);
-                }
 
                 var level = ResourceManager.GetString(record.Level ?? "", cultureInfo) ;
                 if (!string.IsNullOrEmpty(level))
                 {
                     record.Level = level;
-                } 
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Unexpected error while translating the record");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Translates the field Levels and the customer field "Accessibility according to BGA".
+        /// Was made for the task PVW-789
+        /// </summary>
+        /// <param name="record">the to translate record</param>
+        /// <param name="language">language abbreviation e.g. "en"</param>
+        public static void Translate(this DetailRecord record, string language)
+        {
+            try
+            {
+                var cultureInfo = new CultureInfo(language);
+
+                var level = ResourceManager.GetString(record.Level ?? "", cultureInfo);
+                if (!string.IsNullOrEmpty(level))
+                {
+                    record.Level = level;
+                }
+                record.Permission = ResourceManager.GetString(record.Permission ?? "", cultureInfo);
             }
             catch (Exception ex)
             {
