@@ -195,9 +195,9 @@
 			</xsd:element>
 			<xsd:element name="CustomFields">
 				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:any minOccurs="0" />
-					</xsd:sequence>
+					<xsd:choice minOccurs="0" maxOccurs="1">
+						<xsd:element name="CustomField" type="CustomField" />
+					</xsd:choice>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="SchutzfristBasisdatum" type="DateTimeFieldType" />
