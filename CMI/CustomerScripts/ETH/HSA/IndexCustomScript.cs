@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CMI.Contract.Common.Compiler
 {
@@ -48,13 +47,12 @@ namespace CMI.Contract.Common.Compiler
             var archivalienart = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("Archivalienart"));
             if (archivalienart != null)
             {
+
                 elasticArchiveRecord.Facetten.Text03 = new List<string>();
                 foreach (var archivalie in archivalienart.TextValues)
                 {
                     elasticArchiveRecord.Facetten.Text03.Add(archivalie);
                 }
-
-                elasticArchiveRecord.Facetten.Text03 = text.ToString();
             }
 
             if (elasticArchiveRecord.Descriptors.Count > 0 && elasticArchiveRecord.Descriptors.Any(d => d.Thesaurus == "Körperschaftsregister" || d.Thesaurus == "Koerperschaftsregister"))
