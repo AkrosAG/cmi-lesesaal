@@ -1,7 +1,7 @@
 [
   {
       "Field": "level.keyword",
-      "Size": 500,
+      "Size": 25,
       "Sort": "_term",
       "Title": "level",
       "Type": "Term",
@@ -10,7 +10,7 @@
   },
   {
     "Field": "permission.keyword",
-    "Size": 500,
+    "Size": 25,
     "Sort": "_term",
     "Title": "permission",
     "Type": "Term",
@@ -19,7 +19,7 @@
   },
   {
     "Field": "facetten.text01",
-    "Size": 500,
+    "Size": 25,
     "Sort": "_term",
     "Title": "Personenregister",
     "Type": "Term",
@@ -28,7 +28,7 @@
   },
   {
     "Field": "facetten.text02",
-    "Size": 500,
+    "Size": 25,
     "Sort": "_term",
     "Title": "Sprachen",
     "Type": "Term",
@@ -37,7 +37,7 @@
   },
   {
     "Field": "facetten.text03",
-    "Size": 500,
+    "Size": 25,
     "Sort": "_term",
     "Title": "Archivalienart",
     "Type": "Term",
@@ -46,7 +46,7 @@
   },
   {
     "Field": "facetten.text04",
-    "Size": 500,
+    "Size": 25,
     "Sort": "_term",
     "Title": "Körperschaftsregister",
     "Type": "Term",
