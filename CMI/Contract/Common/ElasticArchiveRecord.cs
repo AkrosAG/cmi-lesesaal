@@ -39,6 +39,9 @@ namespace CMI.Contract.Common
         public string Contains { get; set; }
         public string Permission { get; set; }
         public string Accessibility { get; set; }
+        public string ArchivalHistory { get; set; }
+        public string AdministrativeHistory { get; set; }
+        
     }
 
     public class ElasticDetailData

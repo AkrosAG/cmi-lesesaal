@@ -23,7 +23,7 @@
     "Sort": "_term",
     "Title": "Personenregister",
     "Type": "Term",
-    "Missing": "(ohne)",
+    "Missing": "",
     "Index": "6"
   },
   {

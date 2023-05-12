@@ -57,7 +57,6 @@
         "store": true,
         "term_vector": "with_positions_offsets"
       },
-
       "archiveRecordId": {
         "type": "keyword"
       },
@@ -239,7 +238,6 @@
           }
         }
       },
-
       "detailData": {
         "type": "nested",
         "properties": {
@@ -377,7 +375,6 @@
           }
         }
       },
-
       "containers": {
         "properties": {
           "containerLocation": {
@@ -451,6 +448,29 @@
           },
           "thesaurus": {
             "type": "keyword"
+          },
+          "function": {
+            "type": "keyword"
+          },
+          "dateOfBirth": {
+            "properties": {
+              "date": {
+                "type": "date"
+              },
+              "year": {
+                "type": "long"
+              }
+            }
+          },
+          "dateOfDeath": {
+            "properties": {
+              "date": {
+                "type": "date"
+              },
+              "year": {
+                "type": "long"
+              }
+            }
           }
         }
       },
@@ -475,7 +495,6 @@
           }
         }
       },
-
       "facetten": {
         "properties": {
           "text01": {
@@ -555,7 +574,6 @@
           }
         }
       },
-
       "metadataAccessTokens": {
         "type": "keyword"
       },
@@ -565,7 +583,6 @@
       "primaryDataFulltextAccessTokens": {
         "type": "keyword"
       },
-
       "canBeOrdered": {
         "type": "boolean"
       },
@@ -581,7 +598,6 @@
       "isPhysicalyUsable": {
         "type": "boolean"
       },
-
       "treeLevel": {
         "type": "long"
       },
@@ -644,7 +660,6 @@
           }
         }
       },
-
       "displayTemplateName": {
         "type": "keyword",
         "index": false
@@ -652,7 +667,6 @@
       "lastSyncDate": {
         "type": "date"
       },
-
       "primaryData": {
         "properties": {
           "fileCount": {
