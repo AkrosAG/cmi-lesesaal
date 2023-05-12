@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using CMI.Contract.Common;
 using CMI.Web.Frontend.api.Configuration;
@@ -43,7 +44,6 @@ namespace CMI.Web.Frontend.API.Tests.api
             service.Facetten.Count.Should().Be(10);
         }
 
-
         [Test]
         public void Load_Facetten_SmallList_Test()
         {
@@ -59,6 +59,20 @@ namespace CMI.Web.Frontend.API.Tests.api
             service.Facetten.Count.Should().Be(8);
         }
 
+        [Test]
+        public void Create_Aggregation_Test()
+        {
+            // arrange
+            var elasticSettings = new Mock<IElasticSettings>();
+            var service = new ElasticServiceWithFacettenBackdoor(elasticSettings.Object, TestResources.Facetten);
 
+            // act
+            var result = service.TestAggregationCreation(null);
+
+            // assert
+            service.Should().NotBeNull();
+            service.Facetten.Should().NotBeNull();
+            service.Facetten.Count.Should().Be(result.Count());
+        }
     }
 }
