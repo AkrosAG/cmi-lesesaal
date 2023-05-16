@@ -263,80 +263,7 @@ namespace CMI.Web.Frontend.api.Entities
                         }
                         else if (name.StartsWith("descriptors", StringComparison.OrdinalIgnoreCase))
                         {
-                            var stringBuilderPersonenregister = new StringBuilder();
-                            foreach (var ch in descriptors.Children())
-                            {
-                                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
-                                var thesaurusType = string.Empty;
-                                var thesaurusName = string.Empty;
-                                var thesaurusSeeAlso = string.Empty;
-                                var thesaurusFunction = string.Empty;
-                                var thesaurusDescription = string.Empty;
-                                var thesaurusDateOfDeath = "?";
-                                var thesaurusDateOfBirth = string.Empty;
-                                foreach (JProperty te in toke)
-                                {
-                                    switch (te.Name)
-                                    {
-                                        case "thesaurus":
-                                            thesaurusType += te.Value;
-                                            break;
-                                        case "name":
-                                            thesaurusName += te.Value;
-                                            break;
-                                        case "function":
-                                            thesaurusFunction += te.Value;
-                                            break;
-                                        case "description":
-                                            thesaurusDescription += te.Value;
-                                            break;
-                                        case "dateOfBirth" when te.Value.Last.HasValues:
-                                            thesaurusDateOfBirth += te.Value.Last.First;
-                                            break;
-                                        case "dateOfDeath" when te.Value.Last.HasValues:
-                                            thesaurusDateOfDeath = te.Value.Last.First.ToString();
-                                            break;
-                                        case "seeAlso":
-                                        {
-                                            var sb = new StringBuilder();
-                                            if (te.Value is JArray array)
-                                            {
-                                                foreach (var text in array)
-                                                {
-                                                    if (!string.IsNullOrEmpty(text.ToString()))
-                                                    {
-                                                        sb.Append(
-                                                            $"<a href = \"https://d-nb.info/gnd/{text}\" > GND-ID: {text}</ a >");
-                                                        break;
-                                                    }
-                                                }
-                                            
-                                            }
-                                            thesaurusSeeAlso = sb.ToString();
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                if (thesaurusType == "Personenregister")
-                                {
-                                    if (string.IsNullOrEmpty(thesaurusDateOfBirth))
-                                    {
-                                        stringBuilderPersonenregister.AppendLine($"{thesaurusName}, {thesaurusFunction}");
-                                    }
-                                    else
-                                    {
-                                        stringBuilderPersonenregister.AppendLine($"{thesaurusName} ({thesaurusDateOfBirth}-{thesaurusDateOfDeath}), {thesaurusFunction}");
-                                    }
-                                    stringBuilderPersonenregister.AppendLine($"{thesaurusDescription}");
-                                    stringBuilderPersonenregister.AppendLine($"{thesaurusSeeAlso}");
-                                }
-                            }
-
-                            if (stringBuilderPersonenregister.Length > 0)
-                            {
-                                attributes.Add("Personenregister", stringBuilderPersonenregister.ToString());
-                            }
+                            MapDescriptors(descriptors, attributes);
                         }
                         else
                         {
@@ -369,6 +296,69 @@ namespace CMI.Web.Frontend.api.Entities
             }
 
             return metadata;
+        }
+
+        private static void MapDescriptors(JArray descriptors, JObject attributes)
+        {
+            var stringBuilderPersonenregister = new StringBuilder();
+            foreach (var ch in descriptors.Children())
+            {
+                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
+                var thesaurusType = string.Empty;
+                var thesaurusName = string.Empty;
+                var thesaurusSource = string.Empty;
+                var thesaurusFunction = string.Empty;
+                var thesaurusDescription = string.Empty;
+                var thesaurusDateOfDeath = "?";
+                var thesaurusDateOfBirth = string.Empty;
+                foreach (JProperty te in toke)
+                {
+                    switch (te.Name)
+                    {
+                        case "thesaurus":
+                            thesaurusType += te.Value;
+                            break;
+                        case "name":
+                            thesaurusName += te.Value;
+                            break;
+                        case "function":
+                            thesaurusFunction += te.Value;
+                            break;
+                        case "description":
+                            thesaurusDescription += te.Value;
+                            break;
+                        case "dateOfBirth" when te.HasValues && te.Value.Last.HasValues:
+                            thesaurusDateOfBirth += te.Value.Last.First;
+                            break;
+                        case "dateOfDeath" when te.HasValues && te.Value.Last.HasValues:
+                            thesaurusDateOfDeath = te.Value.Last.First.ToString();
+                            break;
+                        case "source":
+                            thesaurusSource += te.Value;
+                            break;
+                    }
+                }
+
+                if (thesaurusType == "Personenregister")
+                {
+                    if (string.IsNullOrEmpty(thesaurusDateOfBirth))
+                    {
+                        stringBuilderPersonenregister.AppendLine($"{thesaurusName}, {thesaurusFunction}");
+                    }
+                    else
+                    {
+                        stringBuilderPersonenregister.AppendLine($"{thesaurusName} ({thesaurusDateOfBirth}-{thesaurusDateOfDeath}), {thesaurusFunction}");
+                    }
+
+                    stringBuilderPersonenregister.AppendLine($"{thesaurusDescription}");
+                    stringBuilderPersonenregister.AppendLine($"{thesaurusSource}");
+                }
+            }
+
+            if (stringBuilderPersonenregister.Length > 0)
+            {
+                attributes.Add("Personenregister", stringBuilderPersonenregister.ToString());
+            }
         }
     }
 }

@@ -77,7 +77,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Function = register.Rolle,
                     DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
                     DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null,
-                    SeeAlso = new List<string> { register.GNDID?.ToString() }
+                    Source =  register.GNDID?.ToString() 
                 };
             })
             .Where(r => r != null)
