@@ -41,8 +41,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezeichnung",
-                "en": "Description",
-                "fr": "Désignation"
+                "en": "Description"
               }
             },
             {
@@ -166,23 +165,14 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "DOI",
-                "en": "DOI"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
                 "de": "Verwaltungssignatur",
-                "en": "Distortion nw"
+                "en": "DOI"
               }
             },
             {
               "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
@@ -196,8 +186,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
-                "en": "Title",
-                "fr": "Titre"
+                "en": "Title"
               }
             },
             {
@@ -217,8 +206,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
@@ -228,13 +216,12 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating",
-                "fr": "Remarques sur la datation"
+                "en": "Remarks on the dating"
               }
             },
             {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -245,7 +232,7 @@
             },
             {
               "DbFieldName": "DetailData.LinkZuPrimaerdaten",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -255,7 +242,7 @@
             },
             {
               "DbFieldName": "DetailData.URL",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -561,9 +548,8 @@
         },
         {
           "SectionLabels": {
-            "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
-            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
-            "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
+            "de": "Standort und Umfang",
+            "en": "Location and scope"
           },
           "Fields": [
             {
@@ -594,9 +580,18 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
+                "de": "Umfang",
+                "en": "Scope"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks",
-                "fr": "Remarques sur l'importance matérielle"
+                "en": "Scope remarks"
               }
             }
           ],
@@ -609,47 +604,16 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Registereinträge.Registertyp",
-              "DbType": "Text",
+              "DbFieldName": "Descriptors",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
                 "en": "Description"
               }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bezeichnung",
-                "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.GND-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "GND-ID",
-                "en": "GND-ID"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Externe-ID",
-                "en": "Externe-ID"
-              }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -818,7 +782,7 @@
             },
             {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -829,7 +793,7 @@
             },
             {
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -839,7 +803,7 @@
             },
             {
               "DbFieldName": "DetailData.URL",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1082,9 +1046,8 @@
         },
         {
           "SectionLabels": {
-            "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
-            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
-            "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
+            "de": "Standort und Umfang",
+            "en": "Location and scope"
           },
           "Fields": [
             {
@@ -1110,14 +1073,23 @@
               }
             },
             {
-              "DbFieldName": "DetailData.UmfangBemerkungen",
+              "DbFieldName": "DetailData.Umfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Umfang",
+                "en": "Scope"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks",
-                "fr": "Remarques sur l'importance matérielle"
+                "en": "Scope remarks"
               }
             }
           ],
@@ -1130,43 +1102,13 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Registereinträge.Registertyp",
-              "DbType": "Text",
+              "DbFieldName": "descriptors",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
                 "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bezeichnung",
-                "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.GND-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "GND-ID",
-                "en": "GND-ID"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Externe-ID",
-                "en": "Externe-ID"
               }
             }
           ],
@@ -1229,8 +1171,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
-            "en": "Identification",
-            "fr": "Identification"
+            "en": "Identification"
           },
           "Fields": [
             {
@@ -1240,19 +1181,17 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
-                "en": "Reference code",
-                "fr": "Référence"
+                "en": "Reference code"
               }
             },
             {
-              "DbFieldName": "DetailData.AlteSignatur",
+              "DbFieldName": "formerReferenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Alte Signatur",
-                "en": "Old signature",
-                "fr": "Ancienne signature"
+                "en": "Old signature"
               }
             },
             {
@@ -1267,16 +1206,6 @@
             },
             {
               "DbFieldName": "DetailData.Verwaltungssignatur",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verwaltungssignatur",
-                "en": "Distortion nw"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1301,8 +1230,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
-                "en": "Title",
-                "fr": "Titre"
+                "en": "Title"
               }
             },
             {
@@ -1327,30 +1255,28 @@
               }
             },
             {
-              "DbFieldName": "DetailData.DatierungBemerkungen",
+              "DbFieldName": "DetailData.BemerkungEntstehungszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating",
-                "fr": "Remarques sur la datation"
+                "de": "Bemerkungen zum Entstehungszeitraum",
+                "en": "Remarks on the dating"
               }
             },
             {
-              "DbFieldName": "primaryDataLink",
-              "DbType": "Text",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Link zu Digitalisat",
-                "en": "Tectonic trail",
-                "fr": "Chemin tectonique"
+                "en": "Tectonic trail"
               }
             },
             {
-              "DbFieldName": "primaryDataLink",
-              "DbType": "Text",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1360,7 +1286,7 @@
             },
             {
               "DbFieldName": "URL",
-              "DbType": "Text",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1373,19 +1299,17 @@
         {
           "SectionLabels": {
             "de": "Kontext",
-            "en": "Context",
-            "fr": "Contexte"
+            "en": "Context"
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.BemerkungenProvenienz",
+              "DbFieldName": "DetailData.BemerkungProvenienz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
-                "en": "Remarks Provenance",
-                "fr": "Remarques provenance"
+                "en": "Remarks Provenance"
               }
             },
             {
@@ -1395,8 +1319,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
-                "en": "Inventory history",
-                "fr": "Historique de la conservation"
+                "en": "Inventory history"
               }
             }
           ],
@@ -1405,8 +1328,7 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
-            "en": "Content and structure",
-            "fr": "Contenu et structure"
+            "en": "Content and structure"
           },
           "Fields": [
             {
@@ -1421,14 +1343,13 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Überlieferungsformen",
+              "DbFieldName": "DetailData.Ueberlieferungsform",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Überlieferungsformen",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "en": "Increases"
               }
             }
           ],
@@ -1490,8 +1411,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Lang",
-                "fr": "Instruments de recherche"
+                "en": "Languages"
               }
             },
             {
@@ -1505,14 +1425,23 @@
               }
             },
             {
+              "DbFieldName": "DetailData.BemerkungSprache",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zur Sprache",
+                "en": "Physical condition and technical requirements"
+              }
+            },
+            {
               "DbFieldName": "DetailData.PhysischeBeschaffenheit",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                "en": "Physical condition and technical requirements",
-                "fr": "Caractéristiques matérielles et contraintes techniques"
+                "en": "Physical condition and technical requirements"
               }
             },
             {
@@ -1543,8 +1472,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
-                "en": "Storage location of the originals",
-                "fr": "Lieu de conservation des originaux"
+                "en": "Storage location of the originals"
               }
             },
             {
@@ -1554,8 +1482,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
-                "en": "Copies / reproductions",
-                "fr": "Copies / reproductions"
+                "en": "Copies / reproductions"
               }
             },
             {
@@ -1586,8 +1513,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
-            "en": "Directory control",
-            "fr": "Contrôle de description"
+            "en": "Directory control"
           },
           "Fields": [
             {
@@ -1597,7 +1523,6 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "fr": "Remarques internes",
                 "en": "Internal remarks"
               }
             }
@@ -1606,9 +1531,8 @@
         },
         {
           "SectionLabels": {
-            "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
-            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
-            "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
+            "de": "Standort und Umfang",
+            "en": "Location and scope"
           },
           "Fields": [
             {
@@ -1618,8 +1542,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Standort",
-                "en": "Location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location"
               }
             },
             {
@@ -1629,19 +1552,27 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
-                "en": "Comments on the location",
-                "fr": "Remarques sur le lieu"
+                "en": "Comments on the location"
               }
             },
             {
-              "DbFieldName": "DetailData.UmfangBemerkungen",
+              "DbFieldName": "DetailData.Umfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Umfang",
+                "en": "Scope"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks",
-                "fr": "Remarques sur l'importance matérielle"
+                "en": "Scope remarks"
               }
             }
           ],
@@ -1654,43 +1585,13 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Registereinträge.Registertyp",
+              "DbFieldName": "descriptors",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
                 "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bezeichnung",
-                "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.GND-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "GND-ID",
-                "en": "GND-ID"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Externe-ID",
-                "en": "Externe-ID"
               }
             }
           ],
@@ -2129,9 +2030,8 @@
         },
         {
           "SectionLabels": {
-            "de": "Standort ({COUNT:Standorte}) und Umfang ({COUNT:Umfaenge})",
-            "en": "Location ({COUNT:Standorte}) and scope ({COUNT:Umfaenge})",
-            "fr": "Emplacement ({COUNT:Standorte}) et importance matérielle ({COUNT:Umfaenge})"
+            "de": "Standort und Umfang",
+            "en": "Location and scope"
           },
           "Fields": [
             {
@@ -2157,14 +2057,23 @@
               }
             },
             {
-              "DbFieldName": "DetailData.UmfangBemerkungen",
+              "DbFieldName": "DetailData.Umfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Umfang",
+                "en": "Scope"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks",
-                "fr": "Remarques sur l'importance matérielle"
+                "en": "Scope remarks"
               }
             }
           ],
@@ -2177,43 +2086,13 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Registereinträge.Registertyp",
-              "DbType": "Text",
+              "DbFieldName": "Descriptors",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
                 "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Bezeichnung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bezeichnung",
-                "en": "Description"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.GND-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "GND-ID",
-                "en": "GND-ID"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Registereinträge.Externe-ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Externe-ID",
-                "en": "Externe-ID"
               }
             }
           ],
