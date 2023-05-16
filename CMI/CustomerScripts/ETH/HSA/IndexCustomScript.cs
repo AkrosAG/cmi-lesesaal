@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -13,7 +14,6 @@ namespace CMI.Contract.Common.Compiler
         public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
             // Facetten
-            // elasticArchiveRecord.Facetten.Text01 = elasticArchiveRecord.Descriptors.GroupBy(d => d.Name)
             if (elasticArchiveRecord.Descriptors.Count > 0 && elasticArchiveRecord.Descriptors.Any(d => d.Thesaurus == "Personenregister"))
             {
                 var descriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus == "Personenregister");
@@ -66,13 +66,20 @@ namespace CMI.Contract.Common.Compiler
 
                     if (!string.IsNullOrEmpty(descriptor.Function))
                     {
-                        text.Append(" : " + descriptor.Function);
+                        text.Append(": " + descriptor.Function);
                     }
                     elasticArchiveRecord.Facetten.Text04.Add(text.ToString());
                 }
 
             }
-        }
 
+            foreach (var descriptor in elasticArchiveRecord.Descriptors)
+            {
+                if (!string.IsNullOrEmpty(descriptor.Source))
+                {
+                    descriptor.Source = string.Format("<a href =\"https://d-nb.info/gnd/{0}\" target=\"_blank\"> GND-ID: {1}</a>", descriptor.Source, descriptor.Source);
+                }
+            }
+        }
     }
 }
