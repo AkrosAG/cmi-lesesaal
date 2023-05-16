@@ -719,16 +719,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
               "Visibility": 0,
@@ -1698,16 +1688,6 @@
               "FieldLabels": {
                 "de": "Verwaltungssignatur",
                 "en": "Distortion nw"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
               }
             },
             {
