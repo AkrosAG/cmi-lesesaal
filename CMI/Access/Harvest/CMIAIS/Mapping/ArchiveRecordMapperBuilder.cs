@@ -76,7 +76,8 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Thesaurus = register.Registertyp?.Item?.Bezeichnung,
                     Function = register.Rolle,
                     DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
-                    DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null
+                    DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null,
+                    Source =  register.GNDID?.ToString() 
                 };
             })
             .Where(r => r != null)
