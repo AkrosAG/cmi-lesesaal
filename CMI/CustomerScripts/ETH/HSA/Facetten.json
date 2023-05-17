@@ -19,7 +19,7 @@
   },
   {
     "Field": "facetten.text01",
-    "Size": 25,
+    "Size": 60,
     "Sort": "_term",
     "Title": "Personenregister",
     "Type": "Term",

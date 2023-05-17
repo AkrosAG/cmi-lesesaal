@@ -75,6 +75,7 @@ namespace CMI.Contract.Common
         public string ProtectionCategory { get; set; }
         public int? ProtectionDuration { get; set; }
         public List<ElasticDetailData> DetailData { get; set; }
+        public List<ElasticDescriptor> Descriptors { get; set; }
     }
 
     public class ElasticArchiveRecord : DetailRecord
@@ -105,7 +106,6 @@ namespace CMI.Contract.Common
         public string FirstChildArchiveRecordId { get; set; }
         public bool ContainsPersonRelatedInformation { get; set; }
         public bool IsPhysicalyUsable { get; set; }
-        public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticContainer> Containers { get; set; }
         public List<ElasticReference> References { get; set; }
 

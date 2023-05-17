@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
@@ -12,9 +12,7 @@ using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
 using Nest;
 using Newtonsoft.Json.Linq;
-using NJsonSchema.Infrastructure;
 using Serilog;
-using static Nest.JoinField;
 
 namespace CMI.Web.Frontend.api.Entities
 {
@@ -197,7 +195,6 @@ namespace CMI.Web.Frontend.api.Entities
             return result;
         }
 
-
         private JObject GetMetadata(TreeRecord entity, UserAccess access)
         {
             if (entity?.Level == null)
@@ -208,7 +205,7 @@ namespace CMI.Web.Frontend.api.Entities
             var type = modelData.GetEntityType(entity);
             if (type == null)
             {
-                Log.Information($"No type found for entiy level {entity?.Level} and external template {entity.DisplayTemplateName}");
+                Log.Information($"No type found for entity level {entity?.Level} and external template {entity.DisplayTemplateName}");
                 return null;
             }
 
@@ -217,6 +214,7 @@ namespace CMI.Web.Frontend.api.Entities
             JObject metadata = null;
             var jsonEntity = JObject.FromObject(entity);
             var detailDatas = JsonHelper.GetTokenValues(jsonEntity, detailDataKey, true) ?? new JArray();
+            var descriptors = JsonHelper.GetTokenValues(jsonEntity, "descriptors", true) ?? new JArray();
 
             var categories = type.MetaCategories ?? new List<ModelTypeMetaCategory>();
 
@@ -240,8 +238,6 @@ namespace CMI.Web.Frontend.api.Entities
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
 
-
-
                         if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
                             var subName = name.Substring(detailDataPrefix.Length);
@@ -257,11 +253,17 @@ namespace CMI.Web.Frontend.api.Entities
                                     }
                                     if (te.Name == "textValues")
                                     {
-                                        attributes.Add(field.Label, te.Value.First.ToString());
+                                        var sb = new StringBuilder();
+                                        sb = te.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                                        attributes.Add(field.Label, sb.ToString());
                                         break;
                                     }
                                 }
                             }
+                        }
+                        else if (name.StartsWith("descriptors", StringComparison.OrdinalIgnoreCase))
+                        {
+                            MapDescriptors(descriptors, attributes);
                         }
                         else
                         {
@@ -294,6 +296,69 @@ namespace CMI.Web.Frontend.api.Entities
             }
 
             return metadata;
+        }
+
+        private static void MapDescriptors(JArray descriptors, JObject attributes)
+        {
+            var stringBuilderPersonenregister = new StringBuilder();
+            foreach (var ch in descriptors.Children())
+            {
+                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
+                var thesaurusType = string.Empty;
+                var thesaurusName = string.Empty;
+                var thesaurusSource = string.Empty;
+                var thesaurusFunction = string.Empty;
+                var thesaurusDescription = string.Empty;
+                var thesaurusDateOfDeath = "?";
+                var thesaurusDateOfBirth = string.Empty;
+                foreach (JProperty te in toke)
+                {
+                    switch (te.Name)
+                    {
+                        case "thesaurus":
+                            thesaurusType += te.Value;
+                            break;
+                        case "name":
+                            thesaurusName += te.Value;
+                            break;
+                        case "function":
+                            thesaurusFunction += te.Value;
+                            break;
+                        case "description":
+                            thesaurusDescription += te.Value;
+                            break;
+                        case "dateOfBirth" when te.HasValues && te.Value.Last.HasValues:
+                            thesaurusDateOfBirth += te.Value.Last.First;
+                            break;
+                        case "dateOfDeath" when te.HasValues && te.Value.Last.HasValues:
+                            thesaurusDateOfDeath = te.Value.Last.First.ToString();
+                            break;
+                        case "source":
+                            thesaurusSource += te.Value;
+                            break;
+                    }
+                }
+
+                if (thesaurusType == "Personenregister")
+                {
+                    if (string.IsNullOrEmpty(thesaurusDateOfBirth))
+                    {
+                        stringBuilderPersonenregister.AppendLine($"{thesaurusName}, {thesaurusFunction}");
+                    }
+                    else
+                    {
+                        stringBuilderPersonenregister.AppendLine($"{thesaurusName} ({thesaurusDateOfBirth}-{thesaurusDateOfDeath}), {thesaurusFunction}");
+                    }
+
+                    stringBuilderPersonenregister.AppendLine($"{thesaurusDescription}");
+                    stringBuilderPersonenregister.AppendLine($"{thesaurusSource}");
+                }
+            }
+
+            if (stringBuilderPersonenregister.Length > 0)
+            {
+                attributes.Add("Personenregister", stringBuilderPersonenregister.ToString());
+            }
         }
     }
 }
