@@ -38,7 +38,7 @@
 			"translatorType": "KeywordTranslator"
 		}, {
 			"type": "Text",
-			"key": "verwaltungssignatur",
+			"key": "Verwaltungssignatur",
 			"displayName": "Verwaltungssignatur",
 			"translatorType": "DetailDataTranslator"
 		}, {
@@ -48,7 +48,7 @@
 			"translatorType": "StandardTranslator"
 		}, {
 			"type": "Text",
-			"key": "ueberlieferungsform",
+			"key": "Ueberlieferungsform",
 			"displayName": "Überlieferungsform",
 			"translatorType": "DetailDataTranslator"
 		}, {
@@ -58,7 +58,7 @@
 			"translatorType": "DetailDataTranslator"
 		}, {
 			"type": "Text",
-			"key": "archivalienart",
+			"key": "Archivalienart",
 			"displayName": "Archivalienart",
 			"translatorType": "DetailDataTranslator"
 		}, {
