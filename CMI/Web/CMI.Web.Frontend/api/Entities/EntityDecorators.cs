@@ -303,12 +303,16 @@ namespace CMI.Web.Frontend.api.Entities
             var stringBuilderPersonenregister = new StringBuilder();
             foreach (var ch in descriptors.Children())
             {
+                if (stringBuilderPersonenregister.Length > 0)
+                {
+                    stringBuilderPersonenregister.AppendLine("");
+                }
+
                 var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
                 var thesaurusType = string.Empty;
                 var thesaurusName = string.Empty;
                 var thesaurusSource = string.Empty;
                 var thesaurusFunction = string.Empty;
-                var thesaurusDescription = string.Empty;
                 var thesaurusDateOfDeath = "?";
                 var thesaurusDateOfBirth = string.Empty;
                 foreach (JProperty te in toke)
@@ -323,9 +327,6 @@ namespace CMI.Web.Frontend.api.Entities
                             break;
                         case "function":
                             thesaurusFunction += te.Value;
-                            break;
-                        case "description":
-                            thesaurusDescription += te.Value;
                             break;
                         case "dateOfBirth" when te.HasValues && te.Value.Last.HasValues:
                             thesaurusDateOfBirth += te.Value.Last.First;
@@ -350,8 +351,10 @@ namespace CMI.Web.Frontend.api.Entities
                         stringBuilderPersonenregister.AppendLine($"{thesaurusName} ({thesaurusDateOfBirth}-{thesaurusDateOfDeath}), {thesaurusFunction}");
                     }
 
-                    stringBuilderPersonenregister.AppendLine($"{thesaurusDescription}");
-                    stringBuilderPersonenregister.AppendLine($"{thesaurusSource}");
+                    if (!string.IsNullOrEmpty(thesaurusSource))
+                    {
+                        stringBuilderPersonenregister.AppendLine($"{thesaurusSource}");
+                    }
                 }
             }
 
