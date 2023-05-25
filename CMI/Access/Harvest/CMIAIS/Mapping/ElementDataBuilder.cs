@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
-using System.Xml.Linq;
 using CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings;
 using CMI.Contract.Common;
 
@@ -52,19 +50,6 @@ public class ElementDataBuilder
     {
         var value = func(cmiRecord);
         CreateValueInternal(name, value);
-        return this;
-    }
-
-    public ElementDataBuilder FromCustomFields()
-    {
-        if (cmiRecord.CustomFields == null || cmiRecord.CustomFields.ChildNodes.Count == 0)
-            return this;
-
-        foreach (var element in cmiRecord.CustomFields.ChildNodes.OfType<XmlElement>())
-        {
-            CreateValueInternal(element.GetAttribute("name"), element);
-        }
-
         return this;
     }
     

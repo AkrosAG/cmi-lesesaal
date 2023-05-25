@@ -108,14 +108,37 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.Tektonikpfad), vz => vz.Tektonikpfad)
                 .From(nameof(Verzeichnungseinheit.Verfuegbarkeit), vz => vz?.Verfuegbarkeit?.Item?.Bezeichnung)
 
+                .From(nameof(Verzeichnungseinheit.CustomBemerkungSprache), vz => vz.CustomBemerkungSprache)
+                .From(nameof(Verzeichnungseinheit.CustomBemerkungStandort), vz => vz.CustomBemerkungStandort)
+                .From(nameof(Verzeichnungseinheit.CustomCustomTextField), vz => vz.CustomCustomTextField)
+                .From(nameof(Verzeichnungseinheit.CustomKuerzel), vz => vz.CustomKuerzel)
+                .From(nameof(Verzeichnungseinheit.CustomLinkAufDigitalesOriginal), vz => vz.CustomLinkAufDigitalesOriginal)
+                .From(nameof(Verzeichnungseinheit.CustomLinkZuDigitalisat), vz => vz.CustomLinkZuDigitalisat)
+                .From(nameof(Verzeichnungseinheit.CustomLinkZuPrimaerdaten), vz => vz.CustomLinkZuPrimaerdaten)
+                .From(nameof(Verzeichnungseinheit.CustomSchadenserhebung), vz => vz.CustomSchadenserhebung)
+                .From(nameof(Verzeichnungseinheit.CustomURL), vz => vz.CustomURL)
+                .From(nameof(Verzeichnungseinheit.CustomZustandskategorie), vz => vz.CustomZustandskategorie)
+                .From(nameof(Verzeichnungseinheit.CustomErwerbsarten), vz => vz?.CustomErwerbsarten?.Item.Bezeichnung)
+                .From(nameof(Verzeichnungseinheit.CustomLizenz), vz => vz?.CustomLizenz?.Item.Bezeichnung)
+
+                .From(nameof(Verzeichnungseinheit.CustomFreeBool01Field), vz => vz.CustomFreeBool01Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBool02Field), vz => vz.CustomFreeBool02Field)
+
+                .From(nameof(Verzeichnungseinheit.CustomFreeDate01Field), vz => vz.CustomFreeDate01Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDate02Field), vz => vz.CustomFreeDate02Field)
+
+                .From(nameof(Verzeichnungseinheit.CustomFreeText01Field), vz => vz.CustomFreeText01Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeText02Field), vz => vz.CustomFreeText02Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeText03Field), vz => vz.CustomFreeText03Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeText04Field), vz => vz.CustomFreeText04Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeText05Field), vz => vz.CustomFreeText05Field)
+
                 .FromCollection(nameof(Verzeichnungseinheit.Sprache), vz => vz?.Sprache?.Select(s => s.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Ueberlieferungsform), vz => vz?.Ueberlieferungsform?.Select(u => u.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Provenienz), vz => vz?.Provenienz?.Select(a => a.OffiziellerName))
                 .FromCollection(nameof(Verzeichnungseinheit.Archivalienart), vz => vz?.Archivalienart?.Select(a => a.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
-                .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"))
-
-                .FromCustomFields();
+                .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"));
         }
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
         {
