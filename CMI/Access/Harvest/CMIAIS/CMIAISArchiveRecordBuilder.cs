@@ -117,7 +117,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.CustomLinkZuPrimaerdaten), vz => vz.CustomLinkZuPrimaerdaten)
                 .From(nameof(Verzeichnungseinheit.CustomSchadenserhebung), vz => vz.CustomSchadenserhebung)
                 .From(nameof(Verzeichnungseinheit.CustomURL), vz => vz.CustomURL)
-                .From(nameof(Verzeichnungseinheit.CustomZustandskategorie), vz => vz.CustomZustandskategorie.Item.CustomZustandskategorie1)
+                .From(nameof(Verzeichnungseinheit.CustomZustandskategorie), vz => vz.CustomZustandskategorie?.Item.CustomZustandskategorie1)
                 .From(nameof(Verzeichnungseinheit.CustomErwerbsarten), vz => vz?.CustomErwerbsarten?.Item.Bezeichnung)
                 .From(nameof(Verzeichnungseinheit.CustomLizenz), vz => vz?.CustomLizenz?.Item.Bezeichnung)
 
