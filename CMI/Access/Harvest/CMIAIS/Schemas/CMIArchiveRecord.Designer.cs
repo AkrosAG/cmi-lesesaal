@@ -113,9 +113,35 @@ namespace CMI.Access.Harvest
         public List<Verweis> VerwiesenVon { get; set; }
         [XmlArrayItemAttribute(IsNullable = false)]
         public List<Verweis> VerwiesenZu { get; set; }
-        public System.Xml.XmlElement CustomFields { get; set; }
         public DateTimeFieldType SchutzfristBasisdatum { get; set; }
         public DateTimeFieldType SchutzfristEnddatum { get; set; }
+        public string CustomBemerkungSprache { get; set; }
+        public string CustomBemerkungStandort { get; set; }
+        public string CustomZustandskategorie { get; set; }
+        public string CustomSchadenserhebung { get; set; }
+        public string CustomKuerzel { get; set; }
+        public string CustomLinkZuDigitalisat { get; set; }
+        public string CustomLinkAufDigitalesOriginal { get; set; }
+        public string CustomURL { get; set; }
+        public string CustomCustomTextField { get; set; }
+        public string CustomLinkZuPrimaerdaten { get; set; }
+        public VerzeichnungseinheitCustomLizenz CustomLizenz { get; set; }
+        public VerzeichnungseinheitCustomErwerbsarten CustomErwerbsarten { get; set; }
+        public string CustomFreeText01Field { get; set; }
+        public string CustomFreeText02Field { get; set; }
+        public string CustomFreeText03Field { get; set; }
+        public string CustomFreeText04Field { get; set; }
+        public string CustomFreeText05Field { get; set; }
+        public DateTimeFieldType CustomFreeDate01Field { get; set; }
+        public DateTimeFieldType CustomFreeDate02Field { get; set; }
+        [XmlElement(IsNullable = true)]
+        public System.Nullable<decimal> CustomFreeNumber01Field { get; set; }
+        [XmlElement(IsNullable = true)]
+        public System.Nullable<decimal> CustomFreeNumber02Field { get; set; }
+        [XmlElement(IsNullable = true)]
+        public bool? CustomFreeBool01Field { get; set; }
+        [XmlElement(IsNullable = true)]
+        public bool? CustomFreeBool02Field { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
         [XmlAttribute]
@@ -125,6 +151,10 @@ namespace CMI.Access.Harvest
 
         public Verzeichnungseinheit()
         {
+            CustomFreeDate02Field = new DateTimeFieldType();
+            CustomFreeDate01Field = new DateTimeFieldType();
+            CustomErwerbsarten = new VerzeichnungseinheitCustomErwerbsarten();
+            CustomLizenz = new VerzeichnungseinheitCustomLizenz();
             SchutzfristEnddatum = new DateTimeFieldType();
             SchutzfristBasisdatum = new DateTimeFieldType();
             VerwiesenZu = new List<Verweis>();
@@ -528,6 +558,418 @@ namespace CMI.Access.Harvest
         }
 
         public static ParentFieldType LoadFromFile(string fileName)
+        {
+            FileStream file = null;
+            StreamReader sr = null;
+            try
+            {
+                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(file);
+                string dataString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(dataString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [Serializable]
+    [DebuggerStepThrough]
+    [DesignerCategoryAttribute("code")]
+    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    public partial class CustomErwerbsarten
+    {
+        private static XmlSerializer _serializerXml;
+
+        public string Bezeichnung { get; set; }
+        [XmlAttribute]
+        public string OBJ_GUID { get; set; }
+
+        private static XmlSerializer SerializerXml
+        {
+            get
+            {
+                if ((_serializerXml == null))
+                {
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(CustomErwerbsarten));
+                }
+                return _serializerXml;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serialize CustomErwerbsarten object
+        /// </summary>
+        /// <returns>XML value</returns>
+        public virtual string Serialize()
+        {
+            StreamReader streamReader = null;
+            MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                SerializerXml.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes CustomErwerbsarten object
+        /// </summary>
+        /// <param name="input">string to deserialize</param>
+        /// <param name="obj">Output CustomErwerbsarten object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out CustomErwerbsarten obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(CustomErwerbsarten);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out CustomErwerbsarten obj)
+        {
+            Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static CustomErwerbsarten Deserialize(string input)
+        {
+            StringReader stringReader = null;
+            try
+            {
+                stringReader = new StringReader(input);
+                return ((CustomErwerbsarten)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static CustomErwerbsarten Deserialize(Stream s)
+        {
+            return ((CustomErwerbsarten)(SerializerXml.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current CustomErwerbsarten object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            StreamWriter streamWriter = null;
+            try
+            {
+                string dataString = Serialize();
+                FileInfo outputFile = new FileInfo(fileName);
+                streamWriter = outputFile.CreateText();
+                streamWriter.WriteLine(dataString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an CustomErwerbsarten object
+        /// </summary>
+        /// <param name="fileName">File to load and deserialize</param>
+        /// <param name="obj">Output CustomErwerbsarten object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out CustomErwerbsarten obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(CustomErwerbsarten);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out CustomErwerbsarten obj)
+        {
+            Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static CustomErwerbsarten LoadFromFile(string fileName)
+        {
+            FileStream file = null;
+            StreamReader sr = null;
+            try
+            {
+                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(file);
+                string dataString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(dataString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [Serializable]
+    [DebuggerStepThrough]
+    [DesignerCategoryAttribute("code")]
+    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    public partial class CustomLizenz
+    {
+        private static XmlSerializer _serializerXml;
+
+        public string Bezeichnung { get; set; }
+        [XmlAttribute]
+        public string OBJ_GUID { get; set; }
+
+        private static XmlSerializer SerializerXml
+        {
+            get
+            {
+                if ((_serializerXml == null))
+                {
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(CustomLizenz));
+                }
+                return _serializerXml;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serialize CustomLizenz object
+        /// </summary>
+        /// <returns>XML value</returns>
+        public virtual string Serialize()
+        {
+            StreamReader streamReader = null;
+            MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                SerializerXml.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes CustomLizenz object
+        /// </summary>
+        /// <param name="input">string to deserialize</param>
+        /// <param name="obj">Output CustomLizenz object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out CustomLizenz obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(CustomLizenz);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out CustomLizenz obj)
+        {
+            Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static CustomLizenz Deserialize(string input)
+        {
+            StringReader stringReader = null;
+            try
+            {
+                stringReader = new StringReader(input);
+                return ((CustomLizenz)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static CustomLizenz Deserialize(Stream s)
+        {
+            return ((CustomLizenz)(SerializerXml.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current CustomLizenz object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            StreamWriter streamWriter = null;
+            try
+            {
+                string dataString = Serialize();
+                FileInfo outputFile = new FileInfo(fileName);
+                streamWriter = outputFile.CreateText();
+                streamWriter.WriteLine(dataString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an CustomLizenz object
+        /// </summary>
+        /// <param name="fileName">File to load and deserialize</param>
+        /// <param name="obj">Output CustomLizenz object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out CustomLizenz obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(CustomLizenz);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out CustomLizenz obj)
+        {
+            Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static CustomLizenz LoadFromFile(string fileName)
         {
             FileStream file = null;
             StreamReader sr = null;
@@ -8895,6 +9337,424 @@ namespace CMI.Access.Harvest
         }
 
         public static VerzeichnungseinheitSchutzfrist LoadFromFile(string fileName)
+        {
+            FileStream file = null;
+            StreamReader sr = null;
+            try
+            {
+                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(file);
+                string dataString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(dataString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [Serializable]
+    [DebuggerStepThrough]
+    [DesignerCategoryAttribute("code")]
+    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    public partial class VerzeichnungseinheitCustomLizenz
+    {
+        private static XmlSerializer _serializerXml;
+        [XmlElement("CustomLizenz")]
+        public CustomLizenz Item { get; set; }
+
+        public VerzeichnungseinheitCustomLizenz()
+        {
+            Item = new CustomLizenz();
+        }
+
+        private static XmlSerializer SerializerXml
+        {
+            get
+            {
+                if ((_serializerXml == null))
+                {
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(VerzeichnungseinheitCustomLizenz));
+                }
+                return _serializerXml;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serialize VerzeichnungseinheitCustomLizenz object
+        /// </summary>
+        /// <returns>XML value</returns>
+        public virtual string Serialize()
+        {
+            StreamReader streamReader = null;
+            MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                SerializerXml.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes VerzeichnungseinheitCustomLizenz object
+        /// </summary>
+        /// <param name="input">string to deserialize</param>
+        /// <param name="obj">Output VerzeichnungseinheitCustomLizenz object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out VerzeichnungseinheitCustomLizenz obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(VerzeichnungseinheitCustomLizenz);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out VerzeichnungseinheitCustomLizenz obj)
+        {
+            Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static VerzeichnungseinheitCustomLizenz Deserialize(string input)
+        {
+            StringReader stringReader = null;
+            try
+            {
+                stringReader = new StringReader(input);
+                return ((VerzeichnungseinheitCustomLizenz)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static VerzeichnungseinheitCustomLizenz Deserialize(Stream s)
+        {
+            return ((VerzeichnungseinheitCustomLizenz)(SerializerXml.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current VerzeichnungseinheitCustomLizenz object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            StreamWriter streamWriter = null;
+            try
+            {
+                string dataString = Serialize();
+                FileInfo outputFile = new FileInfo(fileName);
+                streamWriter = outputFile.CreateText();
+                streamWriter.WriteLine(dataString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an VerzeichnungseinheitCustomLizenz object
+        /// </summary>
+        /// <param name="fileName">File to load and deserialize</param>
+        /// <param name="obj">Output VerzeichnungseinheitCustomLizenz object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out VerzeichnungseinheitCustomLizenz obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(VerzeichnungseinheitCustomLizenz);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out VerzeichnungseinheitCustomLizenz obj)
+        {
+            Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static VerzeichnungseinheitCustomLizenz LoadFromFile(string fileName)
+        {
+            FileStream file = null;
+            StreamReader sr = null;
+            try
+            {
+                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(file);
+                string dataString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(dataString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [Serializable]
+    [DebuggerStepThrough]
+    [DesignerCategoryAttribute("code")]
+    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    public partial class VerzeichnungseinheitCustomErwerbsarten
+    {
+        private static XmlSerializer _serializerXml;
+        [XmlElement("CustomErwerbsarten")]
+        public CustomErwerbsarten Item { get; set; }
+
+        public VerzeichnungseinheitCustomErwerbsarten()
+        {
+            Item = new CustomErwerbsarten();
+        }
+
+        private static XmlSerializer SerializerXml
+        {
+            get
+            {
+                if ((_serializerXml == null))
+                {
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(VerzeichnungseinheitCustomErwerbsarten));
+                }
+                return _serializerXml;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serialize VerzeichnungseinheitCustomErwerbsarten object
+        /// </summary>
+        /// <returns>XML value</returns>
+        public virtual string Serialize()
+        {
+            StreamReader streamReader = null;
+            MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                SerializerXml.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes VerzeichnungseinheitCustomErwerbsarten object
+        /// </summary>
+        /// <param name="input">string to deserialize</param>
+        /// <param name="obj">Output VerzeichnungseinheitCustomErwerbsarten object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out VerzeichnungseinheitCustomErwerbsarten obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(VerzeichnungseinheitCustomErwerbsarten);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out VerzeichnungseinheitCustomErwerbsarten obj)
+        {
+            Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static VerzeichnungseinheitCustomErwerbsarten Deserialize(string input)
+        {
+            StringReader stringReader = null;
+            try
+            {
+                stringReader = new StringReader(input);
+                return ((VerzeichnungseinheitCustomErwerbsarten)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static VerzeichnungseinheitCustomErwerbsarten Deserialize(Stream s)
+        {
+            return ((VerzeichnungseinheitCustomErwerbsarten)(SerializerXml.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current VerzeichnungseinheitCustomErwerbsarten object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            StreamWriter streamWriter = null;
+            try
+            {
+                string dataString = Serialize();
+                FileInfo outputFile = new FileInfo(fileName);
+                streamWriter = outputFile.CreateText();
+                streamWriter.WriteLine(dataString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an VerzeichnungseinheitCustomErwerbsarten object
+        /// </summary>
+        /// <param name="fileName">File to load and deserialize</param>
+        /// <param name="obj">Output VerzeichnungseinheitCustomErwerbsarten object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out VerzeichnungseinheitCustomErwerbsarten obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(VerzeichnungseinheitCustomErwerbsarten);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out VerzeichnungseinheitCustomErwerbsarten obj)
+        {
+            Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static VerzeichnungseinheitCustomErwerbsarten LoadFromFile(string fileName)
         {
             FileStream file = null;
             StreamReader sr = null;
