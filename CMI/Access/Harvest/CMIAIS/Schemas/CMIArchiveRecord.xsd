@@ -197,7 +197,6 @@
 			<xsd:element name="SchutzfristEnddatum" type="DateTimeFieldType"/>
 			<xsd:element name="CustomBemerkungSprache" type="xsd:string"/>
 			<xsd:element name="CustomBemerkungStandort" type="xsd:string"/>
-			<xsd:element name="CustomZustandskategorie" type="xsd:string"/>
 			<xsd:element name="CustomSchadenserhebung" type="xsd:string"/>
 			<xsd:element name="CustomKuerzel" type="xsd:string"/>
 			<xsd:element name="CustomLinkZuDigitalisat" type="xsd:string"/>
@@ -230,6 +229,13 @@
 			<xsd:element name="CustomFreeNumber02Field" type="xsd:decimal" nillable="true"/>
 			<xsd:element name="CustomFreeBool01Field" type="xsd:boolean" nillable="true"/>
 			<xsd:element name="CustomFreeBool02Field" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomZustandskategorie">
+				<xsd:complexType>
+					<xsd:choice minOccurs="0" maxOccurs="1">
+						<xsd:element name="CustomZustandskategorie" type="CustomZustandskategorie"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional"/>
@@ -505,6 +511,12 @@
 	<xsd:complexType name="CustomErwerbsarten">
 		<xsd:sequence>
 			<xsd:element name="Bezeichnung" type="xsd:string"/>
+		</xsd:sequence>
+		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="CustomZustandskategorie">
+		<xsd:sequence>
+			<xsd:element name="CustomZustandskategorie" type="xsd:string"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 	</xsd:complexType>
