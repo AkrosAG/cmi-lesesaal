@@ -45,7 +45,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Bemerkungen",
+              "DbFieldName": "DetailData.AllgemeineAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -71,7 +71,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.Kuerzel",
+              "DbFieldName": "DetailData.CustomKuerzel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -93,7 +93,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbFieldName": "DetailData.CustomErlaeuterung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -220,9 +220,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Link zu Digitalisat",
@@ -231,9 +231,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkZuPrimaerdaten",
+              "DbFieldName": "DetailData.CustomLinkZuPrimaerdaten",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
@@ -241,9 +241,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.URL",
+              "DbFieldName": "DetailData.CustomURL",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "URL",
@@ -771,7 +771,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -782,7 +782,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -792,7 +792,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.URL",
+              "DbFieldName": "DetailData.CustomURL",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1052,7 +1052,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.StandortBemerkungen",
+              "DbFieldName": "DetailData.CustomStandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1073,7 +1073,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbFieldName": "DetailData.CustomBemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1255,7 +1255,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1265,7 +1265,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1415,7 +1415,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungSprache",
+              "DbFieldName": "DetailData.CustomBemerkungSprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1536,7 +1536,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.StandortBemerkungen",
+              "DbFieldName": "DetailData.CustomStandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1556,7 +1556,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbFieldName": "DetailData.CustomBemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1743,7 +1743,7 @@
               }
             },
             {
-              "DbFieldName": "primaryDataLink",
+              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1754,7 +1754,7 @@
               }
             },
             {
-              "DbFieldName": "primaryDataLink",
+              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1764,7 +1764,7 @@
               }
             },
             {
-              "DbFieldName": "URL",
+              "DbFieldName": "DetailData.CustomURL",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1889,7 +1889,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.CustomSprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2026,7 +2026,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.StandortBemerkungen",
+              "DbFieldName": "DetailData.CustomStandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2047,7 +2047,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbFieldName": "DetailData.CustomBemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,

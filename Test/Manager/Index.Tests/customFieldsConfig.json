@@ -611,7 +611,7 @@
   },
   {
     "ElementId": "CustomLinkZuDigitalisat",
-    "ElementName": "LinkZuDigitalisat",
+    "ElementName": "CustomLinkZuDigitalisat",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "LinkZuDigitalisat",
     "TargetField": "LinkZuDigitalisat",
