@@ -328,10 +328,10 @@ namespace CMI.Web.Frontend.api.Entities
                         case "function":
                             thesaurusFunction += te.Value;
                             break;
-                        case "dateOfBirth" when te.HasValues && te.Value.Last.HasValues:
+                        case "dateOfBirth" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
                             thesaurusDateOfBirth += te.Value.Last.First;
                             break;
-                        case "dateOfDeath" when te.HasValues && te.Value.Last.HasValues:
+                        case "dateOfDeath" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
                             thesaurusDateOfDeath = te.Value.Last.First.ToString();
                             break;
                         case "source":
