@@ -80,6 +80,19 @@ namespace CMI.Contract.Common.Compiler
                     descriptor.Source = string.Format("<a href =\"https://d-nb.info/gnd/{0}\" target=\"_blank\"> GND-ID: {1}</a>", descriptor.Source, descriptor.Source);
                 }
             }
+
+            if (elasticArchiveRecord.DetailData.Any(d => d.ElementName.StartsWith("CustomLink") || d.ElementName == "CustomURL"))
+            {
+                var links = elasticArchiveRecord.DetailData.Where(d => d.ElementName.StartsWith("CustomLink") || d.ElementName == "CustomURL");
+                foreach (var link in links)
+                {
+                    var textLink = link.TextValues.First();
+                    if (!string.IsNullOrEmpty(textLink))
+                    {
+                        link.TextValues = new List<string> { string.Format("<a href =\"{0}\" target=\"_blank\">{0}</a>", textLink) };
+                    }
+                }
+            }
         }
     }
 }
