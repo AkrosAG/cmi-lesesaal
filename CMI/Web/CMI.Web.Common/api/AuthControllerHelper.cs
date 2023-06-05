@@ -346,7 +346,7 @@ namespace CMI.Web.Common.api
 
         private bool HasValidMandant(IList<ClaimInfo> claims)
         {
-            var claimsRoles = claims.FirstOrDefault(c => c.Type.EndsWith("/identity/claims/e-id/profile/role"))?.Value;
+            var claimsRoles = claims.FirstOrDefault(c => c.Type.EndsWith("affiliation"))?.Value;
             Log.Information($"Claim Rolle {claimsRoles}");
             return !string.IsNullOrWhiteSpace(claimsRoles);
         }

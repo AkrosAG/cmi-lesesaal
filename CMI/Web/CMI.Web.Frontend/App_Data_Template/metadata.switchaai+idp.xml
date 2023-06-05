@@ -1,0 +1,60 @@
+<EntityDescriptor xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
+xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+cacheDuration="PT15M" validUntil="2019-02-22T15:57:56.9158548Z"
+				  entityID="https://recherche.library.ethz.ch/shibboleth" ID="_bdeae985b92d4daf8d7493e0d1aa5df9">
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+			<SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+			<Reference URI="#_bdeae985b92d4daf8d7493e0d1aa5df9">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+					<Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+				<DigestValue>9qW5E7l+i/WgQXU5k5Xeg4vDxRd1lBMDf+rLNjzvRZY=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>
+			LRtRulYPpvxkRL22Gu2+G/BKuDmxqPXapYccblIggiROO8+FBJbh9+xZZWEwj0VP9/2FuiCfivv2GqWUvf+FXG7rR1MjIf0CSmJb1whuEBZBCRL3PG0esXLddIn1Yfyckxoty8GQUZgrWpB2cjbuoxHqadYSm9MKzCK/UyAWDCuaKKMmXuql/D7yRvXK06fPX7Lwgx3BU2zohYe9V/Xb7y5458vj160WfGCB5s1cErMPvlQXQihTkLLFthkjQRKquc/3G+7bWJBFQFI6rbdUmZE8FpOcvx5s6cdED17/DoTBnQD0eYjmabXCM7WwcrlgXVCYa3qPfVV22YuKvzLyxA==
+		</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509Certificate>
+					MIIEHTCCAoWgAwIBAgIUJDoGIbEhoTIbJQlmbOfJRgfXNXAwDQYJKoZIhvcNAQELBQAwJDEiMCAGA1UEAxMZcmVjaGVyY2hlLmxpYnJhcnkuZXRoei5jaDAeFw0yMjExMjkwOTE0MDVaFw0zMjExMjYwOTE0MDVaMCQxIjAgBgNVBAMTGXJlY2hlcmNoZS5saWJyYXJ5LmV0aHouY2gwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQDCvdj4J+GvV8HST1IZIe+cC9ZkRvy2UI7aP7yBwi0l6OEJjLhG7AMlKYwLAE6K00rH77onR/kgTGs6rCLLlRG2JH6cEZ4U5pJT4shWMmc+J5TVemhlO9LKthQa88wz38bGzyWKnCfU5RzzBrELpC7y3W81w905aOsj/XzlvdiFTqsPZRsD/sojgBu1NGedb0GHs4ha6XE4TpQ7xvZfmCgIP9ad5CdgEmRyplolzmcvUQEUebImMgBGOoaTknRTmb/rGL1GwOuSZtpiumCozDPjmtip7ljdwvvCUUBZd+wzF2bzzPz/SvKt1Rl3/SArlXsw3TqREJPxxydCafONu2lWi7q6Z9A2miPR2kKOKIsSwDu41tKg8keOzPCJqLzqzPitjGuNR3OtCDr6RB1VtYMrEMKn7MwtSCJlW53kkvhp1VXrZAAUe4zwuRFRgMiFTplXV9wM0QFyIIaG2N5g9MdRuMPiFiAvG+Vssy/LWmuEpbYPhcGBjOCke8jsk+OxhekCAwEAAaNHMEUwJAYDVR0RBB0wG4IZcmVjaGVyY2hlLmxpYnJhcnkuZXRoei5jaDAdBgNVHQ4EFgQUcOS+RtxUvs/etNnwc1aEt7SBBfAwDQYJKoZIhvcNAQELBQADggGBADGkw6D+7LFoCCpw1mEqiOa9zPwHBIiLvbeL29pu3DhmRV5+p1bOsVSKEZnQpefSSLWUEKpAV1P/+AJw8KOjVAs95l4zD309FQq+69pYoEbJpvVciyCDkJ9Q6TYW2x9ahglO8mM9IBgYyCmm9zxfEjn7FRvQydRORcoxaOg2xahfcdzC1t/8lbphdHuM+ZevWNOvqASihZY//RWku7um39TcTMCsA+YuvkRKbdfvUF263eJuuYur6ORziSQms949srs7bMbSrZK9o9lXcmQOQ3/Dbocn3wncKqgZklg1iVXZGBM+5sL2JTPIt57aZcpHWGGk4XIQAma1swaygAEsslWTsSCjaIpuLapiSGHeZZqdFNGqqFfPjlgTgVfNzwlx/EMKPgRnHu6nIsjKa+qTR/g9WseKM29e+nSP/lqXcGtE2sqSv8bsNSlurttq41F7WN41OMc6i7Iq2xVNGwDpYsdwIJXzTEddCUvdQwFbaK+EOrH/iioJivYS5HAcKYL3
+				</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+		<Extensions>
+			<init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login"/>
+			<idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login" index="1"/>
+		</Extensions>
+		<KeyDescriptor>
+			<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+				<X509Data>
+					<X509Certificate>
+						MIIEHTCCAoWgAwIBAgIUJDoGIbEhoTIbJQlmbOfJRgfXNXAwDQYJKoZIhvcNAQELBQAwJDEiMCAGA1UEAxMZcmVjaGVyY2hlLmxpYnJhcnkuZXRoei5jaDAeFw0yMjExMjkwOTE0MDVaFw0zMjExMjYwOTE0MDVaMCQxIjAgBgNVBAMTGXJlY2hlcmNoZS5saWJyYXJ5LmV0aHouY2gwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQDCvdj4J+GvV8HST1IZIe+cC9ZkRvy2UI7aP7yBwi0l6OEJjLhG7AMlKYwLAE6K00rH77onR/kgTGs6rCLLlRG2JH6cEZ4U5pJT4shWMmc+J5TVemhlO9LKthQa88wz38bGzyWKnCfU5RzzBrELpC7y3W81w905aOsj/XzlvdiFTqsPZRsD/sojgBu1NGedb0GHs4ha6XE4TpQ7xvZfmCgIP9ad5CdgEmRyplolzmcvUQEUebImMgBGOoaTknRTmb/rGL1GwOuSZtpiumCozDPjmtip7ljdwvvCUUBZd+wzF2bzzPz/SvKt1Rl3/SArlXsw3TqREJPxxydCafONu2lWi7q6Z9A2miPR2kKOKIsSwDu41tKg8keOzPCJqLzqzPitjGuNR3OtCDr6RB1VtYMrEMKn7MwtSCJlW53kkvhp1VXrZAAUe4zwuRFRgMiFTplXV9wM0QFyIIaG2N5g9MdRuMPiFiAvG+Vssy/LWmuEpbYPhcGBjOCke8jsk+OxhekCAwEAAaNHMEUwJAYDVR0RBB0wG4IZcmVjaGVyY2hlLmxpYnJhcnkuZXRoei5jaDAdBgNVHQ4EFgQUcOS+RtxUvs/etNnwc1aEt7SBBfAwDQYJKoZIhvcNAQELBQADggGBADGkw6D+7LFoCCpw1mEqiOa9zPwHBIiLvbeL29pu3DhmRV5+p1bOsVSKEZnQpefSSLWUEKpAV1P/+AJw8KOjVAs95l4zD309FQq+69pYoEbJpvVciyCDkJ9Q6TYW2x9ahglO8mM9IBgYyCmm9zxfEjn7FRvQydRORcoxaOg2xahfcdzC1t/8lbphdHuM+ZevWNOvqASihZY//RWku7um39TcTMCsA+YuvkRKbdfvUF263eJuuYur6ORziSQms949srs7bMbSrZK9o9lXcmQOQ3/Dbocn3wncKqgZklg1iVXZGBM+5sL2JTPIt57aZcpHWGGk4XIQAma1swaygAEsslWTsSCjaIpuLapiSGHeZZqdFNGqqFfPjlgTgVfNzwlx/EMKPgRnHu6nIsjKa+qTR/g9WseKM29e+nSP/lqXcGtE2sqSv8bsNSlurttq41F7WN41OMc6i7Iq2xVNGwDpYsdwIJXzTEddCUvdQwFbaK+EOrH/iioJivYS5HAcKYL3
+					</X509Certificate>
+				</X509Data>
+			</KeyInfo>
+		</KeyDescriptor>
+		<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Artifact/SOAP" index="1"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/SLO/Redirect"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/SLO/POST"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Frecherche-dev.library.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Frecherche-dev.library.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
+
+		<Attribute
+		  NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
+		  Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.1"
+		  FriendlyName="eduPersonAffiliation">
+			<AttributeValue>member</AttributeValue>
+			<AttributeValue>student</AttributeValue>
+			<AttributeValue>faculty</AttributeValue>
+			<AttributeValue>employee</AttributeValue>
+			<AttributeValue>staff</AttributeValue>
+		</Attribute>
+	</IDPSSODescriptor>
+</EntityDescriptor>
