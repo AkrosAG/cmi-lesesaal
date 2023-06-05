@@ -52,12 +52,6 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Kentor.AuthServices, Version=0.21.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Kentor.AuthServices.0.21.2\lib\net45\Kentor.AuthServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Kentor.AuthServices.Owin, Version=0.21.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Kentor.AuthServices.Owin.0.21.2\lib\net45\Kentor.AuthServices.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="MassTransit, Version=7.1.8.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MassTransit.7.1.8\lib\netstandard2.0\MassTransit.dll</HintPath>
     </Reference>
@@ -130,6 +124,12 @@
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Sustainsys.Saml2, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sustainsys.Saml2.1.0.2\lib\net452\Sustainsys.Saml2.dll</HintPath>
+    </Reference>
+    <Reference Include="Sustainsys.Saml2.Owin, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sustainsys.Saml2.Owin.1.0.2\lib\net452\Sustainsys.Saml2.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -248,6 +248,25 @@
     <Compile Include="Auth\AuthStatus.cs" />
     <Compile Include="Auth\Configuration\DenyUserSection.cs" />
     <Compile Include="Auth\IAuthenticationHelper.cs" />
+    <Compile Include="Auth\Sibboleth\ClaimsAuthenticationHttpModule.cs" />
+    <Compile Include="Auth\Sibboleth\DevAuthenticationDefaults.cs" />
+    <Compile Include="Auth\Sibboleth\LocalDevClaimsAuthenticationHttpModule.cs" />
+    <Compile Include="Auth\Sibboleth\ShibbolethClaimsAuthenticationHttpModule.cs" />
+    <Compile Include="Auth\Sibboleth\ShibbolethDefaults.cs" />
+    <Compile Include="Auth\Sibboleth\Types\IShibbolethAttribute.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethAttribute.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethAttributeValue.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethAttributeValueCollection.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethClaimAction.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethClaimActionCollection.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethClaimActionCollectionMapExtensions.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethClaimAttributeAction.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethCustomClaimAction.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethCustomMultiValueClaimAction.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethDefaultAttributes.cs" />
+    <Compile Include="Auth\Sibboleth\Types\ShibbolethDeleteClaimAction.cs" />
+    <Compile Include="Auth\Sibboleth\Types\StandardClaimTypes.cs" />
+    <Compile Include="Auth\Sibboleth\Types\Xml\AttributesRoot.cs" />
     <Compile Include="Auth\UserAccessExtensions.cs" />
     <Compile Include="CustomExceptionHandler.cs" />
     <Compile Include="Helpers\ApiError.cs" />
@@ -324,6 +343,12 @@
       <Project>{045835a1-50c3-4d61-947a-7398a9d70706}</Project>
       <Name>CMI.Contract.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Auth\Sibboleth\Types\license.txt" />
+    <EmbeddedResource Include="Auth\Sibboleth\Types\Xml\attribute-map.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
