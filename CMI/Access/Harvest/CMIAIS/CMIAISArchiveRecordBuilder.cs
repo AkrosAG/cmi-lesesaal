@@ -30,9 +30,10 @@ namespace CMI.Access.Harvest.CMIAIS
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 var cmiRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecordId);
+                var cmiRecordTectonic = await aisSpecificRecordAccess.GetTectonicRecord(archiveRecordId);
                 Log.Verbose($"Took {stopwatch.ElapsedMilliseconds} ms to fetch detail record from CDWS with id {archiveRecordId}");
 
-                var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, languageSettings, aisSpecificRecordAccess);
+                var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, cmiRecordTectonic, languageSettings, aisSpecificRecordAccess);
 
                 var metaDataBuilder = await archiveRecordBuilder
                         .AddMedataData()
@@ -160,20 +161,21 @@ namespace CMI.Access.Harvest.CMIAIS
             if (string.IsNullOrWhiteSpace(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId))
                 return;
 
+            var cmiTechTektonik = await aisSpecificRecordAccess.GetTectonicRecord(cmiRecord?.OBJ_GUID);
             var parentRecordId = archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId;
-            var parentRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(parentRecordId);
+            var parentRecord = await aisSpecificRecordAccess.GetTectonicRecord(parentRecordId);
             if(parentRecord == null)
             {
                 Log.Warning("ParentArchiveRecordId {0} konnte nict geladen werden", parentRecordId);
                 return;
             }
             
-            display.ParentArchiveRecordId = parentRecord.OBJ_GUID;            
-            display.FirstChildArchiveRecordId = cmiRecord.Children.FirstOrDefault()?.OBJ_GUID;
+            display.ParentArchiveRecordId = parentRecord.OBJ_GUID;
+            display.FirstChildArchiveRecordId = cmiTechTektonik.Children.FirstOrDefault()?.OBJ_GUID;
 
             if (parentRecord.Children.Any())
             {
-                var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+                var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiTechTektonik.OBJ_GUID);
                 var indexNext = indexOfMe + 1;
                 var indexPrev = indexOfMe - 1;
 
@@ -190,7 +192,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
             display.ArchiveplanContext = new System.Collections.Generic.List<ArchiveplanContextItem>();
 
-            foreach(var ancestor in cmiRecord.Ancestors.OrderByDescending(b => b.Depth))
+            foreach(var ancestor in cmiTechTektonik.Ancestors.OrderByDescending(b => b.Depth))
             {
                 // Mandant is never published, so we skip it
                 if (ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
@@ -237,7 +239,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 Title = cmiRecord.Titel,
                 DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
                 RefCode = cmiRecord.Signatur,
-                IconId = (int) cmiRecord.Ancestors.Last().TypeId
+                // IconId = (int)cmiRecord.TypeId
             });
         }
     }

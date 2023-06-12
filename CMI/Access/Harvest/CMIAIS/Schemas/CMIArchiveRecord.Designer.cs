@@ -29,10 +29,7 @@ namespace CMI.Access.Harvest
     public partial class Verzeichnungseinheit
     {
         private static XmlSerializer _serializerXml;
-        [XmlArrayItemAttribute("Parent", IsNullable = false)]
-        public List<ParentFieldType> Ancestors { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
-        public List<Child> Children { get; set; }
+
         public string TypeName { get; set; }
         public string DisplayName { get; set; }
         public string Signatur { get; set; }
@@ -178,8 +175,6 @@ namespace CMI.Access.Harvest
             Umfang = new List<Umfang>();
             Bezugszeitraum = new DateTimeFieldType();
             Entstehungszeitraum = new DateTimeFieldType();
-            Children = new List<Child>();
-            Ancestors = new List<ParentFieldType>();
         }
 
         private static XmlSerializer SerializerXml
@@ -380,17 +375,14 @@ namespace CMI.Access.Harvest
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
     [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
-    public partial class ParentFieldType
+    public partial class DateTimeFieldType
     {
         private static XmlSerializer _serializerXml;
-        [XmlAttribute]
-        public string OBJ_GUID { get; set; }
-        [XmlAttribute]
-        public decimal TypeId { get; set; }
-        [XmlAttribute]
-        public string TypeKey { get; set; }
-        [XmlAttribute]
-        public decimal Depth { get; set; }
+        [XmlElement(IsNullable = true)]
+        public DateTime? Start { get; set; }
+        [XmlElement(IsNullable = true)]
+        public DateTime? End { get; set; }
+        public string Text { get; set; }
 
         private static XmlSerializer SerializerXml
         {
@@ -398,7 +390,7 @@ namespace CMI.Access.Harvest
             {
                 if ((_serializerXml == null))
                 {
-                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(ParentFieldType));
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(DateTimeFieldType));
                 }
                 return _serializerXml;
             }
@@ -406,7 +398,7 @@ namespace CMI.Access.Harvest
 
         #region Serialize/Deserialize
         /// <summary>
-        /// Serialize ParentFieldType object
+        /// Serialize DateTimeFieldType object
         /// </summary>
         /// <returns>XML value</returns>
         public virtual string Serialize()
@@ -437,16 +429,16 @@ namespace CMI.Access.Harvest
         }
 
         /// <summary>
-        /// Deserializes ParentFieldType object
+        /// Deserializes DateTimeFieldType object
         /// </summary>
         /// <param name="input">string to deserialize</param>
-        /// <param name="obj">Output ParentFieldType object</param>
+        /// <param name="obj">Output DateTimeFieldType object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string input, out ParentFieldType obj, out Exception exception)
+        public static bool Deserialize(string input, out DateTimeFieldType obj, out Exception exception)
         {
             exception = null;
-            obj = default(ParentFieldType);
+            obj = default(DateTimeFieldType);
             try
             {
                 obj = Deserialize(input);
@@ -459,19 +451,19 @@ namespace CMI.Access.Harvest
             }
         }
 
-        public static bool Deserialize(string input, out ParentFieldType obj)
+        public static bool Deserialize(string input, out DateTimeFieldType obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
 
-        public static ParentFieldType Deserialize(string input)
+        public static DateTimeFieldType Deserialize(string input)
         {
             StringReader stringReader = null;
             try
             {
                 stringReader = new StringReader(input);
-                return ((ParentFieldType)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+                return ((DateTimeFieldType)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -482,14 +474,14 @@ namespace CMI.Access.Harvest
             }
         }
 
-        public static ParentFieldType Deserialize(Stream s)
+        public static DateTimeFieldType Deserialize(Stream s)
         {
-            return ((ParentFieldType)(SerializerXml.Deserialize(s)));
+            return ((DateTimeFieldType)(SerializerXml.Deserialize(s)));
         }
         #endregion
 
         /// <summary>
-        /// Serializes current ParentFieldType object into file
+        /// Serializes current DateTimeFieldType object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -530,16 +522,16 @@ namespace CMI.Access.Harvest
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an ParentFieldType object
+        /// Deserializes xml markup from file into an DateTimeFieldType object
         /// </summary>
         /// <param name="fileName">File to load and deserialize</param>
-        /// <param name="obj">Output ParentFieldType object</param>
+        /// <param name="obj">Output DateTimeFieldType object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out ParentFieldType obj, out Exception exception)
+        public static bool LoadFromFile(string fileName, out DateTimeFieldType obj, out Exception exception)
         {
             exception = null;
-            obj = default(ParentFieldType);
+            obj = default(DateTimeFieldType);
             try
             {
                 obj = LoadFromFile(fileName);
@@ -552,13 +544,13 @@ namespace CMI.Access.Harvest
             }
         }
 
-        public static bool LoadFromFile(string fileName, out ParentFieldType obj)
+        public static bool LoadFromFile(string fileName, out DateTimeFieldType obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static ParentFieldType LoadFromFile(string fileName)
+        public static DateTimeFieldType LoadFromFile(string fileName)
         {
             FileStream file = null;
             StreamReader sr = null;
@@ -1208,6 +1200,223 @@ namespace CMI.Access.Harvest
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
     [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    public partial class Child
+    {
+        private static XmlSerializer _serializerXml;
+
+        public string TypeName { get; set; }
+        public string DisplayName { get; set; }
+        public string Sortierung { get; set; }
+        public string Signatur { get; set; }
+        public string Kuerzel { get; set; }
+        public string Titel { get; set; }
+        public DateTimeFieldType Entstehungszeitraum { get; set; }
+        [XmlAttribute]
+        public string OBJ_GUID { get; set; }
+
+        public Child()
+        {
+            Entstehungszeitraum = new DateTimeFieldType();
+        }
+
+        private static XmlSerializer SerializerXml
+        {
+            get
+            {
+                if ((_serializerXml == null))
+                {
+                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(Child));
+                }
+                return _serializerXml;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serialize Child object
+        /// </summary>
+        /// <returns>XML value</returns>
+        public virtual string Serialize()
+        {
+            StreamReader streamReader = null;
+            MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                SerializerXml.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes Child object
+        /// </summary>
+        /// <param name="input">string to deserialize</param>
+        /// <param name="obj">Output Child object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out Child obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(Child);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out Child obj)
+        {
+            Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static Child Deserialize(string input)
+        {
+            StringReader stringReader = null;
+            try
+            {
+                stringReader = new StringReader(input);
+                return ((Child)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static Child Deserialize(Stream s)
+        {
+            return ((Child)(SerializerXml.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current Child object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            StreamWriter streamWriter = null;
+            try
+            {
+                string dataString = Serialize();
+                FileInfo outputFile = new FileInfo(fileName);
+                streamWriter = outputFile.CreateText();
+                streamWriter.WriteLine(dataString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an Child object
+        /// </summary>
+        /// <param name="fileName">File to load and deserialize</param>
+        /// <param name="obj">Output Child object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out Child obj, out Exception exception)
+        {
+            exception = null;
+            obj = default(Child);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out Child obj)
+        {
+            Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static Child LoadFromFile(string fileName)
+        {
+            FileStream file = null;
+            StreamReader sr = null;
+            try
+            {
+                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(file);
+                string dataString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(dataString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [Serializable]
+    [DebuggerStepThrough]
+    [DesignerCategoryAttribute("code")]
+    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Verweis
     {
         private static XmlSerializer _serializerXml;
@@ -1600,430 +1809,6 @@ namespace CMI.Access.Harvest
         }
 
         public static VerweisVE1 LoadFromFile(string fileName)
-        {
-            FileStream file = null;
-            StreamReader sr = null;
-            try
-            {
-                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                sr = new StreamReader(file);
-                string dataString = sr.ReadToEnd();
-                sr.Close();
-                file.Close();
-                return Deserialize(dataString);
-            }
-            finally
-            {
-                if ((file != null))
-                {
-                    file.Dispose();
-                }
-                if ((sr != null))
-                {
-                    sr.Dispose();
-                }
-            }
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
-    public partial class Child
-    {
-        private static XmlSerializer _serializerXml;
-
-        public string TypeName { get; set; }
-        public string DisplayName { get; set; }
-        public string Sortierung { get; set; }
-        public string Signatur { get; set; }
-        public string Kuerzel { get; set; }
-        public string Titel { get; set; }
-        public DateTimeFieldType Entstehungszeitraum { get; set; }
-        [XmlAttribute]
-        public string OBJ_GUID { get; set; }
-
-        public Child()
-        {
-            Entstehungszeitraum = new DateTimeFieldType();
-        }
-
-        private static XmlSerializer SerializerXml
-        {
-            get
-            {
-                if ((_serializerXml == null))
-                {
-                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(Child));
-                }
-                return _serializerXml;
-            }
-        }
-
-        #region Serialize/Deserialize
-        /// <summary>
-        /// Serialize Child object
-        /// </summary>
-        /// <returns>XML value</returns>
-        public virtual string Serialize()
-        {
-            StreamReader streamReader = null;
-            MemoryStream memoryStream = null;
-            try
-            {
-                memoryStream = new MemoryStream();
-                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
-                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
-                SerializerXml.Serialize(xmlWriter, this);
-                memoryStream.Seek(0, SeekOrigin.Begin);
-                streamReader = new StreamReader(memoryStream);
-                return streamReader.ReadToEnd();
-            }
-            finally
-            {
-                if ((streamReader != null))
-                {
-                    streamReader.Dispose();
-                }
-                if ((memoryStream != null))
-                {
-                    memoryStream.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes Child object
-        /// </summary>
-        /// <param name="input">string to deserialize</param>
-        /// <param name="obj">Output Child object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string input, out Child obj, out Exception exception)
-        {
-            exception = null;
-            obj = default(Child);
-            try
-            {
-                obj = Deserialize(input);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool Deserialize(string input, out Child obj)
-        {
-            Exception exception = null;
-            return Deserialize(input, out obj, out exception);
-        }
-
-        public static Child Deserialize(string input)
-        {
-            StringReader stringReader = null;
-            try
-            {
-                stringReader = new StringReader(input);
-                return ((Child)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
-            }
-            finally
-            {
-                if ((stringReader != null))
-                {
-                    stringReader.Dispose();
-                }
-            }
-        }
-
-        public static Child Deserialize(Stream s)
-        {
-            return ((Child)(SerializerXml.Deserialize(s)));
-        }
-        #endregion
-
-        /// <summary>
-        /// Serializes current Child object into file
-        /// </summary>
-        /// <param name="fileName">full path of outupt xml file</param>
-        /// <param name="exception">output Exception value if failed</param>
-        /// <returns>true if can serialize and save into file; otherwise, false</returns>
-        public virtual bool SaveToFile(string fileName, out Exception exception)
-        {
-            exception = null;
-            try
-            {
-                SaveToFile(fileName);
-                return true;
-            }
-            catch (Exception e)
-            {
-                exception = e;
-                return false;
-            }
-        }
-
-        public virtual void SaveToFile(string fileName)
-        {
-            StreamWriter streamWriter = null;
-            try
-            {
-                string dataString = Serialize();
-                FileInfo outputFile = new FileInfo(fileName);
-                streamWriter = outputFile.CreateText();
-                streamWriter.WriteLine(dataString);
-                streamWriter.Close();
-            }
-            finally
-            {
-                if ((streamWriter != null))
-                {
-                    streamWriter.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes xml markup from file into an Child object
-        /// </summary>
-        /// <param name="fileName">File to load and deserialize</param>
-        /// <param name="obj">Output Child object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out Child obj, out Exception exception)
-        {
-            exception = null;
-            obj = default(Child);
-            try
-            {
-                obj = LoadFromFile(fileName);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool LoadFromFile(string fileName, out Child obj)
-        {
-            Exception exception = null;
-            return LoadFromFile(fileName, out obj, out exception);
-        }
-
-        public static Child LoadFromFile(string fileName)
-        {
-            FileStream file = null;
-            StreamReader sr = null;
-            try
-            {
-                file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                sr = new StreamReader(file);
-                string dataString = sr.ReadToEnd();
-                sr.Close();
-                file.Close();
-                return Deserialize(dataString);
-            }
-            finally
-            {
-                if ((file != null))
-                {
-                    file.Dispose();
-                }
-                if ((sr != null))
-                {
-                    sr.Dispose();
-                }
-            }
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
-    public partial class DateTimeFieldType
-    {
-        private static XmlSerializer _serializerXml;
-        [XmlElement(IsNullable = true)]
-        public DateTime? Start { get; set; }
-        [XmlElement(IsNullable = true)]
-        public DateTime? End { get; set; }
-        public string Text { get; set; }
-
-        private static XmlSerializer SerializerXml
-        {
-            get
-            {
-                if ((_serializerXml == null))
-                {
-                    _serializerXml = new XmlSerializerFactory().CreateSerializer(typeof(DateTimeFieldType));
-                }
-                return _serializerXml;
-            }
-        }
-
-        #region Serialize/Deserialize
-        /// <summary>
-        /// Serialize DateTimeFieldType object
-        /// </summary>
-        /// <returns>XML value</returns>
-        public virtual string Serialize()
-        {
-            StreamReader streamReader = null;
-            MemoryStream memoryStream = null;
-            try
-            {
-                memoryStream = new MemoryStream();
-                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
-                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
-                SerializerXml.Serialize(xmlWriter, this);
-                memoryStream.Seek(0, SeekOrigin.Begin);
-                streamReader = new StreamReader(memoryStream);
-                return streamReader.ReadToEnd();
-            }
-            finally
-            {
-                if ((streamReader != null))
-                {
-                    streamReader.Dispose();
-                }
-                if ((memoryStream != null))
-                {
-                    memoryStream.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes DateTimeFieldType object
-        /// </summary>
-        /// <param name="input">string to deserialize</param>
-        /// <param name="obj">Output DateTimeFieldType object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string input, out DateTimeFieldType obj, out Exception exception)
-        {
-            exception = null;
-            obj = default(DateTimeFieldType);
-            try
-            {
-                obj = Deserialize(input);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool Deserialize(string input, out DateTimeFieldType obj)
-        {
-            Exception exception = null;
-            return Deserialize(input, out obj, out exception);
-        }
-
-        public static DateTimeFieldType Deserialize(string input)
-        {
-            StringReader stringReader = null;
-            try
-            {
-                stringReader = new StringReader(input);
-                return ((DateTimeFieldType)(SerializerXml.Deserialize(XmlReader.Create(stringReader))));
-            }
-            finally
-            {
-                if ((stringReader != null))
-                {
-                    stringReader.Dispose();
-                }
-            }
-        }
-
-        public static DateTimeFieldType Deserialize(Stream s)
-        {
-            return ((DateTimeFieldType)(SerializerXml.Deserialize(s)));
-        }
-        #endregion
-
-        /// <summary>
-        /// Serializes current DateTimeFieldType object into file
-        /// </summary>
-        /// <param name="fileName">full path of outupt xml file</param>
-        /// <param name="exception">output Exception value if failed</param>
-        /// <returns>true if can serialize and save into file; otherwise, false</returns>
-        public virtual bool SaveToFile(string fileName, out Exception exception)
-        {
-            exception = null;
-            try
-            {
-                SaveToFile(fileName);
-                return true;
-            }
-            catch (Exception e)
-            {
-                exception = e;
-                return false;
-            }
-        }
-
-        public virtual void SaveToFile(string fileName)
-        {
-            StreamWriter streamWriter = null;
-            try
-            {
-                string dataString = Serialize();
-                FileInfo outputFile = new FileInfo(fileName);
-                streamWriter = outputFile.CreateText();
-                streamWriter.WriteLine(dataString);
-                streamWriter.Close();
-            }
-            finally
-            {
-                if ((streamWriter != null))
-                {
-                    streamWriter.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes xml markup from file into an DateTimeFieldType object
-        /// </summary>
-        /// <param name="fileName">File to load and deserialize</param>
-        /// <param name="obj">Output DateTimeFieldType object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, out DateTimeFieldType obj, out Exception exception)
-        {
-            exception = null;
-            obj = default(DateTimeFieldType);
-            try
-            {
-                obj = LoadFromFile(fileName);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool LoadFromFile(string fileName, out DateTimeFieldType obj)
-        {
-            Exception exception = null;
-            return LoadFromFile(fileName, out obj, out exception);
-        }
-
-        public static DateTimeFieldType LoadFromFile(string fileName)
         {
             FileStream file = null;
             StreamReader sr = null;

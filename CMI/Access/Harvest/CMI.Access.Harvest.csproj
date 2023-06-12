@@ -81,6 +81,7 @@
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
     <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.Designer.cs" />
+    <Compile Include="CMIAIS\Schemas\CMIArchiveTectonic.Designer.cs" />
     <Compile Include="CMIAIS\Schemas\SearchDetailResponse.Designer.cs" />
     <Compile Include="IAISSpecificRecordAccess.cs" />
     <Compile Include="CMIAIS\Mapping\ArchiveRecordMapperBuilder.cs" />
@@ -177,6 +178,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="CMIAIS\Schemas\CMIArchiveRecord.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CMIAIS\Schemas\CMIArchiveTectonic.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="CMIAIS\Schemas\SearchDetailResponse.xsd">

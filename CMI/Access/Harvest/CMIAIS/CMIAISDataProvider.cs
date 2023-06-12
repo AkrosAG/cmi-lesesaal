@@ -3,7 +3,6 @@ using CMI.Contract.Harvest;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
@@ -19,6 +18,7 @@ namespace CMI.Access.Harvest.CMIAIS
         private readonly MemoryCache cache;
         private readonly HttpClient cdwsRequestClient;
         private readonly string indexName;
+        private readonly string indexTectonicName;
 
         public CMIAISDataProvider(LesesaalDb dbContext, MemoryCache cache)
         {
@@ -29,6 +29,7 @@ namespace CMI.Access.Harvest.CMIAIS
             cdwsRequestClient.BaseAddress = uri;
 
             indexName = Properties.Settings.Default.CdwsIndexName;
+            indexTectonicName = Properties.Settings.Default.CdwsTectonicIndexName;
         }
 
         public async Task<int> BulkUpdateMutationStatus(List<MutationStatusInfo> infos)
@@ -81,6 +82,32 @@ namespace CMI.Access.Harvest.CMIAIS
         public Task<List<OrderDetailData>> GetChildrenRecordOrderDetailDataForArchiveRecord(string recordId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Tektonik.Verzeichnungseinheit> GetTectonicRecord(string id)
+        {
+            // No cache, then fetch it
+            var url = $"{indexTectonicName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH";
+            var response = await cdwsRequestClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var stringContent = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var searchResponse = XMLConvert.FromXML<SearchDetailResponseType>(stringContent);
+                if (searchResponse.Hit.Any())
+                {
+                    var item = XMLConvert.FromXML<Tektonik.Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                    return item;
+                }
+
+                throw new InvalidOperationException($"Record with id {id} does not exist in CDWS. Aborting sync of record in method {nameof(GetTectonicRecord)}.");
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}. Fehler ist {Message}", id, ex.Message);
+                throw;
+            }
         }
 
         public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
