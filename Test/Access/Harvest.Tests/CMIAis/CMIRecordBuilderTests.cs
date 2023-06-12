@@ -48,7 +48,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         [Test]
         public async Task NodeData_Should_Get_Mapped()
         {
-            var cmiRecord = new Tektonik.Verzeichnungseinheit
+            var cmiRecordTektonik = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "402",
                 Children = new List<Child>(new[]
@@ -89,7 +89,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            var parent = new Tektonik.Verzeichnungseinheit
+            var parentTektonik = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "300",
                 Children = new List<Child>(new[]
@@ -115,15 +115,28 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("402").Result).Returns(cmiRecord);
-            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("300").Result).Returns(parent);
+
+            var cmiRecord = new Verzeichnungseinheit
+            {
+                OBJ_GUID = "402"
+            };
+
+            var parent = new Verzeichnungseinheit
+            {
+                OBJ_GUID = "300"
+            };
+
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("402").Result).Returns(cmiRecordTektonik);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("300").Result).Returns(parentTektonik);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("402").Result).Returns(cmiRecord);
+            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("300").Result).Returns(parent);
 
             var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("402");
 
             var nodeInfo = record.Metadata.NodeInfo;
-            nodeInfo.ChildCount.Should().Be(cmiRecord.Children.Count);
+            nodeInfo.ChildCount.Should().Be(cmiRecordTektonik.Children.Count);
             nodeInfo.IsLeaf.Should().BeFalse();
             nodeInfo.IsRoot.Should().BeFalse();
             nodeInfo.ParentArchiveRecordId.Should().Be("300");
