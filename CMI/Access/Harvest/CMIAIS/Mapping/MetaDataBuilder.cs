@@ -38,10 +38,10 @@ public class MetaDataBuilder
             ChildCount = childrenCount,
             IsLeaf = childrenCount == 0,
             IsRoot = ancestorsCount == 0,
-            Level = (int)(ancestorsCount > 0 ? cmiRecordTectonic.Ancestors!.Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+            Level =(int)(ancestorsCount > 0 ? cmiRecordTectonic.Ancestors!.Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 .Max(a => a.Depth) + 1 : 0),
             ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecordTectonic.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
-            Path = cmiRecordTectonic.Ancestors != null ? string.Join("", cmiRecordTectonic.Ancestors.
+            Path = cmiRecordTectonic != null && cmiRecordTectonic.Ancestors != null ? string.Join("", cmiRecordTectonic.Ancestors.
                 Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 .OrderByDescending(a => a.Depth).Select(a => a.OBJ_GUID)) + cmiRecordTectonic.OBJ_GUID : null,
             Sequence = await GetSequence(cmiRecordTectonic)

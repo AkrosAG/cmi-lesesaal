@@ -199,7 +199,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 {
                     continue;
                 }
-
+                
                 var ancestorRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(ancestor.OBJ_GUID);
                 ArchiveplanContextItem contextItem;
 
@@ -239,7 +239,8 @@ namespace CMI.Access.Harvest.CMIAIS
                 Title = cmiRecord.Titel,
                 DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
                 RefCode = cmiRecord.Signatur,
-                IconId = (int)parentRecord.Ancestors.Last().TypeId
+                IconId = parentRecord.Ancestors.Count > 0 ? (int)parentRecord.Ancestors?.Last()?.TypeId : 0
+
             });
         }
     }
