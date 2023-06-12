@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Access.Harvest.CMIAIS;
+using CMI.Access.Harvest.Tektonik;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -47,7 +48,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         [Test]
         public async Task NodeData_Should_Get_Mapped()
         {
-            var cmiRecord = new VerzeichnungseinheitTektonik
+            var cmiRecord = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "402",
                 Children = new List<Child>(new[]
@@ -88,7 +89,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            var parent = new VerzeichnungseinheitTektonik
+            var parent = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "300",
                 Children = new List<Child>(new[]
@@ -136,9 +137,10 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         public async Task Archivplan_Context_Should_Get_Build_Correct()
         {
 
-            var cmiRecord = new VerzeichnungseinheitTektonik
+            var cmiRecord = new Tektonik.Verzeichnungseinheit
             {
-                OBJ_GUID = "123",
+
+        OBJ_GUID = "123",
                 Children = new List<Child>(new[]
                 {
                     new Child
@@ -169,7 +171,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            var parent = new VerzeichnungseinheitTektonik
+            var parent = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "12",
                 Children = new List<Child>(new[]
@@ -195,7 +197,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
             
-            var parentParent = new VerzeichnungseinheitTektonik
+            var parentParent = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "1",
                 Children = new List<Child>(new[]
