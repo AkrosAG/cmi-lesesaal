@@ -239,7 +239,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 Title = cmiRecord.Titel,
                 DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
                 RefCode = cmiRecord.Signatur,
-                // IconId = (int)cmiRecord.TypeId
+                IconId = (int)parentRecord.Ancestors.Last().TypeId
             });
         }
     }
