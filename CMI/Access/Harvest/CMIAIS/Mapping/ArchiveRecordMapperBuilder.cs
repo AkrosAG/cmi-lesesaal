@@ -11,14 +11,16 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
         private readonly Verzeichnungseinheit cmiRecord;
         internal readonly LanguageSettings languageSettings;
         internal readonly IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess;
+        private readonly Tektonik.Verzeichnungseinheit cmicRecordTectonic;
 
-        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, LanguageSettings languageSettings, IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess)
+        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmicRecordTectonic, LanguageSettings languageSettings, IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess)
         {
             archiveRecord = new ArchiveRecord
             {
                 ArchiveRecordId = cmiRecord.OBJ_GUID,
             };
             this.cmiRecord = cmiRecord;
+            this.cmicRecordTectonic = cmicRecordTectonic;
             this.languageSettings = languageSettings;
             this.cmiSpecificRecordAccess = cmiSpecificRecordAccess;
         }
@@ -38,7 +40,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 Containers = GetContainers(cmiRecord),
             };
 
-            return new MetaDataBuilder(cmiRecord, archiveRecord, this);
+            return new MetaDataBuilder(cmiRecord, cmicRecordTectonic, archiveRecord, this);
         }
 
         private ArchiveRecordMetadataContainers GetContainers(Verzeichnungseinheit cmiRecord)

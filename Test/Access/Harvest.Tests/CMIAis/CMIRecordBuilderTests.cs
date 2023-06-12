@@ -47,9 +47,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         [Test]
         public async Task NodeData_Should_Get_Mapped()
         {
-            var cmiRecord = new Verzeichnungseinheit
+            var cmiRecord = new VerzeichnungseinheitTektonik
             {
-                DisplayName = "Me",
                 OBJ_GUID = "402",
                 Children = new List<Child>(new[]
                 {
@@ -86,11 +85,10 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         OBJ_GUID = "100",
                         TypeKey = "mandant"
                     }
-                }),
-                Tektonikpfad = "100 / 200 / 300 / 402"
+                })
             };
 
-            var parent = new Verzeichnungseinheit
+            var parent = new VerzeichnungseinheitTektonik
             {
                 OBJ_GUID = "300",
                 Children = new List<Child>(new[]
@@ -116,8 +114,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("402").Result).Returns(cmiRecord);
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("300").Result).Returns(parent);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("402").Result).Returns(cmiRecord);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("300").Result).Returns(parent);
 
             var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 
@@ -138,9 +136,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
         public async Task Archivplan_Context_Should_Get_Build_Correct()
         {
 
-            var cmiRecord = new Verzeichnungseinheit
+            var cmiRecord = new VerzeichnungseinheitTektonik
             {
-                DisplayName = "Me",
                 OBJ_GUID = "123",
                 Children = new List<Child>(new[]
                 {
@@ -169,11 +166,10 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                         Depth = 1,
                         OBJ_GUID = "1"
                     }
-                }),
-                Tektonikpfad = "1 / 12 / 123"
+                })
             };
 
-            var parent = new Verzeichnungseinheit
+            var parent = new VerzeichnungseinheitTektonik
             {
                 OBJ_GUID = "12",
                 Children = new List<Child>(new[]
@@ -199,7 +195,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
             
-            var parentParent = new Verzeichnungseinheit
+            var parentParent = new VerzeichnungseinheitTektonik
             {
                 OBJ_GUID = "1",
                 Children = new List<Child>(new[]
@@ -213,9 +209,9 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 })
             };
 
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("123").Result).Returns(cmiRecord);
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("12").Result).Returns(parent);
-            aisSpecificRecordAccess.Setup(m => m.GetAisSpecificRecord("1").Result).Returns(parentParent);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("123").Result).Returns(cmiRecord);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("12").Result).Returns(parent);
+            aisSpecificRecordAccess.Setup(m => m.GetTectonicRecord("1").Result).Returns(parentParent);
 
             var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
