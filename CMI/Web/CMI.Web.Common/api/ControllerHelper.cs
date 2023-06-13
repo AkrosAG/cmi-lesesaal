@@ -65,6 +65,12 @@ namespace CMI.Web.Common.api
             return string.IsNullOrEmpty(homeOrganization);
         }
 
+        public bool IsMTanAuthentication()
+        {
+            var isMTan = GetFromClaim("/identity/claims/authenticationmethod")?.ToLowerInvariant().Contains("nomadtelephony".ToLowerInvariant());
+            return isMTan.GetValueOrDefault(false);
+        }
+
         /// <summary>
         ///     Kerberos-/Smartcard Anmeldung
         /// </summary>

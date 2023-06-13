@@ -6,6 +6,7 @@
         bool IsStaff();
         bool IsEthEmployee();
         bool NoHomeOrganization();
+        bool IsMTanAuthentication();
 
         /// <summary>
         ///     Kerberos-/Smartcard Anmeldung
