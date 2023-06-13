@@ -56,8 +56,8 @@ public class MetaDataBuilder
         if (parent == null)
             return 0;
 
-        var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetTectonicRecord(parent.OBJ_GUID);
-        var meAsChild = parentRecord?.Children.FirstOrDefault(c => c.OBJ_GUID == cmicRecordTectonic.OBJ_GUID);
+        var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetAisTectonicRecord(parent.OBJ_GUID);
+        var meAsChild = parentRecord.Children.FirstOrDefault(c => c.OBJ_GUID == cmicRecordTectonic.OBJ_GUID);
         if (meAsChild == null)
             return 0;
 

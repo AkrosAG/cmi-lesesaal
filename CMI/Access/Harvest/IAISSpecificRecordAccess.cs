@@ -3,10 +3,9 @@
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public interface IAISSpecificRecordAccess<T>
+    public interface IAISSpecificRecordAccess
     {
-        Task<T> GetAisSpecificRecord(string id);
-
-        Task<Tektonik.Verzeichnungseinheit> GetTectonicRecord(string id);
+        Task<Tektonik.Verzeichnungseinheit> GetAisTectonicRecord(string id);
+        Task<Verzeichnungseinheit> GetAisDataRecord(string id);
     }
 }
