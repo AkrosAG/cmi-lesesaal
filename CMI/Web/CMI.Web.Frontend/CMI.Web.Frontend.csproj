@@ -75,15 +75,6 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Kentor.AuthServices, Version=0.21.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Kentor.AuthServices.0.21.2\lib\net45\Kentor.AuthServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Kentor.AuthServices.Owin, Version=0.21.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Kentor.AuthServices.Owin.0.21.2\lib\net45\Kentor.AuthServices.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Kentor.OwinCookieSaver, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Kentor.OwinCookieSaver.1.1.1\lib\net452\Kentor.OwinCookieSaver.dll</HintPath>
-    </Reference>
     <Reference Include="MassTransit, Version=7.1.8.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MassTransit.7.1.8\lib\netstandard2.0\MassTransit.dll</HintPath>
     </Reference>
@@ -179,6 +170,12 @@
     </Reference>
     <Reference Include="Serilog.Sinks.File, Version=5.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Sustainsys.Saml2, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sustainsys.Saml2.1.0.2\lib\net452\Sustainsys.Saml2.dll</HintPath>
+    </Reference>
+    <Reference Include="Sustainsys.Saml2.Owin, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sustainsys.Saml2.Owin.1.0.2\lib\net452\Sustainsys.Saml2.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -334,7 +331,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data_Template\idp-metadata-ITU-test4.xml" />
+    <Content Include="App_Data_Template\sibboleth_attribute-map.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data_Template\metadata.switchaai+idp.xml" />
     <Content Include="App_Data_Template\Synonyme\ABC11.txt" />
     <Content Include="App_Data_Template\Synonyme\ABR17.txt" />
     <Content Include="App_Data_Template\Synonyme\ABR96.txt" />
@@ -528,7 +528,6 @@
     <Content Include="App_Data_Template\web.additional-appSettings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data_Template\web.kentor.config" />
     <Content Include="App_Data_Template\web.denyUsers.config" />
     <EmbeddedResource Include="Defaults\LaenderSetting.Laender" />
     <Content Include="App_Data_Template\app.parameter.config">
@@ -538,7 +537,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data_Template\iconMapping.json" />
-    <None Include="App_Data_Template\web.kentor.local.config" />
+    <None Include="App_Data_Template\web.sustainsys.config" />
     <None Include="Properties\PublishProfiles\Publish local.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -681,7 +680,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="App_Data_Template\config.json" />
-    <Content Include="App_Data_Template\config.reverseproxy.json" />
     <Content Include="App_Data_Template\web.cmi.config">
       <SubType>Designer</SubType>
     </Content>

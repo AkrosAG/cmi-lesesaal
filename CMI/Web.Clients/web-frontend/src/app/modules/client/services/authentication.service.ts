@@ -119,10 +119,6 @@ export class AuthenticationService {
 			if (!_util.isEmpty(matches)) {
 				session.userid = matches[0].value;
 			}
-			matches = claims.filter(c => c.type.indexOf('/identity/claims/displayName') >= 0);
-			if (!_util.isEmpty(matches)) {
-				session.username = matches[0].value;
-			}
 			matches = claims.filter(c => c.type.indexOf('/identity/claims/surname') >= 0);
 			if (!_util.isEmpty(matches)) {
 				session.lastname = matches[0].value;
@@ -131,6 +127,7 @@ export class AuthenticationService {
 			if (!_util.isEmpty(matches)) {
 				session.firstname = matches[0].value;
 			}
+			session.username = session.firstname + ' ' + session.lastname;
 			matches = claims.filter(c => c.type.indexOf('/identity/claims/emailaddress') >= 0);
 			if (!_util.isEmpty(matches)) {
 				session.emailaddress = matches[0].value;
