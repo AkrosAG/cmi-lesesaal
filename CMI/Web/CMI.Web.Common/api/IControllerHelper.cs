@@ -3,9 +3,9 @@
     public interface IControllerHelper
     {
         string GetCurrentUserId();
-        bool IsKerberosAuthentication();
-        bool IsSmartcartAuthentication();
-        bool IsMTanAuthentication();
+        bool IsStaff();
+        bool IsEthEmployee();
+        bool NoHomeOrganization();
 
         /// <summary>
         ///     Kerberos-/Smartcard Anmeldung
@@ -14,7 +14,7 @@
         bool IsInternalUser();
 
         string GetFromClaim(string field);
-        string GetMgntRoleFromClaim();
+        string GetManagementRoleFromClaim();
         bool HasClaims();
     }
 }

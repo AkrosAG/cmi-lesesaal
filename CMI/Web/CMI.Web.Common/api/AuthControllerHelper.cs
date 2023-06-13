@@ -139,7 +139,7 @@ namespace CMI.Web.Common.api
                     {
                         isPublicClient
                             ? controllerHelper.IsInternalUser() ? AccessRoles.RoleBVW : AccessRoles.RoleOe2
-                            : controllerHelper.GetMgntRoleFromClaim()
+                            : controllerHelper.GetManagementRoleFromClaim()
                     },
                     IssuedAccessTokens = new string[] { },
                     AuthStatus = AuthStatus.NeuerBenutzer,
@@ -197,7 +197,7 @@ namespace CMI.Web.Common.api
             }
 
             var isInternal = controllerHelper.IsInternalUser();
-            var mgntRole = controllerHelper.GetMgntRoleFromClaim();
+            var mgntRole = controllerHelper.GetManagementRoleFromClaim();
             try
             {
                 var userDataOnLogin = new User
@@ -207,9 +207,9 @@ namespace CMI.Web.Common.api
                     EiamRoles = mgntRole,
                     UserExtId = controllerHelper.GetFromClaim("/identity/claims/e-id/userExtId"),
                     Claims = new JObject {{"claims", JArray.FromObject(claims)}},
-                    FamilyName = isInternal ? controllerHelper.GetFromClaim("/identity/claims/surname") : user.FamilyName,
-                    FirstName = isInternal ? controllerHelper.GetFromClaim("/identity/claims/givenname") : user.FirstName,
-                    EmailAddress = isInternal ? controllerHelper.GetFromClaim("/identity/claims/emailaddress") : user.EmailAddress
+                    FamilyName = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.Surname) : user.FamilyName,
+                    FirstName = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.GivenName) : user.FirstName,
+                    EmailAddress = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.Email) : user.EmailAddress
                 };
 
                 // Prüfen User Änderung enthält, falls ja Daten aktualisieren 
@@ -268,16 +268,29 @@ namespace CMI.Web.Common.api
                 return AuthStatus.KeineRolleDefiniert;
             }
 
-            if ((role == AccessRoles.RoleOe2 || role == AccessRoles.RoleOe3) &&
-                (controllerHelper.IsKerberosAuthentication() || controllerHelper.IsSmartcartAuthentication()))
+            /*
+             * UseCase Nr	Viaduc-User	    affiliation	        homeOrganization
+                1	        Ö3	            member	            ethz.ch
+                2	        Ö3	            member OR staff	    NOT(ethz.ch)
+                3	        BVW	            staff	            ethz.ch
+                4	        Ö2	            member OR staff	    NULL
+
+             * */
+
+            if (role == AccessRoles.RoleOe2 && !controllerHelper.NoHomeOrganization())
             {
-                throw new AuthenticationException("Kerberos oder Smartcard dürfen nicht für Ö2 und Ö3 verwendet werden");
+                throw new AuthenticationException("Ein Ö2 Benutzer darf keiner Organisation zugeordnet sein");
+            }
+
+            if (role == AccessRoles.RoleOe3 && controllerHelper.NoHomeOrganization())
+            {
+                throw new AuthenticationException("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
             }
 
             if ((role == AccessRoles.RoleBVW || role == AccessRoles.RoleAS || role == AccessRoles.RoleBAR) &&
-                !(controllerHelper.IsKerberosAuthentication() || controllerHelper.IsSmartcartAuthentication()))
+                !controllerHelper.IsInternalUser())
             {
-                throw new AuthenticationException("Interne Benutzerrollen (BVW, AS und BAR) müssen Kerberos oder Smartcard verwenden");
+                throw new AuthenticationException("Interne Benutzerrollen (BVW, AS und BAR) müssen als Staff der ETH Zürich deklariert sein");
             }
 
             // Public-Client
@@ -288,18 +301,12 @@ namespace CMI.Web.Common.api
                     // Keine spezial Behandlung
                     case AccessRolesEnum.Ö2:
                     case AccessRolesEnum.BVW:
+                    case AccessRolesEnum.Ö3:
                         return AuthStatus.Ok;
 
-                    // SMS-Anmeldung 
-                    case AccessRolesEnum.Ö3:
-                        return controllerHelper.IsMTanAuthentication()
-                            ? AuthStatus.Ok
-                            : AuthStatus.KeineMTanAuthentication;
-
-                    // Kerberos Pflicht
                     case AccessRolesEnum.AS:
                     case AccessRolesEnum.BAR:
-                        return controllerHelper.IsKerberosAuthentication()
+                        return controllerHelper.IsInternalUser()
                             ? AuthStatus.Ok
                             : AuthStatus.KeineKerberosAuthentication;
 
@@ -314,7 +321,7 @@ namespace CMI.Web.Common.api
                 // Kerberos Pflicht
                 case AccessRoles.RoleMgntAllow:
                 case AccessRoles.RoleMgntAppo:
-                    return controllerHelper.IsKerberosAuthentication()
+                    return controllerHelper.IsStaff()
                         ? AuthStatus.Ok
                         : AuthStatus.KeineKerberosAuthentication;
                 default:

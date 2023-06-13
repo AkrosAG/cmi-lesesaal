@@ -106,7 +106,7 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -145,7 +145,7 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -187,7 +187,7 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -232,7 +232,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
             controllerHelperMock.Setup(m => m.IsMTanAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -281,7 +281,7 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -321,9 +321,9 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(isKerberosAuth);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(!isKerberosAuth);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(isKerberosAuth);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(!isKerberosAuth);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -362,9 +362,9 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -402,9 +402,9 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(isInternalUser);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns("ALLOW");
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(isInternalUser);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(isInternalUser);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(isInternalUser);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(isInternalUser);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -439,8 +439,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
             controllerHelperMock.Setup(m => m.IsMTanAuthentication()).Returns(true);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
@@ -476,8 +476,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
             controllerHelperMock.Setup(m => m.IsMTanAuthentication()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
@@ -516,8 +516,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(true);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -555,8 +555,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(true);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(true);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -591,8 +591,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -630,8 +630,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(true);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -670,8 +670,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -706,8 +706,8 @@ namespace CMI.Web.Common.Tests.Helpers
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsKerberosAuthentication()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsSmartcartAuthentication()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -869,7 +869,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns(AccessRoles.RoleMgntAllow);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns(AccessRoles.RoleMgntAllow);
             controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
 
             var applicationRoleUserDataAccessMock = new Mock<IApplicationRoleUserDataAccess>();
@@ -895,7 +895,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns(role);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns(role);
             controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
 
             var applicationRoleUserDataAccessMock = new Mock<IApplicationRoleUserDataAccess>();
@@ -922,7 +922,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
-            controllerHelperMock.Setup(m => m.GetMgntRoleFromClaim()).Returns(role);
+            controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns(role);
             controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
 
             var applicationRoleUserDataAccessMock = new Mock<IApplicationRoleUserDataAccess>();
