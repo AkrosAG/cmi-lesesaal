@@ -10,10 +10,10 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
         private readonly ArchiveRecord archiveRecord;
         private readonly Verzeichnungseinheit cmiRecord;
         internal readonly LanguageSettings languageSettings;
-        internal readonly IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess;
+        internal readonly IAISSpecificRecordAccess cmiSpecificRecordAccess;
         private readonly Tektonik.Verzeichnungseinheit cmicRecordTectonic;
 
-        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmicRecordTectonic, LanguageSettings languageSettings, IAISSpecificRecordAccess<Verzeichnungseinheit> cmiSpecificRecordAccess)
+        public ArchiveRecordMapperBuilder(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmicRecordTectonic, LanguageSettings languageSettings, IAISSpecificRecordAccess cmiSpecificRecordAccess)
         {
             archiveRecord = new ArchiveRecord
             {
