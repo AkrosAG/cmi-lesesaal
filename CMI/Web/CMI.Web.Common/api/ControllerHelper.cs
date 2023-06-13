@@ -47,22 +47,22 @@ namespace CMI.Web.Common.api
             return uidClaim?.Value;
         }
 
-        public bool IsKerberosAuthentication()
+        public bool IsStaff()
         {
-            var isKerberos = GetFromClaim("/identity/claims/authenticationmethod")?.ToLowerInvariant().Contains("kerberos".ToLowerInvariant());
-            return isKerberos.GetValueOrDefault(false);
+            var isStaff = GetFromClaim("affiliation")?.ToLowerInvariant().Contains("staff".ToLowerInvariant());
+            return isStaff.GetValueOrDefault(false);
         }
 
-        public bool IsSmartcartAuthentication()
+        public bool IsEthEmployee()
         {
-            var isSmartcard = GetFromClaim("/identity/claims/authenticationmethod")?.ToLowerInvariant().Contains("Smartcard".ToLowerInvariant());
-            return isSmartcard.GetValueOrDefault(false);
+            var isEthEmployee = GetFromClaim("homeOrganization")?.ToLowerInvariant().Contains("ethz.ch".ToLowerInvariant());
+            return isEthEmployee.GetValueOrDefault(false);
         }
 
-        public bool IsMTanAuthentication()
+        public bool NoHomeOrganization()
         {
-            var isMTan = GetFromClaim("/identity/claims/authenticationmethod")?.ToLowerInvariant().Contains("nomadtelephony".ToLowerInvariant());
-            return isMTan.GetValueOrDefault(false);
+            var homeOrganization = GetFromClaim("homeOrganization")?.ToLowerInvariant();
+            return string.IsNullOrEmpty(homeOrganization);
         }
 
         /// <summary>
@@ -71,38 +71,49 @@ namespace CMI.Web.Common.api
         /// <returns></returns>
         public bool IsInternalUser()
         {
-            var validInternalAuth = new List<string> {"smartcardpki", "kerberos"};
-            var authType = GetFromClaim("/identity/claims/authenticationmethod")?.ToLowerInvariant();
-            bool? isInternal = !string.IsNullOrWhiteSpace(authType) && validInternalAuth.Any(x => authType.EndsWith(x));
-            return isInternal.GetValueOrDefault(false);
+            // Es handelt sich um einen internen User wenn er Staff von der ETH ZH ist.
+            return IsStaff() && IsEthEmployee();
         }
 
         public string GetFromClaim(string field)
         {
             var identity = apiController.User?.Identity as ClaimsIdentity;
-            var uidClaim = identity != null && identity.Claims != null ? identity.Claims.FirstOrDefault(c => c.Type.Contains(field)) : null;
-
+            var claims = identity != null && identity.Claims != null ? identity.Claims.Where(c => c.Type.Contains(field)) : null;
+            // If we have names that are very similar, we need to make a distinction. For example homeOrganization and homeOrganizationType
+            var uidClaim = claims != null && claims.Count() == 1
+                ? claims.FirstOrDefault()
+                : claims.FirstOrDefault(c => c.Type.EndsWith(field));
             return uidClaim?.Value;
         }
 
-        public string GetMgntRoleFromClaim()
+        public string GetManagementRoleFromClaim()
         {
-            var identity = apiController.User?.Identity as ClaimsIdentity;
-            var uidClaim = identity != null && identity.Claims != null
-                ? identity.Claims.Where(c => c.Type.Contains("/identity/claims/role") || c.Type.Contains("/identity/claims/e-id/profile/role"))
-                : null;
-
-            var mgntRoleList = uidClaim?.Where(c => !string.IsNullOrEmpty(c.Value) && c.Value.Contains("BAR-recherche-management-client"));
-
-            string mgntRole = null;
-            if (mgntRoleList.Any())
+            // ToDo: JLA Wie sieht es nun bei der ETH aus. Wo bekommen wir mit, ob der Benutzer für den M-C zugelassen ist?
+            if (IsInternalUser())
             {
-                mgntRole = mgntRoleList.Any(c => c.Value.EndsWith("APPO", StringComparison.InvariantCultureIgnoreCase))
-                    ? "APPO"
-                    : "ALLOW";
+                return "APPO";
+            }
+            else
+            {
+                return string.Empty;
             }
 
-            return mgntRole;
+            //var identity = apiController.User?.Identity as ClaimsIdentity;
+            //var uidClaim = identity != null && identity.Claims != null
+            //    ? identity.Claims.Where(c => c.Type.Contains("/identity/claims/role") || c.Type.Contains("/identity/claims/e-id/profile/role"))
+            //    : null;
+
+            //var managementRoleList = uidClaim?.Where(c => !string.IsNullOrEmpty(c.Value) && c.Value.Contains("BAR-recherche-management-client"));
+
+            //string managementRole = null;
+            //if (managementRoleList.Any())
+            //{
+            //    managementRole = managementRoleList.Any(c => c.Value.EndsWith("APPO", StringComparison.InvariantCultureIgnoreCase))
+            //        ? "APPO"
+            //        : "ALLOW";
+            //}
+
+            //return managementRole;
         }
 
         public bool HasClaims()

@@ -353,12 +353,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data_Template\idp-metadata-ITU-test4.xml" />
     <Content Include="App_Data_Template\app.bus.config" />
-    <Content Include="App_Data_Template\web.additional-appSettings.config">
-      <SubType>Designer</SubType>
+    <Content Include="App_Data_Template\metadata.switchaai+idp.xml" />
+    <Content Include="App_Data_Template\sibboleth_attribute-map.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data_Template\web.kentor.config">
+    <Content Include="App_Data_Template\web.additional-appSettings.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data_Template\web.denyUsers.config" />
@@ -371,9 +371,7 @@
     <Content Include="App_Data_Template\app.mailtemplate.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="App_Data_Template\web.kentor.local.config">
-      <SubType>Designer</SubType>
-    </None>
+    <Content Include="App_Data_Template\web.sustainsys.config" />
     <None Include="Properties\PublishProfiles\Publish local.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -467,7 +465,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="App_Data_Template\config.json" />
-    <Content Include="App_Data_Template\config.reverseproxy.json" />
     <Content Include="App_Data_Template\web.cmi.config">
       <SubType>Designer</SubType>
     </Content>
