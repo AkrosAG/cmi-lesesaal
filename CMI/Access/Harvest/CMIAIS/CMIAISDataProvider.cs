@@ -3,7 +3,6 @@ using CMI.Contract.Harvest;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
@@ -13,12 +12,13 @@ using CMI.Access.Sql.Lesesaal.EF;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public class CMIAISDataProvider : IAISDataProvider, IAISSpecificRecordAccess<Verzeichnungseinheit>
+    public class CMIAISDataProvider : IAISDataProvider, IAISSpecificRecordAccess
     {
         private readonly LesesaalDb dbContext;
         private readonly MemoryCache cache;
         private readonly HttpClient cdwsRequestClient;
         private readonly string indexName;
+        private readonly string indexTectonicName;
 
         public CMIAISDataProvider(LesesaalDb dbContext, MemoryCache cache)
         {
@@ -29,6 +29,7 @@ namespace CMI.Access.Harvest.CMIAIS
             cdwsRequestClient.BaseAddress = uri;
 
             indexName = Properties.Settings.Default.CdwsIndexName;
+            indexTectonicName = Properties.Settings.Default.CdwsTectonicIndexName;
         }
 
         public async Task<int> BulkUpdateMutationStatus(List<MutationStatusInfo> infos)
@@ -82,13 +83,41 @@ namespace CMI.Access.Harvest.CMIAIS
         {
             throw new NotImplementedException();
         }
-
-        public async Task<Verzeichnungseinheit> GetAisSpecificRecord(string id)
+        
+        public async Task<Tektonik.Verzeichnungseinheit> GetAisTectonicRecord(string id)
         {
+            var url = $"{indexTectonicName}/searchdetails?q=obj_guid%20any%20{id}&l=de-CH";
+            var response = await cdwsRequestClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var stringContent = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var searchResponse = XMLConvert.FromXML<SearchDetailResponseType>(stringContent);
+                if (searchResponse.Hit.Any())
+                {
+                    var item = XMLConvert.FromXML<Tektonik.Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
+                    return item;
+                }
+
+                throw new InvalidOperationException(
+                    $"Record with id {id} does not exist in CDWS. Aborting sync of record in method {nameof(GetAisTectonicRecord)}.");
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {indexTectonicName} {guid}. Fehler ist {Message}",
+                    indexTectonicName, id, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<Verzeichnungseinheit> GetAisDataRecord(string id)
+        {
+
             var cachedItem = cache.Get(id);
             if (cachedItem != null)
             {
-                return cachedItem as Verzeichnungseinheit;
+                return (Verzeichnungseinheit)cachedItem;
             }
 
             // No cache, then fetch it
@@ -103,19 +132,19 @@ namespace CMI.Access.Harvest.CMIAIS
                 if (searchResponse.Hit.Any())
                 {
                     var item = XMLConvert.FromXML<Verzeichnungseinheit>(searchResponse.Hit.First().Any.OuterXml);
-                    cache.Add(id, item, new CacheItemPolicy {SlidingExpiration = TimeSpan.FromSeconds(120)});
+                    cache.Add(id, item, new CacheItemPolicy { SlidingExpiration = TimeSpan.FromSeconds(120) });
                     return item;
                 }
 
-                throw new InvalidOperationException($"Record with id {id} does not exist in CDWS. Aborting sync of record in method {nameof(GetAisSpecificRecord)}.");
+                throw new InvalidOperationException($"Record with id {id} does not exist in CDWS. Aborting sync of record in method {nameof(GetAisDataRecord)}.");
             }
             catch (Exception ex)
             {
-                Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {guid}. Fehler ist {Message}", id, ex.Message);
+                Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {indexName} {guid}. Fehler ist {Message}", indexName, id, ex.Message);
                 throw;
             }
         }
-
+        
         public Task<string> GetDbVersion()
         {
             throw new NotImplementedException();

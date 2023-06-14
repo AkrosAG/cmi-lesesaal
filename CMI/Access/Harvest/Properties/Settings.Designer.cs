@@ -150,5 +150,16 @@ namespace CMI.Access.Harvest.Properties {
                 return ((string)(this["CdwsIndexName"]));
             }
         }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsTectonicIndexName@@")]
+        public string CdwsTectonicIndexName
+        {
+            get
+            {
+                return ((string)(this["CdwsTectonicIndexName"]));
+            }
+        }
     }
 }
