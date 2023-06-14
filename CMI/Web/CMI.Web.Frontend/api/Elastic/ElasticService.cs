@@ -41,7 +41,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
             // Workaround für Unit-Test
             var jsonText = string.IsNullOrEmpty(uniteTestConfig) ? 
-                File.ReadAllText(StringHelper.AddToString(WebHelper.TemplatesDefinitionDirectory, @"\", facettenConfigFilename)) 
+                File.ReadAllText(Path.Combine(WebHelper.TemplatesDefinitionDirectory, facettenConfigFilename)) 
                 : uniteTestConfig;
 
             facetten = JsonConvert.DeserializeObject<List<Facette>>(jsonText, new JsonSerializerSettings());

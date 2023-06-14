@@ -3,8 +3,9 @@
     public interface IControllerHelper
     {
         string GetCurrentUserId();
-        bool IsKerberosAuthentication();
-        bool IsSmartcartAuthentication();
+        bool IsStaff();
+        bool IsEthEmployee();
+        bool NoHomeOrganization();
         bool IsMTanAuthentication();
 
         /// <summary>
@@ -14,7 +15,7 @@
         bool IsInternalUser();
 
         string GetFromClaim(string field);
-        string GetMgntRoleFromClaim();
+        string GetManagementRoleFromClaim();
         bool HasClaims();
     }
 }
