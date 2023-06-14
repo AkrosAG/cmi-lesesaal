@@ -74,10 +74,10 @@ namespace CMI.Web.Frontend.api.Templates
             templatesById = new Dictionary<string, Template>();
             try
             {
-                var path = StringHelper.AddToString(TemplatesDefinitionDirectory, @"\", TemplatesDefinitionFilename);
+                var path = Path.Combine(TemplatesDefinitionDirectory, TemplatesDefinitionFilename);
                 if (!File.Exists(path))
                 {
-                    path = StringHelper.AddToString(DirectoryHelper.Instance.ClientConfigDirectory, @"\", TemplatesDefinitionFilename);
+                    path = Path.Combine(DirectoryHelper.Instance.ClientConfigDirectory, TemplatesDefinitionFilename);
                 }
 
                 var templateDefinitionData = JsonHelper.GetJsonFromFile(path);

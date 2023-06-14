@@ -19,12 +19,25 @@ namespace CMI.Web.Management.api.Controllers
         }
 
         [HttpGet]
+        public JObject GetCustomerTranslations([FromUri] ApiClientInfo info)
+        {
+            return Settings.GetCustomerTranslations(info.language);
+        }
+
+        [HttpGet]
         public JObject GetSettings([FromUri] ApiClientInfo info)
         {
             var settings = Settings.GetSettings().DeepClone() as JObject;
 
             JsonHelper.AddOrSet(settings, "publicClientUrl", WebHelper.PublicClientUrl);
 
+            return settings;
+        }
+
+        [HttpGet]
+        public JObject GetCustomerSettings([FromUri] ApiClientInfo info)
+        {
+            var settings = Settings.GetCustomerSettings().DeepClone() as JObject;
             return settings;
         }
     }
