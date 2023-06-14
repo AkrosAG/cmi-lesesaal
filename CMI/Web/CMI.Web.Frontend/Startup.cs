@@ -14,7 +14,6 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend;
 using CMI.Web.Frontend.api.Configuration;
 using CMI.Web.Frontend.api.Controllers;
-using Kentor.AuthServices.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -27,6 +26,7 @@ using NSwag.AspNet.Owin;
 using NSwag.SwaggerGeneration;
 using Owin;
 using Serilog;
+using Sustainsys.Saml2.Owin;
 using SameSiteMode = Microsoft.Owin.SameSiteMode;
 
 [assembly: OwinStartup(typeof(Startup))]
@@ -88,9 +88,6 @@ namespace CMI.Web.Frontend
         private void ConfigureSecurity(IAppBuilder app)
         {
             app.Use(async (context, next) => { await next.Invoke(); });
-            app.UseKentorOwinCookieSaver();
-
-            app.Use(async (context, next) => { await next.Invoke(); });
             var connectionString = FrontendSettings.Instance.SqlConnectionString;
             var userDataAccess = new UserDataAccess(connectionString);
 
@@ -114,18 +111,18 @@ namespace CMI.Web.Frontend
 
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            var authOptions = new KentorAuthServicesAuthenticationOptions(true)
+            var authOptions = new Saml2AuthenticationOptions(true)
             {
                 SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
             };
 
             var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, true);
             authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
-            app.UseKentorAuthServicesAuthentication(authOptions);
-            
+            app.UseSaml2Authentication(authOptions);
+
             Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}",
                 FrontendSettings.Instance.CookieExpireTimeInMinutes);
-            
+
             app.Use(async (context, next) => { await next.Invoke(); });
         }
 
