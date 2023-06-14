@@ -11,11 +11,11 @@ namespace CMI.Access.Harvest.CMIAIS
 {
     public class CMIAISArchiveRecordBuilder : IArchiveRecordBuilder
     {
-        private readonly IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess;
+        private readonly IAISSpecificRecordAccess aisSpecificRecordAccess;
         private readonly LanguageSettings languageSettings;
         private readonly IArchiveRecordProcessHandler processHandler;
 
-        public CMIAISArchiveRecordBuilder(IAISSpecificRecordAccess<Verzeichnungseinheit> aisSpecificRecordAccess, LanguageSettings languageSettings, IArchiveRecordProcessHandler processHandler)
+        public CMIAISArchiveRecordBuilder(IAISSpecificRecordAccess aisSpecificRecordAccess, LanguageSettings languageSettings, IArchiveRecordProcessHandler processHandler)
         {
    
             this.aisSpecificRecordAccess = aisSpecificRecordAccess;
@@ -29,10 +29,11 @@ namespace CMI.Access.Harvest.CMIAIS
             {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
-                var cmiRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(archiveRecordId);
+                var cmiRecord = await aisSpecificRecordAccess.GetAisDataRecord(archiveRecordId);
+                var cmiRecordTectonic = await aisSpecificRecordAccess.GetAisTectonicRecord(archiveRecordId); 
                 Log.Verbose($"Took {stopwatch.ElapsedMilliseconds} ms to fetch detail record from CDWS with id {archiveRecordId}");
 
-                var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, languageSettings, aisSpecificRecordAccess);
+                var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, cmiRecordTectonic, languageSettings, aisSpecificRecordAccess);
 
                 var metaDataBuilder = await archiveRecordBuilder
                         .AddMedataData()
@@ -43,7 +44,7 @@ namespace CMI.Access.Harvest.CMIAIS
 
                 var record = archiveRecordBuilder.Build();
 
-                record.Display = await GetDisplaySection(cmiRecord, record);
+                record.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, record);
 
                 await processHandler.PostProcessArchiveRecord(record);
                 Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to build the record with id {archiveRecordId}");
@@ -140,7 +141,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
                 .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"));
         }
-        private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
+        private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord)
         {
             var display = new ArchiveRecordDisplay
             {
@@ -150,30 +151,30 @@ namespace CMI.Access.Harvest.CMIAIS
                 ContainsMedia = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media),
                 CanBeOrdered = false, // Wird im Custom Script gesetzt/überschrieben
             };
-
-            await CalculateTreeContext(display, cmiRecord, archiveRecord);
+            
+            await CalculateTreeContext(display, cmiRecord, cmiRecordTectonic, archiveRecord);
             return display;
         }
 
-        private async Task CalculateTreeContext(ArchiveRecordDisplay display, Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord)
+        private async Task CalculateTreeContext(ArchiveRecordDisplay display, Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord)
         {
             if (string.IsNullOrWhiteSpace(archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId))
                 return;
 
             var parentRecordId = archiveRecord.Metadata.NodeInfo.ParentArchiveRecordId;
-            var parentRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(parentRecordId);
-            if(parentRecord == null)
+            var parentRecord = await aisSpecificRecordAccess.GetAisTectonicRecord(parentRecordId);
+            if (parentRecord == null)
             {
                 Log.Warning("ParentArchiveRecordId {0} konnte nict geladen werden", parentRecordId);
                 return;
             }
             
-            display.ParentArchiveRecordId = parentRecord.OBJ_GUID;            
-            display.FirstChildArchiveRecordId = cmiRecord.Children.FirstOrDefault()?.OBJ_GUID;
+            display.ParentArchiveRecordId = parentRecord.OBJ_GUID;
+            display.FirstChildArchiveRecordId = cmiRecordTectonic.Children.FirstOrDefault()?.OBJ_GUID;
 
             if (parentRecord.Children.Any())
             {
-                var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+                var indexOfMe = parentRecord.Children.ToList().FindIndex(c => c.OBJ_GUID == cmiRecordTectonic.OBJ_GUID);
                 var indexNext = indexOfMe + 1;
                 var indexPrev = indexOfMe - 1;
 
@@ -190,15 +191,15 @@ namespace CMI.Access.Harvest.CMIAIS
 
             display.ArchiveplanContext = new System.Collections.Generic.List<ArchiveplanContextItem>();
 
-            foreach(var ancestor in cmiRecord.Ancestors.OrderByDescending(b => b.Depth))
+            foreach(var ancestor in cmiRecordTectonic.Ancestors.OrderByDescending(b => b.Depth))
             {
                 // Mandant is never published, so we skip it
                 if (ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }
-
-                var ancestorRecord = await aisSpecificRecordAccess.GetAisSpecificRecord(ancestor.OBJ_GUID);
+                
+                var ancestorRecord = await aisSpecificRecordAccess.GetAisDataRecord(ancestor.OBJ_GUID);
                 ArchiveplanContextItem contextItem;
 
                 if (ancestorRecord != null)
@@ -237,7 +238,8 @@ namespace CMI.Access.Harvest.CMIAIS
                 Title = cmiRecord.Titel,
                 DateRangeText = cmiRecord.Entstehungszeitraum?.Text,
                 RefCode = cmiRecord.Signatur,
-                IconId = (int) cmiRecord.Ancestors.Last().TypeId
+                IconId = parentRecord.Ancestors.Count > 0 ? (int)parentRecord.Ancestors?.Last()?.TypeId : 0
+
             });
         }
     }

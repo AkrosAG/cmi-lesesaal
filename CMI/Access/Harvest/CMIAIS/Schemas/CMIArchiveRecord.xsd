@@ -19,14 +19,6 @@
 	</xsd:annotation>
 	<xsd:complexType name="Verzeichnungseinheit">
 		<xsd:sequence>
-			<xsd:element name="Ancestors" type="TreeParentFieldType"/>
-			<xsd:element name="Children">
-				<xsd:complexType>
-					<xsd:choice minOccurs="0" maxOccurs="unbounded">
-						<xsd:element name="Child" type="Child"/>
-					</xsd:choice>
-				</xsd:complexType>
-			</xsd:element>
 			<xsd:element name="TypeName" type="xsd:string"/>
 			<xsd:element name="DisplayName" type="xsd:string"/>
 			<xsd:element name="Signatur" type="xsd:string"/>
@@ -240,17 +232,6 @@
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional"/>
 		<xsd:attribute name="IDX" type="xsd:string" use="optional"/>
-	</xsd:complexType>
-	<xsd:complexType name="TreeParentFieldType">
-		<xsd:choice minOccurs="0" maxOccurs="unbounded">
-			<xsd:element name="Parent" type="ParentFieldType"/>
-		</xsd:choice>
-	</xsd:complexType>
-	<xsd:complexType name="ParentFieldType">
-		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
-		<xsd:attribute name="TypeId" type="xsd:decimal" use="required"/>
-		<xsd:attribute name="TypeKey" type="xsd:string" use="required"/>
-		<xsd:attribute name="Depth" type="xsd:decimal" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="DateTimeFieldType">
 		<xsd:sequence minOccurs="0">

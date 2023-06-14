@@ -1,0 +1,66 @@
+﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveTectonic2" targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveTectonic2" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="DateiText" BoostFactor="2" Nrs="51"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="DisplayName" BoostFactor="4" Nrs="253;312;371;430"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="TypeName" BoostFactor="1" Nrs="252;311;370;429"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="Signatur" BoostFactor="3.5" Nrs="254;313;372;431"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="Ancestors" BoostFactor="1" Nrs="250;309;368;427"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldDate" Name="Entstehungszeitraum" BoostFactor="1" Nrs="260;319;378;437"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="Text" BoostFactor="3" Nrs="60;110;71;70;96;34;33;105;106;65;103;27;24;74;254;255;256;257;258;259;260;261;263;264;265;266;267;268;269;270;273;274;276;277;278;279;281;284;288;289;290;291;292;294;295;296;298;301;313;314;315;316;317;318;319;320;322;323;324;325;326;327;328;329;332;333;335;336;337;338;339;340;343;347;348;349;350;351;353;354;355;357;360;372;373;374;375;376;377;378;379;381;382;383;384;385;386;387;388;391;392;394;395;396;397;398;399;402;406;407;408;409;410;412;413;414;416;419;431;432;433;434;435;436;437;438;440;441;442;443;444;445;446;447;450;451;453;454;455;456;457;458;461;465;466;467;468;469;471;472;473;475;478"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="UeberlieferungsformenGuids" BoostFactor="1" Nrs="500;499;501;502"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="ArchivalienartenGuids" BoostFactor="1" Nrs="496;495;497;494"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="Benutzbarkeit" BoostFactor="1" Nrs="288;347;406;465"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="VerfuegbarkeitGuids" BoostFactor="1" Nrs="544;546;547;545"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldBoolean" Name="DateiVorhanden" BoostFactor="1" Nrs="549;551;550;552"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldBoolean" Name="DigitalVorhanden" BoostFactor="1" Nrs="554;556;555;557"/>
+			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldDate" Name="Bezugszeitraum" BoostFactor="1" Nrs="540;542;541;539"/>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="Verzeichnungseinheit">
+		<xsd:sequence>
+			<xsd:element name="Ancestors" type="TreeParentFieldType"/>
+			<xsd:element name="Children">
+				<xsd:complexType>
+					<xsd:choice minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="Child" type="Child"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
+		<xsd:attribute name="SEQ" type="xsd:string" use="optional"/>
+		<xsd:attribute name="IDX" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="TreeParentFieldType">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Parent" type="ParentFieldType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="ParentFieldType">
+		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
+		<xsd:attribute name="TypeId" type="xsd:decimal" use="required"/>
+		<xsd:attribute name="TypeKey" type="xsd:string" use="required"/>
+		<xsd:attribute name="Depth" type="xsd:decimal" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="Child">
+		<xsd:sequence>
+			<xsd:element name="TypeName" type="xsd:string"/>
+			<xsd:element name="DisplayName" type="xsd:string"/>
+			<xsd:element name="Sortierung" type="xsd:string"/>
+			<xsd:element name="Signatur" type="xsd:string"/>
+			<xsd:element name="Kuerzel" type="xsd:string"/>
+			<xsd:element name="Titel" type="xsd:string"/>
+			<xsd:element name="Entstehungszeitraum" type="DateTimeFieldType"/>
+		</xsd:sequence>
+		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="DateTimeFieldType">
+		<xsd:sequence minOccurs="0">
+			<xsd:element name="Start" type="xsd:dateTime" nillable="true"/>
+			<xsd:element name="End" type="xsd:dateTime" nillable="true"/>
+			<xsd:element name="Text" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Verzeichnungseinheit" type="Verzeichnungseinheit"/>
+</xsd:schema>

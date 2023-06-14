@@ -8,13 +8,15 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping;
 
 public class MetaDataBuilder
 {
-    private readonly Verzeichnungseinheit cmiRecord;
+    private readonly Tektonik.Verzeichnungseinheit cmiRecordTectonic;
     private readonly ArchiveRecord archiveRecord;
     internal readonly ArchiveRecordMapperBuilder archiveRecordMapperBuilder;
+    private readonly Verzeichnungseinheit cmiRecord;
 
-    public MetaDataBuilder(Verzeichnungseinheit cmiRecord, ArchiveRecord archiveRecord, ArchiveRecordMapperBuilder archiveRecordMapperBuiler)
+    public MetaDataBuilder(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord, ArchiveRecordMapperBuilder archiveRecordMapperBuiler)
     {
         this.cmiRecord = cmiRecord;
+        this.cmiRecordTectonic = cmiRecordTectonic;
         this.archiveRecord = archiveRecord;
         archiveRecordMapperBuilder = archiveRecordMapperBuiler;
     }
@@ -28,34 +30,34 @@ public class MetaDataBuilder
 
     public async Task<MetaDataBuilder> WithNodeInfos()
     {
-        var childrenCount = cmiRecord.Children?.Count ?? 0;
-        var ancestorsCount = cmiRecord.Ancestors?.Count ?? 0;
+        var childrenCount = cmiRecordTectonic?.Children?.Count ?? 0;
+        var ancestorsCount = cmiRecordTectonic?.Ancestors?.Count ?? 0;
 
         archiveRecord.Metadata.NodeInfo = new NodeInfo
         {
             ChildCount = childrenCount,
             IsLeaf = childrenCount == 0,
             IsRoot = ancestorsCount == 0,
-            Level = (int)(ancestorsCount > 0 ? cmiRecord.Ancestors!.Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+            Level =(int)(ancestorsCount > 0 ? cmiRecordTectonic.Ancestors!.Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 .Max(a => a.Depth) + 1 : 0),
-            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecord.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
-            Path = cmiRecord.Ancestors != null ? string.Join("", cmiRecord.Ancestors.
+            ParentArchiveRecordId = ancestorsCount > 0 ? cmiRecordTectonic.Ancestors!.OrderBy(a => a.Depth).First().OBJ_GUID : null,
+            Path = cmiRecordTectonic != null && cmiRecordTectonic.Ancestors != null ? string.Join("", cmiRecordTectonic.Ancestors.
                 Where(a => !a.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
-                .OrderByDescending(a => a.Depth).Select(a => a.OBJ_GUID)) + cmiRecord.OBJ_GUID : null,
-            Sequence = await GetSequence(cmiRecord)
+                .OrderByDescending(a => a.Depth).Select(a => a.OBJ_GUID)) + cmiRecordTectonic.OBJ_GUID : null,
+            Sequence = await GetSequence(cmiRecordTectonic)
         };
 
         return this;
     }
 
-    private async Task<long> GetSequence(Verzeichnungseinheit cmiRecord)
+    private async Task<long> GetSequence(Tektonik.Verzeichnungseinheit cmicRecordTectonic)
     {
-        var parent = cmiRecord.Ancestors?.FirstOrDefault(a => a.Depth == 0);
+        var parent = cmiRecordTectonic?.Ancestors?.FirstOrDefault(a => a.Depth == 0);
         if (parent == null)
             return 0;
 
-        var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetAisSpecificRecord(parent.OBJ_GUID);
-        var meAsChild = parentRecord?.Children.FirstOrDefault(c => c.OBJ_GUID == cmiRecord.OBJ_GUID);
+        var parentRecord = await archiveRecordMapperBuilder.cmiSpecificRecordAccess.GetAisTectonicRecord(parent.OBJ_GUID);
+        var meAsChild = parentRecord.Children.FirstOrDefault(c => c.OBJ_GUID == cmicRecordTectonic.OBJ_GUID);
         if (meAsChild == null)
             return 0;
 
