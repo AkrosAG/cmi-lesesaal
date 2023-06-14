@@ -15,7 +15,6 @@ using CMI.Web.Common.Auth;
 using CMI.Web.Common.Helpers;
 using CMI.Web.Management;
 using CMI.Web.Management.api.Configuration;
-using Kentor.AuthServices.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -27,6 +26,7 @@ using Owin;
 using Serilog;
 using SameSiteMode = Microsoft.Owin.SameSiteMode;
 using Swashbuckle.Application;
+using Sustainsys.Saml2.Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -93,11 +93,6 @@ namespace CMI.Web.Management
         private void ConfigureSecurity(IAppBuilder app)
         {
             app.Use(async (context, next) => { await next.Invoke(); });
-            
-            app.UseKentorOwinCookieSaver();
-            
-            app.Use(async (context, next) => { await next.Invoke(); });            
-
             var connectionString = ManagementSettings.Instance.SqlConnectionString;
             var userDataAccess = new UserDataAccess(connectionString);
 
@@ -115,26 +110,25 @@ namespace CMI.Web.Management
                     OnValidateIdentity = context => ValidateSessionIdIsActive(context, userDataAccess)
                 }
             });
-            
-            app.Use(async (context, next) => { await next.Invoke(); });
 
+            app.Use(async (context, next) => { await next.Invoke(); });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             app.Use(async (context, next) => { await next.Invoke(); });
 
-            var authOptions = new KentorAuthServicesAuthenticationOptions(true)
+            var authOptions = new Saml2AuthenticationOptions(true)
             {
-                SPOptions = {Logger = new SeriLogAdapter(Log.Logger)}
+                SPOptions = { Logger = new SeriLogAdapter(Log.Logger) }
             };
 
-            var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, false);
+            var authServiceNotifications = new AuthServiceNotifications(authOptions.SPOptions, true);
             authOptions.Notifications.AcsCommandResultCreated += authServiceNotifications.AcsCommandResultCreated;
+            app.UseSaml2Authentication(authOptions);
 
-            app.UseKentorAuthServicesAuthentication(authOptions);
+            Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}",
+                ManagementSettings.Instance.CookieExpireTimeInMinutes);
 
             app.Use(async (context, next) => { await next.Invoke(); });
-
-            Log.Information("ConfigureSecurity: tokenExpiry={cookieExpireTimeInMinutes}", ManagementSettings.Instance.CookieExpireTimeInMinutes);
         }
 
         private void UpgradeDb()
