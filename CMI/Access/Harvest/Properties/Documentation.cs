@@ -21,7 +21,8 @@ namespace CMI.Access.Harvest.Properties
             AddDescription<Settings>(x => x.SupportedLanguages, "Unterstützte Sprachen des Connection Strings zur Oracle DB des AIS");
             AddDescription<Settings>(x => x.AisProvider, "The type of AIS that should be used. Either CMIAIS or scopeAIS");
             AddDescription<Settings>(x => x.CdwsEndpoint, "The url of the CDWS Endpoint eg http://<url>:10003/cdws/Index/");
-            AddDescription<Settings>(x => x.CdwsIndexName, "Name des CDWS Indexs");
+            AddDescription<Settings>(x => x.CdwsIndexName, "Name des CDWS Daten Indizes");
+            AddDescription<Settings>(x => x.CdwsTectonicIndexName, "Name des CDWS Tectonic Indizes");
         }
     }
 }
