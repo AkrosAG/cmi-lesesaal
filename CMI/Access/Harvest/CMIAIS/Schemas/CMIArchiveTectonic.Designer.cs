@@ -28,8 +28,8 @@ namespace CMI.Access.Harvest.Tektonik
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveTectonic2")]
-    [XmlRootAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveTectonic2", IsNullable = false)]
+    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveTectonic")]
+    [XmlRootAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveTectonic", IsNullable = false)]
     public partial class Verzeichnungseinheit
     {
         private static XmlSerializer _serializerXml;
