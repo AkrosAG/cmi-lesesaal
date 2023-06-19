@@ -1,4 +1,6 @@
 ﻿using CMI.Web.Common.Auth.Sibboleth.Types;
+using Serilog;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -6,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace CMI.Web.Common.Auth.Sibboleth
 {
@@ -23,6 +26,10 @@ namespace CMI.Web.Common.Auth.Sibboleth
 
             if (shibSessionType != ShibbolethSessionType.None)
             {
+#if DEBUG
+                var values = string.Join(Environment.NewLine, context.Request.ServerVariables.AllKeys.Select(k => $"{k}: {context.Request.ServerVariables[k]}"));
+                Log.Information(values);
+#endif
                 var attributes = GetAttributesFromRequest(context.Request, shibSessionType);
 
                 return CreateClaimsPrincipal(attributes);
@@ -41,6 +48,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
         {
 
             var attributes = GetShibbolethAttributes();
+
             switch (sessionType)
             {
                 case ShibbolethSessionType.Header:
@@ -124,6 +132,8 @@ namespace CMI.Web.Common.Auth.Sibboleth
             });
             claimActions.MapAttribute("homeOrganization", "homeOrganization");
             claimActions.MapAttribute("uniqueId", "uniqueID");
+            claimActions.MapAttribute(ClaimTypes.AuthenticationMethod, "Shib-Authentication-Method");
+
 
             claimActions.MapCustomAttribute(StandardClaimTypes.Name, "uid", value =>
             {

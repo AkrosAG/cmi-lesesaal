@@ -1119,5 +1119,15 @@ FROM ApplicationUser ";
 
             return 0;
         }
+
+        public void UpdatePublicClientRole(string userExtId, string rolePublicClient, string modifiedByUserId)
+        {
+            var user = GetUser(userExtId);
+            if (user != null)
+            {
+                user.RolePublicClient = rolePublicClient;
+            }
+            UpdateUser(user, modifiedByUserId);
+        }
     }
 }
