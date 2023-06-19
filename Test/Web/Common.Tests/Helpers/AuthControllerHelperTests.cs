@@ -435,7 +435,7 @@ namespace CMI.Web.Common.Tests.Helpers
             controllerHelperMock.Setup(m => m.NoHomeOrganization()).Returns(!isInternalUser);
             controllerHelperMock.Setup(m => m.GetManagementRoleFromClaim()).Returns("ALLOW");
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(isInternalUser);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(isInternalUser);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(isInternalUser);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -471,7 +471,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
             controllerHelperMock.Setup(m => m.IsMTanAuthentication()).Returns(true);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
@@ -511,7 +511,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -548,7 +548,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -587,7 +587,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(true);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -627,7 +627,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -663,7 +663,7 @@ namespace CMI.Web.Common.Tests.Helpers
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.IsStaff()).Returns(false);
-            controllerHelperMock.Setup(m => m.IsEthEmployee()).Returns(false);
+            controllerHelperMock.Setup(m => m.IsHomeOrganizationEth()).Returns(false);
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock

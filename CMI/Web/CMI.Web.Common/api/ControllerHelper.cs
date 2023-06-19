@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web.Http;
 using CMI.Access.Sql.Lesesaal;
+using CMI.Contract.Common;
 using CMI.Web.Common.Helpers;
 
 namespace CMI.Web.Common.api
@@ -53,7 +54,7 @@ namespace CMI.Web.Common.api
             return isStaff.GetValueOrDefault(false);
         }
 
-        public bool IsEthEmployee()
+        public bool IsHomeOrganizationEth()
         {
             var isEthEmployee = GetFromClaim("homeOrganization")?.ToLowerInvariant().Contains("ethz.ch".ToLowerInvariant());
             return isEthEmployee.GetValueOrDefault(false);
@@ -78,7 +79,26 @@ namespace CMI.Web.Common.api
         public bool IsInternalUser()
         {
             // Es handelt sich um einen internen User wenn er Staff von der ETH ZH ist.
-            return IsStaff() && IsEthEmployee();
+            return IsStaff() && IsHomeOrganizationEth();
+        }
+
+        public string GetInitialTokenFromClaims()
+        {
+            if (IsInternalUser())
+            {
+                return AccessRoles.RoleBVW;
+            }
+
+            // Hat jemand eine ganz normale edu-id, ist dieser Ö2 Benutzer
+            var homeOrganization = GetFromClaim("homeOrganization")?.ToLowerInvariant();
+            if (homeOrganization == "eduid.ch")
+            {
+                return AccessRoles.RoleOe2;
+            }
+
+            // Alle anderen erhalten die Ö3 Rolle
+            return AccessRoles.RoleOe3;
+
         }
 
         public string GetFromClaim(string field)
@@ -94,7 +114,6 @@ namespace CMI.Web.Common.api
 
         public string GetManagementRoleFromClaim()
         {
-            // ToDo: JLA Wie sieht es nun bei der ETH aus. Wo bekommen wir mit, ob der Benutzer für den M-C zugelassen ist?
             if (IsInternalUser())
             {
                 return "APPO";

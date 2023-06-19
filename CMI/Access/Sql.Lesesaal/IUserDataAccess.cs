@@ -43,5 +43,6 @@ namespace CMI.Access.Sql.Lesesaal
         void UpdateActiveSessionId(string userId, string sessionId);
         void ClearActiveUserSessionIds();
         void StoreDownloadReasonInHistory(ElasticArchiveRecord record, User user, UserAccess access, int reasonId);
+        void UpdatePublicClientRole(string userExtId, string rolePublicClient, string modifiedByUserId);
     }
 }
