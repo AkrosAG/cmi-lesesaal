@@ -268,6 +268,7 @@
 	<!-- Local attributes -->
 
 	<!-- enble the attributes that your SP is able to handle -->
+	<Attribute name="http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod" id="Shib-Authentication-Method"/>
 
 	<!-- Fernuni Imap Password -->
 	<!--
