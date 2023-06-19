@@ -4,7 +4,7 @@
     {
         string GetCurrentUserId();
         bool IsStaff();
-        bool IsEthEmployee();
+        bool IsHomeOrganizationEth();
         bool NoHomeOrganization();
         bool IsMTanAuthentication();
 
@@ -13,6 +13,8 @@
         /// </summary>
         /// <returns></returns>
         bool IsInternalUser();
+
+        string GetInitialTokenFromClaims();
 
         string GetFromClaim(string field);
         string GetManagementRoleFromClaim();

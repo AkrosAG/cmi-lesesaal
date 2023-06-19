@@ -129,6 +129,7 @@ namespace CMI.Web.Common.api
             }
 
             var isNewUser = !TryUpdateUser(userId, claims);
+            
 
             if (isNewUser)
             {
@@ -138,7 +139,7 @@ namespace CMI.Web.Common.api
                     Roles = new[]
                     {
                         isPublicClient
-                            ? controllerHelper.IsInternalUser() ? AccessRoles.RoleBVW : AccessRoles.RoleOe2
+                            ? controllerHelper.GetInitialTokenFromClaims()
                             : controllerHelper.GetManagementRoleFromClaim()
                     },
                     IssuedAccessTokens = new string[] { },
@@ -218,6 +219,20 @@ namespace CMI.Web.Common.api
                     userDataAccess.UpdateUserOnLogin(userDataOnLogin, userId, loginSystem);
                 }
 
+                // Prüfen ob ein automatische hoch- oder runterstufen stattfinden soll
+                // Ö2 zu Ö3 und umgekehrt ist immer möglich und wird gemacht.
+                // Ist jemand nicht mehr internal User, dann wird er auf Ö3 zurückgestuft.
+                var rolePublicClient = controllerHelper.GetInitialTokenFromClaims();
+                if (rolePublicClient != user.RolePublicClient)
+                {
+                    // Ist die "initiale" Role weniger als BVW, oder die Rolle ist BVW und der Benutzer ist weder AS noch BAR, 
+                    // dann müssen wir updaten
+                    if (rolePublicClient != AccessRoles.RoleBVW || !user.RolePublicClient.Equals(AccessRoles.RoleBAR) &&
+                                                                  !user.RolePublicClient.Equals(AccessRoles.RoleAS)) {
+                        userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
+                    }
+                }
+
                 // Falls der Benutzer für M-C berechtigt ist, soll die Standardrolle zugewiesen werden
                 if (!string.IsNullOrWhiteSpace(mgntRole) && mgntRole.Equals(AccessRoles.RoleMgntAllow))
                 {
@@ -277,15 +292,15 @@ namespace CMI.Web.Common.api
 
              * */
 
-            if (role == AccessRoles.RoleOe2 && !controllerHelper.NoHomeOrganization())
-            {
-                throw new AuthenticationException("Ein Ö2 Benutzer darf keiner Organisation zugeordnet sein");
-            }
+            //if (role == AccessRoles.RoleOe2 && !controllerHelper.NoHomeOrganization())
+            //{
+            //    throw new AuthenticationException("Ein Ö2 Benutzer darf keiner Organisation zugeordnet sein");
+            //}
 
-            if (role == AccessRoles.RoleOe3 && controllerHelper.NoHomeOrganization())
-            {
-                throw new AuthenticationException("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
-            }
+            //if (role == AccessRoles.RoleOe3 && controllerHelper.NoHomeOrganization())
+            //{
+            //    throw new AuthenticationException("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
+            //}
 
             if ((role == AccessRoles.RoleBVW || role == AccessRoles.RoleAS || role == AccessRoles.RoleBAR) &&
                 !controllerHelper.IsInternalUser())
