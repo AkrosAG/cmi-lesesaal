@@ -42,7 +42,8 @@ namespace CMI.Web.Common.Tests.Helpers
         public void GetIdentity_For_InExisting_External_Public_Client_User_Should_Return_Valid_Identity()
         {
             // arrange
-            var controllerHelperMock = Mock.Of<IControllerHelper>();
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns("Ö2");
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
                 .Setup(m => m.GetClaimsForRequest(It.IsAny<IPrincipal>(), It.IsAny<HttpRequestMessage>()))
@@ -53,16 +54,21 @@ namespace CMI.Web.Common.Tests.Helpers
                         Type = "/identity/claims/e-id/profile/role",
                         Value = "Ö2"
                     },
-                     new ClaimInfo
+                    new ClaimInfo
                     {
                         Type = "affiliation",
+                        Value = "Irgendwas"
+                    },
+                    new ClaimInfo
+                    {
+                        Type = "homeOrganization",
                         Value = "Irgendwas"
                     }
                 });
 
             var mockUserDataAccess = Mock.Of<IUserDataAccess>();
 
-            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock, authenticationHelperMock.Object, null);
+            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock.Object, authenticationHelperMock.Object, null);
 
             // act
             var result = sut.GetIdentity(null, null, true);
@@ -78,7 +84,8 @@ namespace CMI.Web.Common.Tests.Helpers
         public void GetIdentity_For_InExisting_Internal_Public_Client_User_Should_Return_Valid_Identity()
         {
             // arrange
-            var controllerHelperMock = Mock.Of<IControllerHelper>(setup => setup.IsInternalUser());
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns("BVW");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -99,7 +106,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             var mockUserDataAccess = Mock.Of<IUserDataAccess>();
 
-            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock, authenticationHelperMock.Object, null);
+            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock.Object, authenticationHelperMock.Object, null);
 
             // act
             var result = sut.GetIdentity(null, null, true);
@@ -329,60 +336,6 @@ namespace CMI.Web.Common.Tests.Helpers
 
             // assert
             result.Should().Be(AuthStatus.KeineRolleDefiniert);
-        }
-
-        [Test]
-        [TestCase("Ö2")]
-        public void IsValidAuthRole_For_Ö2_User_With_Home_Organization_Should_Throw_AuthenticationException(string role)
-        {
-            // arrange
-            var controllerHelperMock = new Mock<IControllerHelper>();
-            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.NoHomeOrganization()).Returns(false); 
-
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>();
-
-            var mockUserDataAccess = Mock.Of<IUserDataAccess>();
-            var webCmiConfigProviderMock = new Mock<IWebCmiConfigProvider>();
-            webCmiConfigProviderMock.Setup(m => m.GetStringSetting(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((string key, string defaultValue) => defaultValue);
-
-            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock.Object, authenticationHelperMock.Object,
-                webCmiConfigProviderMock.Object);
-
-            // act
-            var action = (Action) (() => { sut.IsValidAuthRole(role, true); });
-
-            // assert
-            action.Should().Throw<AuthenticationException>()
-                .WithMessage("Ein Ö2 Benutzer darf keiner Organisation zugeordnet sein");
-        }
-
-        [Test]
-        [TestCase("Ö3")]
-        public void IsValidAuthRole_For_Ö3_User_With_No_Home_Organization_Should_Throw_AuthenticationException(string role)
-        {
-            // arrange
-            var controllerHelperMock = new Mock<IControllerHelper>();
-            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
-            controllerHelperMock.Setup(m => m.NoHomeOrganization()).Returns(true);
-
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>();
-
-            var mockUserDataAccess = Mock.Of<IUserDataAccess>();
-            var webCmiConfigProviderMock = new Mock<IWebCmiConfigProvider>();
-            webCmiConfigProviderMock.Setup(m => m.GetStringSetting(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((string key, string defaultValue) => defaultValue);
-
-            var sut = new AuthControllerHelper(null, mockUserDataAccess, controllerHelperMock.Object, authenticationHelperMock.Object,
-                webCmiConfigProviderMock.Object);
-
-            // act
-            var action = (Action)(() => { sut.IsValidAuthRole(role, true); });
-
-            // assert
-            action.Should().Throw<AuthenticationException>()
-                .WithMessage("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
         }
 
         [Test]
