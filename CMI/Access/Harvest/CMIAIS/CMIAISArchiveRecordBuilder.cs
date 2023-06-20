@@ -68,7 +68,6 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.DisplayName), vz => vz.DisplayName)
                 .From(nameof(Verzeichnungseinheit.Signatur), vz => vz.Signatur)
                 .From(nameof(Verzeichnungseinheit.AlteSignatur), vz => vz.AlteSignatur)
-                .From(nameof(Verzeichnungseinheit.Verwaltungssignatur), vz => vz.Verwaltungssignatur)
                 .From(nameof(Verzeichnungseinheit.ID), vz => vz.ID)
                 .From(nameof(Verzeichnungseinheit.PID), vz => vz.PID)
                 .From(nameof(Verzeichnungseinheit.Titel), vz => vz.Titel)
@@ -108,38 +107,70 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.DigitalVorhanden), vz => vz.DigitalVorhanden)
                 .From(nameof(Verzeichnungseinheit.Tektonikpfad), vz => vz.Tektonikpfad)
                 .From(nameof(Verzeichnungseinheit.Verfuegbarkeit), vz => vz?.Verfuegbarkeit?.Item?.Bezeichnung)
+                .From(nameof(Verzeichnungseinheit.BemerkungStandort), vz => vz.BemerkungStandort)
 
-                .From(nameof(Verzeichnungseinheit.CustomBemerkungSprache), vz => vz.CustomBemerkungSprache)
-                .From(nameof(Verzeichnungseinheit.CustomBemerkungStandort), vz => vz.CustomBemerkungStandort)
-                .From(nameof(Verzeichnungseinheit.CustomCustomTextField), vz => vz.CustomCustomTextField)
-                .From(nameof(Verzeichnungseinheit.CustomKuerzel), vz => vz.CustomKuerzel)
-                .From(nameof(Verzeichnungseinheit.CustomLinkAufDigitalesOriginal), vz => vz.CustomLinkAufDigitalesOriginal)
-                .From(nameof(Verzeichnungseinheit.CustomLinkZuDigitalisat), vz => vz.CustomLinkZuDigitalisat)
-                .From(nameof(Verzeichnungseinheit.CustomLinkZuPrimaerdaten), vz => vz.CustomLinkZuPrimaerdaten)
-                .From(nameof(Verzeichnungseinheit.CustomSchadenserhebung), vz => vz.CustomSchadenserhebung)
-                .From(nameof(Verzeichnungseinheit.CustomURL), vz => vz.CustomURL)
-                .From(nameof(Verzeichnungseinheit.CustomZustandskategorie), vz => vz.CustomZustandskategorie?.Item.CustomZustandskategorie1)
-                .From(nameof(Verzeichnungseinheit.CustomErwerbsarten), vz => vz?.CustomErwerbsarten?.Item.Bezeichnung)
-                .From(nameof(Verzeichnungseinheit.CustomLizenz), vz => vz?.CustomLizenz?.Item.Bezeichnung)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField01), vz => vz.CustomFreeBoolField01)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField02), vz => vz.CustomFreeBoolField02)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField03), vz => vz.CustomFreeBoolField03)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField04), vz => vz.CustomFreeBoolField04)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField05), vz => vz.CustomFreeBoolField05)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField06), vz => vz.CustomFreeBoolField06)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField07), vz => vz.CustomFreeBoolField07)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField08), vz => vz.CustomFreeBoolField08)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField09), vz => vz.CustomFreeBoolField09)
+                .From(nameof(Verzeichnungseinheit.CustomFreeBoolField10), vz => vz.CustomFreeBoolField10)
 
-                .From(nameof(Verzeichnungseinheit.CustomFreeBool01Field), vz => vz.CustomFreeBool01Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeBool02Field), vz => vz.CustomFreeBool02Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField01), vz => vz.CustomFreeDateField01)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField02), vz => vz.CustomFreeDateField02)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField03), vz => vz.CustomFreeDateField03)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField04), vz => vz.CustomFreeDateField04)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField05), vz => vz.CustomFreeDateField05)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField06), vz => vz.CustomFreeDateField06)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField07), vz => vz.CustomFreeDateField07)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField08), vz => vz.CustomFreeDateField08)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField09), vz => vz.CustomFreeDateField09)
+                .From(nameof(Verzeichnungseinheit.CustomFreeDateField10), vz => vz.CustomFreeDateField10)
 
-                .From(nameof(Verzeichnungseinheit.CustomFreeDate01Field), vz => vz.CustomFreeDate01Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeDate02Field), vz => vz.CustomFreeDate02Field)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField01), vz => vz.CustomFreeNumberField01)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField02), vz => vz.CustomFreeNumberField02)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField03), vz => vz.CustomFreeNumberField03)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField04), vz => vz.CustomFreeNumberField04)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField05), vz => vz.CustomFreeNumberField05)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField06), vz => vz.CustomFreeNumberField06)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField07), vz => vz.CustomFreeNumberField07)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField08), vz => vz.CustomFreeNumberField08)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField09), vz => vz.CustomFreeNumberField09)
+                .From(nameof(Verzeichnungseinheit.CustomFreeNumberField10), vz => vz.CustomFreeNumberField10)
 
-                .From(nameof(Verzeichnungseinheit.CustomFreeText01Field), vz => vz.CustomFreeText01Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeText02Field), vz => vz.CustomFreeText02Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeText03Field), vz => vz.CustomFreeText03Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeText04Field), vz => vz.CustomFreeText04Field)
-                .From(nameof(Verzeichnungseinheit.CustomFreeText05Field), vz => vz.CustomFreeText05Field)
-
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField01), vz => vz.CustomFreeTextField01)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField02), vz => vz.CustomFreeTextField02)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField03), vz => vz.CustomFreeTextField03)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField04), vz => vz.CustomFreeTextField04)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField05), vz => vz.CustomFreeTextField05)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField06), vz => vz.CustomFreeTextField06)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField07), vz => vz.CustomFreeTextField07)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField08), vz => vz.CustomFreeTextField08)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField09), vz => vz.CustomFreeTextField09)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField10), vz => vz.CustomFreeTextField10)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField11), vz => vz.CustomFreeTextField11)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField12), vz => vz.CustomFreeTextField12)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField13), vz => vz.CustomFreeTextField13)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField14), vz => vz.CustomFreeTextField14)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField15), vz => vz.CustomFreeTextField15)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField16), vz => vz.CustomFreeTextField16)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField17), vz => vz.CustomFreeTextField17)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField18), vz => vz.CustomFreeTextField18)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField19), vz => vz.CustomFreeTextField19)
+                .From(nameof(Verzeichnungseinheit.CustomFreeTextField20), vz => vz.CustomFreeTextField20)
+                
                 .FromCollection(nameof(Verzeichnungseinheit.Sprache), vz => vz?.Sprache?.Select(s => s.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Ueberlieferungsform), vz => vz?.Ueberlieferungsform?.Select(u => u.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Provenienz), vz => vz?.Provenienz?.Select(a => a.OffiziellerName))
                 .FromCollection(nameof(Verzeichnungseinheit.Archivalienart), vz => vz?.Archivalienart?.Select(a => a.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
-                .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"));
+                .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"))
+                .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"));
+
         }
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord)
         {
@@ -147,9 +178,9 @@ namespace CMI.Access.Harvest.CMIAIS
             {
                 InternalDisplayTemplateName = $"{cmiRecord.TypeName}_Intern",
                 ExternalDisplayTemplateName = $"{cmiRecord.TypeName}_Extern",
-                ContainsImages = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.image),
-                ContainsMedia = archiveRecord.Metadata.DetailData.Any(d => d.ElementType == DataElementElementType.media),
-                CanBeOrdered = false, // Wird im Custom Script gesetzt/überschrieben
+                ContainsImages = archiveRecord?.Metadata?.DetailData?.Any(d => d.ElementType == DataElementElementType.image) ?? false,
+                ContainsMedia = archiveRecord?.Metadata?.DetailData?.Any(d => d.ElementType == DataElementElementType.media) ?? false,
+                CanBeOrdered = false // Wird im Custom Script gesetzt/überschrieben
             };
             
             await CalculateTreeContext(display, cmiRecord, cmiRecordTectonic, archiveRecord);
@@ -193,8 +224,8 @@ namespace CMI.Access.Harvest.CMIAIS
 
             foreach(var ancestor in cmiRecordTectonic.Ancestors.OrderByDescending(b => b.Depth))
             {
-                // Mandant is never published, so we skip it
-                if (ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
+                // Mandant & Archiv is never published, so we skip it
+                if (ancestor.TypeKey.Equals("Archiv", StringComparison.InvariantCultureIgnoreCase) || ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;
                 }

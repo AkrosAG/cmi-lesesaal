@@ -23,8 +23,7 @@
 			<xsd:element name="DisplayName" type="xsd:string"/>
 			<xsd:element name="Signatur" type="xsd:string"/>
 			<xsd:element name="AlteSignatur" type="xsd:string"/>
-			<xsd:element name="Verwaltungssignatur" type="xsd:string"/>
-			<xsd:element name="ID" type="xsd:string"/>
+			<xsd:element name="ID" type="xsd:decimal" nillable="true"/>
 			<xsd:element name="PID" type="xsd:string"/>
 			<xsd:element name="Titel" type="xsd:string"/>
 			<xsd:element name="Entstehungszeitraum" type="DateTimeFieldType"/>
@@ -187,47 +186,59 @@
 			</xsd:element>
 			<xsd:element name="SchutzfristBasisdatum" type="DateTimeFieldType"/>
 			<xsd:element name="SchutzfristEnddatum" type="DateTimeFieldType"/>
-			<xsd:element name="CustomBemerkungSprache" type="xsd:string"/>
-			<xsd:element name="CustomBemerkungStandort" type="xsd:string"/>
-			<xsd:element name="CustomSchadenserhebung" type="xsd:string"/>
-			<xsd:element name="CustomKuerzel" type="xsd:string"/>
-			<xsd:element name="CustomLinkZuDigitalisat" type="xsd:string"/>
-			<xsd:element name="CustomLinkAufDigitalesOriginal" type="xsd:string"/>
-			<xsd:element name="CustomURL" type="xsd:string"/>
-			<xsd:element name="CustomCustomTextField" type="xsd:string"/>
-			<xsd:element name="CustomLinkZuPrimaerdaten" type="xsd:string"/>
-			<xsd:element name="CustomLizenz">
-				<xsd:complexType>
-					<xsd:choice minOccurs="0" maxOccurs="1">
-						<xsd:element name="CustomLizenz" type="CustomLizenz"/>
-					</xsd:choice>
-				</xsd:complexType>
-			</xsd:element>
-			<xsd:element name="CustomErwerbsarten">
-				<xsd:complexType>
-					<xsd:choice minOccurs="0" maxOccurs="1">
-						<xsd:element name="CustomErwerbsarten" type="CustomErwerbsarten"/>
-					</xsd:choice>
-				</xsd:complexType>
-			</xsd:element>
-			<xsd:element name="CustomFreeText01Field" type="xsd:string"/>
-			<xsd:element name="CustomFreeText02Field" type="xsd:string"/>
-			<xsd:element name="CustomFreeText03Field" type="xsd:string"/>
-			<xsd:element name="CustomFreeText04Field" type="xsd:string"/>
-			<xsd:element name="CustomFreeText05Field" type="xsd:string"/>
-			<xsd:element name="CustomFreeDate01Field" type="DateTimeFieldType"/>
-			<xsd:element name="CustomFreeDate02Field" type="DateTimeFieldType"/>
-			<xsd:element name="CustomFreeNumber01Field" type="xsd:decimal" nillable="true"/>
-			<xsd:element name="CustomFreeNumber02Field" type="xsd:decimal" nillable="true"/>
-			<xsd:element name="CustomFreeBool01Field" type="xsd:boolean" nillable="true"/>
-			<xsd:element name="CustomFreeBool02Field" type="xsd:boolean" nillable="true"/>
-			<xsd:element name="CustomZustandskategorie">
-				<xsd:complexType>
-					<xsd:choice minOccurs="0" maxOccurs="1">
-						<xsd:element name="CustomZustandskategorie" type="CustomZustandskategorie"/>
-					</xsd:choice>
-				</xsd:complexType>
-			</xsd:element>
+			<xsd:element name="BemerkungStandort" type="xsd:string"/>
+			<xsd:element name="Schadenserhebung" type="xsd:string"/>
+			<xsd:element name="Kuerzel" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField01" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField02" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField03" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField04" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField05" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField06" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField07" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField08" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField09" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField10" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField11" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField12" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField13" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField14" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField15" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField16" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField17" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField18" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField19" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField20" type="xsd:string"/>
+			<xsd:element name="CustomFreeDateField01" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField02" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField03" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField04" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField05" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField06" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField07" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField08" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField09" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeDateField10" type="DateTimeFieldType"/>
+			<xsd:element name="CustomFreeNumberField01" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField02" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField03" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField04" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField05" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField06" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField07" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField08" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField09" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeNumberField10" type="xsd:decimal" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField01" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField02" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField03" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField04" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField05" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField06" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField07" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField08" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField09" type="xsd:boolean" nillable="true"/>
+			<xsd:element name="CustomFreeBoolField10" type="xsd:boolean" nillable="true"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 		<xsd:attribute name="SEQ" type="xsd:string" use="optional"/>
@@ -480,24 +491,6 @@
 	<xsd:complexType name="ParentM">
 		<xsd:sequence>
 			<xsd:element name="Kuerzel" type="xsd:string"/>
-		</xsd:sequence>
-		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
-	</xsd:complexType>
-	<xsd:complexType name="CustomLizenz">
-		<xsd:sequence>
-			<xsd:element name="Bezeichnung" type="xsd:string"/>
-		</xsd:sequence>
-		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
-	</xsd:complexType>
-	<xsd:complexType name="CustomErwerbsarten">
-		<xsd:sequence>
-			<xsd:element name="Bezeichnung" type="xsd:string"/>
-		</xsd:sequence>
-		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
-	</xsd:complexType>
-	<xsd:complexType name="CustomZustandskategorie">
-		<xsd:sequence>
-			<xsd:element name="CustomZustandskategorie" type="xsd:string"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 	</xsd:complexType>

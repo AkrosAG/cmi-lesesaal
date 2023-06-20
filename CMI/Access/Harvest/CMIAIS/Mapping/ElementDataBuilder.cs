@@ -20,12 +20,41 @@ public class ElementDataBuilder
             { typeof(string), new TextMapping() },
             { typeof(bool?), new BoolMapping(languageSettings) },
             { typeof(bool), new BoolMapping(languageSettings) },
+            { typeof(int?), new NumericMapping() },
+            { typeof(int), new NumericMapping() },
+            { typeof(float?), new NumericMapping() },
+            { typeof(float), new NumericMapping() },
+            { typeof(double?), new NumericMapping() },
+            { typeof(double), new NumericMapping() },
+            { typeof(decimal?), new NumericMapping() },
+            { typeof(decimal), new NumericMapping() },
             { typeof(DateTimeFieldType), new DateRangeMapping() },
             { typeof(XmlElement), new CustomFieldMapping() }
         };
     }
 
     public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, string> func)
+    {
+        var value = func(cmiRecord);
+        CreateValueInternal(name, value);
+        return this;
+    }
+
+    public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, decimal?> func)
+    {
+        var value = func(cmiRecord);
+        CreateValueInternal(name, value);
+        return this;
+    }
+
+    public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, int?> func)
+    {
+        var value = func(cmiRecord);
+        CreateValueInternal(name, value);
+        return this;
+    }
+
+    public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, float?> func)
     {
         var value = func(cmiRecord);
         CreateValueInternal(name, value);
