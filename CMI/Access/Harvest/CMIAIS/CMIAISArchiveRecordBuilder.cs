@@ -224,7 +224,8 @@ namespace CMI.Access.Harvest.CMIAIS
 
             foreach(var ancestor in cmiRecordTectonic.Ancestors.OrderByDescending(b => b.Depth))
             {
-                // Mandant & Archiv is never published, so we skip it
+                // Mandant is never published, so we skip it 
+                // Archiv has no ancestor
                 if (ancestor.TypeKey.Equals("Archiv", StringComparison.InvariantCultureIgnoreCase) || ancestor.TypeKey.Equals("Mandant", StringComparison.InvariantCultureIgnoreCase))
                 {
                     continue;

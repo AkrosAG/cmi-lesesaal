@@ -281,7 +281,7 @@
     "Label": "Bemerkung Entstehungszeitraum",
     "TargetField": "BemerkungEntstehungszeitraum",
     "IsDefaultField": 0,
-    "Type": "nu",
+    "Type": "string",
     "IsRepeatable": 0
   },
   {
