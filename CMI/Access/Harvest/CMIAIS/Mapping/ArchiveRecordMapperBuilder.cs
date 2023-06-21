@@ -37,7 +37,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 AccessionDate = cmiRecord.Akzession?.FirstOrDefault()?.Datum?.Start?.Year ?? 0,
                 References = GetReferences(cmiRecord),
                 Descriptors = GetDescriptors(cmiRecord),
-                Containers = GetContainers(cmiRecord),
+                Containers = GetContainers(cmiRecord)
             };
 
             return new MetaDataBuilder(cmiRecord, cmicRecordTectonic, archiveRecord, this);

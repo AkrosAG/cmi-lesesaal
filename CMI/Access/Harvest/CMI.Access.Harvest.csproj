@@ -79,6 +79,7 @@
     <Compile Include="CMIAIS\CMIAISArchiveRecordProcessHandler.cs" />
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
+    <Compile Include="CMIAIS\Mapping\ElementMappings\NumericMapping.cs" />
     <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
     <Compile Include="CMIAIS\Schemas\CMIArchiveRecord.Designer.cs" />
     <Compile Include="CMIAIS\Schemas\CMIArchiveTectonic.Designer.cs" />

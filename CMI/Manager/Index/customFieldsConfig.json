@@ -20,34 +20,13 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Verwaltungssignatur",
-    "ElementName": "Verwaltungssignatur",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Verwaltungssignatur",
-    "TargetField": "Verwaltungssignatur",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "ID",
     "ElementName": "ID",
-    "SourceType": "Text (max. 4000 Z.)",
+    "SourceType": "Ganze Zahl",
     "Label": "ID",
     "TargetField": "ID",
     "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "PID",
-    "ElementName": "PID",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "PID",
-    "TargetField": "PID",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
+    "Type": "float?",
+    "IsRepeatable": 1
   },
   {
     "ElementId": "Titel",
@@ -56,6 +35,15 @@
     "Label": "Titel",
     "TargetField": "Title",
     "IsDefaultField": 1,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "DisplayName",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "DisplayName",
+    "TargetField": "DisplayName",
+    "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
@@ -80,7 +68,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Verzeichnungsstufe",
     "ElementName": "Verzeichnungsstufe",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verzeichnungsstufe",
@@ -103,6 +90,15 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "BemerkungUmfang",
     "TargetField": "BemerkungUmfang",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "Akzession",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Akzession",
+    "TargetField": "Akzession",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -192,7 +188,7 @@
     "ElementName": "Schrift",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Schrift",
-    "TargetField": "Schrift",
+    "TargetField": "Schriften",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -219,7 +215,6 @@
     "IsRepeatable": 0
   },
   {
-
     "ElementId": "Standort",
     "ElementName": "Standort",
     "SourceType": "Text (max. 4000 Z.)",
@@ -263,8 +258,8 @@
     "ElementId": "AllgemeineAnmerkungen",
     "ElementName": "AllgemeineAnmerkungen",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Allgemeine Anmerkungen",
-    "TargetField": "AllgemeineAnmerkungen",
+    "Label": "Bemerkungen",
+    "TargetField": "Bemerkungen",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -352,18 +347,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Publikation",
-    "ElementName": "Publikation",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Publikation",
-    "TargetField": "Publikation",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
     "ElementId": "Verwertungsrecht",
     "ElementName": "Verwertungsrecht",
     "SourceType": "Text (max. 4000 Z.)",
@@ -371,9 +354,7 @@
     "TargetField": "Verwertungsrecht",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
     "ElementId": "AblaufVerwertungsrecht",
@@ -411,7 +392,7 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Urheber",
     "TargetField": "Author",
-    "IsDefaultField": 0,
+    "IsDefaultField": 1,
     "Type": "string",
     "IsRepeatable": 0
   },
@@ -443,9 +424,7 @@
     "TargetField": "Verzeichnungsstatus",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 0
+    "IsRepeatable": 0
   },
   {
     "ElementId": "Erschliessungszustand",
@@ -455,9 +434,7 @@
     "TargetField": "Erschliessungszustand",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
     "ElementId": "Digitalisierungsgrad",
@@ -485,16 +462,6 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "InterneAnmerkungen",
     "TargetField": "InterneAnmerkungen",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "BemerkungDatierung",
-    "ElementName": "BemerkungDatierung",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "BemerkungDatierung",
-    "TargetField": "BemerkungDatierung",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -547,47 +514,21 @@
     "TargetField": "Tektonikpfad",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomBemerkungSprache",
-    "ElementName": "CustomBemerkungSprache",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "BemerkungSprache",
-    "TargetField": "BemerkungSprache",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
-    "ElementId": "CustomBemerkungStandort",
-    "ElementName": "CustomBemerkungStandort",
+    "ElementId": "BemerkungStandort",
+    "ElementName": "BemerkungStandort",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "BemerkungStandort",
     "TargetField": "BemerkungStandort",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
-    "ElementId": "CustomCustomTextField",
-    "ElementName": "CustomCustomTextField",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "CustomTextField",
-    "TargetField": "CustomTextField",
-    "IsDefaultField": 0,
-    "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomKuerzel",
-    "ElementName": "CustomKuerzel",
+    "ElementId": "Kuerzel",
+    "ElementName": "Kuerzel",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Kuerzel",
     "TargetField": "Kuerzel",
@@ -598,165 +539,103 @@
     "CopyTo_fieldKeywordValues": 1
   },
   {
-    "ElementId": "CustomLinkAufDigitalesOriginal",
-    "ElementName": "CustomLinkAufDigitalesOriginal",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "LinkAufDigitalesOriginal",
-    "TargetField": "LinkAufDigitalesOriginal",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
-    "ElementId": "CustomLinkZuDigitalisat",
-    "ElementName": "CustomLinkZuDigitalisat",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "LinkZuDigitalisat",
-    "TargetField": "LinkZuDigitalisat",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
-    "ElementId": "CustomLinkZuPrimaerdaten",
-    "ElementName": "CustomLinkZuPrimaerdaten",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "LinkZuPrimaerdaten",
-    "TargetField": "LinkZuPrimaerdaten",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
-  },
-  {
-    "ElementId": "CustomSchadenserhebung",
-    "ElementName": "CustomSchadenserhebung",
+    "ElementName": "Schadenserhebung",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Schadenserhebung",
     "TargetField": "Schadenserhebung",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomZustandskategorie",
-    "ElementName": "CustomZustandskategorie",
+    "ElementName": "CustomFreeTextField01",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Zustandskategorie",
-    "TargetField": "Zustandskategorie",
+    "Label": "Lizenz",
+    "TargetField": "Lizenz",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomURL",
-    "ElementName": "CustomURL",
+    "ElementName": "CustomFreeTextField02",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Erläuterung",
+    "TargetField": "Erlaeuterung",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "CustomFreeTextField03",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "LinkZuDigitalisat",
+    "TargetField": "LinkZuDigitalisat",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "CustomFreeTextField04",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "LinkAufDigitalesOriginal",
+    "TargetField": "LinkAufDigitalesOriginal",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "CustomFreeTextField05",
+    "ElementName": "CustomFreeTextField05",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "URL",
     "TargetField": "URL",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0,
-    "CopyTo_fieldTextValues": 1,
-    "CopyTo_fieldKeywordValues": 1
+    "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomFreeText01Field",
-    "ElementName": "CustomFreeText01Field",
+    "ElementName": "CustomFreeTextField06",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeText01Field",
-    "TargetField": "FreeText01Field",
+    "Label": "Erwerbsarten",
+    "TargetField": "Erwerbsarten",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomFreeText02Field",
-    "ElementName": "CustomFreeText02Field",
+    "ElementName": "CustomFreeTextField07",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeText02Field",
-    "TargetField": "FreeText02Field",
+    "Label": "BemerkungSprache",
+    "TargetField": "BemerkungSprache",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomFreeDate03Field",
-    "ElementName": "CustomFreeDate03Field",
+    "ElementName": "CustomFreeTextField08",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeDate03Field",
-    "TargetField": "FreeDate03Field",
+    "Label": "Zustandskategorie",
+    "TargetField": "Zustandskategorie",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomFreeText04Field",
-    "ElementName": "CustomFreeText04Field",
+    "ElementName": "CustomFreeTextField08",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeDate05Field",
-    "TargetField": "FreeDate05Field",
+    "Label": "Zustandskategorie",
+    "TargetField": "Zustandskategorie",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
   },
   {
-    "ElementId": "CustomFreeText05Field",
-    "ElementName": "CustomFreeText05Field",
+    "ElementName": "CustomFreeTextField09",
     "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeText05Field",
-    "TargetField": "FreeText05Field",
+    "Label": "Verwaltungssignatur",
+    "TargetField": "Verwaltungssignatur",
     "IsDefaultField": 0,
     "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "CustomFreeBool01Field",
-    "ElementName": "CustomFreeBool01Field",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeBool01Field",
-    "TargetField": "FreeBool01Field",
-    "IsDefaultField": 0,
-    "Type": "bool?",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "CustomFreeDate02Field",
-    "ElementName": "CustomFreeDate02Field",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeDate02Field",
-    "TargetField": "FreeDate02Field",
-    "IsDefaultField": 0,
-    "Type": "bool?",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "CustomFreeDate01Field",
-    "ElementName": "CustomFreeDate01Field",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeDate01Field",
-    "TargetField": "FreeDate01Field",
-    "IsDefaultField": 0,
-    "Type": "ElasticTimePeriod",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementId": "CustomFreeDate02Field",
-    "ElementName": "CustomFreeDate02Field",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "FreeDate02Field",
-    "TargetField": "FreeDate02Field",
-    "IsDefaultField": 0,
-    "Type": "ElasticTimePeriod",
     "IsRepeatable": 0
   },
   {
