@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CMI.Contract.Common;
+using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings
 {
@@ -17,6 +18,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings
                 case float:
                 case decimal:
                 case double:
+                case long:
                 {
                     element.ElementType = DataElementElementType.@float;
 
@@ -45,6 +47,9 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings
                     });
                     break;
                 }
+                default:
+                    Log.Warning($"The value is not a number: {value} {value.GetType()} ");
+                    break;
             }
 
             return element;

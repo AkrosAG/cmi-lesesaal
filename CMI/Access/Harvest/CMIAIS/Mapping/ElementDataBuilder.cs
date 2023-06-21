@@ -24,6 +24,8 @@ public class ElementDataBuilder
             { typeof(int), new NumericMapping() },
             { typeof(float?), new NumericMapping() },
             { typeof(float), new NumericMapping() },
+            { typeof(long?), new NumericMapping() },
+            { typeof(long), new NumericMapping() },
             { typeof(double?), new NumericMapping() },
             { typeof(double), new NumericMapping() },
             { typeof(decimal?), new NumericMapping() },
@@ -55,6 +57,13 @@ public class ElementDataBuilder
     }
 
     public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, float?> func)
+    {
+        var value = func(cmiRecord);
+        CreateValueInternal(name, value);
+        return this;
+    }
+
+    public ElementDataBuilder From(string name, Func<Verzeichnungseinheit, long?> func)
     {
         var value = func(cmiRecord);
         CreateValueInternal(name, value);
