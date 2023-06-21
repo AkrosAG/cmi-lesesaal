@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Manager.Index.Config;
-using CMI.Manager.Index.Properties;
 using CMI.Manager.Index.ValueExtractors;
 using MassTransit;
 using Serilog;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CMI.Manager.Index
 {
@@ -101,8 +98,6 @@ namespace CMI.Manager.Index
 
         private ElasticArchiveRecord ConvertArchiveRecord(ArchiveRecord archiveRecord)
         {
-            var levelIdentifier = Settings.Default.LevelAggregationIdentifier;
-
             // ReSharper disable once UseObjectOrCollectionInitializer
             // Helps in case of an exception. Line number point to exact location
             var elasticArchiveRecord = new ElasticArchiveRecord();
@@ -212,7 +207,6 @@ namespace CMI.Manager.Index
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
             
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
-            
             // Add the creation period aggregation records
             // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
             // According to elastic documentation histograms are calculated with this formula
@@ -245,7 +239,7 @@ namespace CMI.Manager.Index
 
         public void TransferDataFromPropertyBag(ElasticArchiveRecord elasticArchiveRecord, List<DataElement> detailData)
         {
-            elasticArchiveRecord.DetailData = new List<ElasticDetailData>();
+           elasticArchiveRecord.DetailData = new List<ElasticDetailData>();
            var defaultProperties = elasticArchiveRecord.GetType().GetProperties();
             foreach (var fieldConfiguration in fieldsConfiguration.Fields)
             {
