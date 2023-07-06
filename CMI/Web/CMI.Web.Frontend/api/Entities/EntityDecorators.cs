@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Automatonymous.Accessors;
+using Castle.DynamicProxy.Generators.Emitters;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
@@ -10,6 +12,7 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Elastic;
 using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
+using GreenPipes.Caching.Internals;
 using Nest;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -300,21 +303,17 @@ namespace CMI.Web.Frontend.api.Entities
 
         private static void MapDescriptors(JArray descriptors, JObject attributes)
         {
-            var stringBuilderPersonenregister = new StringBuilder();
+            var stringBuilderRegister = new StringBuilder();
+            var thesaurusHelper = new List<ThesaurusHelper>();
             foreach (var ch in descriptors.Children())
             {
-                if (stringBuilderPersonenregister.Length > 0)
-                {
-                    stringBuilderPersonenregister.AppendLine("");
-                }
-
+                stringBuilderRegister = new StringBuilder();
                 var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
-                var thesaurusType = string.Empty;
+               
                 var descriptorName = string.Empty;
                 var descriptorSource = string.Empty;
-                var descriptorFunction = string.Empty;
-                var dateOfDeath = "?";
-                var dateOfBirth = string.Empty;
+                var thesaurusType = string.Empty;
+                var sortingNumber = -1;
                 foreach (JProperty te in toke)
                 {
                     switch (te.Name)
@@ -322,17 +321,11 @@ namespace CMI.Web.Frontend.api.Entities
                         case "thesaurus":
                             thesaurusType += te.Value;
                             break;
-                        case "name":
+                        case "idName":
                             descriptorName += te.Value;
                             break;
-                        case "function":
-                            descriptorFunction += te.Value;
-                            break;
-                        case "dateOfBirth" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
-                            dateOfBirth += te.Value.Last.First;
-                            break;
-                        case "dateOfDeath" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
-                            dateOfDeath = te.Value.Last.First.ToString();
+                        case "sortingNumber":
+                            sortingNumber = Convert.ToInt32(te.Value);
                             break;
                         case "source":
                             descriptorSource += te.Value;
@@ -340,28 +333,90 @@ namespace CMI.Web.Frontend.api.Entities
                     }
                 }
 
-                //if (thesaurusType == "Personenregister")
-                //{
-                    if (string.IsNullOrEmpty(dateOfBirth))
-                    {
-                        stringBuilderPersonenregister.AppendLine($"{descriptorName}, {descriptorFunction}");
-                    }
-                    else
-                    {
-                        stringBuilderPersonenregister.AppendLine($"{descriptorName} ({dateOfBirth}-{dateOfDeath}), {descriptorFunction}");
-                    }
+                if (sortingNumber == -1)
+                {
+                    continue;
+                }
 
-                    if (!string.IsNullOrEmpty(descriptorSource))
-                    {
-                        stringBuilderPersonenregister.AppendLine($"{descriptorSource}");
-                    }
-                //}
+                // Add each descriptor in its own div
+                stringBuilderRegister.Append("<div class=\"descriptor-item {0}\">");
+                stringBuilderRegister.AppendLine($"{descriptorName}");
+                if (!string.IsNullOrEmpty(descriptorSource))
+                {
+                    stringBuilderRegister.AppendLine($"{descriptorSource}");
+                }
+                stringBuilderRegister.Append("</div>");
+
+                // Add it to the temporary helper
+                thesaurusHelper.Add(new ThesaurusHelper
+                {
+                    thesaurusType = thesaurusType, 
+                    sortNumber = sortingNumber,
+                    text = stringBuilderRegister.ToString()
+                });
             }
 
-            if (stringBuilderPersonenregister.Length > 0)
+            if (thesaurusHelper.Count > 0)
             {
-                attributes.Add("Personenregister", stringBuilderPersonenregister.ToString());
+                SortDescriptors(attributes, thesaurusHelper);
             }
         }
+
+        private static void SortDescriptors(JObject attributes, List<ThesaurusHelper> thesaurusHelper)
+        {
+            var thesaurusKindGroups = new List<List<ThesaurusHelper>>();
+            var thesaurusKind = string.Empty;
+            var register = new List<ThesaurusHelper>();
+            TagLastFirstItemInCompleteDescriptors(thesaurusHelper);
+            foreach (var thesaurus in thesaurusHelper.OrderBy(t => t.sortNumber))
+            {
+                if (!string.IsNullOrEmpty(thesaurusKind) && thesaurusKind != thesaurus.thesaurusType)
+                {
+                    thesaurusKindGroups.Add(register);
+                    register = new List<ThesaurusHelper>();
+                }
+
+                thesaurusKind = thesaurus.thesaurusType;
+                register.Add(thesaurus);
+            }
+
+            thesaurusKindGroups.Add(register);
+            var stringBuilderRegister = new StringBuilder();
+            foreach (var group in thesaurusKindGroups)
+            {
+                stringBuilderRegister.Clear();
+                var length = group.Count;
+                for (var index = 0; index < length; index++)
+                {
+                    var isFirst = index == 0;
+                    var isLast = index == length - 1;
+                    stringBuilderRegister.Append(isFirst && isLast ? string.Format(group[index].text, "first-item-ingroup last-item-ingroup")
+                        : isFirst ? string.Format(group[index].text, "first-item-ingroup")
+                        : isLast ? string.Format(group[index].text, "last-item-ingroup")
+                        : group[index].text);
+                }
+
+                attributes.Add(group.FirstOrDefault().thesaurusType, stringBuilderRegister.ToString());
+            }
+        }
+
+        private static void TagLastFirstItemInCompleteDescriptors(List<ThesaurusHelper> thesaurusHelper)
+        {
+            var helper = thesaurusHelper.OrderBy(t => t.sortNumber).Last();
+            helper.text = helper.text.Replace("descriptor-item", "descriptor-item last-item");
+            thesaurusHelper.Remove(thesaurusHelper.OrderBy(t => t.sortNumber).Last());
+            thesaurusHelper.Add(helper);
+            helper = thesaurusHelper.OrderBy(t => t.sortNumber).First();
+            helper.text = helper.text.Replace("descriptor-item", "descriptor-item first-item");
+            thesaurusHelper.Remove(thesaurusHelper.OrderBy(t => t.sortNumber).First());
+            thesaurusHelper.Add(helper);
+        }
+    }
+
+    struct ThesaurusHelper
+    {
+        public string thesaurusType;
+        public int sortNumber;
+        public string text;
     }
 }

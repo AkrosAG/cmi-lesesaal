@@ -64,7 +64,7 @@ export class EntityRenderService {
 			if (s.indexOf('\r') >= 0 || s.indexOf('\n') >= 0) {
 				s = s.replace(/\r\n/g, '<br/>');
 				s = s.replace(/\n/g, '<br/>');
-				s = '<span>' + s + '</span>';
+				s = '<div>' + s + '</div>';
 			}
 		} else if (_util.isNumber(val)) {
 			s = '' + val;
