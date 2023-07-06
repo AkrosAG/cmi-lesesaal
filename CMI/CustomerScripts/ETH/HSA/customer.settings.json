@@ -1,0 +1,124 @@
+{
+	"search": {
+		"defaultSearchFieldLines": 3,
+		"advancedSearchFields": [{
+			"type": "Fulltext",
+			"key": "allData",
+			"displayName": "Alles",
+			"translatorType": "AllDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "title",
+			"displayName": "Titel",
+			"translatorType": "StandardTranslator"
+		}, {
+			"type": "DateSpan",
+			"key": "creationPeriod",
+			"displayName": "Entstehungszeitraum",
+			"translatorType": "CreationPeriodTranslator"
+		}, {
+			"type": "Text",
+			"key": "allMetaData",
+			"displayName": "Metadaten",
+			"translatorType": "AllMetaDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "allPrimaryData",
+			"displayName": "Volltext (Primärdaten)",
+			"translatorType": "AllPrimaryDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "referenceCode",
+			"displayName": "Signatur",
+			"translatorType": "KeywordTranslator"
+		}, {
+			"type": "Text",
+			"key": "formerReferenceCode",
+			"displayName": "Frühere Signaturen",
+			"translatorType": "KeywordTranslator"
+		}, {
+			"type": "Text",
+			"key": "Verwaltungssignatur",
+			"displayName": "Verwaltungssignatur",
+			"translatorType": "DetailDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "Contains",
+			"displayName": "Form und Inhalt",
+			"translatorType": "StandardTranslator"
+		}, {
+			"type": "Text",
+			"key": "Ueberlieferungsform",
+			"displayName": "Überlieferungsform",
+			"translatorType": "DetailDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "Sprache",
+			"displayName": "Sprachen",
+			"translatorType": "DetailDataTranslator"
+		}, {
+			"type": "Text",
+			"key": "Archivalienart",
+			"displayName": "Archivalienart",
+			"translatorType": "DetailDataTranslator"
+		}, {
+			"type": "Dropdown",
+			"key": "permission",
+			"displayName": "Benutzbarkeit",
+			"translatorType": "StandardTranslator",
+			"items": [{
+				"searchKey": "frei*",
+				"defaultLabel": "Frei zugänglich",
+				"translationKey": "search.advanced.field.permission.free"
+			}, {
+				"searchKey": "Gesuchspflichtig",
+				"defaultLabel": "Gesuchspflichtig",
+				"translationKey": "search.advanced.field.permission.subjectToRequest"
+			}
+			]
+		}, {
+			"type": "Thesaurus",
+			"key": "Personenregister",
+			"displayName": "Personenregister",
+			"translatorType": "ThesaurusTranslator"
+		}
+		],
+		"simpleSearchSortingFields": [{
+			"displayName": "Relevanz",
+			"orderBy": "relevanz",
+			"sortOrder": ""
+		}, {
+			"displayName": "Datum aufsteigend",
+			"orderBy": "creationPeriod.startDate",
+			"sortOrder": "ascending"
+		}, {
+			"displayName": "Datum absteigend",
+			"orderBy": "creationPeriod.startDate",
+			"sortOrder": "descending"
+		}, {
+			"displayName": "Titel aufsteigend",
+			"orderBy": "title.sort",
+			"sortOrder": "ascending"
+		}, {
+			"displayName": "Titel absteigend",
+			"orderBy": "title.sort",
+			"sortOrder": "descending"
+		}, {
+			"displayName": "Signatur aufsteigend",
+			"orderBy": "referenceCode.sort",
+			"sortOrder": "ascending"
+		}, {
+			"displayName": "Signatur absteigend",
+			"orderBy": "referenceCode.sort",
+			"sortOrder": "descending"
+		}
+		],
+		"possiblePagingSizes": [
+			10,
+			25,
+			50,
+			100
+		],
+		"defaultPagingSize": 50
+	}
+}

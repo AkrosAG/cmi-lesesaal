@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Resources;
+﻿using System.Resources;
 using CMI.Access.Harvest.Properties;
 using CMI.Contract.Common;
 
