@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
@@ -289,9 +290,11 @@ namespace CMI.Manager.Index
 
         private static ElasticDetailData ConvertToDetailData(List<DataElement> detailData, FieldConfiguration fieldConfiguration)
         {
-            var elasticDetailData = new ElasticDetailData();
-            elasticDetailData.ElementName = fieldConfiguration.ElementName;
-            elasticDetailData.TypeName = fieldConfiguration.Type;
+            var elasticDetailData = new ElasticDetailData
+            {
+                ElementName = fieldConfiguration.TargetField,
+                TypeName = fieldConfiguration.Type
+            };
 
             switch (fieldConfiguration.Type)
             {

@@ -310,11 +310,11 @@ namespace CMI.Web.Frontend.api.Entities
 
                 var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
                 var thesaurusType = string.Empty;
-                var thesaurusName = string.Empty;
-                var thesaurusSource = string.Empty;
-                var thesaurusFunction = string.Empty;
-                var thesaurusDateOfDeath = "?";
-                var thesaurusDateOfBirth = string.Empty;
+                var descriptorName = string.Empty;
+                var descriptorSource = string.Empty;
+                var descriptorFunction = string.Empty;
+                var dateOfDeath = "?";
+                var dateOfBirth = string.Empty;
                 foreach (JProperty te in toke)
                 {
                     switch (te.Name)
@@ -323,39 +323,39 @@ namespace CMI.Web.Frontend.api.Entities
                             thesaurusType += te.Value;
                             break;
                         case "name":
-                            thesaurusName += te.Value;
+                            descriptorName += te.Value;
                             break;
                         case "function":
-                            thesaurusFunction += te.Value;
+                            descriptorFunction += te.Value;
                             break;
                         case "dateOfBirth" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
-                            thesaurusDateOfBirth += te.Value.Last.First;
+                            dateOfBirth += te.Value.Last.First;
                             break;
                         case "dateOfDeath" when te.HasValues && te.Value.HasValues && te.Value.Last.HasValues:
-                            thesaurusDateOfDeath = te.Value.Last.First.ToString();
+                            dateOfDeath = te.Value.Last.First.ToString();
                             break;
                         case "source":
-                            thesaurusSource += te.Value;
+                            descriptorSource += te.Value;
                             break;
                     }
                 }
 
-                if (thesaurusType == "Personenregister")
-                {
-                    if (string.IsNullOrEmpty(thesaurusDateOfBirth))
+                //if (thesaurusType == "Personenregister")
+                //{
+                    if (string.IsNullOrEmpty(dateOfBirth))
                     {
-                        stringBuilderPersonenregister.AppendLine($"{thesaurusName}, {thesaurusFunction}");
+                        stringBuilderPersonenregister.AppendLine($"{descriptorName}, {descriptorFunction}");
                     }
                     else
                     {
-                        stringBuilderPersonenregister.AppendLine($"{thesaurusName} ({thesaurusDateOfBirth}-{thesaurusDateOfDeath}), {thesaurusFunction}");
+                        stringBuilderPersonenregister.AppendLine($"{descriptorName} ({dateOfBirth}-{dateOfDeath}), {descriptorFunction}");
                     }
 
-                    if (!string.IsNullOrEmpty(thesaurusSource))
+                    if (!string.IsNullOrEmpty(descriptorSource))
                     {
-                        stringBuilderPersonenregister.AppendLine($"{thesaurusSource}");
+                        stringBuilderPersonenregister.AppendLine($"{descriptorSource}");
                     }
-                }
+                //}
             }
 
             if (stringBuilderPersonenregister.Length > 0)

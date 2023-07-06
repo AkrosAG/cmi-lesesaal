@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Xml;
 using CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings;
 using CMI.Contract.Common;
+using Newtonsoft.Json.Linq;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping;
 
@@ -30,8 +33,7 @@ public class ElementDataBuilder
             { typeof(double), new NumericMapping() },
             { typeof(decimal?), new NumericMapping() },
             { typeof(decimal), new NumericMapping() },
-            { typeof(DateTimeFieldType), new DateRangeMapping() },
-            { typeof(XmlElement), new CustomFieldMapping() }
+            { typeof(DateTimeFieldType), new DateRangeMapping() }
         };
     }
 
@@ -105,16 +107,12 @@ public class ElementDataBuilder
 
     private void CreateValueListInternal<T>(string name, IEnumerable<T> values)
     {
-        if (values == null)
+        if (values == null || !values.Any())
             return;
 
         if (!mappingsByType.TryGetValue(typeof(T), out var mapping))
             throw new NotImplementedException($"No Builder is implemented for Type {typeof(T)}");
 
-        foreach (var value in values)
-        {
-            var data = mapping.CreateElement(name, value);
-            detailData.Add(data);
-        }
+        detailData.Add(values.Count() == 1 ? mapping.CreateElement(name, values.FirstOrDefault()) : mapping.CreateElement(name, values));
     }
 }
