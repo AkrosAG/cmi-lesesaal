@@ -201,8 +201,8 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
@@ -437,7 +437,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -750,13 +750,12 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
@@ -1235,13 +1234,12 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
@@ -1405,7 +1403,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1722,13 +1720,12 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
@@ -1899,7 +1896,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
