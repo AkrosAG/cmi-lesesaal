@@ -162,7 +162,9 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.CustomFreeTextField18), vz => vz.CustomFreeTextField18)
                 .From(nameof(Verzeichnungseinheit.CustomFreeTextField19), vz => vz.CustomFreeTextField19)
                 .From(nameof(Verzeichnungseinheit.CustomFreeTextField20), vz => vz.CustomFreeTextField20)
-                
+
+                .FromCollection(nameof(Verzeichnungseinheit.Reproduktionsart), vz => vz?.Reproduktionsart?.Select(s => s.Bezeichnung))
+                .FromCollection(nameof(Verzeichnungseinheit.Schrift), vz => vz?.Schrift?.Select(s => s.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Sprache), vz => vz?.Sprache?.Select(s => s.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Ueberlieferungsform), vz => vz?.Ueberlieferungsform?.Select(u => u.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Provenienz), vz => vz?.Provenienz?.Select(a => a.OffiziellerName))

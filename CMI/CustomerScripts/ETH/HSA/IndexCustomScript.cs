@@ -73,7 +73,7 @@ namespace CMI.Contract.Common.Compiler
 
             }
 
-            foreach (var descriptor in elasticArchiveRecord.Descriptors)
+            foreach (var descriptor in elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus == "Personenregister"))
             {
                 if (!string.IsNullOrEmpty(descriptor.Source))
                 {
