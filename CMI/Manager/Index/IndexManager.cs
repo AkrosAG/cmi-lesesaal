@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
