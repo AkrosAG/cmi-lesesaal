@@ -175,7 +175,5 @@ namespace CMI.Contract.Common.Compiler
                 descriptor.Source = "";
             }
         }
-
-
     }
 }
