@@ -15,6 +15,7 @@ export class NavigationContentComponent implements AfterViewInit {
 	private _elem: any;
 	public mobileMainNavOpen = false;
 	public mobileUserNavOpen = false;
+	private hasChatbot: boolean;
 
 	constructor(private _context: ClientContext,
 				private _elemRef: ElementRef,
@@ -27,6 +28,7 @@ export class NavigationContentComponent implements AfterViewInit {
 				private _authentication: AuthenticationService,
 				private _router: Router) {
 		this._elem = this._elemRef.nativeElement;
+		this.hasChatbot = this._cfg.getSetting('chatbot.urlForChatBot')?.length > 0;
 
 		this._router.events.subscribe(event => {
 			if (event instanceof NavigationStart) {
@@ -48,7 +50,7 @@ export class NavigationContentComponent implements AfterViewInit {
 	}
 
 	public get chatBotEnabled(): boolean {
-		if (!this._pre.isPreloaded) {
+		if (!this._pre.isPreloaded || !this.hasChatbot) {
 			return false;
 		}
 
