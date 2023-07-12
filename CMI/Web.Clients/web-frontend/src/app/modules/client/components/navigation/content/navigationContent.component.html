@@ -266,7 +266,7 @@
 							</p>
 						</div>
 					</li>
-					<li class="col-sm-3" role="menuitem">
+					<li *ngIf="showThematicOverview" class="col-sm-3" role="menuitem">
 						<div class="yamm-content container-fluid">
 							<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
 							<h4>
@@ -279,8 +279,6 @@
 							</p>
 						</div>
 					</li>
-				</div>
-				<div class="row" (click)="nullifyClick($event)">
 					<li class="col-sm-3" role="menuitem">
 						<div class="yamm-content container-fluid">
 							<i class="glyphicon glyphicon-step-backward" aria-hidden="true"></i>
