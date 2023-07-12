@@ -183,6 +183,7 @@ namespace CMI.Manager.Index
                     SeeAlso = s.SeeAlso,
                     Source = s.Source,
                     Thesaurus = s.Thesaurus,
+                    SortingNumber = -1,
                     DateOfBirth = s.DateOfBirth.HasValue
                         ? new ElasticDateWithYear
                         {
@@ -212,10 +213,9 @@ namespace CMI.Manager.Index
             // According to elastic documentation histograms are calculated with this formula
             // bucket_key = Math.floor((value - offset) / interval) * interval + offset
             CalculateCreationPeriodBuckets(elasticArchiveRecord);
-
             return elasticArchiveRecord;
         }
-        
+
         /// <summary>
         /// Calculate the Period how create the Record
         /// </summary>
@@ -289,9 +289,11 @@ namespace CMI.Manager.Index
 
         private static ElasticDetailData ConvertToDetailData(List<DataElement> detailData, FieldConfiguration fieldConfiguration)
         {
-            var elasticDetailData = new ElasticDetailData();
-            elasticDetailData.ElementName = fieldConfiguration.ElementName;
-            elasticDetailData.TypeName = fieldConfiguration.Type;
+            var elasticDetailData = new ElasticDetailData
+            {
+                ElementName = fieldConfiguration.TargetField,
+                TypeName = fieldConfiguration.Type
+            };
 
             switch (fieldConfiguration.Type)
             {
