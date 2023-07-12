@@ -3,7 +3,7 @@
 							  [text]="'Legen Sie die Unterlagen in den Bestellkorb, um sie dort direkt zu bestellen oder ein Einsichtsgesuch einzureichen.' | translate:'orderSection.orderText'">
 		<a class="btn" (keyup.enter)="orderVe()" (click)="orderVe()" tabindex="0">
 			<span class="icon icon--cart"></span>&nbsp;
-			<span>{{ 'Bestellen' | translate:'file.order' }}</span>
+			<span>{{ 'In den Bestellkorb' | translate:'file.order' }}</span>
 		</a>
 	</cmi-viaduc-usage-section>
 	<cmi-viaduc-usage-section *ngIf="!authenticated" [text]="pleaseLoginText">
