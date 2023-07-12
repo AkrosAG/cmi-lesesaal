@@ -1,0 +1,195 @@
+{
+  "facette": {
+    "active": "Aktiv",
+    "bestaendeUebersicht": "Thematische Übersicht",
+    "bestand": "Bestand",
+    "clearAll": "Alle Filter zurücksetzen ({0})",
+    "digitallyAvailable": "Unterlagen digital vorhanden",
+    "creationPeriodYears": "Entstehungszeitraum",
+    "hideFilter": "Filter ausblenden",
+    "notActive": "Nicht aktiv",
+    "level": "Stufen",
+		"permission": "Benutzbarkeit",
+    "treffer": "Treffer",
+    "weitereTreffer": "Andere",
+		"sprachen": "Sprachen",
+		"Archivalienart": "Archivalienart",
+		"Koerperschaftsregister": "Körperschaftsregister",
+		"Personenregister": "Personenregister"
+
+  },
+  "metadata": {
+		"boolean": {
+			"ja": "Ja",
+			"nein": "Nein"
+		},
+    "label": {
+      "creationPeriod": "Entstehungszeitraum",
+      "customFields": {
+        "abdeckung": "Abdeckung",
+        "aipId": "Identifikation digitales Magazin",
+        "aktenzeichen": "Aktenzeichen",
+        "anhang3": "Anhang 3 VBGA",
+        "bemerkungZurVe": "Zusätzliche Informationen",
+        "beteiligtePersonenKoerperschaften": "Beteiligte Personen /  Körperschaften",
+        "bildAnsicht": "Ansichtsbild",
+        "bildVorschau": "Vorschaubild",
+        "digitalesFindmittelBeschreibung": "Digitales Findmittel (Beschreibung)",
+        "digitalesFindmittelLink": "Digitales Findmittel (Link)",
+        "digitaleVersion": "Digitale Version",
+        "entstehungszeitraumAnmerkung": "Entstehungszeitraum Anm.",
+        "form": "Form",
+        "format": "Format",
+        "frueheresAktenzeichen": "Früheres Aktenzeichen",
+        "geschichteDerUnterlagen": "Geschichte der Unterlagen",
+        "kategorieDia": "Kat. Automatisierung",
+        "land": "Land",
+        "nachfolgerbehoerden": "Nachfolgerbehörde(n)",
+        "nichtOnlineRecherchierbareDossiers": "Nicht online recherchierbare Dossiers",
+        "publikationsrechte": "Publikationsrechte",
+        "signaturArchivplan": "Signatur Archivplan",
+        "thema": "Thema",
+        "urheber": "Urheber",
+        "veAblieferungLink": "Ablieferung",
+        "veOrdnungskomponenteLink": "Ordnungskomponente",
+        "verleger": "Verleger",
+        "verwandteVe": "Verwandte VE",
+        "vorgaengerbehoerden": "Vorgängerbehörde(n)",
+        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
+        "zusatzkomponenteZac1": "Zusatzkomponente",
+        "zustaendigeStelle": "Zuständige Stelle"
+      },
+      "digitallyAvailable": "Digital vorhandene Unterlagen",
+      "extent": "Laufmeter",
+      "formerReferenceCode": "Frühere Signaturen",
+      "level": "Stufe",
+      "referenceCode": "Signatur",
+      "title": "Titel",
+      "withinInfo": "Darin"
+    },
+    "searchFields": {
+      "_all": "Alles",
+      "allData": "Alles",
+      "allMetaData": "Metadaten",
+      "allPrimaryData": "Volltext (Primärdaten)",
+      "creationPeriod": "Entstehungszeitraum",
+      "detailData": {
+        "ueberlieferungsform": "Überlieferungsform",
+        "sprachen": "Sprachen ",
+        "archivalienart": "Archivalienart",
+        "permission": "Permission",
+        "descriptors.name": "Personenregister",
+        "verwaltungssignatur": "Verwaltungssignatur",
+        "metadaten": "Metadaten",
+        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
+        "zusatzkomponenteZac1": "Zusatzkomponente"
+      },
+      "formerReferenceCode": "Frühere Signaturen",
+      "referenceCode": "Signatur",
+      "title": "Titel",
+      "Contains": "Form und Inhalt"
+    },
+    "sortFields": {
+      "creationPeriod": {
+        "startDate": {
+          "ascending": "Datum aufsteigend",
+          "descending": "Datum absteigend"
+        }
+      },
+      "referenceCode": {
+        "ascending": "Signatur aufsteigend",
+        "descending": "Signatur absteigend",
+        "sort": {
+          "ascending": "Signatur aufsteigend",
+          "descending": "Signatur absteigend"
+        }
+      },
+      "relevanz": "Relevanz",
+      "title": {
+        "keyword": {
+          "ascending": "Titel aufsteigend",
+          "descending": "Titel absteigend"
+        },
+        "sort": {
+          "ascending": "Titel aufsteigend",
+          "descending": "Titel absteigend"
+        }
+      },
+      "treePath": {
+        "ascending": "Archivplankontext aufsteigend",
+        "descending": "Archivplankontext absteigend"
+      }
+    },
+    "title": {
+      "accessTokens": "Access Tokens",
+      "anmerkungen": "Anmerkungen",
+      "archivplan": "Archivplan",
+      "details": "Details",
+      "erschliessungskontrolle": "Erschliessungskontrolle",
+      "identifikation": "Identifikation",
+      "images": "Vorschaubilder",
+      "inhaltUndInnereOrdnung": "Inhalt und innere Ordnung",
+      "interneVermerke": "Interne Vermerke",
+      "kontext": "Kontext",
+      "sachverwandteUnterlagen": "Sachverwandte Unterlagen",
+      "zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
+    }
+  },
+  "registerInfo": {
+    "cancelRegister": "Abbrechen",
+    "chLoginAltText": "Logo des CH-Logins",
+    "chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
+    "chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
+    "info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
+    "infoBox": "Info-Box",
+    "infoTitle": "Hinweis",
+    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
+    "registerImEiam": "Registrieren",
+    "title": "Kontoeröffnung für den Online-Zugang zum Bundesarchiv"
+  },
+  "search": {
+    "advanced": {
+      "field": {
+				"permission": {
+					"freiZugaenglich": "Frei einsehbar",
+					"inSchutzfrist": "Gesuchspflichtig"
+				}
+			}
+		},
+		"facetteEntry": {
+			"bis": "bis",
+			"ja": "Ja",
+			"nein": "Nein",
+			"resultateOhneZeitraum": "Resultate ohne Zeitraum",
+			"weitereLaden": "Weitere laden",
+			"Hauptabteilung": "Hauptabteilung",
+			"Bestaendeserie": "Beständeserie",
+			"Bestand": "Bestand",
+			"Akzession": "Akzession",
+			"Teilbestand": "Teilbestand",
+			"Serie": "Serie",
+			"Dossier": "Dossier",
+			"Subdossier": "Subdossier",
+			"Dokument": "Dokument",
+			"Einzelstueck": "Einzelstück",
+			"Klassifikation":  "Klassifikation",
+			"Abteilung": "Abteilung",
+			"Archiv": "Archiv",
+			"frei einsehbar": "Frei einsehbar",
+			"resultateOhnePermission": "Resultate ohne Benutzbarkeit",
+			"Gesuchspflichtig": "Gesuchspflichtig",
+			"pruefung noetig": "Prüfung nötig"
+		}
+	},
+  "veExportRecord": {
+    "referenceCode": "Signatur",
+    "fileReference": "Aktenzeichen",
+    "title": "Titel",
+    "creationPeriod": "Entstehungszeitraum",
+    "withinInfo": "Darin",
+    "level": "Stufe",
+    "accessibility": "Zugänglichkeit gem. BGA",
+    "fileName": "suchresultat",
+    "favourites": "favoriten"
+  }
+}

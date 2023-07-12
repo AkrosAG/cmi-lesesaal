@@ -1,12 +1,12 @@
 [
   {
-      "Field": "level.keyword",
-      "Size": 25,
-      "Sort": "_term",
-      "Title": "level",
-      "Type": "Term",
-      "Missing": "",
-      "Index":  "1"
+    "Field": "level.keyword",
+    "Size": 25,
+    "Sort": "_term",
+    "Title": "level",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "1"
   },
   {
     "Field": "permission.keyword",
@@ -25,6 +25,15 @@
     "Type": "Term",
     "Missing": "",
     "Index": "6"
+  },
+  {
+    "Field": "facetten.text04",
+    "Size": 25,
+    "Sort": "_term",
+    "Title": "Körperschaftsregister",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "7"
   },
   {
     "Field": "facetten.text02",
