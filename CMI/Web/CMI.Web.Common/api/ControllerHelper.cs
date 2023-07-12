@@ -72,10 +72,6 @@ namespace CMI.Web.Common.api
             return isMTan.GetValueOrDefault(false);
         }
 
-        /// <summary>
-        ///     Kerberos-/Smartcard Anmeldung
-        /// </summary>
-        /// <returns></returns>
         public bool IsInternalUser()
         {
             // Es handelt sich um einen internen User wenn er Staff von der ETH ZH ist.
@@ -112,9 +108,10 @@ namespace CMI.Web.Common.api
             return uidClaim?.Value;
         }
 
-        public string GetManagementRoleFromClaim()
+        public string GetManagementRoleFromClaim(string rolePublicClient = null)
         {
-            if (IsInternalUser())
+            // Nur wer im M-C als BAAR Benutzer hochgestuft wurde, erhält dieses Prädikat
+            if (IsInternalUser() && (rolePublicClient ?? "").Equals(AccessRoles.RoleBAR))
             {
                 return "APPO";
             }
@@ -122,23 +119,6 @@ namespace CMI.Web.Common.api
             {
                 return string.Empty;
             }
-
-            //var identity = apiController.User?.Identity as ClaimsIdentity;
-            //var uidClaim = identity != null && identity.Claims != null
-            //    ? identity.Claims.Where(c => c.Type.Contains("/identity/claims/role") || c.Type.Contains("/identity/claims/e-id/profile/role"))
-            //    : null;
-
-            //var managementRoleList = uidClaim?.Where(c => !string.IsNullOrEmpty(c.Value) && c.Value.Contains("BAR-recherche-management-client"));
-
-            //string managementRole = null;
-            //if (managementRoleList.Any())
-            //{
-            //    managementRole = managementRoleList.Any(c => c.Value.EndsWith("APPO", StringComparison.InvariantCultureIgnoreCase))
-            //        ? "APPO"
-            //        : "ALLOW";
-            //}
-
-            //return managementRole;
         }
 
         public bool HasClaims()
