@@ -198,7 +198,7 @@ namespace CMI.Web.Common.api
             }
 
             var isInternal = controllerHelper.IsInternalUser();
-            var mgntRole = controllerHelper.GetManagementRoleFromClaim();
+            var mgntRole = controllerHelper.GetManagementRoleFromClaim(user.RolePublicClient);
             try
             {
                 var userDataOnLogin = new User
