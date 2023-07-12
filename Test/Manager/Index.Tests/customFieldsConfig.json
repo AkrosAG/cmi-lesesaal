@@ -58,13 +58,12 @@
     "IsRepeatable": 0
   },
   {
-    "ElementId": "Bezugszeitraum",
     "ElementName": "Bezugszeitraum",
-    "SourceType": "Datumsbereich (von/bis)",
+    "SourceType": "Text (max. 4000 Z.)",
     "Label": "Bezugszeitraum",
-    "TargetField": "ReferencePeriod",
+    "TargetField": "Bezugszeitraum",
     "IsDefaultField": 0,
-    "Type": "ElasticTimePeriod",
+    "Type": "string",
     "IsRepeatable": 0
   },
   {
@@ -188,7 +187,7 @@
     "ElementName": "Schrift",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Schrift",
-    "TargetField": "Schriften",
+    "TargetField": "Schrift",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -270,6 +269,16 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verzeichnungsgrundsätze",
     "TargetField": "Verzeichnungsgrundsaetze",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementId": "BemerkungDatierung",
+    "ElementName": "BemerkungDatierung",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Bemerkung Datierung",
+    "TargetField": "BemerkungDatierung",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -607,15 +616,6 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "BemerkungSprache",
     "TargetField": "BemerkungSprache",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementName": "CustomFreeTextField08",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Zustandskategorie",
-    "TargetField": "Zustandskategorie",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0

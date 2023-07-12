@@ -4,7 +4,7 @@ namespace CMI.Contract.Common
 {
     public class SyncInfoForReport
     {
-        public int MutationId { get; set; }
+        public long MutationId { get; set; }
         public DateTime ErstellungsdatumPrimaerdatenVerbindung { get; set; }
         public DateTime StartErsterSynchronisierungsversuch { get; set; }
         public DateTime StartLetzterSynchronisierungsversuch { get; set; }
