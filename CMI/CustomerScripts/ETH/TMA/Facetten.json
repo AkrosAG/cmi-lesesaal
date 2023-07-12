@@ -1,7 +1,7 @@
 [
   {
     "Field": "level.keyword",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "level",
     "Type": "Term",
@@ -10,7 +10,7 @@
   },
   {
     "Field": "permission.keyword",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "permission",
     "Type": "Term",
@@ -19,7 +19,7 @@
   },
   {
     "Field": "facetten.text01",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "Personenregister",
     "Type": "Term",
@@ -28,7 +28,7 @@
   },
   {
     "Field": "facetten.text02",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "Sprachen",
     "Type": "Term",
@@ -37,7 +37,7 @@
   },
   {
     "Field": "facetten.text03",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "Archivalienart",
     "Type": "Term",
@@ -46,12 +46,39 @@
   },
   {
     "Field": "facetten.text04",
-    "Size": 500,
+    "Size": 10,
     "Sort": "_term",
     "Title": "Körperschaftsregister",
     "Type": "Term",
     "Missing": "",
-    "Index": "3"
+    "Index": "7"
+  },
+  {
+    "Field": "facetten.text05",
+    "Size": 10,
+    "Sort": "_term",
+    "Title": "Ortsregister",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "8"
+  },
+  {
+    "Field": "facetten.text06",
+    "Size": 10,
+    "Sort": "_term",
+    "Title": "Werkregister",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "9"
+  },
+  {
+    "Field": "facetten.text07",
+    "Size": 10,
+    "Sort": "_term",
+    "Title": "Sachregister",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "10"
   },
   {
     "Field": "facetten.creationPeriodYears001",

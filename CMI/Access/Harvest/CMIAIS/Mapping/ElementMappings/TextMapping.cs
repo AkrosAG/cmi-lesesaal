@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CMI.Contract.Common;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping.ElementMappings;
 
@@ -14,22 +16,43 @@ public class TextMapping : BaseMapping
             ElementName = name
         };
 
-        var text = value as string;
-        if (value == null)
-            return element;
-
-        element.ElementValue.Add(new DataElementElementValue
+        if (value is IEnumerable<string> arrayValues)
         {
-            TextValues = new List<DataElementElementValueTextValue>
+            foreach (var arrayValue in arrayValues)
             {
-                new()
+                element.ElementValue.Add(new DataElementElementValue
                 {
-                    Value = text,
-                    Lang = "de-CH",
-                    IsDefaultLang = true
-                }
+                    TextValues = new List<DataElementElementValueTextValue>
+                    {
+                        new()
+                        {
+                            Value = arrayValue,
+                            Lang = "de-CH",
+                            IsDefaultLang = true
+                        }
+                    }
+                });
             }
-        });
+        }
+        else
+        {
+            var text = value as string;
+            if (value == null)
+                return element;
+
+            element.ElementValue.Add(new DataElementElementValue
+            {
+                TextValues = new List<DataElementElementValueTextValue>
+                {
+                    new()
+                    {
+                        Value = text,
+                        Lang = "de-CH",
+                        IsDefaultLang = true
+                    }
+                }
+            });
+        }
 
         return element;
     }
