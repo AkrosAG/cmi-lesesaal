@@ -196,8 +196,7 @@ namespace CMI.Web.Common.Tests.Helpers
             result.AuthStatus.Should().Be(AuthStatus.KeineRolleDefiniert);
             result.Roles[0].Should().BeNull();
             result.IssuedAccessTokens.Length.Should().Be(0);
-            result.RedirectUrl.Should().Be("https://recherche.library.ethz.ch/management//errorpermissio");
-           
+            result.RedirectUrl.Should().Be("https://recherche.library.ethz.ch/management//errorpermission");
         }
 
         [Test]
