@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 using System.Web;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
-using CMI.Manager.Order.Status;
 using CMI.Web.Common.Auth;
 using CMI.Web.Common.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
 using SameSiteMode = Microsoft.Owin.SameSiteMode;
@@ -58,7 +56,7 @@ namespace CMI.Web.Common.api
             {
                 return;
             }
-               
+
             var identity = authResult.Identity;
             Log.Information("Found identity for user {Name}", identity.Name);
 
@@ -121,7 +119,7 @@ namespace CMI.Web.Common.api
         {
             var userId = controllerHelper.GetCurrentUserId();
             var claims = authenticationHelper.GetClaimsForRequest(user, request);
-            
+
             if (!HasValidMandant(claims))
             {
                 Log.Warning("User hat noch keinen Antrag gestellt");
@@ -129,7 +127,7 @@ namespace CMI.Web.Common.api
             }
 
             var isNewUser = !TryUpdateUser(userId, claims);
-            
+
 
             if (isNewUser)
             {
@@ -154,37 +152,23 @@ namespace CMI.Web.Common.api
 
             var authStatus = IsValidAuthRole(role, isPublicClient);
 
-            // Fehlerhafte Rolle oder Anmeldung
-            if (authStatus == AuthStatus.KeineRolleDefiniert)
-            {
-                Log.Error(
-                    "Es wurde für den Benutzer keine Rolle definiert in der Datenbank oder Authentifikation hat fehlgeschlagen UserId:={UserId}, AuthStatus={AuthStatus}",
-                    userId, authStatus);
-                throw new AuthenticationException(
-                    $"Es wurde für den Benutzer keine Rolle definiert in der Datenbank oder Authentifikation hat fehlgeschlagen UserId:={userId}, AuthStatus='{authStatus}'");
-            }
-            
             var accessTokens = userDataAccess.GetTokensDesUser(userId);
-
             var identity = new Identity
             {
                 IssuedClaims = claims.ToArray(),
-                Roles = new string[] {role},
+                Roles = new [] { role },
                 IssuedAccessTokens = accessTokens,
                 AuthStatus = authStatus,
                 RedirectUrl = GetReturnUrl(authStatus, isPublicClient)
             };
             AddAppRolesAndFeatures(userId, identity);
 
-            try
+            // Fehlerhafte Rolle oder Anmeldung
+            if (authStatus == AuthStatus.KeineRolleDefiniert)
             {
-                Log.Debug("(AuthController:GetClaims()): {CLAIMS}", JsonConvert.SerializeObject(identity, Formatting.Indented));
+                Log.Error("Es wurde für den Benutzer keine Rolle definiert in der Datenbank oder Authentifikation hat fehlgeschlagen UserId:={UserId}, AuthStatus={AuthStatus}",
+                    userId, authStatus);
             }
-            catch
-            {
-                // ignored
-            }
-
 
             return identity;
         }
@@ -207,7 +191,7 @@ namespace CMI.Web.Common.api
                     IsInternalUser = isInternal,
                     EiamRoles = mgntRole,
                     UserExtId = controllerHelper.GetFromClaim("/identity/claims/e-id/userExtId"),
-                    Claims = new JObject {{"claims", JArray.FromObject(claims)}},
+                    Claims = new JObject { { "claims", JArray.FromObject(claims) } },
                     FamilyName = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.Surname) : user.FamilyName,
                     FirstName = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.GivenName) : user.FirstName,
                     EmailAddress = isInternal ? controllerHelper.GetFromClaim(ClaimTypes.Email) : user.EmailAddress
@@ -228,7 +212,8 @@ namespace CMI.Web.Common.api
                     // Ist die "initiale" Role weniger als BVW, oder die Rolle ist BVW und der Benutzer ist weder AS noch BAR, 
                     // dann müssen wir updaten
                     if (rolePublicClient != AccessRoles.RoleBVW || !user.RolePublicClient.Equals(AccessRoles.RoleBAR) &&
-                                                                  !user.RolePublicClient.Equals(AccessRoles.RoleAS)) {
+                                                                  !user.RolePublicClient.Equals(AccessRoles.RoleAS))
+                    {
                         userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
                     }
                 }
@@ -379,6 +364,12 @@ namespace CMI.Web.Common.api
                 "www.recherche.bar.admin.ch/_pep/myaccount?returnURI=/my-appl/private/welcome.html&op=reg-mobile");
         }
 
+        private string GetErrorPermissionUrl()
+        {
+            return webCmiConfigProvider.GetStringSetting("errorpermissionURl",
+                "https://recherche.library.ethz.ch/management//errorpermission");
+        }
+
         private string GetPublicClientUrl()
         {
             return webCmiConfigProvider.GetStringSetting("publicClientUrl",
@@ -395,6 +386,11 @@ namespace CMI.Web.Common.api
             if (!isPublicClient && authStatus == AuthStatus.NeuerBenutzer)
             {
                 return GetPublicClientUrl();
+            }
+
+            if (!isPublicClient && (authStatus == AuthStatus.KeineRolleDefiniert || authStatus == AuthStatus.KeineKerberosAuthentication))
+            {
+                return GetErrorPermissionUrl();
             }
 
             return string.Empty;
