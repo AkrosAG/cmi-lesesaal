@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using CMI.Contract.Common;
 using System.Linq;
+using System.IO;
+using CMI.Access.Harvest.Properties;
+using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping
 {
@@ -39,7 +42,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 Descriptors = GetDescriptors(cmiRecord),
                 Containers = GetContainers(cmiRecord)
             };
-
+            archiveRecord.Metadata.Files.AddFilesContent(cmiRecord);
             return new MetaDataBuilder(cmiRecord, cmicRecordTectonic, archiveRecord, this);
         }
 
@@ -56,7 +59,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 IdName = m.Bezeichnung,
                 ContainerCode = m.Kuerzel
             }));
-            
+
             return new ArchiveRecordMetadataContainers
             {
                 Container = containers,
@@ -79,7 +82,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Function = register.Rolle,
                     DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
                     DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null,
-                    Source =  register.GNDID?.ToString() 
+                    Source = register.GNDID?.ToString()
                 };
             })
             .Where(r => r != null)
