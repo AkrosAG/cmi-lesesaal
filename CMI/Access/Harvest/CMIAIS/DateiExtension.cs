@@ -25,15 +25,15 @@ namespace CMI.Access.Harvest
 
         public static string GetFullPath(this Datei file, string root)
         {
-            return Path.Combine(root,                                      // CDWS_ROOT
-                                $"{file.OBJ_GUID}",                        // OBJ_GUID
-                                   file.FileId,                            // ID
-                                   $"{file.LastVersion.Nr}",               // NR    
-                                   file.LastVersion.Items[0].Ansicht,      // Ansicht
-                                   file.Filename);                         // Filename
+            return Path.Combine(root,                                   // CDWS_ROOT
+                                $"{file.OBJ_GUID}",                     // OBJ_GUID
+                                file.FileId,                            // ID
+                                $"{file.LastVersion.Nr}",               // NR    
+                                file.LastVersion.Items[0].Ansicht,      // Ansicht
+                                file.Filename);                         // Filename
         }
 
-        public static void AddFilesContent(this List<ArchiveRecordMetadataFile> list, Verzeichnungseinheit record)
+        public static void AddFileContent(this List<ArchiveRecordMetadataFile> list, Verzeichnungseinheit record)
         {
             var source = record.Dateien.Where(f => f.IsOriginal()).ToList();
             if (source.Any())
@@ -44,7 +44,7 @@ namespace CMI.Access.Harvest
                     Log.Information($"Check file {path}.");
                     if (File.Exists(path))
                     {
-                        Byte[] bytes = File.ReadAllBytes(path);
+                        var bytes = File.ReadAllBytes(path);
                         var metadataFile = new ArchiveRecordMetadataFile
                         {
                             Title = file.Titel,
@@ -52,17 +52,15 @@ namespace CMI.Access.Harvest
                             FileName = file.Filename,
                             FileExtension = file.FileExtension,
                             FileSize = bytes.LongLength,
-                            Description = file.Bemerkungen
+                            Description = file.Bemerkungen,
+                            ContentText = Convert.ToBase64String(bytes)
                         };
-                        
-                        metadataFile.ContentText = Convert.ToBase64String(bytes);
                         list.Add(metadataFile);
                         Log.Information($"Added file content to Metadata: {bytes.LongLength} Bytes.");
                     }
                 }
             }
         }
-
     }
 
     public partial class Datei

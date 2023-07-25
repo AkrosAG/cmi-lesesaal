@@ -205,7 +205,20 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.PrimaryData = archiveRecord.ElasticPrimaryData != null && archiveRecord.ElasticPrimaryData.Any()
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
-            
+
+            if(archiveRecord.Metadata.Files.Any())
+            {
+                var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
+                {
+                    Filename = f.FileName,
+                    Description= f.Description,
+                    Extension = f.FileExtension,
+                    SizeInBytes = f.FileSize,
+                    Base64Content = f.ContentText
+                });
+                elasticArchiveRecord.Files.AddRange(files);
+            }
+
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
             // Add the creation period aggregation records
             // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
