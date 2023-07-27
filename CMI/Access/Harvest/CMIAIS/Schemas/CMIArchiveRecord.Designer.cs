@@ -2110,10 +2110,9 @@ namespace CMI.Access.Harvest
         public RegisterRegistertyp Registertyp { get; set; }
         public string ExterneID2 { get; set; }
         [XmlElement("GND-ID", IsNullable = true)]
-        public System.Nullable<decimal> GNDID { get; set; }
+        public string GNDID { get; set; }
         public string Geburtsdatum { get; set; }
         public string Sterbedatum { get; set; }
-        public string Rolle { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
 
@@ -2534,6 +2533,8 @@ namespace CMI.Access.Harvest
         private static XmlSerializer _serializerXml;
 
         public RegisterzuweisungRegistereintrag Registereintrag { get; set; }
+        public string Rolle { get; set; }
+        public string CustomFreeTextField01 { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
 
