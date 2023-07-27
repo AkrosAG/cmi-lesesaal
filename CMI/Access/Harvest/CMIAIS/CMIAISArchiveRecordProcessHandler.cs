@@ -25,6 +25,7 @@ namespace CMI.Access.Harvest.CMIAIS
             catch (Exception e)
             {
                 Log.Error(e, $"Cannot run the custom script for the archive record with id {record.ArchiveRecordId}.");
+                throw e;
             }
 
             await Task.FromResult(record);
