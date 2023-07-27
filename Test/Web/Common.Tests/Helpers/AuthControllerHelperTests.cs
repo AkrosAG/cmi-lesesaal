@@ -190,12 +190,13 @@ namespace CMI.Web.Common.Tests.Helpers
                 authenticationHelperMock.Object, webCmiConfigProviderMock.Object);
 
             // act
-            var action = (Action) (() => { sut.GetIdentity(null, null, false); });
+            var result = sut.GetIdentity(null, null, false);
 
             // assert
-            action.Should().Throw<AuthenticationException>()
-                .Where(ex => ex.Message.Contains(
-                    "Es wurde für den Benutzer keine Rolle definiert in der Datenbank oder Authentifikation hat fehlgeschlagen"));
+            result.AuthStatus.Should().Be(AuthStatus.KeineRolleDefiniert);
+            result.Roles[0].Should().BeNull();
+            result.IssuedAccessTokens.Length.Should().Be(0);
+            result.RedirectUrl.Should().Be("https://recherche.library.ethz.ch/management//errorpermission");
         }
 
         [Test]

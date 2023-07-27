@@ -191,6 +191,9 @@ export class AuthenticationService {
 				this._sessionStorage.setItem('pcurl', response.redirectUrl);
 				router.navigate([this._urlService.getErrorNewUser()]);
 				return true;
+			case AuthStatus.keineRolleDefiniert:
+				router.navigate([this._urlService.getErrorPermission()]);
+				return true;
 			default:
 				console.error('Keine definierter AuthStatus!');
 				break;
