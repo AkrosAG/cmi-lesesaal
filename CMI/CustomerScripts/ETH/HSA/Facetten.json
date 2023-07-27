@@ -27,15 +27,6 @@
     "Index": "6"
   },
   {
-    "Field": "facetten.text04",
-    "Size": 25,
-    "Sort": "_term",
-    "Title": "Körperschaftsregister",
-    "Type": "Term",
-    "Missing": "",
-    "Index": "7"
-  },
-  {
     "Field": "facetten.text02",
     "Size": 25,
     "Sort": "_term",
