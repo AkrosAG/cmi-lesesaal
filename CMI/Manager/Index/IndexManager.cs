@@ -218,7 +218,7 @@ namespace CMI.Manager.Index
                     Base64Content = f.ContentText
                 });
                 elasticArchiveRecord.Files.AddRange(files);
-                Log.Verbose($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
+                Log.Information($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
             }
 
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
