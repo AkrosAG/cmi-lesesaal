@@ -40,7 +40,7 @@ namespace CMI.Web.Common.Helpers
 
                 // Importing the array of names to 1st row and first column vertically
                 worksheet.Cells.ImportCustomObjects(data, 0, 0, new ImportTableOptions());
-                worksheet.ListObjects.Add(0, 0, data.Count, typeof(T).GetProperties().Length - 1, true);
+                worksheet.ListObjects.Add(0, 0, infos.Count, typeof(T).GetProperties().Length - 1, true);
                 worksheet.ListObjects[0].TableStyleType = TableStyleType.TableStyleLight9;
 
                 ApplyFormatting(infos, worksheet);

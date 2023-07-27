@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
+using System.Web.UI.WebControls;
 using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Configuration;
 
@@ -48,44 +49,66 @@ namespace CMI.Web.Frontend.Helpers
         
         private ExcelColumnInfos CreateColumnInfo(string language)
         {
-            return new ExcelColumnInfos
+            var list = new ExcelColumnInfos ();
+            
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.referenceCode"))
             {
-                new ExcelColumnInfo
+                list.Add(new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.ReferenceCode), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.referenceCode")
-                },
-                new ExcelColumnInfo
+                });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.fileReference"))
+            {
+                list.Add(new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.FileReference), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileReference")
-                },
-                new ExcelColumnInfo
+                });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.title"))
+            {
+                list.Add(new ExcelColumnInfo
                 {
-                    ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
-                },
-                new ExcelColumnInfo
-                {
+                ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
+                ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
+                });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.creationPeriod"))
+            {
+                list.Add(new ExcelColumnInfo
+                 {
                     ColumnName = nameof(VeExportRecord.CreationPeriod), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.creationPeriod")
-                },
-                new ExcelColumnInfo
+                 });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.withinInfo"))
+            {
+                list.Add(new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.WithinInfo), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.withinInfo")
-                },
-                new ExcelColumnInfo
+                });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.level"))
+            {
+                list.Add(new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Level), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.level")
-                },
-                new ExcelColumnInfo
+                });
+            }
+            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.accessibility"))
+            {
+                list.Add(new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Accessibility), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.accessibility")
-                }
-            };
+                });
+            }
+
+            return list;
         }
         
         public static string GetCustomField(dynamic customFields, string fieldName)
