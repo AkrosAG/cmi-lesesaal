@@ -12,7 +12,6 @@ namespace CMI.Web.Common.Auth.Sibboleth
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public void Init(HttpApplication context)
