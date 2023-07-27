@@ -18,30 +18,30 @@ namespace CMI.Access.Harvest
     using System.IO;
     using System.Text;
     using System.Collections.Generic;
-
-
+    
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
-    [XmlRootAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord", IsNullable = false)]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlRootAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord", IsNullable=false)]
     public partial class Verzeichnungseinheit
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string TypeName { get; set; }
         public string DisplayName { get; set; }
         public string Signatur { get; set; }
         public string AlteSignatur { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> ID { get; set; }
         public string PID { get; set; }
         public string Titel { get; set; }
         public DateTimeFieldType Entstehungszeitraum { get; set; }
         public DateTimeFieldType Bezugszeitraum { get; set; }
         public string Verzeichnungsstufe { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Umfang> Umfang { get; set; }
         public string Verwaltungsgeschichte { get; set; }
         public string Bestandsgeschichte { get; set; }
@@ -51,14 +51,14 @@ namespace CMI.Access.Harvest
         public string OrdnungKlassifikation { get; set; }
         public string Zugangsbestimmungen { get; set; }
         public string Reproduktionsbestimmungen { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Sprache> Sprache { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Schrift> Schrift { get; set; }
         public string PhysischeBeschaffenheit { get; set; }
         public string Findmittel { get; set; }
-        [XmlArrayItemAttribute(typeof(Gebaeude), IsNullable = false)]
-        [XmlArrayItemAttribute(typeof(MagazinObjekt), IsNullable = false)]
+        [XmlArrayItemAttribute(typeof(Gebaeude), IsNullable=false)]
+        [XmlArrayItemAttribute(typeof(MagazinObjekt), IsNullable=false)]
         public object[] Standort { get; set; }
         public string KopienReproduktionen { get; set; }
         public string VerwandtesMaterial { get; set; }
@@ -66,49 +66,49 @@ namespace CMI.Access.Harvest
         public string AllgemeineAnmerkungen { get; set; }
         public string Verzeichnungsgrundsaetze { get; set; }
         public string BemerkungEntstehungszeitraum { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Datei> Dateien { get; set; }
         public string ArchivalienartenGuids { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Archivalienart> Archivalienart { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Provenienz> Provenienz { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Akzession> Akzession { get; set; }
         public string UeberlieferungsformenGuids { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Ueberlieferungsform> Ueberlieferungsform { get; set; }
         public string Benutzbarkeit { get; set; }
         public string Publikation { get; set; }
         public string Verwertungsrecht { get; set; }
         public DateTimeFieldType AblaufVerwertungsrecht { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? UrheberBekannt { get; set; }
         public DateTimeFieldType TodesdatumUrheber { get; set; }
         public string Urheber { get; set; }
         public string AufbewahrungsortOriginale { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Reproduktionsart> Reproduktionsart { get; set; }
         public string Verzeichnungsstatus { get; set; }
         public VerzeichnungseinheitErschliessungszustand Erschliessungszustand { get; set; }
         public VerzeichnungseinheitDigitalisierungsgrad Digitalisierungsgrad { get; set; }
         public string Bearbeiterzeitraum { get; set; }
         public string InterneAnmerkungen { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Registerzuweisung> Registerzuordnung { get; set; }
         public string BemerkungDatierung { get; set; }
         public string BemerkungProvenienz { get; set; }
         public VerzeichnungseinheitVerfuegbarkeit Verfuegbarkeit { get; set; }
         public string VerfuegbarkeitGuids { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? DateiVorhanden { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? DigitalVorhanden { get; set; }
         public string Tektonikpfad { get; set; }
         public VerzeichnungseinheitSchutzfrist Schutzfrist { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Verweis> VerwiesenVon { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItemAttribute(IsNullable=false)]
         public List<Verweis> VerwiesenZu { get; set; }
         public DateTimeFieldType SchutzfristBasisdatum { get; set; }
         public DateTimeFieldType SchutzfristEnddatum { get; set; }
@@ -145,45 +145,45 @@ namespace CMI.Access.Harvest
         public DateTimeFieldType CustomFreeDateField08 { get; set; }
         public DateTimeFieldType CustomFreeDateField09 { get; set; }
         public DateTimeFieldType CustomFreeDateField10 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField01 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField02 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField03 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField04 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField05 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField06 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField07 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField08 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField09 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> CustomFreeNumberField10 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField01 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField02 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField03 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField04 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField05 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField06 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField07 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField08 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField09 { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public bool? CustomFreeBoolField10 { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
@@ -191,7 +191,7 @@ namespace CMI.Access.Harvest
         public string SEQ { get; set; }
         [XmlAttribute]
         public string IDX { get; set; }
-
+        
         public Verzeichnungseinheit()
         {
             CustomFreeDateField10 = new DateTimeFieldType();
@@ -227,7 +227,7 @@ namespace CMI.Access.Harvest
             Bezugszeitraum = new DateTimeFieldType();
             Entstehungszeitraum = new DateTimeFieldType();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -239,7 +239,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Verzeichnungseinheit object
@@ -271,7 +271,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Verzeichnungseinheit object
         /// </summary>
@@ -294,13 +294,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Verzeichnungseinheit obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Verzeichnungseinheit Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -317,13 +317,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Verzeichnungseinheit Deserialize(Stream s)
         {
             return ((Verzeichnungseinheit)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Verzeichnungseinheit object into file
         /// </summary>
@@ -344,7 +344,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -364,7 +364,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Verzeichnungseinheit object
         /// </summary>
@@ -387,13 +387,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Verzeichnungseinheit obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Verzeichnungseinheit LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -420,21 +420,21 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class DateTimeFieldType
     {
         private static XmlSerializer _serializerXml;
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public DateTime? Start { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public DateTime? End { get; set; }
         public string Text { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -446,7 +446,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize DateTimeFieldType object
@@ -478,7 +478,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes DateTimeFieldType object
         /// </summary>
@@ -501,13 +501,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out DateTimeFieldType obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static DateTimeFieldType Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -524,13 +524,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static DateTimeFieldType Deserialize(Stream s)
         {
             return ((DateTimeFieldType)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current DateTimeFieldType object into file
         /// </summary>
@@ -551,7 +551,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -571,7 +571,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an DateTimeFieldType object
         /// </summary>
@@ -594,13 +594,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out DateTimeFieldType obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static DateTimeFieldType LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -627,16 +627,16 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Child
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string TypeName { get; set; }
         public string DisplayName { get; set; }
         public string Sortierung { get; set; }
@@ -646,12 +646,12 @@ namespace CMI.Access.Harvest
         public DateTimeFieldType Entstehungszeitraum { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Child()
         {
             Entstehungszeitraum = new DateTimeFieldType();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -663,7 +663,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Child object
@@ -695,7 +695,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Child object
         /// </summary>
@@ -718,13 +718,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Child obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Child Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -741,13 +741,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Child Deserialize(Stream s)
         {
             return ((Child)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Child object into file
         /// </summary>
@@ -768,7 +768,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -788,7 +788,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Child object
         /// </summary>
@@ -811,13 +811,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Child obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Child LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -844,28 +844,28 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Verweis
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bemerkung { get; set; }
         public VerweisVE1 VE1 { get; set; }
         public VerweisVE2 VE2 { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Verweis()
         {
             VE2 = new VerweisVE2();
             VE1 = new VerweisVE1();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -877,7 +877,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Verweis object
@@ -909,7 +909,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Verweis object
         /// </summary>
@@ -932,13 +932,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Verweis obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Verweis Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -955,13 +955,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Verweis Deserialize(Stream s)
         {
             return ((Verweis)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Verweis object into file
         /// </summary>
@@ -982,7 +982,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -1002,7 +1002,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Verweis object
         /// </summary>
@@ -1025,13 +1025,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Verweis obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Verweis LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -1058,23 +1058,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerweisVE1
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Child")]
         public Child Item { get; set; }
-
+        
         public VerweisVE1()
         {
             Item = new Child();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -1086,7 +1086,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerweisVE1 object
@@ -1118,7 +1118,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerweisVE1 object
         /// </summary>
@@ -1141,13 +1141,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerweisVE1 obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerweisVE1 Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -1164,13 +1164,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerweisVE1 Deserialize(Stream s)
         {
             return ((VerweisVE1)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerweisVE1 object into file
         /// </summary>
@@ -1191,7 +1191,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -1211,7 +1211,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerweisVE1 object
         /// </summary>
@@ -1234,13 +1234,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerweisVE1 obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerweisVE1 LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -1267,23 +1267,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerweisVE2
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Child")]
         public Child Item { get; set; }
-
+        
         public VerweisVE2()
         {
             Item = new Child();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -1295,7 +1295,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerweisVE2 object
@@ -1327,7 +1327,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerweisVE2 object
         /// </summary>
@@ -1350,13 +1350,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerweisVE2 obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerweisVE2 Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -1373,13 +1373,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerweisVE2 Deserialize(Stream s)
         {
             return ((VerweisVE2)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerweisVE2 object into file
         /// </summary>
@@ -1400,7 +1400,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -1420,7 +1420,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerweisVE2 object
         /// </summary>
@@ -1443,13 +1443,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerweisVE2 obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerweisVE2 LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -1476,21 +1476,21 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Schutzfrist
     {
         private static XmlSerializer _serializerXml;
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> Frist { get; set; }
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -1502,7 +1502,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Schutzfrist object
@@ -1534,7 +1534,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Schutzfrist object
         /// </summary>
@@ -1557,13 +1557,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Schutzfrist obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Schutzfrist Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -1580,13 +1580,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Schutzfrist Deserialize(Stream s)
         {
             return ((Schutzfrist)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Schutzfrist object into file
         /// </summary>
@@ -1607,7 +1607,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -1627,7 +1627,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Schutzfrist object
         /// </summary>
@@ -1650,13 +1650,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Schutzfrist obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Schutzfrist LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -1683,20 +1683,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Verfuegbarkeit
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -1708,7 +1708,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Verfuegbarkeit object
@@ -1740,7 +1740,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Verfuegbarkeit object
         /// </summary>
@@ -1763,13 +1763,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Verfuegbarkeit obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Verfuegbarkeit Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -1786,13 +1786,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Verfuegbarkeit Deserialize(Stream s)
         {
             return ((Verfuegbarkeit)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Verfuegbarkeit object into file
         /// </summary>
@@ -1813,7 +1813,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -1833,7 +1833,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Verfuegbarkeit object
         /// </summary>
@@ -1856,13 +1856,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Verfuegbarkeit obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Verfuegbarkeit LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -1889,20 +1889,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Registertyp
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -1914,7 +1914,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Registertyp object
@@ -1946,7 +1946,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Registertyp object
         /// </summary>
@@ -1969,13 +1969,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Registertyp obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Registertyp Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -1992,13 +1992,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Registertyp Deserialize(Stream s)
         {
             return ((Registertyp)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Registertyp object into file
         /// </summary>
@@ -2019,7 +2019,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -2039,7 +2039,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Registertyp object
         /// </summary>
@@ -2062,13 +2062,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Registertyp obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Registertyp LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -2095,33 +2095,32 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Register
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         public string Bemerkung { get; set; }
         public RegisterRegistertyp Registertyp { get; set; }
         public string ExterneID2 { get; set; }
-        // Muss ein string sein
-        [XmlElement("GND-ID", IsNullable = true)]
-        public string GNDID { get; set; }
+        [XmlElement("GND-ID", IsNullable=true)]
+        public System.Nullable<decimal> GNDID { get; set; }
         public string Geburtsdatum { get; set; }
         public string Sterbedatum { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Register()
         {
             Registertyp = new RegisterRegistertyp();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -2133,7 +2132,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Register object
@@ -2165,7 +2164,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Register object
         /// </summary>
@@ -2188,13 +2187,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Register obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Register Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -2211,13 +2210,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Register Deserialize(Stream s)
         {
             return ((Register)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Register object into file
         /// </summary>
@@ -2238,7 +2237,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -2258,7 +2257,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Register object
         /// </summary>
@@ -2281,13 +2280,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Register obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Register LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -2314,23 +2313,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class RegisterRegistertyp
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Registertyp")]
         public Registertyp Item { get; set; }
-
+        
         public RegisterRegistertyp()
         {
             Item = new Registertyp();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -2342,7 +2341,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize RegisterRegistertyp object
@@ -2374,7 +2373,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes RegisterRegistertyp object
         /// </summary>
@@ -2397,13 +2396,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out RegisterRegistertyp obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static RegisterRegistertyp Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -2420,13 +2419,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static RegisterRegistertyp Deserialize(Stream s)
         {
             return ((RegisterRegistertyp)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current RegisterRegistertyp object into file
         /// </summary>
@@ -2447,7 +2446,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -2467,7 +2466,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an RegisterRegistertyp object
         /// </summary>
@@ -2490,13 +2489,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out RegisterRegistertyp obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static RegisterRegistertyp LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -2523,27 +2522,27 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Registerzuweisung
     {
         private static XmlSerializer _serializerXml;
-
+        
         public RegisterzuweisungRegistereintrag Registereintrag { get; set; }
         public string Rolle { get; set; }
         public string CustomFreeTextField01 { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Registerzuweisung()
         {
             Registereintrag = new RegisterzuweisungRegistereintrag();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -2555,7 +2554,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Registerzuweisung object
@@ -2587,7 +2586,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Registerzuweisung object
         /// </summary>
@@ -2610,13 +2609,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Registerzuweisung obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Registerzuweisung Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -2633,13 +2632,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Registerzuweisung Deserialize(Stream s)
         {
             return ((Registerzuweisung)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Registerzuweisung object into file
         /// </summary>
@@ -2660,7 +2659,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -2680,7 +2679,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Registerzuweisung object
         /// </summary>
@@ -2703,13 +2702,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Registerzuweisung obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Registerzuweisung LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -2736,23 +2735,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class RegisterzuweisungRegistereintrag
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Register")]
         public Register Item { get; set; }
-
+        
         public RegisterzuweisungRegistereintrag()
         {
             Item = new Register();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -2764,7 +2763,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize RegisterzuweisungRegistereintrag object
@@ -2796,7 +2795,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes RegisterzuweisungRegistereintrag object
         /// </summary>
@@ -2819,13 +2818,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out RegisterzuweisungRegistereintrag obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static RegisterzuweisungRegistereintrag Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -2842,13 +2841,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static RegisterzuweisungRegistereintrag Deserialize(Stream s)
         {
             return ((RegisterzuweisungRegistereintrag)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current RegisterzuweisungRegistereintrag object into file
         /// </summary>
@@ -2869,7 +2868,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -2889,7 +2888,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an RegisterzuweisungRegistereintrag object
         /// </summary>
@@ -2912,13 +2911,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out RegisterzuweisungRegistereintrag obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static RegisterzuweisungRegistereintrag LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -2945,12 +2944,12 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Digitalisierungsgrad
     {
         private static XmlSerializer _serializerXml;
@@ -2958,7 +2957,7 @@ namespace CMI.Access.Harvest
         public string Digitalisierungsgrad1 { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -2970,7 +2969,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Digitalisierungsgrad object
@@ -3002,7 +3001,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Digitalisierungsgrad object
         /// </summary>
@@ -3025,13 +3024,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Digitalisierungsgrad obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Digitalisierungsgrad Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -3048,13 +3047,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Digitalisierungsgrad Deserialize(Stream s)
         {
             return ((Digitalisierungsgrad)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Digitalisierungsgrad object into file
         /// </summary>
@@ -3075,7 +3074,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -3095,7 +3094,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Digitalisierungsgrad object
         /// </summary>
@@ -3118,13 +3117,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Digitalisierungsgrad obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Digitalisierungsgrad LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -3151,20 +3150,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Erschliessungszustand
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -3176,7 +3175,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Erschliessungszustand object
@@ -3208,7 +3207,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Erschliessungszustand object
         /// </summary>
@@ -3231,13 +3230,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Erschliessungszustand obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Erschliessungszustand Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -3254,13 +3253,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Erschliessungszustand Deserialize(Stream s)
         {
             return ((Erschliessungszustand)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Erschliessungszustand object into file
         /// </summary>
@@ -3281,7 +3280,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -3301,7 +3300,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Erschliessungszustand object
         /// </summary>
@@ -3324,13 +3323,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Erschliessungszustand obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Erschliessungszustand LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -3357,20 +3356,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Reproduktionsart
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -3382,7 +3381,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Reproduktionsart object
@@ -3414,7 +3413,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Reproduktionsart object
         /// </summary>
@@ -3437,13 +3436,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Reproduktionsart obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Reproduktionsart Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -3460,13 +3459,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Reproduktionsart Deserialize(Stream s)
         {
             return ((Reproduktionsart)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Reproduktionsart object into file
         /// </summary>
@@ -3487,7 +3486,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -3507,7 +3506,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Reproduktionsart object
         /// </summary>
@@ -3530,13 +3529,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Reproduktionsart obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Reproduktionsart LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -3563,23 +3562,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Ueberlieferungsform
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         public string Form { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> Sortierung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -3591,7 +3590,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Ueberlieferungsform object
@@ -3623,7 +3622,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Ueberlieferungsform object
         /// </summary>
@@ -3646,13 +3645,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Ueberlieferungsform obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Ueberlieferungsform Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -3669,13 +3668,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Ueberlieferungsform Deserialize(Stream s)
         {
             return ((Ueberlieferungsform)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Ueberlieferungsform object into file
         /// </summary>
@@ -3696,7 +3695,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -3716,7 +3715,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Ueberlieferungsform object
         /// </summary>
@@ -3739,13 +3738,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Ueberlieferungsform obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Ueberlieferungsform LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -3772,27 +3771,27 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Akzession
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Akzessionsnummer { get; set; }
         public string Titel { get; set; }
         public DateTimeFieldType Datum { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Akzession()
         {
             Datum = new DateTimeFieldType();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -3804,7 +3803,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Akzession object
@@ -3836,7 +3835,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Akzession object
         /// </summary>
@@ -3859,13 +3858,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Akzession obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Akzession Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -3882,13 +3881,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Akzession Deserialize(Stream s)
         {
             return ((Akzession)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Akzession object into file
         /// </summary>
@@ -3909,7 +3908,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -3929,7 +3928,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Akzession object
         /// </summary>
@@ -3952,13 +3951,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Akzession obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Akzession LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -3985,20 +3984,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Provenienz
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string OffiziellerName { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -4010,7 +4009,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Provenienz object
@@ -4042,7 +4041,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Provenienz object
         /// </summary>
@@ -4065,13 +4064,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Provenienz obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Provenienz Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -4088,13 +4087,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Provenienz Deserialize(Stream s)
         {
             return ((Provenienz)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Provenienz object into file
         /// </summary>
@@ -4115,7 +4114,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -4135,7 +4134,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Provenienz object
         /// </summary>
@@ -4158,13 +4157,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Provenienz obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Provenienz LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -4191,22 +4190,22 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Archivalienart
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> Sortierung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -4218,7 +4217,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Archivalienart object
@@ -4250,7 +4249,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Archivalienart object
         /// </summary>
@@ -4273,13 +4272,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Archivalienart obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Archivalienart Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -4296,13 +4295,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Archivalienart Deserialize(Stream s)
         {
             return ((Archivalienart)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Archivalienart object into file
         /// </summary>
@@ -4323,7 +4322,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -4343,7 +4342,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Archivalienart object
         /// </summary>
@@ -4366,13 +4365,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Archivalienart obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Archivalienart LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -4399,20 +4398,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class ArtDatei
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -4424,7 +4423,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize ArtDatei object
@@ -4456,7 +4455,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes ArtDatei object
         /// </summary>
@@ -4479,13 +4478,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out ArtDatei obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static ArtDatei Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -4502,13 +4501,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static ArtDatei Deserialize(Stream s)
         {
             return ((ArtDatei)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current ArtDatei object into file
         /// </summary>
@@ -4529,7 +4528,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -4549,7 +4548,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an ArtDatei object
         /// </summary>
@@ -4572,13 +4571,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out ArtDatei obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static ArtDatei LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -4605,12 +4604,12 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class RenditionType
     {
         private static XmlSerializer _serializerXml;
@@ -4618,7 +4617,7 @@ namespace CMI.Access.Harvest
         public string Extension { get; set; }
         [XmlAttribute]
         public string Ansicht { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -4630,7 +4629,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize RenditionType object
@@ -4662,7 +4661,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes RenditionType object
         /// </summary>
@@ -4685,13 +4684,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out RenditionType obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static RenditionType Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -4708,13 +4707,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static RenditionType Deserialize(Stream s)
         {
             return ((RenditionType)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current RenditionType object into file
         /// </summary>
@@ -4735,7 +4734,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -4755,7 +4754,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an RenditionType object
         /// </summary>
@@ -4778,13 +4777,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out RenditionType obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static RenditionType LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -4811,12 +4810,12 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VersionType
     {
         private static XmlSerializer _serializerXml;
@@ -4824,12 +4823,12 @@ namespace CMI.Access.Harvest
         public List<RenditionType> Items { get; set; }
         [XmlAttribute]
         public decimal Nr { get; set; }
-
+        
         public VersionType()
         {
             Items = new List<RenditionType>();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -4841,7 +4840,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VersionType object
@@ -4873,7 +4872,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VersionType object
         /// </summary>
@@ -4896,13 +4895,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VersionType obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VersionType Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -4919,13 +4918,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VersionType Deserialize(Stream s)
         {
             return ((VersionType)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VersionType object into file
         /// </summary>
@@ -4946,7 +4945,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -4966,7 +4965,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VersionType object
         /// </summary>
@@ -4989,13 +4988,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VersionType obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VersionType LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -5022,12 +5021,12 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class DocumentFieldType
     {
         private static XmlSerializer _serializerXml;
@@ -5037,12 +5036,12 @@ namespace CMI.Access.Harvest
         public string ID { get; set; }
         [XmlAttribute]
         public string FileName { get; set; }
-
+        
         public DocumentFieldType()
         {
             Items = new List<VersionType>();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -5054,7 +5053,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize DocumentFieldType object
@@ -5086,7 +5085,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes DocumentFieldType object
         /// </summary>
@@ -5109,13 +5108,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out DocumentFieldType obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static DocumentFieldType Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -5132,13 +5131,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static DocumentFieldType Deserialize(Stream s)
         {
             return ((DocumentFieldType)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current DocumentFieldType object into file
         /// </summary>
@@ -5159,7 +5158,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -5179,7 +5178,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an DocumentFieldType object
         /// </summary>
@@ -5202,13 +5201,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out DocumentFieldType obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static DocumentFieldType LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -5235,34 +5234,34 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Datei
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Titel { get; set; }
         public DocumentFieldType File { get; set; }
         public string FileExtension { get; set; }
         public string FileSize { get; set; }
         public string FileType { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> FileTypeOrder { get; set; }
         public string Bemerkungen { get; set; }
         public DateiArt Art { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public Datei()
         {
             Art = new DateiArt();
             File = new DocumentFieldType();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -5274,7 +5273,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Datei object
@@ -5306,7 +5305,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Datei object
         /// </summary>
@@ -5329,13 +5328,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Datei obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Datei Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -5352,13 +5351,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Datei Deserialize(Stream s)
         {
             return ((Datei)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Datei object into file
         /// </summary>
@@ -5379,7 +5378,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -5399,7 +5398,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Datei object
         /// </summary>
@@ -5422,13 +5421,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Datei obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Datei LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -5455,23 +5454,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class DateiArt
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("ArtDatei")]
         public ArtDatei Item { get; set; }
-
+        
         public DateiArt()
         {
             Item = new ArtDatei();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -5483,7 +5482,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize DateiArt object
@@ -5515,7 +5514,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes DateiArt object
         /// </summary>
@@ -5538,13 +5537,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out DateiArt obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static DateiArt Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -5561,13 +5560,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static DateiArt Deserialize(Stream s)
         {
             return ((DateiArt)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current DateiArt object into file
         /// </summary>
@@ -5588,7 +5587,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -5608,7 +5607,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an DateiArt object
         /// </summary>
@@ -5631,13 +5630,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out DateiArt obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static DateiArt LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -5664,20 +5663,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class ParentM
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Kuerzel { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -5689,7 +5688,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize ParentM object
@@ -5721,7 +5720,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes ParentM object
         /// </summary>
@@ -5744,13 +5743,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out ParentM obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static ParentM Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -5767,13 +5766,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static ParentM Deserialize(Stream s)
         {
             return ((ParentM)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current ParentM object into file
         /// </summary>
@@ -5794,7 +5793,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -5814,7 +5813,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an ParentM object
         /// </summary>
@@ -5837,13 +5836,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out ParentM obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static ParentM LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -5870,20 +5869,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class ParentG
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Kuerzel { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -5895,7 +5894,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize ParentG object
@@ -5927,7 +5926,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes ParentG object
         /// </summary>
@@ -5950,13 +5949,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out ParentG obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static ParentG Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -5973,13 +5972,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static ParentG Deserialize(Stream s)
         {
             return ((ParentG)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current ParentG object into file
         /// </summary>
@@ -6000,7 +5999,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -6020,7 +6019,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an ParentG object
         /// </summary>
@@ -6043,13 +6042,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out ParentG obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static ParentG LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -6076,20 +6075,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class ArtMagazinObjekt
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -6101,7 +6100,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize ArtMagazinObjekt object
@@ -6133,7 +6132,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes ArtMagazinObjekt object
         /// </summary>
@@ -6156,13 +6155,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out ArtMagazinObjekt obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static ArtMagazinObjekt Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -6179,13 +6178,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static ArtMagazinObjekt Deserialize(Stream s)
         {
             return ((ArtMagazinObjekt)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current ArtMagazinObjekt object into file
         /// </summary>
@@ -6206,7 +6205,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -6226,7 +6225,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an ArtMagazinObjekt object
         /// </summary>
@@ -6249,13 +6248,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out ArtMagazinObjekt obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static ArtMagazinObjekt LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -6282,16 +6281,16 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class MagazinObjekt
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Kuerzel { get; set; }
         public string Bezeichnung { get; set; }
         public MagazinObjektArt Art { get; set; }
@@ -6299,14 +6298,14 @@ namespace CMI.Access.Harvest
         public MagazinObjektParentMagazinobjekt ParentMagazinobjekt { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         public MagazinObjekt()
         {
             ParentMagazinobjekt = new MagazinObjektParentMagazinobjekt();
             ParentGebauede = new MagazinObjektParentGebauede();
             Art = new MagazinObjektArt();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -6318,7 +6317,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize MagazinObjekt object
@@ -6350,7 +6349,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes MagazinObjekt object
         /// </summary>
@@ -6373,13 +6372,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out MagazinObjekt obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static MagazinObjekt Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -6396,13 +6395,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static MagazinObjekt Deserialize(Stream s)
         {
             return ((MagazinObjekt)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current MagazinObjekt object into file
         /// </summary>
@@ -6423,7 +6422,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -6443,7 +6442,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an MagazinObjekt object
         /// </summary>
@@ -6466,13 +6465,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out MagazinObjekt obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static MagazinObjekt LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -6499,23 +6498,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class MagazinObjektArt
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("ArtMagazinObjekt")]
         public ArtMagazinObjekt Item { get; set; }
-
+        
         public MagazinObjektArt()
         {
             Item = new ArtMagazinObjekt();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -6527,7 +6526,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize MagazinObjektArt object
@@ -6559,7 +6558,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes MagazinObjektArt object
         /// </summary>
@@ -6582,13 +6581,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out MagazinObjektArt obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static MagazinObjektArt Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -6605,13 +6604,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static MagazinObjektArt Deserialize(Stream s)
         {
             return ((MagazinObjektArt)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current MagazinObjektArt object into file
         /// </summary>
@@ -6632,7 +6631,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -6652,7 +6651,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an MagazinObjektArt object
         /// </summary>
@@ -6675,13 +6674,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out MagazinObjektArt obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static MagazinObjektArt LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -6708,23 +6707,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class MagazinObjektParentGebauede
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Gebaeude")]
         public ParentG Item { get; set; }
-
+        
         public MagazinObjektParentGebauede()
         {
             Item = new ParentG();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -6736,7 +6735,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize MagazinObjektParentGebauede object
@@ -6768,7 +6767,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes MagazinObjektParentGebauede object
         /// </summary>
@@ -6791,13 +6790,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out MagazinObjektParentGebauede obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static MagazinObjektParentGebauede Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -6814,13 +6813,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static MagazinObjektParentGebauede Deserialize(Stream s)
         {
             return ((MagazinObjektParentGebauede)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current MagazinObjektParentGebauede object into file
         /// </summary>
@@ -6841,7 +6840,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -6861,7 +6860,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an MagazinObjektParentGebauede object
         /// </summary>
@@ -6884,13 +6883,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out MagazinObjektParentGebauede obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static MagazinObjektParentGebauede LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -6917,23 +6916,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class MagazinObjektParentMagazinobjekt
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("MagazinObjekt")]
         public ParentM Item { get; set; }
-
+        
         public MagazinObjektParentMagazinobjekt()
         {
             Item = new ParentM();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -6945,7 +6944,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize MagazinObjektParentMagazinobjekt object
@@ -6977,7 +6976,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes MagazinObjektParentMagazinobjekt object
         /// </summary>
@@ -7000,13 +6999,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out MagazinObjektParentMagazinobjekt obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static MagazinObjektParentMagazinobjekt Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -7023,13 +7022,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static MagazinObjektParentMagazinobjekt Deserialize(Stream s)
         {
             return ((MagazinObjektParentMagazinobjekt)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current MagazinObjektParentMagazinobjekt object into file
         /// </summary>
@@ -7050,7 +7049,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -7070,7 +7069,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an MagazinObjektParentMagazinobjekt object
         /// </summary>
@@ -7093,13 +7092,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out MagazinObjektParentMagazinobjekt obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static MagazinObjektParentMagazinobjekt LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -7126,21 +7125,21 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Gebaeude
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Kuerzel { get; set; }
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -7152,7 +7151,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Gebaeude object
@@ -7184,7 +7183,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Gebaeude object
         /// </summary>
@@ -7207,13 +7206,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Gebaeude obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Gebaeude Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -7230,13 +7229,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Gebaeude Deserialize(Stream s)
         {
             return ((Gebaeude)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Gebaeude object into file
         /// </summary>
@@ -7257,7 +7256,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -7277,7 +7276,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Gebaeude object
         /// </summary>
@@ -7300,13 +7299,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Gebaeude obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Gebaeude LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -7333,20 +7332,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Schrift
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -7358,7 +7357,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Schrift object
@@ -7390,7 +7389,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Schrift object
         /// </summary>
@@ -7413,13 +7412,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Schrift obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Schrift Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -7436,13 +7435,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Schrift Deserialize(Stream s)
         {
             return ((Schrift)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Schrift object into file
         /// </summary>
@@ -7463,7 +7462,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -7483,7 +7482,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Schrift object
         /// </summary>
@@ -7506,13 +7505,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Schrift obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Schrift LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -7539,20 +7538,20 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Sprache
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Bezeichnung { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -7564,7 +7563,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Sprache object
@@ -7596,7 +7595,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Sprache object
         /// </summary>
@@ -7619,13 +7618,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Sprache obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Sprache Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -7642,13 +7641,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Sprache Deserialize(Stream s)
         {
             return ((Sprache)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Sprache object into file
         /// </summary>
@@ -7669,7 +7668,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -7689,7 +7688,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Sprache object
         /// </summary>
@@ -7712,13 +7711,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Sprache obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Sprache LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -7745,22 +7744,22 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class Umfang
     {
         private static XmlSerializer _serializerXml;
-
+        
         public string Masseinheit { get; set; }
-        [XmlElement(IsNullable = true)]
+        [XmlElement(IsNullable=true)]
         public System.Nullable<decimal> Wert { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -7772,7 +7771,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize Umfang object
@@ -7804,7 +7803,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes Umfang object
         /// </summary>
@@ -7827,13 +7826,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out Umfang obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static Umfang Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -7850,13 +7849,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static Umfang Deserialize(Stream s)
         {
             return ((Umfang)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current Umfang object into file
         /// </summary>
@@ -7877,7 +7876,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -7897,7 +7896,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an Umfang object
         /// </summary>
@@ -7920,13 +7919,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out Umfang obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static Umfang LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -7953,23 +7952,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerzeichnungseinheitErschliessungszustand
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Erschliessungszustand")]
         public Erschliessungszustand Item { get; set; }
-
+        
         public VerzeichnungseinheitErschliessungszustand()
         {
             Item = new Erschliessungszustand();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -7981,7 +7980,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerzeichnungseinheitErschliessungszustand object
@@ -8013,7 +8012,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerzeichnungseinheitErschliessungszustand object
         /// </summary>
@@ -8036,13 +8035,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerzeichnungseinheitErschliessungszustand obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitErschliessungszustand Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -8059,13 +8058,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerzeichnungseinheitErschliessungszustand Deserialize(Stream s)
         {
             return ((VerzeichnungseinheitErschliessungszustand)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerzeichnungseinheitErschliessungszustand object into file
         /// </summary>
@@ -8086,7 +8085,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -8106,7 +8105,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerzeichnungseinheitErschliessungszustand object
         /// </summary>
@@ -8129,13 +8128,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerzeichnungseinheitErschliessungszustand obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitErschliessungszustand LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -8162,23 +8161,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerzeichnungseinheitDigitalisierungsgrad
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Digitalisierungsgrad")]
         public Digitalisierungsgrad Item { get; set; }
-
+        
         public VerzeichnungseinheitDigitalisierungsgrad()
         {
             Item = new Digitalisierungsgrad();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -8190,7 +8189,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerzeichnungseinheitDigitalisierungsgrad object
@@ -8222,7 +8221,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerzeichnungseinheitDigitalisierungsgrad object
         /// </summary>
@@ -8245,13 +8244,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerzeichnungseinheitDigitalisierungsgrad obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitDigitalisierungsgrad Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -8268,13 +8267,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerzeichnungseinheitDigitalisierungsgrad Deserialize(Stream s)
         {
             return ((VerzeichnungseinheitDigitalisierungsgrad)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerzeichnungseinheitDigitalisierungsgrad object into file
         /// </summary>
@@ -8295,7 +8294,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -8315,7 +8314,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerzeichnungseinheitDigitalisierungsgrad object
         /// </summary>
@@ -8338,13 +8337,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerzeichnungseinheitDigitalisierungsgrad obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitDigitalisierungsgrad LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -8371,23 +8370,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerzeichnungseinheitVerfuegbarkeit
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Verfuegbarkeit")]
         public Verfuegbarkeit Item { get; set; }
-
+        
         public VerzeichnungseinheitVerfuegbarkeit()
         {
             Item = new Verfuegbarkeit();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -8399,7 +8398,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerzeichnungseinheitVerfuegbarkeit object
@@ -8431,7 +8430,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerzeichnungseinheitVerfuegbarkeit object
         /// </summary>
@@ -8454,13 +8453,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerzeichnungseinheitVerfuegbarkeit obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitVerfuegbarkeit Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -8477,13 +8476,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerzeichnungseinheitVerfuegbarkeit Deserialize(Stream s)
         {
             return ((VerzeichnungseinheitVerfuegbarkeit)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerzeichnungseinheitVerfuegbarkeit object into file
         /// </summary>
@@ -8504,7 +8503,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -8524,7 +8523,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerzeichnungseinheitVerfuegbarkeit object
         /// </summary>
@@ -8547,13 +8546,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerzeichnungseinheitVerfuegbarkeit obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitVerfuegbarkeit LoadFromFile(string fileName)
         {
             FileStream file = null;
@@ -8580,23 +8579,23 @@ namespace CMI.Access.Harvest
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategoryAttribute("code")]
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.cmiag.ch/cdws/CMIArchiveRecord")]
+    [XmlTypeAttribute(AnonymousType=true, Namespace="http://www.cmiag.ch/cdws/CMIArchiveRecord")]
     public partial class VerzeichnungseinheitSchutzfrist
     {
         private static XmlSerializer _serializerXml;
         [XmlElement("Schutzfrist")]
         public Schutzfrist Item { get; set; }
-
+        
         public VerzeichnungseinheitSchutzfrist()
         {
             Item = new Schutzfrist();
         }
-
+        
         private static XmlSerializer SerializerXml
         {
             get
@@ -8608,7 +8607,7 @@ namespace CMI.Access.Harvest
                 return _serializerXml;
             }
         }
-
+        
         #region Serialize/Deserialize
         /// <summary>
         /// Serialize VerzeichnungseinheitSchutzfrist object
@@ -8640,7 +8639,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes VerzeichnungseinheitSchutzfrist object
         /// </summary>
@@ -8663,13 +8662,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool Deserialize(string input, out VerzeichnungseinheitSchutzfrist obj)
         {
             Exception exception = null;
             return Deserialize(input, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitSchutzfrist Deserialize(string input)
         {
             StringReader stringReader = null;
@@ -8686,13 +8685,13 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         public static VerzeichnungseinheitSchutzfrist Deserialize(Stream s)
         {
             return ((VerzeichnungseinheitSchutzfrist)(SerializerXml.Deserialize(s)));
         }
         #endregion
-
+        
         /// <summary>
         /// Serializes current VerzeichnungseinheitSchutzfrist object into file
         /// </summary>
@@ -8713,7 +8712,7 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public virtual void SaveToFile(string fileName)
         {
             StreamWriter streamWriter = null;
@@ -8733,7 +8732,7 @@ namespace CMI.Access.Harvest
                 }
             }
         }
-
+        
         /// <summary>
         /// Deserializes xml markup from file into an VerzeichnungseinheitSchutzfrist object
         /// </summary>
@@ -8756,13 +8755,13 @@ namespace CMI.Access.Harvest
                 return false;
             }
         }
-
+        
         public static bool LoadFromFile(string fileName, out VerzeichnungseinheitSchutzfrist obj)
         {
             Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-
+        
         public static VerzeichnungseinheitSchutzfrist LoadFromFile(string fileName)
         {
             FileStream file = null;

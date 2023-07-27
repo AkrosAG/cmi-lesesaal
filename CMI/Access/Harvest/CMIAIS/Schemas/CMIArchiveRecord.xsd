@@ -386,7 +386,7 @@
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="ExterneID2" type="xsd:string"/>
-			<xsd:element name="GND-ID" type="xsd:string" nillable="true"/>
+			<xsd:element name="GND-ID" type="xsd:decimal" nillable="true"/>
 			<xsd:element name="Geburtsdatum" type="xsd:string"/>
 			<xsd:element name="Sterbedatum" type="xsd:string"/>
 		</xsd:sequence>
