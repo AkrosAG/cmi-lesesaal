@@ -206,7 +206,8 @@ namespace CMI.Manager.Index
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
 
-            if(archiveRecord.Metadata.Files.Any())
+            // check if the field Metadata.Files has items and copy them to the Elastic record
+            if (archiveRecord.Metadata.Files.Any())
             {
                 var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
                 {
@@ -217,6 +218,7 @@ namespace CMI.Manager.Index
                     Base64Content = f.ContentText
                 });
                 elasticArchiveRecord.Files.AddRange(files);
+                Log.Verbose($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
             }
 
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
