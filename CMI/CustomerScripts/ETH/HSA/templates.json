@@ -45,7 +45,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AllgemeineAnmerkungen",
+              "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -71,7 +71,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.CustomKuerzel",
+              "DbFieldName": "DetailData.Kuerzel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -93,7 +93,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomErlaeuterung",
+              "DbFieldName": "DetailData.Erlaeuterung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -150,7 +150,7 @@
               }
             },
             {
-              "DbFieldName": "Level",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -201,8 +201,8 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
@@ -210,7 +210,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungEntstehungszeitraum",
+              "DbFieldName": "DetailData.BemerkungDatierung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -220,7 +220,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
@@ -231,7 +231,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkZuPrimaerdaten",
+              "DbFieldName": "DetailData.LinkZuPrimaerdaten",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
@@ -241,7 +241,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomURL",
+              "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
@@ -426,7 +426,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -437,7 +437,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -606,7 +606,7 @@
             {
               "DbFieldName": "Descriptors",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
@@ -699,7 +699,7 @@
               }
             },
             {
-              "DbFieldName": "Level",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -750,13 +750,12 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
@@ -766,14 +765,13 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating",
-                "fr": "Remarques sur la datation"
+                "en": "Remarks on the dating"
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Link zu Digitalisat",
@@ -782,9 +780,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
@@ -792,9 +790,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomURL",
+              "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
-              "ElasticType": "string",
+              "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "URL",
@@ -915,7 +913,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1052,7 +1050,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomStandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1073,7 +1071,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomBemerkungUmfang",
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1185,7 +1183,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Verzeichnungsstufe",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1235,27 +1233,26 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungEntstehungszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Bemerkungen zum Entstehungszeitraum",
+                "de": "Bezugszeitraum",
+                "en": "Reference period"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungDatierung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zur Datierung",
                 "en": "Remarks on the dating"
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1265,7 +1262,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1275,7 +1272,7 @@
               }
             },
             {
-              "DbFieldName": "URL",
+              "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1395,7 +1392,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1405,7 +1402,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1415,7 +1412,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomBemerkungSprache",
+              "DbFieldName": "DetailData.BemerkungSprache",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1536,7 +1533,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomStandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1556,7 +1553,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomBemerkungUmfang",
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1671,7 +1668,7 @@
               }
             },
             {
-              "DbFieldName": "Level",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1722,29 +1719,27 @@
             },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period",
-                "fr": "Période de référence"
+                "en": "Reference period"
               }
             },
             {
-              "DbFieldName": "DetailData.DatierungBemerkungen",
+              "DbFieldName": "DetailData.BemerkungDatierung",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating",
-                "fr": "Remarques sur la datation"
+                "en": "Remarks on the dating"
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkZuDigitalisat",
-              "DbType": "Text",
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1754,8 +1749,8 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomLinkAufDigitalesOriginal",
-              "DbType": "Text",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1764,8 +1759,8 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomURL",
-              "DbType": "Text",
+              "DbFieldName": "DetailData.URL",
+              "DbType": "HTML",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
@@ -1889,7 +1884,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomSprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1899,7 +1894,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Schriften",
+              "DbFieldName": "DetailData.Schrift",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -2026,7 +2021,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomStandortBemerkungen",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -2047,7 +2042,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.CustomBemerkungUmfang",
+              "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,

@@ -17,7 +17,7 @@
         string GetInitialTokenFromClaims();
 
         string GetFromClaim(string field);
-        string GetManagementRoleFromClaim();
+        string GetManagementRoleFromClaim(string rolePublicClient = null);
         bool HasClaims();
     }
 }

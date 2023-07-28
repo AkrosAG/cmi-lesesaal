@@ -1,12 +1,12 @@
 [
   {
-      "Field": "level.keyword",
-      "Size": 25,
-      "Sort": "_term",
-      "Title": "level",
-      "Type": "Term",
-      "Missing": "",
-      "Index":  "1"
+    "Field": "level.keyword",
+    "Size": 25,
+    "Sort": "_term",
+    "Title": "level",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "1"
   },
   {
     "Field": "permission.keyword",

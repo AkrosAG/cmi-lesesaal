@@ -26,10 +26,6 @@ namespace CMI.Web.Common.Auth.Sibboleth
 
             if (shibSessionType != ShibbolethSessionType.None)
             {
-#if DEBUG
-                var values = string.Join(Environment.NewLine, context.Request.ServerVariables.AllKeys.Select(k => $"{k}: {context.Request.ServerVariables[k]}"));
-                Log.Information(values);
-#endif
                 var attributes = GetAttributesFromRequest(context.Request, shibSessionType);
 
                 return CreateClaimsPrincipal(attributes);
