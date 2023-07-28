@@ -76,6 +76,7 @@ namespace CMI.Contract.Common
         public int? ProtectionDuration { get; set; }
         public List<ElasticDetailData> DetailData { get; set; }
         public List<ElasticDescriptor> Descriptors { get; set; }
+        public List<ElasticArchiveRecordFile> Files { get; set; }
     }
 
     public class ElasticArchiveRecord : DetailRecord
@@ -109,7 +110,6 @@ namespace CMI.Contract.Common
         public bool IsPhysicalyUsable { get; set; }
         public List<ElasticContainer> Containers { get; set; }
         public List<ElasticReference> References { get; set; }
-        public List<ElasticArchiveRecordFile> Files { get; set; }
         
         [XmlArrayItem("package", IsNullable = false, ElementName = "primaryData")]
         public List<ElasticArchiveRecordPackage> PrimaryData { get; set; }
