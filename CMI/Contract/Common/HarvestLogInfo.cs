@@ -5,7 +5,7 @@ namespace CMI.Contract.Common
 {
     public class HarvestLogInfo
     {
-        public int MutationId { get; set; }
+        public long MutationId { get; set; }
         public string ArchiveRecordId { get; set; }
         public string ArchiveRecordIdName { get; set; }
         public string ActionName { get; set; }
@@ -21,7 +21,7 @@ namespace CMI.Contract.Common
     public class HarvestLogInfoDetail
     {
         public int MutationActionDetailId { get; set; }
-        public int MutationId { get; set; }
+        public long MutationId { get; set; }
         public DateTime ActionDate { get; set; }
         public ActionStatus ActionStatus { get; set; }
         public string ErrorReason { get; set; }

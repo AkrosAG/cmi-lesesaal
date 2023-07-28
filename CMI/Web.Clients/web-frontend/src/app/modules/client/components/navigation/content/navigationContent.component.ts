@@ -15,6 +15,8 @@ export class NavigationContentComponent implements AfterViewInit {
 	private _elem: any;
 	public mobileMainNavOpen = false;
 	public mobileUserNavOpen = false;
+	private showThematicoverview: boolean  = false;
+	private hasChatbot: boolean;
 
 	constructor(private _context: ClientContext,
 				private _elemRef: ElementRef,
@@ -27,6 +29,8 @@ export class NavigationContentComponent implements AfterViewInit {
 				private _authentication: AuthenticationService,
 				private _router: Router) {
 		this._elem = this._elemRef.nativeElement;
+		this.hasChatbot = this._cfg.getSetting('chatbot.urlForChatBot')?.length > 0;
+		this.showThematicoverview = this._cfg.getSetting('showThematicOverview').showThematicOverview;
 
 		this._router.events.subscribe(event => {
 			if (event instanceof NavigationStart) {
@@ -48,7 +52,7 @@ export class NavigationContentComponent implements AfterViewInit {
 	}
 
 	public get chatBotEnabled(): boolean {
-		if (!this._pre.isPreloaded) {
+		if (!this._pre.isPreloaded || !this.hasChatbot) {
 			return false;
 		}
 
@@ -109,6 +113,9 @@ export class NavigationContentComponent implements AfterViewInit {
 		return (this.mobileUserNavOpen || this.mobileMainNavOpen) ? dropdownHeight + 'px' : 'auto';
 	}
 
+	public get showThematicOverview(): boolean {
+		return this.showThematicoverview;
+	}
 	public get authenticated(): boolean {
 		return this._context.authenticated;
 	}
