@@ -368,7 +368,6 @@ namespace CMI.Web.Frontend.api.Controllers
             return searchResults.Select(item => new VeExportRecord
             {
                 ReferenceCode = item.ReferenceCode,
-                FileReference = item.ReferenceCode, // ToDo: Review
                 Title = item.Title,
                 CreationPeriod = item.CreationPeriod?.Text,
                 WithinInfo = item.Contains,

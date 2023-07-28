@@ -189,7 +189,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         continue;
                     }
 
-                    veFavorite.CustomFields = elasticHit.Data?.DetailData; 
+                    veFavorite.Accessibility = elasticHit.Data?.Accessibility;
                     veFavorite.WithinInfo = elasticHit.Data?.Contains;
                     veFavorite.Title = elasticHit.Data?.Title;
                     veFavorite.Level = elasticHit.Data?.Level;
@@ -244,12 +244,11 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 // ReSharper disable PossibleNullReferenceException
                 ReferenceCode = (item as VeFavorite).ReferenceCode,
-                FileReference = VeExportRecordHelper.GetCustomField((item as VeFavorite).CustomFields, "aktenzeichen"),
                 Title = item.Title,
                 CreationPeriod = (item as VeFavorite).CreationPeriod,
                 WithinInfo = (item as VeFavorite).WithinInfo,
                 Level = (item as VeFavorite).Level,
-                Accessibility = VeExportRecordHelper.GetCustomField((item as VeFavorite).CustomFields, "zugänglichkeitGemässBga")
+                Accessibility = (item as VeFavorite).Accessibility
                 // ReSharper enable PossibleNullReferenceException
             }).ToList();
         }
