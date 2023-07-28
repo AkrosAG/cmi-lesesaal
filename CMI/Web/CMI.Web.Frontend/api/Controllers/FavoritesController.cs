@@ -189,7 +189,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         continue;
                     }
 
-                    veFavorite.Accessibility = elasticHit.Data?.Accessibility;
+                    veFavorite.Accessibility = elasticHit.Data?.Permission;
                     veFavorite.WithinInfo = elasticHit.Data?.Contains;
                     veFavorite.Title = elasticHit.Data?.Title;
                     veFavorite.Level = elasticHit.Data?.Level;

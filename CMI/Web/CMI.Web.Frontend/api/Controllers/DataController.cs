@@ -372,7 +372,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 CreationPeriod = item.CreationPeriod?.Text,
                 WithinInfo = item.Contains,
                 Level = item.Level,
-                Accessibility = item.Accessibility
+                Accessibility = item.Permission
             }).ToList();
         }
     }
