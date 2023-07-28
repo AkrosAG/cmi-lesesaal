@@ -45,71 +45,49 @@ namespace CMI.Web.Frontend.Helpers
         }
 
         #region private Methods
-        
+
         private ExcelColumnInfos CreateColumnInfo(string language)
         {
-            var list = new ExcelColumnInfos ();
-            
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.referenceCode"))
+            return new ExcelColumnInfos
             {
-                list.Add(new ExcelColumnInfo
+                new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.ReferenceCode), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.referenceCode")
-                });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.fileReference"))
-            {
-                list.Add(new ExcelColumnInfo
+                },
+                new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.FileReference), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileReference")
-                });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.title"))
-            {
-                list.Add(new ExcelColumnInfo
+                },
+                new ExcelColumnInfo
                 {
-                ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
-                ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
-                });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.creationPeriod"))
-            {
-                list.Add(new ExcelColumnInfo
-                 {
+                    ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
+                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
+                },
+                new ExcelColumnInfo
+                {
                     ColumnName = nameof(VeExportRecord.CreationPeriod), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.creationPeriod")
-                 });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.withinInfo"))
-            {
-                list.Add(new ExcelColumnInfo
+                },
+                new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.WithinInfo), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.withinInfo")
-                });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.level"))
-            {
-                list.Add(new ExcelColumnInfo
+                },
+                new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Level), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.level")
-                });
-            }
-            if (FrontendSettings.Instance.ContainsTranslation(language, "veExportRecord.accessibility"))
-            {
-                list.Add(new ExcelColumnInfo
+                },
+                new ExcelColumnInfo
                 {
                     ColumnName = nameof(VeExportRecord.Accessibility), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.accessibility")
-                });
-            }
-
-            return list;
+                }
+            };
         }
-        
+
         public static string GetCustomField(dynamic customFields, string fieldName)
         {
             if (customFields != null)
