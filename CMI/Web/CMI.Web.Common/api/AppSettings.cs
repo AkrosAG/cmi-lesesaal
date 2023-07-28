@@ -64,35 +64,6 @@ namespace CMI.Web.Common.api
             return text;
         }
 
-        public bool ContainsTranslation(string language, string path)
-        {
-            var text = string.Empty;
-            var texts = GetTranslations(language);
-            if (texts != null)
-            {
-                var token = JsonHelper.GetByPath(texts, path);
-                if (token != null)
-                {
-                    text = token.ToString();
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                texts = GetCustomerTranslations(language);
-                if (texts != null)
-                {
-                    var token = JsonHelper.GetByPath(texts, path);
-                    if (token != null)
-                    {
-                        text = token.ToString();
-                    }
-                }
-            }
-
-            return !string.IsNullOrEmpty(text);
-        }
-
         public JObject GetTranslations(string language)
         {
             if (!translations.ContainsKey(language))
