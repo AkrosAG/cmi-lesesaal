@@ -166,7 +166,7 @@
     "ElementName": "Reproduktionsbestimmungen",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Reproduktionsbestimmungen",
-    "TargetField": "Reproduktionsbestimmungenn",
+    "TargetField": "Reproduktionsbestimmungen",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
@@ -634,6 +634,15 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Verwaltungssignatur",
     "TargetField": "Verwaltungssignatur",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "CustomFreeTextField10",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "BemerkungUmfang",
+    "TargetField": "BemerkungUmfang",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0

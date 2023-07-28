@@ -128,9 +128,9 @@ namespace CMI.Contract.Common.Compiler
                 int counter = 0;
                 foreach (var descriptor in personDescriptors)
                 {
+                    descriptor.SortingNumber = counter++;
                     if (descriptor.DateOfBirth != null)
                     {
-                        descriptor.SortingNumber = counter++;
                         string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
                         descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
                             descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
@@ -139,10 +139,6 @@ namespace CMI.Contract.Common.Compiler
                     else
                     {
                         descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
-                    }
-                    if (!string.IsNullOrEmpty(descriptor.Source))
-                    {
-                        descriptor.Source = string.Format("<a href =\"https://d-nb.info/gnd/{0}\" target=\"_blank\"> GND-ID: {1}</a>", descriptor.Source, descriptor.Source);
                     }
                 }
 

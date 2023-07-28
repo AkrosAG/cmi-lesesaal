@@ -369,6 +369,8 @@
 					</xsd:choice>
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="Rolle" type="xsd:string"/>
+			<xsd:element name="CustomFreeTextField01" type="xsd:string"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -387,7 +389,6 @@
 			<xsd:element name="GND-ID" type="xsd:decimal" nillable="true"/>
 			<xsd:element name="Geburtsdatum" type="xsd:string"/>
 			<xsd:element name="Sterbedatum" type="xsd:string"/>
-			<xsd:element name="Rolle" type="xsd:string"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 	</xsd:complexType>
