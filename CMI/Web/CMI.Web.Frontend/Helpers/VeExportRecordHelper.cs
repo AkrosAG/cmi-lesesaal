@@ -57,11 +57,6 @@ namespace CMI.Web.Frontend.Helpers
                 },
                 new ExcelColumnInfo
                 {
-                    ColumnName = nameof(VeExportRecord.FileReference), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileReference")
-                },
-                new ExcelColumnInfo
-                {
                     ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
                 },
