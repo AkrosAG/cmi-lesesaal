@@ -417,7 +417,6 @@
 	},
 	"veExportRecord": {
 		"referenceCode": "Reference code",
-		"fileReference": "File reference",
 		"title": "Title",
 		"creationPeriod": "Creation period",
 		"withinInfo": "Contains",

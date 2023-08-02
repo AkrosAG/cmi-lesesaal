@@ -142,14 +142,14 @@ namespace CMI.Web.Common.Helpers
                 .Where(p => p.GetSetMethod(true).IsPublic).ToList();
 
             foreach (var row in data)
-            foreach (var property in properties)
-            {
-                var temp = (string) property.GetValue(row, null);
-                if (!string.IsNullOrEmpty(temp) && temp.Length > lengthLimit)
+                foreach (var property in properties)
                 {
-                    property.SetValue(row, temp.Substring(0, lengthLimit), null);
+                    var temp = (string)property.GetValue(row, null);
+                    if (!string.IsNullOrEmpty(temp) && temp.Length > lengthLimit)
+                    {
+                        property.SetValue(row, temp.Substring(0, lengthLimit), null);
+                    }
                 }
-            }
         }
     }
 
