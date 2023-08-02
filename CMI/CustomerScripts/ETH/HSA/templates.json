@@ -172,6 +172,7 @@
             {
               "DbFieldName": "DetailData.Archivalienart",
               "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
@@ -185,8 +186,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Titel",
-                "en": "Title",
-                "fr": "Titre"
+                "en": "Title"
               }
             },
             {
@@ -281,8 +281,7 @@
                 "fr": "Historique de la conservation"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -331,8 +330,7 @@
                 "en": "Order and classification"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -352,24 +350,23 @@
               }
             },
             {
-              "DbFieldName": "ProtectionBaseDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "protectionStartDate",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Schutzfrist",
-                "en": "Base date closure-period",
-                "fr": "Date de base du délai de protection"
+                "en": "Base date closure-period"
               }
             },
             {
-              "DbFieldNameText": "protectionCategory",
+              "DbFieldName": "protectionCategory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schutzfrist",
-                "en": "Schutzfrist"
+                "en": "Protection period"
               }
             },
             {
@@ -475,8 +472,7 @@
                 "fr": "Instruments de recherche"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -620,8 +616,7 @@
                 "en": "Description"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -900,7 +895,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Lizenz",
+              "DbFieldName": "License",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -938,16 +933,6 @@
               "FieldLabels": {
                 "de": "Schriften",
                 "en": "Fonts"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungSprache",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zur Sprache",
-                "en": "Physical condition and technical requirements"
               }
             },
             {
@@ -1068,7 +1053,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungStandort",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1389,9 +1374,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Lizenz",
+              "DbFieldName": "Licence",
               "DbType": "Text",
-              "ElasticType": "string",
+              "ElasticType": "Lizenz",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Lizenz",
@@ -1551,7 +1536,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungStandort",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -1881,9 +1866,9 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Lizenz",
+              "DbFieldName": "Lizenz",
               "DbType": "Text",
-              "ElasticType": "string",
+              "ElasticType": "Lizenz",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Lizenz",
@@ -1918,16 +1903,6 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
-                "en": "Physical condition and technical requirements"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungSprache",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zur Sprache",
                 "en": "Physical condition and technical requirements"
               }
             },
@@ -2049,7 +2024,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BemerkungStandort",
+              "DbFieldName": "DetailData.StandortBemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
