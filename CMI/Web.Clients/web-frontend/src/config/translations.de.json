@@ -1191,17 +1191,6 @@
   "orderSection": {
     "orderText": "Legen Sie die Unterlagen in den Bestellkorb, um sie dort direkt zu bestellen oder ein Einsichtsgesuch einzureichen."
   },
-  "veExportRecord": {
-    "referenceCode": "Signatur",
-    "fileReference": "Aktenzeichen",
-    "title": "Titel",
-    "creationPeriod": "Entstehungszeitraum",
-    "withinInfo": "Darin",
-    "level": "Stufe",
-    "accessibility": "Zugänglichkeit gem. BGA",
-    "fileName": "suchresultat",
-    "favourites": "favoriten"
-  },
 	"canDeactivateGuard": {
 	  "Title": "Warnung",
 	  "close": "Schliessen",
