@@ -45,15 +45,6 @@
     "Index": "4"
   },
   {
-    "Field": "facetten.text04",
-    "Size": 10,
-    "Sort": "_term",
-    "Title": "Körperschaftsregister",
-    "Type": "Term",
-    "Missing": "",
-    "Index": "7"
-  },
-  {
     "Field": "facetten.text05",
     "Size": 10,
     "Sort": "_term",
