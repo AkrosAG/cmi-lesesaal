@@ -103,7 +103,16 @@ namespace CMI.Contract.Common.Compiler
                 foreach (var link in links)
                 {
                     var textLink = link.TextValues.First();
-                    if (!string.IsNullOrEmpty(textLink))
+                    if (string.IsNullOrEmpty(textLink))
+                    {
+                        continue;
+                    }
+
+                    if (!(textLink.StartsWith("https://") || textLink.StartsWith("http://")))
+                    {
+                        link.TextValues = new List<string> { string.Format("<a href =\"//{0}\" target=\"_blank\">{0}</a>", textLink) };
+                    }
+                    else
                     {
                         link.TextValues = new List<string> { string.Format("<a href =\"{0}\" target=\"_blank\">{0}</a>", textLink) };
                     }

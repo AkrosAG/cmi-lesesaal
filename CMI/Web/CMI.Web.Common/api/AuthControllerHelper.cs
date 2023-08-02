@@ -340,7 +340,7 @@ namespace CMI.Web.Common.api
                     identity.ApplicationFeatures = user.Features.ToInfos();
                 }
 
-                if (HttpContext.Current?.Session != null)
+                if (HttpContext.Current?.Session != null )
                 {
                     HttpContext.Current.Session.SetApplicationUser(user);
                 }
