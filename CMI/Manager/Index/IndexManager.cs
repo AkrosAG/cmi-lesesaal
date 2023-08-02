@@ -119,6 +119,7 @@ namespace CMI.Manager.Index
                 ?.FirstOrDefault()?.Value;
             elasticArchiveRecord.ChildCount = archiveRecord.Metadata.NodeInfo.ChildCount;
             elasticArchiveRecord.AccessionDate = archiveRecord.Metadata.AccessionDate;
+            elasticArchiveRecord.ProtectionStartDate = archiveRecord.Metadata.Usage.ProtectionBaseDate;
             elasticArchiveRecord.ProtectionEndDate = archiveRecord.Metadata.Usage.ProtectionEndDate.HasValue
                 ? new ElasticDateWithYear
                 {
