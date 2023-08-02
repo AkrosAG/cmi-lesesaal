@@ -66,6 +66,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	}
 
 	public get username(): string {
-		return this._context.currentSession.username;
+		return this._context.currentSession.firstname + ' ' + this._context.currentSession.lastname;
 	}
 }

@@ -93,8 +93,16 @@ namespace CMI.Web.Common.api
             var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
             var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
 
-            var userId = owinContext.Request.Cookies[cookieUserIdKey];
-            userDataAccess.UpdateActiveSessionId(userId, null);
+            if (!isPublicClient)
+            {
+                foreach (var VARIABLE in owinContext.Request.Cookies)
+                {
+                    var userId = owinContext.Request.Cookies[VARIABLE.Key];
+                    owinContext.Response.Cookies.Delete(userId);
+                  //  userDataAccess.UpdateActiveSessionId(userId, null);
+                }
+            }
+
 
             var authManager = owinContext.Authentication;
             authManager.SignOut(appCookieKey);
@@ -126,7 +134,7 @@ namespace CMI.Web.Common.api
                 throw new AuthenticationException("User hat noch keinen Antrag gestellt");
             }
 
-            var isNewUser = !TryUpdateUser(userId, claims);
+            var isNewUser = false;//!TryUpdateUser(userId, claims);
 
 
             if (isNewUser)
@@ -263,10 +271,10 @@ namespace CMI.Web.Common.api
 
         internal AuthStatus IsValidAuthRole(string role, bool isPublicClient)
         {
-            if (string.IsNullOrWhiteSpace(role))
-            {
-                return AuthStatus.KeineRolleDefiniert;
-            }
+        //    if (string.IsNullOrWhiteSpace(role))
+        //    {
+        //        return AuthStatus.KeineRolleDefiniert;
+        //    }
 
             /*
              * UseCase Nr	Viaduc-User	    affiliation	        homeOrganization
@@ -325,7 +333,8 @@ namespace CMI.Web.Common.api
                         ? AuthStatus.Ok
                         : AuthStatus.KeineKerberosAuthentication;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(role), "Nicht definiertes Rollen handling");
+                    return AuthStatus.Ok;
+                    // throw new ArgumentOutOfRangeException(nameof(role), "Nicht definiertes Rollen handling");
             }
         }
 
