@@ -152,7 +152,7 @@ namespace CMI.Web.Management
             var user = userDataAccess.GetUser(userId);
 
             var activeAspNetSessionId = user?.ActiveAspNetSessionId;
-            var currentAspNetSessionId = context.Request.Cookies[WebHelper.CookieMcAspNetSessionIdKey];
+            var currentAspNetSessionId = context.Request.Cookies[WebHelper.CookiePcAspNetSessionIdKey];
 
             if (currentAspNetSessionId != activeAspNetSessionId)
             {
