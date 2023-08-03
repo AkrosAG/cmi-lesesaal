@@ -48,7 +48,7 @@ namespace CMI.Web.Common.api
         /// </summary>
         /// <param name="owinContext"></param>
         /// <returns></returns>
-        public async Task OnExternalSignIn(IOwinContext owinContext, bool isPublicClient)
+        public async Task OnExternalSignIn(IOwinContext owinContext)
         {
             var authManager = owinContext.Authentication;
             var authResult = await authManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
