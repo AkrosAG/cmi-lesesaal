@@ -55,7 +55,7 @@ namespace CMI.Web.Management.api.Controllers
         {
             try
             {
-                authControllerHelper.OnExternalSignOut(Request.GetOwinContext(), false);
+                authControllerHelper.OnExternalSignOut(Request.GetOwinContext());
             }
             catch (AuthenticationException e)
             {

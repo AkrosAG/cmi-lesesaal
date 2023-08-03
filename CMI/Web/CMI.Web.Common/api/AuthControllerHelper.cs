@@ -64,17 +64,17 @@ namespace CMI.Web.Common.api
 
             Log.Information("Getting claims");
             var claims = identity.Claims.ToList();
-            var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
+            var appCookieKey = WebHelper.CookiePcAppliationCookieKey;
             var ci = new ClaimsIdentity(claims, appCookieKey);
             authManager.SignIn(ci);
 
-            var aspSessionIdCookieyKey = isPublicClient ? WebHelper.CookiePcAspNetSessionIdKey : WebHelper.CookieMcAspNetSessionIdKey;
+            var aspSessionIdCookieyKey = WebHelper.CookiePcAspNetSessionIdKey;
             var sessionId = owinContext.Request.Cookies[aspSessionIdCookieyKey];
             var userId = GetUserId(ci.Claims);
             Log.Information("Got userId from claims: {userId}", userId);
 
             // Die SessionId wird zusätzlich in einem eigenem Cookie gespeichert, damit diese nach dem Logout kurzzeitig verwendet werden kann.
-            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
+            var cookieUserIdKey = WebHelper.CookiePcUserIdKey;
             AddLesesaalSessionCookie(owinContext, userId, cookieUserIdKey);
 
             // Wir merken uns die aktive SessionId um sie bei einem Logout zurückzusetzen. 
@@ -88,15 +88,10 @@ namespace CMI.Web.Common.api
         /// Die Methode entfernt die notwendigen Cookies und setzt die aktive SessionId des Benutzers auf der DB zurück.
         /// </summary>
         /// <param name="owinContext"></param>
-        public void OnExternalSignOut(IOwinContext owinContext, bool isPublicClient)
+        public void OnExternalSignOut(IOwinContext owinContext)
         {
-            if (!isPublicClient)
-            {
-                // Public client cookie muss immer gelöscht werden
-                OnExternalSignOut(owinContext, true);
-            }
-            var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
-            var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
+            var cookieUserIdKey = WebHelper.CookiePcUserIdKey;
+            var appCookieKey = WebHelper.CookiePcAppliationCookieKey;
 
             var userId = owinContext.Request.Cookies[cookieUserIdKey];
             userDataAccess.UpdateActiveSessionId(userId, null);
