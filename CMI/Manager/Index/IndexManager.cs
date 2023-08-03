@@ -216,7 +216,9 @@ namespace CMI.Manager.Index
                     Description= f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
-                    Base64Content = f.ContentText
+                    Base64Content = f.ContentText,
+                    Art = f.Kind,
+                    Version = f.SortOrder // SortOrder is used here to transport the version
                 });
                 elasticArchiveRecord.Files.AddRange(files);
                 Log.Information($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");

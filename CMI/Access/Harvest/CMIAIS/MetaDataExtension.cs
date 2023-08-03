@@ -8,7 +8,7 @@ using Serilog;
 
 namespace CMI.Access.Harvest
 {
-    public static class DateiExtension
+    public static class MetaDataExtension
     {
         public static bool IsOriginal(this Datei file, string compareWith = "original")
         {
@@ -53,7 +53,9 @@ namespace CMI.Access.Harvest
                             FileExtension = file.FileExtension,
                             FileSize = bytes.LongLength,
                             Description = file.Bemerkungen,
-                            ContentText = Convert.ToBase64String(bytes)
+                            ContentText = Convert.ToBase64String(bytes),
+                            Kind = file.Art.Item.Bezeichnung,
+                            SortOrder = ((int)file.LastVersion.Nr)  // Value is a decimal and will be truncated
                         };
                         list.Add(metadataFile);
                         Log.Information($"Added file content to Metadata: {bytes.LongLength} Bytes.");
