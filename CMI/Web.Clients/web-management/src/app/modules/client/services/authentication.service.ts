@@ -18,8 +18,8 @@ import {AuthorizationService, UrlService} from '../../shared/services';
 import {take} from 'rxjs/operators';
 import {AuthStatus} from '../model';
 
-const currentSessionKey = 'viaduc_management_auth_session';
-const authReturnUrlKey = 'viaduc_management_auth_return_url';
+const currentSessionKey = 'viaduc_auth_session';
+const authReturnUrlKey = 'viaduc_auth_return_url';
 
 @Injectable()
 export class AuthenticationService {
@@ -73,7 +73,6 @@ export class AuthenticationService {
 	}
 
 	public setCurrentSession(session: Session): void {
-		console.log('currentSessionKey', currentSessionKey, session);
 		this._sessionStorage.setItem(currentSessionKey, session);
 		this._contextService.updateSession(session);
 	}
