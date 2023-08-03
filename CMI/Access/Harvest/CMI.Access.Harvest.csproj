@@ -75,7 +75,7 @@
     <Compile Include="AISDataDigitizationOrderAccess.cs" />
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="ArchiveRecordBuilderFactory.cs" />
-    <Compile Include="CMIAIS\DateiExtension.cs" />
+    <Compile Include="CMIAIS\MetaDataExtension.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordBuilder.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordProcessHandler.cs" />
     <Compile Include="CMIAIS\CMIAISDataAccess.cs" />

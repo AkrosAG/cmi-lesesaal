@@ -271,6 +271,8 @@ namespace CMI.Contract.Common
         public string Extension { get; set; }
         public string Base64Content { get; set; }
         public string Description { get; set; }
+        public string Art { get; set; }
+        public int Version { get; set; }
     }
 
     public class ElasticArchiveRecordPackage
