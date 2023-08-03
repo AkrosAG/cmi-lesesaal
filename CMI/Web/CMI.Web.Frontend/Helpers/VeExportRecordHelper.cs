@@ -45,7 +45,7 @@ namespace CMI.Web.Frontend.Helpers
         }
 
         #region private Methods
-        
+
         private ExcelColumnInfos CreateColumnInfo(string language)
         {
             return new ExcelColumnInfos
@@ -54,11 +54,6 @@ namespace CMI.Web.Frontend.Helpers
                 {
                     ColumnName = nameof(VeExportRecord.ReferenceCode), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.referenceCode")
-                },
-                new ExcelColumnInfo
-                {
-                    ColumnName = nameof(VeExportRecord.FileReference), MakeAutoWidth = true,
-                    ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.fileReference")
                 },
                 new ExcelColumnInfo
                 {
@@ -87,7 +82,7 @@ namespace CMI.Web.Frontend.Helpers
                 }
             };
         }
-        
+
         public static string GetCustomField(dynamic customFields, string fieldName)
         {
             if (customFields != null)

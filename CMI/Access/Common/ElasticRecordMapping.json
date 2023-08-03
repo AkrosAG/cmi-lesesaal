@@ -230,6 +230,14 @@
           }
         }
       },
+      "protectionStartDate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
       "permission": {
         "type": "text",
         "fields": {
