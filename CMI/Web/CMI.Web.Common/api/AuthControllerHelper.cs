@@ -263,10 +263,10 @@ namespace CMI.Web.Common.api
 
         internal AuthStatus IsValidAuthRole(string role, bool isPublicClient)
         {
-        //    if (string.IsNullOrWhiteSpace(role))
-        //    {
-        //        return AuthStatus.KeineRolleDefiniert;
-        //    }
+            if (string.IsNullOrWhiteSpace(role))
+            {
+                return AuthStatus.KeineRolleDefiniert;
+            }
 
             /*
              * UseCase Nr	Viaduc-User	    affiliation	        homeOrganization
@@ -325,7 +325,7 @@ namespace CMI.Web.Common.api
                         ? AuthStatus.Ok
                         : AuthStatus.KeineKerberosAuthentication;
                 default:
-                    return AuthStatus.Ok;
+                    return AuthStatus.KeineRolleDefiniert;
                     // throw new ArgumentOutOfRangeException(nameof(role), "Nicht definiertes Rollen handling");
             }
         }
