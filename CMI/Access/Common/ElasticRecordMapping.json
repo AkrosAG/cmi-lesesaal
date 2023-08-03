@@ -407,6 +407,17 @@
           }
         }
       },
+      "files": {
+        "properties": {
+          "sizeInBytes": { "type": "long" },
+          "fileName": { "type": "text" },
+          "extension": { "type": "text" },
+          "base64Content": { "type": "text" },
+          "description": { "type": "text" },
+          "art": { "type": "text" },
+          "version": { "type": "integer" }
+        }
+      },
       "descriptors": {
         "properties": {
           "description": {
