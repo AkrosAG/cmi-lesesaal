@@ -90,6 +90,11 @@ namespace CMI.Web.Common.api
         /// <param name="owinContext"></param>
         public void OnExternalSignOut(IOwinContext owinContext, bool isPublicClient)
         {
+            if (!isPublicClient)
+            {
+                // Public client cookie muss immer gelöscht werden
+                OnExternalSignOut(owinContext, true);
+            }
             var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
             var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
 
