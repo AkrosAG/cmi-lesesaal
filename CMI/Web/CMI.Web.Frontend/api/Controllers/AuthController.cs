@@ -36,7 +36,7 @@ namespace CMI.Web.Frontend.api.Controllers
         {
             try
             {
-                await authControllerHelper.OnExternalSignIn(Request.GetOwinContext(), true);
+                await authControllerHelper.OnExternalSignIn(Request.GetOwinContext());
             }
             catch (AuthenticationException e)
             {

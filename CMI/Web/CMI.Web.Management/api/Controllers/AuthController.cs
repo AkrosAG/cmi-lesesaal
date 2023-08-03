@@ -37,7 +37,7 @@ namespace CMI.Web.Management.api.Controllers
             try
             {
                 Log.Information("Entering OnExternalSignIn for user");
-                await authControllerHelper.OnExternalSignIn(Request.GetOwinContext(), false);
+                await authControllerHelper.OnExternalSignIn(Request.GetOwinContext());
             }
             catch (AuthenticationException e)
             {
