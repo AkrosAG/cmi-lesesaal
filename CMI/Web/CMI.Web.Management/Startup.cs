@@ -98,7 +98,7 @@ namespace CMI.Web.Management
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = WebHelper.CookieMcAppliationCookieKey,
+                AuthenticationType = WebHelper.CookiePcAppliationCookieKey,
                 AuthenticationMode = AuthenticationMode.Active,
                 CookieSameSite = SameSiteMode.Strict,
                 CookieSecure = CookieSecureOption.Always,
