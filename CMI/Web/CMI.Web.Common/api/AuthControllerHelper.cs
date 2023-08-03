@@ -93,16 +93,8 @@ namespace CMI.Web.Common.api
             var cookieUserIdKey = isPublicClient ? WebHelper.CookiePcUserIdKey : WebHelper.CookieMcUserIdKey;
             var appCookieKey = isPublicClient ? WebHelper.CookiePcAppliationCookieKey : WebHelper.CookieMcAppliationCookieKey;
 
-            if (!isPublicClient)
-            {
-                foreach (var VARIABLE in owinContext.Request.Cookies)
-                {
-                    var userId = owinContext.Request.Cookies[VARIABLE.Key];
-                    owinContext.Response.Cookies.Delete(userId);
-                  //  userDataAccess.UpdateActiveSessionId(userId, null);
-                }
-            }
-
+            var userId = owinContext.Request.Cookies[cookieUserIdKey];
+            userDataAccess.UpdateActiveSessionId(userId, null);
 
             var authManager = owinContext.Authentication;
             authManager.SignOut(appCookieKey);
@@ -134,7 +126,7 @@ namespace CMI.Web.Common.api
                 throw new AuthenticationException("User hat noch keinen Antrag gestellt");
             }
 
-            var isNewUser = false;//!TryUpdateUser(userId, claims);
+            var isNewUser = !TryUpdateUser(userId, claims);
 
 
             if (isNewUser)
