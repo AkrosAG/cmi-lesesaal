@@ -73,6 +73,7 @@ export class AuthenticationService {
 	}
 
 	public setCurrentSession(session: Session): void {
+		console.log('currentSessionKey', currentSessionKey, session);
 		this._sessionStorage.setItem(currentSessionKey, session);
 		this._contextService.updateSession(session);
 	}
@@ -192,6 +193,7 @@ export class AuthenticationService {
 				router.navigate([this._urlService.getErrorNewUser()]);
 				return true;
 			case AuthStatus.keineRolleDefiniert:
+				this._initSession(response);
 				router.navigate([this._urlService.getErrorPermission()]);
 				return true;
 			default:
