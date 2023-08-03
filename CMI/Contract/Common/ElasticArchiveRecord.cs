@@ -70,7 +70,7 @@ namespace CMI.Contract.Common
         public List<ElasticParentContentInfo> ParentContentInfos { get; set; }
         public ElasticBase64 Thumbnail { get; set; }
         public string PhysicalUsability { get; set; }
-
+        public string ProtectionStartDate { get; set; }
         public ElasticDateWithYear ProtectionEndDate { get; set; }
         public string ProtectionCategory { get; set; }
         public int? ProtectionDuration { get; set; }
