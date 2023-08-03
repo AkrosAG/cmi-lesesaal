@@ -111,6 +111,8 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.Tektonikpfad), vz => vz.Tektonikpfad)
                 .From(nameof(Verzeichnungseinheit.Verfuegbarkeit), vz => vz?.Verfuegbarkeit?.Item?.Bezeichnung)
                 .From(nameof(Verzeichnungseinheit.BemerkungStandort), vz => vz.BemerkungStandort)
+                .From(nameof(Verzeichnungseinheit.Kuerzel), vz => vz.Kuerzel)
+                .From(nameof(Verzeichnungseinheit.Schadenserhebung), vz => vz.Schadenserhebung)
 
                 .From(nameof(Verzeichnungseinheit.CustomFreeBoolField01), vz => vz.CustomFreeBoolField01)
                 .From(nameof(Verzeichnungseinheit.CustomFreeBoolField02), vz => vz.CustomFreeBoolField02)
