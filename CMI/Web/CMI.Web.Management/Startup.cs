@@ -98,7 +98,7 @@ namespace CMI.Web.Management
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = WebHelper.CookieMcAppliationCookieKey,
+                AuthenticationType = WebHelper.CookiePcAppliationCookieKey,
                 AuthenticationMode = AuthenticationMode.Active,
                 CookieSameSite = SameSiteMode.Strict,
                 CookieSecure = CookieSecureOption.Always,
@@ -152,7 +152,7 @@ namespace CMI.Web.Management
             var user = userDataAccess.GetUser(userId);
 
             var activeAspNetSessionId = user?.ActiveAspNetSessionId;
-            var currentAspNetSessionId = context.Request.Cookies[WebHelper.CookieMcAspNetSessionIdKey];
+            var currentAspNetSessionId = context.Request.Cookies[WebHelper.CookiePcAspNetSessionIdKey];
 
             if (currentAspNetSessionId != activeAspNetSessionId)
             {
