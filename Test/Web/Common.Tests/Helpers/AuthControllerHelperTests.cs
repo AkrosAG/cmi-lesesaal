@@ -640,10 +640,10 @@ namespace CMI.Web.Common.Tests.Helpers
                 webCmiConfigProviderMock.Object);
 
             // act
-            var action = (Action) (() => { sut.IsValidAuthRole("X-UNKNOWN", false); });
+            var result = sut.IsValidAuthRole("X-UNKNOWN", false); ;
 
             // assert
-            action.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*Nicht definiertes Rollen handling*");
+            result.Should().Be(AuthStatus.KeineRolleDefiniert);
         }
 
         [Test]
