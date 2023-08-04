@@ -18,8 +18,8 @@ import {AuthorizationService, UrlService} from '../../shared/services';
 import {take} from 'rxjs/operators';
 import {AuthStatus} from '../model';
 
-const currentSessionKey = 'viaduc_management_auth_session';
-const authReturnUrlKey = 'viaduc_management_auth_return_url';
+const currentSessionKey = 'viaduc_auth_session';
+const authReturnUrlKey = 'viaduc_auth_return_url';
 
 @Injectable()
 export class AuthenticationService {
@@ -192,6 +192,7 @@ export class AuthenticationService {
 				router.navigate([this._urlService.getErrorNewUser()]);
 				return true;
 			case AuthStatus.keineRolleDefiniert:
+				this._initSession(response);
 				router.navigate([this._urlService.getErrorPermission()]);
 				return true;
 			default:
