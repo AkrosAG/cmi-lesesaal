@@ -602,7 +602,7 @@ namespace CMI.Web.Frontend.api.Elastic
         private static void ExcludeUnwantedFields(SearchRequest<ElasticArchiveRecord> searchRequest)
         {
             // Exclude content from primarydata. 
-            searchRequest.Source = new SourceFilter {Excludes = Infer.Fields("all", "primaryData.items.content")};
+            searchRequest.Source = new SourceFilter {Excludes = Infer.Fields("all", "primaryData.items.content","files.base64Content")};
         }
 
         private void ProcessQueryResult<T>(ElasticQueryResult<T> result, FacetFilters[] facetsFilters, UserAccess access,
