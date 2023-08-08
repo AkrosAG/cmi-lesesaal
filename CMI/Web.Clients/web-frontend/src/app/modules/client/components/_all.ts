@@ -10,6 +10,7 @@ import {SimpleSearchComponent} from './search/simpleSearch/simpleSearchBox/simpl
 import {AdvancedSearchFieldComponent} from './search/advancedSearch/advancedSearchField/advancedSearchField.component';
 import {AdvancedSearchGroupComponent} from './search/advancedSearch/advancedSearchGroup/advancedSearchGroup.component';
 import {DetailSectionComponent} from './detail/section/detailSection.component';
+import {FileSectionComponent} from './detail/files/fileSection.component';
 import {DetailUtilitiesComponent} from './detail/utilities/detailUtilities.component';
 import {DetailHierarchyComponent} from './detail/hierarchy/detailHierarchy.component';
 import {DetailImagesComponent} from './detail/images/detailImages.component';
@@ -103,5 +104,6 @@ export const ALL_COMPONENTS = [
 	SearchSynonymeIconComponent,
 	EisichtCheckoutOrderDetailsStepComponent,
 	EngagementBubblesComponent,
-	UsageSectionComponent
+	UsageSectionComponent,
+	FileSectionComponent
 ];

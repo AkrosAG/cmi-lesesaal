@@ -139,6 +139,29 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetMetadataFile(string id,int index)
+        {
+            try
+            {
+                var access = GetUserAccessFunc(null);
+                var record = GetRecord(id, access);
+
+                if (record == null)
+                {
+                    return NotFound();
+                }
+
+                var content = record.Files[0].Base64Content;
+                return await Task.FromResult(Ok());
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "(FileController:GetMetadataFile ({ID},{NAME}))", id, index);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetAssetInfo(string id)
         {
             try
@@ -153,7 +176,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 var packageId = record.PrimaryData?.FirstOrDefault()?.PackageId ?? string.Empty;
                 var status = CheckStatusAsync(packageId, record, access);
-                if (!(status is StatusCodeResult) || ((StatusCodeResult) status).StatusCode != HttpStatusCode.OK)
+                if (!(status is StatusCodeResult) || ((StatusCodeResult)status).StatusCode != HttpStatusCode.OK)
                 {
                     return status;
                 }

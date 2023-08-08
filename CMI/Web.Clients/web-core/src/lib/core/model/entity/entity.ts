@@ -1,6 +1,7 @@
 import {EntityMetadata} from './entityMetadata';
 import {Highlight} from '../search/highlight';
 import {DetailData} from './detailData';
+import {Files} from './files';
 
 export interface Entity {
 	_context?: any;
@@ -20,6 +21,7 @@ export interface Entity {
 	isPhysicalyUsable?: boolean;
 	containsPersonRelatedInformation?: boolean;
 	detailData: DetailData[];
+	files: Files[];
 	permission: string;
 	primaryDataLink?: any[];
 	itemClasses?: string;

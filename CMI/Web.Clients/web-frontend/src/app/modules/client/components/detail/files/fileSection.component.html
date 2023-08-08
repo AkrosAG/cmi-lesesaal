@@ -1,0 +1,27 @@
+<div class="file-section" *ngIf="entity">
+	<div class="row" *ngFor="let file of files;">
+		<div class="col col-xs-3">
+			<label>
+				<span>{{file.filename}}</span>
+			</label>
+		</div>
+		<div class="col col-xs-1">
+			<label>
+				<span>{{file.sizeInBytes}}</span>
+			</label>
+		</div>
+		<div class="col col-xs-1">
+			<label>
+				<span>Bytes</span>
+			</label>
+		</div>
+		<div class="col col-xs-5">
+			<label>
+				<span>{{file.description}}</span>
+			</label>
+		</div>
+		<div class="col col-xs-1">
+			<a>Download</a>
+		</div>
+	</div>
+</div>
