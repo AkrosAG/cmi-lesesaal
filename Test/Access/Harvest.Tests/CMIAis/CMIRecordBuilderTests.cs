@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.Tektonik;
@@ -52,15 +51,15 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var cmiRecordTektonik = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "402",
-                Children = new List<Child>(new[]
+                Children = new List<Tektonik.Child>(new[]
                 {
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "501",
                         DisplayName = "Child 1",
                         Sortierung = "1"
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "502",
                         DisplayName = "Child 2",
@@ -93,21 +92,21 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var parentTektonik = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "300",
-                Children = new List<Child>(new[]
+                Children = new List<Tektonik.Child>(new[]
                 {
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "400",
                         DisplayName = "brother",
                         Sortierung = "1"
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "401",
                         DisplayName = "Me",
                         Sortierung = "2"
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "402",
                         DisplayName = "sister",
@@ -155,15 +154,15 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             {
 
         OBJ_GUID = "123",
-                Children = new List<Child>(new[]
+                Children = new List<Tektonik.Child>(new[]
                 {
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "1231",
                         DisplayName = "Child 1",
                         Sortierung = "1"
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "1232",
                         DisplayName = "Child 2",
@@ -188,21 +187,21 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var parent = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "12",
-                Children = new List<Child>(new[]
+                Children = new List<Tektonik.Child>(new[]
                 {
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "122",
                         DisplayName = "brother",
                         Sortierung = "1",
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "123",
                         DisplayName = "Me",
                         Sortierung = "2"
                     },
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "124",
                         DisplayName = "sister",
@@ -214,9 +213,9 @@ namespace CMI.Access.Harvest.Tests.CMIAis
             var parentParent = new Tektonik.Verzeichnungseinheit
             {
                 OBJ_GUID = "1",
-                Children = new List<Child>(new[]
+                Children = new List<Tektonik.Child>(new[]
                 {
-                    new Child
+                    new Tektonik.Child
                     {
                         OBJ_GUID = "12",
                         DisplayName = "parent",
