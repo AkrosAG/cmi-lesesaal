@@ -11,7 +11,7 @@
           },
           "Fields": [
             {
-              "DbFieldName": "Title",
+              "DbFieldName": "DetailData.DisplayName",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -139,7 +139,7 @@
               }
             },
             {
-              "DbFieldName": "formerReferenceCode",
+              "DbFieldName": "formerreferenceCode",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -166,7 +166,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwaltungssignatur",
-                "en": "DOI"
+                "en": "Distortion nw"
               }
             },
             {
@@ -231,7 +231,7 @@
               }
             },
             {
-              "DbFieldName": "DetailData.LinkZuPrimaerdaten",
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
               "Visibility": 0,
@@ -281,8 +281,7 @@
                 "fr": "Historique de la conservation"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -292,14 +291,13 @@
           },
           "Fields": [
             {
-              "DbFieldName": "contains",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Form and content"
               }
             },
             {
@@ -308,9 +306,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsform",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "de": "Überlieferungsformen",
+                "en": "Increases"
               }
             },
             {
@@ -320,8 +317,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bewertung und Kassation",
-                "en": "Evaluation and cassation",
-                "fr": "Évaluation, tris et éliminations, sort final"
+                "en": "Evaluation and cassation"
               }
             },
             {
@@ -334,13 +330,13 @@
                 "en": "Order and classification"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use"
+            "en": "Conditions of access and use",
+            "fr": "Conditions d'accès et d'utilisation"
           },
           "Fields": [
             {
@@ -354,24 +350,23 @@
               }
             },
             {
-              "DbFieldName": "ProtectionBaseDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "protectionStartDate",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Basisdatum Schutzfrist",
-                "en": "Base date closure-period",
-                "fr": "Date de base du délai de protection"
+                "en": "Base date closure-period"
               }
             },
             {
-              "DbFieldNameText": "protectionCategory",
+              "DbFieldName": "protectionCategory",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schutzfrist",
-                "en": "Schutzfrist"
+                "en": "Protection period"
               }
             },
             {
@@ -405,7 +400,7 @@
               }
             },
             {
-              "DbFieldName": "License",
+              "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -432,8 +427,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Langunages",
-                "fr": "Instruments de recherche"
+                "en": "Languages"
               }
             },
             {
@@ -443,6 +437,16 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
+                "en": "Fonts"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungSprache",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zur Sprache",
                 "en": "Physical condition and technical requirements"
               }
             },
@@ -468,8 +472,7 @@
                 "fr": "Instruments de recherche"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
@@ -482,7 +485,7 @@
               "DbFieldName": "DetailData.AufbewahrungsortOriginale",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
                 "en": "Storage location of the originals",
@@ -493,7 +496,7 @@
               "DbFieldName": "DetailData.KopienReproduktionen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
                 "en": "Copies / reproductions",
@@ -604,9 +607,9 @@
           },
           "Fields": [
             {
-              "DbFieldName": "Descriptors",
+              "DbFieldName": "descriptors",
               "DbType": "HTML",
-              "ElasticType": "ElasticHyperlink",
+              "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Registertyp",
