@@ -50,32 +50,32 @@ namespace CMI.Web.Frontend.Helpers
         {
             return new ExcelColumnInfos
             {
-                new ExcelColumnInfo
+                new ()
                 {
                     ColumnName = nameof(VeExportRecord.ReferenceCode), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.referenceCode")
                 },
-                new ExcelColumnInfo
+                new ()
                 {
-                    ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = true,
+                    ColumnName = nameof(VeExportRecord.Title), MakeAutoWidth = false, Width = 150,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.title")
                 },
-                new ExcelColumnInfo
+                new ()
                 {
                     ColumnName = nameof(VeExportRecord.CreationPeriod), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.creationPeriod")
                 },
-                new ExcelColumnInfo
+                new ()
                 {
-                    ColumnName = nameof(VeExportRecord.WithinInfo), MakeAutoWidth = true,
+                    ColumnName = nameof(VeExportRecord.WithinInfo), MakeAutoWidth = false, Width = 150,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.withinInfo")
                 },
-                new ExcelColumnInfo
+                new ()
                 {
                     ColumnName = nameof(VeExportRecord.Level), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.level")
                 },
-                new ExcelColumnInfo
+                new ()
                 {
                     ColumnName = nameof(VeExportRecord.Accessibility), MakeAutoWidth = true,
                     ColumnHeader = FrontendSettings.Instance.GetTranslation(language, "veExportRecord.accessibility")
