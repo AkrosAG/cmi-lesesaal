@@ -1,4 +1,4 @@
-﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveTectonic2" targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveTectonic2" elementFormDefault="qualified">
+﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/CMIArchiveTectonic" targetNamespace="http://www.cmiag.ch/cdws/CMIArchiveTectonic" elementFormDefault="qualified">
 	<xsd:annotation>
 		<xsd:documentation>
 			<SearchField xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SearchFieldText" Name="DateiText" BoostFactor="2" Nrs="51"/>
