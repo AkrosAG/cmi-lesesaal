@@ -42,13 +42,11 @@ namespace CMI.Access.Harvest.CMIAIS
                         .WithNodeInfos();
 
                 AddDetailData(metaDataBuilder);
-                
-                Log.Information($"CDWS Root is {Settings.Default.CdwsRoot}");
+                Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
 
                 var record = archiveRecordBuilder.Build();
-
                 record.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, record);
-
+                
                 await processHandler.PostProcessArchiveRecord(record);
                 Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to build the record with id {archiveRecordId}");
                 stopwatch.Stop();
