@@ -10,12 +10,12 @@ export class FileSectionComponent implements OnInit {
 
 	@Input()
 	public entity: Entity;
-    public files: any[];
+	public files: any[];
 
 	constructor() {
 	}
 
 	public ngOnInit(): void {
-        this.files = this.entity.files;
+		this.files = this.entity.files;
 	}
 }
