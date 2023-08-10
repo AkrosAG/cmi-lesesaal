@@ -61,7 +61,7 @@
       },
       "digitallyAvailable": "Digital vorhandene Unterlagen",
       "extent": "Laufmeter",
-      "formerReferenceCode": "Frühere Signaturen",
+      "formerReferenceCode": "Alte Signatur",
       "level": "Stufe",
       "referenceCode": "Signatur",
       "title": "Titel",
@@ -84,7 +84,7 @@
         "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
         "zusatzkomponenteZac1": "Zusatzkomponente"
       },
-      "formerReferenceCode": "Frühere Signaturen",
+      "formerReferenceCode": "Alte Signatur",
       "referenceCode": "Signatur",
       "title": "Titel",
       "Contains": "Form und Inhalt"
