@@ -71,6 +71,31 @@ namespace CMI.Web.Frontend.api.Elastic
             return RunQuery<T>(query, access);
         }
 
+        public ElasticQueryResult<T> QueryWithFilter<T>(string id, UserAccess access, SourceFilter filter) where T : TreeRecord
+        {
+
+
+            var query = new ElasticQuery
+            {
+                SearchParameters = new SearchParameters
+                {
+                    Options = new SearchOptions
+                    {
+                        EnableExplanations = false,
+                        EnableHighlighting = false,
+                        EnableAggregations = false
+                    }
+                },
+                Query = new TermQuery
+                {
+                    Field = elasticSettings.IdField,
+                    Value = id
+                }
+            };
+
+            return RunQuery<T>(query, access, filter);
+        }
+
         public ElasticQueryResult<T> QueryForId<T>(string id, UserAccess access) where T : TreeRecord
         {
             var query = new ElasticQuery
@@ -133,7 +158,7 @@ namespace CMI.Web.Frontend.api.Elastic
             return RunQueryWithoutSecurityFilters<T>(query);
         }
 
-        public ElasticQueryResult<T> RunQuery<T>(ElasticQuery query, UserAccess access) where T : TreeRecord
+        public ElasticQueryResult<T> RunQuery<T>(ElasticQuery query, UserAccess access, SourceFilter sourceFilter = default) where T : TreeRecord
         {
             var stopwatch = new Stopwatch();
             var info = StringHelper.AddToString(BaseUrl, "/", elasticSettings.DefaultIndex);
@@ -155,7 +180,8 @@ namespace CMI.Web.Frontend.api.Elastic
             try
             {
                 stopwatch.Start();
-                var searchRequest = BuildSearchRequest(query, access);
+                sourceFilter ??= new SourceFilter { Excludes = Infer.Fields("all", "primaryData.items.content", "files.base64Content") };
+                var searchRequest = BuildSearchRequest(query, access, sourceFilter );
                 result.Response = client.Search<T>(searchRequest);
 
                 var json = client.RequestResponseSerializer.SerializeToString(searchRequest, SerializationFormatting.Indented);
@@ -284,8 +310,7 @@ namespace CMI.Web.Frontend.api.Elastic
             return result;
         }
 
-
-        private SearchRequest<ElasticArchiveRecord> BuildSearchRequest(ElasticQuery query, UserAccess access)
+        private SearchRequest<ElasticArchiveRecord> BuildSearchRequest(ElasticQuery query, UserAccess access, SourceFilter filter)
         {
             var request = new SearchRequest<ElasticArchiveRecord>(elasticSettings.DefaultIndex);
 
@@ -299,9 +324,10 @@ namespace CMI.Web.Frontend.api.Elastic
 
             AddPaging(parameters?.Paging, request);
             AddSort(parameters?.Paging?.OrderBy, parameters?.Paging?.SortOrder, request);
-           
-            ExcludeUnwantedFields(request);
 
+            request.Source = filter;
+            
+             // TODO: ExcludeUnwantedFields(request);
 
             if (options?.EnableAggregations ?? false)
             {
