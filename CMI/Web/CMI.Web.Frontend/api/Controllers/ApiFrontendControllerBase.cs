@@ -21,10 +21,10 @@ namespace CMI.Web.Frontend.api.Controllers
         /// </summary>
         internal static bool CouldNeedAReason(ElasticArchiveRecord record, UserAccess access)
         {
-            return record.Permission != null
-                   && access.RolePublicClient == AccessRoles.RoleAS
+            return access.RolePublicClient == AccessRoles.RoleAS
                    && access.HasAsTokenFor(record.PrimaryDataDownloadAccessTokens)
-                   && record.Permission.Equals("Gesuchspflichtig", StringComparison.InvariantCultureIgnoreCase);
+                   && (string.IsNullOrEmpty(record.Permission) || 
+                       record.Permission.Equals("Gesuchspflichtig", StringComparison.InvariantCultureIgnoreCase));
         }
 
         protected UserAccess GetUserAccess(string language = null, string userId = null)
