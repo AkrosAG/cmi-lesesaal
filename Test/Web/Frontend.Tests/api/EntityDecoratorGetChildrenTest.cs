@@ -8,6 +8,7 @@ using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
 using FluentAssertions;
 using Moq;
+using Nest;
 using NUnit.Framework;
 
 namespace CMI.Web.Frontend.API.Tests.api
@@ -117,7 +118,7 @@ namespace CMI.Web.Frontend.API.Tests.api
 
         private void SetupServiceMock()
         {
-            elasticService.Setup(e => e.RunQuery<TreeRecord>(It.IsAny<ElasticQuery>(), It.IsAny<UserAccess>()))
+            elasticService.Setup(e => e.RunQuery<TreeRecord>(It.IsAny<ElasticQuery>(), It.IsAny<UserAccess>(),It.IsAny<SourceFilter>()))
                 .Returns(new ElasticQueryResult<TreeRecord>());
         }
 
@@ -125,7 +126,7 @@ namespace CMI.Web.Frontend.API.Tests.api
         {
             var items = new List<Entity<TreeRecord>>();
             items.Add(new Entity<TreeRecord> { Data = new TreeRecord { TreeSequence = 4 } });
-            elasticService.Setup(e => e.RunQuery<TreeRecord>(It.IsAny<ElasticQuery>(), It.IsAny<UserAccess>())).Returns(
+            elasticService.Setup(e => e.RunQuery<TreeRecord>(It.IsAny<ElasticQuery>(), It.IsAny<UserAccess>(), It.IsAny<SourceFilter>())).Returns(
                 new ElasticQueryResult<TreeRecord> { Data = new EntityResult<TreeRecord> { Items = items }, TotalNumberOfHits = 1 });
             entityProvider.Setup(e =>
                     e.GetResultAsEntities(It.IsAny<UserAccess>(), It.IsAny<ElasticQueryResult<TreeRecord>>(), It.IsAny<EntityMetaOptions>()))
