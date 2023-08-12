@@ -23,27 +23,26 @@ export class FileSectionComponent implements OnInit {
 	public getSymbolClass(extension: string): string {
 		
 		let cssClass: string;
-		switch(extension) {
+		switch (extension) {
 			case '.jpg':
-				cssClass = "fa-solid fa-file-image fa-2xl";
+				cssClass = 'fa-solid fa-file-image fa-2xl';
 				break;
 			case '.pdf':
-				cssClass = "fa-solid fa-file-pdf fa-2xl";
+				cssClass = 'fa-solid fa-file-pdf fa-2xl';
 				break;
 			case '.tif':
-				cssClass = "fa-solid fa-file-image fa-2xl";
+				cssClass = 'fa-solid fa-file-image fa-2xl';
 				break;
 			default:
-				cssClass = "fa-solid fa-file";
+				cssClass = 'fa-solid fa-file';
 				break;
 		}
 		return cssClass;
 	}
 
-	public getFileUrl(name: string)
-	{
+	public getFileUrl(name: string)	{
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/File';
-		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}`;
+		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}&download=false`;
 		return url;
 	}
 }
