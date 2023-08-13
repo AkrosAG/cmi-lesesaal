@@ -184,7 +184,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     return ResponseMessage(result);
                 }
 
-                throw new FileNotFoundException($"{name} could not be found.");
+                return BadRequest($"{name} could not be found.");
             }
             catch (Exception e)
             {
