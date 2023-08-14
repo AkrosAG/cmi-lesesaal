@@ -12,7 +12,7 @@ namespace CMI.Access.Harvest.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -150,15 +150,22 @@ namespace CMI.Access.Harvest.Properties {
                 return ((string)(this["CdwsIndexName"]));
             }
         }
-
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsTectonicIndexName@@")]
-        public string CdwsTectonicIndexName
-        {
-            get
-            {
+        public string CdwsTectonicIndexName {
+            get {
                 return ((string)(this["CdwsTectonicIndexName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Harvest.Properties.Settings.CdwsRoot@@")]
+        public string CdwsRoot {
+            get {
+                return ((string)(this["CdwsRoot"]));
             }
         }
     }

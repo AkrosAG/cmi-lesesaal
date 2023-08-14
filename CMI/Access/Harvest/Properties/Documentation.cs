@@ -23,6 +23,7 @@ namespace CMI.Access.Harvest.Properties
             AddDescription<Settings>(x => x.CdwsEndpoint, "The url of the CDWS Endpoint eg http://<url>:10003/cdws/Index/");
             AddDescription<Settings>(x => x.CdwsIndexName, "Name des CDWS Daten Indizes");
             AddDescription<Settings>(x => x.CdwsTectonicIndexName, "Name des CDWS Tectonic Indizes");
+            AddDescription<Settings>(x => x.CdwsRoot, "Name des CDWS Root Verzeichnis");
         }
     }
 }
