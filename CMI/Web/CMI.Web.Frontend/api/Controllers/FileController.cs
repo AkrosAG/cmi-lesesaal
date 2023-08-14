@@ -152,7 +152,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetMetadataFile(string id, string name, bool download = false)
+        public async Task<IHttpActionResult> GetMetadataFile(string id, string name)
         {
             try
             {
@@ -175,11 +175,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         Content = new StreamContent(new MemoryStream(buffer))
                     };
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-                    response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
-                    {
-                        FileName = file.Filename,
-                    } : null;
-
+                    
                     var result = await Task.FromResult(response);
                     return ResponseMessage(result);
                 }

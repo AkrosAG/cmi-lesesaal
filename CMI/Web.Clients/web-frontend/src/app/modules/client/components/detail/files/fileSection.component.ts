@@ -42,7 +42,7 @@ export class FileSectionComponent implements OnInit {
 
 	public getFileUrl(name: string)	{
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/File';
-		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}&download=false`;
+		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}`;
 		return url;
 	}
 }
