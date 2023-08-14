@@ -44,5 +44,11 @@
     <Setting Name="CdwsIndexName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsIndexName@@</Value>
     </Setting>
+    <Setting Name="CdwsTectonicIndexName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsTectonicIndexName@@</Value>
+    </Setting>
+    <Setting Name="CdwsRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Harvest.Properties.Settings.CdwsRoot@@</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
