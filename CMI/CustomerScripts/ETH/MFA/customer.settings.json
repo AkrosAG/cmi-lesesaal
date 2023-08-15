@@ -41,7 +41,7 @@
       {
         "type": "Text",
         "key": "formerReferenceCode",
-        "displayName": "Frühere Signaturen",
+        "displayName": "Alte Signatur",
         "translatorType": "KeywordTranslator"
       },
       {
