@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using CMI.Access.Harvest.CMIAIS.Mapping;
+using CMI.Access.Harvest.Properties;
 using CMI.Contract.Common;
 using Serilog;
 
@@ -41,11 +42,11 @@ namespace CMI.Access.Harvest.CMIAIS
                         .WithNodeInfos();
 
                 AddDetailData(metaDataBuilder);
+                Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
 
                 var record = archiveRecordBuilder.Build();
-
                 record.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, record);
-
+                
                 await processHandler.PostProcessArchiveRecord(record);
                 Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to build the record with id {archiveRecordId}");
                 stopwatch.Stop();
