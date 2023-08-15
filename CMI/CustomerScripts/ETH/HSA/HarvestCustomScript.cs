@@ -21,7 +21,7 @@ namespace CMI.Contract.Common.Compiler
                 default:
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "BAR" });
                     archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "BAR" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "BAR" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] {"BAR" });
                     break;
             }
 

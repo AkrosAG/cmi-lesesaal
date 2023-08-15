@@ -76,6 +76,7 @@ namespace CMI.Contract.Common
         public int? ProtectionDuration { get; set; }
         public List<ElasticDetailData> DetailData { get; set; }
         public List<ElasticDescriptor> Descriptors { get; set; }
+        public List<ElasticArchiveRecordFile> Files { get; set; }
     }
 
     public class ElasticArchiveRecord : DetailRecord
@@ -89,6 +90,7 @@ namespace CMI.Contract.Common
             ArchiveplanContext = new List<ElasticArchiveplanContextItem>();
             ParentContentInfos = new List<ElasticParentContentInfo>();
             Places = new List<ElasticPlace>();
+            Files = new List<ElasticArchiveRecordFile>();
         }
 
         public string All { get; set; }
@@ -108,7 +110,7 @@ namespace CMI.Contract.Common
         public bool IsPhysicalyUsable { get; set; }
         public List<ElasticContainer> Containers { get; set; }
         public List<ElasticReference> References { get; set; }
-
+        
         [XmlArrayItem("package", IsNullable = false, ElementName = "primaryData")]
         public List<ElasticArchiveRecordPackage> PrimaryData { get; set; }
 
@@ -260,6 +262,17 @@ namespace CMI.Contract.Common
         public string Name { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
+    }
+
+    public class ElasticArchiveRecordFile
+    {
+        public long SizeInBytes { get; set; }
+        public string Filename { get; set; }
+        public string Extension { get; set; }
+        public string Base64Content { get; set; }
+        public string Description { get; set; }
+        public string Art { get; set; }
+        public int Version { get; set; }
     }
 
     public class ElasticArchiveRecordPackage
