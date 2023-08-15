@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 using CMI.Access.Sql.Lesesaal;
@@ -17,6 +22,7 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.Helpers;
 using MassTransit;
+using Nest;
 using Serilog;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -79,6 +85,13 @@ namespace CMI.Web.Frontend.api.Controllers
 
         public Func<string, UserAccess> GetUserAccessFunc { get; set; }
 
+        private ElasticArchiveRecord GetRecordWithBase64(string archiveRecordId, UserAccess access)
+        {
+            var base64Included = new SourceFilter { Excludes = Infer.Fields("all", "primaryData.items.content") };
+            var entityResult = elasticService.QueryWithFilter<ElasticArchiveRecord>(archiveRecordId, access, base64Included);
+            return entityResult.Response?.Hits?.FirstOrDefault()?.Source;
+        }
+
         private ElasticArchiveRecord GetRecord(string archiveRecordId, UserAccess access)
         {
             var entityResult = elasticService.QueryForId<ElasticArchiveRecord>(archiveRecordId, access);
@@ -112,7 +125,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 var packageId = record.PrimaryData.FirstOrDefault()?.PackageId ?? string.Empty;
                 var status = CheckStatusAsync(packageId, record, access);
-                if (!(status is StatusCodeResult) || ((StatusCodeResult) status).StatusCode != HttpStatusCode.OK)
+                if (!(status is StatusCodeResult) || ((StatusCodeResult)status).StatusCode != HttpStatusCode.OK)
                 {
                     return status;
                 }
@@ -139,6 +152,44 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetMetadataFile(string id, string name)
+        {
+            try
+            {
+                var access = GetUserAccessFunc(null);
+                var record = GetRecordWithBase64(id, access);
+
+                if (record == null)
+                {
+                    return NotFound();
+                }
+
+                var file = record.Files.FirstOrDefault(f => f.Filename == name);
+                if (file is not null)
+                {
+                    var mediaType = MimeMapping.GetMimeMapping(file.Filename);
+                    var buffer = Convert.FromBase64String(file.Base64Content);
+
+                    var response = new HttpResponseMessage
+                    {
+                        Content = new StreamContent(new MemoryStream(buffer))
+                    };
+                    response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
+                    
+                    var result = await Task.FromResult(response);
+                    return ResponseMessage(result);
+                }
+
+                return BadRequest($"{name} could not be found.");
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "(FileController:GetMetadataFile ({ID}))", id);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetAssetInfo(string id)
         {
             try
@@ -153,7 +204,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 var packageId = record.PrimaryData?.FirstOrDefault()?.PackageId ?? string.Empty;
                 var status = CheckStatusAsync(packageId, record, access);
-                if (!(status is StatusCodeResult) || ((StatusCodeResult) status).StatusCode != HttpStatusCode.OK)
+                if (!(status is StatusCodeResult) || ((StatusCodeResult)status).StatusCode != HttpStatusCode.OK)
                 {
                     return status;
                 }
@@ -250,7 +301,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     FileName = archiveRecordId + ".zip"
                 };
 
-                await kontrollstellenInformer.InformIfNecessary(access, new[] {new VeInfo(archiveRecordId, reason)});
+                await kontrollstellenInformer.InformIfNecessary(access, new[] { new VeInfo(archiveRecordId, reason) });
                 downloadLogDataAccess.LogVorgang(token, "Download");
 
                 return ResponseMessage(result);
