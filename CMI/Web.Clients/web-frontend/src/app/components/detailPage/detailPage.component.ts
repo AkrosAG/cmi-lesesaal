@@ -28,6 +28,7 @@ export class DetailPageComponent implements OnInit {
 
 	private _error: any;
 	private _rootId: string;
+	public hasFiles: boolean;
 
 	constructor(private _context: ClientContext,
 				private _entityService: EntityService,
@@ -95,10 +96,10 @@ export class DetailPageComponent implements OnInit {
 	private async _loadEntity(idOrReference: string): Promise<void> {
 		this.loading = true;
 		this._error = undefined;
-
 		try {
 			const id = this._url.getDetailIdFromReference(idOrReference);
 			let entity = this.entity = await this._entityService.get(id);
+			this.hasFiles = this.entity.files && this.entity.files.length > 0;
 			this.items = [];
 
 			if (!_util.isEmpty(entity)) {
