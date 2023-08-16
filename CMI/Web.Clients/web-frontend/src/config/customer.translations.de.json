@@ -187,9 +187,9 @@
     "fileReference": "Aktenzeichen",
     "title": "Titel",
     "creationPeriod": "Entstehungszeitraum",
-    "withinInfo": "Darin",
+    "withinInfo": "Form und Inhalt",
     "level": "Stufe",
-    "accessibility": "Zugänglichkeit gem. BGA",
+    "accessibility": "Benutzbarkeit",
     "fileName": "suchresultat",
     "favourites": "favoriten"
   }

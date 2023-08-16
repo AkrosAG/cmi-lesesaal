@@ -21,7 +21,7 @@ export class FileSectionComponent implements OnInit {
 	}
 
 	public getSymbolClass(extension: string): string {
-		
+
 		let cssClass: string;
 		switch (extension) {
 			case '.jpg':
