@@ -35,13 +35,13 @@
 					</div>
 				</div>
 
-				<div class="section">
+				<div class="section" *ngIf="hasFiles">
 					<div class="section-header">
 						<h4>{{'Dateien'| translate:'metadata.title.files' }}</h4>
 					</div>
 					<div class="section-content">
 						<cmi-viaduc-file-section [entity]="entity">
-						</cmi-viaduc-file-section>	
+						</cmi-viaduc-file-section>
 					</div>
 				</div>
 
