@@ -765,7 +765,6 @@
     "deepLinkDetail": "Permanente URL der Verzeichnungseinheit",
     "deepLinkSearch": "Permanente URL der Suche",
     "information": {
-      "api": "API",
       "apiText": "Entwickeln Sie? Das Application Programming Interface (API) des Bundesarchivs ermöglicht Ihnen, die Archivrecherche in Ihre Anwendung zu integrieren.",
       "orderAndConsult": "Bestellen & Konsultieren",
       "orderAndConsultTeaserText": "Analoge und digitale Unterlagen aus dem Bundesarchiv online bestellen und einsehen – wichtige Hinweise.",
