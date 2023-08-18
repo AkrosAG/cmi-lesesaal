@@ -788,7 +788,6 @@
     "deepLinkDetail": "URL permanente dell'unità di descrizione",
     "deepLinkSearch": "URL permanente della ricerca",
     "information": {
-      "api": "API",
       "apiText": "Sviluppi applicazioni? Grazie all'application programming interface (API) dell'Archivio federale puoi integrarvi la ricerca archivistica.",
       "orderAndConsult": "Ordinazione e consultazione",
       "orderAndConsultTeaserText": "Ordinazione e consultazione di documenti digitali conservati nell'Archivio federale – informazioni importanti.",

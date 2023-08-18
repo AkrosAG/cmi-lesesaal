@@ -671,7 +671,6 @@
     "deepLinkDetail": "Permanent URL of unit of description",
     "deepLinkSearch": "Permanent URL of search",
     "information": {
-      "api": "API",
       "apiText": "Are you a developer? The Application Programming Interface (API) of the Swiss Federal Archives allows you to integrate archival search in your application.",
       "orderAndConsult": "Ordering & consulting",
       "orderAndConsultTeaserText": "Ordering and viewing analogue and digital documents from the Federal Archives online – important information.",
