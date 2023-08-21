@@ -788,7 +788,6 @@
     "deepLinkDetail": "URL permanent de l'unité de description",
     "deepLinkSearch": "URL permanent de la recherche",
     "information": {
-      "api": "API",
       "apiText": "Vous développez une application? L'interface de programmation (API) des Archives fédérales vous permet d'y intégrer la fonction de recherche dans les archives.",
       "orderAndConsult": "Commande & consultation",
       "orderAndConsultTeaserText": "Commande et consultation en ligne des documents analogiques et numériques des AFS – informations importantes",
