@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Http;
@@ -15,10 +14,12 @@ namespace CMI.Web.Common.api
 
         private IApplicationRoleUserDataAccess applicationRoleUserDataAccess;
         private IUserDataAccess userDataAccess;
+        private string additionalInternalUsers;
 
         public ControllerHelper(ApiController apiController)
         {
             this.apiController = apiController;
+            additionalInternalUsers = WebHelper.AdditionalInternalUsers;
         }
 
         public IUserDataAccess UserDataAccess
@@ -51,6 +52,12 @@ namespace CMI.Web.Common.api
         public bool IsStaff()
         {
             var isStaff = GetFromClaim("affiliation")?.ToLowerInvariant().Contains("staff".ToLowerInvariant());
+            var internalEmail = GetFromClaim("emailaddress")?.ToLowerInvariant();
+            if(!string.IsNullOrEmpty(additionalInternalUsers) && !string.IsNullOrEmpty(internalEmail))
+            {
+                return additionalInternalUsers.Split(',', ';', '|').Contains(internalEmail);
+            }
+
             return isStaff.GetValueOrDefault(false);
         }
 

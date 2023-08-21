@@ -74,6 +74,8 @@ namespace CMI.Web.Common.Helpers
         public static string LinkHashMarkerPart => GetStringSetting("linkHashMarkerPart", "/link/");
         public static string LinkSkipMarkerPart => GetStringSetting("linkSkipMarkerPart", "--");
 
+        public static string AdditionalInternalUsers => GetStringSetting("additionalInternalUsers", null);
+
         #region CMI / App Settings
 
         public static CmiSettings Settings { get; } = new CmiSettings();
