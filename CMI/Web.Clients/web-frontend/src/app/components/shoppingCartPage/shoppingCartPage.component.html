@@ -59,41 +59,10 @@
 			</a>
 			<div *ngIf="manualAddSectionVisible" [ngClass]="collapseDivCss">
 				<div class="shc-add-with-signature">
-					<legend tabindex="0">
-						{{'Mit Signatur'|translate:'shoppingCartPage.withReferenceCode'}}
-					</legend>
-					<div class="form-horizontal" role="form">
-						<fieldset>
-							<div class="form-group">
-								<div class="col-sm-10 col-xs-12 no-pad-left">
-									<textarea class="form-control"
-											  [(ngModel)]="signatureToSearch"
-											  id="bemerkungBestellung"
-											  placeholder="{{'Signatur'|translate:'shoppingCartPage.referenceCode'}}"
-											  >
-									</textarea>
-								</div>
-								<div class="col-sm-2 col-xs-12">
-									<button type="button" (click)="addBySignature()" class="btn btn-primary">
-										{{'Hinzufügen'|translate:'shoppingCartPage.addToCart'}}
-									</button>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-				</div>
-				<div class="shc-add-with-signature">
-					<legend tabindex="0">
-						{{'Ohne Signatur'| translate:'shoppingCartPage.withoutReferenceCode'}}
-					</legend>
 					<form class="form-horizontal" role="form" ngNativeValidate (submit)="addWithoutSignature()">
 						<p>
 							{{'*: Diese Felder müssen ausgefüllt werden.'|
 							translate:'shoppingCartPage.fieldsMarkedWithAreCompulsory'}}
-						</p>
-						<p>
-							{{'**: Es muss eine Behältnis- oder eine Archivnummer angegeben werden.'|
-							translate:'shoppingCartPage.fieldsMarkedWithDoubleStars'}}
 						</p>
 
 						<fieldset>
@@ -106,7 +75,6 @@
 								<div class="col-sm-9 col-xs-12">
 									<input type="text" [(ngModel)]="teilBestand" [ngModelOptions]="{standalone: true}"
 										   class="form-control" id="inputTeilBestand"
-										   placeholder="{{'z.B. E3340B' | translate:'shoppingCartPage.exampleTeilBestand'}}"
 										   aria-labelledby="lblTeilBestand" aria-required="true" required>
 								</div>
 							</div>
@@ -124,56 +92,6 @@
 										   class="form-control" id="inputAblieferung"
 										   placeholder="{{'z.B. 1988/234' | translate:'shoppingCartPage.exampleAblieferung'}}"
 										   aria-labelledby="lblAblieferung" aria-required="true" required>
-								</div>
-							</div>
-						</fieldset>
-
-						<fieldset>
-							<legend class="hidden-legend">
-								{{'Behältnisnummer'|translate:'shoppingCartPage.behaeltnisNr'}}&nbsp;**
-							</legend>
-							<div class="form-group">
-								<label for="inputBehaeltnisNr" class="col-sm-3 col-xs-12 control-label"
-									   id="lblBehaeltnisNr">{{'Behältnisnummer'|translate:'shoppingCartPage.behaeltnisNr'}}&nbsp;**
-									<span class="sr-only">{{'Dieses oder das Archivnummer Feld muss ausgefüllt sein.' | translate:'shoppingCartPage.inputBehaeltnisNrIsRequired'}}</span>
-								</label>
-								<div class="col-sm-9 col-xs-12">
-									<input type="text" [(ngModel)]="behaeltnisNr" [ngModelOptions]="{standalone: true}"
-										   class="form-control" id="inputBehaeltnisNr" aria-labelledby="lblBehaeltnisNr"
-										   [attr.aria-required]="isBehaeltnisNrAndArchivNrEmpty() ? 'true' : 'false'" [attr.required]="isBehaeltnisNrAndArchivNrEmpty() ? '' : null">
-								</div>
-							</div>
-						</fieldset>
-
-						<fieldset>
-							<legend class="hidden-legend">
-								{{'Archivnummer'|translate:'shoppingCartPage.archivNr'}}&nbsp;**
-							</legend>
-							<div class="form-group">
-								<label for="inputArchivNr" class="col-sm-3 col-xs-12 control-label"
-									   id="lblArchivNr">{{'Archivnummer'|translate:'shoppingCartPage.archivNr'}}&nbsp;**
-									<span class="sr-only">{{'Dieses oder das Behältnisnummer Feld muss ausgefüllt sein.' | translate:'shoppingCartPage.inputArchivNrIsRequired'}}</span>
-								</label>
-								<div class="col-sm-9 col-xs-12">
-									<input type="text" [(ngModel)]="archivNr" [ngModelOptions]="{standalone: true}"
-										   class="form-control" id="inputArchivNr" aria-labelledby="lblArchivNr"
-										   [attr.aria-required]="isBehaeltnisNrAndArchivNrEmpty() ? 'true' : 'false'" [attr.required]="isBehaeltnisNrAndArchivNrEmpty() ? '' : null">
-								</div>
-							</div>
-						</fieldset>
-
-						<fieldset>
-							<legend class="hidden-legend">{{'Aktenzeichen' | translate:'shoppingCartPage.aktenzeichen'}}&nbsp;*</legend>
-							<div class="form-group">
-								<label for="inputAktenzeichen" class="col-sm-3 col-xs-12 control-label"
-									   id="lblAktenzeichen">{{'Aktenzeichen' |
-									translate:'shoppingCartPage.aktenzeichen'}}&nbsp;*
-									<span class="sr-only">{{'Dies ist ein Pflichtfeld' | translate:'shoppingCartPage.fieldIsRequired'}}</span>
-								</label>
-								<div class="col-sm-9 col-xs-12">
-									<input type="text" [(ngModel)]="aktenzeichen" [ngModelOptions]="{standalone: true}"
-										   class="form-control" id="inputAktenzeichen" aria-labelledby="lblAktenzeichen"
-										   aria-required="true" required>
 								</div>
 							</div>
 						</fieldset>
@@ -202,10 +120,8 @@
 								</label>
 								<div class="col-sm-9 col-xs-12 no-bottom-margin">
 									<cmi-viaduc-date-range-field #zeitraumDossier [ngModel]="timeSpanField" [ngModelOptions]="{standalone: true}" [requiresTwoDigitDaysAndMonth]="true"
-																 [allowMonthYearEntry]="false" [allowSpaces]="false"
-																 [description]="'Falls vorhanden, zwingend angeben. Z.B. 1957-1962'| translate:'shoppingCartPage.helpDateRangeFieldWithExample'">
+																 [allowMonthYearEntry]="false" [allowSpaces]="false">
 									</cmi-viaduc-date-range-field>
-									<span class="help-block">{{'Falls vorhanden, zwingend angeben. Z.B. 1957-1962'| translate:'shoppingCartPage.helpDateRangeFieldWithExample'}}</span>
 								</div>
 							</div>
 						</fieldset>

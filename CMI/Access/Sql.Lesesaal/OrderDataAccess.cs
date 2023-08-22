@@ -30,13 +30,12 @@ namespace CMI.Access.Sql.Lesesaal
             return await GetOrderItem(orderItemId);
         }
 
-        public async Task<OrderItem> AddToBasket(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer,
-            string aktenzeichen, string dossiertitel, string zeitraumDossier, string userId)
+        public async Task<OrderItem> AddToBasket(string bestand, string ablieferung, string dossiertitel, string zeitraumDossier, string userId)
         {
             var basketId = await CreateBasketIfNecessary(userId);
-            var signatur = GetFormOrderSignatur(bestand, ablieferung, behaeltnisNummer, archivNummer);
+            var signatur = GetFormOrderSignatur(bestand, ablieferung);
 
-            var orderItemId = await AddToBasket(bestand, ablieferung, behaeltnisNummer, archivNummer, aktenzeichen, dossiertitel, zeitraumDossier,
+            var orderItemId = await AddToBasket(bestand, ablieferung, dossiertitel, zeitraumDossier,
                 signatur, basketId);
 
             return new OrderItem
@@ -45,8 +44,6 @@ namespace CMI.Access.Sql.Lesesaal
                 Comment = string.Empty,
                 Bestand = bestand,
                 Ablieferung = ablieferung,
-                BehaeltnisNummer = behaeltnisNummer,
-                ArchivNummer = archivNummer,
                 Dossiertitel = dossiertitel,
                 ZeitraumDossier = zeitraumDossier,
                 Signatur = signatur
@@ -1724,8 +1721,7 @@ namespace CMI.Access.Sql.Lesesaal
         /// <summary>
         ///     Formularbestellung (existiert nicht im Index)
         /// </summary>
-        private async Task<int> AddToBasket(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer, string aktenzeichen,
-            string dossiertitel, string zeitraumDossier, string signatur, int basketId)
+        private async Task<int> AddToBasket(string bestand, string ablieferung, string dossiertitel, string zeitraumDossier, string signatur, int basketId)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -1734,9 +1730,9 @@ namespace CMI.Access.Sql.Lesesaal
                 using (var cmd = connection.CreateCommand())
                 {
                     cmd.CommandText =
-                        "INSERT INTO OrderItem (OrderId, Bestand, Ablieferung, BehaeltnisNummer, ArchivNummer, Aktenzeichen, Dossiertitel, ZeitraumDossier, Status, Signatur) " +
+                        "INSERT INTO OrderItem (OrderId, Bestand, Ablieferung, Dossiertitel, ZeitraumDossier, Status, Signatur) " +
                         "OUTPUT INSERTED.ID " +
-                        "VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, 0, @p9)";
+                        "VALUES (@p1, @p2, @p3, @p4, @p5, 0, @p6)";
                     cmd.Parameters.Add(new SqlParameter
                     {
                         ParameterName = "p1",
@@ -1758,39 +1754,21 @@ namespace CMI.Access.Sql.Lesesaal
                     cmd.Parameters.Add(new SqlParameter
                     {
                         ParameterName = "p4",
-                        Value = ToDb(behaeltnisNummer),
-                        SqlDbType = SqlDbType.NVarChar
-                    });
-                    cmd.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "p5",
-                        Value = ToDb(archivNummer),
-                        SqlDbType = SqlDbType.NVarChar
-                    });
-                    cmd.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "p6",
-                        Value = ToDb(aktenzeichen),
-                        SqlDbType = SqlDbType.NVarChar
-                    });
-                    cmd.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "p7",
                         Value = ToDb(dossiertitel),
                         SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
-                        ParameterName = "p8",
+                        ParameterName = "p5",
                         Value = ToDb(zeitraumDossier),
                         SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
-                        ParameterName = "p9",
+                        ParameterName = "p6",
                         Value = ToDb(!string.IsNullOrEmpty(signatur)
                             ? signatur
-                            : GetFormOrderSignatur(bestand, ablieferung, behaeltnisNummer, archivNummer)),
+                            : GetFormOrderSignatur(bestand, ablieferung)),
                         SqlDbType = SqlDbType.NVarChar
                     });
 
@@ -2070,9 +2048,9 @@ namespace CMI.Access.Sql.Lesesaal
                 $"{orderItem.Bestand}#{orderItem.Ablieferung}, {(!string.IsNullOrEmpty(orderItem.BehaeltnisNummer) ? $"Bd. {orderItem.BehaeltnisNummer}" : $"Nr. {orderItem.ArchivNummer}")}";
         }
 
-        private string GetFormOrderSignatur(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer)
+        private string GetFormOrderSignatur(string bestand, string ablieferung)
         {
-            return $"{bestand}#{ablieferung}, {(!string.IsNullOrEmpty(behaeltnisNummer) ? $"Bd. {behaeltnisNummer}" : $"Nr. {archivNummer}")}";
+            return $"{bestand}#{ablieferung}";
         }
     }
 

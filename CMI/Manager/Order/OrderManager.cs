@@ -45,13 +45,11 @@ namespace CMI.Manager.Order
             return sqlDataAccess.AddToBasket(indexSnapshot, userId);
         }
 
-        public Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer,
-            string aktenzeichen, string dossiertitel, string zeitraumDossier, string userId)
+        public Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, string dossiertitel, string zeitraumDossier, string userId)
         {
-            return sqlDataAccess.AddToBasket(bestand, ablieferung, behaeltnisNummer, archivNummer, aktenzeichen, dossiertitel, zeitraumDossier,
+            return sqlDataAccess.AddToBasket(bestand, ablieferung, dossiertitel, zeitraumDossier,
                 userId);
         }
-
         public Task RemoveFromBasket(int orderItemId, string userId)
         {
             return sqlDataAccess.RemoveFromBasket(orderItemId, userId);
