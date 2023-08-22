@@ -145,9 +145,6 @@ export class ShoppingCartPageComponent implements OnInit {
 		let selfmadeItem = <SelfMadeOrderItem> {
 			period: this.timeSpanField.value,
 			title: this.dossierTitel,
-			aktenzeichen: this.aktenzeichen,
-			behaeltnisNr: this.behaeltnisNr,
-			archivNr: this.archivNr,
 			ablieferung: this.ablieferung,
 			bestand: this.teilBestand
 		};

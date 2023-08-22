@@ -149,8 +149,7 @@ namespace CMI.Web.Frontend.api.Controllers
             // Special logic for period
             var zeitraum = FormatZeitraumAccordingToSipSpecification(Trim(param.Period));
 
-            var orderItemDb = await client.AddToBasketCustom(Trim(param.Bestand), Trim(param.Ablieferung),
-                Trim(param.BehaeltnisNr), Trim(param.ArchivNr), Trim(param.Aktenzeichen), Trim(param.Title), zeitraum,
+            var orderItemDb = await client.AddToBasketCustom(Trim(param.Bestand), Trim(param.Ablieferung), Trim(param.Title), zeitraum,
                 ControllerHelper.GetCurrentUserId());
             return Content(HttpStatusCode.Created, ConvertDbItemToDto(orderItemDb, OrderType.Bestellkorb, true));
         }

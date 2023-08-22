@@ -31,17 +31,13 @@ namespace CMI.Utilities.ProxyClients.Order
             return result.Message.OrderItem;
         }
 
-        public async Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer,
-            string aktenzeichen, string dossiertitel, string zeitraumDossier, string userId)
+        public async Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, string dossiertitel, string zeitraumDossier, string userId)
         {
             var client = GetRequestClient<AddToBasketCustomRequest>();
             var result = await client.GetResponse<AddToBasketCustomResponse>(new AddToBasketCustomRequest
             {
                 Bestand = bestand,
                 Ablieferung = ablieferung,
-                BehaeltnisNummer = behaeltnisNummer,
-                ArchivNummer = archivNummer,
-                Aktenzeichen = aktenzeichen,
                 Dossiertitel = dossiertitel,
                 ZeitraumDossier = zeitraumDossier,
                 UserId = userId
