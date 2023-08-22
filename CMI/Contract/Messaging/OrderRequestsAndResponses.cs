@@ -20,9 +20,6 @@ namespace CMI.Contract.Messaging
     {
         public string Bestand { get; set; }
         public string Ablieferung { get; set; }
-        public string BehaeltnisNummer { get; set; }
-        public string ArchivNummer { get; set; }
-        public string Aktenzeichen { get; set; }
         public string Dossiertitel { get; set; }
         public string ZeitraumDossier { get; set; }
         public string UserId { get; set; }
