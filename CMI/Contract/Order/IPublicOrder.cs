@@ -9,7 +9,7 @@ namespace CMI.Contract.Order
     {
         Task<OrderItem> AddToBasket(OrderingIndexSnapshot indexSnapshot, string userId);
 
-        Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer, string aktenzeichen,
+        Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, 
             string dossiertitel, string zeitraumDossier, string userId);
 
         Task RemoveFromBasket(int orderItemId, string userId);

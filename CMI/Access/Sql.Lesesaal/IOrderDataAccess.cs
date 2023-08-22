@@ -9,8 +9,7 @@ namespace CMI.Access.Sql.Lesesaal
     {
         Task<OrderItem> AddToBasket(OrderingIndexSnapshot indexSnapshot, string userId);
 
-        Task<OrderItem> AddToBasket(string bestand, string ablieferung, string behaeltnisNummer, string archivNummer,
-            string aktenzeichen, string dossiertitel, string zeitraumDossier, string userId);
+        Task<OrderItem> AddToBasket(string bestand, string ablieferung,  string dossiertitel, string zeitraumDossier, string userId);
 
         Task RemoveFromBasket(int orderItemId, string userId);
 
