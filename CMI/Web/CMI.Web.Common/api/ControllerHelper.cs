@@ -14,12 +14,11 @@ namespace CMI.Web.Common.api
 
         private IApplicationRoleUserDataAccess applicationRoleUserDataAccess;
         private IUserDataAccess userDataAccess;
-        private string additionalInternalUsers;
+        private string additionalInternalUsers => WebHelper.AdditionalInternalUsers;
 
         public ControllerHelper(ApiController apiController)
         {
             this.apiController = apiController;
-            additionalInternalUsers = WebHelper.AdditionalInternalUsers;
         }
 
         public IUserDataAccess UserDataAccess
