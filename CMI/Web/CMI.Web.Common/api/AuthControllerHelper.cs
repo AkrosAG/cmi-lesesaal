@@ -230,7 +230,7 @@ namespace CMI.Web.Common.api
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Could not insert or update user on signin");
+                Log.Error(ex, "Could not insert or update user {userId} on signin", userId);
             }
 
             return true;
@@ -348,7 +348,7 @@ namespace CMI.Web.Common.api
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Could not fetch user info");
+                Log.Error(ex, "Could not fetch user info for user {userId}", userId);
             }
         }
 
