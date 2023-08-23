@@ -50,13 +50,18 @@ namespace CMI.Web.Common.api
         public bool IsStaff()
         {
             var isStaff = GetFromClaim("affiliation")?.ToLowerInvariant().Contains("staff".ToLowerInvariant());
+            if (isStaff.HasValue && isStaff.Value)
+            {
+                return true;
+            }
+
             var internalEmail = GetFromClaim("emailaddress")?.ToLowerInvariant();
             if(!string.IsNullOrEmpty(AdditionalInternalUsers) && !string.IsNullOrEmpty(internalEmail))
             {
                 return AdditionalInternalUsers.Split(',', ';', '|').Contains(internalEmail);
             }
 
-            return isStaff.GetValueOrDefault(false);
+            return false;
         }
 
         public bool IsHomeOrganizationEth()
@@ -120,10 +125,7 @@ namespace CMI.Web.Common.api
             {
                 return "APPO";
             }
-            else
-            {
-                return string.Empty;
-            }
+            return string.Empty;
         }
 
         public bool HasClaims()
