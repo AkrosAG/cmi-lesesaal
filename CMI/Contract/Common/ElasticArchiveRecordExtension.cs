@@ -73,9 +73,12 @@ namespace CMI.Contract.Common
             }
         }
 
-        private static bool HasProperty(dynamic expandoObject, string propertyName)
+        public static string GetSchutzfristenVerzeichnung(this ElasticArchiveRecord entity)
         {
-            return ((IDictionary<string, object>) expandoObject).ContainsKey(propertyName);
+            return
+                $"SF-Kat: {entity.ProtectionCategory} / SF-Dauer: {entity.ProtectionDuration} / SF-Ende: {entity.ProtectionEndDate?.Date.ToString("dd.MM.yyy") ?? "-"}"
+                    .Trim();
         }
+
     }
 }
