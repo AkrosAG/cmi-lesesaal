@@ -23,8 +23,7 @@ namespace CMI.Web.Common.Helpers
                 ZusaetzlicheInformationen = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.Extent,
                 ZeitraumDossier = !string.IsNullOrEmpty(unknowText) ? unknowText : entity.CreationPeriod?.Text,
 
-                // ToDo: Review
-                Schutzfristverzeichnung = entity.ProtectionCategory,
+                Schutzfristverzeichnung = entity.GetSchutzfristenVerzeichnung() ,
                 Publikationsrechte = entity.DetailData == null || !entity.DetailData.Any(d => d.ElementName == "Verwertungsrecht") ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "Verwertungsrecht")?.TextValues.ToArray()),
                 ZustaendigeStelle = entity.DetailData == null || !entity.DetailData.Any(d => d.ElementName == "ZuständigeStelle") ? unknowText : string.Join(",", entity.DetailData?.FirstOrDefault(d => d.ElementName == "ZuständigeStelle")?.TextValues.ToArray()), 
 
