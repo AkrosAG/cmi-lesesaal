@@ -169,13 +169,19 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     var mediaType = MimeMapping.GetMimeMapping(file.Filename);
                     var buffer = Convert.FromBase64String(file.Base64Content);
+                    var filename = $"{record.ReferenceCode}_{file.Filename}";
+                    filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
 
                     var response = new HttpResponseMessage
                     {
                         Content = new StreamContent(new MemoryStream(buffer))
                     };
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-                    
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = filename
+                    };
+
                     var result = await Task.FromResult(response);
                     return ResponseMessage(result);
                 }
