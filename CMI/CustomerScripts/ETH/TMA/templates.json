@@ -1,30 +1,6 @@
 {
   "FormTemplates": [
     {
-      "FormId": "Archiv_Extern",
-      "Sections": [
-        {
-          "SectionLabels": {
-            "de": "Identifikation",
-            "fr": "Identité",
-            "en": "Identity"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "Title",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Autorisierte Namensform",
-                "en": ""
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "FormId": "Abteilung_Extern",
       "Sections": [
         {
@@ -45,26 +21,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.ID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "ID",
-                "en": "ID"
-              }
-            },
-            {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Entstehungszeitraum",
-                "en": "Creation period"
-              }
-            },
-            {
               "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
@@ -75,7 +31,17 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AllgemeineAnmerkungen",
+              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Erläuterung",
+                "en": "Explanation"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
