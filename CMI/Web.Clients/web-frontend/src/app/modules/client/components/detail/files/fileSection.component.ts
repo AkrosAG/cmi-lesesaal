@@ -34,7 +34,7 @@ export class FileSectionComponent implements OnInit {
 				cssClass = 'fa-solid fa-file-image fa-2xl';
 				break;
 			default:
-				cssClass = 'fa-solid fa-file';
+				cssClass = 'fa-solid fa-file fa-2xl';
 				break;
 		}
 		return cssClass;
