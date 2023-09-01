@@ -21,6 +21,26 @@
               }
             },
             {
+              "DbFieldName": "DetailData.ID",
+              "DbType": "Text",
+              "ElasticType": "float?",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "ID",
+                "en": "ID"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.UebergeordnetesObjektTektonik",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Übergeordnetes Objekt in der Tektonik",
+                "en": "Übergeordnetes Objekt in der Tektonik"
+              }
+            },
+            {
               "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1540,7 +1560,7 @@
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
                 "en": "Publications"

@@ -1,30 +1,6 @@
 {
   "FormTemplates": [
     {
-      "FormId": "Archiv_Extern",
-      "Sections": [
-        {
-          "SectionLabels": {
-            "de": "Identifikation",
-            "fr": "Identité",
-            "en": "Identity"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "Title",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Autorisierte Namensform",
-                "en": ""
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "FormId": "Abteilung_Extern",
       "Sections": [
         {
@@ -47,7 +23,7 @@
             {
               "DbFieldName": "DetailData.ID",
               "DbType": "Text",
-              "ElasticType": "string",
+              "ElasticType": "float?",
               "Visibility": 1,
               "FieldLabels": {
                 "de": "ID",
@@ -55,13 +31,13 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "DetailData.UebergeordnetesObjektTektonik",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 1,
               "FieldLabels": {
-                "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "de": "Übergeordnetes Objekt in der Tektonik",
+                "en": "Übergeordnetes Objekt in der Tektonik"
               }
             },
             {
@@ -75,7 +51,17 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AllgemeineAnmerkungen",
+              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Erläuterung",
+                "en": "Explanation"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
@@ -488,7 +474,7 @@
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
                 "en": "Publications"
@@ -755,7 +741,7 @@
                 "de": "Entstehungszeitraum",
                 "en": "Creation period"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -1031,7 +1017,7 @@
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
                 "en": "Publications"
@@ -1298,7 +1284,7 @@
                 "de": "Entstehungszeitraum",
                 "en": "Creation period"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -1574,7 +1560,7 @@
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
                 "en": "Publications"
@@ -1841,7 +1827,7 @@
                 "de": "Entstehungszeitraum",
                 "en": "Creation period"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -2117,7 +2103,7 @@
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
                 "en": "Publications"
