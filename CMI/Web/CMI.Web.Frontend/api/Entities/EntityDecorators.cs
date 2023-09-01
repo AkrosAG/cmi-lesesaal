@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Automatonymous.Accessors;
-using Castle.DynamicProxy.Generators.Emitters;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
@@ -12,7 +10,6 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Elastic;
 using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.api.Search;
-using GreenPipes.Caching.Internals;
 using Nest;
 using Newtonsoft.Json.Linq;
 using Serilog;
@@ -244,7 +241,6 @@ namespace CMI.Web.Frontend.api.Entities
                         if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
                             var subName = name.Substring(detailDataPrefix.Length);
-
                             foreach (var ch in detailDatas.Children())
                             {
                                 var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
@@ -254,12 +250,19 @@ namespace CMI.Web.Frontend.api.Entities
                                     {
                                         break;
                                     }
-                                    if (te.Name == "textValues")
+                                    if (te.Name == "textValues" && field.Type == "string")
                                     {
                                         var sb = new StringBuilder();
                                         sb = te.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
-                                        attributes.Add(field.Label, sb.ToString());
+                                        token= sb.ToString();
                                         break;
+                                    }
+                                    if (te.Name.StartsWith("float") && field.Type.StartsWith("float")
+                                    || te.Name.StartsWith("int64Values") && field.Type.StartsWith("int"))
+                                    {
+                                        var sb = new StringBuilder();
+                                        sb = te.Value.First.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                                        token = sb.ToString();
                                     }
                                 }
                             }
