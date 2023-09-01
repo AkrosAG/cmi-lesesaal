@@ -231,12 +231,7 @@
         }
       },
       "protectionStartDate": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          }
-        }
+        "type": "text"       
       },
       "permission": {
         "type": "text",
