@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -169,13 +170,19 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     var mediaType = MimeMapping.GetMimeMapping(file.Filename);
                     var buffer = Convert.FromBase64String(file.Base64Content);
+                    var filename = $"{record.ReferenceCode}_{Regex.Match(file.Filename, ".{0,20}$").Value}";
+                    filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
 
                     var response = new HttpResponseMessage
                     {
                         Content = new StreamContent(new MemoryStream(buffer))
                     };
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-                    
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = filename
+                    };
+
                     var result = await Task.FromResult(response);
                     return ResponseMessage(result);
                 }
