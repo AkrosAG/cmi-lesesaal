@@ -25,7 +25,7 @@
     "Label": "ID",
     "TargetField": "ID",
     "IsDefaultField": 0,
-    "Type": "float?",
+    "Type": "int",
     "IsRepeatable": 1
   },
   {
@@ -643,6 +643,15 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "BemerkungUmfang",
     "TargetField": "BemerkungUmfang",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "CustomFreeTextField11",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Übergeordnetes Objekt in der Tektonik",
+    "TargetField": "UebergeordnetesObjektTektonik",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0
