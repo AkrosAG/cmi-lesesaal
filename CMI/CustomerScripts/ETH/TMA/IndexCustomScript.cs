@@ -34,7 +34,7 @@ namespace CMI.Contract.Common.Compiler
                     elasticArchiveRecord.Facetten.Text01.Add(text.ToString());
                 }
             }
-            var sprachen = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("Sprache"));
+            var sprachen = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("Sprachen"));
             if (sprachen != null)
             {
                 elasticArchiveRecord.Facetten.Text02 = new List<string>();
