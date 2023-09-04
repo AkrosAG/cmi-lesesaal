@@ -23,7 +23,7 @@
             {
               "DbFieldName": "DetailData.ID",
               "DbType": "Text",
-              "ElasticType": "float?",
+              "ElasticType": "string",
               "Visibility": 1,
               "FieldLabels": {
                 "de": "ID",

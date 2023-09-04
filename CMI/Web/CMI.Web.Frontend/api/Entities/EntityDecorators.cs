@@ -237,34 +237,16 @@ namespace CMI.Web.Frontend.api.Entities
 
                         JToken token = null;
                         var name = field.Name.ToLowerCamelCase();
-
                         if (name.StartsWith(detailDataPrefix, StringComparison.OrdinalIgnoreCase))
                         {
-                            var subName = name.Substring(detailDataPrefix.Length);
-                            foreach (var ch in detailDatas.Children())
+                            var subName = name.Substring(detailDataPrefix.Length).ToUpper();
+                            if (detailDatas.Children().Any(d => d.Children().Any(ch =>
+                                    ch is JProperty { Name: "elementName" } jp && jp.Value.ToString().ToUpper() == subName)))
                             {
-                                var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
-                                foreach (JProperty te in toke)
-                                {
-                                    if (te.Name == "elementName" && te.Value.ToString().ToUpper() != subName.ToUpper())
-                                    {
-                                        break;
-                                    }
-                                    if (te.Name == "textValues" && field.Type == "string")
-                                    {
-                                        var sb = new StringBuilder();
-                                        sb = te.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
-                                        token= sb.ToString();
-                                        break;
-                                    }
-                                    if (te.Name.StartsWith("float") && field.Type.StartsWith("float")
-                                    || te.Name.StartsWith("int64Values") && field.Type.StartsWith("int"))
-                                    {
-                                        var sb = new StringBuilder();
-                                        sb = te.Value.First.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
-                                        token = sb.ToString();
-                                    }
-                                }
+                                var children = detailDatas.Children().First(d => d.Children().Any(ch =>
+                                    ch is JProperty { Name: "elementName" } jp && jp.Value.ToString().ToUpper() == subName));
+
+                                token = MapDetailData(children);
                             }
                         }
                         else if (name.StartsWith("descriptors", StringComparison.OrdinalIgnoreCase))
@@ -304,9 +286,43 @@ namespace CMI.Web.Frontend.api.Entities
             return metadata;
         }
 
+        
+        private static JToken MapDetailData(JToken ch)
+        {
+            var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
+            JToken token = null;
+            var typeName = (toke.Value.First(p => (p as JProperty).Name == "typeName") as JProperty).Value
+                .ToString();
+            var sb = new StringBuilder();
+            switch (typeName)
+            {
+                case "string":
+                    var textValue = toke.Value.First(p => (p as JProperty).Name == "textValues") as JProperty;
+                    sb = textValue.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                    token = sb.ToString();
+                    break;
+                case "float":
+                case "float?":
+                    var floatValue =
+                        toke.Value.First(p => (p as JProperty).Name == "floatValue") as JProperty;
+                    sb = floatValue.Value.First.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                    token = sb.ToString();
+                    break;
+
+                case "int":
+                case "int?":
+                    var intValue = toke.Value.First(p => (p as JProperty).Name == "int64Values") as JProperty;
+                    sb = intValue.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                    token = sb.ToString();
+                    break;
+            }
+
+            return token;
+        }
+
         private static void MapDescriptors(JArray descriptors, JObject attributes)
         {
-            var stringBuilderRegister = new StringBuilder();
+            StringBuilder stringBuilderRegister;
             var thesaurusHelper = new List<ThesaurusHelper>();
             foreach (var ch in descriptors.Children())
             {
