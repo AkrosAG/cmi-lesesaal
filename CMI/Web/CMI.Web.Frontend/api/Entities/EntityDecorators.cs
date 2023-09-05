@@ -321,7 +321,7 @@ namespace CMI.Web.Frontend.api.Entities
                     token = sb.ToString();
                     break;
                 default:
-                    throw new Exception("Only strings, integer and float values are mapped! A new case must be added");
+                    throw new Exception($"Only strings, integer and float values are mapped! A new case must be added. Missing type {typeName}");
             }
 
             return token;
