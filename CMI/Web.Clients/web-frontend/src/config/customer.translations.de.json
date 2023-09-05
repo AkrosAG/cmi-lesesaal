@@ -15,7 +15,10 @@
 		"sprachen": "Sprachen",
 		"Archivalienart": "Archivalienart",
 		"Koerperschaftsregister": "Körperschaftsregister",
-		"Personenregister": "Personenregister"
+		"Ortsregister": "Ortsregister",
+		"Personenregister": "Personenregister",
+		"Sachregister": "Sachregister",
+		"Werkregister": "Werkregister"
 
   },
   "metadata": {
