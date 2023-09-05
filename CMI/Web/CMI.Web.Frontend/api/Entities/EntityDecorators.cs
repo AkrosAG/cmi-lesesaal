@@ -286,7 +286,12 @@ namespace CMI.Web.Frontend.api.Entities
             return metadata;
         }
 
-        
+        /// <summary>
+        /// Only strings, integer and float values are mapped
+        /// Another types throws exception
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <returns>JToken with correct value</returns>
         private static JToken MapDetailData(JToken ch)
         {
             var toke = ch.Type == JTokenType.Object ? (ch as JObject).Children() : (JEnumerable<JToken>?)null;
@@ -315,6 +320,8 @@ namespace CMI.Web.Frontend.api.Entities
                     sb = intValue.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
                     token = sb.ToString();
                     break;
+                default:
+                    throw new Exception($"Only strings, integer and float values are mapped! A new case must be added. Missing type {typeName}");
             }
 
             return token;
