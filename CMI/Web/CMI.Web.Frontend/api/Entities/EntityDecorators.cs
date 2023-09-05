@@ -287,7 +287,7 @@ namespace CMI.Web.Frontend.api.Entities
         }
 
         /// <summary>
-        /// Only strings, integer and float values are mapped
+        ///Only strings, integer, boolean, timePeriod and float values are mapped
         /// Another types throws exception
         /// </summary>
         /// <param name="ch"></param>
@@ -320,8 +320,22 @@ namespace CMI.Web.Frontend.api.Entities
                     sb = intValue.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
                     token = sb.ToString();
                     break;
+
+                case "ElasticTimePeriod":
+                    var dateRangeValue = toke.Value.First(p => (p as JProperty).Name == "dateRangeValues") as JProperty;
+                    sb = dateRangeValue.Value.First.HasValues ? dateRangeValue.Value.First.First.Aggregate(sb, (current, text) => current.AppendLine(text.ToString())) :
+                        dateRangeValue.Value.First.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                    token = sb.ToString();
+                    break;
+                case "bool":
+                case "bool?":
+                    var boolValue = toke.Value.First(p => (p as JProperty).Name == "boolValue") as JProperty;
+                    sb = boolValue.Value.Aggregate(sb, (current, text) => current.AppendLine(text.ToString()));
+                    token = sb.ToString();
+                    break;
+
                 default:
-                    throw new Exception($"Only strings, integer and float values are mapped! A new case must be added. Missing type {typeName}");
+                    throw new Exception($"Only strings, integer, boolean, timePeriod and float values are mapped! A new case must be added. Missing type {typeName}");
             }
 
             return token;
