@@ -288,7 +288,7 @@ namespace CMI.Web.Frontend.api.Entities
 
         /// <summary>
         /// Only strings, integer and float values are mapped
-        /// Nother Typs throws exception
+        /// Another types throws exception
         /// </summary>
         /// <param name="ch"></param>
         /// <returns>JToken with correct value</returns>
