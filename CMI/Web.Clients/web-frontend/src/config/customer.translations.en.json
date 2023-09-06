@@ -11,7 +11,13 @@
 		"stufen": "Levels",
 		"treffer": "Results",
 		"weitereTreffer": "Other",
-		"zugaenglichkeitGemBGA": "Accessibility under ArchA"
+		"sprachen": "Language of Material",
+		"Archivalienart": "Type of Material",
+		"Koerperschaftsregister": "Register of Corporate Bodies",
+		"Ortsregister": "Location register",
+		"Personenregister": "Register of persons",
+		"Sachregister": "Subject index",
+		"Werkregister": "Register of works"
 	},
 	"metadata": {
 		"boolean": {
