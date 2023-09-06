@@ -428,7 +428,7 @@
       "title": "Titel",
       "zeitraum": "Zeitraum"
     },
-    "unknownErrorText": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "unknownErrorText": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "verzeichnungseinheiten": "Verzeichnungseinheiten ({0})"
   },
   "favorites": {
@@ -439,7 +439,7 @@
     "defaultNewName": "Favoritenliste 1",
     "emptyListWarn": "Bitte wählen Sie eine Favoritenliste, um die Verzeichnungseinheit den Favoriten hinzuzufügen.",
     "emptyListWarnTitle": "Keine Liste ausgewählt",
-    "errorPleaseTryAgain": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "errorPleaseTryAgain": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "favoriteTitlePlaceholder": "Meine gespeicherte Suche",
     "listsTitle": "Favoritenlisten",
     "mandatoryField": "Obligatorisches Feld",
@@ -470,7 +470,7 @@
     "newList": "Neue Liste...",
     "save": "Speichern",
     "titel": "Favoriten",
-    "unexpectedError": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "unexpectedError": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "unexpectedErrorPrefix": "Fehlermeldung:"
   },
   "favoritesMigration": {
@@ -505,7 +505,7 @@
     "download": "Download",
     "downloadNow": "Jetzt herunterladen",
     "downloadError": "Beim Starten des Downloads ist folgender Fehler aufgetreten: ",
-    "downloadErrorDefaultMessage": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut",
+    "downloadErrorDefaultMessage": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
     "downloadErrorTitle": "Fehler beim Download",
     "downloadInfo": "Die abliefernden Stellen können auch während der Schutzfrist in die von ihnen abgelieferten Unterlagen Einsicht nehmen. Für deren Konsultation müssen Sie von Ihrer Verwaltungseinheit berechtigt sein. Diese erhält zudem eine automatische Benachrichtigung, jedes Mal wenn Sie solche Digitalisate herunterladen.",
     "downloadInfo2": "Enthalten diese Unterlagen Personendaten, ist eine Ausleihe nur aus bestimmten Gründen zulässig ",
@@ -1076,7 +1076,7 @@
     "explanationCaption": "Die Relevanz wurde von ElasticSearch anhand der folgenden Werte berechnet:",
     "failedAddToBasketText": "Beim Hinzufügen in den Bestellkorb gab es einen Fehler.",
     "failedAddToBasketTitle": "Fehler",
-    "failedBecauseOfLevelMessage": "Diese Verzeichnungseinheit ist nicht bestellbar. Bei Fragen wenden Sie sich bitte an die Beratung oder an bestellung@bar.admin.ch.",
+    "failedBecauseOfLevelMessage": "Diese Verzeichnungseinheit ist nicht bestellbar. Schreiben Sie uns bitte eine E-Mail.",
     "failedBecauseOfLevelTitle": "Bestellen fehlgeschlagen",
     "loginToUseBasketText": "Bitte melden Sie sich an, um den Bestellkorb nutzen zu können.",
     "loginToUsebasketTitle": "Jetzt anmelden",
