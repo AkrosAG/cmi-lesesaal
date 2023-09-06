@@ -16,7 +16,7 @@ namespace CMI.Web.Frontend.api.Search
                     {
                         Value = field.Value.Escape(field.Key), 
                         Boost = 1.0,
-                        CaseInsensitive = false,
+                        CaseInsensitive = true,
                         Field = field.Key
                     }
                 }
