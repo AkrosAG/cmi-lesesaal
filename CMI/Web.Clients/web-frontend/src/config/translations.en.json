@@ -447,7 +447,7 @@
       "title": "Title",
       "zeitraum": "Time period"
     },
-    "unknownErrorText": "An unexpected error has occurred. Please try again later. If the problem persists, please contact our advice service or send an e-mail to bundesarchiv@bar.admin.ch.",
+    "unknownErrorText": "An unexpected error has occurred. Try again later. Please do not hesitate to contact the archive via e-mail if the problem persists.",
     "verzeichnungseinheiten": "Units of description ({0})",
     "verzeichniseinheiten": "Units of description ({0})"
   },
@@ -459,7 +459,7 @@
     "defaultNewName": "Favourites list 1",
     "emptyListWarn": "Please select a favourites list to add the unit of description to your favourites.",
     "emptyListWarnTitle": "No list selected",
-    "errorPleaseTryAgain": "An unexpected error has occurred. Please try again later. If the problem persists, please contact our advice service or send an e-mail to bundesarchiv@bar.admin.ch.",
+    "errorPleaseTryAgain": "An unexpected error has occurred. Try again later. Please do not hesitate to contact the archive via e-mail if the problem persists.",
     "favoriteTitlePlaceholder": "My saved search",
     "listsTitle": "Favourites lists",
     "mandatoryField": "Required field",
@@ -491,7 +491,7 @@
     "newList": "New list...",
     "save": "Save",
     "titel": "Favourites",
-    "unexpectedError": "An unexpected error has occurred. Please try again later. If the problem persists, please contact our advice service or send an e-mail to bundesarchiv@bar.admin.ch.",
+    "unexpectedError": "An unexpected error has occurred. Try again later. Please do not hesitate to contact the archive via e-mail if the problem persists.",
     "unexpectedErrorPrefix": "Error message:"
   },
   "favoritesMigration": {
@@ -877,7 +877,7 @@
     "explanationCaption": "Relevance was calculated by ElasticSearch on the basis of the following values:",
     "failedAddToBasketText": "Error adding to shopping cart.",
     "failedAddToBasketTitle": "Error",
-    "failedBecauseOfLevelMessage": "This unit of description is not available to order. If you have any questions, please contact our advice service or e-mail us at bestellung@bar.admin.ch.",
+    "failedBecauseOfLevelMessage": "This item cannot be ordered. Please do not hesitate to contact us by e-mail if you have any questions.",
     "failedBecauseOfLevelTitle": "Order failed",
     "loginToUseBasketText": "Please log in to use the shopping cart.",
     "loginToUsebasketTitle": "Log in now",
