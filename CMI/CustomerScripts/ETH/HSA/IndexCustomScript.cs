@@ -64,7 +64,7 @@ namespace CMI.Contract.Common.Compiler
                     foreach (var descriptor in descriptors)
                     {
                         var text = new StringBuilder();
-                        text.Append(descriptor.Description);
+                        text.Append(descriptor.Name);
                         if (!string.IsNullOrEmpty(descriptor.Function))
                         {
                             text.Append(" : " + descriptor.Function);
