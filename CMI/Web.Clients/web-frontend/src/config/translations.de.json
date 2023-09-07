@@ -621,123 +621,6 @@
     "errorMobil": "Mobilnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \"-\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein",
     "errorPhone": "Telefonnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \"-\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein"
   },
-  "metadata": {
-		"boolean": {
-			"ja": "Ja",
-			"nein": "Nein"
-		},
-    "label": {
-      "creationPeriod": "Entstehungszeitraum",
-      "customFields": {
-        "abdeckung": "Abdeckung",
-        "aipId": "Identifikation digitales Magazin",
-        "aktenzeichen": "Aktenzeichen",
-        "anhang3": "Anhang 3 VBGA",
-        "bemerkungZurVe": "Zusätzliche Informationen",
-        "beteiligtePersonenKoerperschaften": "Beteiligte Personen /  Körperschaften",
-        "bildAnsicht": "Ansichtsbild",
-        "bildVorschau": "Vorschaubild",
-        "digitalesFindmittelBeschreibung": "Digitales Findmittel (Beschreibung)",
-        "digitalesFindmittelLink": "Digitales Findmittel (Link)",
-        "digitaleVersion": "Digitale Version",
-        "entstehungszeitraumAnmerkung": "Entstehungszeitraum Anm.",
-        "form": "Form",
-        "format": "Format",
-        "frueheresAktenzeichen": "Früheres Aktenzeichen",
-        "geschichteDerUnterlagen": "Geschichte der Unterlagen",
-        "kategorieDia": "Kat. Automatisierung",
-        "land": "Land",
-        "nachfolgerbehoerden": "Nachfolgerbehörde(n)",
-        "nichtOnlineRecherchierbareDossiers": "Nicht online recherchierbare Dossiers",
-        "publikationsrechte": "Publikationsrechte",
-        "signaturArchivplan": "Signatur Archivplan",
-        "thema": "Thema",
-        "urheber": "Urheber",
-        "veAblieferungLink": "Ablieferung",
-        "veOrdnungskomponenteLink": "Ordnungskomponente",
-        "verleger": "Verleger",
-        "verwandteVe": "Verwandte VE",
-        "vorgaengerbehoerden": "Vorgängerbehörde(n)",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente",
-        "zustaendigeStelle": "Zuständige Stelle"
-      },
-      "digitallyAvailable": "Digital vorhandene Unterlagen",
-      "extent": "Laufmeter",
-      "formerReferenceCode": "Frühere Signaturen",
-      "level": "Stufe",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "withinInfo": "Darin"
-    },
-    "searchFields": {
-      "_all": "Alles",
-      "allData": "Alles",
-      "allMetaData": "Metadaten",
-      "allPrimaryData": "Volltext (Primärdaten)",
-      "creationPeriod": "Entstehungszeitraum",
-      "detailData": {
-        "ueberlieferungsform": "Überlieferungsform",
-        "sprachen": "Sprachen ",
-        "archivalienart": "Archivalienart",
-        "permission": "Permission",
-        "descriptors.name": "Personenregister",
-        "verwaltungssignatur": "Verwaltungssignatur",
-        "metadaten": "Metadaten",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente"
-      },
-      "formerReferenceCode": "Frühere Signaturen",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "Contains": "Form und Inhalt"
-    },
-    "sortFields": {
-      "creationPeriod": {
-        "startDate": {
-          "ascending": "Datum aufsteigend",
-          "descending": "Datum absteigend"
-        }
-      },
-      "referenceCode": {
-        "ascending": "Signatur aufsteigend",
-        "descending": "Signatur absteigend",
-        "sort": {
-          "ascending": "Signatur aufsteigend",
-          "descending": "Signatur absteigend"
-        }
-      },
-      "relevanz": "Relevanz",
-      "title": {
-        "keyword": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        },
-        "sort": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        }
-      },
-      "treePath": {
-        "ascending": "Archivplankontext aufsteigend",
-        "descending": "Archivplankontext absteigend"
-      }
-    },
-    "title": {
-      "accessTokens": "Access Tokens",
-      "anmerkungen": "Anmerkungen",
-      "archivplan": "Archivplan",
-      "details": "Details",
-      "erschliessungskontrolle": "Erschliessungskontrolle",
-      "identifikation": "Identifikation",
-      "images": "Vorschaubilder",
-      "inhaltUndInnereOrdnung": "Inhalt und innere Ordnung",
-      "interneVermerke": "Interne Vermerke",
-      "kontext": "Kontext",
-      "sachverwandteUnterlagen": "Sachverwandte Unterlagen",
-      "zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
-    }
-  },
   "modal": {
     "close": "Schliessen"
   },
@@ -1096,7 +979,7 @@
     "reason4": "Es gibt im Bundesarchiv tatsächlich keine Unterlagen zu Ihrem Thema. Weitere Archive finden Sie in der <a href=\"{0}\">Datenbank Archivadressen der Schweiz</a> oder auf dem <a href=\"{1}\">Archivportal Europa</a>.",
     "relevance": "Relevanz",
     "signatur": "Signatur",
-    "zugangTooltip": "Zugänglichkeit gemäss BGA"
+    "zugangTooltip": "Benutzbarkeit"
   },
   "simpleHitList": {
     "sortierung": "Sortierung"
