@@ -643,7 +643,7 @@ namespace CMI.Web.Frontend.api.Elastic
             foreach (var hit in hits)
             {
                 var data = JsonConvert.DeserializeObject<T>(serializer.SerializeToString(hit.Source));
-               
+              
                 var entry = new Entity<T>
                 {
                     Data = data,
@@ -653,7 +653,16 @@ namespace CMI.Web.Frontend.api.Elastic
 
                 if (access != null)
                 {
-                    data.Translate(access.Language);
+                    switch (data)
+                    {
+                        case SearchRecord searchRecord:
+                            searchRecord.Translate(access.Language);
+                            break;
+                        default:
+                            data.Translate(access.Language);
+                            break;
+                    }
+
                     entry.IsDownloadAllowed = access.HasAnyTokenFor(data.PrimaryDataDownloadAccessTokens);
                 }
 

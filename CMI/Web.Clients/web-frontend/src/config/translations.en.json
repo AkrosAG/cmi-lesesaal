@@ -897,7 +897,7 @@
     "reason4": "There are definitely no documents on your topic in the Federal Archives. You can find other archives in the <a href=\"{0}\">Archive Addresses of Switzerland database</a> or on the <a href=\"{1}\">archive portal Europa</a>.",
     "relevance": "Relevance",
     "signatur": "Reference code",
-    "zugangTooltip": "Accessibility under ArchA",
+    "zugangTooltip": "Access",
     "reason1Oe1": "It is possible that you do not have the necessary rights (see <a href=\"#{0}\">Registration & identification</a>).",
     "reason1Oe2": "It is possible that you do not have the necessary rights. Please check your rights in your <a href=\"#{0}\">user account</a>."
   },

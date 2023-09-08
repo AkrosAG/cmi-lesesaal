@@ -68,13 +68,17 @@
 			"translatorType": "StandardTranslator",
 			"items": [{
 				"searchKey": "frei*",
-				"defaultLabel": "Frei zugänglich",
-				"translationKey": "search.advanced.field.permission.free"
+				"defaultLabel": "Frei einsehbar",
+				"translationKey": "search.advanced.field.permission.freiZugaenglich"
 			}, {
 				"searchKey": "Gesuchspflichtig",
 				"defaultLabel": "Gesuchspflichtig",
-				"translationKey": "search.advanced.field.permission.subjectToRequest"
-			}
+				"translationKey": "search.advanced.field.permission.inSchutzfrist"
+			}, {
+					"searchKey": "Teile*",
+					"defaultLabel": "Teile davon gesuchspflichtig",
+					"translationKey": "search.advanced.field.permission.teileinSchutzfrist"
+				}
 			]
 		}, {
 			"type": "Thesaurus",
