@@ -34,7 +34,7 @@ namespace CMI.Contract.Common
             {
                 var cultureInfo = new CultureInfo(language);
 
-                var level = ResourceManager.GetString(record.Level ?? "", cultureInfo) ;
+                var level = ResourceManager.GetString(record.Level ?? "", cultureInfo);
                 if (!string.IsNullOrEmpty(level))
                 {
                     record.Level = level;
@@ -53,7 +53,7 @@ namespace CMI.Contract.Common
         /// </summary>
         /// <param name="record">the to translate record</param>
         /// <param name="language">language abbreviation e.g. "en"</param>
-        public static void Translate(this DetailRecord record, string language)
+        public static void Translate(this SearchRecord record, string language)
         {
             try
             {
