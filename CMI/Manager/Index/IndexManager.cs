@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
@@ -213,7 +215,7 @@ namespace CMI.Manager.Index
             {
                 var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
                 {
-                    Filename = f.FileName,
+                    Filename = GetFileNameForDownload(f.FileName, elasticArchiveRecord.ReferenceCode),
                     Description= f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
@@ -441,6 +443,13 @@ namespace CMI.Manager.Index
             }
 
             return retVal;
+        }
+
+
+        private static string GetFileNameForDownload(string name, string referenceCode)
+        {
+            var filename = $"{referenceCode}_{Regex.Match(name, ".{0,20}$").Value}";
+            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
         private static bool ContainsCustomFieldDigitaleVersion(dynamic customFields)
