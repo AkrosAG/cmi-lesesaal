@@ -428,7 +428,7 @@
       "title": "Titel",
       "zeitraum": "Zeitraum"
     },
-    "unknownErrorText": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "unknownErrorText": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "verzeichnungseinheiten": "Verzeichnungseinheiten ({0})"
   },
   "favorites": {
@@ -439,7 +439,7 @@
     "defaultNewName": "Favoritenliste 1",
     "emptyListWarn": "Bitte wählen Sie eine Favoritenliste, um die Verzeichnungseinheit den Favoriten hinzuzufügen.",
     "emptyListWarnTitle": "Keine Liste ausgewählt",
-    "errorPleaseTryAgain": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "errorPleaseTryAgain": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "favoriteTitlePlaceholder": "Meine gespeicherte Suche",
     "listsTitle": "Favoritenlisten",
     "mandatoryField": "Obligatorisches Feld",
@@ -470,7 +470,7 @@
     "newList": "Neue Liste...",
     "save": "Speichern",
     "titel": "Favoriten",
-    "unexpectedError": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bundesarchiv@bar.admin.ch.",
+    "unexpectedError": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, schreiben Sie uns eine E-Mail.",
     "unexpectedErrorPrefix": "Fehlermeldung:"
   },
   "favoritesMigration": {
@@ -505,7 +505,7 @@
     "download": "Download",
     "downloadNow": "Jetzt herunterladen",
     "downloadError": "Beim Starten des Downloads ist folgender Fehler aufgetreten: ",
-    "downloadErrorDefaultMessage": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut",
+    "downloadErrorDefaultMessage": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
     "downloadErrorTitle": "Fehler beim Download",
     "downloadInfo": "Die abliefernden Stellen können auch während der Schutzfrist in die von ihnen abgelieferten Unterlagen Einsicht nehmen. Für deren Konsultation müssen Sie von Ihrer Verwaltungseinheit berechtigt sein. Diese erhält zudem eine automatische Benachrichtigung, jedes Mal wenn Sie solche Digitalisate herunterladen.",
     "downloadInfo2": "Enthalten diese Unterlagen Personendaten, ist eine Ausleihe nur aus bestimmten Gründen zulässig ",
@@ -620,123 +620,6 @@
     "errorMandatoryMailField": "Dieses Feld muss eine gültige E-Mail-Adresse enthalten",
     "errorMobil": "Mobilnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \"-\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein",
     "errorPhone": "Telefonnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \"-\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein"
-  },
-  "metadata": {
-		"boolean": {
-			"ja": "Ja",
-			"nein": "Nein"
-		},
-    "label": {
-      "creationPeriod": "Entstehungszeitraum",
-      "customFields": {
-        "abdeckung": "Abdeckung",
-        "aipId": "Identifikation digitales Magazin",
-        "aktenzeichen": "Aktenzeichen",
-        "anhang3": "Anhang 3 VBGA",
-        "bemerkungZurVe": "Zusätzliche Informationen",
-        "beteiligtePersonenKoerperschaften": "Beteiligte Personen /  Körperschaften",
-        "bildAnsicht": "Ansichtsbild",
-        "bildVorschau": "Vorschaubild",
-        "digitalesFindmittelBeschreibung": "Digitales Findmittel (Beschreibung)",
-        "digitalesFindmittelLink": "Digitales Findmittel (Link)",
-        "digitaleVersion": "Digitale Version",
-        "entstehungszeitraumAnmerkung": "Entstehungszeitraum Anm.",
-        "form": "Form",
-        "format": "Format",
-        "frueheresAktenzeichen": "Früheres Aktenzeichen",
-        "geschichteDerUnterlagen": "Geschichte der Unterlagen",
-        "kategorieDia": "Kat. Automatisierung",
-        "land": "Land",
-        "nachfolgerbehoerden": "Nachfolgerbehörde(n)",
-        "nichtOnlineRecherchierbareDossiers": "Nicht online recherchierbare Dossiers",
-        "publikationsrechte": "Publikationsrechte",
-        "signaturArchivplan": "Signatur Archivplan",
-        "thema": "Thema",
-        "urheber": "Urheber",
-        "veAblieferungLink": "Ablieferung",
-        "veOrdnungskomponenteLink": "Ordnungskomponente",
-        "verleger": "Verleger",
-        "verwandteVe": "Verwandte VE",
-        "vorgaengerbehoerden": "Vorgängerbehörde(n)",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente",
-        "zustaendigeStelle": "Zuständige Stelle"
-      },
-      "digitallyAvailable": "Digital vorhandene Unterlagen",
-      "extent": "Laufmeter",
-      "formerReferenceCode": "Frühere Signaturen",
-      "level": "Stufe",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "withinInfo": "Darin"
-    },
-    "searchFields": {
-      "_all": "Alles",
-      "allData": "Alles",
-      "allMetaData": "Metadaten",
-      "allPrimaryData": "Volltext (Primärdaten)",
-      "creationPeriod": "Entstehungszeitraum",
-      "detailData": {
-        "ueberlieferungsform": "Überlieferungsform",
-        "sprachen": "Sprachen ",
-        "archivalienart": "Archivalienart",
-        "permission": "Permission",
-        "descriptors.name": "Personenregister",
-        "verwaltungssignatur": "Verwaltungssignatur",
-        "metadaten": "Metadaten",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente"
-      },
-      "formerReferenceCode": "Frühere Signaturen",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "Contains": "Form und Inhalt"
-    },
-    "sortFields": {
-      "creationPeriod": {
-        "startDate": {
-          "ascending": "Datum aufsteigend",
-          "descending": "Datum absteigend"
-        }
-      },
-      "referenceCode": {
-        "ascending": "Signatur aufsteigend",
-        "descending": "Signatur absteigend",
-        "sort": {
-          "ascending": "Signatur aufsteigend",
-          "descending": "Signatur absteigend"
-        }
-      },
-      "relevanz": "Relevanz",
-      "title": {
-        "keyword": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        },
-        "sort": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        }
-      },
-      "treePath": {
-        "ascending": "Archivplankontext aufsteigend",
-        "descending": "Archivplankontext absteigend"
-      }
-    },
-    "title": {
-      "accessTokens": "Access Tokens",
-      "anmerkungen": "Anmerkungen",
-      "archivplan": "Archivplan",
-      "details": "Details",
-      "erschliessungskontrolle": "Erschliessungskontrolle",
-      "identifikation": "Identifikation",
-      "images": "Vorschaubilder",
-      "inhaltUndInnereOrdnung": "Inhalt und innere Ordnung",
-      "interneVermerke": "Interne Vermerke",
-      "kontext": "Kontext",
-      "sachverwandteUnterlagen": "Sachverwandte Unterlagen",
-      "zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
-    }
   },
   "modal": {
     "close": "Schliessen"
@@ -1076,7 +959,7 @@
     "explanationCaption": "Die Relevanz wurde von ElasticSearch anhand der folgenden Werte berechnet:",
     "failedAddToBasketText": "Beim Hinzufügen in den Bestellkorb gab es einen Fehler.",
     "failedAddToBasketTitle": "Fehler",
-    "failedBecauseOfLevelMessage": "Diese Verzeichnungseinheit ist nicht bestellbar. Bei Fragen wenden Sie sich bitte an die Beratung oder an bestellung@bar.admin.ch.",
+    "failedBecauseOfLevelMessage": "Diese Verzeichnungseinheit ist nicht bestellbar. Schreiben Sie uns bitte eine E-Mail.",
     "failedBecauseOfLevelTitle": "Bestellen fehlgeschlagen",
     "loginToUseBasketText": "Bitte melden Sie sich an, um den Bestellkorb nutzen zu können.",
     "loginToUsebasketTitle": "Jetzt anmelden",
@@ -1096,7 +979,7 @@
     "reason4": "Es gibt im Bundesarchiv tatsächlich keine Unterlagen zu Ihrem Thema. Weitere Archive finden Sie in der <a href=\"{0}\">Datenbank Archivadressen der Schweiz</a> oder auf dem <a href=\"{1}\">Archivportal Europa</a>.",
     "relevance": "Relevanz",
     "signatur": "Signatur",
-    "zugangTooltip": "Zugänglichkeit gemäss BGA"
+    "zugangTooltip": "Benutzbarkeit"
   },
   "simpleHitList": {
     "sortierung": "Sortierung"

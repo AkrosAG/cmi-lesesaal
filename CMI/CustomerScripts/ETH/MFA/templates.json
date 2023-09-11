@@ -1,36 +1,11 @@
 {
   "FormTemplates": [
     {
-      "FormId": "Archiv_Extern",
-      "Sections": [
-        {
-          "SectionLabels": {
-            "de": "Identifikation",
-            "fr": "Identité",
-            "en": "Identity"
-          },
-          "Fields": [
-            {
-              "DbFieldName": "Title",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Autorisierte Namensform",
-                "en": ""
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "FormId": "Abteilung_Extern",
       "Sections": [
         {
           "SectionLabels": {
             "de": "Details",
-            "fr": "Détails",
             "en": "Details"
           },
           "Fields": [
@@ -41,7 +16,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kürzel",
-                "en": "Abbreviation"
+                "en": "Identifier"
               }
             },
             {
@@ -55,13 +30,13 @@
               }
             },
             {
-              "DbFieldName": "CreationPeriod",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "DbFieldName": "DetailData.UebergeordnetesObjektTektonik",
+              "DbType": "Text",
+              "ElasticType": "string",
               "Visibility": 1,
               "FieldLabels": {
-                "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "de": "Übergeordnetes Objekt in der Tektonik",
+                "en": "Übergeordnetes Objekt in der Tektonik"
               }
             },
             {
@@ -75,13 +50,23 @@
               }
             },
             {
-              "DbFieldName": "DetailData.AllgemeineAnmerkungen",
+              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Erläuterung",
+                "en": "Explanatory note"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen",
-                "en": "Comments"
+                "en": "Notes"
               }
             },
             {
@@ -91,7 +76,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "PID"
+                "en": "Archivist's Note"
               }
             }
           ],
@@ -105,18 +90,17 @@
         {
           "SectionLabels": {
             "de": "Details",
-            "fr": "Détails",
             "en": "Details"
           },
           "Fields": [
             {
-              "DbFieldName": "DetailData.CustomKuerzel",
+              "DbFieldName": "DetailData.Kuerzel",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Kürzel",
-                "en": "Abbreviation"
+                "en": "Identifier"
               }
             },
             {
@@ -146,7 +130,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "PID"
+                "en": "Archivist's Note"
               }
             }
           ],
@@ -170,7 +154,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
-                "en": "Reference code"
+                "en": "Reference Code"
               }
             },
             {
@@ -180,7 +164,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
-                "en": "Distortion level"
+                "en": "Level of Description"
               }
             },
             {
@@ -190,7 +174,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
-                "en": "Archive type"
+                "en": "Type of Material"
               }
             },
             {
@@ -210,7 +194,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "en": "Date"
               }
             },
             {
@@ -220,7 +204,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period"
+                "en": "Reference Time Period"
               }
             },
             {
@@ -230,7 +214,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating"
+                "en": "Details regarding Date"
               }
             }
           ]
@@ -248,8 +232,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
-                "en": "Remarks Provenance",
-                "fr": "Remarques provenance"
+                "en": "Provenance Notes"
               }
             },
             {
@@ -269,7 +252,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
-                "en": "Inventory history"
+                "en": "Archival History"
               }
             },
             {
@@ -302,24 +285,22 @@
                 "en": "Acquisition types"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
-            "en": "Content and structure"
+            "en": "Content and Structure"
           },
           "Fields": [
             {
-              "DbFieldName": "contains",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Scope and Content"
               }
             },
             {
@@ -328,18 +309,16 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsform",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "de": "Überlieferungsformen",
+                "en": "Form of Item at Acquisition"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use"
+            "en": "Conditions of Access and Use"
           },
           "Fields": [
             {
@@ -349,7 +328,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations"
+                "en": "Conditions Governing Access"
               }
             },
             {
@@ -359,7 +338,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Verwertungsrecht",
-                "en": "Exploitation right"
+                "en": "Exploitation Right"
               }
             },
             {
@@ -389,18 +368,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Reproduction regulations"
+                "en": "Conditions Governing Reproduction"
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Langunages",
-                "fr": "Instruments de recherche"
+                "en": "Language of Material"
               }
             },
             {
@@ -410,7 +388,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
-                "en": "Physical condition and technical requirements"
+                "en": "Scripts of Material"
               }
             },
             {
@@ -420,7 +398,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Language comments"
+                "en": "Comment on Language"
               }
             },
             {
@@ -430,17 +408,15 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                "en": "Physical condition and technical requirements"
+                "en": "Physical Characteristics and Technical Requirements"
               }
             }
-          ],
-          "SubSections": []
+          ]
         },
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
-            "en": "Related documents",
-            "fr": "Sources complémentaires"
+            "en": "Allied Materials"
           },
           "Fields": [
             {
@@ -450,7 +426,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
-                "en": "Storage location of the originals"
+                "en": "Existence and Location of Originals"
               }
             },
             {
@@ -460,7 +436,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
-                "en": "Copies / reproductions"
+                "en": "Existence and Location of Copies"
               }
             },
             {
@@ -480,18 +456,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Verwandtes Material",
-                "en": "Related material",
-                "fr": "Sources complémentaires"
+                "en": "Related Units of Description"
               }
             },
             {
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
-                "en": "Publications"
+                "en": "Publication Note"
               }
             },
             {
@@ -510,8 +485,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
-            "en": "Directory control",
-            "fr": "Contrôle de description"
+            "en": "Description Control"
           },
           "Fields": [
             {
@@ -561,7 +535,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "Internal remarks"
+                "en": "Archivist's Note"
               }
             },
             {
@@ -580,7 +554,7 @@
         {
           "SectionLabels": {
             "de": "Standort und Umfang",
-            "en": "Location and scope"
+            "en": "Location and Extent"
           },
           "Fields": [
             {
@@ -590,8 +564,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Standort",
-                "en": "Location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location"
               }
             },
             {
@@ -601,8 +574,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
-                "en": "Comments on the location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location Note"
               }
             },
             {
@@ -611,8 +583,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Umfang",
-                "en": "Scope"
+                "de": "Umfänge",
+                "en": "Extent of the Unit of Description "
               }
             },
             {
@@ -622,7 +594,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks"
+                "en": "Extent Note"
               }
             }
           ],
@@ -659,7 +631,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Art",
-                "en": "Typ"
+                "en": "Purpose"
               }
             },
             {
@@ -679,7 +651,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkung",
-                "en": "Remarks"
+                "en": "Comment"
               }
             },
             {
@@ -703,7 +675,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
-            "en": "Identification"
+            "en": "Identity Statement"
           },
           "Fields": [
             {
@@ -713,17 +685,17 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
-                "en": "Reference code"
+                "en": "Reference Code"
               }
             },
             {
-              "DbFieldName": "Level",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
-                "en": "Distortion level"
+                "en": "Level of Description"
               }
             },
             {
@@ -733,7 +705,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
-                "en": "Archive type"
+                "en": "Type of Material"
               }
             },
             {
@@ -753,9 +725,9 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "en": "Date"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -763,7 +735,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period"
+                "en": "Reference Time Period"
               }
             },
             {
@@ -773,7 +745,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating"
+                "en": "Details regarding Date"
               }
             }
           ]
@@ -791,8 +763,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
-                "en": "Remarks Provenance",
-                "fr": "Remarques provenance"
+                "en": "Provenance Notes"
               }
             },
             {
@@ -812,7 +783,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
-                "en": "Inventory history"
+                "en": "Archival History"
               }
             },
             {
@@ -851,18 +822,17 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
-            "en": "Content and structure"
+            "en": "Content and Structure"
           },
           "Fields": [
             {
-              "DbFieldName": "contains",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Scope and Content"
               }
             },
             {
@@ -871,9 +841,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsform",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "de": "Überlieferungsformen",
+                "en": "Form of Item at Acquisition"
               }
             }
           ],
@@ -882,7 +851,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use"
+            "en": "Conditions of Access and Use"
           },
           "Fields": [
             {
@@ -892,7 +861,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations"
+                "en": "Conditions Governing Access"
               }
             },
             {
@@ -932,18 +901,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Reproduction regulations"
+                "en": "Conditions Governing Reproduction"
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Langunages",
-                "fr": "Instruments de recherche"
+                "en": "Language of Material"
               }
             },
             {
@@ -953,7 +921,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
-                "en": "Physical condition and technical requirements"
+                "en": "Scripts of Material"
               }
             },
             {
@@ -963,7 +931,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Language comments"
+                "en": "Comment on Language "
               }
             },
             {
@@ -973,7 +941,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                "en": "Physical condition and technical requirements"
+                "en": "Physical Characteristics and Technical Requirements"
               }
             }
           ],
@@ -982,8 +950,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
-            "en": "Related documents",
-            "fr": "Sources complémentaires"
+            "en": "Allied Materials"
           },
           "Fields": [
             {
@@ -993,7 +960,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
-                "en": "Storage location of the originals"
+                "en": "Existence and Location of Originals"
               }
             },
             {
@@ -1003,7 +970,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
-                "en": "Copies / reproductions"
+                "en": "Existence and Location of Copies"
               }
             },
             {
@@ -1023,18 +990,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Verwandtes Material",
-                "en": "Related material",
-                "fr": "Sources complémentaires"
+                "en": "Related Units of Description"
               }
             },
             {
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
-                "en": "Publications"
+                "en": "Publication Note"
               }
             },
             {
@@ -1053,8 +1019,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
-            "en": "Directory control",
-            "fr": "Contrôle de description"
+            "en": "Description Control"
           },
           "Fields": [
             {
@@ -1104,7 +1069,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "Internal remarks"
+                "en": "Archivist's Note"
               }
             },
             {
@@ -1123,7 +1088,7 @@
         {
           "SectionLabels": {
             "de": "Standort und Umfang",
-            "en": "Location and scope"
+            "en": "Location and Extent"
           },
           "Fields": [
             {
@@ -1133,8 +1098,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Standort",
-                "en": "Location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location"
               }
             },
             {
@@ -1144,8 +1108,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
-                "en": "Comments on the location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location Note"
               }
             },
             {
@@ -1154,8 +1117,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Umfang",
-                "en": "Scope"
+                "de": "Umfänge",
+                "en": "Extent of the Unit of Description"
               }
             },
             {
@@ -1165,7 +1128,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks"
+                "en": "Scope Note"
               }
             }
           ],
@@ -1174,7 +1137,7 @@
         {
           "SectionLabels": {
             "de": "Registereinträge",
-            "en": "rEG"
+            "en": "Register Entries"
           },
           "Fields": [
             {
@@ -1246,7 +1209,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
-            "en": "Identification"
+            "en": "Identity Statement"
           },
           "Fields": [
             {
@@ -1256,17 +1219,17 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Signatur",
-                "en": "Reference code"
+                "en": "Reference Code"
               }
             },
             {
-              "DbFieldName": "Level",
+              "DbFieldName": "level",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
-                "en": "Distortion level"
+                "en": "Level of Description"
               }
             },
             {
@@ -1276,7 +1239,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
-                "en": "Archive type"
+                "en": "Type of Material"
               }
             },
             {
@@ -1296,9 +1259,9 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "en": "Date"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -1306,7 +1269,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period"
+                "en": "Reference Time Period"
               }
             },
             {
@@ -1316,7 +1279,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating"
+                "en": "Details regarding Date"
               }
             }
           ]
@@ -1334,8 +1297,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
-                "en": "Remarks Provenance",
-                "fr": "Remarques provenance"
+                "en": "Provenance Notes"
               }
             },
             {
@@ -1355,7 +1317,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
-                "en": "Inventory history"
+                "en": "Archival History"
               }
             },
             {
@@ -1394,18 +1356,17 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
-            "en": "Content and structure"
+            "en": "Content and Structure"
           },
           "Fields": [
             {
-              "DbFieldName": "contains",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Scope and Content"
               }
             },
             {
@@ -1414,9 +1375,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsform",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "de": "Überlieferungsformen",
+                "en": "Form of Item at Acquisition"
               }
             }
           ],
@@ -1425,7 +1385,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use"
+            "en": "Conditions of Access and Use"
           },
           "Fields": [
             {
@@ -1435,7 +1395,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations"
+                "en": "Conditions Governing Access"
               }
             },
             {
@@ -1475,18 +1435,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Reproduction regulations"
+                "en": "Conditions Governing Reproduction"
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Langunages",
-                "fr": "Instruments de recherche"
+                "en": "Language of Material"
               }
             },
             {
@@ -1496,7 +1455,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
-                "en": "Physical condition and technical requirements"
+                "en": "Scripts of Material"
               }
             },
             {
@@ -1506,7 +1465,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Language comments"
+                "en": "Comment on Language "
               }
             },
             {
@@ -1516,7 +1475,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                "en": "Physical condition and technical requirements"
+                "en": "Physical Characteristics and Technical Requirements"
               }
             }
           ],
@@ -1525,8 +1484,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
-            "en": "Related documents",
-            "fr": "Sources complémentaires"
+            "en": "Allied Materials"
           },
           "Fields": [
             {
@@ -1536,7 +1494,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
-                "en": "Storage location of the originals"
+                "en": "Existence and Location of Originals"
               }
             },
             {
@@ -1546,7 +1504,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
-                "en": "Copies / reproductions"
+                "en": "Existence and Location of Copies"
               }
             },
             {
@@ -1566,18 +1524,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Verwandtes Material",
-                "en": "Related material",
-                "fr": "Sources complémentaires"
+                "en": "Related Units of Description"
               }
             },
             {
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
-                "en": "Publications"
+                "en": "Publication Note"
               }
             },
             {
@@ -1596,8 +1553,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
-            "en": "Directory control",
-            "fr": "Contrôle de description"
+            "en": "Description Control"
           },
           "Fields": [
             {
@@ -1647,7 +1603,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "Internal remarks"
+                "en": "Archivist's Note"
               }
             },
             {
@@ -1666,7 +1622,7 @@
         {
           "SectionLabels": {
             "de": "Standort und Umfang",
-            "en": "Location and scope"
+            "en": "Location and Extent"
           },
           "Fields": [
             {
@@ -1676,8 +1632,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Standort",
-                "en": "Location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location"
               }
             },
             {
@@ -1687,8 +1642,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
-                "en": "Comments on the location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location Note"
               }
             },
             {
@@ -1697,8 +1651,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Umfang",
-                "en": "Scope"
+                "de": "Umfänge",
+                "en": "Extent of the Unit of Description"
               }
             },
             {
@@ -1708,7 +1662,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks"
+                "en": "Scope Note"
               }
             }
           ],
@@ -1717,7 +1671,7 @@
         {
           "SectionLabels": {
             "de": "Registereinträge",
-            "en": "rEG"
+            "en": "Register Entries"
           },
           "Fields": [
             {
@@ -1789,7 +1743,7 @@
         {
           "SectionLabels": {
             "de": "Identifikation",
-            "en": "Identification"
+            "en": "Identity Statement"
           },
           "Fields": [
             {
@@ -1809,7 +1763,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Verzeichnungsstufe",
-                "en": "Distortion level"
+                "en": "Level of Description"
               }
             },
             {
@@ -1819,7 +1773,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Archivalienart",
-                "en": "Archive type"
+                "en": "Type of Material"
               }
             },
             {
@@ -1839,9 +1793,9 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
-                "en": "Creation period"
+                "en": "Date"
               }
-            }
+            },
             {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
@@ -1849,7 +1803,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bezugszeitraum",
-                "en": "Reference period"
+                "en": "Reference Time Period"
               }
             },
             {
@@ -1859,7 +1813,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
-                "en": "Remarks on the dating"
+                "en": "Details regarding Date"
               }
             }
           ]
@@ -1877,8 +1831,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen Provenienz",
-                "en": "Remarks Provenance",
-                "fr": "Remarques provenance"
+                "en": "Provenance Notes"
               }
             },
             {
@@ -1898,7 +1851,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bestandesgeschichte",
-                "en": "Inventory history"
+                "en": "Archival History"
               }
             },
             {
@@ -1937,18 +1890,17 @@
         {
           "SectionLabels": {
             "de": "Inhalt und innere Ordnung",
-            "en": "Content and structure"
+            "en": "Content and Structure"
           },
           "Fields": [
             {
-              "DbFieldName": "contains",
+              "DbFieldName": "Contains",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Form und Inhalt",
-                "en": "Form and content",
-                "fr": "Présentation du contenu"
+                "en": "Scope and Content"
               }
             },
             {
@@ -1957,9 +1909,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Überlieferungsform",
-                "en": "Increases",
-                "fr": "Accroissements"
+                "de": "Überlieferungsformen",
+                "en": "Form of Item at Acquisition"
               }
             }
           ],
@@ -1968,7 +1919,7 @@
         {
           "SectionLabels": {
             "de": "Zugangs- und Benutzungsbedingungen",
-            "en": "Conditions of access and use"
+            "en": "Conditions of Access and Use"
           },
           "Fields": [
             {
@@ -1978,7 +1929,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Zugangsbestimmungen",
-                "en": "Access regulations"
+                "en": "Conditions Governing Access"
               }
             },
             {
@@ -2018,18 +1969,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Reproduction regulations"
+                "en": "Conditions Governing Reproduction"
               }
             },
             {
-              "DbFieldName": "DetailData.Sprache",
+              "DbFieldName": "DetailData.Sprachen",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Sprachen",
-                "en": "Langunages",
-                "fr": "Instruments de recherche"
+                "en": "Language of Material"
               }
             },
             {
@@ -2039,7 +1989,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Schriften",
-                "en": "Physical condition and technical requirements"
+                "en": "Scripts of Material"
               }
             },
             {
@@ -2049,7 +1999,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Language comments"
+                "en": "Comment on Language "
               }
             },
             {
@@ -2059,8 +2009,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                "en": "Physical condition and technical requirements"
-              }
+                 "en": "Physical Characteristics and Technical Requirements"              }
             }
           ],
           "SubSections": []
@@ -2068,8 +2017,7 @@
         {
           "SectionLabels": {
             "de": "Sachverwandte Unterlagen",
-            "en": "Related documents",
-            "fr": "Sources complémentaires"
+            "en": "Allied Materials"
           },
           "Fields": [
             {
@@ -2079,7 +2027,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Aufbewahrungsort der Originale",
-                "en": "Storage location of the originals"
+                "en": "Existence and Location of Originals"
               }
             },
             {
@@ -2089,7 +2037,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Kopien / Reproduktionen",
-                "en": "Copies / reproductions"
+                "en": "Existence and Location of Copies"
               }
             },
             {
@@ -2109,18 +2057,17 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Verwandtes Material",
-                "en": "Related material",
-                "fr": "Sources complémentaires"
+                "en": "Related Units of Description"
               }
             },
             {
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Veröffentlichungen",
-                "en": "Publications"
+                "en": "Publication Note"
               }
             },
             {
@@ -2139,8 +2086,7 @@
         {
           "SectionLabels": {
             "de": "Verzeichnungskontrolle",
-            "en": "Directory control",
-            "fr": "Contrôle de description"
+            "en": "Description Control"
           },
           "Fields": [
             {
@@ -2190,7 +2136,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Interne Anmerkungen",
-                "en": "Internal remarks"
+                "en": "Archivist's Note"
               }
             },
             {
@@ -2209,7 +2155,7 @@
         {
           "SectionLabels": {
             "de": "Standort und Umfang",
-            "en": "Location and scope"
+            "en": "Location and Extent"
           },
           "Fields": [
             {
@@ -2219,8 +2165,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Standort",
-                "en": "Location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location"
               }
             },
             {
@@ -2230,8 +2175,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Bemerkungen zum Standort",
-                "en": "Comments on the location",
-                "fr": "Remarques sur le lieu"
+                "en": "Location Note"
               }
             },
             {
@@ -2240,8 +2184,8 @@
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "Umfang",
-                "en": "Scope"
+                "de": "Umfänge",
+                "en": "Extent of the Unit of Description"
               }
             },
             {
@@ -2251,7 +2195,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
-                "en": "Scope remarks"
+                "en": "Scope Note"
               }
             }
           ],
@@ -2260,7 +2204,7 @@
         {
           "SectionLabels": {
             "de": "Registereinträge",
-            "en": "rEG"
+            "en": "Register Entries"
           },
           "Fields": [
             {

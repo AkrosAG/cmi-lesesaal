@@ -325,7 +325,7 @@ export class ShoppingCartService {
 	private _showLevelValidationError() {
 		let title = this._txt.get('simpleHit.failedBecauseOfLevelTitle', 'Bestellen fehlgeschlagen');
 		let message = this._txt.get('simpleHit.failedBecauseOfLevelMessage',
-			'Diese Verzeichnungseinheit ist nicht bestellbar. Bei Fragen wenden Sie sich bitte an die Beratung oder an bestellen@bar.admin.ch.');
+			'Diese Verzeichnungseinheit ist nicht bestellbar. Schreiben Sie uns bitte eine E-Mail.');
 
 		this._toastr.error(message, title);
 	}
