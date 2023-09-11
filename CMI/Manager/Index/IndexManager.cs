@@ -210,13 +210,15 @@ namespace CMI.Manager.Index
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
 
+            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
+            
             // check if the field Metadata.Files has items and copy them to the Elastic record
             if (archiveRecord.Metadata.Files.Any())
             {
                 var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
                 {
                     Filename = GetFileNameForDownload(f.FileName, elasticArchiveRecord.ReferenceCode),
-                    Description= f.Description,
+                    Description = f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
                     Base64Content = f.ContentText,
@@ -227,7 +229,6 @@ namespace CMI.Manager.Index
                 Log.Information($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
             }
 
-            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
             // Add the creation period aggregation records
             // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
             // According to elastic documentation histograms are calculated with this formula
