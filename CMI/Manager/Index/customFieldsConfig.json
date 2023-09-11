@@ -648,6 +648,15 @@
     "IsRepeatable": 0
   },
   {
+    "ElementName": "CustomFreeTextField11",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Übergeordnetes Objekt in der Tektonik",
+    "TargetField": "UebergeordnetesObjektTektonik",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementId": -1,
     "ElementName": "Dummy",
     "SourceType": "Einzeldatum",

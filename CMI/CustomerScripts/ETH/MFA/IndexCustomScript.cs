@@ -35,7 +35,7 @@ namespace CMI.Contract.Common.Compiler
                     elasticArchiveRecord.Facetten.Text01.Add(text.ToString());
                 }
             }
-            var sprachen = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("Sprache"));
+            var sprachen = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("Sprachen"));
             if (sprachen != null)
             {
                 elasticArchiveRecord.Facetten.Text02 = new List<string>();
@@ -65,7 +65,7 @@ namespace CMI.Contract.Common.Compiler
                     foreach (var descriptor in descriptors)
                     {
                         var text = new StringBuilder();
-                        text.Append(descriptor.Description);
+                        text.Append(descriptor.Name);
                         if (!string.IsNullOrEmpty(descriptor.Function))
                         {
                             text.Append(" : " + descriptor.Function);

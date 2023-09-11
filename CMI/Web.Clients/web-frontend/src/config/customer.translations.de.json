@@ -15,127 +15,96 @@
 		"sprachen": "Sprachen",
 		"Archivalienart": "Archivalienart",
 		"Koerperschaftsregister": "Körperschaftsregister",
-		"Personenregister": "Personenregister"
+		"Ortsregister": "Ortsregister",
+		"Personenregister": "Personenregister",
+		"Sachregister": "Sachregister",
+		"Werkregister": "Werkregister"
 
   },
-  "metadata": {
+	"metadata": {
 		"boolean": {
 			"ja": "Ja",
 			"nein": "Nein"
 		},
-    "label": {
-      "creationPeriod": "Entstehungszeitraum",
-      "customFields": {
-        "abdeckung": "Abdeckung",
-        "aipId": "Identifikation digitales Magazin",
-        "aktenzeichen": "Aktenzeichen",
-        "anhang3": "Anhang 3 VBGA",
-        "bemerkungZurVe": "Zusätzliche Informationen",
-        "beteiligtePersonenKoerperschaften": "Beteiligte Personen /  Körperschaften",
-        "bildAnsicht": "Ansichtsbild",
-        "bildVorschau": "Vorschaubild",
-        "digitalesFindmittelBeschreibung": "Digitales Findmittel (Beschreibung)",
-        "digitalesFindmittelLink": "Digitales Findmittel (Link)",
-        "digitaleVersion": "Digitale Version",
-        "entstehungszeitraumAnmerkung": "Entstehungszeitraum Anm.",
-        "form": "Form",
-        "format": "Format",
-        "frueheresAktenzeichen": "Früheres Aktenzeichen",
-        "geschichteDerUnterlagen": "Geschichte der Unterlagen",
-        "kategorieDia": "Kat. Automatisierung",
-        "land": "Land",
-        "nachfolgerbehoerden": "Nachfolgerbehörde(n)",
-        "nichtOnlineRecherchierbareDossiers": "Nicht online recherchierbare Dossiers",
-        "publikationsrechte": "Publikationsrechte",
-        "signaturArchivplan": "Signatur Archivplan",
-        "thema": "Thema",
-        "urheber": "Urheber",
-        "veAblieferungLink": "Ablieferung",
-        "veOrdnungskomponenteLink": "Ordnungskomponente",
-        "verleger": "Verleger",
-        "verwandteVe": "Verwandte VE",
-        "vorgaengerbehoerden": "Vorgängerbehörde(n)",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente",
-        "zustaendigeStelle": "Zuständige Stelle"
-      },
-      "digitallyAvailable": "Digital vorhandene Unterlagen",
-      "extent": "Laufmeter",
-      "formerReferenceCode": "Alte Signatur",
-      "level": "Stufe",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "withinInfo": "Darin"
-    },
-    "searchFields": {
-      "_all": "Alles",
-      "allData": "Alles",
-      "allMetaData": "Metadaten",
-      "allPrimaryData": "Volltext (Primärdaten)",
-      "creationPeriod": "Entstehungszeitraum",
-      "detailData": {
-        "ueberlieferungsform": "Überlieferungsform",
-        "sprachen": "Sprachen ",
-        "archivalienart": "Archivalienart",
-        "permission": "Permission",
-        "descriptors.name": "Personenregister",
-        "verwaltungssignatur": "Verwaltungssignatur",
-        "metadaten": "Metadaten",
-        "zugaenglichkeitGemaessBga": "Zugänglichkeit gemäss BGA",
-        "zusatzkomponenteZac1": "Zusatzkomponente"
-      },
-      "formerReferenceCode": "Alte Signatur",
-      "referenceCode": "Signatur",
-      "title": "Titel",
-      "Contains": "Form und Inhalt"
-    },
-    "sortFields": {
-      "creationPeriod": {
-        "startDate": {
-          "ascending": "Datum aufsteigend",
-          "descending": "Datum absteigend"
-        }
-      },
-      "referenceCode": {
-        "ascending": "Signatur aufsteigend",
-        "descending": "Signatur absteigend",
-        "sort": {
-          "ascending": "Signatur aufsteigend",
-          "descending": "Signatur absteigend"
-        }
-      },
-      "relevanz": "Relevanz",
-      "title": {
-        "keyword": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        },
-        "sort": {
-          "ascending": "Titel aufsteigend",
-          "descending": "Titel absteigend"
-        }
-      },
-      "treePath": {
-        "ascending": "Archivplankontext aufsteigend",
-        "descending": "Archivplankontext absteigend"
-      }
-    },
-    "title": {
-      "accessTokens": "Access Tokens",
-      "anmerkungen": "Anmerkungen",
-      "archivplan": "Archivplan",
-      "files": "Dateien",
-      "details": "Details",
-      "erschliessungskontrolle": "Erschliessungskontrolle",
-      "identifikation": "Identifikation",
-      "images": "Vorschaubilder",
-      "inhaltUndInnereOrdnung": "Inhalt und innere Ordnung",
-      "interneVermerke": "Interne Vermerke",
-      "kontext": "Kontext",
-      "sachverwandteUnterlagen": "Sachverwandte Unterlagen",
-      "zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
-    }
-  },
+		"label": {
+			"creationPeriod": "Entstehungszeitraum",
+			"Koerperschaftsregister": "Körperschaftsregister",
+			"Ortsregister": "Ortsregister",
+			"Personenregister": "Personenregister",
+			"Sachregister": "Sachregister",
+			"Werkregister": "Werkregister",
+			"digitallyAvailable": "Digital vorhandene Unterlagen",
+			"extent": "Laufmeter",
+			"formerReferenceCode": "Frühere Signaturen",
+			"level": "Verzeichnungsstufe",
+			"referenceCode": "Signatur",
+			"title": "Titel",
+			"withinInfo": "Darin"
+		},
+		"searchFields": {
+			"_all": "Alles",
+			"allData": "Alles",
+			"allMetaData": "Metadaten",
+			"allPrimaryData": "Volltext (Primärdaten)",
+			"creationPeriod": "Entstehungszeitraum",
+			"ueberlieferungsform": "Überlieferungsform",
+			"Sprache": "Sprachen ",
+			"archivalienart": "Archivalienart",
+			"permission": "Benutzbarkeit",
+			"Personenregister": "Personenregister",
+			"verwaltungssignatur": "Verwaltungssignatur",
+			"metadaten": "Metadaten",
+			"formerReferenceCode": "Frühere Signaturen",
+			"referenceCode": "Signatur",
+			"title": "Titel",
+			"Contains": "Form und Inhalt"
+		},
+		"sortFields": {
+			"creationPeriod": {
+				"startDate": {
+					"ascending": "Datum aufsteigend",
+					"descending": "Datum absteigend"
+				}
+			},
+			"referenceCode": {
+				"ascending": "Signatur aufsteigend",
+				"descending": "Signatur absteigend",
+				"sort": {
+					"ascending": "Signatur aufsteigend",
+					"descending": "Signatur absteigend"
+				}
+			},
+			"relevanz": "Relevanz",
+			"title": {
+				"keyword": {
+					"ascending": "Titel aufsteigend",
+					"descending": "Titel absteigend"
+				},
+				"sort": {
+					"ascending": "Titel aufsteigend",
+					"descending": "Titel absteigend"
+				}
+			},
+			"treePath": {
+				"ascending": "Archivplankontext aufsteigend",
+				"descending": "Archivplankontext absteigend"
+			}
+		},
+		"title": {
+			"accessTokens": "Access Tokens",
+			"anmerkungen": "Anmerkungen",
+			"archivplan": "Archivplan",
+			"details": "Details",
+			"erschliessungskontrolle": "Erschliessungskontrolle",
+			"identifikation": "Identifikation",
+			"images": "Vorschaubilder",
+			"inhaltUndInnereOrdnung": "Inhalt und innere Ordnung",
+			"interneVermerke": "Interne Vermerke",
+			"kontext": "Kontext",
+			"sachverwandteUnterlagen": "Sachverwandte Unterlagen",
+			"zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
+		}
+	},
   "registerInfo": {
     "cancelRegister": "Abbrechen",
     "chLoginAltText": "Logo des CH-Logins",
@@ -153,7 +122,8 @@
       "field": {
 				"permission": {
 					"freiZugaenglich": "Frei einsehbar",
-					"inSchutzfrist": "Gesuchspflichtig"
+					"inSchutzfrist": "Gesuchspflichtig",
+					"teileinSchutzfrist": "Teile davon gesuchspflichtig"
 				}
 			}
 		},
@@ -179,7 +149,8 @@
 			"frei einsehbar": "Frei einsehbar",
 			"resultateOhnePermission": "Resultate ohne Benutzbarkeit",
 			"Gesuchspflichtig": "Gesuchspflichtig",
-			"pruefung noetig": "Prüfung nötig"
+			"Teile davon gesuchspflichtig": "Teile davon gesuchspflichtig",
+			"resultateOhnepermission": "Resultate ohne Benutzbarkeit"
 		}
 	},
   "veExportRecord": {
