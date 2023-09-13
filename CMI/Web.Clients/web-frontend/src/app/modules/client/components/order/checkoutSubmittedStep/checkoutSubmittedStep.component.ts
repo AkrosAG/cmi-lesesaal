@@ -115,7 +115,7 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 			html += '</ul><br>';
 		}
 		html += this._txt.translate('Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. ' +
-			'Mit einem Entscheid können Sie in der Regel innerhalb von vier bis sechs Wochen rechnen.', 'checkoutSubmittedStep.thxTextEischtisgesuch');
+			'Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.', 'checkoutSubmittedStep.thxTextEischtisgesuch');
 
 		if (this._authorization.hasRole('Ö2')) {
 			html += '<br>';
