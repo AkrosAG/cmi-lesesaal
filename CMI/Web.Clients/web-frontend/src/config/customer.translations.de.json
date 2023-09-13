@@ -35,7 +35,7 @@
 			"Werkregister": "Werkregister",
 			"digitallyAvailable": "Digital vorhandene Unterlagen",
 			"extent": "Laufmeter",
-			"formerReferenceCode": "Frühere Signaturen",
+			"formerReferenceCode": "Alte Signaturen",
 			"level": "Verzeichnungsstufe",
 			"referenceCode": "Signatur",
 			"title": "Titel",
@@ -54,7 +54,7 @@
 			"Personenregister": "Personenregister",
 			"verwaltungssignatur": "Verwaltungssignatur",
 			"metadaten": "Metadaten",
-			"formerReferenceCode": "Frühere Signaturen",
+			"formerReferenceCode": "Alte Signaturen",
 			"referenceCode": "Signatur",
 			"title": "Titel",
 			"Contains": "Form und Inhalt"
