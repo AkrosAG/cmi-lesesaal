@@ -233,7 +233,7 @@ namespace CMI.Access.Sql.Lesesaal
                         var item = data.OrderItem;
                         cmd.CommandText = "UPDATE OrderItem SET Comment = @p1, BewilligungsDatum = @p2, HasPersonendaten = @p3, " +
                                           "Reason = @p4, DigitalisierungsKategorie = @p5, TerminDigitalisierung = @p6, InternalComment = @p7, " +
-                                          "Ausleihdauer = @p10, AnzahlMahnungen = @p11, MahndatumInfo = @p12, GebrauchskopieStatus = @p13 " +
+                                          "Ausleihdauer = @p10, AnzahlMahnungen = @p11, MahndatumInfo = @p12, GebrauchskopieStatus = @p13, TempStandort = @p14 " +
                                           "WHERE Id = @p8";
 
                         cmd.AddParameter("p1", SqlDbType.NVarChar, ToDb(item.Comment));
@@ -247,6 +247,7 @@ namespace CMI.Access.Sql.Lesesaal
                         cmd.AddParameter("p11", SqlDbType.Int, ToDb(item.AnzahlMahnungen));
                         cmd.AddParameter("p12", SqlDbType.NVarChar, ToDb(item.MahndatumInfo));
                         cmd.AddParameter("p13", SqlDbType.Int, ToDb(item.GebrauchskopieStatus));
+                        cmd.AddParameter("p14", SqlDbType.NVarChar, ToDb(item.TempStandort));
 
                         cmd.AddParameter("p8", SqlDbType.Int, ToDb(item.Id));
 
