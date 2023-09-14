@@ -924,6 +924,26 @@
 										</div>
 									</div>
 								</div>
+
+								<div class="row">
+									<div class="col-xs-12 col-md-12">
+										<div class="row">
+											<label class="col-md-1 col-xs-3 control-label" tooltip="Temporärer Standort" for="tempStandort">
+												{{'Temp. Standort' | translate:''}}
+											</label>
+											<div class="col-md-11 col-xs-9"
+												 [tooltip]="detailRecord.tempStandort"
+												 [tooltipDisabled]="!detailRecord.tempStandort">
+												 <input class="form-control"
+												 name="tempStandort"
+												 id="tempStandort"
+												 [(ngModel)]="detailRecord.tempStandort"
+												 required>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<div class="row">
 									<div class="col-xs-12 col-md-12">
 										<div class="row">
