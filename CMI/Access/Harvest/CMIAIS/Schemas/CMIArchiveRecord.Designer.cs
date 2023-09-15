@@ -2110,7 +2110,7 @@ namespace CMI.Access.Harvest
         public RegisterRegistertyp Registertyp { get; set; }
         public string ExterneID2 { get; set; }
         [XmlElement("GND-ID", IsNullable = true)]
-        public string GNDID { get; set; }
+        public System.Nullable<decimal> GNDID { get; set; }
         public string Geburtsdatum { get; set; }
         public string Sterbedatum { get; set; }
         [XmlAttribute]
@@ -5253,6 +5253,7 @@ namespace CMI.Access.Harvest
         public System.Nullable<decimal> FileTypeOrder { get; set; }
         public string Bemerkungen { get; set; }
         public DateiArt Art { get; set; }
+        public string Publikation { get; set; }
         [XmlAttribute]
         public string OBJ_GUID { get; set; }
 
