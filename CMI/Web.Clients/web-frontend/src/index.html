@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de" class="cmi-boot">
 
@@ -6,8 +7,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#DC0018">
-
-	<title>Online-Zugang zum Bundesarchiv</title>
+	<title id="lesesaal-header-title"> </title>
 
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="assets/img/ico/favicon.ico">
@@ -70,7 +70,6 @@
 			pointer-events: none;
 			cursor: not-allowed;
 		}
-
 		.cmi-loader.cmi-visible {
 			opacity: 1;
 		}
@@ -85,62 +84,94 @@
 			align-items: center;
 		}
 
-		.cmi-three-dots span {
-			width: 10px;
-			height: 10px;
-			background: #DC0018;
-			opacity: 0.2;
+			.cmi-hint {
+			text-align: center;
+			margin: 10px 10px 0 10px;
 		}
 
-		.cmi-three-dots span:nth-child(1) {
-			animation: lightUp 1.5s linear infinite;
+		.cmi-three-dots {
+			padding: 10px 20px;
+			background-color: @color-white;
+			display: flex;
+			width: 100px;
+			margin: 0 auto;
+			justify-content: space-between;
+			align-items: center;
+
+			span {
+				width: 10px;
+				height: 10px;
+				background: #B7352D;
+				opacity: 0.2;
+
+				&:nth-child(1) {
+					animation: lightUp 1.5s linear infinite;
+				}
+
+				&:nth-child(2) {
+					animation: lightUp 1.5s linear infinite 0.5s;
+				}
+
+				&:nth-child(3) {
+					animation: lightUp 1.5s linear infinite 1s;
+				}
+			}
 		}
 
-		.cmi-three-dots span:nth-child(2) {
-			animation: lightUp 1.5s linear infinite 0.5s;
-		}
+		.cmi-three-dots-blue {
+			padding: 10px 20px;
+			background-color: @color-white;
+			display: flex;
+			width: 100px;
+			margin: 0 auto;
+			justify-content: space-between;
+			align-items: center;
 
-		.cmi-three-dots span:nth-child(3) {
-			animation: lightUp 1.5s linear infinite 1s;
+			span {
+				width: 10px;
+				height: 10px;
+				background: #0074D9;
+				opacity: 0.2;
+
+				&:nth-child(1) {
+					animation: lightUp 1.5s linear infinite;
+				}
+
+				&:nth-child(2) {
+					animation: lightUp 1.5s linear infinite 0.5s;
+				}
+
+				&:nth-child(3) {
+					animation: lightUp 1.5s linear infinite 1s;
+				}
+			}
+		}
 		}
 
 		.page cmi-loader {
 			align-items: flex-start;
 			justify-content: flex-start;
-		}
 
-		.page cmi-loader .cmi-three-dots {
-			margin-top: 50px;
-		}
-
-		.sr-only {
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			margin: -1px;
-			padding: 0;
-			overflow: hidden;
-			clip: rect(0, 0, 0, 0);
-			border: 0
+			.cmi-three-dots {
+				margin-top: 50px;
+			}
 		}
 
 		@keyframes lightUp {
 			0% {
 				opacity: 0.2;
 			}
-
 			40% {
 				opacity: 1;
 			}
-
 			60% {
 				opacity: 0.2;
 			}
-
 			100% {
 				opacity: 0.2;
 			}
 		}
+
 
 		.access-keys {
 			width: 0;
@@ -211,95 +242,107 @@
 
 	<script defer src="assets/fontawesome/js/all.js"></script>
 	<script defer src="assets/fontawesome/js/fontawesome.js"></script>
+	<script src="config/loading-texts.js"></script>
 </head>
 
 <body>
 
-	<ul class="access-keys">
-		<li><a id="startseiteAccessKey" href="#" accesskey="0">Startseite</a></li>
-		<li><a id="hauptnavigationAccessKey" href="javascript:setFocusOnEnter('mainNav');"
-				accesskey="1">Hauptnavigation</a>
-		</li>
-		<li><a id="inhaltAccessKey" href="javascript:setFocusOnEnter('mainContent');" accesskey="2">Inhalt</a></li>
+<ul class="access-keys">
+	<li><a id="startseiteAccessKey" href="#" accesskey="0">Startseite</a></li>
+	<li>
+		<a id="hauptnavigationAccessKey" href="javascript:setFocusOnEnter('mainNav');" accesskey="1">Hauptnavigation</a>
+	</li>
+	<li><a id="inhaltAccessKey" href="javascript:setFocusOnEnter('mainContent');" accesskey="2">Inhalt</a></li>
+</ul>
+<cmi-viaduc-root>
+	<div class="cmi-loader cmi-visible">
+		<h3>
+			<span id="lesesaal-text-01"></span>
+			<br/>
+			<span id="lesesaal-text-02"> </span>
+			<br/>
+			<br/>
+			<span id="lesesaal-text-03"> </span>
+			<br/>
+			<span id="lesesaal-text-04"> </span>
+			<br/>
+		</h3>
+		<div id="lesesaal-three-dots" >
+			<span></span><span></span><span></span>
+		</div>
+		<div><img id="lesesaal-ing-01" src="assets/img/logo.svg" ></div>
+		<span class="sr-only" id="pageLoadingMessage">
+				Seite wird geladen, La page est en chargement, La pagina si
+				sta caricando, Page is loading
+			</span>
+
 		<script>
+			document.getElementById("lesesaal-three-dots").className = loadingTexts["cmi-three-dots"];
+			document.getElementById("lesesaal-header-title").textContent= loadingTexts["lesesaal-header-title"];
+			document.getElementById("lesesaal-text-01").textContent= loadingTexts["lesesaal-text-01"];
+			document.getElementById("lesesaal-text-02").textContent= loadingTexts["lesesaal-text-02"];
+			document.getElementById("lesesaal-text-03").textContent= loadingTexts["lesesaal-text-03"];
+			document.getElementById("lesesaal-text-04").textContent= loadingTexts["lesesaal-text-04"];
+			document.getElementById("lesesaal-img-01").alt = loadingTexts["lesesaal-img-01"];
+
 			function setFocusOnEnter(elementId) {
 				document.getElementById(elementId).focus();
 			}
-		</script>
-	</ul>
 
-	<cmi-viaduc-root>
-		<div class="cmi-loader cmi-visible">
-			<h3>
-				<span>Online-Zugang zum Bundesarchiv</span>
-				<br />
-				<span> Accès en ligne aux Archives fédérales</span>
-				<br />
-				<span>Accesso on-line all'Archivio federale</span>
-				<br />
-				<span>Online access to the Federal Archives</span>
-				<br />
-			</h3>
-			<div class="cmi-three-dots">
-				<span></span><span></span><span></span>
-			</div>
-			<div><img src="assets/img/logo-CH.svg" alt="{{'Logo des Bundesarchiv' | translate:'index.logo'}}"></div>
-			<span class="sr-only" id="pageLoadingMessage">Seite wird geladen, La page est en chargement, La pagina si
-				sta caricando, Page is loading</span>
-			<script>
-				var x = document.getElementById('pageLoadingMessage');
-				x.setAttribute("tabindex", 1);
-				x.focus()
+			var x = document.getElementById('pageLoadingMessage');
+			x.setAttribute("tabindex", 1);
+			x.focus()
 
-				var $buoop = {
-					required: { e: -4, f: -3, o: -3, s: -1, c: -3 },
-					reminder: 0, // Nach wieviel Stunden die Meldung wieder auftaucht. 0 = show all the time
-					reminderClosed: 336, // Falls der Benutzer die Meldung explizit schliesst, erscheint diese wieder nach x Stunden
-					no_permanent_hide: false, // Um den erneuten Erinnerungsmeldungszeitpunkt anzuzeigen, muss dies "false" sein
-					test: false,
-					style: "top",
-					insecure: true,
-					unsupported: true,
-					api: 2021.08,
-					text: {
-						'msg': "Your web browser ({brow_name}) is out of date.",
-						'msgmore': "Update your browser or use a different browser to use www.recherche.bar.admin.ch.",
-						'remind': "You will be reminded next time in {days} days",
-						'bignore': 'X'
-					},
-					text_in_de: {
-						'msg': "Ihr Webbrowser ({brow_name}) ist veraltet.",
-						'msgmore': "Aktualisieren Sie Ihren Browser oder verwenden Sie einen anderen Browser, um www.recherche.bar.admin.ch zu nutzen.",
-						'remind': 'Sie werden das nächste Mal in {days} Tagen erinnert.',
-						'bignore': 'X'
-					},
-					text_in_fr: {
-						'msg': "Votre navigateur web ({brow_name}) n\'est pas à jour.",
-						'msgmore': "Mettez-le à jour ou choisissez un autre navigateur pour utiliser www.recherche.bar.admin.ch.",
-						'remind': 'Vous serez rappelé la prochaine fois dans {days} jours.',
-						'bignore': 'X'
-					},
-					text_in_it: {
-						'msg': "Il tuo browser ({brow_name}) non è aggiornato.",
-						'msgmore': "Aggiorna il tuo browser o usa un altro browser per utilizzare www.recherche.bar.admin.ch.",
-						'remind': 'Ti verrà ricordato la prossima volta tra {days} giorni.',
-						'bignore': 'X'
-					}
-				};
-
-				function $buo_f() {
-					var e = document.createElement("script");
-					e.src = "//browser-update.org/update.min.js";
-					document.body.appendChild(e);
-				};
-				try {
-					document.addEventListener("DOMContentLoaded", $buo_f, false)
-				} catch (e) {
-					window.attachEvent("onload", $buo_f)
+			var $buoop = {
+				required: { e: -4, f: -3, o: -3, s: -1, c: -3 },
+				reminder: 0, // Nach wieviel Stunden die Meldung wieder auftaucht. 0 = show all the time
+				reminderClosed: 336, // Falls der Benutzer die Meldung explizit schliesst, erscheint diese wieder nach x Stunden
+				no_permanent_hide: false, // Um den erneuten Erinnerungsmeldungszeitpunkt anzuzeigen, muss dies "false" sein
+				test: false,
+				style: "top",
+				insecure: true,
+				unsupported: true,
+				api: 2021.08,
+				text: {
+					'msg': "Your web browser ({brow_name}) is out of date.",
+					'msgmore': "Update your browser or use a different browser to use www.recherche.bar.admin.ch.",
+					'remind': "You will be reminded next time in {days} days",
+					'bignore': 'X'
+				},
+				text_in_de: {
+					'msg': "Ihr Webbrowser ({brow_name}) ist veraltet.",
+					'msgmore': "Aktualisieren Sie Ihren Browser oder verwenden Sie einen anderen Browser, um www.recherche.bar.admin.ch zu nutzen.",
+					'remind': 'Sie werden das nächste Mal in {days} Tagen erinnert.',
+					'bignore': 'X'
+				},
+				text_in_fr: {
+					'msg': "Votre navigateur web ({brow_name}) n\'est pas à jour.",
+					'msgmore': "Mettez-le à jour ou choisissez un autre navigateur pour utiliser www.recherche.bar.admin.ch.",
+					'remind': 'Vous serez rappelé la prochaine fois dans {days} jours.',
+					'bignore': 'X'
+				},
+				text_in_it: {
+					'msg': "Il tuo browser ({brow_name}) non è aggiornato.",
+					'msgmore': "Aggiorna il tuo browser o usa un altro browser per utilizzare www.recherche.bar.admin.ch.",
+					'remind': 'Ti verrà ricordato la prossima volta tra {days} giorni.',
+					'bignore': 'X'
 				}
-			</script>
-		</div>
-	</cmi-viaduc-root>
+			};
+
+			function $buo_f() {
+				var e = document.createElement("script");
+				e.src = "//browser-update.org/update.min.js";
+				document.body.appendChild(e);
+			};
+			try {
+				document.addEventListener("DOMContentLoaded", $buo_f, false)
+			} catch (e) {
+				window.attachEvent("onload", $buo_f)
+			}
+
+		</script>
+	</div>
+</cmi-viaduc-root>
 </body>
 
 </html>

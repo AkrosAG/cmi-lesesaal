@@ -276,7 +276,7 @@ export class UserAccountComponent implements OnInit {
 			this._userSettings.push(new UserSetting(UserSettingType.Email, this._captionEmail, this.user.emailAddress, (this._authorization.isInternalUser()), true,
 				this._emailRegexPattern, this._errorMandatoryField, null));
 			this._userSettings.push(new UserSetting(UserSettingType.Language, this._captionPreferredLanguage, this.user.language, false,
-				true, null, this._errorMandatoryField, this._txt.get('account.preferredLanguageHelpText', 'Bitte geben Sie an, in welcher Sprache Sie mit dem Bundesarchiv kommunizieren möchten.')));
+				true, null, this._errorMandatoryField, this._txt.get('account.preferredLanguageHelpText', 'Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.')));
 
 		} catch (e) {
 			throw e;
