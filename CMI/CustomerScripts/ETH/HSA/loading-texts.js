@@ -8,7 +8,7 @@ var loadingTexts = {
   },
   "lesesaal-header-title": "Hochschularchiv der ETH Zürich",
   "lesesaal-text-01": "Hochschularchiv der ETH Zürich",
-  "lesesaal-text-02": "Virtueller Lesesaal <br>",
+  "lesesaal-text-02": "Virtueller Lesesaal <br/>",
   "lesesaal-text-03": "ETH Zurich University Archives",
   "lesesaal-text-04": "Virtual Reading Room",
   "cmi-three-dots": "cmi-three-dots",
