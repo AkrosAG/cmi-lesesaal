@@ -7,10 +7,9 @@ var loadingTexts = {
     "locale": "de"
   },
   "lesesaal-header-title": "Virtueller Lesesaal",
-  "lesesaal-text-01": "",
-  "lesesaal-text-02": "Virtueller Lesesaal",
-  "lesesaal-text-03": "",
-  "lesesaal-text-04": "Virtual Reading Room",
-  "cmi-three-dots": "loading-cmi-three-dots",
-  "cmi-three-dots-color": "#215caf"
+  "lesesaal-text-01": "Virtueller Lesesaal",
+  "lesesaal-text-02": "",
+  "lesesaal-text-03": "Virtual Reading Room",
+  "lesesaal-text-04": "",
+  "cmi-three-dots": "loading-cmi-three-dots"
 }

@@ -1,4 +1,4 @@
-	/* inline styles while booting */
+/* inline styles while booting */
 body,
 html {
 	width: 100%;
@@ -76,6 +76,7 @@ cmi-loader,
 .loading-cmi-three-dots span {
 	width: 10px;
 	height: 10px;
+	background: #215caf;
 	opacity: 0.2;
 }
 

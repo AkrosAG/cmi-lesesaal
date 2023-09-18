@@ -12,6 +12,5 @@ var loadingTexts = {
   "lesesaal-text-03": "",
   "lesesaal-text-04": "Virtual Reading Room",
   "lesesaal-ing-01": "assets/img/logo.svg",
-  "cmi-three-dots": "loading-cmi-three-dots",
-  "cmi-three-dots-color": "#B7352D"
+  "cmi-three-dots": "loading-cmi-three-dots"
 }
