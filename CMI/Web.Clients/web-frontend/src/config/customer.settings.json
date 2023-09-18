@@ -75,9 +75,9 @@
 				"defaultLabel": "Gesuchspflichtig",
 				"translationKey": "search.advanced.field.permission.inSchutzfrist"
 			}, {
-					"searchKey": "Teile*",
-					"defaultLabel": "Teile davon gesuchspflichtig",
-					"translationKey": "search.advanced.field.permission.teileinSchutzfrist"
+				"searchKey": "Teile*",
+				"defaultLabel": "Teile davon gesuchspflichtig",
+				"translationKey": "search.advanced.field.permission.teileinSchutzfrist"
 				}
 			]
 		}, {

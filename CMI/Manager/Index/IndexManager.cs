@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CMI.Access.Common;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
@@ -208,13 +210,15 @@ namespace CMI.Manager.Index
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
 
+            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
+            
             // check if the field Metadata.Files has items and copy them to the Elastic record
             if (archiveRecord.Metadata.Files.Any())
             {
                 var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
                 {
-                    Filename = f.FileName,
-                    Description= f.Description,
+                    Filename = GetFileNameForDownload(f.FileName, elasticArchiveRecord.ReferenceCode),
+                    Description = f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
                     Base64Content = f.ContentText,
@@ -225,7 +229,6 @@ namespace CMI.Manager.Index
                 Log.Information($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
             }
 
-            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
             // Add the creation period aggregation records
             // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html
             // According to elastic documentation histograms are calculated with this formula
@@ -441,6 +444,13 @@ namespace CMI.Manager.Index
             }
 
             return retVal;
+        }
+
+
+        private static string GetFileNameForDownload(string name, string referenceCode)
+        {
+            var filename = $"{referenceCode}_{Regex.Match(name, ".{0,20}$").Value}";
+            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
 
         private static bool ContainsCustomFieldDigitaleVersion(dynamic customFields)
