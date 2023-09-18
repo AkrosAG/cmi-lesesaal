@@ -40,9 +40,9 @@ export class FileSectionComponent implements OnInit {
 		return cssClass;
 	}
 
-	public getFileUrl(name: string)	{
+	public getFileUrl(name: string, download: boolean)	{
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/File';
-		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}`;
+		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}&download=${download}`;
 		return url;
 	}
 }
