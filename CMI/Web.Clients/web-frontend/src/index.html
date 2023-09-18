@@ -23,6 +23,9 @@
 	<link rel="icon" type="image/png" href="assets/img/ico/favicon-32x32.png" sizes="32x32">
 	<link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
 
+	<script defer src="assets/fontawesome/js/all.js"></script>
+	<script defer src="assets/fontawesome/js/fontawesome.js"></script>
+	<script src="config/loading-texts.js"></script>
 	<style>
 		/* inline styles while booting */
 		body,
@@ -47,7 +50,7 @@
 			padding-bottom: 15px;
 		}
 
-		.cmi-boot .cmi-loader .cmi-three-dots {
+		.cmi-boot .cmi-loader .loading-cmi-three-dots {
 			background-color: transparent;
 			margin-bottom: 25px;
 		}
@@ -63,18 +66,18 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: rgba(255, 255, 255, .6);
+			background-color: rgba(255, 255, 255, 0.6);
 			opacity: 0;
-			transition: opacity .5s;
+			transition: opacity 0.5s;
 			z-index: 1000;
 			pointer-events: none;
 			cursor: not-allowed;
 		}
+
 		.cmi-loader.cmi-visible {
 			opacity: 1;
 		}
-
-		.cmi-three-dots {
+		.loading-cmi-three-dots {
 			padding: 10px 20px;
 			background-color: #fff;
 			display: flex;
@@ -84,79 +87,46 @@
 			align-items: center;
 		}
 
-			.cmi-hint {
+		.cmi-hint {
 			text-align: center;
 			margin: 10px 10px 0 10px;
 		}
 
-		.cmi-three-dots {
+		.loading-cmi-three-dots {
 			padding: 10px 20px;
-			background-color: @color-white;
+			background-color: #FFFFFF;
 			display: flex;
 			width: 100px;
 			margin: 0 auto;
 			justify-content: space-between;
 			align-items: center;
-
-			span {
-				width: 10px;
-				height: 10px;
-				background: #B7352D;
-				opacity: 0.2;
-
-				&:nth-child(1) {
-					animation: lightUp 1.5s linear infinite;
-				}
-
-				&:nth-child(2) {
-					animation: lightUp 1.5s linear infinite 0.5s;
-				}
-
-				&:nth-child(3) {
-					animation: lightUp 1.5s linear infinite 1s;
-				}
-			}
 		}
 
-		.cmi-three-dots-blue {
-			padding: 10px 20px;
-			background-color: @color-white;
-			display: flex;
-			width: 100px;
-			margin: 0 auto;
-			justify-content: space-between;
-			align-items: center;
-
-			span {
-				width: 10px;
-				height: 10px;
-				background: #0074D9;
-				opacity: 0.2;
-
-				&:nth-child(1) {
-					animation: lightUp 1.5s linear infinite;
-				}
-
-				&:nth-child(2) {
-					animation: lightUp 1.5s linear infinite 0.5s;
-				}
-
-				&:nth-child(3) {
-					animation: lightUp 1.5s linear infinite 1s;
-				}
-			}
-		}
+		.loading-cmi-three-dots span {
+			width: 10px;
+			height: 10px;
+			opacity: 0.2;
 		}
 
+
+		.loading-cmi-three-dots span:nth-child(1) {
+			animation: lightUp 1.5s linear infinite;
+		}
+
+		.loading-cmi-three-dots span:nth-child(2) {
+			animation: lightUp 1.5s linear infinite 0.5s;
+		}
+
+		.loading-cmi-three-dots span:nth-child(3) {
+			animation: lightUp 1.5s linear infinite 1s;
+		}
 		.page cmi-loader {
 			align-items: flex-start;
 			justify-content: flex-start;
-
-			.cmi-three-dots {
-				margin-top: 50px;
-			}
 		}
-
+		.page cmi-loader .loading-cmi-three-dots {
+			margin-top: 50px;
+		}
 		@keyframes lightUp {
 			0% {
 				opacity: 0.2;
@@ -172,77 +142,7 @@
 			}
 		}
 
-
-		.access-keys {
-			width: 0;
-			height: 0;
-			padding: 0;
-			margin: 0;
-		}
-
-		.access-keys li {
-			display: inline;
-		}
-
-		.access-keys li a,
-		.access-keys li a:visited {
-			display: block;
-			position: absolute;
-			left: -3000px;
-			top: -2000px;
-			width: 0;
-			height: 0;
-			z-index: 200;
-		}
-
-		.access-keys li a:focus {
-			position: absolute;
-			background-color: #000;
-			color: #FFF;
-			display: block;
-			font-size: 1.3em;
-			height: auto;
-			width: auto;
-			top: 0;
-			left: 0;
-			line-height: 1.2em;
-			padding: 5px 8px;
-			z-index: 10000000;
-			text-decoration: none;
-		}
-
-		.buorg-buttons {
-			position: fixed;
-			top: 0px;
-			right: 0px;
-		}
-
-		.buorg-pad,
-		div.buorg-pad {
-			padding: 9px 35px 9px 9px;
-		}
-
-		#buorgig {
-			position: absolute;
-			top: 0px;
-			right: 0px;
-		}
-
-		#buorgul {
-			visibility: collapse;
-		}
-
-		#buorgpermanent {
-			visibility: collapse;
-		}
 	</style>
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="assets/img/ico/mstile-144x144.png">
-	<meta name="msapplication-config" content="assets/img/ico/browserconfig.xml">
-
-	<script defer src="assets/fontawesome/js/all.js"></script>
-	<script defer src="assets/fontawesome/js/fontawesome.js"></script>
-	<script src="config/loading-texts.js"></script>
 </head>
 
 <body>
@@ -267,8 +167,8 @@
 			<span id="lesesaal-text-04"> </span>
 			<br/>
 		</h3>
-		<div id="lesesaal-three-dots" >
-			<span></span><span></span><span></span>
+		<div id="lesesaal-three-dots" class="loading-cmi-three-dots" >
+			<span id="lesesaal-three-dots-1"></span><span id="lesesaal-three-dots-2"></span><span id="lesesaal-three-dots-3"></span>
 		</div>
 		<div><img id="lesesaal-ing-01" src="assets/img/logo.svg" ></div>
 		<span class="sr-only" id="pageLoadingMessage">
@@ -277,14 +177,14 @@
 			</span>
 
 		<script>
-			document.getElementById("lesesaal-three-dots").className = loadingTexts["cmi-three-dots"];
+			document.getElementById("lesesaal-three-dots-1").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
+			document.getElementById("lesesaal-three-dots-2").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
+			document.getElementById("lesesaal-three-dots-3").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
 			document.getElementById("lesesaal-header-title").textContent= loadingTexts["lesesaal-header-title"];
 			document.getElementById("lesesaal-text-01").textContent= loadingTexts["lesesaal-text-01"];
 			document.getElementById("lesesaal-text-02").textContent= loadingTexts["lesesaal-text-02"];
 			document.getElementById("lesesaal-text-03").textContent= loadingTexts["lesesaal-text-03"];
-			document.getElementById("lesesaal-text-04").textContent= loadingTexts["lesesaal-text-04"];
-			document.getElementById("lesesaal-img-01").alt = loadingTexts["lesesaal-img-01"];
-
+			document.getElementById("lesesaal-text-04").textContent= loadingTexts["lesesaal-text-04"]
 			function setFocusOnEnter(elementId) {
 				document.getElementById(elementId).focus();
 			}
