@@ -11,5 +11,6 @@ var loadingTexts = {
   "lesesaal-text-02": "Virtueller Lesesaal",
   "lesesaal-text-03": "ETH Zurich University Archives",
   "lesesaal-text-04": "Virtual Reading Room",
-  "cmi-three-dots": "cmi-three-dots"
+  "cmi-three-dots": "cmi-three-dots",
+  "cmi-three-dots-color": "#B7352D"
 }
