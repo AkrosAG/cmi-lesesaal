@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CMI.Contract.Common;
 using System.Linq;
 using System.IO;
@@ -82,7 +83,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Function = r.Rolle,
                     DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
                     DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null,
-                    Source =  register.GNDID
+                    Source =  register.GNDID.HasValue ? register.GNDID.Value.ToString(CultureInfo.InvariantCulture) : string.Empty
                 };
             })
             .Where(r => r != null)
