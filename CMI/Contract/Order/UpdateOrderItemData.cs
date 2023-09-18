@@ -6,6 +6,7 @@ namespace CMI.Contract.Order
     {
         public int Id { get; set; }
         public string Comment { get; set; }
+        public string TempStandort { get; set; }
         public DateTime? BewilligungsDatum { get; set; }
         public bool HasPersonendaten { get; set; }
         public int? Reason { get; set; }
