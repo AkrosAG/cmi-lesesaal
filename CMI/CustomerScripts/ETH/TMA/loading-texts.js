@@ -11,5 +11,9 @@ var loadingTexts = {
   "lesesaal-text-02": "",
   "lesesaal-text-03": "Virtual Reading Room",
   "lesesaal-text-04": "",
-  "cmi-three-dots": "loading-cmi-three-dots"
+  "lesesaal-header-Management-title": "Management-Client Virtueller Lesesaal",
+  "lesesaal-text-Management-01": "Management-Client Virtueller Lesesaal",
+  "lesesaal-text-Management-02": "",
+  "lesesaal-text-Management-03": "",
+  "lesesaal-text-Management-04": ""
 }

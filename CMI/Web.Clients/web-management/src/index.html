@@ -6,12 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#DC0018">
 
-
 	<title id="lesesaal-header-title"> </title>
 
 	<!-- Favicons -->
-
 	<link rel="stylesheet" href="assets/css/loading-site.css">
+	<script src="config/loading-texts.js"></script>
+
 	<link rel="shortcut icon" href="assets/img/ico/favicon.ico">
 	<link rel="apple-touch-icon" sizes="57x57" href="assets/img/ico/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="assets/img/ico/apple-touch-icon-114x114.png">
@@ -23,49 +23,26 @@
 	<link rel="icon" type="image/png" href="assets/img/ico/favicon-96x96.png" sizes="96x96">
 	<link rel="icon" type="image/png" href="assets/img/ico/favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="assets/img/ico/favicon-32x32.png" sizes="32x32">
-	<style>
-		*, :after, :before {
-			-moz-box-sizing: border-box;
-			box-sizing: border-box
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="assets/css/fonts.css" media="print" onload="this.media='all'">
-	<noscript><link rel="stylesheet" href="assets/css/fonts.css"></noscript>
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="assets/img/ico/mstile-144x144.png">
 	<meta name="msapplication-config" content="assets/img/ico/browserconfig.xml">
-
-	<script defer src="assets/fontawesome/js/all.js"></script>
-	<script defer src="assets/fontawesome/js/fontawesome.js"></script>
-	<link rel="stylesheet" href="client/styles.3f3b3d4c9a1ecc170446.css" media="print" onload="this.media='all'">
-	<noscript><link rel="stylesheet" href="client/styles.3f3b3d4c9a1ecc170446.css"></noscript>
 </head>
-
 <body>
-
-	<ul class="access-keys">
-		<li><a id="startseiteAccessKey" href="#" accesskey="0">Startseite</a></li>
-		<li>
-			<a id="hauptnavigationAccessKey" href="javascript:setFocusOnEnter('mainNav');" accesskey="1">Hauptnavigation</a>
-		</li>
-		<li><a id="inhaltAccessKey" href="javascript:setFocusOnEnter('mainContent');" accesskey="2">Inhalt</a></li>
-		<script>
-			function setFocusOnEnter(elementId) {
-				document.getElementById(elementId).focus();
-			}
-		</script>
-	</ul>
-
+<ul class="access-keys">
+	<li><a href="#" accesskey="0">Startseite</a></li>
+	<li><a href="#" accesskey="1">Hauptnavigation</a></li>
+	<li><a href="#" accesskey="2">Inhalt</a></li>
+</ul>
 	<cmi-viaduc-root>
 		<div class="cmi-loader cmi-visible">
 			<h3>
 				<span id="lesesaal-text-01"></span>
 				<br/>
-				<span id="lesesaal-text-02"> </span>
+				<span id="lesesaal-text-02"></span>
 				<br/>
-				<span id="lesesaal-text-03"> </span>
+				<span id="lesesaal-text-03"></span>
 				<br/>
-				<span id="lesesaal-text-04"> </span>
+				<span id="lesesaal-text-04"></span>
 				<br/>
 			</h3>
 			<div id="lesesaal-three-dots" class="loading-cmi-three-dots" >
@@ -77,73 +54,13 @@
 				sta caricando, Page is loading
 			</span>
 			<script>
-				document.getElementById("lesesaal-header-title").innerHtml= loadingTexts["lesesaal-header-title"];
-				document.getElementById("lesesaal-text-01").innerHtml= loadingTexts["lesesaal-text-01"];
-				document.getElementById("lesesaal-text-02").innerHtml= loadingTexts["lesesaal-text-02"];
-				document.getElementById("lesesaal-text-03").innerHtml= loadingTexts["lesesaal-text-03"];
-				document.getElementById("lesesaal-text-04").innerHtml= loadingTexts["lesesaal-text-04"];
-
-				var x = document.getElementById('pageLoadingMessage');
-				x.setAttribute("tabindex", 1);
-				x.focus()
-
-				var $buoop = {
-					required: { e: -4, f: -3, o: -3, s: -1, c: -3 },
-					reminder: 0, // Nach wieviel Stunden die Meldung wieder auftaucht. 0 = show all the time
-					reminderClosed: 336, // Falls der Benutzer die Meldung explizit schliesst, erscheint diese wieder nach x Stunden
-					no_permanent_hide: false, // Um den erneuten Erinnerungsmeldungszeitpunkt anzuzeigen, muss dies "false" sein
-					test: false,
-					style: "top",
-					insecure: true,
-					unsupported: true,
-					api: 2021.08,
-					text: {
-						'msg': "Your web browser ({brow_name}) is out of date.",
-						'msgmore': "Update your browser or use a different browser to use www.recherche.bar.admin.ch.",
-						'remind': "You will be reminded next time in {days} days",
-						'bignore': 'X'
-					},
-					text_in_de: {
-						'msg': "Ihr Webbrowser ({brow_name}) ist veraltet.",
-						'msgmore': "Aktualisieren Sie Ihren Browser oder verwenden Sie einen anderen Browser, um www.recherche.bar.admin.ch zu nutzen.",
-						'remind': 'Sie werden das nächste Mal in {days} Tagen erinnert.',
-						'bignore': 'X'
-					},
-					text_in_fr: {
-						'msg': "Votre navigateur web ({brow_name}) n\'est pas à jour.",
-						'msgmore': "Mettez-le à jour ou choisissez un autre navigateur pour utiliser www.recherche.bar.admin.ch.",
-						'remind': 'Vous serez rappelé la prochaine fois dans {days} jours.',
-						'bignore': 'X'
-					},
-					text_in_it: {
-						'msg': "Il tuo browser ({brow_name}) non è aggiornato.",
-						'msgmore': "Aggiorna il tuo browser o usa un altro browser per utilizzare www.recherche.bar.admin.ch.",
-						'remind': 'Ti verrà ricordato la prossima volta tra {days} giorni.',
-						'bignore': 'X'
-					}
-				};
-
-				function $buo_f() {
-					var e = document.createElement("script");
-					e.src = "//browser-update.org/update.min.js";
-					document.body.appendChild(e);
-				};
-				try {
-					document.addEventListener("DOMContentLoaded", $buo_f, false)
-				} catch (e) {
-					window.attachEvent("onload", $buo_f)
-				}
+				document.getElementById("lesesaal-header-title").innerHTML= loadingTexts["lesesaal-header-Management-title"];
+				document.getElementById("lesesaal-text-01").innerHTML= loadingTexts["lesesaal-text-Management-01"];
+				document.getElementById("lesesaal-text-02").innerHTML= loadingTexts["lesesaal-text-Management-02"];
+				document.getElementById("lesesaal-text-03").innerHTML= loadingTexts["lesesaal-text-Management-03"];
+				document.getElementById("lesesaal-text-04").innerHTML= loadingTexts["lesesaal-text-Management-04"];
 			</script>
 		</div>
 	</cmi-viaduc-root>
-	<script src="client/runtime-es2018.55780b5b63453b9ba6b6.js" type="module"></script>
-	<script src="client/runtime-es5.55780b5b63453b9ba6b6.js" nomodule defer></script>
-	<script src="client/polyfills-es5.52d74e280a5a603b4290.js" nomodule defer></script>
-	<script src="client/polyfills-es2018.1583fbafc330622baf5c.js" type="module"></script>
-	<script src="client/scripts.8884a067b0b2a189a8e2.js" defer></script>
-	<script src="client/main-es2018.81bed828457b85955eb5.js" type="module"></script>
-	<script src="client/main-es5.81bed828457b85955eb5.js" nomodule defer></script>
-
-
 </body>
 </html>
