@@ -1,16 +1,17 @@
 var loadingTexts = {
-	"@metadata": {
-		"authors": [
-			"Evelix GmbH"
-		],
-		"last-updated": "2023-09-14",
-		"locale": "de"
-	},
-	"lesesaal-header-title": "Hochschularchiv der ETH Zürich",
-	"lesesaal-text-01": "Hochschularchiv der ETH Zürich",
-	"lesesaal-text-02": "Virtueller Lesesaal",
-	"lesesaal-text-03": "ETH Zurich University Archives",
-	"lesesaal-text-04": "Virtual Reading Room",
-	"cmi-three-dots": "cmi-three-dots",
-	"cmi-three-dots-color": "#B7352D"
+  "@metadata": {
+    "authors": [
+      "Evelix GmbH"
+    ],
+    "last-updated": "2023-09-14",
+    "locale": "de"
+  },
+  "lesesaal-header-title": "Virtueller Lesesaal",
+  "lesesaal-text-01": "",
+  "lesesaal-text-02": "Virtueller Lesesaal",
+  "lesesaal-text-03": "",
+  "lesesaal-text-04": "Virtual Reading Room",
+  "lesesaal-ing-01": "assets/img/logo.svg",
+  "cmi-three-dots": "loading-cmi-three-dots",
+  "cmi-three-dots-color": "#B7352D"
 }
