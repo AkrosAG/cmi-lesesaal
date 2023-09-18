@@ -463,7 +463,7 @@
 				<br/>
 			</h3>
 			<div id="lesesaal-three-dots" >
-				<span></span><span></span><span></span>
+				<span id="lesesaal-three-dots-1"></span><span id="lesesaal-three-dots-2"></span><span id="lesesaal-three-dots-3"></span>
 			</div>
 			<div><img id="lesesaal-ing-01" src="assets/img/logo.svg" ></div>
 			<span class="sr-only" id="pageLoadingMessage">
@@ -471,13 +471,14 @@
 				sta caricando, Page is loading
 			</span>
 			<script>
-				document.getElementById("lesesaal-three-dots").className = loadingTexts["cmi-three-dots"];
+				document.getElementById("lesesaal-three-dots-1").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
+				document.getElementById("lesesaal-three-dots-2").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
+				document.getElementById("lesesaal-three-dots-3").style.backgroundColor = loadingTexts["cmi-three-dots-color"];
 				document.getElementById("lesesaal-header-title").textContent= loadingTexts["lesesaal-header-title"];
 				document.getElementById("lesesaal-text-01").textContent= loadingTexts["lesesaal-text-01"];
 				document.getElementById("lesesaal-text-02").textContent= loadingTexts["lesesaal-text-02"];
 				document.getElementById("lesesaal-text-03").textContent= loadingTexts["lesesaal-text-03"];
 				document.getElementById("lesesaal-text-04").textContent= loadingTexts["lesesaal-text-04"];
-				document.getElementById("lesesaal-img-01").alt = loadingTexts["lesesaal-img-01"];
 
 				var x = document.getElementById('pageLoadingMessage');
 				x.setAttribute("tabindex", 1);
