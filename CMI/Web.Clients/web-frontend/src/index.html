@@ -127,6 +127,18 @@
 		.page cmi-loader .loading-cmi-three-dots {
 			margin-top: 50px;
 		}
+
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			border: 0
+		}
+
 		@keyframes lightUp {
 			0% {
 				opacity: 0.2;
@@ -140,6 +152,69 @@
 			100% {
 				opacity: 0.2;
 			}
+		}
+
+		.access-keys {
+			width: 0;
+			height: 0;
+			padding: 0;
+			margin: 0;
+		}
+
+		.access-keys li {
+			display: inline;
+		}
+
+		.access-keys li a,
+		.access-keys li a:visited {
+			display: block;
+			position: absolute;
+			left: -3000px;
+			top: -2000px;
+			width: 0;
+			height: 0;
+			z-index: 200;
+		}
+
+		.access-keys li a:focus {
+			position: absolute;
+			background-color: #000;
+			color: #FFF;
+			display: block;
+			font-size: 1.3em;
+			height: auto;
+			width: auto;
+			top: 0;
+			left: 0;
+			line-height: 1.2em;
+			padding: 5px 8px;
+			z-index: 10000000;
+			text-decoration: none;
+		}
+
+		.buorg-buttons {
+			position: fixed;
+			top: 0px;
+			right: 0px;
+		}
+
+		.buorg-pad,
+		div.buorg-pad {
+			padding: 9px 35px 9px 9px;
+		}
+
+		#buorgig {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
+
+		#buorgul {
+			visibility: collapse;
+		}
+
+		#buorgpermanent {
+			visibility: collapse;
 		}
 
 	</style>
