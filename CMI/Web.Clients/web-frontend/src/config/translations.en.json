@@ -87,7 +87,7 @@
     "organization": "Organisation",
     "phoneNumber": "Telephone",
     "preferredLanguage": "Preferred language",
-    "preferredLanguageHelpText": "Please indicate the language in which you would like to communicate with the Federal Archives.",
+    "preferredLanguageHelpText": "Please indicate the language in which you would like to communicate.",
     "registeredUserMessage": "You are a registered user",
     "rightDownloadPublicPrimaryData": "Download freely accessible documents",
     "rightManageFavorites": "Manage favourites",
@@ -968,7 +968,7 @@
       "zipCode": "Post code"
     },
     "preferredLangauge": "Preferred language",
-    "preferredLanguageHelpText": "Please indicate the language in which you would like to communicate with the Federal Archives.",
+    "preferredLanguageHelpText": "Please let us know in which language you would like to communicate.",
     "register": "Enter user data",
     "requiredFieldsInfo": "Fields marked with a * must be completed.",
     "savesuccess": "Successfully saved.",
