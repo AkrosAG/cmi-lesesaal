@@ -423,7 +423,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMA", "TMA", "{6DD2ED61-62B
 		CMI\CustomerScripts\ETH\TMA\customer.settings.json = CMI\CustomerScripts\ETH\TMA\customer.settings.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.de.json = CMI\CustomerScripts\ETH\TMA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.en.json = CMI\CustomerScripts\ETH\TMA\customer.translations.en.json
-		CMI\CustomerScripts\ETH\TMA\loading-texts.js = CMI\CustomerScripts\ETH\TMA\loading-texts.js
+		CMI\CustomerScripts\ETH\TMA\loading-texts.js = CMI\CustomerScripts\ETH\TMA\loading-texts.js		
+		CMI\CustomerScripts\ETH\TMA\logo.png = CMI\CustomerScripts\ETH\TMA\logo.png
 	EndProjectSection
 EndProject
 Global
