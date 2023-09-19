@@ -179,6 +179,10 @@ namespace CMI.Access.Sql.Lesesaal
         [Origin(Table = nameof(OrderItem), Column = nameof(OrderItem.GebrauchskopieStatus))]
         [Column(CanBeNull = false)]
         public int GebrauchskopieStatus { get; set; }
+
+        [EditAuftragRequiresFeature(ApplicationFeature.AuftragsuebersichtAuftraegeBereichLogistikBearbeiten)]
+        [Origin(Table = nameof(OrderItem), Column = nameof(OrderItem.TempStandort))]
+        [Column(CanBeNull = true)] public string TempStandort { get; set; }
     }
 
     public class OriginAttribute : Attribute

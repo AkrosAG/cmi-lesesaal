@@ -18,6 +18,7 @@ namespace CMI.Contract.Order
         public string ZeitraumDossier { get; set; }
         public string ArchivNummer { get; set; }
         public string Standort { get; set; }
+        public string TempStandort { get; set; }
         public string Signatur { get; set; }
         public string Darin { get; set; }
         public string ZusaetzlicheInformationen { get; set; }
