@@ -87,7 +87,7 @@
     "organization": "Organisation",
     "phoneNumber": "Telefon",
     "preferredLanguage": "Bevorzugte Sprache",
-    "preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie mit dem Bundesarchiv kommunizieren möchten.",
+    "preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.",
     "registeredUserMessage": "Sie sind ein/e registrierte/r Benutzer/in",
     "rightDownloadPublicPrimaryData": "Frei zugängliche Unterlagen herunterladen",
     "rightManageFavorites": "Favoriten verwalten",
@@ -1048,7 +1048,7 @@
       "zipCode": "PLZ"
     },
     "preferredLangauge": "Bevorzugte Sprache",
-    "preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie mit dem Bundesarchiv kommunizieren möchten.",
+    "preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.",
     "register": "Eingabe Benutzerdaten",
     "requiredFieldsInfo": "Mit einem * gekennzeichnete Felder müssen ausgefüllt werden.",
     "savesuccess": "Erfolgreich gespeichert.",

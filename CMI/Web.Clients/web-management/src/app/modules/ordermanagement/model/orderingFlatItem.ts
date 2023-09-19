@@ -28,6 +28,7 @@ export class OrderingFlatItem {
 	public dossiertitel: string;
 	public zeitraumDossier: string;
 	public standort: string;
+	public tempStandort: string;
 	public signatur: string;
 	public darin: string;
 	public zusaetzlicheInformationen: string;
