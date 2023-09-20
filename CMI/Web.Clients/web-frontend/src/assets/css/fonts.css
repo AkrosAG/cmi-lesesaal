@@ -7,7 +7,7 @@
 }
 
 @font-face {
-	font-family: 'Frutiger Neue';
+	font-family: 'Arial';
 	src: url(../../assets/fonts/FrutigerNeueW02-Bd.eot?v2);
 	src: url(../../assets/fonts/FrutigerNeueW02-Bd.eot?#iefix) format("embedded-opentype"), url(../../assets/fonts/FrutigerNeueW02-Bd.woff2?v2) format("woff2"), url(../../assets/fonts/FrutigerNeueW02-Bd.woff?v2) format("woff"), url(../../assets/fonts/FrutigerNeueW02-Bd.ttf?v2) format("truetype");
 	font-weight: 700;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-	font-family: 'Frutiger Neue';
+	font-family: 'Arial';
 	src: url(../../assets/fonts/FrutigerNeueW02-It.eot?v2);
 	src: url(../../assets/fonts/FrutigerNeueW02-It.eot?#iefix) format("embedded-opentype"), url(../../assets/fonts/FrutigerNeueW02-It.woff2?v2) format("woff2"), url(../../assets/fonts/FrutigerNeueW02-It.woff?v2) format("woff"), url(../../assets/fonts/FrutigerNeueW02-It.ttf?v2) format("truetype");
 	font-weight: 400;
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-	font-family: 'Frutiger Neue';
+	font-family: 'Arial';
 	src: url(../../assets/fonts/FrutigerNeueW02-Regular.eot?v2);
 	src: url(../../assets/fonts/FrutigerNeueW02-Regular.eot?#iefix) format("embedded-opentype"), url(../../assets/fonts/FrutigerNeueW02-Regular.woff2?v2) format("woff2"), url(../../assets/fonts/FrutigerNeueW02-Regular.woff?v2) format("woff"), url(../../assets/fonts/FrutigerNeueW02-Regular.ttf?v2) format("truetype");
 	font-weight: 400;
@@ -31,7 +31,7 @@
 }
 
 @font-face {
-	font-family: 'Frutiger Neue';
+	font-family: 'Arial';
 	src: url(../../assets/fonts/FrutigerNeueW02-Light.eot?v2);
 	src: url(../../assets/fonts/FrutigerNeueW02-Light.eot?#iefix) format("embedded-opentype"), url(../../assets/fonts/FrutigerNeueW02-Light.woff2?v2) format("woff2"), url(../../assets/fonts/FrutigerNeueW02-Light.woff?v2) format("woff"), url(../../assets/fonts/FrutigerNeueW02-Light.ttf?v2) format("truetype");
 	font-weight: 100;

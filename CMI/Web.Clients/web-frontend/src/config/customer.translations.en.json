@@ -115,9 +115,7 @@
 		"infoTitle": "Note",
 		"questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
 		"registerImEiam": "Register in eIAM",
-		"title": "Opening an account for online access to the Federal Archives",
-		"eIam": "Access to recherche.bar.admin.ch is managed by e-Government Identity and Access Management (eIAM).",
-		"registerEiam": "The process of opening an account is conducted outside of recherche.bar.admin.ch. If you encounter any problems registering please contact our <a href=\"\">online advice service</a> or e-mail <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>."
+		"title": "Opening an account for online access to the Federal Archives"
 	},
 	"search": {
 		"advanced": {
@@ -144,38 +142,6 @@
 			"syntax": "Syntax",
 			"title": "Advanced search"
 		},
-		"advancedSearch": "Advanced search",
-		"archivePlanSearch": "Archive plan",
-		"archivePlanSearchTeaserText": "Search in the archive plan to place the documents in their context.",
-		"ausfuehrlicheBeschreibung": "Detailed description",
-		"browseArchive": "Thematic overview",
-		"browseArchiveTeaserText": "Archive grouped by topics: Find fonds that match your topic.",
-		"browser": {
-			"backToSearch": "Back to search result",
-			"first": "First result",
-			"last": "Last result",
-			"loading": "Loading...",
-			"next": "Next result",
-			"nextPage": "Next page",
-			"nOfM": "Result {0} of {1}",
-			"pageToolTipBetween": "More pages",
-			"pageToolTipBetweenShow": "Show more pages",
-			"pageTooltipHere": "You are on page {0}",
-			"pageTooltipNext": "Show page {0}",
-			"pageTooltipNextPageXofY": "Show page {0} of {1}",
-			"pageTooltipPageXofY": "You are on page {0} of {1}",
-			"previous": "Previous result",
-			"previousPage": "Previous page",
-			"title": "Search result"
-		},
-		"captchaInvalid": "Data for captcha test are invalid.",
-		"captchaInvalidDetails": "Please try again.",
-		"captchaMissing": "Catpcha test data missing.",
-		"captchaMissingDetails": "Please try again.",
-		"changeSearchCriteria": "Edit search criteria",
-		"dateBetween": "Time period between",
-		"extendedSearch": "Advanced search",
-		"extendedSearchTeaserText": "Adapt the search to your needs.",
 		"facetteEntry": {
 			"bis": "to",
 			"ja": "Yes",
@@ -196,63 +162,22 @@
 			"Abteilung": "Department",
 			"Archiv": "Archives",
 			"frei einsehbar": "Without restriction",
+			"resultateOhnePermission": "Resultate ohne Benutzbarkeit",
 			"Gesuchspflichtig": "Subject to closure period",
 			"Teile davon gesuchspflichtig": "Review necessary",
 			"resultateOhnepermission": "Without Access"
 		},
-		"fieldoperator": {
-			"and": "All of the terms",
-			"not": "None of the terms",
-			"or": "At least one term"
-		},
-		"filterTitle": "Filters",
-		"genericTryAgain": "Try your search again later.",
-		"groupoperator": {
-			"capitalAnd": "AND",
-			"capitalOr": "OR"
-		},
-		"highUsageInfo": "Please confirm that you are not a robot",
-		"highUsageTitle": "Large number of queries in a short time",
-		"inRange": "In time period",
-		"invalidQuery": "Your search query is invalid. Please check the syntax.",
-		"lastExecutedQuery": "Your search query: {0}",
-		"lastSearchResult": "Last search result",
-		"lastSearchResultTeaserText": "Call up your last search result.",
-		"placeHolder": "Search in over 3,500,000 archive records",
-		"rangeFrom": "Time period from",
-		"rangeTo": "Time period to",
-		"resetSearch": "Reset search",
-		"runSearch": "Start search",
-		"searchTerm": "Search field",
 		"simple": {
 			"beratung": "Advice",
 			"informationen": "Information",
-			"intro": "Find documents about the history of Switzerland since 1798. Browse the catalogue and download dossiers, photos and films or order them to view in the reading room.",
-			"intro2": "For support go to \"Advice\" or \"Information\".",
-			"title": "Online access to the Federal Archives",
+			"intro": "<a href=\"/#/en/search/advanced\">Simple search</a> <br/><br/>Are you interested in the history of ETH Zurich, are you working on a topic related to the history of science or technology, or do you have ancestors who studied, taught or researched at ETH Zurich? Then the ETH Zurich University Archives is the right place for you. [Zeilenumbruch]Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+			"title": "Simple search",
 			"unter": "and"
-		},
-		"standardSearch": "Simple search",
-		"standardSearchTeaserText": "Start your research with a simple search.",
-		"synonymes": {
-			"add": "Enter terms in your search",
-			"cancel": "Cancel",
-			"listTitle": "We have found the following alternative terms for your input",
-			"quellenListTitle": "Sources",
-			"termdatcollection": "TERMDAT collections",
-			"termdatlink": "The terms listed come from the following",
-			"trefferTitle": "Term found in"
-		},
-		"termToShort": "Please enter at least one character.",
-		"termToShortForAll": "Please enter at least two characters.",
-		"thematicInventoryOverview": "Thematic overview",
-		"thematicInventoryOverviewTeaserText": "Archive grouped by topics: Find fonds that match your topic.",
-		"trefferTitle": "Results",
-		"unexpectedSystemError": "An unexpected error has occurred.",
-		"wenigerAnzeigen": "Show fewer"
+		}
 	},
 	"veExportRecord": {
 		"referenceCode": "Reference code",
+		"fileReference": "File reference",
 		"title": "Title",
 		"creationPeriod": "Creation period",
 		"withinInfo": "Contains",
@@ -260,5 +185,55 @@
 		"accessibility": "Accessibility under ArchA",
 		"fileName": "search-result",
 		"favourites": "favourites"
+	},
+	"header": {
+		"abmelden": "Log out",
+		"altText": "ETH Zurich University Archives logo – to homepage",
+		"anmelden": "Log in",
+		"barAbbr": "SFA",
+		"homeOrganisationName": "ETH Zurich",
+		"homeOrganisationNameLink": "https://ethz.ch/en.html",
+		"benutzerdaten": "User data",
+		"benutzeroberflaeche": "User interface",
+		"bestellkorb": "Shopping cart",
+		"bestellkorbItemsCount": "Shopping cart ({0})",
+		"bestelluebersicht": "Order overview",
+		"claim": " ETH Zurich University Archives <br/>Virtual Reading Room",
+		"closeMobileNavigation": "Close navigation",
+		"closeNav": "Close navigation",
+		"closeUserAccount": "Close user menu",
+		"breadcrumb1": "ETH Library",
+		"breadcrumb1Link": "https://library.ethz.ch/en/",
+		"breadcrumb2": "University Archives",
+		"breadcrumb2Link": "https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html",
+		"breadcrumb3": "Virtual Reading Room",
+		"breadcrumb3Link": "/#/en/search/simple",
+		"favoriten": "Favourites",
+		"languageChoice": "Language settings",
+		"loggedInInfo": "You are logged in as an identified user",
+		"loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
+		"meinkonto": "My user account",
+		"notLoggedInInfo": "You are not logged in",
+		"notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
+		"notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
+		"onlineZugang": "Online access",
+		"openMobileNavigation": "Open navigation",
+		"openUserAccount": "Open user menu",
+		"register": "Register",
+		"srBreadcrumbOrientation": "Navigating the website",
+		"title": "ETH Zurich University Archives",
+		"zumBestellkorb": "Navigate to shopping cart with {0} items",
+		"favoritesCount": "Favourites ({0})"
+	},
+	"headerContent": {
+		"component": {
+			"aktiv": "Active",
+			"toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
+			"toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
+		}
+	},
+	"footer": {
+		"footerTitle": "Footer",
+		"title": "ETH Zurich University Archives"
 	}
 }
