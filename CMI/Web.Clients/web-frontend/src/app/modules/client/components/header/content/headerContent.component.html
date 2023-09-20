@@ -4,89 +4,26 @@
 		<h2 class="sr-only">{{'Orientierung auf der Webseite' | translate:'header.srBreadcrumbOrientation'}}</h2>
 		<ul class="nav navbar-nav">
 			<li class="dropdown">
-				<a id="admin-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span class="icon icon--right"></span>{{'Der Bundesrat' | translate:'header.derBundesrat'}}
+				<a id="admin-dropdown" href="{{'https://ethz.ch/de.html' | translate:'header.homeOrganisationNameLink'}}" class="dropdown-toggle" >
+					<span class="icon icon--right"></span>{{'Der Bundesrat' | translate:'header.homeOrganisationName'}}
 				</a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="admin-dropdown">
-					<li class="dropdown-header">
-						<a [href]="getAdminUrlTranslated()" target="_blank" rel="noopener">
-							{{'Der Bundesrat admin.ch' | translate:'header.derBundesratInclDomain'}}
-						</a>
-						<ul>
-							<li>
-								<a [href]="'http://www.bk.admin.ch/bk/' + language + '/home.html'" target="_blank">
-									{{'BK: Schweizerische Bundeskanzlei' | translate:'header.departmentBK'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'http://www.eda.admin.ch/eda/' + language + '/home.html'" target="_blank">
-									{{'EDA: Eidgenössisches Departement für auswärtige Angelegenheiten' | translate:'header.departmentEDA'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'https://www.edi.admin.ch/edi/' + language + '/home.html'" target="_blank">
-									<strong>{{'EDI: Eidgenössisches Department des Innern' | translate:'header.departmentEDI'}}</strong>
-								</a>
-							</li>
-							<li>
-								<a [href]="'http://www.ejpd.admin.ch/ejpd/' + language + '/home.html'" target="_blank">
-									{{'EJPD: Eidgenössisches Justiz- und Polizeidepartment' | translate:'header.departmentEJPD'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'http://www.vbs.admin.ch/' + language + '/home.html'" target="_blank">
-									{{'VBS: Eidgenössisches Department für Verteidigung, Bevölkerungsschutz und Sport' | translate:'header.departmentVBS'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'https://www.efd.admin.ch/efd/' + language + '/home.html'" target="_blank">
-									{{'EFD: Eidgenössisches Finanzdepartement' | translate:'header.departmentEFD'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'https://www.wbf.admin.ch/wbf/' + language + '/home.html'" target="_blank">
-									{{'WBF: Eidgenössisches Departement für Wirtschaft, Bildung und Forschung' | translate:'header.departmentWBF'}}
-								</a>
-							</li>
-							<li>
-								<a [href]="'https://www.uvek.admin.ch/uvek/' + language + '/home.html'" target="_blank">
-									{{'UVEK: Eidgenössisches Department für Umwelt, Verkehr, Energie und Kommunikation' | translate:'header.departmentUVEK'}}
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</li>
 
 			<li class="dropdown">
-				<a href="#" id="service-dropdown" class="dropdown-toggle" data-toggle="dropdown">
-					<span class="icon icon--right"></span>{{'EDI' | translate:'header.departementEdiAbbr'}}
+				<a href="{{'https://library.ethz.ch/' | translate:'header.breadcrumb1Link'}}" id="service-dropdown" class="dropdown-toggle" >
+					<span class="icon icon--right"></span>{{'EDI' | translate:'header.breadcrumb1'}}
 				</a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="service-dropdown">
-					<li class="dropdown-header">
-						<a [href]="'https://www.edi.admin.ch/edi/' + language + '/home.html'" target="_blank">
-							{{'Eidgenössisches Departement des Innern' | translate:'header.departementEdiDescription'}}
-						</a>
-					</li>
-				</ul>
 			</li>
 
 			<li class="dropdown">
-				<a href="#" id="bar-dropdown" class="dropdown-toggle" data-toggle="dropdown">
-					<span class="icon icon--right"></span>{{'BAR' | translate:'header.barAbbr'}}
+				<a href="{{'https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html' | translate:'header.breadcrumb2Link'}}" id="bar-dropdown" class="dropdown-toggle" >
+					<span class="icon icon--right"></span>{{'Hochschularchiv' | translate:'header.breadcrumb2'}}
 				</a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="bar-dropdown">
-					<li class="dropdown-header">
-						<a [href]="'https://www.bar.admin.ch/bar/' + language + '/home.html'" target="_blank">
-							{{'Schweizerisches Bundesarchiv BAR' | translate:'header.barFullname'}}
-						</a>
-					</li>
-				</ul>
 			</li>
 
 			<li class="dropdown">
-				<a href="#/{{language}}" class="dropdown-toggle">
-					{{'Online-Zugang' | translate:'header.onlineZugang'}}
+				<a href="{{'https://vls.hsa.ch/de' | translate:'header.breadcrumb3Link'}}" class="dropdown-toggle">
+					<span class="icon icon--right"></span>{{'Online-Zugang' | translate:'header.breadcrumb3'}}
 				</a>
 			</li>
 		</ul>
@@ -153,8 +90,8 @@
 <div class="clearfix">
 	<a href="#/{{language}}" class="brand hidden-xs">
 		<img src="./assets/img/logo.svg" onerror="this.onerror = null; this.src = './assets/img/logo.png'"
-			 alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
-		<h1>{{ 'Online-Zugang zum Bundesarchiv' | translate:'header.claim' }}</h1>
+			 alt="{{ 'Logo vom Hochschularchiv der ETH Zürich – zur Startseite' | translate:'header.altText' }}"/>
+		<h1 [innerHtml]="getHeaderClaim()">{{ 'Logo vom Hochschularchiv der ETH Zürich' | translate:'header.claim' }}</h1>
 	</a>
 </div>
 
