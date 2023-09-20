@@ -188,7 +188,7 @@
   },
 	"header": {
 		"abmelden": "Abmelden",
-		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
+		"altText": "Logo vom Max Frisch-Archiv an der ETH-Bibliothek – zur Startseite",
 		"anmelden": "Anmelden",
 		"barAbbr": "BAR",
 		"homeOrganisationName": "ETH Zürich",
@@ -204,8 +204,8 @@
 		"closeUserAccount": "Benutzermenu schliessen",
 		"breadcrumb1": "ETH-Bibliothek",
 		"breadcrumb1Link": "https://library.ethz.ch/",
-		"breadcrumb2": "Hochschularchiv",
-		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
+		"breadcrumb2": "Max Frisch-Archiv",
+		"breadcrumb2Link": "https://mfa.ethz.ch/en/",
 		"breadcrumb3": "Virtueller Lesesaal",
 		"breadcrumb3Link": "/#/de/suche/einfach",
 		"favoriten": "Favoriten",
@@ -221,7 +221,7 @@
 		"openUserAccount": "Benutzermenu öffnen",
 		"register": "Registrieren",
 		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
-		"title": "Hochschularchiv der ETH Zürich",
+		"title": "Max Frisch-Archiv an der ETH-Bibliothek",
 		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
 		"favoritesCount": "Favoriten ({0})"
 	},
@@ -234,6 +234,10 @@
 	},
 	"footer": {
 		"footerTitle": "Fusszeile",
-		"title": "Hochschularchiv der ETH Zürich"
+		"title": "Max Frisch-Archiv an der ETH-Bibliothek"
+	},
+	"page": {
+		"description": "vls.mfa.ethz.ch",
+		"title": "Max Frisch-Archiv an der ETH-Bibliothek"
 	}
 }
