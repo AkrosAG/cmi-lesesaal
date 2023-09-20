@@ -64,7 +64,7 @@ describe('auto generate CollectionPageComponent', () => {
 				return this.testTitle;
 			},
 			setTitle(newTitle: string): void {
-				this._siteTitle = this._txt.get('header.title', 'ETH Zurich University Archives');
+				this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
 				let seoTitle = newTitle + ((newTitle && newTitle.length > 0) ? ' - ' : '') + this._siteTitle;
 				this.testTitle = seoTitle;
 			}
