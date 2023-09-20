@@ -390,7 +390,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETH", "ETH", "{2E869907-687
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9F-42F8-8640-F5BD77F21326}"
 	ProjectSection(SolutionItems) = preProject
-			CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs
+		CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs
 		CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs
 		CMI\CustomerScripts\ETH\HSA\templates.json = CMI\CustomerScripts\ETH\HSA\templates.json
 		CMI\CustomerScripts\ETH\HSA\facetten.json = CMI\CustomerScripts\ETH\HSA\facetten.json
@@ -417,15 +417,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MFA", "MFA", "{C1970419-83B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMA", "TMA", "{6DD2ED61-62B4-4A36-85DE-76BBAA9B7E52}"
 	ProjectSection(SolutionItems) = preProject
-		CMI\CustomerScripts\ETH\MFA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\MFA\HarvestCustomScript.cs
-CMI\CustomerScripts\ETH\MFA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\MFA\IndexCustomScript.cs
-CMI\CustomerScripts\ETH\MFA\templates.json = CMI\CustomerScripts\ETH\MFA\templates.json
-CMI\CustomerScripts\ETH\MFA\facetten.json = CMI\CustomerScripts\ETH\MFA\facetten.json
-CMI\CustomerScripts\ETH\MFA\customer.settings.json = CMI\CustomerScripts\ETH\MFA\customer.settings.json
-CMI\CustomerScripts\ETH\MFA\customer.translations.de.json = CMI\CustomerScripts\ETH\MFA\customer.translations.de.json
-CMI\CustomerScripts\ETH\MFA\customer.translations.en.json = CMI\CustomerScripts\ETH\MFA\customer.translations.en.json
-CMI\CustomerScripts\ETH\MFA\loading-texts.js = CMI\CustomerScripts\ETH\MFA\loading-texts.js
-CMI\CustomerScripts\ETH\MFA\logo.svg = CMI\CustomerScripts\ETH\MFA\logo.svg
+		CMI\CustomerScripts\ETH\TMA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\TMA\HarvestCustomScript.cs
+		CMI\CustomerScripts\ETH\TMA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\TMA\IndexCustomScript.cs
+		CMI\CustomerScripts\ETH\TMA\templates.json = CMI\CustomerScripts\ETH\TMA\templates.json
+		CMI\CustomerScripts\ETH\TMA\facetten.json = CMI\CustomerScripts\ETH\TMA\facetten.json
+		CMI\CustomerScripts\ETH\TMA\customer.settings.json = CMI\CustomerScripts\ETH\TMA\customer.settings.json
+		CMI\CustomerScripts\ETH\TMA\customer.translations.de.json = CMI\CustomerScripts\ETH\TMA\customer.translations.de.json
+		CMI\CustomerScripts\ETH\TMA\customer.translations.en.json = CMI\CustomerScripts\ETH\TMA\customer.translations.en.json
+		CMI\CustomerScripts\ETH\TMA\loading-texts.js = CMI\CustomerScripts\ETH\TMA\loading-texts.js
+		CMI\CustomerScripts\ETH\TMA\logo.svg = CMI\CustomerScripts\ETH\TMA\logo.svg
 	EndProjectSection
 EndProject
 Global
