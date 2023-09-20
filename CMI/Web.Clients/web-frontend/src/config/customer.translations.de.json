@@ -235,5 +235,9 @@
 	"footer": {
 		"footerTitle": "Fusszeile",
 		"title": "Hochschularchiv der ETH Zürich"
+	}	,
+	"page": {
+		"description": "vls.hsa.ch",
+		"title": "Hochschularchiv der ETH Zürich"
 	}
 }

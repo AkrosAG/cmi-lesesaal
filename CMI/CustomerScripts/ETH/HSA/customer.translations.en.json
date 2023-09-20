@@ -1,239 +1,243 @@
 {
-	"facette": {
-		"active": "Active",
-		"bestand": "Fonds",
-		"clearAll": "Reset all filters ({0})",
-		"digitallyAvailable": "Documents available in digital form",
-		"creationPeriodYears": "Date",
-		"hideFilter": "Hide filters",
-		"notActive": "Not active",
-		"stufen": "Levels",
-		"treffer": "Results",
-		"weitereTreffer": "Other",
-		"level": "Level of Description",
-		"permission": "Access",
-		"sprachen": "Language of Material",
-		"Archivalienart": "Type of Material",
-		"Koerperschaftsregister": "Register of Corporate Bodies",
-		"Ortsregister": "Location register",
-		"Personenregister": "Register of persons",
-		"Sachregister": "Subject index",
-		"Werkregister": "Register of works"
-	},
-	"metadata": {
-		"boolean": {
-			"ja": "Yes",
-			"nein": "No"
-		},
-		"label": {
-			"creationPeriod": "Date",
-			"Koerperschaftsregister": "Register of Corporate Bodies",
-			"Ortsregister": "Location register",
-			"Personenregister": "Register of persons",
-			"Sachregister": "Subject index",
-			"Werkregister": "Register of works",
-			"digitallyAvailable": "Documents available in digital form",
-			"extent": "Running metres",
-			"formerReferenceCode": "Previous reference codes",
-			"level": "Level of Description",
-			"referenceCode": "Reference code",
-			"title": "Title",
-			"withinInfo": "Scope and Content",
-			"archiveType": "Type of archival materials"
-		},
-		"searchFields": {
-			"_all": "All",
-			"allData": "All",
-			"allMetaData": "Metadata",
-			"allPrimaryData": "Full text (primary data)",
-			"creationPeriod": "Date",
-			"formerReferenceCode": "Previous reference codes",
-			"referenceCode": "Reference code",
-			"title": "Title",
-			"Contains": "Scope and Content",
-			"Personenregister": "Register of persons",
-			"permission": "Access",
-			"Verwaltungssignatur": "Administrative File Number",
-			"Archivalienart": "Type of Material",
-			"Sprache": "Language of Material",
-			"Ueberlieferungsform": "Form of Item at Acquisition"
-		},
-		"sortFields": {
-			"creationPeriod": {
-				"startDate": {
-					"ascending": "Date in ascending order",
-					"descending": "Date in descending order"
-				}
-			},
-			"referenceCode": {
-				"ascending": "Reference code in ascending order",
-				"descending": "Reference code in descending order",
-				"sort": {
-					"ascending": "Reference code in ascending order",
-					"descending": "Reference code in descending order"
-				}
-			},
-			"relevanz": "Relevance",
-			"title": {
-				"keyword": {
-					"ascending": "Title in ascending order",
-					"descending": "Title in descending order"
-				},
-				"sort": {
-					"ascending": "Title in ascending order",
-					"descending": "Title in descending order"
-				}
-			},
-			"treePath": {
-				"ascending": "Archive plan context in ascending order",
-				"descending": "Archive plan context in descending order"
-			}
-		},
-		"title": {
-			"accessTokens": "Access tokens",
-			"anmerkungen": "Notes",
-			"archivplan": "Archive plan",
-			"files": "Files",
-			"details": "Details",
-			"erschliessungskontrolle": "Cataloguing check",
-			"identifikation": "Identification",
-			"images": "Preview images",
-			"inhaltUndInnereOrdnung": "Content and internal classification",
-			"interneVermerke": "Internal comments",
-			"kontext": "Context",
-			"sachverwandteUnterlagen": "Related documents",
-			"zugangsUndBenutzungsbedingungen": "Conditions of access and use"
-		}
-	},
-	"registerInfo": {
-		"cancelRegister": "Cancel",
-		"chLoginAltText": "CH-Login logo",
-		"chLoginException": "Exception: Federal Administration staff must register via “FED-LOGIN“.",
-		"chooseCHLogin": "Please select the “CH-LOGIN” option in the next step.",
-		"info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
-		"infoBox": "Info box",
-		"infoTitle": "Note",
-		"questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
-		"registerImEiam": "Register in eIAM",
-		"title": "Opening an account for online access to the Federal Archives"
-	},
-	"search": {
-		"advanced": {
-			"addNewGroup": "Add another search group",
-			"field": {
-				"permission": {
-					"freiZugaenglich": "Without restriction",
-					"inSchutzfrist": "Subject to request",
-					"teileinSchutzfrist": "Parts of it subject to request"
-				}
-			},
-			"group": {
-				"addNewField": "Add search field",
-				"and": "All terms (AND)",
-				"closeGroup": "Close search group",
-				"fieldChaining": "Link between search fields:",
-				"not": "None of the terms (NOT)",
-				"or": "At least one term (OR)"
-			},
-			"groupChaining": "Link between search groups:",
-			"reset": "Reset",
-			"search": "Search",
-			"showDetailsSyntax": "Show details of search syntax",
-			"syntax": "Syntax",
-			"title": "Advanced search"
-		},
-		"facetteEntry": {
-			"bis": "to",
-			"ja": "Yes",
-			"nein": "No",
-			"resultateOhneZeitraum": "Results without time period",
-			"weitereLaden": "Load more",
-			"Hauptabteilung": "Main departments",
-			"Bestaendeserie": "Fonds series",
-			"Akzession": "Accessions",
-			"Bestand": "Fonds",
-			"Teilbestand": "Sub-fonds",
-			"Subdossier": "Sub-dossiers",
-			"Serie": "Series",
-			"Dossier": "Dossiers",
-			"Dokument": "Documents",
-			"Einzelstueck": "Single item",
-			"Klassifikation": "Classification",
-			"Abteilung": "Department",
-			"Archiv": "Archives",
-			"frei einsehbar": "Without restriction",
-			"resultateOhnePermission": "Resultate ohne Benutzbarkeit",
-			"Gesuchspflichtig": "Subject to closure period",
-			"Teile davon gesuchspflichtig": "Review necessary",
-			"resultateOhnepermission": "Without Access"
-		},
-		"simple": {
-			"beratung": "Advice",
-			"informationen": "Information",
-			"intro": "<a href=\"/#/en/search/advanced\">Simple search</a> <br/><br/>Are you interested in the history of ETH Zurich, are you working on a topic related to the history of science or technology, or do you have ancestors who studied, taught or researched at ETH Zurich? Then the ETH Zurich University Archives is the right place for you. [Zeilenumbruch]Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
-			"title": "Simple search",
-			"unter": "and"
-		}
-	},
-	"veExportRecord": {
-		"referenceCode": "Reference code",
-		"fileReference": "File reference",
-		"title": "Title",
-		"creationPeriod": "Creation period",
-		"withinInfo": "Contains",
-		"level": "Level",
-		"accessibility": "Accessibility under ArchA",
-		"fileName": "search-result",
-		"favourites": "favourites"
-	},
-	"header": {
-		"abmelden": "Log out",
-		"altText": "ETH Zurich University Archives logo – to homepage",
-		"anmelden": "Log in",
-		"barAbbr": "SFA",
-		"homeOrganisationName": "ETH Zurich",
-		"homeOrganisationNameLink": "https://ethz.ch/en.html",
-		"benutzerdaten": "User data",
-		"benutzeroberflaeche": "User interface",
-		"bestellkorb": "Shopping cart",
-		"bestellkorbItemsCount": "Shopping cart ({0})",
-		"bestelluebersicht": "Order overview",
-		"claim": " ETH Zurich University Archives <br/>Virtual Reading Room",
-		"closeMobileNavigation": "Close navigation",
-		"closeNav": "Close navigation",
-		"closeUserAccount": "Close user menu",
-		"breadcrumb1": "ETH Library",
-		"breadcrumb1Link": "https://library.ethz.ch/en/",
-		"breadcrumb2": "University Archives",
-		"breadcrumb2Link": "https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html",
-		"breadcrumb3": "Virtual Reading Room",
-		"breadcrumb3Link": "/#/en/search/simple",
-		"favoriten": "Favourites",
-		"languageChoice": "Language settings",
-		"loggedInInfo": "You are logged in as an identified user",
-		"loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
-		"meinkonto": "My user account",
-		"notLoggedInInfo": "You are not logged in",
-		"notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
-		"notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
-		"onlineZugang": "Online access",
-		"openMobileNavigation": "Open navigation",
-		"openUserAccount": "Open user menu",
-		"register": "Register",
-		"srBreadcrumbOrientation": "Navigating the website",
-		"title": "ETH Zurich University Archives",
-		"zumBestellkorb": "Navigate to shopping cart with {0} items",
-		"favoritesCount": "Favourites ({0})"
-	},
-	"headerContent": {
-		"component": {
-			"aktiv": "Active",
-			"toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
-			"toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
-		}
-	},
-	"footer": {
-		"footerTitle": "Footer",
-		"title": "ETH Zurich University Archives"
-	}
+  "facette": {
+    "active": "Active",
+    "bestand": "Fonds",
+    "clearAll": "Reset all filters ({0})",
+    "digitallyAvailable": "Documents available in digital form",
+    "creationPeriodYears": "Date",
+    "hideFilter": "Hide filters",
+    "notActive": "Not active",
+    "stufen": "Levels",
+    "treffer": "Results",
+    "weitereTreffer": "Other",
+    "level": "Level of Description",
+    "permission": "Access",
+    "sprachen": "Language of Material",
+    "Archivalienart": "Type of Material",
+    "Koerperschaftsregister": "Register of Corporate Bodies",
+    "Ortsregister": "Location register",
+    "Personenregister": "Register of persons",
+    "Sachregister": "Subject index",
+    "Werkregister": "Register of works"
+  },
+  "metadata": {
+    "boolean": {
+      "ja": "Yes",
+      "nein": "No"
+    },
+    "label": {
+      "creationPeriod": "Date",
+      "Koerperschaftsregister": "Register of Corporate Bodies",
+      "Ortsregister": "Location register",
+      "Personenregister": "Register of persons",
+      "Sachregister": "Subject index",
+      "Werkregister": "Register of works",
+      "digitallyAvailable": "Documents available in digital form",
+      "extent": "Running metres",
+      "formerReferenceCode": "Previous reference codes",
+      "level": "Level of Description",
+      "referenceCode": "Reference code",
+      "title": "Title",
+      "withinInfo": "Scope and Content",
+      "archiveType": "Type of archival materials"
+    },
+    "searchFields": {
+      "_all": "All",
+      "allData": "All",
+      "allMetaData": "Metadata",
+      "allPrimaryData": "Full text (primary data)",
+      "creationPeriod": "Date",
+      "formerReferenceCode": "Previous reference codes",
+      "referenceCode": "Reference code",
+      "title": "Title",
+      "Contains": "Scope and Content",
+      "Personenregister": "Register of persons",
+      "permission": "Access",
+      "Verwaltungssignatur": "Administrative File Number",
+      "Archivalienart": "Type of Material",
+      "Sprache": "Language of Material",
+      "Ueberlieferungsform": "Form of Item at Acquisition"
+    },
+    "sortFields": {
+      "creationPeriod": {
+        "startDate": {
+          "ascending": "Date in ascending order",
+          "descending": "Date in descending order"
+        }
+      },
+      "referenceCode": {
+        "ascending": "Reference code in ascending order",
+        "descending": "Reference code in descending order",
+        "sort": {
+          "ascending": "Reference code in ascending order",
+          "descending": "Reference code in descending order"
+        }
+      },
+      "relevanz": "Relevance",
+      "title": {
+        "keyword": {
+          "ascending": "Title in ascending order",
+          "descending": "Title in descending order"
+        },
+        "sort": {
+          "ascending": "Title in ascending order",
+          "descending": "Title in descending order"
+        }
+      },
+      "treePath": {
+        "ascending": "Archive plan context in ascending order",
+        "descending": "Archive plan context in descending order"
+      }
+    },
+    "title": {
+      "accessTokens": "Access tokens",
+      "anmerkungen": "Notes",
+      "archivplan": "Archive plan",
+      "files": "Files",
+      "details": "Details",
+      "erschliessungskontrolle": "Cataloguing check",
+      "identifikation": "Identification",
+      "images": "Preview images",
+      "inhaltUndInnereOrdnung": "Content and internal classification",
+      "interneVermerke": "Internal comments",
+      "kontext": "Context",
+      "sachverwandteUnterlagen": "Related documents",
+      "zugangsUndBenutzungsbedingungen": "Conditions of access and use"
+    }
+  },
+  "registerInfo": {
+    "cancelRegister": "Cancel",
+    "chLoginAltText": "CH-Login logo",
+    "chLoginException": "Exception: Federal Administration staff must register via “FED-LOGIN“.",
+    "chooseCHLogin": "Please select the “CH-LOGIN” option in the next step.",
+    "info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
+    "infoBox": "Info box",
+    "infoTitle": "Note",
+    "questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
+    "registerImEiam": "Register in eIAM",
+    "title": "Opening an account for online access to the Federal Archives"
+  },
+  "search": {
+    "advanced": {
+      "addNewGroup": "Add another search group",
+      "field": {
+        "permission": {
+          "freiZugaenglich": "Without restriction",
+          "inSchutzfrist": "Subject to request",
+          "teileinSchutzfrist": "Parts of it subject to request"
+        }
+      },
+      "group": {
+        "addNewField": "Add search field",
+        "and": "All terms (AND)",
+        "closeGroup": "Close search group",
+        "fieldChaining": "Link between search fields:",
+        "not": "None of the terms (NOT)",
+        "or": "At least one term (OR)"
+      },
+      "groupChaining": "Link between search groups:",
+      "reset": "Reset",
+      "search": "Search",
+      "showDetailsSyntax": "Show details of search syntax",
+      "syntax": "Syntax",
+      "title": "Advanced search"
+    },
+    "facetteEntry": {
+      "bis": "to",
+      "ja": "Yes",
+      "nein": "No",
+      "resultateOhneZeitraum": "Results without time period",
+      "weitereLaden": "Load more",
+      "Hauptabteilung": "Main departments",
+      "Bestaendeserie": "Fonds series",
+      "Akzession": "Accessions",
+      "Bestand": "Fonds",
+      "Teilbestand": "Sub-fonds",
+      "Subdossier": "Sub-dossiers",
+      "Serie": "Series",
+      "Dossier": "Dossiers",
+      "Dokument": "Documents",
+      "Einzelstueck": "Single item",
+      "Klassifikation": "Classification",
+      "Abteilung": "Department",
+      "Archiv": "Archives",
+      "frei einsehbar": "Without restriction",
+      "resultateOhnePermission": "Resultate ohne Benutzbarkeit",
+      "Gesuchspflichtig": "Subject to closure period",
+      "Teile davon gesuchspflichtig": "Review necessary",
+      "resultateOhnepermission": "Without Access"
+    },
+    "simple": {
+      "beratung": "Advice",
+      "informationen": "Information",
+      "intro": "<a href=\"/#/en/search/advanced\">Simple search</a> <br/><br/>Are you interested in the history of ETH Zurich, are you working on a topic related to the history of science or technology, or do you have ancestors who studied, taught or researched at ETH Zurich? Then the ETH Zurich University Archives is the right place for you. [Zeilenumbruch]Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+      "title": "Simple search",
+      "unter": "and"
+    }
+  },
+  "veExportRecord": {
+    "referenceCode": "Reference code",
+    "fileReference": "File reference",
+    "title": "Title",
+    "creationPeriod": "Creation period",
+    "withinInfo": "Contains",
+    "level": "Level",
+    "accessibility": "Accessibility under ArchA",
+    "fileName": "search-result",
+    "favourites": "favourites"
+  },
+  "header": {
+    "abmelden": "Log out",
+    "altText": "ETH Zurich University Archives logo – to homepage",
+    "anmelden": "Log in",
+    "barAbbr": "SFA",
+    "homeOrganisationName": "ETH Zurich",
+    "homeOrganisationNameLink": "https://ethz.ch/en.html",
+    "benutzerdaten": "User data",
+    "benutzeroberflaeche": "User interface",
+    "bestellkorb": "Shopping cart",
+    "bestellkorbItemsCount": "Shopping cart ({0})",
+    "bestelluebersicht": "Order overview",
+    "claim": " ETH Zurich University Archives <br/>Virtual Reading Room",
+    "closeMobileNavigation": "Close navigation",
+    "closeNav": "Close navigation",
+    "closeUserAccount": "Close user menu",
+    "breadcrumb1": "ETH Library",
+    "breadcrumb1Link": "https://library.ethz.ch/en/",
+    "breadcrumb2": "University Archives",
+    "breadcrumb2Link": "https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html",
+    "breadcrumb3": "Virtual Reading Room",
+    "breadcrumb3Link": "/#/en/search/simple",
+    "favoriten": "Favourites",
+    "languageChoice": "Language settings",
+    "loggedInInfo": "You are logged in as an identified user",
+    "loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
+    "meinkonto": "My user account",
+    "notLoggedInInfo": "You are not logged in",
+    "notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
+    "notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
+    "onlineZugang": "Online access",
+    "openMobileNavigation": "Open navigation",
+    "openUserAccount": "Open user menu",
+    "register": "Register",
+    "srBreadcrumbOrientation": "Navigating the website",
+    "title": "ETH Zurich University Archives",
+    "zumBestellkorb": "Navigate to shopping cart with {0} items",
+    "favoritesCount": "Favourites ({0})"
+  },
+  "headerContent": {
+    "component": {
+      "aktiv": "Active",
+      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
+      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
+    }
+  },
+  "footer": {
+    "footerTitle": "Footer",
+    "title": "ETH Zurich University Archives"
+  },
+  "page": {
+    "description": "vls.hsa.ch",
+    "title": "ETH Zurich University Archives"
+  }
 }
