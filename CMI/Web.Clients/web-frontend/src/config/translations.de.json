@@ -715,10 +715,6 @@
     "loadingUsers": "Benutzer werden geladen...",
     "submittingOrder": "Ihre Bestellung wird übermittelt..."
   },
-  "page": {
-    "description": "recherche.admin.ch",
-    "title": "Schweizerisches Bundesarchiv BAR"
-  },
   "pagination": {
     "anzahlTreffer": "Anz. Treffer pro Seite",
     "titleSr": "Seitennummerierung der Trefferliste"
