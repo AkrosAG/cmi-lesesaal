@@ -1,0 +1,15 @@
+#mainContent a {
+    text-decoration: none;
+    border-bottom: solid 0.0625rem rgba(0,0,0,.6);
+    transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
+    border-bottom-color: #215caf;
+    color: black;
+}
+
+    #mainContent a:hover {
+        color: #215caf;
+    }
+
+.nav-main {
+    border-top-color: #215caf;
+}
