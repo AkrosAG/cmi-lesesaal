@@ -89,7 +89,7 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 		const url: string = this._url.getNutzungsbestimmungenUrl();
 
 		return this._txt.get('user.legelAgreementConsentText',
-			'Ich bin einverstanden, dass das Schweizerische Bundesarchiv (BAR) meine Personendaten wie in ' +
+			'Ich bin einverstanden, dass meine Personendaten wie in ' +
 			'der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen ' +
 			'im Rahmen seines Online-Zugangs verwenden darf.',
 			url);

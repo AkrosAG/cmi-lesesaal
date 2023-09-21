@@ -185,10 +185,10 @@ describe('RegisterPage', () => {
 			expect(emailInput.hasAttribute('disabled')).toBeTruthy();
 		});
 
-		it('should have a required organization field', () => {
+		it('should not have a required organization field', () => {
 			fixture.detectChanges();
 			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement as HTMLElement;
-			expect(organizationField.hasAttribute('required')).toBeTruthy();
+			expect(organizationField.hasAttribute('required')).toBeFalsy();
 		});
 	});
 });
