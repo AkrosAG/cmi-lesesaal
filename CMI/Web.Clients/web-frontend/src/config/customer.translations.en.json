@@ -235,5 +235,9 @@
 	"footer": {
 		"footerTitle": "Footer",
 		"title": "ETH Zurich University Archives"
+	}	,
+	"page": {
+		"description": "vls.hsa.ch",
+		"title": "ETH Zurich University Archives"
 	}
 }

@@ -737,10 +737,6 @@
     "loadingUsers": "Loading users...",
     "submittingOrder": "Your order is being transmitted..."
   },
-  "page": {
-    "description": "recherche.admin.ch",
-    "title": "Swiss Federal Archives SFA"
-  },
   "pagination": {
     "anzahlTreffer": "No. of results per page",
     "titleSr": "Page numbering of results list"

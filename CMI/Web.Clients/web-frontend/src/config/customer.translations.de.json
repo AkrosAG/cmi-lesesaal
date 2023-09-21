@@ -9,7 +9,7 @@
     "hideFilter": "Filter ausblenden",
     "notActive": "Nicht aktiv",
     "level": "Stufen",
-		"permission": "Benutzbarkeit",
+	"permission": "Benutzbarkeit",
     "treffer": "Treffer",
     "weitereTreffer": "Andere",
 		"sprachen": "Sprachen",
@@ -188,7 +188,7 @@
   },
 	"header": {
 		"abmelden": "Abmelden",
-		"altText": "Logo vom Max Frisch-Archiv an der ETH-Bibliothek – zur Startseite",
+		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
 		"anmelden": "Anmelden",
 		"barAbbr": "BAR",
 		"homeOrganisationName": "ETH Zürich",
@@ -198,14 +198,14 @@
 		"bestellkorb": "Bestellkorb",
 		"bestellkorbItemsCount": "Bestellkorb ({0})",
 		"bestelluebersicht": "Bestellübersicht",
-		"claim": "Virtueller Lesesaal",
+		"claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
 		"closeMobileNavigation": "Navigation schliessen",
 		"closeNav": "Navigation schliessen",
 		"closeUserAccount": "Benutzermenu schliessen",
 		"breadcrumb1": "ETH-Bibliothek",
 		"breadcrumb1Link": "https://library.ethz.ch/",
-		"breadcrumb2": "Max Frisch-Archiv",
-		"breadcrumb2Link": "https://mfa.ethz.ch/en/",
+		"breadcrumb2": "Hochschularchiv",
+		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
 		"breadcrumb3": "Virtueller Lesesaal",
 		"breadcrumb3Link": "/#/de/suche/einfach",
 		"favoriten": "Favoriten",
@@ -221,7 +221,7 @@
 		"openUserAccount": "Benutzermenu öffnen",
 		"register": "Registrieren",
 		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
-		"title": "Max Frisch-Archiv an der ETH-Bibliothek",
+		"title": "Hochschularchiv der ETH Zürich",
 		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
 		"favoritesCount": "Favoriten ({0})"
 	},
@@ -234,10 +234,10 @@
 	},
 	"footer": {
 		"footerTitle": "Fusszeile",
-		"title": "Max Frisch-Archiv an der ETH-Bibliothek"
-	},
+		"title": "Hochschularchiv der ETH Zürich"
+	}	,
 	"page": {
-		"description": "vls.mfa.ethz.ch",
-		"title": "Max Frisch-Archiv an der ETH-Bibliothek"
+		"description": "vls.hsa.ch",
+		"title": "Hochschularchiv der ETH Zürich"
 	}
 }
