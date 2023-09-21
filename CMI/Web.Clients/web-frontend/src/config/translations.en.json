@@ -964,7 +964,7 @@
     "firstName": "First name(s)",
     "infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
     "legalAgreementConsentTitle": "Data protection policy",
-    "legelAgreementConsentText": "I agree that the Swiss Federal Archives (SFA) can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
+    "legelAgreementConsentText": "I agree that can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
     "mobileTel": "Mobile phone",
     "organization": "Organisation",
     "pageTitle": "Enter user data",
