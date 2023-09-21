@@ -71,16 +71,14 @@
 							   name="birthday">
 					</div>
 				</div>
-				<div [ngClass]="{'has-warning': organization.errors && organization.errors.required && isInternalUser && saveClicked}" class="row">
+				<div [ngClass]="{'has-warning': organization.errors && isInternalUser && saveClicked}" class="row">
 					<label class="col-md-3 col-xs-3 control-label">
 						{{'Organisation' | translate:'user.organization'}}
-						<span *ngIf="isInternalUser">*</span>
 					</label>
 					<div class="col-md-9 col-xs-9">
 						<input class="form-control"
 							   [(ngModel)]="user.organization"
 							   placeholder="{{'Organisation' | translate: 'user.placeholder.organization'}}"
-							   [required]="isInternalUser"
 							   name="organization" #organization="ngModel">
 						<span *ngIf="organization.errors && organization.errors.required && isInternalUser && saveClicked" class="help-block" role="alert">
 							{{'Dieses Feld muss ausgefüllt werden.' | translate:'main.errorMandatoryField'}}
