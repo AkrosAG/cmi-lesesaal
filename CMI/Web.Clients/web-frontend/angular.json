@@ -32,6 +32,7 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
+              "src/assets/css/custom.css",
               "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
               "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"
@@ -151,6 +152,7 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
+              "src/assets/css/custom.css",
               "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
               "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"

@@ -167,4 +167,8 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 		return this._txt.translate('Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. ' +
 			'Um sämtliche Daten nutzen zu können, müssen Sie sich vorgängig identifizieren (siehe Seite "Benutzerstatus" im "Benutzerkonto")', 'headerContent.component.toolTippLoggedInAsRegisteredUser');
 	}
+
+	public getHeaderClaim(): string {
+		return this._txt.get('header.claim', 'Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal');
+	}
 }
