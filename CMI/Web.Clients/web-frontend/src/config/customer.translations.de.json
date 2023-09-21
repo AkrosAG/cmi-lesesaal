@@ -1,17 +1,17 @@
 {
-  "facette": {
-    "active": "Aktiv",
-    "bestaendeUebersicht": "Thematische Übersicht",
-    "bestand": "Bestand",
-    "clearAll": "Alle Filter zurücksetzen ({0})",
-    "digitallyAvailable": "Unterlagen digital vorhanden",
-    "creationPeriodYears": "Entstehungszeitraum",
-    "hideFilter": "Filter ausblenden",
-    "notActive": "Nicht aktiv",
-    "level": "Stufen",
-	"permission": "Benutzbarkeit",
-    "treffer": "Treffer",
-    "weitereTreffer": "Andere",
+	"facette": {
+		"active": "Aktiv",
+		"bestaendeUebersicht": "Thematische Übersicht",
+		"bestand": "Bestand",
+		"clearAll": "Alle Filter zurücksetzen ({0})",
+		"digitallyAvailable": "Unterlagen digital vorhanden",
+		"creationPeriodYears": "Entstehungszeitraum",
+		"hideFilter": "Filter ausblenden",
+		"notActive": "Nicht aktiv",
+		"level": "Stufen",
+		"permission": "Benutzbarkeit",
+		"treffer": "Treffer",
+		"weitereTreffer": "Andere",
 		"sprachen": "Sprachen",
 		"Archivalienart": "Archivalienart",
 		"Koerperschaftsregister": "Körperschaftsregister",
@@ -20,7 +20,7 @@
 		"Sachregister": "Sachregister",
 		"Werkregister": "Werkregister"
 
-  },
+	},
 	"metadata": {
 		"boolean": {
 			"ja": "Ja",
@@ -105,18 +105,18 @@
 			"zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
 		}
 	},
-  "registerInfo": {
-    "cancelRegister": "Abbrechen",
-    "chLoginAltText": "Logo des CH-Logins",
-    "chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
-    "chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
-    "info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
-    "infoBox": "Info-Box",
-    "infoTitle": "Hinweis",
-    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
-    "registerImEiam": "Registrieren",
-    "title": "Kontoeröffnung für das Hochschularchiv der ETH Zürich Virtueller Lesesaal"
-  },
+	"registerInfo": {
+		"cancelRegister": "Abbrechen",
+		"chLoginAltText": "Logo des CH-Logins",
+		"chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
+		"chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
+		"info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
+		"infoBox": "Info-Box",
+		"infoTitle": "Hinweis",
+		"questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+		"registerImEiam": "Registrieren",
+		"title": "Kontoeröffnung für das Hochschularchiv der ETH Zürich Virtueller Lesesaal"
+	},
 	"search": {
 		"advanced": {
 			"field": {
@@ -158,7 +158,7 @@
 			"Subdossier": "Subdossier",
 			"Dokument": "Dokument",
 			"Einzelstueck": "Einzelstück",
-			"Klassifikation":  "Klassifikation",
+			"Klassifikation": "Klassifikation",
 			"Abteilung": "Abteilung",
 			"Archiv": "Archiv",
 			"frei einsehbar": "Frei einsehbar",
@@ -175,17 +175,17 @@
 			"unter": "und unter"
 		}
 	},
-  "veExportRecord": {
-    "referenceCode": "Signatur",
-    "fileReference": "Aktenzeichen",
-    "title": "Titel",
-    "creationPeriod": "Entstehungszeitraum",
-    "withinInfo": "Form und Inhalt",
-    "level": "Stufe",
-    "accessibility": "Benutzbarkeit",
-    "fileName": "suchresultat",
-    "favourites": "favoriten"
-  },
+	"veExportRecord": {
+		"referenceCode": "Signatur",
+		"fileReference": "Aktenzeichen",
+		"title": "Titel",
+		"creationPeriod": "Entstehungszeitraum",
+		"withinInfo": "Form und Inhalt",
+		"level": "Stufe",
+		"accessibility": "Benutzbarkeit",
+		"fileName": "suchresultat",
+		"favourites": "favoriten"
+	},
 	"header": {
 		"abmelden": "Abmelden",
 		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
@@ -221,7 +221,7 @@
 		"openUserAccount": "Benutzermenu öffnen",
 		"register": "Registrieren",
 		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
-		"title": "Hochschularchiv der ETH Zürich",
+		"title": "Hochschularchiv der ETH Zürich | ETH Zürich",
 		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
 		"favoritesCount": "Favoriten ({0})"
 	},
@@ -235,7 +235,7 @@
 	"footer": {
 		"footerTitle": "Fusszeile",
 		"title": "Hochschularchiv der ETH Zürich"
-	}	,
+	},
 	"page": {
 		"description": "vls.hsa.ch",
 		"title": "Hochschularchiv der ETH Zürich"

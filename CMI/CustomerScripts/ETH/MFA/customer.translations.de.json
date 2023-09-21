@@ -107,15 +107,15 @@
   },
   "registerInfo": {
     "cancelRegister": "Abbrechen",
-    "chLoginAltText": "Logo des CH-Logins",
+    "chLoginAltText": "Logo des Max Frisch-Archiv an der ETH-Bibliothek",
     "chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
     "chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
     "info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
     "infoBox": "Info-Box",
     "infoTitle": "Hinweis",
-    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
     "registerImEiam": "Registrieren",
-    "title": "Kontoeröffnung für das Hochschularchiv der ETH Zürich Virtueller Lesesaal"
+    "title": "Kontoeröffnung für das Max Frisch-Archiv an der ETH-Bibliothek Virtueller Lesesaal"
   },
   "search": {
     "advanced": {
@@ -170,7 +170,7 @@
     "simple": {
       "beratung": "Beratung",
       "informationen": "Informationen",
-      "intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+      "intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Max Frisch? <br/>Recherchieren Sie in unserem Katalog. Wenn Sie sich registrieren, können Sie für die Dokumente ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
       "title": "Einfache Suche",
       "unter": "und unter"
     }
@@ -188,7 +188,7 @@
   },
   "header": {
     "abmelden": "Abmelden",
-    "altText": "Logo vom Max Frisch-Archiv an der ETH-Bibliothek – zur Startseite",
+    "altText": "Logo vom Max Frisch-Archiv | ETH Zürich – zur Startseite",
     "anmelden": "Anmelden",
     "barAbbr": "BAR",
     "homeOrganisationName": "ETH Zürich",
@@ -198,7 +198,7 @@
     "bestellkorb": "Bestellkorb",
     "bestellkorbItemsCount": "Bestellkorb ({0})",
     "bestelluebersicht": "Bestellübersicht",
-    "claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
+    "claim": "Virtueller Lesesaal",
     "closeMobileNavigation": "Navigation schliessen",
     "closeNav": "Navigation schliessen",
     "closeUserAccount": "Benutzermenu schliessen",
@@ -221,7 +221,7 @@
     "openUserAccount": "Benutzermenu öffnen",
     "register": "Registrieren",
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
-    "title": "Max Frisch-Archiv an der ETH-Bibliothek",
+    "title": "Max Frisch-Archiv | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
     "favoritesCount": "Favoriten ({0})"
   },
@@ -237,7 +237,7 @@
     "title": "Max Frisch-Archiv an der ETH-Bibliothek"
   },
   "page": {
-    "description": "vls.mfa.ethz.ch",
+    "description": "vls.mfa.ch",
     "title": "Max Frisch-Archiv an der ETH-Bibliothek"
   }
 }
