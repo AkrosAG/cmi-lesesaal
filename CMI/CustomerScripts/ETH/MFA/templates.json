@@ -36,7 +36,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Übergeordnetes Objekt in der Tektonik",
-                "en": "Übergeordnetes Objekt in der Tektonik"
+                "en": "Parent Level within Hierarchy"
               }
             },
             {
@@ -262,7 +262,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
-                "en": "Issuing agencies"
+                "en": "Source of Acquisition"
               }
             },
             {
@@ -282,7 +282,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Erwerbsarten",
-                "en": "Acquisition types"
+                "en": "Form(s) of Acquisition"
               }
             }
           ]
@@ -793,7 +793,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
-                "en": "Issuing agencies"
+                "en": "Source of Acquisition"
               }
             },
             {
@@ -813,7 +813,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Erwerbsarten",
-                "en": "Acquisition types"
+                "en": "Form(s) of Acquisition"
               }
             }
           ],
@@ -1327,7 +1327,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
-                "en": "Issuing agencies"
+                "en": "Source of Acquisition"
               }
             },
             {
@@ -1347,7 +1347,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Erwerbsarten",
-                "en": "Acquisition types"
+                "en": "Form(s) of Acquisition"
               }
             }
           ],
@@ -1861,7 +1861,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Abgebende Stellen",
-                "en": "Issuing agencies"
+                "en": "Source of Acquisition"
               }
             },
             {
@@ -1881,7 +1881,7 @@
               "Visibility": 1,
               "FieldLabels": {
                 "de": "Erwerbsarten",
-                "en": "Acquisition types"
+                "en": "Form(s) of Acquisition"
               }
             }
           ],
