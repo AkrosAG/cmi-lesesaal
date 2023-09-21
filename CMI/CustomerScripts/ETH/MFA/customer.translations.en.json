@@ -113,9 +113,9 @@
     "info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
     "infoBox": "Info box",
     "infoTitle": "Note",
-    "questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
+    "questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
     "registerImEiam": "Register in eIAM",
-    "title": "Opening an account for online access to the Max Frisch Archive"
+    "title": "Opening an account for online access to the Federal Archives"
   },
   "search": {
     "advanced": {
@@ -170,7 +170,7 @@
     "simple": {
       "beratung": "Advice",
       "informationen": "Information",
-      "intro": "<a href=\"/#/en/search/advanced\">Advanced search</a> <br/><br/>Are you interested in manuscripts, letters or other documents on Max Frisch?<br/> Search our catalog. After registration you can submit a request to view the documents. If you have any questions, please do not hesitate to contact us directly at <a href=\"mfa@library.ethz.ch\">mfa@library.ethz.ch</a>.",
+      "intro": "<a href=\"/#/en/search/advanced\">Advanced search</a> <br/><br/>Are you interested in manuscripts, letters or other documents on Max Frisch?<br/>Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. Search our catalog. After registration you can submit a request to view the documents. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
       "title": "Simple search",
       "unter": "and"
     }
@@ -188,7 +188,7 @@
   },
   "header": {
     "abmelden": "Log out",
-    "altText": "Max Frisch Archive logo – to homepage",
+    "altText": "Max Frisch Archive | ETH Zurich logo – to homepage",
     "anmelden": "Log in",
     "barAbbr": "SFA",
     "homeOrganisationName": "ETH Zurich",
@@ -204,7 +204,7 @@
     "closeUserAccount": "Close user menu",
     "breadcrumb1": "ETH Library",
     "breadcrumb1Link": "https://library.ethz.ch/en/",
-    "breadcrumb2": "Max Frisch Archive",
+    "breadcrumb2": "Max Frisch-Archiv",
     "breadcrumb2Link": "https://mfa.ethz.ch/en/",
     "breadcrumb3": "Virtual Reading Room",
     "breadcrumb3Link": "/#/en/search/simple",
@@ -221,7 +221,7 @@
     "openUserAccount": "Open user menu",
     "register": "Register",
     "srBreadcrumbOrientation": "Navigating the website",
-    "title": "ETH Zurich University Archives",
+    "title": "Max Frisch Archive | ETH Zurich",
     "zumBestellkorb": "Navigate to shopping cart with {0} items",
     "favoritesCount": "Favourites ({0})"
   },
@@ -234,6 +234,10 @@
   },
   "footer": {
     "footerTitle": "Footer",
+    "title": "Max Frisch Archive at the ETH Library"
+  },
+  "page": {
+    "description": "vls.mfa.ch",
     "title": "Max Frisch Archive at the ETH Library"
   }
 }
