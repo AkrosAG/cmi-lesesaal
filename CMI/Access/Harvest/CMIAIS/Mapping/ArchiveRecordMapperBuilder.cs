@@ -83,7 +83,7 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                     Function = r.Rolle,
                     DateOfBirth = DateTime.TryParse(register.Geburtsdatum, out var dateValue) ? dateValue : null,
                     DateOfDeath = DateTime.TryParse(register.Sterbedatum, out dateValue) ? dateValue : null,
-                    Source =  register.GNDID.HasValue ? register.GNDID.Value.ToString(CultureInfo.InvariantCulture) : string.Empty
+                    Source =  register.GNDID
                 };
             })
             .Where(r => r != null)
