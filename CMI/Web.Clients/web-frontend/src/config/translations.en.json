@@ -546,10 +546,6 @@
     "prepareNow": "Prepare now",
     "termsofUse": "I have read and agree to the <a href=\"#{0}\" target=\"_blank\">conditions of use</a>."
   },
-  "footer": {
-    "footerTitle": "Footer",
-    "title": "Swiss Federal Archives SFA"
-  },
   "general": {
     "day": "Day",
     "days": "Days",
@@ -559,58 +555,6 @@
     "minutes": "Minutes",
     "second": "Second",
     "seconds": "Seconds"
-  },
-  "header": {
-    "abmelden": "Log out",
-    "altText": "Swiss Confederation logo – to homepage",
-    "anmelden": "Log in",
-    "barAbbr": "SFA",
-    "barFullname": "Swiss Federal Archives SFA",
-    "benutzerdaten": "User data",
-    "benutzeroberflaeche": "User interface",
-    "bestellkorb": "Shopping cart",
-    "bestellkorbItemsCount": "Shopping cart ({0})",
-    "bestelluebersicht": "Order overview",
-    "claim": "Online access to the Federal Archives",
-    "closeMobileNavigation": "Close navigation",
-    "closeNav": "Close navigation",
-    "closeUserAccount": "Close user menu",
-    "departementEdiAbbr": "FDHA",
-    "departementEdiDescription": "Federal Department of Home Affairs",
-    "departmentBK": "FCh: Swiss Federal Chancellery",
-    "departmentEDA": "FDFA: Federal Department of Foreign Affairs",
-    "departmentEDI": "FDHA: Federal Department of Home Affairs",
-    "departmentEFD": "FDF: Federal Department of Finance",
-    "departmentEJPD": "FDJP: Federal Department of Justice and Police",
-    "departmentUVEK": "DETEC: Federal Department of the Environment, Transport, Energy and Communications",
-    "departmentVBS": "DDPS: Federal Department of Defence, Civil Protection and Sport",
-    "departmentWBF": "EAER: Federal Department of Economic Affairs, Education and Research",
-    "derBundesrat": "The Federal Council",
-    "derBundesratInclDomain": "The Federal Council admin.ch",
-    "favoriten": "Favourites",
-    "languageChoice": "Language settings",
-    "loggedInInfo": "You are logged in as an identified user",
-    "loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
-    "meinkonto": "My user account",
-    "notLoggedInInfo": "You are not logged in",
-    "notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
-    "notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
-    "onlineZugang": "Online access",
-    "openMobileNavigation": "Open navigation",
-    "openUserAccount": "Open user menu",
-    "register": "Register",
-    "srBreadcrumbOrientation": "Navigating the website",
-    "title": "Online access to the Federal Archives",
-    "zumBestellkorb": "Navigate to shopping cart with {0} items",
-    "einstellungen": "Settings",
-    "favoritesCount": "Favourites ({0})"
-  },
-  "headerContent": {
-    "component": {
-      "aktiv": "Active",
-      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
-      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
-    }
   },
   "hitbar": {
     "export": "Download XLS file",
@@ -793,10 +737,6 @@
     "loadingUsers": "Loading users...",
     "submittingOrder": "Your order is being transmitted..."
   },
-  "page": {
-    "description": "recherche.admin.ch",
-    "title": "Swiss Federal Archives SFA"
-  },
   "pagination": {
     "anzahlTreffer": "No. of results per page",
     "titleSr": "Page numbering of results list"
@@ -806,8 +746,83 @@
     "captionTranslation": "row.captionDefault",
     "errorTranslation": "row.errorDefault"
   },
-
-  "searchErrors": {
+	"search": {
+		"advancedSearch": "Advanced search",
+		"archivePlanSearch": "Archive plan",
+		"archivePlanSearchTeaserText": "Search in the archive plan to place the documents in their context.",
+		"ausfuehrlicheBeschreibung": "Detailed description",
+		"browseArchive": "Thematic overview",
+		"browseArchiveTeaserText": "Archive grouped by topics: Find fonds that match your topic.",
+		"browser": {
+			"backToSearch": "Back to search result",
+			"first": "First result",
+			"last": "Last result",
+			"loading": "Loading...",
+			"next": "Next result",
+			"nextPage": "Next page",
+			"nOfM": "Result {0} of {1}",
+			"pageToolTipBetween": "More pages",
+			"pageToolTipBetweenShow": "Show more pages",
+			"pageTooltipHere": "You are on page {0}",
+			"pageTooltipNext": "Show page {0}",
+			"pageTooltipNextPageXofY": "Show page {0} of {1}",
+			"pageTooltipPageXofY": "You are on page {0} of {1}",
+			"previous": "Previous result",
+			"previousPage": "Previous page",
+			"title": "Search result"
+		},
+		"captchaInvalid": "Data for captcha test are invalid.",
+		"captchaInvalidDetails": "Please try again.",
+		"captchaMissing": "Catpcha test data missing.",
+		"captchaMissingDetails": "Please try again.",
+		"changeSearchCriteria": "Edit search criteria",
+		"dateBetween": "Time period between",
+		"extendedSearch": "Advanced search",
+		"extendedSearchTeaserText": "Adapt the search to your needs.",
+		"fieldoperator": {
+			"and": "All of the terms",
+			"not": "None of the terms",
+			"or": "At least one term"
+		},
+		"filterTitle": "Filters",
+		"genericTryAgain": "Try your search again later.",
+		"groupoperator": {
+			"capitalAnd": "AND",
+			"capitalOr": "OR"
+		},
+		"highUsageInfo": "Please confirm that you are not a robot",
+		"highUsageTitle": "Large number of queries in a short time",
+		"inRange": "In time period",
+		"invalidQuery": "Your search query is invalid. Please check the syntax.",
+		"lastExecutedQuery": "Your search query: {0}",
+		"lastSearchResult": "Last search result",
+		"lastSearchResultTeaserText": "Call up your last search result.",
+		"placeHolder": "Search in over 3,500,000 archive records",
+		"rangeFrom": "Time period from",
+		"rangeTo": "Time period to",
+		"resetSearch": "Reset search",
+		"runSearch": "Start search",
+		"searchTerm": "Search field",
+		"standardSearch": "Simple search",
+		"standardSearchTeaserText": "Start your research with a simple search.",
+		"synonymes": {
+			"add": "Enter terms in your search",
+			"cancel": "Cancel",
+			"listTitle": "We have found the following alternative terms for your input",
+			"quellenListTitle": "Sources",
+			"termdatcollection": "TERMDAT collections",
+			"termdatlink": "The terms listed come from the following",
+			"trefferTitle": "Term found in"
+		},
+		"termToShort": "Please enter at least one character.",
+		"termToShortForAll": "Please enter at least two characters.",
+		"thematicInventoryOverview": "Thematic overview",
+		"thematicInventoryOverviewTeaserText": "Archive grouped by topics: Find fonds that match your topic.",
+		"trefferTitle": "Results",
+		"unexpectedSystemError": "An unexpected error has occurred.",
+		"wenigerAnzeigen": "Show fewer"
+	},
+	"searchErrors": {
     "multipleResultsFound": "The search for this reference code yielded a number of results. Please enter an unambiguous reference code."
   },
   "searchResultPageComponent": {

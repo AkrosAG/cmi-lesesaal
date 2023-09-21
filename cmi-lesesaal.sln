@@ -398,7 +398,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9
 		CMI\CustomerScripts\ETH\HSA\customer.translations.de.json = CMI\CustomerScripts\ETH\HSA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\HSA\customer.translations.en.json = CMI\CustomerScripts\ETH\HSA\customer.translations.en.json
 		CMI\CustomerScripts\ETH\HSA\loading-texts.js = CMI\CustomerScripts\ETH\HSA\loading-texts.js
-		CMI\CustomerScripts\ETH\HSA\logo.svg = CMI\CustomerScripts\ETH\TMA\logo.svg
+		CMI\CustomerScripts\ETH\HSA\logo.svg = CMI\CustomerScripts\ETH\HSA\logo.svg
+		CMI\CustomerScripts\ETH\HSA\custom.css = CMI\CustomerScripts\ETH\HSA\custom.css
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MFA", "MFA", "{C1970419-83BD-4C08-BF2E-2A311C07E13D}"
@@ -423,7 +424,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMA", "TMA", "{6DD2ED61-62B
 		CMI\CustomerScripts\ETH\TMA\customer.settings.json = CMI\CustomerScripts\ETH\TMA\customer.settings.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.de.json = CMI\CustomerScripts\ETH\TMA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.en.json = CMI\CustomerScripts\ETH\TMA\customer.translations.en.json
-		CMI\CustomerScripts\ETH\TMA\loading-texts.js = CMI\CustomerScripts\ETH\TMA\loading-texts.js		
+		CMI\CustomerScripts\ETH\TMA\loading-texts.js = CMI\CustomerScripts\ETH\TMA\loading-texts.js
 		CMI\CustomerScripts\ETH\TMA\logo.png = CMI\CustomerScripts\ETH\TMA\logo.png
 	EndProjectSection
 EndProject

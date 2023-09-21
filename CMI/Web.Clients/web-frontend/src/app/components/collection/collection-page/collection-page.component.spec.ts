@@ -109,7 +109,7 @@ describe('auto generate CollectionPageComponent', () => {
 		it('should the title was completed with the collection name', () => {
 			expect(sut).toBeTruthy();
 			let title = _seoService.getTitle();
-			expect(title === collectionItemResult.item.title + ' - ' + _txt.get('header.title', 'Online-Zugang zum Bundesarchiv')  ).toBeTruthy();
+			expect(title === collectionItemResult.item.title + ' - ' + _txt.get('header.title', 'Hochschularchiv der ETH Zürich')  ).toBeTruthy();
 		});
 
 		it('should the imageminetype was set image appears', () => {
