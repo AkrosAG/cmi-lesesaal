@@ -64,7 +64,7 @@ describe('auto generate CollectionPageComponent', () => {
 				return this.testTitle;
 			},
 			setTitle(newTitle: string): void {
-				this.testTitle = newTitle + ' - ' + this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
+				this.testTitle = newTitle;
 			}
 		};
 		let _seoService = new SeoService(_title, _txt);
