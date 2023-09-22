@@ -55,6 +55,7 @@ namespace CMI.Access.Harvest
                             Description = file.Bemerkungen,
                             ContentText = Convert.ToBase64String(bytes),
                             Kind = file.Art.Item.Bezeichnung,
+                            Publikation= file.Publikation,
                             SortOrder = ((int)file.LastVersion.Nr)  // Value is a decimal and will be truncated
                         };
                         list.Add(metadataFile);

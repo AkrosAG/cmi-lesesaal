@@ -273,6 +273,7 @@ namespace CMI.Contract.Common
         public string Description { get; set; }
         public string Art { get; set; }
         public int Version { get; set; }
+        public string Publikation { get; set; }
     }
 
     public class ElasticArchiveRecordPackage
