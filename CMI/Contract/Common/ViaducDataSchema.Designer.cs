@@ -1132,6 +1132,11 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("sortOrder")]
         public int SortOrder { get; set; }
+        /// <summary>
+        /// Access control to data from AIS
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute("publikation")]
+        public string Publikation { get; set; }
     }
 
     /// <summary>
