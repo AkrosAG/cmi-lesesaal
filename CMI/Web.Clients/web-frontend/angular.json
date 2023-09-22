@@ -32,7 +32,6 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
-              "src/assets/css/custom.css",
               "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
               "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"
@@ -79,7 +78,14 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -152,7 +158,6 @@
               "src/assets/css/vendors.css",
               "src/assets/css/admin.css",
               "src/assets/css/print.css",
-              "src/assets/css/custom.css",
               "node_modules/@cmi/lesesaal-web-core/lib/core/core.styles.less",
               "node_modules/@cmi/lesesaal-web-core/lib/wijmo/styles/wijmo.theme.office.scss",
               "src/styles.less"
