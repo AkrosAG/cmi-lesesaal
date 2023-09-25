@@ -6,38 +6,35 @@
 	text-decoration: none;
 	border-bottom: solid 0.0625rem rgba(0,0,0,.6);
 	transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
-	border-bottom-color: #215caf;
+	border-bottom-color: #B7352D;
 	color: black;
-
 }
 
 .contexticon-container a, cmi-viaduc-facette-list a,
-.hitbar-row a, cmi-viaduc-detail-utilities a
-{
-	border-bottom:none!important;
+.hitbar-row a, cmi-viaduc-detail-utilities a {
+	border-bottom: none !important;
 }
 
 a.btn {
-	border-bottom-color: rgb(117,117,117)!important;
+	border-bottom-color: rgb(117,117,117) !important;
 }
 
 /*------------------------------------------------------
   Loading color
 --------------------------------------------------------*/
-cmi-spinner .cmi-three-dots span
-{
-	background: #215caf!important;
+cmi-spinner .cmi-three-dots span {
+	background: #B7352D !important;
 }
 
 
 #mainContent a:hover {
-	color: #215caf;
+	color: #B7352D;
 }
 
 .nav-main {
-	border-top-color: #215caf;
+	border-top-color: #B7352D;
 }
 
 cmi-loader.cmi-loader.cmi-three-dots span {
-	background: #215caf!important;
+	background: #B7352D !important;
 }
