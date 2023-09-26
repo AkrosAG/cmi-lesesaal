@@ -11,12 +11,16 @@
 }
 
 .contexticon-container a, cmi-viaduc-facette-list a,
-.hitbar-row a, cmi-viaduc-detail-utilities a {
+.hitbar-row a, cmi-viaduc-detail-utilities a, .card a {
     border-bottom: none !important;
 }
 
 a.btn {
     border-bottom-color: rgb(117,117,117) !important;
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
 }
 
 /*------------------------------------------------------
@@ -27,7 +31,14 @@ cmi-spinner .cmi-three-dots span {
 }
 
 
+/*------------------------------------------------------
+  Control  color
+--------------------------------------------------------*/
 #mainContent a:hover {
+    color: #B7352D;
+}
+
+.btn-search {
     color: #B7352D;
 }
 

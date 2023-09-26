@@ -1,3 +1,6 @@
+/*------------------------------------------------------
+  Hyperlinks
+--------------------------------------------------------*/
 #mainContent a {
     text-decoration: none;
     border-bottom: solid 0.0625rem rgba(0,0,0,.6);
@@ -6,10 +9,68 @@
     color: black;
 }
 
-    #mainContent a:hover {
-        color: #B7352D;
+    #mainContent a:hover, .nav-service a:hover, .navbar-nav a:hover {
+        color: #B7352D !important;
     }
 
+
+/*------------------------------------------------------
+  Look not linke a Hyperlink
+--------------------------------------------------------*/
+
+.contexticon-container a, cmi-viaduc-facette-list a,
+.hitbar-row a, cmi-viaduc-detail-utilities a, .card a,
+.list-favorite-lists a, .usersetting-section-list a {
+    border-bottom: none !important;
+}
+
+.pull-right a.btn {
+    border-bottom-color: rgb(255,255,255) !important;
+}
+
+
+a.btn {
+    border-bottom-color: rgb(117,117,117) !important;
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+
+
+/*------------------------------------------------------
+  Loading color
+--------------------------------------------------------*/
+cmi-spinner .cmi-three-dots span {
+    background: #B7352D !important;
+}
+
+cmi-loader.cmi-loader.cmi-three-dots span {
+    background: #B7352D !important;
+}
+
+/*------------------------------------------------------
+  Control  color
+--------------------------------------------------------*/
+.nav-page-list li.active {
+    background: #B7352D !important;
+    color: #B7352D !important;
+}
+
+.treecrumb .dropdown-toggle:focus {
+    color: #B7352D !important;
+}
+
+.usersetting-section-list li.active, .list-favorite-lists li.active {
+    border-left-color: #B7352D !important;
+}
+
+.btn-search {
+    background-color: #B7352D !important;
+}
+
+
 .nav-main {
-    border-top-color: #B7352D;
+    border-top-color: #B7352D !important;
 }
