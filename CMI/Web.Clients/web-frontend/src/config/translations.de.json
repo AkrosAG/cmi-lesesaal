@@ -724,6 +724,30 @@
     "errorTranslation": "row.errorDefault"
   },
 	"search": {
+      "advanced": {
+        "field": {
+          "addNewGroup": "Weitere Suchgruppe hinzufügen",
+          "permission": {
+            "freiZugaenglich": "Frei einsehbar",
+            "inSchutzfrist": "Gesuchspflichtig",
+            "teileinSchutzfrist": "Teile davon gesuchspflichtig"
+          }
+        },
+        "group": {
+          "addNewField": "Suchfeld hinzufügen",
+          "and": "Alle Begriffe (AND)",
+          "closeGroup": "Suchgruppe schliessen",
+          "fieldChaining": "Verknüpfung der Suchfelder:",
+          "not": "Keiner der Begriffe (NOT)",
+          "or": "Mindestens ein Begriff (OR)"
+        },
+        "groupChaining": "Verknüpfung der Suchgruppen:",
+        "reset": "Zurücksetzen",
+        "search": "Suchen",
+        "showDetailsSyntax": "Zeige Details zur Suchsyntax",
+        "syntax": "Syntax",
+        "title": "Erweiterte Suche"
+      },
 		"advancedSearch": "Erweiterte Suche",
 		"archivePlanSearch": "Archivplan",
 		"archivePlanSearchTeaserText": "Recherchieren Sie im Archivplan und ordnen Sie damit die Unterlagen in ihren Kontext ein.",
@@ -756,6 +780,31 @@
 		"dateBetween": "Zeitraum zwischen",
 		"extendedSearch": "Erweiterte Suche",
 		"extendedSearchTeaserText": "Passen Sie die Suche Ihren Bedürfnissen an.",
+      "facetteEntry": {
+        "bis": "bis",
+        "ja": "Ja",
+        "nein": "Nein",
+        "resultateOhneZeitraum": "Resultate ohne Zeitraum",
+        "weitereLaden": "Weitere laden",
+        "Hauptabteilung": "Hauptabteilung",
+        "Bestaendeserie": "Beständeserie",
+        "Bestand": "Bestand",
+        "Akzession": "Akzession",
+        "Teilbestand": "Teilbestand",
+        "Serie": "Serie",
+        "Dossier": "Dossier",
+        "Subdossier": "Subdossier",
+        "Dokument": "Dokument",
+        "Einzelstueck": "Einzelstück",
+        "Klassifikation": "Klassifikation",
+        "Abteilung": "Abteilung",
+        "Archiv": "Archiv",
+        "frei einsehbar": "Frei einsehbar",
+        "resultateOhnePermission": "Resultate ohne Benutzbarkeit",
+        "Gesuchspflichtig": "Gesuchspflichtig",
+        "Teile davon gesuchspflichtig": "Teile davon gesuchspflichtig",
+        "resultateOhnepermission": "Resultate ohne Benutzbarkeit"
+      },
 		"fieldoperator": {
 			"and": "Alle Begriffe",
 			"not": "Keiner der Begriffe",
@@ -780,6 +829,13 @@
 		"resetSearch": "Suche zurücksetzen",
 		"runSearch": "Suche auslösen",
 		"searchTerm": "Suchfeld",
+      "simple": {
+        "beratung": "Beratung",
+        "informationen": "Informationen",
+        "intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+        "title": "Einfache Suche",
+        "unter": "und unter"
+      },
 		"standardSearch": "Einfache Suche",
 		"standardSearchTeaserText": "Steigen Sie mit einer einfachen Suche in die Recherche ein.",
 		"synonymes": {
