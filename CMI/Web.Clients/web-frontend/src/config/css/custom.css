@@ -15,7 +15,7 @@
 
 
 /*------------------------------------------------------
-  Look not linke a Hyperlink
+  Hyperlinks without the bottom border of the default Hyperlink
 --------------------------------------------------------*/
 
 .contexticon-container a, cmi-viaduc-facette-list a,
@@ -36,8 +36,6 @@ a.btn {
 .card {
 	border: 1px solid rgba(0, 0, 0, 0.125)!important;
 }
-
-
 
 /*------------------------------------------------------
   Loading color
