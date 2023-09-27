@@ -1,7 +1,7 @@
 /*------------------------------------------------------
   Hyperlinks
 --------------------------------------------------------*/
-#mainContent a {
+#mainContent a, .pull-right li a {
     text-decoration: none;
     border-bottom: solid 0.0625rem rgba(0,0,0,.6);
     transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -9,25 +9,21 @@
     color: black;
 }
 
-    #mainContent a:hover, .nav-service a:hover, .navbar-nav a:hover {
+    #mainContent a:hover, .nav-service a:hover, .navbar-nav a:hover, .pull-right li a:hover {
         color: #B7352D !important;
     }
 
 
 /*------------------------------------------------------
-   Hyperlinks without the bottom border of the default Hyperlink
+  Hyperlinks without the bottom border of the default Hyperlink
 --------------------------------------------------------*/
 
 .contexticon-container a, cmi-viaduc-facette-list a,
 .hitbar-row a, cmi-viaduc-detail-utilities a, .card a,
-.list-favorite-lists a, .usersetting-section-list a {
+.list-favorite-lists a, .usersetting-section-list a, h4 a, .pagination a,
+cmi-viaduc-detail-hierarchy a, cmi-viaduc-tree-node a, h4 a {
     border-bottom: none !important;
 }
-
-.pull-right a.btn {
-    border-bottom-color: rgb(255,255,255) !important;
-}
-
 
 a.btn {
     border-bottom-color: rgb(117,117,117) !important;
@@ -49,7 +45,7 @@ cmi-loader.cmi-loader.cmi-three-dots span {
 }
 
 /*------------------------------------------------------
-  Control  color
+  Control Color, border-color and borders
 --------------------------------------------------------*/
 .nav-page-list li.active {
     background: #B7352D !important;
@@ -60,6 +56,19 @@ cmi-loader.cmi-loader.cmi-three-dots span {
     color: #B7352D !important;
 }
 
+.treecrumb .dropdown .dropdown-toggle {
+    border-bottom: solid 0.0625rem #CCC !important;
+    border-top: solid 0.0625rem #CCC !important;
+}
+
+.help-block, .text-danger {
+    color: #B7352D !important;
+}
+
+.has-warning > div, .no-bottom-margin > div {
+    color: #B7352D !important;
+}
+
 .usersetting-section-list li.active, .list-favorite-lists li.active {
     border-left-color: #B7352D !important;
 }
@@ -67,7 +76,6 @@ cmi-loader.cmi-loader.cmi-three-dots span {
 .btn-search {
     background-color: #B7352D !important;
 }
-
 
 .nav-main {
     border-top-color: #B7352D !important;
