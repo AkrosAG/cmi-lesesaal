@@ -70,11 +70,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	public get versionInfo(): string {
-		let v = this._context.client.version;
-		return v ? `${v.major}.${v.minor}.${v.revision}.${v.build}` : void 0;
-	}
-
 	public get languages(): any[] {
 		this.refresh();
 		return this._languages;
