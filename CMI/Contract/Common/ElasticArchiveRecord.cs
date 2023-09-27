@@ -77,6 +77,7 @@ namespace CMI.Contract.Common
         public List<ElasticDetailData> DetailData { get; set; }
         public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticArchiveRecordFile> Files { get; set; }
+        public List<ElasticReference> References { get; set; }
     }
 
     public class ElasticArchiveRecord : DetailRecord
@@ -109,7 +110,6 @@ namespace CMI.Contract.Common
         public bool ContainsPersonRelatedInformation { get; set; }
         public bool IsPhysicalyUsable { get; set; }
         public List<ElasticContainer> Containers { get; set; }
-        public List<ElasticReference> References { get; set; }
         
         [XmlArrayItem("package", IsNullable = false, ElementName = "primaryData")]
         public List<ElasticArchiveRecordPackage> PrimaryData { get; set; }

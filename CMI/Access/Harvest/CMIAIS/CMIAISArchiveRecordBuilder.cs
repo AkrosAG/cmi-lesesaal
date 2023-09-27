@@ -174,8 +174,9 @@ namespace CMI.Access.Harvest.CMIAIS
                 .FromCollection(nameof(Verzeichnungseinheit.Archivalienart), vz => vz?.Archivalienart?.Select(a => a.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
                 .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"))
-                .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"));
-
+                .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"))
+                .FromCollection(nameof(Verzeichnungseinheit.Digitalisierungsgrad), vz => vz.Digitalisierungsgrad.Item?.Digitalisierungsgrad1)
+                .FromCollection(nameof(Verzeichnungseinheit.Erschliessungszustand), vz => vz.Erschliessungszustand.Item?.Bezeichnung);
         }
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord)
         {
