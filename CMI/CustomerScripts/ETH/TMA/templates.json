@@ -40,6 +40,16 @@
               }
             },
             {
+              "DbFieldName": "CreationPeriod",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Entstehungszeitraum",
+                "en": "Date"
+              }
+            },
+            {
               "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
