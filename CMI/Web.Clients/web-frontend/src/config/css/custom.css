@@ -62,7 +62,7 @@ cmi-loader.cmi-loader.cmi-three-dots span {
 	border-top: solid 0.0625rem #CCC !important;
 }
 
-.help-block{
+.help-block, .text-danger{
 	color: #B7352D !important;
 }
 
