@@ -253,7 +253,17 @@ namespace CMI.Web.Frontend.api.Entities
                         {
                             MapDescriptors(descriptors, attributes);
                         }
-                        else
+                        else if (name.Contains("."))
+                        {
+                            token = jsonEntity.GetTokenByKey(name.Split('.').First(), true) ?? jsonEntity.GetTokenByKey(field.Key, true);
+                            token = token.HasValues ?
+                                ((JProperty)token.First.Children().First(
+                                    ch => ch is JProperty jCh 
+                                          && string.Equals(jCh.Name, name.Split('.')[1],
+                                              StringComparison.CurrentCultureIgnoreCase))).Value
+                                : token;
+                        }
+                        else 
                         {
                             token = jsonEntity.GetTokenByKey(name, true) ?? jsonEntity.GetTokenByKey(field.Key, true);
                         }
