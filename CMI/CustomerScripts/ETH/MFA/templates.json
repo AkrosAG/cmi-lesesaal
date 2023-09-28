@@ -40,6 +40,16 @@
               }
             },
             {
+              "DbFieldName": "CreationPeriod",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Entstehungszeitraum",
+                "en": "Date"
+              }
+            },
+            {
               "DbFieldName": "Title",
               "DbType": "Text",
               "ElasticType": "string",
@@ -2009,7 +2019,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                 "en": "Physical Characteristics and Technical Requirements"              }
+                "en": "Physical Characteristics and Technical Requirements"
+              }
             }
           ],
           "SubSections": []
