@@ -29,7 +29,7 @@ jobs:
         if: ${{ needs.build-services.outputs.tagExists == false }}
         shell: pwsh
         run: |
-          Compress-Archive -Path ${{ github.workspace }}\CMI\CustomerScripts\ETH\* -DestinationPath .\complete\test.zip
+          Compress-Archive -Path ${{ github.workspace }}\CMI\CustomerScripts\ETH\* -DestinationPath ${{ github.workspace }}\test.zip
 
       - name: Upload Release Asset 2
         uses: actions/upload-release-asset@v1
@@ -38,6 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./complete/test.zip
+          asset_path: ${{ github.workspace }}/test.zip
           asset_name: test.zip
           asset_content_type: application/zip
