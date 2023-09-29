@@ -12,10 +12,230 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  build-core:
     runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-core
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm i
+
+    - name: Replace licenses
+      working-directory: ${{ env.WORKING_DIR }}/src/lib/wijmo 
+      run: |
+        sed -i "s/secrets.WIJMO_LICENSEKEY/${{ secrets.WIJMO_LICENSEKEY }}/" wijmo.licensekey.ts
+
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm run build
+
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: web-core
+        path: ${{ env.WORKING_DIR }}/dist/@cmi/lesesaal-web-core/**
+        retention-days: 1
+        
+  build-frontend-client:
+    needs: build-core
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-frontend
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm i
+
+    - name: Restore Core from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
+        name: web-core
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+      
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: frontend-client
+        path: ${{ env.WORKING_DIR }}/dist/**
+        retention-days: 1
+
+  build-management-client:
+    needs: build-core
+    runs-on: ubuntu-latest
+    env:
+      WORKING_DIR: ./CMI/Web.Clients/web-management
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        npm i
+
+    - name: Restore Core from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
+        name: web-core
+
+    - name: Test
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run test-github
+      
+    - name: Build
+      working-directory: ${{ env.WORKING_DIR }}
+      run: npm run build-prod
+      
+    - name: Save Dist
+      uses: actions/upload-artifact@v2
+      with:
+        name: management-client
+        path: ${{ env.WORKING_DIR }}/dist/**
+        retention-days: 1
+
+  build-services:
+    needs: [build-frontend-client, build-management-client]
+    runs-on: windows-latest
+    env:
+      SOLUTION: cmi-lesesaal.sln
+      ON_BUILDSERVER: 'True'
+    outputs:
+      version: ${{ env.GitBuildVersion }}
+      tagExists: ${{ steps.checkTag.outputs.exist }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+        
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+        
+      - name: Restore Nugets
+        run: nuget restore ${{ env.SOLUTION }}
+        
+      - name: Build Services
+        run: msbuild ${{ env.SOLUTION }} /t:Rebuild /p:Configuration=Release 
+        
+      - name: Publish Frontend API
+        run: msbuild "${{ github.workspace }}\CMI\Web\CMI.Web.Frontend\CMI.Web.Frontend.csproj" /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:ExcludeApp_Data=True /p:DeleteExistingFiles=True /p:publishUrl="${{ github.workspace }}\frontendartefacts"
+            
+      - name: Publish Management API
+        run: msbuild "${{ github.workspace }}\CMI\Web\CMI.Web.Management\CMI.Web.Management.csproj" /p:Configuration=Release /p:Platform=AnyCPU /t:WebPublish /p:WebPublishMethod=FileSystem /p:ExcludeApp_Data=True /p:DeleteExistingFiles=True /p:publishUrl="${{ github.workspace }}\managementartefacts"
+                     
+      - name: Test and Cover
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "https://download.jetbrains.com/resharper/dotUltimate.2021.2.1/JetBrains.dotCover.CommandLineTools.2021.2.1.zip" -OutFile "dotcover.zip"
+          Expand-Archive -Path dotcover.zip -DestinationPath .\dotcover
+          $assemblies = (ls -r Test\*\**\bin\release\*.Tests.dll | where-object { $_.FullName -notlike "*.Performance.Tests.dll" } | % { $_.FullName } | sort-object -Unique)
+          .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.16.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
+      
+      - name: Save Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: lesesaal-services-coverage
+          path: ./coverage/**
+          retention-days: 10
+        
+      - name: Restore Frontend from artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: ./frontendartefacts/client
+          name: frontend-client
+                
+      - name: Restore Management from artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: ./managementartefacts/client
+          name: management-client
+          
+      - name: Create Version
+        uses: dotnet/nbgv@v0.4.0
+        id: nbgv
+        with:
+          path: ./
+          
+      - uses: mukunku/tag-exists-action@v1.0.0
+        id: checkTag
+        with: 
+          tag: v.${{ env.GitBuildVersion }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create Package
+        shell: pwsh
+        run: |
+          .\BuildServices\createZipFile.ps1 -BuildConfiguration "Release" -DogFoodPath "${{ github.workspace }}\BuildResult" -SolutionDir "${{ github.workspace }}" -BuildNumber ${{ env.GitBuildVersion }}
+          
+      - name: Save Dist
+        uses: actions/upload-artifact@v2
+        with:
+          name: lesesaal.complete.${{ env.GitBuildVersion }}
+          path: ${{ github.workspace }}\BuildResult\Complete\lesesaal.complete.${{ env.GitBuildVersion }}.zip
+
+  release:
+    needs: build-services
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
     
@@ -25,15 +245,24 @@ jobs:
         run: |
           Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\CustomerScripts.zip
 
+      - name: Restore Build artifact
+        uses: actions/download-artifact@v2
+        with:
+          path: ./complete
+          name: lesesaal.complete.${{ needs.build-services.outputs.version }}
+
       - name: Create Lesesaal Release on GitHub
         id: create_release
         uses: actions/create-release@v1
+        if: ${{ needs.build-services.outputs.tagExists == false }}
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: test
-          release_name: test
+          commitish: ${{ github.event.inputs.branch || 'develop' }}
+          tag_name: v.${{ needs.build-services.outputs.version }}
+          release_name: v.${{ needs.build-services.outputs.version }}
           draft: false
+          prerelease: ${{ contains('develop', github.event.inputs.branch || 'develop') }}
 
       - name: Upload CustomerScripts Release Asset
         uses: actions/upload-release-asset@v1
@@ -44,4 +273,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/CustomerScripts.zip
           asset_name: CustomerScripts.zip
+          asset_content_type: application/zip
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        if: ${{ needs.build-services.outputs.tagExists == false }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./complete/lesesaal.complete.${{ needs.build-services.outputs.version }}.zip
+          asset_name: ${{ needs.build-services.outputs.version }}.zip
           asset_content_type: application/zip
