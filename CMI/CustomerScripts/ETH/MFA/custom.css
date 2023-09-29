@@ -1,41 +1,112 @@
 /*------------------------------------------------------
   Hyperlinks
 --------------------------------------------------------*/
-#mainContent a {
+cmi-viaduc-simple-search-page a, search-result a, simple-hit a,
+#mainContent p a {
     text-decoration: none;
     border-bottom: solid 0.0625rem rgba(0,0,0,.6);
     transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
     border-bottom-color: #215caf;
     color: black;
+    visited: black;
 }
 
-    #mainContent a:hover, .nav-service a:hover, .navbar-nav a:hover {
-        color: #215caf !important;
+#mainContent a, .pull-right a {
+    text-decoration: none;
+    transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
+    border-bottom-color: #215caf;
+    color: black;
+    visited: black;
+}
+
+    #mainContent a:hover, .pull-right a:hover {
+        color: #215caf;
     }
 
-
 /*------------------------------------------------------
-   Hyperlinks without the bottom border of the default Hyperlink
+  Buttons
 --------------------------------------------------------*/
-
-.contexticon-container a, cmi-viaduc-facette-list a,
-.hitbar-row a, cmi-viaduc-detail-utilities a, .card a,
-.list-favorite-lists a, .usersetting-section-list a {
-    border-bottom: none !important;
-}
-
-.pull-right a.btn {
-    border-bottom-color: rgb(255,255,255) !important;
-}
-
-
 a.btn {
     border-bottom-color: rgb(117,117,117) !important;
 }
 
-.card {
-    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+.btn.btn-link:focus, .btn.btn-link:hover {
+    color: #215caf !important;
+    background: #F5F5F5;
 }
+
+cmi-viaduc-advanced-search-group .btn.btn-link, fieldset .btn.btn-link {
+    text-decoration: none;
+    color: #215caf !important;
+}
+
+    cmi-viaduc-advanced-search-group .btn.btn-link:hover, fieldset .btn.btn-link:hover {
+        color: black !important;
+    }
+
+.btn-search, .btn.btn-primary {
+    background-color: #215caf !important;
+    border-color: #215caf !important;
+}
+
+
+/*------------------------------------------------------
+  Navigation
+--------------------------------------------------------*/
+
+cmi-viaduc-nav-content a:hover,
+cmi-viaduc-nav-content a:focus
+.nav-main.yamm .nav > .open > a {
+    color: #215caf !important;
+    border-top: #215caf !important;
+}
+
+.nav-main {
+    border-top-color: #215caf !important;
+}
+
+.nav-page-list li.active:before {
+    background: #215caf !important;
+}
+
+.yamm-content h4 a {
+    text-decoration: none;
+    transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
+    color: #215caf;
+    visited: #215caf;
+}
+
+.disabled {
+    color: #757575 !important;
+}
+
+.yamm-content a span, cmi-viaduc-detail-utilities a:hover,
+cmi-viaduc-simple-search-page a:hover, search-result a:hover, simple-hit a:hover,
+#mainContent p a:hover {
+    color: #215caf !important;
+}
+
+.yamm-content a:hover, .nav-lang a:hover {
+    border: none !important;
+    color: #215caf !important;
+}
+
+/*------------------------------------------------------
+  Hyperlinks without the bottom border of the default Hyperlink
+--------------------------------------------------------*/
+
+cmi-viaduc-detail-utilities a {
+    border-bottom: none !important;
+}
+
+div .card a {
+    border-bottom-color: rgba(0, 0, 0, 0.125) !important;
+}
+
+    div .card a span {
+        border-bottom-color: #215caf !important;
+    }
+
 
 /*------------------------------------------------------
   Loading color
@@ -49,14 +120,23 @@ cmi-loader.cmi-loader.cmi-three-dots span {
 }
 
 /*------------------------------------------------------
-  Control  color
+  Control Color, border-color and borders
 --------------------------------------------------------*/
-.nav-page-list li.active {
-    background: #215caf !important;
+
+.treecrumb .dropdown-toggle:focus {
     color: #215caf !important;
 }
 
-.treecrumb .dropdown-toggle:focus {
+cmi-viaduc-footer a:visited {
+    color: black;
+}
+
+.treecrumb .dropdown .dropdown-toggle {
+    border-bottom: solid 0.0625rem #CCC !important;
+    border-top: solid 0.0625rem #CCC !important;
+}
+
+.help-block, .text-danger {
     color: #215caf !important;
 }
 
@@ -64,11 +144,15 @@ cmi-loader.cmi-loader.cmi-three-dots span {
     border-left-color: #215caf !important;
 }
 
-.btn-search {
-    background-color: #215caf !important;
+/*------------------------------------------------------
+ Suchfeld (und weitere) keine Effekte
+--------------------------------------------------------*/
+.form-control:focus {
+    border-color: #757575 !important;
+    box-shadow: none !important;
 }
 
-
-.nav-main {
-    border-top-color: #215caf !important;
+.btn.active:focus, .btn:focus, .carousel-control:focus, .chosen-container-active .chosen-single, .dropdown-toggle:focus, .form-control:focus, :not([class*=col-]):focus, a:focus, button:focus, input[type=checkbox]:focus, input[type=file]:focus, input[type=radio]:focus {
+    outline: none !important;
+    outline-offset: 1px;
 }
