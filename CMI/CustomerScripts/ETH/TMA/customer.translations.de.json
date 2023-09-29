@@ -281,7 +281,7 @@
     "breadcrumb2": "Thomas-Mann-Archiv",
     "breadcrumb2Link": "https://tma.ethz.ch",
     "breadcrumb3": "Virtueller Lesesaal",
-    "breadcrumb3Link": "/#/de/suche/einfach",
+    "breadcrumb3Link": "#/de/suche/einfach",
     "favoriten": "Favoriten",
     "languageChoice": "Sprachwahl",
     "loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",
