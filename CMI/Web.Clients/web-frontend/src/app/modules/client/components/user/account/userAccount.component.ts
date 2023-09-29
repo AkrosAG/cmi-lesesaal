@@ -258,8 +258,7 @@ export class UserAccountComponent implements OnInit {
 			// Only Ö3 User is not allowed to change birthday
 			this._userSettings.push(new UserSetting(UserSettingType.Birthday, this._captionBirthday, this._formatDateToDayMonthYearFormat(this.user.birthday),
 				this._authorization.hasRole(this._authorization.roles.Oe3), false, this._dateRegex.source, this._errorDateFieldFormat));
-			this._userSettings.push(new UserSetting(UserSettingType.Organization, this._captionOrganization, this.user.organization, false, !this.isExternalUser, null,
-				this.isExternalUser ? null : this._errorMandatoryField));
+			this._userSettings.push(new UserSetting(UserSettingType.Organization, this._captionOrganization, this.user.organization, false));
 			this._userSettings.push(new UserSetting(UserSettingType.Street, this._captionStreet, this.user.street, false,
 				true, null, this._errorMandatoryField, null));
 			this._userSettings.push(new UserSetting(UserSettingType.StreetAttachment, this._captionStreetAttachment, this.user.streetAttachment, false));
