@@ -27,6 +27,7 @@ jobs:
 
       - name: Zip artifacts
         if: ${{ needs.build-services.outputs.tagExists == false }}
+        shell: pwsh
         run: |
           Compress-Archive -Path ${{ github.workspace }}\CMI\CustomerScripts\ETH\* -DestinationPath .\complete\test.zip
 
