@@ -15,6 +15,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Zip artifacts
+        if: ${{ needs.build-services.outputs.tagExists == false }}
+        shell: pwsh
+        run: |
+          Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\test.zip
+
       - name: Create Lesesaal Release on GitHub
         id: create_release
         uses: actions/create-release@v1
@@ -24,12 +30,6 @@ jobs:
           tag_name: test
           release_name: test
           draft: false
-
-      - name: Zip artifacts
-        if: ${{ needs.build-services.outputs.tagExists == false }}
-        shell: pwsh
-        run: |
-          Compress-Archive -Path ${{ github.workspace }}\CMI\CustomerScripts\ETH\* -DestinationPath ${{ github.workspace }}\test.zip
 
       - name: Upload Release Asset 2
         uses: actions/upload-release-asset@v1
