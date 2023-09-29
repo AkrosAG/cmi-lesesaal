@@ -19,11 +19,11 @@ jobs:
         with:
           fetch-depth: 0
     
-      - name: Zip artifacts
+      - name: Zip CustomerScripts
         if: ${{ needs.build-services.outputs.tagExists == false }}
         shell: pwsh
         run: |
-          Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\test.zip
+          Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\CustomerScripts.zip
 
       - name: Create Lesesaal Release on GitHub
         id: create_release
@@ -35,13 +35,13 @@ jobs:
           release_name: test
           draft: false
 
-      - name: Upload Release Asset 2
+      - name: Upload CustomerScripts Release Asset
         uses: actions/upload-release-asset@v1
         if: ${{ needs.build-services.outputs.tagExists == false }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/test.zip
-          asset_name: test.zip
+          asset_path: ${{ github.workspace }}/CustomerScripts.zip
+          asset_name: CustomerScripts.zip
           asset_content_type: application/zip
