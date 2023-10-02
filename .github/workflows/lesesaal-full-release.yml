@@ -235,12 +235,22 @@ jobs:
     needs: build-services
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+    
+      - name: Zip CustomerScripts
+        if: ${{ needs.build-services.outputs.tagExists == false }}
+        shell: pwsh
+        run: |
+          Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\CustomerScripts.zip
+
       - name: Restore Build artifact
         uses: actions/download-artifact@v2
         with:
           path: ./complete
           name: lesesaal.complete.${{ needs.build-services.outputs.version }}
-          
+
       - name: Create Lesesaal Release on GitHub
         id: create_release
         uses: actions/create-release@v1
@@ -253,7 +263,18 @@ jobs:
           release_name: v.${{ needs.build-services.outputs.version }}
           draft: false
           prerelease: ${{ contains('develop', github.event.inputs.branch || 'develop') }}
-          
+
+      - name: Upload CustomerScripts Release Asset
+        uses: actions/upload-release-asset@v1
+        if: ${{ needs.build-services.outputs.tagExists == false }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/CustomerScripts.zip
+          asset_name: CustomerScripts.zip
+          asset_content_type: application/zip
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         if: ${{ needs.build-services.outputs.tagExists == false }}
