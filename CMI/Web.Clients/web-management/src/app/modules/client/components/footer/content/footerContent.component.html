@@ -5,7 +5,7 @@
 </div>
 
 <address>
-	<span class="hidden-xs">{{ 'Schweizerisches Bundesarchiv BAR' | translate:'footer.title' }}</span>
+	<span class="hidden-xs" *ngIf="versionInfo" >(v{{versionInfo}})</span>
 	<!--nav class="pull-right">
         <ul>
             <li><a href="#{{ '/de/rechtliches' | localizeLink }}">{{ 'Rechtliches' | translate:'navigation.legal' }}</a></li>
