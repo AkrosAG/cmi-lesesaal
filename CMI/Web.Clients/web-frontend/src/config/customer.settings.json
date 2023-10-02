@@ -48,19 +48,68 @@
 			"translatorType": "StandardTranslator"
 		}, {
 			"type": "Text",
-			"key": "Ueberlieferungsform",
-			"displayName": "Überlieferungsform",
-			"translatorType": "DetailDataTranslator"
-		}, {
-			"type": "Text",
 			"key": "Sprache",
 			"displayName": "Sprachen",
 			"translatorType": "DetailDataTranslator"
 		}, {
-			"type": "Text",
+			"type": "Dropdown",
 			"key": "Archivalienart",
 			"displayName": "Archivalienart",
-			"translatorType": "DetailDataTranslator"
+			"translatorType": "DetailDataTranslator",
+			"items": [{
+				"searchKey": "'Text mit Unikatcharakter'",
+				"defaultLabel": "Text mit Unikatcharakter",
+				"translationKey": "search.advanced.field.archivalienart.unikatcharakter"
+			},{
+				"searchKey": "Korrespondenzstück",
+				"defaultLabel": "Korrespondenzstück",
+				"translationKey": "search.advanced.field.archivalienart.korrespondenzstueck"
+			},{
+				"searchKey": "'Graue Literatur u. Publikationen",
+				"defaultLabel": "Text mit Unikatcharakter",
+				"translationKey": "search.advanced.field.archivalienart.graueLiteratur"
+			},{
+				"searchKey": "'Bildliche Darstellung (statisch)'",
+				"defaultLabel": "Bildliche Darstellung (statisch)",
+				"translationKey": "search.advanced.field.archivalienart.bildlicheDarstellung"
+			},{
+				"searchKey": "'Bewegtes Bild'",
+				"defaultLabel": "Bewegtes Bild",
+				"translationKey": "search.advanced.field.archivalienart.bewegtesBild"
+			},{
+				"searchKey": "'Physisches Objekt'",
+				"defaultLabel": "Physisches Objekt",
+				"translationKey": "search.advanced.field.archivalienart.physischesObjekt"
+			},{
+				"searchKey": "'Medaille/Münze'",
+				"defaultLabel": "Medaille/Münze",
+				"translationKey": "search.advanced.field.archivalienart.MedailleMuenze"
+			},{
+				"searchKey": "'Linguistisches System (u.a. Lochstreifen)'",
+				"defaultLabel": "Linguistisches System (u.a. Lochstreifen)",
+				"translationKey": "search.advanced.field.archivalienart.linguistischesSystem"
+			},{
+				"searchKey": "'Ton-Medien'",
+				"defaultLabel": "Ton-Medien",
+				"translationKey": "search.advanced.field.archivalienart.tonMedien"
+			},{
+				"searchKey": "'Strukturierte Daten (u.a. Tabellen, Datenbanken)'",
+				"defaultLabel": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+				"translationKey": "search.advanced.field.archivalienart.strukturierteDaten"
+			},{
+				"searchKey": "'Software'",
+				"defaultLabel": "Software",
+				"translationKey": "search.advanced.field.archivalienart.software"
+			},{
+				"searchKey": "'Interaktive Ressource'",
+				"defaultLabel": "Interaktive Ressource",
+				"translationKey": "search.advanced.field.archivalienart.interaktiveRessource"
+			},{
+				"searchKey": "'Web pages'",
+				"defaultLabel": "Web pages",
+				"translationKey": "search.advanced.field.archivalienart.webPages"
+			}
+			]
 		}, {
 			"type": "Dropdown",
 			"key": "permission",
@@ -79,6 +128,21 @@
 				"defaultLabel": "Teile davon gesuchspflichtig",
 				"translationKey": "search.advanced.field.permission.teileinSchutzfrist"
 				}
+			]
+		}, {
+			"type": "Dropdown",
+			"key": "Ueberlieferungsform",
+			"displayName": "Überlieferungsform",
+			"translatorType": "DetailDataTranslator",
+			"items": [{
+				"searchKey": "Analog",
+				"defaultLabel": "Analog",
+				"translationKey": "search.advanced.field.ueberlieferungsform.analog"
+			}, {
+				"searchKey": "digital",
+				"defaultLabel": "Digital",
+				"translationKey": "search.advanced.field.ueberlieferungsform.digital"
+			}
 			]
 		}, {
 			"type": "Thesaurus",
