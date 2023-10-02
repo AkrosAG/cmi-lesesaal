@@ -120,7 +120,26 @@
 	"search": {
 		"advanced": {
 			"field": {
+				"archivalienart": {
+					"unikatcharakter":	"Text mit Unikatcharakter",
+					"korrespondenzstueck":   "Korrespondenzstück",
+					"graueLiteratur":   "Graue Literatur u. Publikationen",
+					"bildlicheDarstellung":   "Bildliche Darstellung (statisch)",
+					"bewegtesBild":   "Bewegtes Bild",
+					"physischesObjekt":   "Physisches Objekt",
+					"medailleMuenze":   "Medaille/Münze",
+					"linguistischesSystem":   "Linguistisches System (u.a. Lochstreifen)",
+					"tonMedien":   "Ton-Medien",
+					"strukturierteDaten":   "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+					"software":   "Software",
+					"interaktiveRessource":   "Interaktive Ressource",
+					"webPages":   "Web pages"
+				},
 				"addNewGroup": "Weitere Suchgruppe hinzufügen",
+				"ueberlieferungsform": {
+					"analog": "Analog",
+					"digital": "Digital"
+				},
 				"permission": {
 					"freiZugaenglich": "Frei einsehbar",
 					"inSchutzfrist": "Gesuchspflichtig",
@@ -226,7 +245,7 @@
 		"simple": {
 			"beratung": "Beratung",
 			"informationen": "Informationen",
-			"intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+			"intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
 			"title": "Einfache Suche",
 			"unter": "und unter"
 		},
@@ -281,7 +300,7 @@
 		"breadcrumb2": "Hochschularchiv",
 		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
 		"breadcrumb3": "Virtueller Lesesaal",
-		"breadcrumb3Link": "/#/de/suche/einfach",
+		"breadcrumb3Link": "#/de/suche/einfach",
 		"favoriten": "Favoriten",
 		"languageChoice": "Sprachwahl",
 		"loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",

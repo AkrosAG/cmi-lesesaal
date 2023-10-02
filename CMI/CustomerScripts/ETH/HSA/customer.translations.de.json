@@ -120,7 +120,26 @@
   "search": {
     "advanced": {
       "field": {
+        "archivalienart": {
+          "unikatcharakter": "Text mit Unikatcharakter",
+          "korrespondenzstueck": "Korrespondenzstück",
+          "graueLiteratur": "Graue Literatur u. Publikationen",
+          "bildlicheDarstellung": "Bildliche Darstellung (statisch)",
+          "bewegtesBild": "Bewegtes Bild",
+          "physischesObjekt": "Physisches Objekt",
+          "medailleMuenze": "Medaille/Münze",
+          "linguistischesSystem": "Linguistisches System (u.a. Lochstreifen)",
+          "tonMedien": "Ton-Medien",
+          "strukturierteDaten": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+          "software": "Software",
+          "interaktiveRessource": "Interaktive Ressource",
+          "webPages": "Web pages"
+        },
         "addNewGroup": "Weitere Suchgruppe hinzufügen",
+        "ueberlieferungsform": {
+          "analog": "Analog",
+          "digital": "Digital"
+        },
         "permission": {
           "freiZugaenglich": "Frei einsehbar",
           "inSchutzfrist": "Gesuchspflichtig",

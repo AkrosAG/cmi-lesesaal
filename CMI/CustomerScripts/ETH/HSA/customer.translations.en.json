@@ -121,6 +121,25 @@
     "advanced": {
       "addNewGroup": "Add another search group",
       "field": {
+        "archivalienart": {
+          "unikatcharakter": "Text mit Unikatcharakter",
+          "korrespondenzstueck": "Korrespondenzstück",
+          "graueLiteratur": "Graue Literatur u. Publikationen",
+          "bildlicheDarstellung": "Bildliche Darstellung (statisch)",
+          "bewegtesBild": "Bewegtes Bild",
+          "physischesObjekt": "Physisches Objekt",
+          "medailleMuenze": "Medaille/Münze",
+          "linguistischesSystem": "Linguistisches System (u.a. Lochstreifen)",
+          "tonMedien": "Ton-Medien",
+          "strukturierteDaten": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+          "software": "Software",
+          "interaktiveRessource": "Interaktive Ressource",
+          "webPages": "Web pages"
+        },
+        "ueberlieferungsform": {
+          "analog": "Analog",
+          "digital": "Digital"
+        },
         "permission": {
           "freiZugaenglich": "Without restriction",
           "inSchutzfrist": "Subject to request",
@@ -143,6 +162,7 @@
       "title": "Advanced search"
     },
     "advancedSearch": "Advanced search",
+
     "archivePlanSearch": "Archive plan",
     "archivePlanSearchTeaserText": "Search in the archive plan to place the documents in their context.",
     "ausfuehrlicheBeschreibung": "Detailed description",
