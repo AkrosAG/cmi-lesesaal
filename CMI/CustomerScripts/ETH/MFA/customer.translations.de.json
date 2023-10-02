@@ -226,7 +226,7 @@
     "simple": {
       "beratung": "Beratung",
       "informationen": "Informationen",
-      "intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Max Frisch? <br/>Recherchieren Sie in unserem Katalog. Wenn Sie sich registrieren, können Sie für die Dokumente ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
+      "intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Max Frisch? <br/>Recherchieren Sie in unserem Katalog. Wenn Sie sich registrieren, können Sie für die Dokumente ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
       "title": "Einfache Suche",
       "unter": "und unter"
     },
@@ -281,7 +281,7 @@
     "breadcrumb2": "Max Frisch-Archiv",
     "breadcrumb2Link": "https://mfa.ethz.ch/en/",
     "breadcrumb3": "Virtueller Lesesaal",
-    "breadcrumb3Link": "/#/de/suche/einfach",
+    "breadcrumb3Link": "#/de/suche/einfach",
     "favoriten": "Favoriten",
     "languageChoice": "Sprachwahl",
     "loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",
@@ -313,5 +313,44 @@
   "page": {
     "description": "vls.mfa.ch",
     "title": "Max Frisch-Archiv an der ETH-Bibliothek"
+  },
+  "user": {
+    "cancelRegistrationMessage": "Bitte schliessen Sie die Registrierung ab und speichern Sie die Daten.",
+    "birthday": "Geburtsdatum",
+    "countryCode": "Land",
+    "emailAddress": "E-Mail",
+    "errorLegalAgreementConsent": "Bitte lesen und akzeptieren Sie die Datenschutzerklärung.",
+    "familyName": "Name",
+    "firstName": "Vorname(n)",
+    "infoText": "Bitte erfassen Sie Ihre Benutzerdaten, damit wir Sie bei Bedarf erreichen können. Sie können diese Daten jederzeit aktualisieren.",
+    "legalAgreementConsentTitle": "Datenschutzerklärung",
+    "legelAgreementConsentText": "Ich bin einverstanden, dass das Max Frisch-Archiv an der ETH-Bibliothek meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
+    "mobileTel": "Mobiltelefon",
+    "organization": "Organisation",
+    "pageTitle": "Eingabe Benutzerdaten",
+    "phoneNumber": "Telefon (Festnetz)",
+    "placeholder": {
+      "birthday": "Geburtsdatum (tt.mm.jjjj)",
+      "emailAddress": "E-Mail",
+      "familyName": "Name",
+      "firstName": "Vorname(n)",
+      "mobileTel": "Mobiltelefon",
+      "organization": "Organisation",
+      "phoneNumber": "Telefon (Festnetz)",
+      "street": "Strasse / Nr.",
+      "streetAttachment": "Strasse Zusatz",
+      "town": "Ort",
+      "zipCode": "PLZ"
+    },
+    "preferredLangauge": "Bevorzugte Sprache",
+    "preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.",
+    "register": "Eingabe Benutzerdaten",
+    "requiredFieldsInfo": "Mit einem * gekennzeichnete Felder müssen ausgefüllt werden.",
+    "savesuccess": "Erfolgreich gespeichert.",
+    "street": "Strasse / Nr.",
+    "streetAttachment": "Strasse Zusatz",
+    "town": "Ort",
+    "userdata": "Benutzerdaten",
+    "zipCode": "PLZ"
   }
 }

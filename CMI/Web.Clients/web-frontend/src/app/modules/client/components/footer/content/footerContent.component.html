@@ -6,8 +6,8 @@
 </div>
 
 <address>
-	<span class="hidden-xs" *ngIf="versionInfo" >{{versionInfo}}</span>
 	<span class="hidden-xs">{{ 'Hochschularchiv der ETH Zürich' | translate:'footer.title' }}</span>
+	<span class="hidden-xs" *ngIf="versionInfo" >(v{{versionInfo}})</span>
 	<nav class="pull-right">
 		<ul>
 			<li><a href="#{{ '/de/kontakt' | localizeLink }}">{{ 'Kontakt' | translate:'navigation.contact' }}</a></li>

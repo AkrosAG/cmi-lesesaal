@@ -313,5 +313,44 @@
   "page": {
     "description": "vls.tma.ch",
     "title": "Thomas Mann Archive"
+  },
+  "user": {
+    "cancelRegistrationMessage": "Please complete the registration and save the data.",
+    "birthday": "Date of birth",
+    "countryCode": "Country",
+    "emailAddress": "E-mail",
+    "errorLegalAgreementConsent": "Please read and accept the data protection policy.",
+    "familyName": "Last name",
+    "firstName": "First name(s)",
+    "infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
+    "legalAgreementConsentTitle": "Data protection policy",
+    "legelAgreementConsentText": "I agree that the Thomas Mann Archive can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
+    "mobileTel": "Mobile phone",
+    "organization": "Organisation",
+    "pageTitle": "Enter user data",
+    "phoneNumber": "Phone (land line)",
+    "placeholder": {
+      "birthday": "Date of birth (dd.mm.yyyy)",
+      "emailAddress": "E-mail",
+      "familyName": "Last name",
+      "firstName": "First name",
+      "mobileTel": "Mobile phone",
+      "organization": "Organisation",
+      "phoneNumber": "Phone (land line)",
+      "street": "Street / number",
+      "streetAttachment": "Additional address line",
+      "town": "Place",
+      "zipCode": "Post code"
+    },
+    "preferredLangauge": "Preferred language",
+    "preferredLanguageHelpText": "Please let us know in which language you would like to communicate.",
+    "register": "Enter user data",
+    "requiredFieldsInfo": "Fields marked with a * must be completed.",
+    "savesuccess": "Successfully saved.",
+    "street": "Street / number",
+    "streetAttachment": "Additional address line",
+    "town": "Place",
+    "userdata": "User data",
+    "zipCode": "Post code"
   }
 }
