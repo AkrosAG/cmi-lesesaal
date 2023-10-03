@@ -85,7 +85,7 @@ namespace CMI.Web.Common.Tests.Helpers
         {
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
-            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns("BVW");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns("EMA");
 
             var authenticationHelperMock = new Mock<IAuthenticationHelper>();
             authenticationHelperMock
@@ -95,7 +95,7 @@ namespace CMI.Web.Common.Tests.Helpers
                     new ClaimInfo
                     {
                         Type = "/identity/claims/e-id/profile/role",
-                        Value = "BVW"
+                        Value = "EMA"
                     },
                      new ClaimInfo
                     {
@@ -113,7 +113,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             // assert
             result.AuthStatus.Should().Be(AuthStatus.NeuerBenutzer);
-            result.Roles.Should().ContainInOrder(AccessRoles.RoleBVW);
+            result.Roles.Should().ContainInOrder(AccessRoles.RoleEMA);
             result.IssuedAccessTokens.Length.Should().Be(0);
             result.RedirectUrl.Should().BeEmpty();
         }
@@ -134,7 +134,7 @@ namespace CMI.Web.Common.Tests.Helpers
                     new ClaimInfo
                     {
                         Type = "/identity/claims/e-id/profile/role",
-                        Value = "BVW"
+                        Value = "EMA"
                     },
                      new ClaimInfo
                     {
@@ -174,7 +174,7 @@ namespace CMI.Web.Common.Tests.Helpers
             authenticationHelperMock
                 .Setup(m => m.GetClaimsForRequest(It.IsAny<IPrincipal>(), It.IsAny<HttpRequestMessage>()))
                 .Returns(new List<ClaimInfo>
-                { new ClaimInfo { Type = "/identity/claims/e-id/profile/role", Value = "BVW" }, new ClaimInfo { Type = "affiliation", Value = "Irgendwas" } });
+                { new ClaimInfo { Type = "/identity/claims/e-id/profile/role", Value = "EMA" }, new ClaimInfo { Type = "affiliation", Value = "Irgendwas" } });
 
             var applicationRoleUserDataAccessMock = Mock.Of<IApplicationRoleUserDataAccess>();
 
@@ -320,7 +320,7 @@ namespace CMI.Web.Common.Tests.Helpers
                     new ClaimInfo
                     {
                         Type = "/identity/claims/e-id/profile/role",
-                        Value = "BVW"
+                        Value = "EMA"
                     }
                 });
 
@@ -340,8 +340,8 @@ namespace CMI.Web.Common.Tests.Helpers
         }
 
         [Test]
-        [TestCase("BVW")]
-        [TestCase("BAR")]
+        [TestCase("EMA")]
+        [TestCase("AMA")]
         [TestCase("AS")]
         public void IsValidAuthRole_For_Internal_User_With_External_Authentication_Should_Throw_AuthenticationException(string role)
         {
@@ -375,13 +375,13 @@ namespace CMI.Web.Common.Tests.Helpers
 
             // assert
             action.Should().Throw<AuthenticationException>()
-                .WithMessage("Interne Benutzerrollen (BVW, AS und BAR) müssen als Staff der ETH Zürich deklariert sein");
+                .WithMessage("Interne Benutzerrollen (EMA, AS und AMA) müssen als Staff der ETH Zürich deklariert sein");
         }
 
         [Test]
         [TestCase("Ö2", false)]
-        [TestCase("BVW", true)]
-        public void IsValidAuthRole_For_Public_Client_Roles_Oe2_And_Bvw_Should_Return_Ok(string role, bool isInternalUser)
+        [TestCase("EMA", true)]
+        public void IsValidAuthRole_For_Public_Client_Roles_Oe2_And_Ema_Should_Return_Ok(string role, bool isInternalUser)
         {
             // arrange
             var controllerHelperMock = new Mock<IControllerHelper>();
@@ -458,7 +458,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
         [Test]
         [TestCase("AS")]
-        [TestCase("BAR")]
+        [TestCase("AMA")]
         public void IsValidAuthRole_For_Public_Client_Roles_As_And_Bar_Should_Return_Ok_When_LoggedIn_With_Kerberos(string role)
         {
             // arrange

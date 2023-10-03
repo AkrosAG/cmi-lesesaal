@@ -161,7 +161,7 @@ namespace CMI.Access.Repository
                     var extensions = folder.GetExtensions(ExtensionLevel.Object);
                     var aipAtDossierId = metadataAccess.GetExtendedPropertyValue(extensions, "AIP-ID_Dossier-ID");
 
-                    // First condition is used to check an BAR repository. Second condition only applies to CMI Alfresco Repro
+                    // First condition is used to check an AMA repository. Second condition only applies to CMI Alfresco Repro
                     if (aipAtDossierId != null && aipAtDossierId.Equals(packageId, StringComparison.InvariantCultureIgnoreCase) ||
                         description.Equals(packageId, StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -203,7 +203,7 @@ namespace CMI.Access.Repository
                     var extensions = folder.GetExtensions(ExtensionLevel.Object);
                     var documentId = metadataAccess.GetExtendedPropertyValue(extensions, "Catalogue Reference");
 
-                    // For BAR repository: The last segment must match the catalogue reference value
+                    // For AMA repository: The last segment must match the catalogue reference value
                     // For Alfresco repository: Description must match the package id
                     if (!isAlfresco && documentId.Equals(segments[2], StringComparison.InvariantCultureIgnoreCase) ||
                         isAlfresco && description.Equals(packageId, StringComparison.InvariantCultureIgnoreCase))

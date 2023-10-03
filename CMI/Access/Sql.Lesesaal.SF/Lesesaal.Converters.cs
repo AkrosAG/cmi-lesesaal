@@ -186,7 +186,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             target.RolePublicClient = source.RolePublicClient;
             target.EiamRoles = source.EiamRoles;
             target.ResearcherGroup = source.ResearcherGroup;
-            target.BarInternalConsultation = source.BarInternalConsultation;
+            target.InternalConsultation = source.InternalConsultation;
             target.IdentifierDocument = source.IdentifierDocument;
             target.MobileNumber = source.MobileNumber;
             target.ReasonForRejectionDate = source.ReasonForRejectionDate;
@@ -238,7 +238,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             target.RolePublicClient = source.RolePublicClient;
             target.EiamRoles = source.EiamRoles;
             target.ResearcherGroup = source.ResearcherGroup;
-            target.BarInternalConsultation = source.BarInternalConsultation;
+            target.InternalConsultation = source.InternalConsultation;
             target.IdentifierDocument = source.IdentifierDocument;
             target.MobileNumber = source.MobileNumber;
             target.ReasonForRejectionDate = source.ReasonForRejectionDate;
