@@ -3,6 +3,6 @@
     public enum Eingangsart
     {
         ErfasstDurchKunde,
-        ErfasstDurchBar
+        ErfasstDurchAma
     }
 }

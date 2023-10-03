@@ -92,7 +92,7 @@ namespace CMI.Web.Common.api
         {
             if (IsInternalUser())
             {
-                return AccessRoles.RoleBVW;
+                return AccessRoles.RoleEMA;
             }
 
             // Hat jemand eine ganz normale edu-id, ist dieser Ö2 Benutzer
@@ -121,7 +121,7 @@ namespace CMI.Web.Common.api
         public string GetManagementRoleFromClaim(string rolePublicClient = null)
         {
             // Nur wer im M-C als BAAR Benutzer hochgestuft wurde, erhält dieses Prädikat
-            if (IsInternalUser() && (rolePublicClient ?? "").Equals(AccessRoles.RoleBAR))
+            if (IsInternalUser() && (rolePublicClient ?? "").Equals(AccessRoles.RoleAMA))
             {
                 return "APPO";
             }

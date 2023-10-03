@@ -101,7 +101,7 @@ Auf oberster Ebene = Bestand oder Teilbestand.</xs:documentation>
     <xs:complexType name="AuftragsdatenType">
         <xs:sequence>
             <xs:element name="BemerkungenKunde" type="xs:string"/>
-            <xs:element name="BemerkungenBar" type="xs:string"/>
+            <xs:element name="BemerkungenAma" type="xs:string"/>
             <xs:element name="AuftragsId" type="xs:string"/>
             <xs:element name="Bestelldatum" type="xs:dateTime"/>
             <xs:element name="BestelleinheitId" type="xs:string">

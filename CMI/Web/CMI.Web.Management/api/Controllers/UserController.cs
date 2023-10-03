@@ -62,7 +62,7 @@ namespace CMI.Web.Management.api.Controllers
             }
 
             // Logic validieren 
-            if (postData.ResearcherGroup && postData.BarInternalConsultation)
+            if (postData.ResearcherGroup && postData.InternalConsultation)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }

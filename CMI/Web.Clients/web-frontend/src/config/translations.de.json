@@ -267,7 +267,7 @@
   "detail": {
     "notFound": "Die gewünschte Seite kann nicht angezeigt werden",
     "notFoundMessage": "Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href=\"#{0}\">Anmelden und Identifizieren</a>).</br></br>",
-    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Bundesarchiv wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:bundesarchiv@bar.admin.ch\">bundesarchiv@bar.admin.ch</a>."
+    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Bundesarchiv wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>."
   },
   "detailHierarchy": {
     "activePosition": "Aktuell angezeigte Verzeichnungseinheit"
@@ -279,7 +279,7 @@
     "pageTitle": "Detailansicht"
   },
   "detailSection": {
-    "internalField": "Feld nur für BAR Benutzer sichtbar"
+    "internalField": "Feld nur für AMA Benutzer sichtbar"
   },
   "digitalisierungskategorie": {
     "amt": "Amt",
@@ -362,7 +362,7 @@
       "unterlagenInSchutzfrist": "Zurückgewiesen (nicht für Verwaltungsausleihe berechtigt - Unterlagen in Schutzfrist)"
     },
     "eingangsart": {
-      "erfasstDurchBar": "Erfasst durch BAR",
+      "erfasstDurchAma": "Erfasst durch AMA",
       "erfasstDurchKunde": "Erfasst durch Kunde"
     },
     "entscheidGesuchStatus": {
@@ -399,8 +399,8 @@
     }
     },
   "error": {
-    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bestellung@bar.admin.ch.",
-    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an benutzer-admin@bar.admin.ch.",
+    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
     "unknownErrorTitle": "Es ist ein Fehler aufgetreten."
   },
   "errors": {
@@ -408,7 +408,7 @@
     "pageNotFoundTitle": "Die Seite wurde nicht gefunden",
     "smartcardErrorMessage": "Sie haben versucht, sich mit Smartcard anzumelden. In Ihrer Rolle dürfen Sie sich nur mit Kerberos anmelden. Sie werden innert 8 Sekunden automatisch abgemeldet.",
     "smartcardErrorTitle": "Nur Kerberos-Anmeldung möglich",
-    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an benutzer-admin@bar.admin.ch.",
+    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
     "unknownErrorTitle": "Es ist ein Fehler aufgetreten"
   },
   "favorite": {
@@ -447,7 +447,7 @@
     "menuTitle": "Favoriten",
     "menuTitleAsFavorite": "Als Favorit merken",
     "menuTooltip": "Zu den Favoriten hinzufügen",
-    "migrationFailure": "Migration der Arbeitsmappen gescheitert! \\nSollte das Problem weiterhin auftreten, wenden Sie sich bitte an bundesarchiv@bar.admin.ch.",
+    "migrationFailure": "Migration der Arbeitsmappen gescheitert! \\nSollte das Problem weiterhin auftreten, wenden Sie sich bitte an archiv@library.ethz.ch.",
     "migrationSuccess": "Arbeitsmappen erfolgreich migriert",
     "missingTitle": "Bitte geben Sie einen Titel für die neue Liste ein.",
     "newListLabel": "Name der Liste",
@@ -601,7 +601,7 @@
       "registerAndAuthentificate": "Registrieren & Identifizieren",
       "registerAndAuthentificateTeaserText": "Anonym, angemeldet oder identifiziert: Die Rechte der einzelnen Benutzer-Kategorien im Überblick.",
       "search": "Suchen",
-      "searchTeaserText": "Anleitung und Tipps zur Suche auf recherche.bar.admin.ch.",
+      "searchTeaserText": "Anleitung und Tipps zur Suche auf https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html.",
       "stocks": "Bestände",
       "stocksTeaserText": "Übersicht über die Bestände des Bundesarchivs und deren Gliederung in Themenbereiche.",
       "themenuebersicht": "Thematische Übersicht"
@@ -623,7 +623,7 @@
     "previous": "Vorherige"
   },
   "order": {
-    "frombar": "(Diese Bestellung wurde durch das Bundesarchiv ausgelöst.)",
+    "frombar": "(Diese Bestellung wurde durch die ETH ausgelöst.)",
     "unknowtext": "[Nicht sichtbar]"
   },
   "orderCheckoutPage": {
@@ -886,7 +886,7 @@
     "addToCart": "Hinzufügen",
     "aktenzeichen": "Aktenzeichen",
     "archivNr": "Archivnummer",
-    "bestellenText": "Diese Unterlagen sind für Sie frei zugänglich oder müssen vom BAR hinsichtlich Zugänglichkeit geprüft werden. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
+    "bestellenText": "Diese Unterlagen sind für Sie frei zugänglich oder müssen vom AMA hinsichtlich Zugänglichkeit geprüft werden. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
     "dossierTitel": "Dossiertitel",
     "einsichtsbewilligungenNotwendig": "Für diese Dossiers sind Einsichtsbewilligungen notwendig:",
     "einsichtsBewilligungVorhanden": "Sie verfügen für diese Unterlagen bereits über eine Einsichtsbewilligung? Bitte kontaktieren Sie uns.",

@@ -38,7 +38,7 @@ namespace CMI.Web.Management.Controllers
             ViewBag.Translations = translations != null ? JsonConvert.SerializeObject(translations, formatting) : string.Empty;
             ViewBag.Settings = settings != null ? JsonConvert.SerializeObject(settings, formatting) : string.Empty;
 
-            var title = ManagementSettings.Instance.GetTranslation(language, "page.title", "Schweizerisches Bundesarchiv BAR");
+            var title = ManagementSettings.Instance.GetTranslation(language, "page.title", "Hochschularchiv der ETH Zürich | ETH Zürich");
             ViewBag.StaticContent =
                 FrontendHelper.GetStaticIndexContent(Request, language, title, ViewBag.Translations, ViewBag.Settings, ViewBag.ModelData);
 

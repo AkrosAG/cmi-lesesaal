@@ -59,7 +59,7 @@ namespace CMI.Access.Sql.Lesesaal
 
                         break;
 
-                    case AccessRolesEnum.BVW:
+                    case AccessRolesEnum.EMA:
                         combinedTokens.Add($"FG_{UserId}");
                         combinedTokens.Add($"EB_{UserId}");
                         break;
@@ -70,7 +70,7 @@ namespace CMI.Access.Sql.Lesesaal
                         combinedTokens.AddRange(AsTokens ?? new string[0]);
                         break;
 
-                    case AccessRolesEnum.BAR:
+                    case AccessRolesEnum.AMA:
                         break;
 
                     default:

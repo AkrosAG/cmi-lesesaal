@@ -251,7 +251,7 @@ export class EntityDecoratorService {
 			case Eingangsart.ErfasstDurchKunde:
 				return this._txt.get('enums.eingangsart.erfasstDurchKunde', 'Durch Kunde erfasst');
 			case Eingangsart.ErfasstDurchBar:
-				return this._txt.get('enums.eingangsart.erfasstDurchBar', 'Durch BAR erfasst');
+				return this._txt.get('enums.eingangsart.erfasstDurchAma', 'Durch AMA erfasst');
 			default:
 				return 'Unknown';
 		}
