@@ -179,7 +179,11 @@ namespace CMI.Web.Frontend.api.Controllers
                     response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
                     {
                         FileName = name
-                    } : null;
+                    } :
+                    new ContentDispositionHeaderValue("inline")
+                    {
+                        FileName = name
+                    };
 
                     var result = await Task.FromResult(response);
                     return ResponseMessage(result);
