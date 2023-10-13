@@ -209,9 +209,9 @@ namespace CMI.Web.Common.api
                 var rolePublicClient = controllerHelper.GetInitialTokenFromClaims();
                 if (rolePublicClient != user.RolePublicClient)
                 {
-                    // Ist die "initiale" Role weniger als BVW, oder die Rolle ist BVW und der Benutzer ist weder AS noch BAR, 
+                    // Ist die "initiale" Role weniger als EMA, oder die Rolle ist EMA und der Benutzer ist weder AS noch AMA, 
                     // dann müssen wir updaten
-                    if (rolePublicClient != AccessRoles.RoleBVW || !user.RolePublicClient.Equals(AccessRoles.RoleBAR) &&
+                    if (rolePublicClient != AccessRoles.RoleEMA || !user.RolePublicClient.Equals(AccessRoles.RoleAMA) &&
                                                                   !user.RolePublicClient.Equals(AccessRoles.RoleAS))
                     {
                         userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
@@ -272,7 +272,7 @@ namespace CMI.Web.Common.api
              * UseCase Nr	Viaduc-User	    affiliation	        homeOrganization
                 1	        Ö3	            member	            ethz.ch
                 2	        Ö3	            member OR staff	    NOT(ethz.ch)
-                3	        BVW	            staff	            ethz.ch
+                3	        EMA	            staff	            ethz.ch
                 4	        Ö2	            member OR staff	    NULL
 
              * */
@@ -287,10 +287,10 @@ namespace CMI.Web.Common.api
             //    throw new AuthenticationException("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
             //}
 
-            if ((role == AccessRoles.RoleBVW || role == AccessRoles.RoleAS || role == AccessRoles.RoleBAR) &&
+            if ((role == AccessRoles.RoleEMA || role == AccessRoles.RoleAS || role == AccessRoles.RoleAMA) &&
                 !controllerHelper.IsInternalUser())
             {
-                throw new AuthenticationException("Interne Benutzerrollen (BVW, AS und BAR) müssen als Staff der ETH Zürich deklariert sein");
+                throw new AuthenticationException("Interne Benutzerrollen (EMA, AS und AMA) müssen als Staff der ETH Zürich deklariert sein");
             }
 
             // Public-Client
@@ -300,12 +300,12 @@ namespace CMI.Web.Common.api
                 {
                     // Keine spezial Behandlung
                     case AccessRolesEnum.Ö2:
-                    case AccessRolesEnum.BVW:
+                    case AccessRolesEnum.EMA:
                     case AccessRolesEnum.Ö3:
                         return AuthStatus.Ok;
 
                     case AccessRolesEnum.AS:
-                    case AccessRolesEnum.BAR:
+                    case AccessRolesEnum.AMA:
                         return controllerHelper.IsInternalUser()
                             ? AuthStatus.Ok
                             : AuthStatus.KeineKerberosAuthentication;

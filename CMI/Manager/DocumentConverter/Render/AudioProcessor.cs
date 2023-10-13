@@ -42,7 +42,7 @@ namespace CMI.Manager.DocumentConverter.Render
             };
 
             // ToDo: Replace with configuration
-            var comment = "Schweizerisches Bundesarchiv BAR";
+            var comment = "ETH Zürich AMA";
 
             var lameCmd = $@"""{ProcessorPath}"" -b 128 ""{cmd.SourceFile.FullName}"" ""{cmd.TargetFile.FullName}"" -c -o";
             if (!string.IsNullOrEmpty(title))

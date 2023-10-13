@@ -75,8 +75,8 @@ namespace CMI.Manager.Repository.ConsoleTestTool
                     ArchiveRecordId = "9999",
                     Security = new ArchiveRecordSecurity
                     {
-                        MetadataAccessToken = new List<string> {"BAR"}, PrimaryDataFulltextAccessToken = new List<string> {"BAR"},
-                        PrimaryDataDownloadAccessToken = new List<string> {"BAR"}
+                        MetadataAccessToken = new List<string> {"AMA"}, PrimaryDataFulltextAccessToken = new List<string> {"AMA"},
+                        PrimaryDataDownloadAccessToken = new List<string> {"AMA" }
                     },
                     Metadata = new ArchiveRecordMetadata {PrimaryDataLink = packageId}
                 }
@@ -98,8 +98,8 @@ namespace CMI.Manager.Repository.ConsoleTestTool
                     ArchiveRecordId = "9999",
                     Security = new ArchiveRecordSecurity
                     {
-                        MetadataAccessToken = new List<string> {"BAR"}, PrimaryDataFulltextAccessToken = new List<string> {"BAR"},
-                        PrimaryDataDownloadAccessToken = new List<string> {"BAR"}
+                        MetadataAccessToken = new List<string> {"AMA"}, PrimaryDataFulltextAccessToken = new List<string> {"AMA"},
+                        PrimaryDataDownloadAccessToken = new List<string> {"AMA"}
                     },
                     Metadata = new ArchiveRecordMetadata {PrimaryDataLink = ""}
                 }

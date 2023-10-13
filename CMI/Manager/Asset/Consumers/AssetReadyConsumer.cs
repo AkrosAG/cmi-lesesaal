@@ -98,7 +98,7 @@ namespace CMI.Manager.Asset.Consumers
                     .AddValue("IstGebrauchskopieÖffentlich", message.RetentionCategory == CacheRetentionCategory.UsageCopyPublic)
                     .AddValue("IstGebrauchskopieEb", message.RetentionCategory == CacheRetentionCategory.UsageCopyEB)
                     .AddValue("IstGebrauchskopieAb", message.RetentionCategory == CacheRetentionCategory.UsageCopyAB)
-                    .AddValue("IstGebrauchskopieBarOderAs", message.RetentionCategory == CacheRetentionCategory.UsageCopyBarOrAS)
+                    .AddValue("IstGebrauchskopieBarOderAs", message.RetentionCategory == CacheRetentionCategory.UsageCopyAmaOrAS)
                     .Create();
 
                 await mailHelper.SendEmail(bus, template, dataContext);

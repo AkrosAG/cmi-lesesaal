@@ -47,7 +47,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
             var role = GetUserPublicClientRole();
 
-            if (role != AccessRoles.RoleBAR)
+            if (role != AccessRoles.RoleAMA)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }
