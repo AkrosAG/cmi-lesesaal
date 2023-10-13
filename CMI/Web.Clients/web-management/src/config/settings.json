@@ -476,6 +476,11 @@
 				"defaultLabel": "Gebrauchskopie",
 				"key": "gebrauchskopieStatus",
 				"visible": false
+			},
+			{
+				"defaultLabel": "Temp. Standort",
+				"key": "tempStandort",
+				"visible": false
 			}
 		],
 		"ordersEinsichtListColumns": [
