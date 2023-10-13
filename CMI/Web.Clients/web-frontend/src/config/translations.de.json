@@ -398,11 +398,7 @@
       "zumReponierenBereit": "Zum Reponieren bereit"
     }
     },
-  "error": {
-    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an bestellung@bar.admin.ch.",
-    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an benutzer-admin@bar.admin.ch.",
-    "unknownErrorTitle": "Es ist ein Fehler aufgetreten."
-  },
+ 
   "errors": {
     "errorTitle": "Fehler",
     "pageNotFoundTitle": "Die Seite wurde nicht gefunden",

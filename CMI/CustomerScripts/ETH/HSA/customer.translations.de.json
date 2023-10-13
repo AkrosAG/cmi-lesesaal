@@ -1,4 +1,9 @@
 {
+  "error": {
+    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+    "unknownErrorTitle": "Es ist ein Fehler aufgetreten."
+  },
   "facette": {
     "active": "Aktiv",
     "bestaendeUebersicht": "Thematische Übersicht",
