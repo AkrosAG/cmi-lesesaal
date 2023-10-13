@@ -34,7 +34,7 @@ namespace CMI.Manager.Cache
                     RetentionCategory[] categories =
                     {
                         new RetentionCategory(setting.RetentionSpanUsageCopyAb, CacheRetentionCategory.UsageCopyAB),
-                        new RetentionCategory(setting.RetentionSpanUsageCopyBarOrAS, CacheRetentionCategory.UsageCopyBarOrAS),
+                        new RetentionCategory(setting.RetentionSpanUsageCopyAMAOrAS, CacheRetentionCategory.UsageCopyAmaOrAS),
                         new RetentionCategory(setting.RetentionSpanUsageCopyEb, CacheRetentionCategory.UsageCopyEB),
                         new RetentionCategory(setting.RetentionSpanUsageCopyPublic, CacheRetentionCategory.UsageCopyPublic),
                         new RetentionCategory(setting.RetentionSpanUsageCopyBenutzungskopie, CacheRetentionCategory.UsageCopyBenutzungskopie)

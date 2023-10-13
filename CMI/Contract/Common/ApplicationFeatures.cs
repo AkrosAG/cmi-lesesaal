@@ -106,8 +106,8 @@ namespace CMI.Contract.Common
         [Description("Benutzer und Rollen-Benutzerverwaltung-Feld Forschungsgruppe DDS bearbeiten")]
         BenutzerUndRollenBenutzerverwaltungFeldForschungsgruppeDdsBearbeiten = 10000073,
 
-        [Description("Benutzer und Rollen-Benutzerverwaltung-Feld BAR-interne Konsultation bearbeiten")]
-        BenutzerUndRollenBenutzerverwaltungFeldBarInterneKonsultationBearbeiten = 10000074,
+        [Description("Benutzer und Rollen-Benutzerverwaltung-Feld interne Konsultation bearbeiten")]
+        BenutzerUndRollenBenutzerverwaltungFeldInterneKonsultationBearbeiten = 10000074,
 
         [Description("Benutzer und Rollen-Benutzerverwaltung-Feld Downloadbeschränkung bearbeiten")]
         BenutzerUndRollenBenutzerverwaltungFeldDownloadbeschraenkungBearbeiten = 10000075,

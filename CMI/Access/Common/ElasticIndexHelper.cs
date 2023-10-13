@@ -164,7 +164,7 @@ namespace CMI.Access.Common
                 return;
             }
 
-            // Für jede Token-Art muss mindestens ein Token (für BAR) geliefert werden.
+            // Für jede Token-Art muss mindestens ein Token (für AMA) geliefert werden.
             // Ansonsten stimmt etwas nicht und wir brechen den Update ab.
             if (primaryDataDownloadAccessTokens == null || primaryDataFulltextAccessTokens == null || metadataAccessTokens == null ||
                 primaryDataDownloadAccessTokens.Length == 0 || primaryDataFulltextAccessTokens.Length == 0 || metadataAccessTokens.Length == 0)

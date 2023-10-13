@@ -986,8 +986,8 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// <param name="modifiedOn">Initial value of ModifiedOn.</param>
         /// <param name="isInternalUser">Initial value of IsInternalUser.</param>
         /// <param name="researcherGroup">Initial value of ResearcherGroup.</param>
-        /// <param name="barInternalConsultation">Initial value of BarInternalConsultation.</param>
-        public static ApplicationUser CreateApplicationUser(string iD, global::System.DateTime created, global::System.DateTime updated, string fulltext, string language, global::System.DateTime createdOn, global::System.DateTime modifiedOn, bool isInternalUser, bool researcherGroup, bool barInternalConsultation)
+        /// <param name="InternalConsultation">Initial value of InternalConsultation.</param>
+        public static ApplicationUser CreateApplicationUser(string iD, global::System.DateTime created, global::System.DateTime updated, string fulltext, string language, global::System.DateTime createdOn, global::System.DateTime modifiedOn, bool isInternalUser, bool researcherGroup, bool InternalConsultation)
         {
             ApplicationUser applicationUser = new ApplicationUser();
             applicationUser.ID = iD;
@@ -999,7 +999,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             applicationUser.ModifiedOn = modifiedOn;
             applicationUser.IsInternalUser = isInternalUser;
             applicationUser.ResearcherGroup = researcherGroup;
-            applicationUser.BarInternalConsultation = barInternalConsultation;
+            applicationUser.InternalConsultation = InternalConsultation;
             return applicationUser;
         }
 
@@ -1908,34 +1908,34 @@ namespace CMI.Access.Sql.Lesesaal.EF
         partial void OnResearcherGroupChanged();
     
         /// <summary>
-        /// There are no comments for BarInternalConsultation in the schema.
+        /// There are no comments for InternalConsultation in the schema.
         /// </summary>
         [EdmScalarPropertyAttribute(IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual bool BarInternalConsultation
+        public virtual bool InternalConsultation
         {
             get
             {
-                bool value = _BarInternalConsultation;
-                OnGetBarInternalConsultation(ref value);
+                bool value = _InternalConsultation;
+                OnGetInternalConsultation(ref value);
                 return value;
             }
             set
             {
-                if (_BarInternalConsultation != value)
+                if (_InternalConsultation != value)
                 {
-                  OnBarInternalConsultationChanging(ref value);
-                  ReportPropertyChanging("BarInternalConsultation");
-                  _BarInternalConsultation = StructuralObject.SetValidValue(value);
-                  ReportPropertyChanged("BarInternalConsultation");
-                  OnBarInternalConsultationChanged();
+                  OnInternalConsultationChanging(ref value);
+                  ReportPropertyChanging("InternalConsultation");
+                  _InternalConsultation = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("InternalConsultation");
+                  OnInternalConsultationChanged();
               }
             }
         }
-        private bool _BarInternalConsultation = false;
-        partial void OnGetBarInternalConsultation(ref bool value);
-        partial void OnBarInternalConsultationChanging(ref bool value);
-        partial void OnBarInternalConsultationChanged();
+        private bool _InternalConsultation = false;
+        partial void OnGetInternalConsultation(ref bool value);
+        partial void OnInternalConsultationChanging(ref bool value);
+        partial void OnInternalConsultationChanged();
     
         /// <summary>
         /// Beim erfolgreichem Onboarding mit Swisscom wird in dieses Feld automatisch ein von der Swisscom generiertes PDF abgelegt. Zudem kann in dieses Feld auch über den Management Client eine Datei hochgeladen werden.

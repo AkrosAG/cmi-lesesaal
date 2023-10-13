@@ -86,7 +86,7 @@ IsInternalUser,
 RolePublicClient, 
 EiamRoles, 
 ResearcherGroup, 
-BarInternalConsultation, 
+InternalConsultation, 
 (CASE WHEN IdentifierDocument IS NOT NULL THEN 1 ELSE 0 END) AS HasIdentifizierungsmittel,
 DownloadLimitDisabledUntil,
 DigitalisierungsbeschraenkungAufgehobenBis,
@@ -277,7 +277,7 @@ FROM ApplicationUser ";
                     cmd.AddParameter("PhoneNumber", SqlDbType.NVarChar, user.PhoneNumber);
                     cmd.AddParameter("Claims", SqlDbType.NVarChar, JsonConvert.SerializeObject(user.Claims, Formatting.Indented));
                     cmd.AddParameter("IsInternalUser", SqlDbType.Bit, user.IsInternalUser);
-                    cmd.AddParameter("RolePublicClient", SqlDbType.NVarChar, user.IsInternalUser ? AccessRoles.RoleBVW : AccessRoles.RoleOe2);
+                    cmd.AddParameter("RolePublicClient", SqlDbType.NVarChar, user.IsInternalUser ? AccessRoles.RoleEMA : AccessRoles.RoleOe2);
                     cmd.AddParameter("EiamRoles", SqlDbType.NVarChar, user.EiamRoles);
                     cmd.AddParameter("MobileNumber", SqlDbType.NVarChar, user.MobileNumber);
                     cmd.AddParameter("Language", SqlDbType.NVarChar, string.IsNullOrEmpty(user.Language) ? "de" : user.Language);
@@ -429,7 +429,7 @@ FROM ApplicationUser ";
                                       "familyName = @p4, firstName = @p5, " +
                                       "organization = @p6, street = @p7, streetAttachment = @p8, zipCode = @p9, town = @p10, countryCode = @p11, phoneNumber = @p12, " +
                                       "mobileNumber = @p13, birthday = @p14, emailAddress = @p15, fabasoftDossier = @p16, language = @p17, downloadLimitDisabledUntil = @p18, " +
-                                      "RolePublicClient = @p19, ResearcherGroup = @p20, BarInternalConsultation = @p21, DigitalisierungsbeschraenkungAufgehobenBis = @p22 " +
+                                      "RolePublicClient = @p19, ResearcherGroup = @p20, InternalConsultation = @p21, DigitalisierungsbeschraenkungAufgehobenBis = @p22 " +
                                       "WHERE ID = @p1";
 
                     if (string.IsNullOrEmpty(modifiedByUserId))
@@ -568,7 +568,7 @@ FROM ApplicationUser ";
 
                     cmd.Parameters.Add(new SqlParameter
                     {
-                        Value = user.BarInternalConsultation,
+                        Value = user.InternalConsultation,
                         ParameterName = "p21",
                         SqlDbType = SqlDbType.Bit
                     });

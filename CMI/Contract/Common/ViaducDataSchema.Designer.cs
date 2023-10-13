@@ -77,7 +77,7 @@ namespace CMI.Contract.Common
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the UoD.
         /// Examples for the token can be:
-        /// - BAR
+        /// - AMA
         /// - Ö3
         /// - Ö2
         /// </summary>
@@ -86,7 +86,7 @@ namespace CMI.Contract.Common
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the fulltext of the primary data files.
         /// Examples for the token can be:
-        /// - BAR
+        /// - AMA
         /// - AS_YYYY
         /// - FG_XXXX
         /// - EB_XXXX
@@ -96,7 +96,7 @@ namespace CMI.Contract.Common
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the download of the primary data files.
         /// Examples for the token can be:
-        /// - BAR
+        /// - AMA
         /// - AS_YYYY
         /// - FG_XXXX
         /// - EB_XXXXX

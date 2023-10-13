@@ -483,7 +483,7 @@ namespace CMI.Contract.Common
         private static XmlSerializer serializer;
 
         public string BemerkungenKunde { get; set; }
-        public string BemerkungenBar { get; set; }
+        public string BemerkungenAma { get; set; }
         public string AuftragsId { get; set; }
         public System.DateTime Bestelldatum { get; set; }
         public string BestelleinheitId { get; set; }

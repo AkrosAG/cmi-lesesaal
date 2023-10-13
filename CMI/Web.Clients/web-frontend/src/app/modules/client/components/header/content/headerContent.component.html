@@ -99,7 +99,7 @@
 		<a class="glyphicon glyphicon-info-sign infoicon" data-toggle="tooltip" data-placement="bottom"
 		    tooltip="{{ 'Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.' | translate:'header.notLoggedInTip'}}"></a>
 	</span>
-	<span *ngIf="authenticated && hasRoles('BAR', 'AS', 'BVW', 'Ö3') === true">
+	<span *ngIf="authenticated && hasRoles('AMA', 'AS', 'EMA', 'Ö3') === true">
 		<span>{{ 'Sie sind als identifizierte/r Benutzer/in angemeldet' | translate:'header.loggedInInfo'}}&nbsp;</span>
 		<a class="glyphicon glyphicon-info-sign infoicon" data-toggle="tooltip" data-placement="bottom"
 		    tooltip="{{getTooltippLoggedIn()}}"></a>

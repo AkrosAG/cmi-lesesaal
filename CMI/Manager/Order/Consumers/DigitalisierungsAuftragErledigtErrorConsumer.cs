@@ -35,7 +35,7 @@ namespace CMI.Manager.Order.Consumers
                 Log.Information("Received {CommandName} command with conversationId {ConversationId} from the bus", message.GetType().Name,
                     context.ConversationId);
 
-                // Log failure of message receipt and send error mail to BAR admin
+                // Log failure of message receipt and send error mail to AMA admin
                 Log.Error(
                     $"Received a DigitalisierungAuftragErledigt event, but an error occured while processing. OrderId: {context.Message.OrderItemId}");
                 await SendEmail(context);

@@ -18,8 +18,8 @@ namespace CMI.Web.Common.Auth
             AllRoles.Add(AccessRoles.RoleOe2);
             AllRoles.Add(AccessRoles.RoleOe3);
             AllRoles.Add(AccessRoles.RoleAS);
-            AllRoles.Add(AccessRoles.RoleBAR);
-            AllRoles.Add(AccessRoles.RoleBVW);
+            AllRoles.Add(AccessRoles.RoleAMA);
+            AllRoles.Add(AccessRoles.RoleEMA);
             AllRoles.Add(AccessRoles.RoleMgntAllow);
             AllRoles.Add(AccessRoles.RoleMgntAppo);
 
@@ -39,7 +39,7 @@ namespace CMI.Web.Common.Auth
         {
             // Role should look like this:
             // 168871\BAR-recherche.ALLOW
-            // 168871\BAR-recherche.BAR
+            // 168871\BAR-recherche.AMA
             // 168871\BAR-recherche.OE1
 
             if (string.IsNullOrWhiteSpace(value))
@@ -54,7 +54,7 @@ namespace CMI.Web.Common.Auth
             }
 
             // And shold return this:
-            // ALLOW, BAR, OE1, etc.
+            // ALLOW, AMA, OE1, etc.
             return value;
         }
 

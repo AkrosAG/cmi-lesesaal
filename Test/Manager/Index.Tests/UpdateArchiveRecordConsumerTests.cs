@@ -79,9 +79,9 @@ namespace CMI.Manager.Index.Tests
             {
                 ArchiveRecordId = "3245", Security = new ArchiveRecordSecurity
                 {
-                    MetadataAccessToken = new List<string> {"BAR"},
-                    PrimaryDataFulltextAccessToken = new List<string> {"BAR"},
-                    PrimaryDataDownloadAccessToken = new List<string> {"BAR"}
+                    MetadataAccessToken = new List<string> {"AMA"},
+                    PrimaryDataFulltextAccessToken = new List<string> {"AMA"},
+                    PrimaryDataDownloadAccessToken = new List<string> {"AMA"}
                 }
             };
             var mutationId = 124;
