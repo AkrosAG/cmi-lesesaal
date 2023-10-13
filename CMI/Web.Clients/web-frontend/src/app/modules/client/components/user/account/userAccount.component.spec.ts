@@ -68,9 +68,9 @@ describe('UserAccount', () => {
 				Oe1: 'Ö1',
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
-				BVW: 'BVW',
+				EMA: 'EMA',
 				AS: 'AS',
-				BAR: 'BAR'
+				AMA: 'AMA'
 			}
 		};
 		url = <UrlService> {

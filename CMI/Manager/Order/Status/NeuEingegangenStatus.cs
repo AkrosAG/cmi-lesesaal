@@ -63,7 +63,7 @@ namespace CMI.Manager.Order.Status
                 }
             }
 
-            // Verwaltungsausleihen von BVW-Benutzer müssen immer den Status "Freigabe Prüfen" haben 
+            // Verwaltungsausleihen von AMA-Benutzer müssen immer den Status "Freigabe Prüfen" haben 
             Context.SetNewStatus(AuftragStatusRepo.FreigabePruefen, Users.System);
             Context.SetApproveStatus(ApproveStatus.NichtGeprueft, Users.System);
         }
@@ -115,12 +115,12 @@ namespace CMI.Manager.Order.Status
                             : DigitalisierungsKategorie.Oeffentlichkeit;
                     break;
 
-                case AccessRolesEnum.BVW:
+                case AccessRolesEnum.EMA:
                 case AccessRolesEnum.AS:
                     orderItem.DigitalisierungsKategorie = DigitalisierungsKategorie.Amt;
                     break;
 
-                case AccessRolesEnum.BAR:
+                case AccessRolesEnum.AMA:
                     orderItem.DigitalisierungsKategorie = DigitalisierungsKategorie.Intern;
                     break;
 

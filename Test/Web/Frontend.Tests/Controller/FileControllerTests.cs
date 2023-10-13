@@ -58,8 +58,8 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             mockHit.SetupGet(m => m.Source).Returns(new ElasticArchiveRecord
             {
                 ArchiveRecordId = "1",
-                MetadataAccessTokens = new List<string> {"BAR"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"}
+                MetadataAccessTokens = new List<string> {"AMA"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"}
             });
 
             var mockElasticResponse = new Mock<ISearchResponse<ElasticArchiveRecord>>();
@@ -261,7 +261,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -305,7 +305,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -341,7 +341,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(null, statusClientMock.Object, null, null, null, elasticServiceMock, null, null, null, cacheHelperMock, null,
                 null, null, null);
-            sut.GetUserAccessFunc = userId => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var result = await sut.GetAssetInfo("1");
@@ -361,7 +361,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -392,7 +392,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(null, statusClientMock.Object, null, null, null, elasticServiceMock, null, null, null, cacheHelperMock, null,
                 null, null, null);
-            sut.GetUserAccessFunc = userId => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var action = (Func<Task<IHttpActionResult>>) (async () => await sut.GetAssetInfo("1"));
@@ -465,7 +465,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -509,7 +509,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -548,7 +548,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var sut = new FileController(null, null, prepareClientMock.Object, null, null, elasticServiceMock, null, null, null, cacheHelperMock,
                 null, null, null, null);
 
-            sut.GetUserAccessFunc = userId => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var result = await sut.PrepareAsset("1", "", "");
@@ -567,7 +567,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö1"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -597,7 +597,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(null, null, prepareClientMock.Object, null, null, elasticServiceMock, null, null, null, cacheHelperMock,
                 null, null, null, null);
-            sut.GetUserAccessFunc = userId => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var action = (Func<Task<IHttpActionResult>>) (async () => await sut.PrepareAsset("1", "http://thisisalink.com", "de"));
@@ -778,7 +778,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö2"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -836,7 +836,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö2"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -871,7 +871,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var sut = new FileController(downloadClientMock, null, null, downloadTokenDataAccessMock.Object, downloadLogDataAccess.Object,
                 elasticServiceMock, null, null, null, cacheHelperMock, userDataAccessMock.Object, null, downloadHelperMock,
                 kontrollstellenInformer.Object);
-            sut.GetUserAccessFunc = uid => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = uid => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var result = await sut.DownloadFile("1", "valid token", 1);
@@ -909,7 +909,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             {
                 ArchiveRecordId = "1",
                 MetadataAccessTokens = new List<string> {"Ö2"},
-                PrimaryDataDownloadAccessTokens = new List<string> {"BAR"},
+                PrimaryDataDownloadAccessTokens = new List<string> {"AMA"},
                 PrimaryData = new List<ElasticArchiveRecordPackage>
                 {
                     new ElasticArchiveRecordPackage
@@ -943,7 +943,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var sut = new FileController(downloadClientMock.Object, null, null, downloadTokenDataAccessMock.Object, downloadLogDataAccess.Object,
                 elasticServiceMock, null, null, null, cacheHelperMock, userDataAccessMock.Object, null, downloadHelperMock,
                 kontrollstellenInformerMock.Object);
-            sut.GetUserAccessFunc = uid => new UserAccess(userId, "BAR", null, null, false);
+            sut.GetUserAccessFunc = uid => new UserAccess(userId, "AMA", null, null, false);
 
             // act
             var action = new Func<Task<IHttpActionResult>>(() => sut.DownloadFile("1", "valid token", 1));

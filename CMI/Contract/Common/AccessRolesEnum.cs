@@ -5,8 +5,8 @@
         Ö1,
         Ö2,
         Ö3,
-        BVW,
+        EMA,
         AS,
-        BAR
+        AMA
     }
 }

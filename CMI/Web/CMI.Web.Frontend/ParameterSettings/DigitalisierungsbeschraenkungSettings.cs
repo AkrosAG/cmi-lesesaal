@@ -16,19 +16,19 @@ namespace CMI.Web.Frontend.ParameterSettings
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungOe3 { get; set; }
 
-        [Description("Gibt an, wieviele aktive Aufträge ein BVW Benutzer gleichzeitig haben darf.")]
+        [Description("Gibt an, wieviele aktive Aufträge ein EMA Benutzer gleichzeitig haben darf.")]
         [DefaultValue(3)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
-        public int DigitalisierungsbeschraenkungBvw { get; set; }
+        public int DigitalisierungsbeschraenkungEma { get; set; }
 
         [Description("Gibt an, wieviele aktive Aufträge ein AS Benutzer gleichzeitig haben darf.")]
         [DefaultValue(3)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungAs { get; set; }
 
-        [Description("Gibt an, wieviele aktive Aufträge ein BAR Benutzer gleichzeitig haben darf.")]
+        [Description("Gibt an, wieviele aktive Aufträge ein AMA Benutzer gleichzeitig haben darf.")]
         [DefaultValue(3)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
-        public int DigitalisierungsbeschraenkungBar { get; set; }
+        public int DigitalisierungsbeschraenkungAma { get; set; }
     }
 }

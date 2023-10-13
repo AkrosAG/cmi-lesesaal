@@ -110,7 +110,7 @@ namespace CMI.Utilities.Cache.Access
         }
 
         /// <summary>
-        ///     Diese Methode wurde nach den genauen schriftlichen Vorgaben des BARs implementiert.
+        ///     Diese Methode wurde nach den genauen schriftlichen Vorgaben des AMAs implementiert.
         ///     Diese Vorgaben sind im Anwendungshandbuch enthalten und finden sich auch unter dem folgenden Link:
         /// </summary>
         public async Task<CacheRetentionCategory> GetRetentionCategory(ElasticArchiveRecord archiveRecord, string rolePublicClient,
@@ -128,9 +128,9 @@ namespace CMI.Utilities.Cache.Access
                 return CacheRetentionCategory.UsageCopyPublic;
             }
 
-            if (rolePublicClient == AccessRoles.RoleBAR)
+            if (rolePublicClient == AccessRoles.RoleAMA)
             {
-                return CacheRetentionCategory.UsageCopyBarOrAS;
+                return CacheRetentionCategory.UsageCopyAmaOrAS;
             }
 
             if (!string.IsNullOrWhiteSpace(archiveRecord.ArchiveRecordId) && await orderDataAccess.HasEinsichtsbewilligung(archiveRecord.ArchiveRecordId))
@@ -140,7 +140,7 @@ namespace CMI.Utilities.Cache.Access
 
             if (rolePublicClient == AccessRoles.RoleAS)
             {
-                return CacheRetentionCategory.UsageCopyBarOrAS;
+                return CacheRetentionCategory.UsageCopyAmaOrAS;
             }
 
             return CacheRetentionCategory.UsageCopyAB;

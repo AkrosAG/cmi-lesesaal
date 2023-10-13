@@ -42,11 +42,11 @@ namespace CMI.Web.Frontend.api
                 case AccessRolesEnum.AS:
                     digitalisierungsbeschraenkung = setting.DigitalisierungsbeschraenkungAs;
                     break;
-                case AccessRolesEnum.BVW:
-                    digitalisierungsbeschraenkung = setting.DigitalisierungsbeschraenkungBvw;
+                case AccessRolesEnum.EMA:
+                    digitalisierungsbeschraenkung = setting.DigitalisierungsbeschraenkungEma;
                     break;
-                case AccessRolesEnum.BAR:
-                    digitalisierungsbeschraenkung = setting.DigitalisierungsbeschraenkungBar;
+                case AccessRolesEnum.AMA:
+                    digitalisierungsbeschraenkung = setting.DigitalisierungsbeschraenkungAma;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(user),

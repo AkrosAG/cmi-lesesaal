@@ -50,18 +50,18 @@ namespace CMI.Manager.Order.Tests
         }
 
         [Test]
-        public async Task Ein_Digitalisierungsauftrag_eines_BAR_Benutzers_erhaelt_die_Digitalisierungskategorie_Intern()
+        public async Task Ein_Digitalisierungsauftrag_eines_AMA_Benutzers_erhaelt_die_Digitalisierungskategorie_Intern()
         {
             var currentUser = new User {Id = "current"};
             var besteller = new User
-                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string [0], false, "de")};
+                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleAMA, "ALLOW", new string [0], false, "de")};
 
             var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
-                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
+                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
                 ArchiveRecordId = item.VeId
             };
 
@@ -70,18 +70,18 @@ namespace CMI.Manager.Order.Tests
         }
 
         [Test]
-        public async Task Ein_Digitalisierungsauftrag_eines_BAR_Benutzers_wird_automatisch_freigegeben_wenn_die_DownloadTokens_BAR_enthalten()
+        public async Task Ein_Digitalisierungsauftrag_eines_AMA_Benutzers_wird_automatisch_freigegeben_wenn_die_DownloadTokens_AMA_enthalten()
         {
             var currentUser = new User {Id = "current", FamilyName = "Boumaa", FirstName = "Bob"};
             var besteller = new User
-                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
+                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleAMA, "ALLOW", new string[0], false, "de")};
 
             var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
-                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
+                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
                 ArchiveRecordId = item.VeId
             };
 
@@ -102,11 +102,11 @@ namespace CMI.Manager.Order.Tests
 
         [Test]
         public async Task
-            Ein_Digitalisierungsauftrag_eines_BAR_Benutzers_wird_nicht_automatisch_freigegeben_wenn_die_DownloadTokens_nicht_BAR_enthalten()
+            Ein_Digitalisierungsauftrag_eines_AMA_Benutzers_wird_nicht_automatisch_freigegeben_wenn_die_DownloadTokens_nicht_AMA_enthalten()
         {
             var currentUser = new User {Id = "current"};
             var besteller = new User
-                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
+                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleAMA, "ALLOW", new string[0], false, "de")};
 
             var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Digitalisierungsauftrag, OrderDate = DateTime.Now};
@@ -134,7 +134,7 @@ namespace CMI.Manager.Order.Tests
 
             var ear = new ElasticArchiveRecord
             {
-                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
+                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
                 ArchiveRecordId = item.VeId
             };
 
@@ -144,18 +144,18 @@ namespace CMI.Manager.Order.Tests
 
 
         [Test]
-        public async Task Eine_Lesesaalausleihen_eines_BAR_Benutzers_wird_automatisch_freigegeben_wenn_die_DownloadTokens_BAR_enthalten()
+        public async Task Eine_Lesesaalausleihen_eines_AMA_Benutzers_wird_automatisch_freigegeben_wenn_die_DownloadTokens_AMA_enthalten()
         {
             var currentUser = new User {Id = "current"};
             var besteller = new User
-                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
+                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleAMA, "ALLOW", new string[0], false, "de")};
 
             var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Lesesaalausleihen, OrderDate = DateTime.Now};
 
             var ear = new ElasticArchiveRecord
             {
-                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"BAR"}),
+                PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
                 ArchiveRecordId = item.VeId
             };
 
@@ -165,11 +165,11 @@ namespace CMI.Manager.Order.Tests
         }
 
         [Test]
-        public async Task Eine_Lesesaalausleihen_eines_BAR_Benutzers_wird_nicht_automatisch_freigegeben_wenn_die_DownloadTokens_nicht_BAR_enthalten()
+        public async Task Eine_Lesesaalausleihen_eines_AMA_Benutzers_wird_nicht_automatisch_freigegeben_wenn_die_DownloadTokens_nicht_AMA_enthalten()
         {
             var currentUser = new User {Id = "current"};
             var besteller = new User
-                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleBAR, "ALLOW", new string[0], false, "de")};
+                {Id = "besteller", Access = new UserAccess("besteller", AccessRoles.RoleAMA, "ALLOW", new string[0], false, "de")};
 
             var item = new OrderItem {OrderId = 1, Id = 1001, VeId = "200", Status = OrderStatesInternal.ImBestellkorb};
             var ordering = new Ordering {Id = 1, UserId = "besteller", Type = OrderType.Lesesaalausleihen, OrderDate = DateTime.Now};

@@ -40,7 +40,7 @@ namespace CMI.Engine.MailTemplate
 
         public string Geburtsdatum => user.Birthday?.ToString("d.M.yyyy") ?? string.Empty;
 
-        public bool HatFlagBarInterneKonsultation => user.BarInternalConsultation;
+        public bool HatFlagBarInterneKonsultation => user.InternalConsultation;
 
         public string Id => user.Id;
 
