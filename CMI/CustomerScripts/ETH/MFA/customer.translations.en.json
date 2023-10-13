@@ -1,4 +1,9 @@
 {
+  "error": {
+    "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to mfa@library.ethz.ch.",
+    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to mfa@library.ethz.ch.",
+    "unknownErrorTitle": "An error has occurred."
+  },
   "facette": {
     "active": "Active",
     "bestand": "Fonds",
