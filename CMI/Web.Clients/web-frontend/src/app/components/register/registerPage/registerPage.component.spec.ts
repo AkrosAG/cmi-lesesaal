@@ -74,9 +74,9 @@ describe('RegisterPage', () => {
 				Oe1: 'Ö1',
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
-				BVW: 'BVW',
+				BVW: 'EMA',
 				AS: 'AS',
-				BAR: 'BAR'
+				BAR: 'AMA'
 			}
 		};
 		url = <UrlService> {

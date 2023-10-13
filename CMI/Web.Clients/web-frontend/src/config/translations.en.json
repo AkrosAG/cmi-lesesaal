@@ -367,7 +367,7 @@
       "unterlagenInSchutzfrist": "Rejected (no authorisation for administration loans – documents within closure period)"
     },
     "eingangsart": {
-      "erfasstDurchBar": "Recorded by SFA",
+      "erfasstDurchAma": "Recorded by SFA",
       "erfasstDurchKunde": "Recorded by customer"
     },
     "entscheidGesuchStatus": {

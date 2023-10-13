@@ -38,7 +38,7 @@ namespace CMI.Web.Frontend.Controllers
         {
             ViewBag.Language = language;
             ViewBag.Title = FrontendSettings.Instance.GetTranslation(language, "page.title",
-                "Schweizerisches Bundesarchiv BAR");
+                "Hochschularchiv der ETH Zürich | ETH Zürich");
 
             var viewModel = new ErrorModel();
 

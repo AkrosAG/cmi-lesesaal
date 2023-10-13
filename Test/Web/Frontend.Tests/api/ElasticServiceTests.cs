@@ -68,7 +68,7 @@ namespace CMI.Web.Frontend.API.Tests.api
                             _source = new TreeRecord
                             {
                                 ArchiveRecordId = "1",
-                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleBAR}
+                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleAMA}
                             },
                             highlight = new
                             {
@@ -131,7 +131,7 @@ namespace CMI.Web.Frontend.API.Tests.api
                             _source = new TreeRecord
                             {
                                 ArchiveRecordId = "1",
-                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleBAR},
+                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleAMA},
                                 Title = "Ve Title"
                             },
                             highlight = new
@@ -252,7 +252,7 @@ namespace CMI.Web.Frontend.API.Tests.api
                             _source = new TreeRecord
                             {
                                 ArchiveRecordId = "1",
-                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleBAR}
+                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleAMA}
                             },
                             highlight = new
                             {
@@ -280,7 +280,7 @@ namespace CMI.Web.Frontend.API.Tests.api
             // arrange
             var elasticSettings = new Mock<IElasticSettings>();
 
-            var userAccess = new UserAccess("123", AccessRoles.RoleBAR, null, null, false);
+            var userAccess = new UserAccess("123", AccessRoles.RoleAMA, null, null, false);
             var query = new ElasticQuery();
             var mockResponse = new
             {
@@ -307,7 +307,7 @@ namespace CMI.Web.Frontend.API.Tests.api
                             _source = new TreeRecord
                             {
                                 ArchiveRecordId = "1",
-                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleBAR}
+                                PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleAMA}
                             },
                             highlight = new
                             {

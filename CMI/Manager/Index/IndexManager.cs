@@ -39,7 +39,7 @@ namespace CMI.Manager.Index
         public void UpdateArchiveRecord(ConsumeContext<IUpdateArchiveRecord> updateContext)
         {
             var archiveRecord = updateContext.Message.ArchiveRecord;
-            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell BAR , muss verallgemeinet werden
+            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell AMA , muss verallgemeinet werden
 
             archiveRecordProcessor.PostProcessElasticArchiveRecord(elasticArchiveRecord, archiveRecord);
             

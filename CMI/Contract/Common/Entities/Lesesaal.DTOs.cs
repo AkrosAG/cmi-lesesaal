@@ -108,7 +108,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public ApplicationUserDto() {
         }
 
-        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool barInternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
+        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool InternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
 
           this.ID = iD;
           this.FamilyName = familyName;
@@ -140,7 +140,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
           this.RolePublicClient = rolePublicClient;
           this.EiamRoles = eiamRoles;
           this.ResearcherGroup = researcherGroup;
-          this.BarInternalConsultation = barInternalConsultation;
+          this.InternalConsultation = InternalConsultation;
           this.IdentifierDocument = identifierDocument;
           this.MobileNumber = mobileNumber;
           this.ReasonForRejectionDate = reasonForRejectionDate;
@@ -213,7 +213,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public bool ResearcherGroup { get; set; }
 
-        public bool BarInternalConsultation { get; set; }
+        public bool InternalConsultation { get; set; }
 
         public byte[] IdentifierDocument { get; set; }
 

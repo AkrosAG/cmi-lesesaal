@@ -28,7 +28,7 @@ namespace CMI.Manager.Cache
         [Validation(@"\d+[ydhms]|infinite",
             "Geben Sie z.B. 'infinite', '8y', '3d', '7h', '15m' oder '30s' ein, um Die Dateien unbeschränkt, 8 Jahre, 3 Tage, 7 Stunden, 15 Minuten oder 30 Sekunden im Cache zu behalten.")]
         [DefaultValue("12h")]
-        public string RetentionSpanUsageCopyBarOrAS { get; set; }
+        public string RetentionSpanUsageCopyAMAOrAS { get; set; }
 
         [Description("Gibt die Aufbewahrungsfrist an für Gebrauchskopien, die aus einer Benutzungskopie erstellt wurden")]
         [Validation(@"\d+[ydhms]|infinite",
