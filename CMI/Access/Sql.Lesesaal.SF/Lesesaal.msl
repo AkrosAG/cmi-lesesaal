@@ -60,7 +60,7 @@
           <ScalarProperty Name="RolePublicClient" ColumnName="RolePublicClient" />
           <ScalarProperty Name="EiamRoles" ColumnName="EiamRoles" />
           <ScalarProperty Name="ResearcherGroup" ColumnName="ResearcherGroup" />
-          <ScalarProperty Name="BarInternalConsultation" ColumnName="BarInternalConsultation" />
+          <ScalarProperty Name="InternalConsultation" ColumnName="InternalConsultation" />
           <ScalarProperty Name="IdentifierDocument" ColumnName="IdentifierDocument" />
           <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
           <ScalarProperty Name="ReasonForRejectionDate" ColumnName="ReasonForRejectionDate" />
