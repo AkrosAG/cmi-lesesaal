@@ -175,6 +175,30 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		});
 	}
 
+	public digitalisierungStarten() {
+		this._ord.digitalisierungStarten(this.detailRecord.orderId).subscribe(() => {
+			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung erfolgreich gestartet.'));
+		}, (e) => {
+			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Starten Digitalisierung.'));
+		});
+	}
+
+	public digitalisierungExtern() {
+		this._ord.digitalisierungExtern(this.detailRecord.orderId).subscribe(() => {
+			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung extern erfolgreich gestartet.'));
+		}, (e) => {
+			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Starten der Digitalisierung extern.'));
+		});
+	}
+
+	public digitalisierungAbschliessen() {
+		this._ord.digitalisierungAbschliessen(this.detailRecord.orderId).subscribe(() => {
+			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung erfolgreich abgeschlossen.'));
+		}, (e) => {
+			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Abschliessen der Digitalisierung.'));
+		});
+	}
+
 	public updateOrderDetail() {
 		this._ord.auftragUpdateOrderingDetail(this.detailRecord as OrderingFlatItem).subscribe(() => {
 			this.reset();
