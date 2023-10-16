@@ -65,6 +65,14 @@ cmi-viaduc-nav-content a:focus
     border-top-color: #B7352D !important;
 }
 
+.nav-main.yamm .nav > .open > a:hover {
+    z-index: 9999 !important;
+    background: #fff !important;
+    border-top: 5px solid #f7001d !important;
+    margin-top: -5px !important;
+    height: 75px !important;
+}
+
 .nav-page-list li.active:before {
     background: #B7352D !important;
 }
