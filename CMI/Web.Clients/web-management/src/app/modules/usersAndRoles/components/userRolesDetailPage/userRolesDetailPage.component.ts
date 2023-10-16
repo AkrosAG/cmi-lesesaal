@@ -190,7 +190,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			createModifiyData: this.detail.item.createModifiyData,
 			rolePublicClient: this.detail.item.rolePublicClient,
 			researcherGroup: this.detail.item.researcherGroup,
-			barInternalConsultation: this.detail.item.barInternalConsultation,
+			internalConsultation: this.detail.item.internalConsultation,
 		});
 		this.emailChanged();
 	}
@@ -636,7 +636,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				[this.dateValidator.bind(this)]],
 			researcherGroup: new FormControl({value: this.detail.item.researcherGroup,
 					disabled: (!this.detail.item.emailAddress.endsWith('@dodis.ch') || !this.allowForschungsgruppeDdsBearbeiten)}),
-			barInternalConsultation: new FormControl({value: this.detail.item.barInternalConsultation,
+			internalConsultation: new FormControl({value: this.detail.item.internalConsultation,
 				disabled: !this.allowBarInterneKonsultationBearbeiten})
 		});
 		if (this.detail.item.isInternalUser) {
