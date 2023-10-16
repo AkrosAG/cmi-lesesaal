@@ -14,7 +14,7 @@ namespace CMI.Access.Sql.Lesesaal
         private readonly string connectionString;
         private readonly Regex regex = new Regex(@"\r\n?\s*GO\s*\r\n?", RegexOptions.IgnoreCase);
 
-        private readonly int sollVersion = 95;
+        private readonly int sollVersion = 96;
 
         private int istVersion;
 

@@ -189,7 +189,7 @@ export class UserRolesPageComponent implements OnInit {
 		let additionalFields = this.hiddenColumns.filter(x => x.loadPerDefault).map(x => x.key);
 
 		// The following fields must be loaded in any case due to their data type, as it is important that the grid correctly initializes the filters and display type (e.g. checkbox)
-		const mustFields: string[] = ['barInternalConsultation', 'researcherGroup', 'identifizierungsmittel', 'created', 'createdOn',  'modifiedOn', 'birthday', 'downloadLimitDisabledUntil'];
+		const mustFields: string[] = ['internalConsultation', 'researcherGroup', 'identifizierungsmittel', 'created', 'createdOn',  'modifiedOn', 'birthday', 'downloadLimitDisabledUntil'];
 
 		additionalFields.forEach((f) => { fieldsToLoad.push(f); });
 		mustFields.forEach((f) => { fieldsToLoad.push(f); });
