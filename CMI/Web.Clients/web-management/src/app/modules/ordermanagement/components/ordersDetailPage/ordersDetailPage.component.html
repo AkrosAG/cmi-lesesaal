@@ -23,12 +23,24 @@
 										<span><span class="glyphicon glyphicon-tag"></span>&nbsp;{{ 'Freigabekontrolle' | translate:'orderDetailPage.freigabekontrolle' }}</span>
 									</button>
 
+									<button class="btn btn-link" (click)="digitalisierungStarten()">
+										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung starten' | translate:'orderDetailPage.digitalisierungStart' }}</span>
+									</button>
+
 									<button class="btn btn-link" (click)="showAushebungsAuftrag()">
 										<span><span class="glyphicon glyphicon-print"></span>&nbsp;{{ 'Aushebungsauftrag' | translate:'orderDetailPage.aushebungsAuftrag' }}</span>
 									</button>
 
 									<button class="btn btn-link" (click)="showAuftraegeAusleihenModal()">
 										<span><span class="glyphicon glyphicon-retweet-2"></span>&nbsp;{{ 'Auftrag ausleihen' | translate:'orderOverviewPage.ausleihensingular' }}</span>
+									</button>
+
+									<button class="btn btn-link" (click)="digitalisierungExtern()">
+										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung extern' | translate:'orderDetailPage.digitalisierungExtern' }}</span>
+									</button>
+
+									<button class="btn btn-link" (click)="digitalisierungAbschliessen()">
+										<span><span class="glyphicon glyphicon-check"></span>&nbsp;{{ 'Digitalisierung abschliessen' | translate:'orderDetailPage.digitalisierungFinish' }}</span>
 									</button>
 
 									<button class="btn btn-link" (click)="showAuftraegeReponierenModal()">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Extensions;
@@ -608,6 +609,27 @@ namespace CMI.Web.Management.api.Controllers
             }
 
             return BadRequest("");
+        }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungStarten([FromBody] DigitalisierungParams digitalisierungStartenPost)
+        {
+            return await Task.FromResult(Ok());
+        }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungExtern([FromBody] DigitalisierungParams digitalisierungExternPost)
+        {
+            return await Task.FromResult(Ok());
+        }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungAbschliessen([FromBody] DigitalisierungParams digitalisierungAbschliessenPost)
+        {
+            return await Task.FromResult(Ok());
         }
 
         private bool CheckNurMahnbareAuftraegeEnthalten(List<int> orderItemIds)
