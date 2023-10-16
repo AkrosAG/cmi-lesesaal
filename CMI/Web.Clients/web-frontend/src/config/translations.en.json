@@ -402,12 +402,7 @@
       "pruefungFreigabe": "Review approval",
       "zumReponierenBereit": "Ready for return to stacks"
     }
-  },
-  "error": {
-    "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to bestellung@bar.admin.ch.",
-    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to benutzer-admin@bar.admin.ch.",
-    "unknownErrorTitle": "An error has occurred."
-  },
+  }, 
   "errors": {
     "errorTitle": "Error",
     "pageNotFoundTitle": "Page not found",
