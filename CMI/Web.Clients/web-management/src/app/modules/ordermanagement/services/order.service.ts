@@ -179,20 +179,20 @@ export class OrderService {
 		const postbody = {
 			orderItemId: id
 		};
-		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungStarten', postbody);;
+		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungStarten', postbody);
 	}
 
 	public digitalisierungExtern(id: number): Observable<any> {
 		const postbody = {
 			orderItemId: id
 		};
-		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungExtern', postbody);;
+		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungExtern', postbody);
 	}
 
 	public digitalisierungAbschliessen(id: number): Observable<any> {
 		const postbody = {
 			orderItemId: id
 		};
-		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungAbschliessen', postbody);;
+		return this._http.post<void>(this._orderApiUrl + '/DigitalisierungAbschliessen', postbody);
 	}
 }

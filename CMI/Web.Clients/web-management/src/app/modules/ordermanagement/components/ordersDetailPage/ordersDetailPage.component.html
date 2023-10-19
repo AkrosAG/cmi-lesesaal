@@ -23,7 +23,7 @@
 										<span><span class="glyphicon glyphicon-tag"></span>&nbsp;{{ 'Freigabekontrolle' | translate:'orderDetailPage.freigabekontrolle' }}</span>
 									</button>
 
-									<button class="btn btn-link" (click)="digitalisierungStarten()">
+									<button class="btn btn-link" (click)="showDigitalisierungStartenModal()">
 										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung starten' | translate:'orderDetailPage.digitalisierungStart' }}</span>
 									</button>
 
@@ -35,11 +35,11 @@
 										<span><span class="glyphicon glyphicon-retweet-2"></span>&nbsp;{{ 'Auftrag ausleihen' | translate:'orderOverviewPage.ausleihensingular' }}</span>
 									</button>
 
-									<button class="btn btn-link" (click)="digitalisierungExtern()">
+									<button class="btn btn-link" (click)="digitalisierungExternModal()">
 										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung extern' | translate:'orderDetailPage.digitalisierungExtern' }}</span>
 									</button>
 
-									<button class="btn btn-link" (click)="digitalisierungAbschliessen()">
+									<button class="btn btn-link" (click)="digitalisierungAbschliessenModal()">
 										<span><span class="glyphicon glyphicon-check"></span>&nbsp;{{ 'Digitalisierung abschliessen' | translate:'orderDetailPage.digitalisierungFinish' }}</span>
 									</button>
 
@@ -1038,6 +1038,12 @@
 																  [(open)]="showAuftraegeAusleihen"
 																  (onSubmitted)="reset()">
 							</cmi-viaduc-auftraege-ausleihen-modal>
+
+							<cmi-viaduc-digitalisierung-starten-modal *ngIf="showDigitalisierungStarten"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungStarten"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-starten-modal>
 						</div>
 						<cmi-loader *ngIf="loading" class="cmi-visible"></cmi-loader>
 					</div>
