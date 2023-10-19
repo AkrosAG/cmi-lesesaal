@@ -1,0 +1,13 @@
+<cmi-viaduc-modal [(opened)]="open" [modalTitle]="'Digitalisierung starten'">
+	<cmi-blocker *ngIf="isLoading" class="cmi-visible cmi-fixed cmi-center cmi-shadow modal-loading-blocker">
+		<cmi-spinner [hint]="'Digitalisierung wird gestartet ...'"></cmi-spinner>
+	</cmi-blocker>
+
+	<cmi-viaduc-modal-body>
+		<p>Wollen Sie für den Auftrag wirklich die Digitalisierung starten?</p>
+	</cmi-viaduc-modal-body>
+	<cmi-viaduc-modal-footer>
+		<button class="btn btn-default" (click)="cancel()">Abbrechen</button>
+		<button class="btn btn-primary" (click)="ok()">Bestätigen</button>
+	</cmi-viaduc-modal-footer>
+</cmi-viaduc-modal>

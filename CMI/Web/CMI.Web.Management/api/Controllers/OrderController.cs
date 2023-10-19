@@ -34,12 +34,14 @@ namespace CMI.Web.Management.api.Controllers
         private readonly IBus bus;
         private readonly IPublicOrder orderManagerClient;
         private readonly IParameterHelper parameterHelper;
+        private readonly IVecteurActions vecteurActionsClient;
 
 
-        public OrderController(IPublicOrder client,
+        public OrderController(IVecteurActions vecteurActionsClient, IPublicOrder client,
             IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient,
             IParameterHelper parameterHelper, IMailHelper mailHelper, IBus bus)
         {
+            this.vecteurActionsClient = vecteurActionsClient;
             orderManagerClient = client;
             this.findArchiveRecordClient = findArchiveRecordClient;
             this.parameterHelper = parameterHelper;
@@ -615,21 +617,33 @@ namespace CMI.Web.Management.api.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungStarten([FromBody] DigitalisierungParams digitalisierungStartenPost)
         {
-            return await Task.FromResult(Ok());
+            Log.Information("Received SetStatusAushebungBereit call for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
+            await vecteurActionsClient.SetStatusAushebungBereit(digitalisierungStartenPost.OrderItemId);
+
+            Log.Information("Successfully updated status to FuerAushebungBereit for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
+            return Ok("OK");
         }
 
 
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungExtern([FromBody] DigitalisierungParams digitalisierungExternPost)
         {
-            return await Task.FromResult(Ok());
+            Log.Information("SetStatusDigitalisierungExtern call for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
+            await vecteurActionsClient.SetStatusDigitalisierungExtern(digitalisierungExternPost.OrderItemId);
+
+            Log.Information("Successfully updated status to StatusDigitalisierungExtern for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
+            return Ok("OK");
         }
 
 
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungAbschliessen([FromBody] DigitalisierungParams digitalisierungAbschliessenPost)
         {
-            return await Task.FromResult(Ok());
+            Log.Information("Received SetStatusZumReponierenBereit call for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
+            await vecteurActionsClient.SetStatusZumReponierenBereit(digitalisierungAbschliessenPost.OrderItemId);
+
+            Log.Information("Successfully updated status to ZumReponierenBereit for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
+            return Ok("OK");
         }
 
         private bool CheckNurMahnbareAuftraegeEnthalten(List<int> orderItemIds)

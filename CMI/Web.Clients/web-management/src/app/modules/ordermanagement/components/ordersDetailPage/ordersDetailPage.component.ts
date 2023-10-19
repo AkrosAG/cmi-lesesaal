@@ -39,6 +39,9 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	public showEntscheidHinterlegen = false;
 	public showOrderHistoryModal = false;
 	public showAuftraegeAbschliessen = false;
+	public showDigitalisierungStarten = false;
+	public showDigitalisierungExtern = false;
+	public showDigitalisierungAbschliessen = false;
 	public showAuftraegeZuruecksetzen = false;
 	public showAuftraegeAbbrechen: boolean;
 	public showAuftraegeReponieren: boolean;
@@ -175,28 +178,17 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		});
 	}
 
-	public digitalisierungStarten() {
-		this._ord.digitalisierungStarten(this.detailRecord.orderId).subscribe(() => {
-			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung erfolgreich gestartet.'));
-		}, (e) => {
-			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Starten Digitalisierung.'));
-		});
+	public showDigitalisierungStartenModal() {
+		this.showDigitalisierungStarten = true;
+		console.log(this.showDigitalisierungStarten);
 	}
 
-	public digitalisierungExtern() {
-		this._ord.digitalisierungExtern(this.detailRecord.orderId).subscribe(() => {
-			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung extern erfolgreich gestartet.'));
-		}, (e) => {
-			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Starten der Digitalisierung extern.'));
-		});
+	public showDigitalisierungExternModal() {
+		this.showDigitalisierungExtern = true;
 	}
 
-	public digitalisierungAbschliessen() {
-		this._ord.digitalisierungAbschliessen(this.detailRecord.orderId).subscribe(() => {
-			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Digitalisierung erfolgreich abgeschlossen.'));
-		}, (e) => {
-			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Abschliessen der Digitalisierung.'));
-		});
+	public showDigitalisierungAbschliessenModal() {
+		this.showDigitalisierungAbschliessen = true;
 	}
 
 	public updateOrderDetail() {
