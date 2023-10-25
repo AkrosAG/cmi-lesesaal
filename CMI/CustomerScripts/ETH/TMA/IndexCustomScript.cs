@@ -146,6 +146,20 @@ namespace CMI.Contract.Common.Compiler
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "ortsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "werkregister", true);
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "sachregister");
+
+                if (elasticArchiveRecord.ReferenceCode == "\u200A")
+                {
+                    switch (record.Level.ToLower())
+                    {
+                        case "bestand":
+                        case "serie":
+                        case "dossier":
+                        case "einzelstück":
+                        case "einzelstueck":
+                            record.Level = "[ohne Signatur]";
+                            break;
+                    }
+                }
             }
         }
 
