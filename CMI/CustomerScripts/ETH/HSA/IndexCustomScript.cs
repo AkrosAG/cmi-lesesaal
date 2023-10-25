@@ -119,6 +119,20 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
+            if (elasticArchiveRecord.ReferenceCode == "\u200A")
+            {
+                switch (record.Level.ToLower())
+                {
+                    case "bestand":
+                    case "serie":
+                    case "dossier":
+                    case "einzelstück":
+                    case "einzelstueck":
+                        record.Level = "[ohne Signatur]";
+                        break;
+                }
+            }
+
         }
 
         private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)

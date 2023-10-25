@@ -271,7 +271,7 @@ namespace CMI.Manager.Index
                     if (fieldConfiguration.TargetField == "ReferenceCode" &&
                         string.IsNullOrWhiteSpace(value as string))
                     {
-                        value = "[ohne Signatur]"; // "\u200A";   // Hair space
+                        value = "\u200A";   // Hair space
                     }
                     else if (fieldConfiguration.TargetField == "Title" &&
                              string.IsNullOrWhiteSpace(value as string))
