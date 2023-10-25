@@ -280,9 +280,9 @@ export class UserRolesPageComponent implements OnInit {
 	private _getListRolePublicClient(): any {
 		return [{ name: 'Ö2'},
 			{ name: 'Ö3'},
-			{ name: 'BVW'},
+			{ name: 'EMA'},
 			{ name: 'AS'},
-			{ name: 'BAR'}];
+			{ name: 'AMA'}];
 	}
 
 	private _getListRoleManagementClient(): any {

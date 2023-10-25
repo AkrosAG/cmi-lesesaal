@@ -371,14 +371,14 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			case this._authorization.roles.Oe3:
 				this.uploadIdentifierungsmittel();
 				break;
-			case this._authorization.roles.BVW:
-				this.setCheckedStatusForRolePublic(this._authorization.roles.BVW);
+			case this._authorization.roles.EMA:
+				this.setCheckedStatusForRolePublic(this._authorization.roles.EMA);
 				break;
 			case this._authorization.roles.AS:
 				this.setCheckedStatusForRolePublic(this._authorization.roles.AS);
 				break;
-			case this._authorization.roles.BAR:
-				this.setCheckedStatusForRolePublic(this._authorization.roles.BAR);
+			case this._authorization.roles.AMA:
+				this.setCheckedStatusForRolePublic(this._authorization.roles.AMA);
 				break;
 			default:
 				throw new Error();
@@ -415,18 +415,18 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 					'erfolgt ein automatischer Rollenwechsel durch das System. Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
 			case this._authorization.roles.Oe3:
 				return this._txt.get('user.upload.oe3ToOe2Message', 'Die Identifizierungsausweise werden dauerhaft gelöscht. Möchten Sie fortfahren?');
-			case this._authorization.roles.BVW:
+			case this._authorization.roles.EMA:
 				return this._txt.get('user.upload.bvwToAsOrBarMessage', 'Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
 			case this._authorization.roles.AS:
-				if (this.preSelectedRolepublic === this._authorization.roles.BVW) {
+				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
 					return this._txt.get('user.upload.asToBvwMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
 						'Der Benutzer verliert dadurch seine erweiterten Rechte. Wollen Sie fortfahren?');
-				} else if (this.preSelectedRolepublic === this._authorization.roles.BAR) {
+				} else if (this.preSelectedRolepublic === this._authorization.roles.AMA) {
 					return this._txt.get('user.upload.asToBarMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
 						'Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
 				}
 				break;
-			case this._authorization.roles.BAR:
+			case this._authorization.roles.AMA:
 				return this._txt.get('user.upload.barToBvwMessage', 'Der Benutzer verliert dadurch seine erweiterten Rechte. Möchten Sie fortfahren?');
 			default:
 				return 'Keine Text';
@@ -439,18 +439,18 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				return this._txt.get('user.upload.toOe3Title', 'Upload Identifizierungsmittel');
 			case this._authorization.roles.Oe3:
 				return this._txt.get('user.upload.toOe2Title', 'Rolle zu Ö2 zurückstufen');
-			case this._authorization.roles.BVW:
+			case this._authorization.roles.EMA:
 				return this._txt.get('user.upload.toAsOrBarTitle', 'Rollenwechsel erweiterte Rechte');
 			case this._authorization.roles.AS:
-				if (this.preSelectedRolepublic === this._authorization.roles.BVW) {
+				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
 					return this._txt.get('user.upload.asToBvwTitle', 'Rolle zu BVW zurückstufen');
 				}
-				if (this.preSelectedRolepublic === this._authorization.roles.BAR) {
+				if (this.preSelectedRolepublic === this._authorization.roles.AMA) {
 					return this._txt.get('user.upload.asToBarTitle', 'Rollenwechsel erweiterte Rechte');
 				}
 				break;
-			case this._authorization.roles.BAR:
-				if (this.preSelectedRolepublic === this._authorization.roles.BVW) {
+			case this._authorization.roles.AMA:
+				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
 					return this._txt.get('user.upload.barToBvwTitle', 'Rolle zu BVW zurückstufen');
 				}
 				if (this.preSelectedRolepublic === this._authorization.roles.AS) {
