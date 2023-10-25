@@ -145,6 +145,20 @@ namespace CMI.Contract.Common.Compiler
                     }
                 }
             }
+
+            if (elasticArchiveRecord.ReferenceCode == "\u200A")
+            {
+                switch (record.Level.ToLower())
+                {
+                    case "bestand":
+                    case "serie":
+                    case "dossier":
+                    case "einzelstück":
+                    case "einzelstueck":
+                        record.Level = "[ohne Signatur]";
+                        break;
+                }
+            }
         }
 
     }
