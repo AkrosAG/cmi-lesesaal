@@ -105,7 +105,7 @@ describe('CheckoutShippingTypeStep', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
 			spyOn(authService, 'isAsUser').and.returnValue(true);
-			spyOn(authService, 'isBvwUser').and.returnValue(false);
+			spyOn(authService, 'isEmaUser').and.returnValue(false);
 			fixture = TestBed.createComponent(CheckoutShippingTypeStepComponent);
 			sut = fixture.componentInstance;
 			await sut.ngOnInit();
@@ -133,7 +133,7 @@ describe('CheckoutShippingTypeStep', () => {
 	describe('when a BVW user visits the page', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
-			spyOn(authService, 'isBvwUser').and.returnValue(true);
+			spyOn(authService, 'isEmaUser').and.returnValue(true);
 			spyOn(authService, 'isAsUser').and.returnValue(false);
 			fixture = TestBed.createComponent(CheckoutShippingTypeStepComponent);
 			sut = fixture.componentInstance;
@@ -162,7 +162,7 @@ describe('CheckoutShippingTypeStep', () => {
 	describe('when other users visits the page', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
-			spyOn(authService, 'isBvwUser').and.returnValue(false);
+			spyOn(authService, 'isEmaUser').and.returnValue(false);
 			spyOn(authService, 'isAsUser').and.returnValue(false);
 			fixture = TestBed.createComponent(CheckoutShippingTypeStepComponent);
 			sut = fixture.componentInstance;
@@ -196,7 +196,7 @@ describe('CheckoutShippingTypeStep', () => {
 	describe('when the warning option is set', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
-			spyOn(authService, 'isBvwUser').and.returnValue(false);
+			spyOn(authService, 'isEmaUser').and.returnValue(false);
 			spyOn(authService, 'isAsUser').and.returnValue(false);
 			let scs = TestBed.inject(ShoppingCartService);
 			spyOn(scs, 'getShowDigitizationWarningSetting').and.returnValue(true);
@@ -224,7 +224,7 @@ describe('CheckoutShippingTypeStep', () => {
 	describe('when the warning option is not set', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
-			spyOn(authService, 'isBvwUser').and.returnValue(false);
+			spyOn(authService, 'isEmaUser').and.returnValue(false);
 			spyOn(authService, 'isAsUser').and.returnValue(false);
 			fixture = TestBed.createComponent(CheckoutShippingTypeStepComponent);
 			sut = fixture.componentInstance;
