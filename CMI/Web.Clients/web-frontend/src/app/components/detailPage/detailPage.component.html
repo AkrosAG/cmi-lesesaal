@@ -55,14 +55,14 @@
 					</div>
 				</div>
 
-				<div class="section" *ngIf="isBarUser">
+				<div class="section" *ngIf="isAmaUser">
 					<div class="section-header">
 						<h4>
 							{{'Access Tokens' | translate:'metadata.title.accessTokens'}}
 						</h4>
 					</div>
 					<div class="section-content">
-						<cmi-viaduc-access-token [entity]="entity" [hasAccess]="isBarUser">
+						<cmi-viaduc-access-token [entity]="entity" [hasAccess]="isAmaUser">
 						</cmi-viaduc-access-token>
 					</div>
 				</div>

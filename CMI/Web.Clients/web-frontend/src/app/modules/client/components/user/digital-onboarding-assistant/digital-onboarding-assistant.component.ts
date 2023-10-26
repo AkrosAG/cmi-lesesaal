@@ -144,11 +144,11 @@ export class DigitalOnboardingAssistantComponent implements OnInit, AfterViewIni
 	}
 
 	public getUserMailToLink(): string {
-		return 'mailTo:benutzer-admin@bar.admin.ch';
+		return 'mailto:archiv@library.ethz.ch';
 	}
 
 	public getUserMail(): string {
-		return 'benutzer-admin@bar.admin.ch';
+		return 'archiv@library.ethz.ch';
 	}
 
 	private isCountryValid(): boolean {
