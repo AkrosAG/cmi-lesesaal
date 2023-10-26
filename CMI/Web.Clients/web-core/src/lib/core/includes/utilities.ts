@@ -124,6 +124,12 @@ export class Utilities {
 	}
 
 	public static mergeKeys(obj: any, obj2: any): any {
+		if (!obj) {
+			return obj2;
+		} else if (!obj2) {
+			return obj;
+		}
+
 		return Object.keys(obj2).reduce(function (newObj, key) {
 			let val = obj2[key];
 			obj[key] = val;
