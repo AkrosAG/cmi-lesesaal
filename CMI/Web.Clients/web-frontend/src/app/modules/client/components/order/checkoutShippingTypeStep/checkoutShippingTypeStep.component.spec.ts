@@ -51,7 +51,7 @@ describe('CheckoutShippingTypeStep', () => {
 		};
 
 		auth = <AuthorizationService> {
-			isBvwUser(): boolean {
+			isEmaUser(): boolean {
 				return true;
 			},
 			isAsUser(): boolean {

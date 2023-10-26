@@ -267,7 +267,7 @@
   "detail": {
     "notFound": "Die gewünschte Seite kann nicht angezeigt werden",
     "notFoundMessage": "Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href=\"#{0}\">Anmelden und Identifizieren</a>).</br></br>",
-    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Bundesarchiv wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>."
+    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>."
   },
   "detailHierarchy": {
     "activePosition": "Aktuell angezeigte Verzeichnungseinheit"
@@ -644,11 +644,11 @@
     "warningMessagePart2": "Mitarbeitende der Bundesverwaltung können von Ihrer eigenen Verwaltungseinheit abgelieferte Unterlagen direkt ins Amt bestellen.",
     "digitalisierungNichtMoeglichTitle": "Kontingent ausgeschöpft",
     "digitalisierungNichtMoeglichIntro": "Sie haben uns bereits mit der Digitalisierung von {0} Dossiers beauftragt.",
-    "digitalisierungNichtMoeglichAsBvw": "Bitte bestellen Sie die Unterlagen in den Lesesaal, ins Amt oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
+    "digitalisierungNichtMoeglichAsEma": "Bitte bestellen Sie die Unterlagen in den Lesesaal, ins Amt oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
     "digitalisierungNichtMoeglichOthers": "Bitte bestellen Sie die Unterlagen in den Lesesaal oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
     "exceedDigitalisierungTitle": "Sie können nur noch {0} Dossiers digitalisieren lassen",
     "exceedDigitalisierungIntro": "Bitte wählen Sie unten jene Dossiers aus, die Sie jetzt digitalisieren lassen möchten. Sobald diese digitalisiert sind, können Sie weitere Dossier in Auftrag geben.",
-    "exceedDigitalisierungAsBvw": "Alternativ dazu ist eine Bestellung in den Lesesaal oder ins Amt jederzeit möglich.",
+    "exceedDigitalisierungAsEma": "Alternativ dazu ist eine Bestellung in den Lesesaal oder ins Amt jederzeit möglich.",
     "exceedDigitalisierungOthers": "Alternativ dazu ist eine Bestellung in den Lesesaal jederzeit möglich."
   },
   "orderCheckoutPageComponent": {

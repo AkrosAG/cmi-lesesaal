@@ -163,7 +163,7 @@ describe('UserAccount', () => {
 		});
 	});
 
-	describe('when user is BAR, BVW or AS', () => {
+	describe('when user is AMA, EMA or AS', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
 			spyOn(authService, 'isInternalUser').and.returnValue(true);
