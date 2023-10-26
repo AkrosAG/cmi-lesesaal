@@ -416,18 +416,18 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			case this._authorization.roles.Oe3:
 				return this._txt.get('user.upload.oe3ToOe2Message', 'Die Identifizierungsausweise werden dauerhaft gelöscht. Möchten Sie fortfahren?');
 			case this._authorization.roles.EMA:
-				return this._txt.get('user.upload.bvwToAsOrBarMessage', 'Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
+				return this._txt.get('user.upload.emaToAsOrAmaMessage', 'Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
 			case this._authorization.roles.AS:
 				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
-					return this._txt.get('user.upload.asToBvwMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
+					return this._txt.get('user.upload.asToEmaMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
 						'Der Benutzer verliert dadurch seine erweiterten Rechte. Wollen Sie fortfahren?');
 				} else if (this.preSelectedRolepublic === this._authorization.roles.AMA) {
-					return this._txt.get('user.upload.asToBarMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
+					return this._txt.get('user.upload.asToEmaMessage', 'Die dem Benutzer zugewiesenen Verlinkungen auf die zuständigen Stellen werden dauerhaft gelöscht. ' +
 						'Der Benutzer erhält durch den Rollenwechsel erweiterte Rechte. Möchten Sie fortfahren?');
 				}
 				break;
 			case this._authorization.roles.AMA:
-				return this._txt.get('user.upload.barToBvwMessage', 'Der Benutzer verliert dadurch seine erweiterten Rechte. Möchten Sie fortfahren?');
+				return this._txt.get('user.upload.amaToEmaMessage', 'Der Benutzer verliert dadurch seine erweiterten Rechte. Möchten Sie fortfahren?');
 			default:
 				return 'Keine Text';
 		}
@@ -440,21 +440,21 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			case this._authorization.roles.Oe3:
 				return this._txt.get('user.upload.toOe2Title', 'Rolle zu Ö2 zurückstufen');
 			case this._authorization.roles.EMA:
-				return this._txt.get('user.upload.toAsOrBarTitle', 'Rollenwechsel erweiterte Rechte');
+				return this._txt.get('user.upload.toAsOrAmaTitle', 'Rollenwechsel erweiterte Rechte');
 			case this._authorization.roles.AS:
 				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
-					return this._txt.get('user.upload.asToBvwTitle', 'Rolle zu BVW zurückstufen');
+					return this._txt.get('user.upload.asToEmaTitle', 'Rolle zu BVW zurückstufen');
 				}
 				if (this.preSelectedRolepublic === this._authorization.roles.AMA) {
-					return this._txt.get('user.upload.asToBarTitle', 'Rollenwechsel erweiterte Rechte');
+					return this._txt.get('user.upload.asToAmaTitle', 'Rollenwechsel erweiterte Rechte');
 				}
 				break;
 			case this._authorization.roles.AMA:
 				if (this.preSelectedRolepublic === this._authorization.roles.EMA) {
-					return this._txt.get('user.upload.barToBvwTitle', 'Rolle zu BVW zurückstufen');
+					return this._txt.get('user.upload.amaToEmaTitle', 'Rolle zu BVW zurückstufen');
 				}
 				if (this.preSelectedRolepublic === this._authorization.roles.AS) {
-					return this._txt.get('user.upload.barToAsTitle', 'Rolle zu AS zurückstufen');
+					return this._txt.get('user.upload.amaToAsTitle', 'Rolle zu AS zurückstufen');
 				}
 				break;
 			default:
