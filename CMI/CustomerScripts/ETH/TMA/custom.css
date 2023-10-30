@@ -62,13 +62,13 @@ cmi-viaduc-nav-content a:focus
 }
 
 .nav-main {
-    border-top-color: #B7352D !important;
+    border-top-color:  !important;
 }
 
-.nav-main.yamm .nav > .open > a:hover {
+.nav-main.yamm .nav > .open > a, .nav-main.yamm .nav > .open > a:hover {
     z-index: 9999 !important;
     background: #fff !important;
-    border-top: 5px solid #f7001d !important;
+    border-top: 5px solid #B7352D!important;
     margin-top: -5px !important;
     height: 75px !important;
 }

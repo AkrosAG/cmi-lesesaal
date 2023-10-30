@@ -44,7 +44,7 @@ export class OrderSectionComponent {
 		let url = this._url.getExternalRegisterAndIdentifyUrl();
 
 		let linkPart = '<a href="' + url + '" target="_blank" rel="noopener">' + registerPart + '</a>';
-		this.pleaseLoginText = `${textA} (${textB} ${linkPart})`;
+		this.pleaseLoginText = `${textA} (${textB} ${linkPart}).`;
 	}
 
 	public login(event: any = null) {
