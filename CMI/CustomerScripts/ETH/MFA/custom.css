@@ -149,9 +149,9 @@ cmi-viaduc-footer a:visited {
     font-weight: 700;
 }
 
-    .nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
-        border-left-color: #215caf !important;
-    }
+.nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
+    border-left-color: #215caf !important;
+}
 
 .help-block, .text-danger {
     color: #215caf !important;
