@@ -61,7 +61,7 @@ cmi-viaduc-nav-content a:focus
     border-top: #215caf !important;
 }
 
-.nav-main.yamm .nav > .open > a:hover {
+.nav-main.yamm .nav > .open > a, .nav-main.yamm .nav > .open > a:hover {
     z-index: 9999 !important;
     background: #fff !important;
     border-top: 5px solid #215caf !important;
@@ -142,6 +142,15 @@ cmi-viaduc-footer a:visited {
 .treecrumb .dropdown .dropdown-toggle {
     border-bottom: solid 0.0625rem #CCC !important;
     border-top: solid 0.0625rem #CCC !important;
+}
+
+.nav-process li a:active, .nav-process li a:focus, .nav-process li a:hover, .nav-process li.active a {
+    background: #215caf !important;
+    font-weight: 700;
+}
+
+.nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
+    border-left-color: #215caf !important;
 }
 
 .help-block, .text-danger {
