@@ -322,7 +322,7 @@
     "gesuchDauerInfo": "The processing of requests for access can take up to 4 weeks.",
     "identifizierung": "In order to submit a request for information you must first identify yourself. You can apply for identification in your user account <a href=\"#{0}\" target=\"_blank\">identification function</a>.",
     "identifizierungTitel": "Identification required",
-    "infoTextAbschnittDrei": ". The authorisation to consult records is only valid for the person making the request.",
+    "infoTextAbschnittDrei": "The authorisation to consult records is only valid for the person making the request.",
     "infoTextAbschnittEins": "To consult records that are still subject to a closure period, you require authorisation, which you must apply for by submitting a request. You can have consultation requests for a maximum of 50 dossiers undergoing processing at any one time.",
     "infoTextAbschnittLink": "(see Login and identification)",
     "infoTextAbschnittZwei": "We will then forward your request to the office responsible. The processing of requests for access can take up to 4 weeks. If your request is approved, you must identify yourself to consult the documents ",
