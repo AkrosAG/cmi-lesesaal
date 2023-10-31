@@ -13,8 +13,4 @@ export class DigitalOnboardingAssistantComponent implements OnInit, AfterViewIni
 	}
 
 	public ngAfterViewInit(): void {}
-
-	public getUserMail(): string {
-		return 'benutzer-admin@bar.admin.ch';
-	}
 }
