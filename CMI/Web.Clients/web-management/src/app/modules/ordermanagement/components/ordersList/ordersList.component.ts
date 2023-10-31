@@ -184,7 +184,7 @@ export class OrdersListComponent implements OnInit {
 				], 'key', 'name');
 
 				maps['publikationsrechte'] = new DataMap([
-					{name: 'BAR'},
+					{name: 'AMA'},
 					{name: 'Dritte'},
 					{name: 'Prüfung nötig'}
 				], 'name', 'name');

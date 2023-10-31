@@ -24,7 +24,7 @@ export class DetailPageComponent implements OnInit {
 	public showDownloadSection = false;
 	public showOrderSection = false;
 	public items: Entity[] = [];
-	public isBarUser: boolean = false;
+	public isAmaUser: boolean = false;
 
 	private _error: any;
 	private _rootId: string;
@@ -45,7 +45,7 @@ export class DetailPageComponent implements OnInit {
 		this._buildCrumbs();
 		this._seoService.setTitle(this._txt.translate('Detailansicht', 'detailPageComponent.pageTitle'));
 		this._route.params.subscribe(params => this._loadEntity(params['id']));
-		this.isBarUser = this._authorization.isBarUser();
+		this.isAmaUser = this._authorization.isAmaUser();
 	}
 
 	private _buildCrumbs(entity?: Entity): void {
@@ -154,8 +154,7 @@ export class DetailPageComponent implements OnInit {
 				this._url.getRegisterAndIdentifyInfo());
 
 		let details2 = this._txt.get('detail.notFoundMessage2',
-			'Bei Fragen zur Zugänglichkeit der Unterlagen im Bundesarchiv wenden Sie sich bitte an die Beratung oder per E-Mail an ' +
-			'<a href="mailto:bundesarchiv@bar.admin.ch">bundesarchiv@bar.admin.ch</a>.');
+			'Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href="mailto:archiv@library.ethz.ch">archiv@library.ethz.ch</a>.');
 
 		return {
 			message: this._txt.get('detail.notFound', 'Die gewünschte Seite kann nicht angezeigt werden'),

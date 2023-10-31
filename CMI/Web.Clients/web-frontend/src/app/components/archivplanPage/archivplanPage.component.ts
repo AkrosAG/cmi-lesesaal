@@ -141,8 +141,7 @@ export class ArchivplanPageComponent implements OnInit {
 				this._url.getRegisterAndIdentifyInfo());
 
 		let details2 = this._txt.get('detail.notFoundMessage2',
-			'Bei Fragen zur Zugänglichkeit der Unterlagen im Bundesarchiv wenden Sie sich bitte an die Beratung oder per E-Mail an ' +
-			'<a href="mailto:bundesarchiv@bar.admin.ch">bundesarchiv@bar.admin.ch</a>.');
+			'Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.');
 
 		return details1 + details2;
 	}

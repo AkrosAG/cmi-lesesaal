@@ -250,7 +250,7 @@
   "detail": {
     "notFound": "The page you have requested cannot be displayed",
     "notFoundMessage": "It is possible that you do not have the necessary rights. Please check your rights in your <a href=\"#{0}\">user account.</a></br></br>",
-    "notFoundMessage2": "If you have questions about accessibility of documents in the Federal Archives, please contact our advice service or send an e-mail to <a href=\"mailto:bundesarchiv@bar.admin.ch\">bundesarchiv@bar.admin.ch</a>.",
+    "notFoundMessage2": "If you have questions about accessibility of documents in the Federal Archives, please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
     "notFoundMessageNotOe1": "It is possible that you do not have the necessary rights to access the page. Please check your rights in your <a href=\"#{0}\">user account</a>.</br></br>",
     "notFoundMessageOe1": "It is possible that you do not have the necessary rights to access the page (see <a href=\"#{0}\">Login and identification</a>).</br></br>"
   },
@@ -302,7 +302,7 @@
     "gesuchDauerInfo": "The processing of requests for access can take up to 4 weeks.",
     "identifizierung": "In order to submit a request for information you must first identify yourself. You can apply for identification in your user account <a href=\"#{0}\" target=\"_blank\">identification function</a>.",
     "identifizierungTitel": "Identification required",
-    "infoTextAbschnittDrei": ". The authorisation to consult records is only valid for the person making the request.",
+    "infoTextAbschnittDrei": "The authorisation to consult records is only valid for the person making the request.",
     "infoTextAbschnittEins": "To consult records that are still subject to a closure period, you require authorisation, which you must apply for by submitting a request. You can have consultation requests for a maximum of 50 dossiers undergoing processing at any one time.",
     "infoTextAbschnittLink": "(see Login and identification)",
     "infoTextAbschnittZwei": "We will then forward your request to the office responsible. The processing of requests for access can take up to 4 weeks. If your request is approved, you must identify yourself to consult the documents ",
@@ -382,13 +382,13 @@
       "pruefungFreigabe": "Review approval",
       "zumReponierenBereit": "Ready for return to stacks"
     }
-  }, 
+  },
   "errors": {
     "errorTitle": "Error",
     "pageNotFoundTitle": "Page not found",
     "smartcardErrorMessage": "You have tried to log in using a smartcard. In your role you may only log in using Kerberos. You will be logged out automatically within 8 seconds.",
     "smartcardErrorTitle": "Login only permitted with Kerberos.",
-    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to benutzer-admin@bar.admin.ch.",
+    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to archiv@library.ethz.ch.",
     "unknownErrorTitle": "An error has occurred"
   },
   "facette": {
@@ -598,7 +598,7 @@
       "registerAndAuthentificate": "Registration & identification",
       "registerAndAuthentificateTeaserText": "Anonymous, registered or identified: the rights of individual user categories at a glance.",
       "search": "Searching",
-      "searchTeaserText": "Guidance and tips for searching on recherche.bar.admin.ch.",
+      "searchTeaserText": "Guidance and tips for searching on https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html.",
       "stocks": "Fonds",
       "stocksTeaserText": "Overview of the fonds of the Federal Archives and the topic areas into which they are divided.",
       "themenuebersicht": "Thematic overview"
@@ -646,11 +646,11 @@
     "warningMessagePart2": "Federal Administration staff can order documents submitted by their administrative unit for delivery direct to the office.",
     "digitalisierungNichtMoeglichTitle": "You have exhausted your quota",
     "digitalisierungNichtMoeglichIntro": "You have already requested us to digitise {0} dossiers.",
-    "digitalisierungNichtMoeglichAsBvw": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
+    "digitalisierungNichtMoeglichAsEma": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
     "digitalisierungNichtMoeglichOthers": "Please order the documents for consultation in the reading room or wait until your existing digitisation orders have been completed.",
     "exceedDigitalisierungTitle": "You can only have {0} more dossiers digitised",
     "exceedDigitalisierungIntro": "Please select below the dossiers you wish to have digitised now. As soon as they have been digitised, you can order further dossiers.",
-    "exceedDigitalisierungAsBvw": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
+    "exceedDigitalisierungAsEma": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
     "exceedDigitalisierungOthers": "Alternatively you can order them for consultation in the reading room at any time."
   },
   "orderCheckoutPageComponent": {

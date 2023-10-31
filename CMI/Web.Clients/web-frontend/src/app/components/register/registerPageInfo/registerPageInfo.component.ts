@@ -33,8 +33,7 @@ export class RegisterPageInfoComponent implements OnInit {
 	}
 
 	public getTextFragen(): string {
-		return this._txt.translate('Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an ' +
-			'<a href="mailto:benutzer-admin@bar.admin.ch">benutzer-admin@bar.admin.ch</a>.', 'registerInfo.questionText');
+		return this._txt.translate('Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.', 'registerInfo.questionText');
 	}
 
 	public cancel(): void {

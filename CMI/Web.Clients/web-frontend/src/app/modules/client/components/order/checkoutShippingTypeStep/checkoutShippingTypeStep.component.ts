@@ -56,7 +56,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		'zur Konsultation in den <strong>Lesesaal</strong> bestellen. Bestellen Sie 24 Stunden im Voraus, ' +
 		'damit Ihnen die Unterlagen am gewünschten Tag zur Verfügung stehen (Dienstag, Mittwoch und Donnerstag).');
 
-		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isBvwUser();
+		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
 		let activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
 			this.form.patchValue({
