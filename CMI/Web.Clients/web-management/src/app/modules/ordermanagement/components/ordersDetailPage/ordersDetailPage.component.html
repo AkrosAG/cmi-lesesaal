@@ -35,11 +35,11 @@
 										<span><span class="glyphicon glyphicon-retweet-2"></span>&nbsp;{{ 'Auftrag ausleihen' | translate:'orderOverviewPage.ausleihensingular' }}</span>
 									</button>
 
-									<button class="btn btn-link" (click)="digitalisierungExternModal()">
+									<button class="btn btn-link" (click)="showDigitalisierungExternModal()">
 										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung extern' | translate:'orderDetailPage.digitalisierungExtern' }}</span>
 									</button>
 
-									<button class="btn btn-link" (click)="digitalisierungAbschliessenModal()">
+									<button class="btn btn-link" (click)="showDigitalisierungAbschliessenModal()">
 										<span><span class="glyphicon glyphicon-check"></span>&nbsp;{{ 'Digitalisierung abschliessen' | translate:'orderDetailPage.digitalisierungFinish' }}</span>
 									</button>
 
@@ -1044,6 +1044,16 @@
 																	 [(open)]="showDigitalisierungStarten"
 																	 (onSubmitted)="reset()">ö
 							</cmi-viaduc-digitalisierung-starten-modal>
+							<cmi-viaduc-digitalisierung-extern-modal *ngIf="showDigitalisierungExtern"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungExtern"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-extern-modal>
+							<cmi-viaduc-digitalisierung-abschliessen-modal *ngIf="showDigitalisierungAbschliessen"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungAbschliessen"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-abschliessen-modal>
 						</div>
 						<cmi-loader *ngIf="loading" class="cmi-visible"></cmi-loader>
 					</div>
