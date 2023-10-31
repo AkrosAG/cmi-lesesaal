@@ -3,7 +3,7 @@
 		<div class="col col-xs-3" [ngClass]="{ 'external': row.visibility === 0, 'internal text-danger': row.visibility === 1}">
 			<label><span [innerHTML]="row.label"></span>
 				<span *ngIf="row.visibility === 1">&nbsp;
-					<span class="glyphicon glyphicon-lock"  tooltip="{{'Feld nur für BAR Benutzer sichtbar' | translate:'detailSection.internalField'}}" aria-hidden="true"></span>
+					<span class="glyphicon glyphicon-lock"  tooltip="{{'Feld nur für AMA Benutzer sichtbar' | translate:'detailSection.internalField'}}" aria-hidden="true"></span>
 					<span class="sr-only">{{ 'Feld nur für BAR Benutzer sichtbar' | translate:'detailSection.internalField'}}</span>
 				</span>
 			</label>

@@ -236,7 +236,7 @@
     <Property Name="RolePublicClient" Type="String" MaxLength="3" ed:ValidateMaxLength="3" ed:ValidateRequired="false" ed:Guid="250d30f3-6571-4234-8f18-7f1d12d6b6b6" />
     <Property Name="EiamRoles" Type="String" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="false" ed:Guid="33b33907-b23d-485b-9be2-70c72d034c9d" />
     <Property Name="ResearcherGroup" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="987ac55c-5865-4b22-a23f-af8321c409b0" />
-    <Property Name="BarInternalConsultation" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="0cf3445f-45c3-4a50-905d-424786ab451a" />
+    <Property Name="InternalConsultation" Type="Boolean" Nullable="false" ed:ValidateRequired="true" ed:Guid="0cf3445f-45c3-4a50-905d-424786ab451a" />
     <Property Name="IdentifierDocument" Type="Binary" ed:ValidateRequired="false" ed:Guid="2ab9ec1f-ab4f-4e89-9b58-4c1f395ad5ff">
       <Documentation>
         <Summary>Beim erfolgreichem Onboarding mit Swisscom wird in dieses Feld automatisch ein von der Swisscom generiertes PDF abgelegt. Zudem kann in dieses Feld auch über den Management Client eine Datei hochgeladen werden.</Summary>

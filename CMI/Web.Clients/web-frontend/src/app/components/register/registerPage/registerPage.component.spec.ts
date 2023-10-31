@@ -74,9 +74,9 @@ describe('RegisterPage', () => {
 				Oe1: 'Ö1',
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
-				BVW: 'EMA',
+				EMA: 'EMA',
 				AS: 'AS',
-				BAR: 'AMA'
+				AMA: 'AMA'
 			}
 		};
 		url = <UrlService> {
@@ -167,7 +167,7 @@ describe('RegisterPage', () => {
 		});
 	});
 
-	describe('when user is BAR, BVW or AS', () => {
+	describe('when user is AMA, EMA or AS', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
 			spyOn(authService, 'isInternalUser').and.returnValue(true);
