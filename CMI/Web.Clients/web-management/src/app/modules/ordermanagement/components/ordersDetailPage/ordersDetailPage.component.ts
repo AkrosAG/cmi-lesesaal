@@ -152,7 +152,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	}
 
 	public getEingangsart(art: number): string {
-		return art === 0 ? 'Durch Kunde erfasst' : 'Durch BAR erfasst';
+		return art === 0 ? 'Durch Kunde erfasst' : 'Durch AMA erfasst';
 	}
 
 	public getFormattedDate(dt: Date | string) {
