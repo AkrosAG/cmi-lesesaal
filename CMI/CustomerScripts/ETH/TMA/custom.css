@@ -84,7 +84,7 @@ cmi-viaduc-nav-content a:focus
 }
 
 .disabled {
-    color: #757575 !important;
+    color: #757575!important;
 }
 
 .yamm-content a span, cmi-viaduc-detail-utilities a:hover,
@@ -94,7 +94,7 @@ cmi-viaduc-simple-search-page a:hover, search-result a:hover, simple-hit a:hover
 }
 
 .yamm-content a:hover, .nav-lang a:hover {
-    border: none !important;
+    border: none!important;
     color: #B7352D!important;
 }
 
