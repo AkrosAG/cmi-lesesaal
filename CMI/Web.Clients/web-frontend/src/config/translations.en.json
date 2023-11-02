@@ -240,7 +240,7 @@
     "thxTextEischtisgesuch": "We will forward your request to the office responsible. The processing of requests for access can take up to 4 weeks.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "If your request is approved, you will need to identify yourself in order to consult the documents (see <a href=\"{0}\">Registration and identification</a>).",
     "thxTextEischtisgesuchIntroduction": "Thank you for your request to consult the following documents:",
-    "thxTextLesesaal": "Thank you for your order. You can view the documents on your chosen date in the Federal Archives <a href=\"#/{0}\">reading room</a>. The reading room is open Tuesday to Thursday from 9 a.m. to 7 p.m.",
+    "thxTextLesesaal": "Thank you for your order. You can view the documents on your chosen date <a href=\"#/{0}\">reading room</a>. The reading room is open Tuesday to Thursday from 9 a.m. to 7 p.m.",
     "thxTextVerwaltungsausleihe": "Thank you for your order. You will receive your documents within one to two working days by post."
   },
   "clipboard": {
@@ -270,7 +270,7 @@
   "detail": {
     "notFound": "The page you have requested cannot be displayed",
     "notFoundMessage": "It is possible that you do not have the necessary rights. Please check your rights in your <a href=\"#{0}\">user account.</a></br></br>",
-    "notFoundMessage2": "If you have questions about accessibility of documents in the Federal Archives, please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+    "notFoundMessage2": "If you have questions about accessibility of documents, please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
     "notFoundMessageNotOe1": "It is possible that you do not have the necessary rights to access the page. Please check your rights in your <a href=\"#{0}\">user account</a>.</br></br>",
     "notFoundMessageOe1": "It is possible that you do not have the necessary rights to access the page (see <a href=\"#{0}\">Login and identification</a>).</br></br>"
   },
@@ -297,7 +297,7 @@
   },
   "download": {
     "menuTooltip": "To download",
-    "thresholdExceeded": "You have already downloaded {1} files in the last {0}. You have therefore reached the maximum number of files. You will be able to make another download in {2}. Alternatively you can request the Federal Archives to increase your download allocation."
+    "thresholdExceeded": "You have already downloaded {1} files in the last {0}. You have therefore reached the maximum number of files. You will be able to make another download in {2}. Alternatively you can request to increase your download allocation."
   },
   "downloadSection": {
     "downloadSuccess": "Download successfully initiated.",
@@ -337,7 +337,7 @@
   },
   "engagement": {
     "chatbotInfo": "To use the chatbot (beta) switch to German",
-    "chatInfo": "Chat with the Federal Archives Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
+    "chatInfo": "Chat with the us Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
     "headerTitle": "How may we assist you?"
   },
   "enums": {
@@ -462,7 +462,7 @@
     "menuTitle": "Favourites",
     "menuTitleAsFavorite": "Add as favourite",
     "menuTooltip": "Add to favourites",
-    "migrationFailure": "Workbook migration failed. \\nIf the problem persists, please contact the Federal Archives.",
+    "migrationFailure": "Workbook migration failed. \\nIf the problem persists, please contact our advice service or send an e-mail to <a href=\\\"mailto:archiv@library.ethz.ch\\\">archiv@library.ethz.ch</a>..",
     "migrationSuccess": "Workbooks successfully migrated",
     "missingTitle": "Please enter a title for the new list.",
     "newListLabel": "Name of list",
@@ -597,30 +597,30 @@
       "chat": "Chat",
       "chatbot": "Chatbot",
       "chatbotTeaserText": "Ask the chatbot (beta) – it is available around the clock.",
-      "chatTeaserText": "Chat with the Federal Archives Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
+      "chatTeaserText": "Chat with the us Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
       "email": "E-mail",
       "emailTeaserText": "For more complex enquiries, send us an e-mail.",
       "forum": "Forum",
       "forumTeaserText": "Discuss your questions and experiences with other archive users.",
       "quoteAndPublish": "Citing & publishing",
-      "quoteAndPublishTeaserText": "Rules for correctly citing and publishing documents from the Federal Archives."
+      "quoteAndPublishTeaserText": "Rules for correctly citing and publishing documents."
     },
     "closemenu": "Close navigation",
     "contact": "Contact",
     "deepLinkDetail": "Permanent URL of unit of description",
     "deepLinkSearch": "Permanent URL of search",
     "information": {
-      "apiText": "Are you a developer? The Application Programming Interface (API) of the Swiss Federal Archives allows you to integrate archival search in your application.",
+      "apiText": "Are you a developer? The Application Programming Interface (API) allows you to integrate archival search in your application.",
       "orderAndConsult": "Ordering & consulting",
-      "orderAndConsultTeaserText": "Ordering and viewing analogue and digital documents from the Federal Archives online – important information.",
+      "orderAndConsultTeaserText": "Ordering and viewing analogue and digital documents online – important information.",
       "protectionAndPetitions": "Closure periods & consultation requests",
-      "protectionAndPetitionsTeaserText": "Information about Federal Archives documents that are subject to a closure period, and the consultation requests required.",
+      "protectionAndPetitionsTeaserText": "Information about documents that are subject to a closure period, and the consultation requests required.",
       "registerAndAuthentificate": "Registration & identification",
       "registerAndAuthentificateTeaserText": "Anonymous, registered or identified: the rights of individual user categories at a glance.",
       "search": "Searching",
-      "searchTeaserText": "Guidance and tips for searching on https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html.",
+      "searchTeaserText": "Guidance and tips for searching.",
       "stocks": "Fonds",
-      "stocksTeaserText": "Overview of the fonds of the Federal Archives and the topic areas into which they are divided.",
+      "stocksTeaserText": "Overview of the fonds and the topic areas into which they are divided.",
       "themenuebersicht": "Thematic overview"
     },
     "legal": "Terms and conditions",
@@ -821,14 +821,14 @@
       "reason1": "It is possible that you do not have the necessary rights. Please check your rights in your user account.",
       "reason2": "The documents you are looking for have not yet been catalogued and recorded in the system.",
       "reason3": "Spelling error or unknown search terms: please check the spelling or search for other terms.",
-      "reason4": "There are definitely no documents on your topic in the Federal Archives. You can find other archives in the Archive Addresses of Switzerland database or on the archive portal Europa.",
+      "reason4": "There are definitely no documents on your topic. You can find other archives in the Archive Addresses of Switzerland database or on the archive portal Europa.",
       "showHinweis": "Do not show this tip again"
     },
     "noHitsTitle": "No results for your search term",
     "noHitsTitleForQuery": "No archival materials corresponding to your search - {0} - were found.",
     "oe3RoleRequired": "To order documents with an authorisation to consult, you require \"identified user\" status. To proceed to the identification process please click on this notice.",
     "oe3RoleRequiredTitle": "Order not possible",
-    "reason4": "There are definitely no documents on your topic in the Federal Archives. You can find other archives in the <a href=\"{0}\">Archive Addresses of Switzerland database</a> or on the <a href=\"{1}\">archive portal Europa</a>.",
+    "reason4": "There are definitely no documents on your topic. You can find other archives in the <a href=\"{0}\">Archive Addresses of Switzerland database</a> or on the <a href=\"{1}\">archive portal Europa</a>.",
     "relevance": "Relevance",
     "signatur": "Reference code",
     "zugangTooltip": "Access",
