@@ -56,7 +56,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
                     }
                 },
                 {
-                    "OE2 Benutzer",
+                    "Ö2 Benutzer",
                     new ShibbolethAttributeValueCollection
                     {
                         new ShibbolethAttributeValue("givenName", "Ulrich"),
@@ -73,7 +73,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
             };
 
             // Hier anpassen, welcher Benutzer zurückgeliefert werden soll
-            return retVal["OE2 Benutzer"];
+            return retVal["Ö3 Benutzerr"];
         }
     }
 }
