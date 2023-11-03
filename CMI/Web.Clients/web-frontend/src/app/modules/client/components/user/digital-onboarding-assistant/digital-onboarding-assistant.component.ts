@@ -29,7 +29,9 @@ export class DigitalOnboardingAssistantComponent implements OnInit, AfterViewIni
 	public ngOnInit() {
 		this.currentStep = 1;
 		this._userService.GetOnboardingUri()
-			.then(link => this.swisscomLink = link);
+			.then(link => {
+				this.swisscomLink = link;
+			});
 		const lang = this._context.language;
 		this._countriesService.loadCountries(lang)
 			.then(res => {

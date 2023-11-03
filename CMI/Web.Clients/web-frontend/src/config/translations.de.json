@@ -60,7 +60,9 @@
       "videoChatPossible": "Videoanruf möglich",
       "wizardInfo": "Um den Status «Identifizierte/r Benutzer/in» zu erhalten, müssen Sie ein Gespräch per Videoanruf führen. Beantworten Sie dazu bitte vorgängig folgende Fragen:",
       "wizardTitle": "Status «Identifizierte/r Benutzer/in» beantragen",
-      "yes": "Ja"
+      "yes": "Ja",
+      "statusTitle": "Lorem ipsum dolor sit amet",
+      "statusInfo": "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
     },
     "email": "E-Mail",
     "errorPhoneNumber": "Telefonnummern können mit einem \"+\" beginnen, Zahlen, Leerzeichen und \\\"-\\\" enthalten und müssen zwischen 6 und 20 Zeichen lang sein",
