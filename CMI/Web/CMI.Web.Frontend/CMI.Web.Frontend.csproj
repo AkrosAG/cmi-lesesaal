@@ -389,6 +389,8 @@
     </Content>
     <Content Include="content\img\ComplexBooleanSearch.png" />
     <Content Include="content\img\ExampleSearchForLoiAndCulture.png" />
+    <Content Include="content\it\500.html" />
+    <Content Include="content\it\informazioni\api.html" />
     <Content Include="content\de\informationen\registrieren-und-identifizieren.html" />
     <Content Include="content\de\informationen\schutzfristen-und-einsichtsgesuche.html" />
     <Content Include="content\de\informationen\zitieren-und-publizieren.html" />
@@ -414,6 +416,16 @@
     <Content Include="content\fonts\FrutigerNeueW02-Light.svg" />
     <Content Include="content\fonts\FrutigerNeueW02-Regular.svg" />
     <Content Include="content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="content\fr\404.html" />
+    <Content Include="content\fr\contact.html" />
+    <Content Include="content\fr\informations\commande-et-consultation.html" />
+    <Content Include="content\fr\informations\inscription-et-identification.html" />
+    <Content Include="content\fr\informations\delais-de-protection-et-demandes-de-consultation.html" />
+    <Content Include="content\fr\informations\citer-et-publier.html" />
+    <Content Include="content\fr\informations\recherch.html" />
+    <Content Include="content\fr\conditions-d-utilisation.html" />
+    <Content Include="content\fr\a-propos\a-propos.html" />
+    <Content Include="content\fr\informations\fonds.html" />
     <Content Include="content\img\bg-striped.png" />
     <Content Include="content\img\chosen-sprite%402x.png" />
     <Content Include="content\img\chosen-sprite.png" />
@@ -444,12 +456,27 @@
     <Content Include="content\img\ico\mstile-310x150.png" />
     <Content Include="content\img\ico\mstile-310x310.png" />
     <Content Include="content\img\ico\mstile-70x70.png" />
+    <Content Include="content\img\logo-CH.png" />
+    <Content Include="content\img\logo-CH.svg" />
+    <Content Include="content\img\logo_bar.png" />
+    <Content Include="content\img\logo_copyright.png" />
     <Content Include="content\img\overlay.png" />
     <Content Include="content\img\placeholder.png" />
     <Content Include="content\img\swiss.png" />
     <Content Include="content\img\swiss.svg" />
     <Content Include="content\img\Twitter_logo_blue.png" />
     <Content Include="content\img\twitter_sprite.png" />
+    <Content Include="content\it\404.html" />
+    <Content Include="content\it\contatto.html" />
+    <Content Include="content\it\informazioni\ordinazione-e-consultazione.html" />
+    <Content Include="content\it\informazioni\registrazione-e-identificazione.html" />
+    <Content Include="content\it\informazioni\termini-di-protezione-e-domande-di-consultazione.html" />
+    <Content Include="content\it\informazioni\citazione-e-pubblicazione.html" />
+    <Content Include="content\it\informazioni\ricercare.html" />
+    <Content Include="content\it\condizioni-di-utilizzazione.html" />
+    <Content Include="content\it\chi-siamo\chi-siamo.html" />
+    <Content Include="content\it\informazioni\fondi.html" />
+    <Content Include="content\it\ricerca\sommario-dei-fondi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="content\js\libs\lodash\lodash.js" />
