@@ -73,7 +73,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
             };
 
             // Hier anpassen, welcher Benutzer zurückgeliefert werden soll
-            return retVal["Ö3 Benutzerr"];
+            return retVal["Ö3 Benutzer"];
         }
     }
 }
