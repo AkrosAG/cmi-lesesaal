@@ -1172,7 +1172,7 @@
                     <div class="nav-mobile-header">
                         <div class="table-row">
                             <span class="nav-mobile-logo">
-                                <img src="./design/img/swiss.svg" onerror="this.onerror=null; this.src='./design/img/swiss.png'" alt="Confederatio Helvetica"/>
+                                <img src="./design/img/logo.svg" onerror="this.onerror=null; this.src='./design/img/logo.png'" alt="Confederatio Helvetica"/>
                             </span>
                             <h1>
                                 <a href="#" data-i18n="viaduc-nav-mobile-title">Offline-Viewer</a>
