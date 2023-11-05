@@ -30,6 +30,7 @@ import {DownloadSectionComponent} from './detail/downloadSection/downloadSection
 import {SyntaxHelpComponent} from './search/syntaxHelp/syntaxHelp.component';
 import {UserAccountComponent} from './user/account/userAccount.component';
 import {DigitalOnboardingAssistantComponent} from './user/digital-onboarding-assistant/digital-onboarding-assistant.component';
+import {StatusInfoUserComponent} from './user/status-info-user/status-info-user.component';
 import {UserSettingListComponent} from './userSetting/userSettingList/userSettingLists.component';
 import {ExplanationTreeViewComponent} from './search/explanationTreeView/explanationTreeView.component';
 import {DateRangeFieldComponent} from './search/dateRangeField/dateRangeField.component';
@@ -86,6 +87,7 @@ export const ALL_COMPONENTS = [
 	TreeNodeComponent,
 	UserAccountComponent,
 	DigitalOnboardingAssistantComponent,
+	StatusInfoUserComponent,
 	UserSettingListComponent,
 	ExplanationTreeViewComponent,
 	AccessTokenComponent,

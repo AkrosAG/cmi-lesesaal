@@ -27,7 +27,10 @@
 						<cmi-viaduc-account-type-info-list [isRegistered]="isRegistered" [isIdentified]="isIdentified" [canCollapse]="false"></cmi-viaduc-account-type-info-list>
 					</div>
 				</div>
-				<cmi-digital-onboarding-assistant *ngIf="isRegistered"></cmi-digital-onboarding-assistant>
+				<div [ngSwitch]="showOnboarding">
+					<div *ngSwitchCase='true'><cmi-digital-onboarding-assistant *ngIf="isRegistered"></cmi-digital-onboarding-assistant></div>
+					<div *ngSwitchCase='false'><cmi-status-info-user></cmi-status-info-user></div>	
+				</div>
 			</div>
 		</div>
 	</cmi-viaduc-layout-left-content>
