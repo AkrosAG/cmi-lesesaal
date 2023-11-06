@@ -31,13 +31,13 @@ a.btn {
 }
 
 .btn.btn-link:focus, .btn.btn-link:hover {
-    color: #B7352D !important;
+    color: #B7352D!important;
     background: #F5F5F5;
 }
 
 cmi-viaduc-advanced-search-group .btn.btn-link, fieldset .btn.btn-link {
     text-decoration: none;
-    color: #B7352D !important;
+    color: #B7352D!important;
 }
 
     cmi-viaduc-advanced-search-group .btn.btn-link:hover, fieldset .btn.btn-link:hover {
@@ -45,10 +45,9 @@ cmi-viaduc-advanced-search-group .btn.btn-link, fieldset .btn.btn-link {
     }
 
 .btn-search, .btn.btn-primary {
-    background-color: #B7352D !important;
-    border-color: #B7352D !important;
+    background-color: #B7352D!important;
+    border-color: #B7352D!important;
 }
-
 
 /*------------------------------------------------------
   Navigation
@@ -57,12 +56,12 @@ cmi-viaduc-advanced-search-group .btn.btn-link, fieldset .btn.btn-link {
 cmi-viaduc-nav-content a:hover,
 cmi-viaduc-nav-content a:focus
 .nav-main.yamm .nav > .open > a {
-    color: #B7352D !important;
-    border-top: #B7352D !important;
+    color: #B7352D!important;
+    border-top: #B7352D!important;
 }
 
 .nav-main {
-    border-top-color:  !important;
+    border-top-color: #B7352D!important;
 }
 
 .nav-main.yamm .nav > .open > a, .nav-main.yamm .nav > .open > a:hover {
@@ -74,7 +73,7 @@ cmi-viaduc-nav-content a:focus
 }
 
 .nav-page-list li.active:before {
-    background: #B7352D !important;
+    background: #B7352D!important;
 }
 
 .yamm-content h4 a {
@@ -85,18 +84,18 @@ cmi-viaduc-nav-content a:focus
 }
 
 .disabled {
-    color: #757575 !important;
+    color: #757575!important;
 }
 
 .yamm-content a span, cmi-viaduc-detail-utilities a:hover,
 cmi-viaduc-simple-search-page a:hover, search-result a:hover, simple-hit a:hover,
 #mainContent p a:hover {
-    color: #B7352D !important;
+    color: #B7352D!important;
 }
 
 .yamm-content a:hover, .nav-lang a:hover {
-    border: none !important;
-    color: #B7352D !important;
+    border: none!important;
+    color: #B7352D!important;
 }
 
 /*------------------------------------------------------
@@ -112,7 +111,7 @@ div .card a {
 }
 
 div .card a span {
-    border-bottom-color: #B7352D !important;
+    border-bottom-color: #B7352D!important;
 }
 
 
@@ -120,11 +119,11 @@ div .card a span {
   Loading color
 --------------------------------------------------------*/
 cmi-spinner .cmi-three-dots span {
-    background: #B7352D !important;
+    background: #B7352D!important;
 }
 
 cmi-loader.cmi-loader.cmi-three-dots span {
-    background: #B7352D !important;
+    background: #B7352D!important;
 }
 
 /*------------------------------------------------------
@@ -132,7 +131,7 @@ cmi-loader.cmi-loader.cmi-three-dots span {
 --------------------------------------------------------*/
 
 .treecrumb .dropdown-toggle:focus {
-    color: #B7352D !important;
+    color: #B7352D!important;
 }
 
 cmi-viaduc-footer a:visited {
@@ -154,11 +153,11 @@ cmi-viaduc-footer a:visited {
 }
 
 .help-block, .text-danger {
-    color: #B7352D !important;
+    color: #B7352D!important;
 }
 
 .usersetting-section-list li.active, .list-favorite-lists li.active {
-    border-left-color: #B7352D !important;
+    border-left-color: #B7352D!important;
 }
 
 /*------------------------------------------------------
@@ -173,4 +172,3 @@ cmi-viaduc-footer a:visited {
     outline: none !important;
     outline-offset: 1px;
 }
-
