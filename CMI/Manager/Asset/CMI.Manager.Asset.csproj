@@ -145,6 +145,7 @@
     <Compile Include="AssetManager.cs" />
     <Compile Include="AssetService.cs" />
     <Compile Include="Consumers\AssetReadyConsumer.cs" />
+    <Compile Include="Consumers\RecognitionPostProcessingConsumer.cs" />
     <Compile Include="Consumers\PrepareAssetConsumer.cs" />
     <Compile Include="Consumers\GetAssetStatusConsumer.cs" />
     <Compile Include="Consumers\DownloadAssetConsumer.cs" />
@@ -179,10 +180,20 @@
     <Compile Include="ProcessType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Documentation.cs" />
+    <Compile Include="Properties\IiifManifest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>IiifManifest.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ViewerFileLocation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ViewerFileLocation.settings</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +211,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>DbConnectionSetting.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Properties\IiifManifest.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>IiifManifest.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\ViewerFileLocation.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ViewerFileLocation.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

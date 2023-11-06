@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMI.Manager.Asset.Properties" GeneratedClassName="ViewerFileLocation">
+  <Profiles />
+  <Settings>
+    <Setting Name="ManifestOutputSaveDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\ManifestTest\manifests</Value>
+    </Setting>
+    <Setting Name="ContentOutputSaveDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\ManifestTest\content</Value>
+    </Setting>
+    <Setting Name="OcrOutputSaveDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\ManifestTest\ocr</Value>
+    </Setting>
+    <Setting Name="ImageOutputSaveDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\ManifestTest\images</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
