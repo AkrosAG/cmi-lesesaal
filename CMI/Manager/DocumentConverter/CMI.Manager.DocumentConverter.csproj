@@ -156,6 +156,7 @@
     <Compile Include="Consumers\AbbyyOcrTestConsumer.cs" />
     <Compile Include="Consumers\ConversionStartConsumer.cs" />
     <Compile Include="Consumers\DocumentConverterInfoConsumer.cs" />
+    <Compile Include="Consumers\JobEndConsumer.cs" />
     <Compile Include="Consumers\JobInitConsumer.cs" />
     <Compile Include="Consumers\ExtractionStartConsumer.cs" />
     <Compile Include="Consumers\SupportedFileTypesConsumer.cs" />

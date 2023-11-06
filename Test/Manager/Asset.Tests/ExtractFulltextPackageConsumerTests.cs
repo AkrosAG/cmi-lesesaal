@@ -19,7 +19,8 @@ namespace CMI.Manager.Asset.Tests
         private readonly Mock<IConsumer<IUpdateArchiveRecord>> updateArchiveRecordConsumer = new Mock<IConsumer<IUpdateArchiveRecord>>();
         private Task<ConsumeContext<IArchiveRecordUpdated>> archiveRecordUpdatedHandled;
         private Task<ConsumeContext<IArchiveRecordExtractFulltextFromPackage>> extractFulltextTask;
-        private Task<ConsumeContext<IUpdateArchiveRecord>> updateArchiveRecordHandled;
+        private Task<ConsumeContext<RecognitionPostProcessingMessage>> updateArchiveRecordHandled;
+        
 
         public ExtractFulltextPackageConsumerTests()
         {
@@ -42,10 +43,10 @@ namespace CMI.Manager.Asset.Tests
 
         protected override void ConfigureInMemoryBus(IInMemoryBusFactoryConfigurator configurator)
         {
-            configurator.ReceiveEndpoint(BusConstants.IndexManagerUpdateArchiveRecordMessageQueue, ec =>
+            configurator.ReceiveEndpoint(BusConstants.AssetManagerRecognitionPostProcessing, ec =>
             {
                 ec.Consumer(() => updateArchiveRecordConsumer.Object);
-                updateArchiveRecordHandled = Handled<IUpdateArchiveRecord>(ec);
+                updateArchiveRecordHandled = Handled<RecognitionPostProcessingMessage>(ec);
             });
 
             configurator.ReceiveEndpoint(BusConstants.HarvestManagerArchiveRecordUpdatedEventQueue, ec =>
@@ -85,6 +86,7 @@ namespace CMI.Manager.Asset.Tests
             // Arrange
             var ar = new ArchiveRecord {ArchiveRecordId = "1"};
             assetManager.Setup(e => e.ExtractFulltext(123, It.IsAny<ArchiveRecord>(), It.IsAny<int>())).ReturnsAsync(true);
+            assetManager.Setup(e => e.UpdatePrimaerdatenAuftragStatus(It.IsAny<IUpdatePrimaerdatenAuftragStatus>()));
 
             // Act
             await InputQueueSendEndpoint.Send<IArchiveRecordExtractFulltextFromPackage>(new
@@ -96,6 +98,7 @@ namespace CMI.Manager.Asset.Tests
             // Wait for the results
             await extractFulltextTask;
             var context = await updateArchiveRecordHandled;
+
 
             // Assert
             context.Message.MutationId.Should().Be(123);
