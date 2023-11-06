@@ -28,6 +28,14 @@ namespace CMI.Web.Frontend.ParameterSettings
         [DefaultValue("for <strong>digital</strong> delivery. You will receive the digitised dossier in approximately 30 days. For more information about digitisation, go to <a href=\"https://www.recherche.bar.admin.ch/recherche/#/en/information/ordering-and-consulting\" target=\"_blank\" rel=\"noopener noreferrer\">Ordering and consulting</a>.")]
         public string DeliveryTypeDigitalEN { get; set; }
 
+        [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: EN")]
+        [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
+        public string DigitalOrderWarningTextEN { get; set; }
+
+        [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: DE")]
+        [DefaultValue("<h4 class=\"alert-heading\">Hinweis</h4><p>Digitalisierungsaufträge sind kostenpflichtig.</p>")]
+        public string DigitalOrderWarningTextDE { get; set; }
+
         #endregion
 
 

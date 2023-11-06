@@ -15,9 +15,11 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 	public liefertypAmtText: string;
 	public liefertypDigitalText: string;
 	public liefertypLesesaalText: string;
+	public orderDigitalWarningText: string;
 	public cartCount: number = 0;
 	public ShippingType = ShippingType;
 	public isAsOrBvwUser: boolean = false;
+	public isDigitalUser: boolean = false;
 	public showDigitizationWarning: boolean;
 	public digitalisatBestellungMoeglich = false;
 	public showDigitalisationNichtMoeglichHint = false;
@@ -57,6 +59,11 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		'damit Ihnen die Unterlagen am gewünschten Tag zur Verfügung stehen (Dienstag, Mittwoch und Donnerstag).');
 
 		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
+		
+		let tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers','')
+									  .split(';');
+		this.isDigitalUser = this._author.hasAnyAccessToken(tokens);
+		
 		let activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
 			this.form.patchValue({
@@ -69,6 +76,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		}
 
 		this.showDigitizationWarning = this._scs.getShowDigitizationWarningSetting();
+		this.orderDigitalWarningText = this._scs.getOrderDigitalText();
 
 		this.form.controls.shippingType.valueChanges.subscribe(async val => {
 			await this._resetActiveOrder();
