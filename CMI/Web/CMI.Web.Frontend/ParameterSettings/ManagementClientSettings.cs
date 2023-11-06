@@ -13,5 +13,9 @@ namespace CMI.Web.Frontend.ParameterSettings
         [Description("Gibt an, ob dem Benutzer eine Warnmeldung angezeigt wird, wenn er im Bestellvorgang die Lieferart 'digital' wählt.")]
         [DefaultValue(true)]
         public bool ShowWarningOnDigitalDeliveryType { get; set; }
+
+        [Description("Digitalisierungsaufträge nur für bestimmte Benutzer. Rolen Semikolon getrennt.")]
+        [DefaultValue("")]
+        public string OrderDigitalUsers { get; set; }
     }
 }

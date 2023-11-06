@@ -67,6 +67,7 @@ namespace CMI.Web.Frontend.api.Controllers
             public string DeliveryTypeDigital { get; set; }
             public string DeliveryTypeReadingRoom { get; set; }
             public string DeliveryTypeCommission { get; set; }
+            public string OrderDigitalWarningText { get; set; }
         }
 
         [HttpGet]
@@ -122,7 +123,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalDE,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomDE,
-                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionDE
+                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionDE,
+                        OrderDigitalWarningText = frontendDynamicTextSettings.DigitalOrderWarningTextDE
                     };
                     break;
                 case "fr":
@@ -130,7 +132,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalFR,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomFR,
-                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionFR
+                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionFR,
+                        OrderDigitalWarningText = "N/A"
                     };
                     break;
                 case "it":
@@ -138,7 +141,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalIT,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomIT,
-                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionIT
+                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionIT,
+                        OrderDigitalWarningText = "N/A"
                     };
                     break;
                 case "en":
@@ -146,7 +150,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalEN,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomEN,
-                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionEN
+                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionEN,
+                        OrderDigitalWarningText = frontendDynamicTextSettings.DigitalOrderWarningTextEN
                     };
                     break;
                 default:
@@ -154,7 +159,9 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalDE,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomDE,
-                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionDE
+                        DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionDE,
+                        OrderDigitalWarningText = frontendDynamicTextSettings.DigitalOrderWarningTextDE
+
                     };
                     break;
             }
