@@ -1,3 +1,4 @@
+import { UserService } from '../../modules/client/services';
 import { Component, OnInit } from '@angular/core';
 import { ConfigService, TranslationService } from '@cmi/lesesaal-web-core';
 import { SeoService, UrlService, AuthorizationService } from '../../modules/client/services';
@@ -14,10 +15,12 @@ export class AccountPageComponent implements OnInit {
 
 	public isRegistered: boolean = true;
 	public isIdentified: boolean = false;
+	public showOnboarding: boolean = false;
 
 	constructor(private _txt: TranslationService,
 				private _url: UrlService,
 				private _cfg: ConfigService,
+				private _userService: UserService,
 				private _seoService: SeoService,
 				private _authService: AuthorizationService) {
 	}
@@ -28,6 +31,11 @@ export class AccountPageComponent implements OnInit {
 		// this component is only visible for registered user, so everything != ö2 is identified
 		this.isRegistered = this._authService.hasRole('Ö2');
 		this.isIdentified = !this.isRegistered;
+
+		this._userService.GetOnboardingUri()
+			.then(link => {
+				this.showOnboarding = link ? true : false;
+			});
 
 		this._seoService.setTitle(this._txt.translate('Konto', 'accountPageComponent.pageTitle'));
 		this._buildCrumbs();

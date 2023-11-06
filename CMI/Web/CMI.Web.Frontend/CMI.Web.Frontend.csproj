@@ -456,14 +456,10 @@
     <Content Include="content\img\ico\mstile-310x150.png" />
     <Content Include="content\img\ico\mstile-310x310.png" />
     <Content Include="content\img\ico\mstile-70x70.png" />
-    <Content Include="content\img\logo-CH.png" />
-    <Content Include="content\img\logo-CH.svg" />
-    <Content Include="content\img\logo_bar.png" />
-    <Content Include="content\img\logo_copyright.png" />
+    <Content Include="content\img\logo.png" />
+    <Content Include="content\img\logo.svg" />
     <Content Include="content\img\overlay.png" />
     <Content Include="content\img\placeholder.png" />
-    <Content Include="content\img\swiss.png" />
-    <Content Include="content\img\swiss.svg" />
     <Content Include="content\img\Twitter_logo_blue.png" />
     <Content Include="content\img\twitter_sprite.png" />
     <Content Include="content\it\404.html" />
