@@ -11,11 +11,11 @@ namespace CMI.Engine.Asset.PreProcess
 {
     public class PreProcessAnalyzerOptimizePdf : ProcessAnalyzerBase
     {
-        private readonly FileResolution fileResolution;
+        private readonly ImageHelper imageHelper;
         protected readonly AssetPreparationSettings settings;
-        public PreProcessAnalyzerOptimizePdf(FileResolution fileResolution, AssetPreparationSettings settings)
+        public PreProcessAnalyzerOptimizePdf(ImageHelper imageHelper, AssetPreparationSettings settings)
         {
-            this.fileResolution = fileResolution;
+            this.imageHelper = imageHelper;
             this.settings = settings;
         }
 
@@ -32,7 +32,7 @@ namespace CMI.Engine.Asset.PreProcess
                         case ".pdf":
                             using (var pdfDocument = new Document(sourceFile.FullName))
                             {
-                                if (ShouldPdfOptimized(pdfDocument, sourceFile.FullName))
+                                if (ShouldPdfOptimized(pdfDocument))
                                 {
                                     Log.Information("File {FullName} will be optimized as there are too many big images (storage size).",
                                         sourceFile.FullName);
@@ -60,8 +60,8 @@ namespace CMI.Engine.Asset.PreProcess
                 }
             }
         }
-        
-        private bool ShouldPdfOptimized(Document pdfDocument, string path)
+
+        private bool ShouldPdfOptimized(Document pdfDocument)
         {
             var imagesTooBigCount = 0;
             foreach (Page pdfPage in pdfDocument.Pages)
@@ -74,7 +74,7 @@ namespace CMI.Engine.Asset.PreProcess
                     image.Save(stream);
 
                     var bitmap = Image.FromStream(stream);
-                    if (IsImageTooBig(bitmap, stream.Length, path))
+                    if (IsImageTooBig(bitmap, stream.Length))
                     {
                         imagesTooBigCount++;
 
@@ -85,18 +85,18 @@ namespace CMI.Engine.Asset.PreProcess
                         }
                     }
                 }
-                
+
             }
-           
+
             // if we come here, we don't enough images that are too big
             return false;
         }
 
-        private bool IsImageTooBig(Image bitmap, long sizeInByte, string path)
+        private bool IsImageTooBig(Image bitmap, long sizeInByte)
         {
-            var resolution = fileResolution.GetResolution(bitmap, path);
+            var resolution = imageHelper.GetResolutionFromBitmap(bitmap);
             // in cm
-            var width = 2.54 *bitmap.Width / resolution;
+            var width = 2.54 * bitmap.Width / resolution;
             var height = 2.54 * bitmap.Height / resolution;
 
             // Divide the area of the image by the area of the reference A4 image

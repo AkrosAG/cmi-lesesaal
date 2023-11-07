@@ -10,8 +10,8 @@ namespace CMI.Tools.IiifPresentationBuilder
         static void Main(string[] args)
         {
 
-            var root = @"C:\Temp\Final\gboo1i0k.d4j";
-            var archiveRecordId = "30409371";
+            var root = @"C:\Temp\30409375";
+            var archiveRecordId = "30409300";
 
 
             var metadataFile = new FileInfo(Path.Combine(root, "header", "metadata.xml"));
