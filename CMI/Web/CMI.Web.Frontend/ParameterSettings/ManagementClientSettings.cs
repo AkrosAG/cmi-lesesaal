@@ -14,7 +14,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         [DefaultValue(true)]
         public bool ShowWarningOnDigitalDeliveryType { get; set; }
 
-        [Description("Digitalisierungsaufträge nur für bestimmte Benutzer. Rolen Semikolon getrennt.")]
+        [Description("Angabe der Zugriffsrollen, denen die Option \"Digitalisierungsauftrag\" angezeigt wird. Rollen Semikolon getrennt.")]
         [DefaultValue("")]
         public string OrderDigitalUsers { get; set; }
     }

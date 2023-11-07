@@ -133,7 +133,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalFR,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomFR,
                         DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionFR,
-                        OrderDigitalWarningText = "N/A"
+                        OrderDigitalWarningText = frontendDynamicTextSettings.DigitalOrderWarningTextFR
                     };
                     break;
                 case "it":
@@ -142,7 +142,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         DeliveryTypeDigital = frontendDynamicTextSettings.DeliveryTypeDigitalIT,
                         DeliveryTypeReadingRoom = frontendDynamicTextSettings.DeliveryTypeReadingRoomIT,
                         DeliveryTypeCommission = frontendDynamicTextSettings.DeliveryTypeCommissionIT,
-                        OrderDigitalWarningText = "N/A"
+                        OrderDigitalWarningText = frontendDynamicTextSettings.DigitalOrderWarningTextIT
                     };
                     break;
                 case "en":

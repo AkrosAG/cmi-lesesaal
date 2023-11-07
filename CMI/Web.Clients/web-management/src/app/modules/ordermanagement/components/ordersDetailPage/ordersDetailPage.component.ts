@@ -180,7 +180,6 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 
 	public showDigitalisierungStartenModal() {
 		this.showDigitalisierungStarten = true;
-		console.log(this.showDigitalisierungStarten);
 	}
 
 	public showDigitalisierungExternModal() {
