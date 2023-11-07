@@ -60,8 +60,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 
 		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
 		
-		let tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers','')
-									  .split(';');
+		let tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers', '').split(';');
 		this.isDigitalUser = this._author.hasAnyAccessToken(tokens);
 		
 		let activeOrder = this._scs.getActiveOrder();
