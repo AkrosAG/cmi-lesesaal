@@ -30,6 +30,9 @@ describe('CheckoutShippingTypeStep', () => {
 			getShowDigitizationWarningSetting(): boolean {
 				return false;
 			},
+			getOrderDigitalText (): string {
+				return '';
+			},
 			getKontingent(): Observable<KontingentResult> {
 				return of({ bestellkontingent: 999, aktiveDigitalisierungsauftraege: 1, digitalisierungesbeschraenkung: 999});
 			},
