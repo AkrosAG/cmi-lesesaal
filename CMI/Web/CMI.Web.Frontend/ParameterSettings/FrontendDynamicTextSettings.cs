@@ -28,19 +28,19 @@ namespace CMI.Web.Frontend.ParameterSettings
         [DefaultValue("for <strong>digital</strong> delivery. You will receive the digitised dossier in approximately 30 days. For more information about digitisation, go to <a href=\"https://www.recherche.bar.admin.ch/recherche/#/en/information/ordering-and-consulting\" target=\"_blank\" rel=\"noopener noreferrer\">Ordering and consulting</a>.")]
         public string DeliveryTypeDigitalEN { get; set; }
 
-        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag'" wählt. Sprache: IT")]
+        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: IT")]
         [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
         public string DigitalOrderWarningTextIT { get; set; }
 
-        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag'" wählt. Sprache: FR")]
+        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: FR")]
         [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
         public string DigitalOrderWarningTextFR { get; set; }
 
-        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag'" wählt. Sprache: EN")]
+        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: EN")]
         [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
         public string DigitalOrderWarningTextEN { get; set; }
 
-        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag'" wählt. Sprache: DE")]
+        [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: DE")]
         [DefaultValue("<h4 class=\"alert-heading\">Hinweis</h4><p>Digitalisierungsaufträge sind kostenpflichtig.</p>")]
         public string DigitalOrderWarningTextDE { get; set; }
 
