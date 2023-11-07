@@ -613,10 +613,22 @@ namespace CMI.Web.Management.api.Controllers
             return BadRequest("");
         }
 
-
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungStarten([FromBody] DigitalisierungParams digitalisierungStartenPost)
         {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungStartenPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if (digitalisierungStartenPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
             Log.Information("Received SetStatusAushebungBereit call for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
             await vecteurActionsClient.SetStatusAushebungBereit(digitalisierungStartenPost.OrderItemId);
 
@@ -624,10 +636,22 @@ namespace CMI.Web.Management.api.Controllers
             return Ok("OK");
         }
 
-
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungExtern([FromBody] DigitalisierungParams digitalisierungExternPost)
         {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungExternPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if(digitalisierungExternPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
             Log.Information("SetStatusDigitalisierungExtern call for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
             await vecteurActionsClient.SetStatusDigitalisierungExtern(digitalisierungExternPost.OrderItemId);
 
@@ -635,10 +659,22 @@ namespace CMI.Web.Management.api.Controllers
             return Ok("OK");
         }
 
-
         [HttpPost]
         public async Task<IHttpActionResult> DigitalisierungAbschliessen([FromBody] DigitalisierungParams digitalisierungAbschliessenPost)
         {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungAbschliessenPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if (digitalisierungAbschliessenPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
             Log.Information("Received SetStatusZumReponierenBereit call for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
             await vecteurActionsClient.SetStatusZumReponierenBereit(digitalisierungAbschliessenPost.OrderItemId);
 

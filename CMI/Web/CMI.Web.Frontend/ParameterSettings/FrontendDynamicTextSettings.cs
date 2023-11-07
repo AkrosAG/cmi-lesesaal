@@ -30,6 +30,14 @@ namespace CMI.Web.Frontend.ParameterSettings
 
         [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: EN")]
         [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
+        public string DigitalOrderWarningTextIT { get; set; }
+
+        [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: EN")]
+        [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
+        public string DigitalOrderWarningTextFR { get; set; }
+
+        [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: EN")]
+        [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
         public string DigitalOrderWarningTextEN { get; set; }
 
         [Description("Definiert den Text Kosten im Digitalisierungsauftrag. Sprache: DE")]
