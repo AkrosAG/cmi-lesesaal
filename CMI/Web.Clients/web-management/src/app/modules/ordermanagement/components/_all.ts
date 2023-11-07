@@ -13,6 +13,9 @@ import {AuftraegeAbschliessenModalComponent} from './modals/auftraegeAbschliesse
 import {BarCodeModalComponent} from './modals/barCodeModal/barCodeModal.component';
 import {InVorlageExportierenModalComponent} from './modals/inVorlageExportierenModal/inVorlageExportierenModal.component';
 import {DigitalisierungAusloesenModalComponent} from './modals/digitalisierungAusloesenModal/digitalisierungAusloesenModal.component';
+import {DigitalisierungStartenModalComponent} from './modals/digitalisierungStartenModal/digitalisierungStartenModal.component';
+import {DigitalisierungExternModalComponent} from './modals/digitalisierungExternModal/digitalisierungExternModal.component';
+import {DigitalisierungAbschliessenModalComponent} from './modals/digitalisierungAbschliessenModal/digitalisierungAbschliessenModal.component';
 import {BestellHistorieComponent} from './bestellhistorie/bestellHistorie.component';
 import {AuftraegeReponierenModalComponent} from './modals/auftraegeReponierenModal/auftraege-reponieren-modal.component';
 import {AuftraegeMahnungSendenModalComponent} from './modals/auftraegeMahnungSendenModal/auftraege-mahnung-senden-modal.component';
@@ -36,6 +39,9 @@ export const ALL_COMPONENTS = [
 	BarCodeModalComponent,
 	BestellHistorieComponent,
 	DigitalisierungAusloesenModalComponent,
+	DigitalisierungStartenModalComponent,
+	DigitalisierungExternModalComponent,
+	DigitalisierungAbschliessenModalComponent,
 	AuftraegeMahnungSendenModalComponent,
 	AuftraegeErinnerungSendenModalComponent
 ];

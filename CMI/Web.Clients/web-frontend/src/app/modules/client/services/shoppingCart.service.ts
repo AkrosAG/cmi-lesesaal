@@ -296,6 +296,10 @@ export class ShoppingCartService {
 		return this.getOrderableItems().pipe(map(items => items.filter(i => i.couldNeedAReason && !i.einsichtsbewilligungNotwendig)));
 	}
 
+	public getOrderDigitalText(): string {
+		return this._cfg.getSetting('frontendDynamicTextSettings.orderDigitalWarningText', 'N/A');
+	}
+
 	public getShowDigitizationWarningSetting(): boolean {
 		return this._cfg.getSetting('managementClientSettings.showWarningOnDigitalDeliveryType', true);
 	}

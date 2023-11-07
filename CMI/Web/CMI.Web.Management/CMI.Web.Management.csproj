@@ -402,6 +402,7 @@
     <Compile Include="api\Controllers\MonitoringController.cs" />
     <Compile Include="api\Controllers\ReportController.cs" />
     <Compile Include="api\Data\AbbyyProgressInfo.cs" />
+    <Compile Include="api\Data\DigitalisierungParams.cs" />
     <Compile Include="api\Data\AbschliessenParams.cs" />
     <Compile Include="api\Data\AushebungsauftraegeDruckenParams.cs" />
     <Compile Include="api\Data\EntscheidFreigabeHinterlegenParams.cs" />
