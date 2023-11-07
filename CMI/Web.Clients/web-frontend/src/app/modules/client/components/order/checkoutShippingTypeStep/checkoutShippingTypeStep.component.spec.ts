@@ -56,6 +56,9 @@ describe('CheckoutShippingTypeStep', () => {
 			},
 			isAsUser(): boolean {
 				return false;
+			},
+			hasAnyAccessToken(accessTokens: string[]): boolean {
+				return true;
 			}
 		};
 		let ctx = <any> {
