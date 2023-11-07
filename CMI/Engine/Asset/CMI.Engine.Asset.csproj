@@ -168,6 +168,7 @@
     <Compile Include="DownloadAndStoreFileResult.cs" />
     <Compile Include="PostProcess\IAssetPostProcessingEngine.cs" />
     <Compile Include="PreProcess\FileResolution.cs" />
+    <Compile Include="PreProcess\ImageHelper.cs" />
     <Compile Include="ProcessAnalyzerBase.cs" />
     <Compile Include="PreProcess\PreProcessAnalyzerDetectAndFlagLargeDimensions.cs" />
     <Compile Include="PreProcess\PreProcessAnalyzerOptimizePdf.cs" />
