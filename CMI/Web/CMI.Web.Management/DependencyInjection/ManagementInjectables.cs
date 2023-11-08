@@ -49,6 +49,7 @@ namespace CMI.Web.Management.DependencyInjection
             builder.RegisterType<WebCmiConfigProvider>().As<IWebCmiConfigProvider>();
 
             builder.RegisterType<OrderManagerClient>().As<IPublicOrder>();
+            builder.RegisterType<VecteurActionsClient>().As<IVecteurActions>();
             builder.RegisterType<DownloadLogHelper>().As<IDownloadLogHelper>();
             builder.RegisterType<AbbyyProgressInfo>().SingleInstance().AsSelf();
 

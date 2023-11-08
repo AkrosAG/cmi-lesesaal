@@ -29,7 +29,7 @@
 						<span [innerHtml]="liefertypAmtText"></span>
 					</label>
 				</div>
-				<div class="radio radio--left">
+				<div class="radio radio--left" *ngIf="isDigitalUser">
 					<label for="chkAlsDigitalisatBestellen">
 						<input type="radio"
 							   name="shippingType"
@@ -50,12 +50,7 @@
 				<div *ngIf="shippingType === ShippingType.Digitalisierungsauftrag">
 					<div id="alsDigitalisatBestellenWarning" *ngIf="showDigitizationWarning" class="alert alert-warning" role="alert">
 						<span class="sr-only">{{'Warnmeldung' | translate:'orderCheckoutPage.warningInfo'}}</span>
-						<h4 class="alert-heading">{{'Längere Wartezeiten für Digitalisate!' | translate:'orderCheckoutPage.warningTitle'}}</h4>
-						<p>{{'Aufgrund der grossen Nachfrage ist die Digitalisierungsinfrastruktur derzeit stark ausgelastet. Daher müssen Sie mit längeren
-                            Bearbeitungszeiten für Ihren Auftrag rechnen. Falls Sie die Unterlagen kurzfristig einsehen oder eine umfangreiche Bestellung
-                            aufgeben möchten, bestellen Sie die Dossiers bitte in den Lesesaal.' | translate:'orderCheckoutPage.warningMessagePart1'}}</p>
-						<p>{{'Mitarbeitende der Bundesverwaltung können von Ihrer eigenen Verwaltungseinheit abgelieferte Unterlagen direkt
-                            ins Amt bestellen.' | translate:'orderCheckoutPage.warningMessagePart2'}}</p>
+						<span innerHtml="{{orderDigitalWarningText}}"></span>
 					</div>
 
 					<div class="alert alert-danger" role="alert" *ngIf="!digitalisatBestellungMoeglich && kontingentResult">
