@@ -10,10 +10,16 @@ namespace CMI.Engine.Asset.Solr
         [SolrField("source")]
         public string Source { get; set; }
 
-        [SolrField("ocr_text")] 
+        [SolrField("ocr_text")]
         public string OCRText { get; set; }
 
         [SolrField("title")]
         public string Title { get; set; }
+
+        [SolrField("image_url")]
+        public string ImageUrl { get; set; }
+
+        [SolrField("archive_record_id")]
+        public string ArchiveRecordId { get; set; }
     }
 }

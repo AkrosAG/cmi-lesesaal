@@ -107,7 +107,8 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.MetadataAccessTokens = archiveRecord.Security?.MetadataAccessToken;
             elasticArchiveRecord.PrimaryDataDownloadAccessTokens = archiveRecord.Security?.PrimaryDataDownloadAccessToken;
             elasticArchiveRecord.PrimaryDataFulltextAccessTokens = archiveRecord.Security?.PrimaryDataFulltextAccessToken;
-            
+            elasticArchiveRecord.ManifestLink = archiveRecord.Metadata.ManifestLink;
+
             elasticArchiveRecord.HasImage = archiveRecord.Display.ContainsImages;
             elasticArchiveRecord.HasAudioVideo = archiveRecord.Display.ContainsMedia;
             elasticArchiveRecord.CanBeOrdered = archiveRecord.Display.CanBeOrdered;

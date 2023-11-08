@@ -66,6 +66,7 @@ namespace CMI.Manager.Asset.Infrasctructure
             builder.Register(GetViewerFileLocationSettings).As<ViewerFileLocationSettings>();
             builder.RegisterType<PostProcessManifestCreator>().As<IPostProcessManifestCreator>();
             builder.RegisterType<PostProcessIiifFileDistributor>().AsSelf();
+            builder.RegisterType<PostProcessValidIiifFileTypeChecker>().AsSelf();
             builder.Register(GetViewerConversionSettings).As<ViewerConversionSettings>();
 
             // register the different consumers and classes
@@ -148,7 +149,7 @@ namespace CMI.Manager.Asset.Infrasctructure
             {
                 SolrUrl = Settings.Default.SolrUrl,
                 SolrCoreName = Settings.Default.SolrCoreName,
-                SolrInstallationPath = Settings.Default.hOcrCopyDestinationPath
+                SolrHighlightingPath = Settings.Default.hOcrCopyDestinationPath
             };
         }
 

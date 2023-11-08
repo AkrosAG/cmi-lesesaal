@@ -16,15 +16,18 @@ namespace CMI.Engine.Asset.PostProcess
         private readonly PostProcessIiifOcrIndexer iiifOcrIndexer;
         private readonly IPostProcessManifestCreator iiifManifestCreator;
         private readonly PostProcessIiifFileDistributor iiifFileDistributor;
+        private readonly PostProcessValidIiifFileTypeChecker validIiifFileTypeChecker;
 
-        public AssetPostProcessingEngine(PostProcessCombineTextDocuments textDocumentsProcessor, PostProcessJp2Converter jp2Processor, 
-            PostProcessIiifOcrIndexer iiifOcrIndexer, IPostProcessManifestCreator iiifManifestCreator, PostProcessIiifFileDistributor iiifFileDistributor) 
+        public AssetPostProcessingEngine(PostProcessCombineTextDocuments textDocumentsProcessor, PostProcessJp2Converter jp2Processor,
+            PostProcessIiifOcrIndexer iiifOcrIndexer, IPostProcessManifestCreator iiifManifestCreator
+            , PostProcessIiifFileDistributor iiifFileDistributor, PostProcessValidIiifFileTypeChecker validIiifFileTypeChecker)
         {
             this.textDocumentsProcessor = textDocumentsProcessor;
             this.jp2Processor = jp2Processor;
             this.iiifOcrIndexer = iiifOcrIndexer;
             this.iiifManifestCreator = iiifManifestCreator;
             this.iiifFileDistributor = iiifFileDistributor;
+            this.validIiifFileTypeChecker = validIiifFileTypeChecker;
         }
 
 
@@ -132,7 +135,7 @@ namespace CMI.Engine.Asset.PostProcess
             {
                 var packageFileName = Path.Combine(path, repositoryPackage.PackageFileName);
                 var fi = new FileInfo(packageFileName);
-               
+
                 var tempFolder = Path.Combine(fi.DirectoryName ?? throw new InvalidOperationException(),
                     fi.Name.Remove(fi.Name.Length - fi.Extension.Length));
 
@@ -167,7 +170,7 @@ namespace CMI.Engine.Asset.PostProcess
                 }
             }
             Log.Information("Finish indexing OCR texts in Solr.");
-            
+
             return Task.FromResult(new ProcessStepResult
             {
                 Success = true
@@ -191,8 +194,9 @@ namespace CMI.Engine.Asset.PostProcess
                     try
                     {
                         var metadataFile = new FileInfo(Path.Combine(tempFolder, "header", "metadata.xml"));
-                        var paket = (PaketDIP) Paket.LoadFromFile(metadataFile.FullName);
-                        iiifManifestCreator.CreateManifest(archiveRecord.ArchiveRecordId, paket, tempFolder);
+                        var paket = (PaketDIP)Paket.LoadFromFile(metadataFile.FullName);
+                        var manifestLink = iiifManifestCreator.CreateManifest(archiveRecord.ArchiveRecordId, paket, tempFolder);
+                        archiveRecord.Metadata.ManifestLink = manifestLink.ToString();
                     }
                     catch (Exception ex)
                     {
@@ -248,6 +252,54 @@ namespace CMI.Engine.Asset.PostProcess
                         return Task.FromResult(new ProcessStepResult
                         {
                             ErrorMessage = $"Unexpected error while distributing iiif files. Error Message is: {ex.Message}",
+                            Success = false
+                        });
+                    }
+                }
+                else
+                {
+                    Log.Warning("Unable to find the unzipped files for {packageFileName}. No iiif files were distributed.", packageFileName);
+                    return Task.FromResult(new ProcessStepResult
+                    {
+                        ErrorMessage = $"Unable to find the unzipped files for {packageFileName}. No iiif files were distributed.",
+                        Success = false
+                    });
+                }
+            }
+
+            return Task.FromResult(new ProcessStepResult
+            {
+                Success = true
+            });
+        }
+
+        public Task<ProcessStepResult> ContainsOnlyValidFileTypes(string path, ArchiveRecord archiveRecord)
+        {
+            Log.Information("Start checking for valid IIIF file types for archiveRecordId {archiveRecordId}",
+                archiveRecord.ArchiveRecordId);
+            var packages = archiveRecord.PrimaryData;
+            foreach (var repositoryPackage in packages.Where(p => !string.IsNullOrEmpty(p.PackageFileName)))
+            {
+                var packageFileName = Path.Combine(path, repositoryPackage.PackageFileName);
+                var fi = new FileInfo(packageFileName);
+
+                var tempFolder = Path.Combine(fi.DirectoryName ?? throw new InvalidOperationException(),
+                    fi.Name.Remove(fi.Name.Length - fi.Extension.Length));
+
+                if (Directory.Exists(tempFolder))
+                {
+                    try
+                    {
+                        var folder = Path.Combine(tempFolder, "content");
+                        validIiifFileTypeChecker.ArchiveRecordId = repositoryPackage.ArchiveRecordId;
+                        validIiifFileTypeChecker.AnalyzeRepositoryPackage(repositoryPackage, folder);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Information(ex, "Error while checking valid IIIF file types. Probably invalid file type. Message is: {Message}", ex.Message);
+                        return Task.FromResult(new ProcessStepResult
+                        {
+                            ErrorMessage = $"Error while checking valid IIIF file types. Probably invalid file type. Message is: {ex.Message}",
                             Success = false
                         });
                     }
