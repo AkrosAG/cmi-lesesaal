@@ -156,7 +156,7 @@ Examples for the token can be:
                                         </xs:element>
                                         <xs:element name="cannotFallBelow" type="xs:boolean">
                                             <xs:annotation>
-                                                <xs:documentation>Indicates if the protection end date cannot be underrun. (Nicht unterschreitAMA).</xs:documentation>
+                                                <xs:documentation>Indicates if the protection end date cannot be underrun. (Nicht unterschreitbar).</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="adjustedManually" type="xs:boolean">
@@ -177,7 +177,7 @@ Examples for the token can be:
                                         </xs:element>
                                         <xs:element name="physicalUsability" type="xs:string">
                                             <xs:annotation>
-                                                <xs:documentation>Indicates the physical usability of the archive item. (Physische BenutzerAMAkeit)</xs:documentation>
+                                                <xs:documentation>Indicates the physical usability of the archive item. (Physische Benutzerbarkeit)</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="accessibility" type="xs:string">
