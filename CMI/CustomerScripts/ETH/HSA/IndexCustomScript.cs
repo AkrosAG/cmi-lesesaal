@@ -133,13 +133,19 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
-            var pattern = @"\bdps_pid=(?<ie>IE\w*)\b";
-            var digitalesOriginal = elasticArchiveRecord.DetailData
-                .FirstOrDefault(d => d.ElementName == "LinkAufDigitalesOriginal")?.TextValues.FirstOrDefault();
-            var r = Regex.Match(digitalesOriginal ?? string.Empty, pattern);
-            if (r.Success)
+            if (elasticArchiveRecord.DetailData.Any(d => d.ElementName == "LinkAufDigitalesOriginal"))
             {
-                elasticArchiveRecord.PrimaryDataLink = r.Groups["ie"].Value;
+                var pattern = @"\bdps_pid=(?<ie>IE\w*)\b";
+                var digitalesOriginal = elasticArchiveRecord.DetailData
+                    .FirstOrDefault(d => d.ElementName == "LinkAufDigitalesOriginal").TextValues.FirstOrDefault();
+                if (digitalesOriginal != null && digitalesOriginal != "")
+                {
+                    var r = Regex.Match(digitalesOriginal, pattern);
+                    if (r.Success)
+                    {
+                        elasticArchiveRecord.PrimaryDataLink = r.Groups["ie"].Value;
+                    }
+                }
             }
         }
 
