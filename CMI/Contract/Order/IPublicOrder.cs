@@ -9,7 +9,7 @@ namespace CMI.Contract.Order
     {
         Task<OrderItem> AddToBasket(OrderingIndexSnapshot indexSnapshot, string userId);
 
-        Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung, 
+        Task<OrderItem> AddToBasketCustom(string bestand, string ablieferung,
             string dossiertitel, string zeitraumDossier, string userId);
 
         Task RemoveFromBasket(int orderItemId, string userId);
@@ -29,7 +29,8 @@ namespace CMI.Contract.Order
 
         Task<DigipoolEntry[]> GetDigipool(int numberOfEntries);
         Task UpdateDigipool(List<int> orderItemIds, int? digitalisierungsKategorie, DateTime? terminDigitalisierung);
-        Task <List<PrimaerdatenAufbereitungItem>> GetPrimaerdatenReportRecords(LogDataFilter filter);
+        Task<List<PrimaerdatenAufbereitungItem>> GetPrimaerdatenReportRecords(LogDataFilter filter);
+        Task<List<DownloadLogItem>> GetDownloadLogReportRecords(LogDataFilter filter);
         Task<IEnumerable<StatusHistory>> GetStatusHistoryForOrderItem(int orderItemId);
         Task<List<Bestellhistorie>> GetOrderingHistoryForVe(string veId);
 

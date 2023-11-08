@@ -133,7 +133,7 @@ namespace CMI.Access.Sql.Lesesaal.File
                     {
                         Value = recordId,
                         ParameterName = "recordId",
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
@@ -178,7 +178,7 @@ namespace CMI.Access.Sql.Lesesaal.File
                     {
                         Value = recordId,
                         ParameterName = "recordId",
-                        SqlDbType = SqlDbType.Int
+                        SqlDbType = SqlDbType.NVarChar
                     });
                     cmd.Parameters.Add(new SqlParameter
                     {
@@ -237,7 +237,7 @@ namespace CMI.Access.Sql.Lesesaal.File
                 {
                     Value = recordId,
                     ParameterName = "recordId",
-                    SqlDbType = SqlDbType.Int
+                    SqlDbType = SqlDbType.NVarChar
                 },
                 new SqlParameter
                 {

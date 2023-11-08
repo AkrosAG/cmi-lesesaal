@@ -1,10 +1,10 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 
 namespace CMI.Web.Common.Helpers
 {
-    public interface IFileDownloadHelper
+    public interface IDownloadLogHelper
     {
-        string CreateDownloadToken();
+        string CreateLogToken();
         string GetClientIp(HttpRequestMessage request);
 
         int GetConfigValueTokenValidTime();

@@ -15,22 +15,26 @@ namespace CMI.Access.Sql.Lesesaal.File
         }
 
         public void LogTokenGeneration(string token, string userId, string userTokens, string signatur, string titel,
-            string schutzfrist)
+            string schutzfrist, string zeitraum)
+        {
+            CreateLogEntry(token, userId, userTokens, signatur, titel, schutzfrist, zeitraum, "Download", null);
+        }
+
+        public void LogViewerClick(string token, string userId, string userTokens, string signatur, string titel,
+           string schutzfrist, string zeitraum)
+        {
+            CreateLogEntry(token, userId, userTokens, signatur, titel, schutzfrist, zeitraum, "Viewer", DateTime.Now);
+        }
+
+        private void CreateLogEntry(string token, string userId, string userTokens, string signatur, string titel, string schutzfrist, string zeitraum, string vorgang, DateTime? datumVorgang)
         {
             using (var cn = new SqlConnection(connectionString))
             {
                 cn.Open();
-
                 using (var cmd = cn.CreateCommand())
                 {
                     var query = new StringBuilder();
                     query.Append("INSERT INTO  DownloadLog");
-                    query.Append(
-                        "       (  Token,   UserId,   UserTokens, Vorgang,   Signatur,   Titel,   Schutzfrist,    DatumErstellungToken, DatumVorgang)");
-                    query.Append(
-                        "VALUES (@pToken, @pUserId, @pUserTokens, 'Token',    @pSignatur, @pTitel, @pSchutzfrist,  @pDatumErstellungToken, null        )");
-
-                    cmd.CommandText = query.ToString();
 
                     cmd.Parameters.Add(new SqlParameter
                     {
@@ -55,6 +59,13 @@ namespace CMI.Access.Sql.Lesesaal.File
 
                     cmd.Parameters.Add(new SqlParameter
                     {
+                        Value = vorgang,
+                        ParameterName = "pVorgang",
+                        SqlDbType = SqlDbType.NVarChar
+                    });
+
+                    cmd.Parameters.Add(new SqlParameter
+                    {
                         Value = signatur,
                         ParameterName = "pSignatur",
                         SqlDbType = SqlDbType.NVarChar
@@ -72,13 +83,44 @@ namespace CMI.Access.Sql.Lesesaal.File
                         ParameterName = "pSchutzfrist",
                         SqlDbType = SqlDbType.NVarChar
                     });
+
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        Value = zeitraum,
+                        ParameterName = "pZeitraum",
+                        SqlDbType = SqlDbType.NVarChar
+                    });
                     cmd.Parameters.Add(new SqlParameter
                     {
                         Value = DateTime.Now,
                         ParameterName = "pDatumErstellungToken",
                         SqlDbType = SqlDbType.DateTime
                     });
+                    if (datumVorgang != null)
+                    {
+                        cmd.Parameters.Add(new SqlParameter
+                        {
+                            IsNullable = true,
+                            Value = datumVorgang,
+                            ParameterName = "pDatumVorgang",
+                            SqlDbType = SqlDbType.DateTime
+                        });
+                        query.Append(
+                            "       (  Token,   UserId,   UserTokens, Vorgang,   Signatur,   Titel,   Schutzfrist, Zeitraum,   DatumErstellungToken, DatumVorgang)");
 
+                        query.Append(
+                            "VALUES (@pToken, @pUserId, @pUserTokens, @pVorgang,    @pSignatur, @pTitel, @pSchutzfrist, @pZeitraum, @pDatumErstellungToken, @pDatumVorgang)");
+                    }
+                    else
+                    {
+                        query.Append(
+                            "       (  Token,   UserId,   UserTokens, Vorgang,   Signatur,   Titel,   Schutzfrist, Zeitraum,   DatumErstellungToken, DatumVorgang)");
+
+                        query.Append(
+                            "VALUES (@pToken, @pUserId, @pUserTokens, @pVorgang,    @pSignatur, @pTitel, @pSchutzfrist, @pZeitraum, @pDatumErstellungToken, null)");
+                    }
+
+                    cmd.CommandText = query.ToString();
                     cmd.ExecuteNonQuery();
                 }
             }

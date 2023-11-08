@@ -165,6 +165,16 @@ namespace CMI.Contract.Messaging
     {
         public IEnumerable<StatusHistory> StatusHistory { get; set; }
     }
+    public class GetDownloadLogReportRecordsRequest
+    {
+        public LogDataFilter Filter { get; set; }
+    }
+
+    public class GetDownloadLogReportRecordsResponse
+    {
+        public List<DownloadLogItem> Items { get; set; }
+    }
+
 
     public class EntscheidFreigabeHinterlegenRequest
     {
