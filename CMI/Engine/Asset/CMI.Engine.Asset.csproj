@@ -154,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PostProcess\DipExtensions.cs" />
+    <Compile Include="PostProcess\EnumerableExtensions.cs" />
+    <Compile Include="PostProcess\PathHelper.cs" />
+    <Compile Include="PostProcess\PathItem.cs" />
     <Compile Include="PostProcess\PostProcessIiifFileDistributor.cs" />
     <Compile Include="PostProcess\ManifestSettings.cs" />
     <Compile Include="PostProcess\PackageFileLocation.cs" />
@@ -163,6 +166,7 @@
     <Compile Include="PostProcess\PostProcessJp2Converter.cs" />
     <Compile Include="PostProcess\PostProcessIiifOcrIndexer.cs" />
     <Compile Include="PostProcess\PostProcessManifestCreator.cs" />
+    <Compile Include="PostProcess\PostProcessValidIiifFileTypeChecker.cs" />
     <Compile Include="PostProcess\ViewerFileLocationSettings.cs" />
     <Compile Include="PreProcess\AssetPreparationEngine.cs" />
     <Compile Include="DownloadAndStoreFileResult.cs" />
