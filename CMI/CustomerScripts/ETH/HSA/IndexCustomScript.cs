@@ -133,20 +133,7 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
-            if (elasticArchiveRecord.DetailData.Any(d => d.ElementName == "LinkAufDigitalesOriginal"))
-            {
-                var pattern = @"\bdps_pid=(?<ie>IE\w*)\b";
-                var digitalesOriginal = elasticArchiveRecord.DetailData
-                    .FirstOrDefault(d => d.ElementName == "LinkAufDigitalesOriginal").TextValues.FirstOrDefault();
-                if (digitalesOriginal != null && digitalesOriginal != "")
-                {
-                    var r = Regex.Match(digitalesOriginal, pattern);
-                    if (r.Success)
-                    {
-                        elasticArchiveRecord.PrimaryDataLink = r.Groups["ie"].Value;
-                    }
-                }
-            }
+           
         }
 
         private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)
