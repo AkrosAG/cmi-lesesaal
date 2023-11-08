@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CMI.Contract.Common;
 
 namespace CMI.Engine.Asset.PostProcess
@@ -17,11 +15,14 @@ namespace CMI.Engine.Asset.PostProcess
         public PostProcessIiifFileDistributor(ViewerFileLocationSettings locationSettings)
         {
             this.locationSettings = locationSettings;
+
         }
 
         protected override void AnalyzeFiles(string rootOrSubFolder, List<RepositoryFile> files)
         {
-            var relPath = Path.Combine(ArchiveRecordId, rootOrSubFolder.Replace(RootFolder, ""));
+            var parts = PathHelper.ArchiveIdToPathSegments(ArchiveRecordId);
+            var relPath = Path.Combine(string.Join("\\", parts.Select(p => p.ValidPath)), rootOrSubFolder.Replace(RootFolder.Equals(rootOrSubFolder, StringComparison.InvariantCultureIgnoreCase) ?
+                            RootFolder : RootFolder + "\\", ""));
             foreach (var file in files)
             {
                 var sourceFile = new FileInfo(Path.Combine(rootOrSubFolder, file.PhysicalName));
@@ -45,7 +46,7 @@ namespace CMI.Engine.Asset.PostProcess
             foreach (var file in di.GetFiles().Where(f => f.Name.EndsWith("_OCR.txt", StringComparison.InvariantCultureIgnoreCase) ||
                                                           f.Name.EndsWith("OCR-Text-komplett.zip", StringComparison.InvariantCultureIgnoreCase)))
             {
-                var targetFile = new FileInfo(Path.Combine(locationSettings.OcrOutputSaveDirectory, relPath, file.Name));
+                var targetFile = new FileInfo(Path.Combine(locationSettings.OcrOutputSaveDirectory, PathHelper.CreateShortValidUrlName(relPath, false), PathHelper.CreateShortValidUrlName(file.Name, true)));
                 MoveFile(targetFile, file);
             }
         }
@@ -55,7 +56,7 @@ namespace CMI.Engine.Asset.PostProcess
             var file = new FileInfo(Path.ChangeExtension(sourceFile.FullName, extension));
             if (file.Exists)
             {
-                var targetFile = new FileInfo(Path.Combine(targetDirectory, relPath, file.Name));
+                var targetFile = new FileInfo(Path.Combine(targetDirectory, PathHelper.CreateShortValidUrlName(relPath, false), PathHelper.CreateShortValidUrlName(file.Name, true)));
                 MoveFile(targetFile, file);
             }
         }
