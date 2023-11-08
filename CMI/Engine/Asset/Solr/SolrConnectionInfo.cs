@@ -4,7 +4,6 @@
     {
         public string SolrUrl { get; set; }
         public string SolrCoreName { get; set; }
-
-        public string SolrInstallationPath { get; set; }
+        public string SolrHighlightingPath { get; set; }
     }
 }
