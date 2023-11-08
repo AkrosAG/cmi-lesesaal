@@ -23,6 +23,7 @@ export class DetailPageComponent implements OnInit {
 	public deepLinkUrl: string;
 	public showDownloadSection = false;
 	public showOrderSection = false;
+	public showViewerSection = false;
 	public items: Entity[] = [];
 	public isAmaUser: boolean = false;
 
@@ -132,6 +133,9 @@ export class DetailPageComponent implements OnInit {
 					}
 				}
 
+				this.showViewerSection = this.entity.manifestLink
+					&& this.entity?.primaryDataDownloadAccessTokens.filter(a => a === 'Ö2').length === 1
+					&& this.entity?.primaryDataFulltextAccessTokens.filter(a => a === 'Ö2').length === 1;
 				this.showDownloadSection = this._scs.canDownload(this.entity);
 				this.showOrderSection = !this.showDownloadSection && this.entity.canBeOrdered;
 				this.deepLinkUrl = this._url.getExternalDetailUrl(entity.archiveRecordId, entity.title);
