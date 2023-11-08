@@ -115,6 +115,7 @@
     <Compile Include="Abbruchgrund.cs" />
     <Compile Include="ApproveStatus.cs" />
     <Compile Include="CreateOrderFromBasketRequest.cs" />
+    <Compile Include="DownloadLogItem.cs" />
     <Compile Include="ErinnerungVersendenRequest.cs" />
     <Compile Include="IBenutzungskopieAuftragErledigt.cs" />
     <Compile Include="IDigitalisierungsAuftragErledigt.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CMI.Contract.Common.Compiler
 {
@@ -132,7 +133,14 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
-
+            var pattern = @"\bdps_pid=(?<ie>IE\w*)\b";
+            var digitalesOriginal = elasticArchiveRecord.DetailData
+                .FirstOrDefault(d => d.ElementName == "LinkAufDigitalesOriginal")?.TextValues.FirstOrDefault();
+            var r = Regex.Match(digitalesOriginal ?? string.Empty, pattern);
+            if (r.Success)
+            {
+                elasticArchiveRecord.PrimaryDataLink = r.Groups["ie"].Value;
+            }
         }
 
         private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)

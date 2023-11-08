@@ -107,7 +107,7 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.MetadataAccessTokens = archiveRecord.Security?.MetadataAccessToken;
             elasticArchiveRecord.PrimaryDataDownloadAccessTokens = archiveRecord.Security?.PrimaryDataDownloadAccessToken;
             elasticArchiveRecord.PrimaryDataFulltextAccessTokens = archiveRecord.Security?.PrimaryDataFulltextAccessToken;
-            elasticArchiveRecord.PrimaryDataLink = archiveRecord.Metadata.PrimaryDataLink;
+            
             elasticArchiveRecord.HasImage = archiveRecord.Display.ContainsImages;
             elasticArchiveRecord.HasAudioVideo = archiveRecord.Display.ContainsMedia;
             elasticArchiveRecord.CanBeOrdered = archiveRecord.Display.CanBeOrdered;
@@ -205,13 +205,16 @@ namespace CMI.Manager.Index
                 })
                 .ToList();
 
+           
+
+            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
+            
+
             // If we receive data in the ElasticPrimaryData field, then we use this field. If not, then the PrimaryData field is used
             elasticArchiveRecord.PrimaryData = archiveRecord.ElasticPrimaryData != null && archiveRecord.ElasticPrimaryData.Any()
                 ? archiveRecord.ElasticPrimaryData
                 : archiveRecord.PrimaryData.ToElasticArchiveRecordPackage();
 
-            TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
-            
             // check if the field Metadata.Files has items and copy them to the Elastic record
             if (archiveRecord.Metadata.Files.Any())
             {

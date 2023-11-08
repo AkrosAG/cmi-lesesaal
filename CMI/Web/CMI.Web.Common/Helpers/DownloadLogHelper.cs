@@ -9,18 +9,18 @@ using System.Web;
 namespace CMI.Web.Common.Helpers
 {
     /// <summary>Some common functions used to initiate and process a file download from Public or Management client.</summary>
-    public class FileDownloadHelper : IFileDownloadHelper
+    public class DownloadLogHelper : IDownloadLogHelper
     {
         private readonly ICmiSettings settings;
 
-        public FileDownloadHelper(ICmiSettings settings)
+        public DownloadLogHelper(ICmiSettings settings)
         {
             this.settings = settings;
         }
 
-        public string CreateDownloadToken()
+        public string CreateLogToken()
         {
-            const string salt = "Lesesaal Download Token Hash";
+            const string salt = "Viaduc Download Token Hash";
             var bytes = Encoding.UTF8.GetBytes(salt + Guid.NewGuid().ToString("N") + DateTime.Now.Ticks);
             using (var sha = SHA1.Create())
             {
@@ -36,12 +36,12 @@ namespace CMI.Web.Common.Helpers
         {
             if (request.Properties.ContainsKey("MS_HttpContext"))
             {
-                return ((HttpContextWrapper) request.Properties["MS_HttpContext"]).Request.UserHostAddress;
+                return ((HttpContextWrapper)request.Properties["MS_HttpContext"]).Request.UserHostAddress;
             }
 
             if (request.Properties.ContainsKey(RemoteEndpointMessageProperty.Name))
             {
-                var prop = (RemoteEndpointMessageProperty) request.Properties[RemoteEndpointMessageProperty.Name];
+                var prop = (RemoteEndpointMessageProperty)request.Properties[RemoteEndpointMessageProperty.Name];
                 return prop.Address;
             }
 
