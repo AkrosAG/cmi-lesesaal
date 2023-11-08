@@ -23,12 +23,24 @@
 										<span><span class="glyphicon glyphicon-tag"></span>&nbsp;{{ 'Freigabekontrolle' | translate:'orderDetailPage.freigabekontrolle' }}</span>
 									</button>
 
+									<button class="btn btn-link" (click)="showDigitalisierungStartenModal()">
+										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung starten' | translate:'orderDetailPage.digitalisierungStart' }}</span>
+									</button>
+
 									<button class="btn btn-link" (click)="showAushebungsAuftrag()">
 										<span><span class="glyphicon glyphicon-print"></span>&nbsp;{{ 'Aushebungsauftrag' | translate:'orderDetailPage.aushebungsAuftrag' }}</span>
 									</button>
 
 									<button class="btn btn-link" (click)="showAuftraegeAusleihenModal()">
 										<span><span class="glyphicon glyphicon-retweet-2"></span>&nbsp;{{ 'Auftrag ausleihen' | translate:'orderOverviewPage.ausleihensingular' }}</span>
+									</button>
+
+									<button class="btn btn-link" (click)="showDigitalisierungExternModal()">
+										<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung extern' | translate:'orderDetailPage.digitalisierungExtern' }}</span>
+									</button>
+
+									<button class="btn btn-link" (click)="showDigitalisierungAbschliessenModal()">
+										<span><span class="glyphicon glyphicon-check"></span>&nbsp;{{ 'Digitalisierung abschliessen' | translate:'orderDetailPage.digitalisierungFinish' }}</span>
 									</button>
 
 									<button class="btn btn-link" (click)="showAuftraegeReponierenModal()">
@@ -1026,6 +1038,22 @@
 																  [(open)]="showAuftraegeAusleihen"
 																  (onSubmitted)="reset()">
 							</cmi-viaduc-auftraege-ausleihen-modal>
+
+							<cmi-viaduc-digitalisierung-starten-modal *ngIf="showDigitalisierungStarten"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungStarten"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-starten-modal>
+							<cmi-viaduc-digitalisierung-extern-modal *ngIf="showDigitalisierungExtern"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungExtern"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-extern-modal>
+							<cmi-viaduc-digitalisierung-abschliessen-modal *ngIf="showDigitalisierungAbschliessen"
+																	 [ids]="[detailRecord.itemId]"
+																	 [(open)]="showDigitalisierungAbschliessen"
+																	 (onSubmitted)="reset()">ö
+							</cmi-viaduc-digitalisierung-abschliessen-modal>
 						</div>
 						<cmi-loader *ngIf="loading" class="cmi-visible"></cmi-loader>
 					</div>
