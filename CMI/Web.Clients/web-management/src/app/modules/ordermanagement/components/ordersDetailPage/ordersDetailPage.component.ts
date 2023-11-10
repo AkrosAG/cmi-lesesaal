@@ -39,6 +39,9 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	public showEntscheidHinterlegen = false;
 	public showOrderHistoryModal = false;
 	public showAuftraegeAbschliessen = false;
+	public showDigitalisierungStarten = false;
+	public showDigitalisierungExtern = false;
+	public showDigitalisierungAbschliessen = false;
 	public showAuftraegeZuruecksetzen = false;
 	public showAuftraegeAbbrechen: boolean;
 	public showAuftraegeReponieren: boolean;
@@ -149,7 +152,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	}
 
 	public getEingangsart(art: number): string {
-		return art === 0 ? 'Durch Kunde erfasst' : 'Durch BAR erfasst';
+		return art === 0 ? 'Durch Kunde erfasst' : 'Durch AMA erfasst';
 	}
 
 	public getFormattedDate(dt: Date | string) {
@@ -173,6 +176,18 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			this.historyItems = r;
 			this.showOrderHistoryModal = true;
 		});
+	}
+
+	public showDigitalisierungStartenModal() {
+		this.showDigitalisierungStarten = true;
+	}
+
+	public showDigitalisierungExternModal() {
+		this.showDigitalisierungExtern = true;
+	}
+
+	public showDigitalisierungAbschliessenModal() {
+		this.showDigitalisierungAbschliessen = true;
 	}
 
 	public updateOrderDetail() {

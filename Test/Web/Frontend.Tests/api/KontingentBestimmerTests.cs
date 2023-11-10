@@ -149,7 +149,7 @@ namespace CMI.Web.Frontend.API.Tests.api
         public void BestimmeKontingent_Bestellkontingent_Should_Be_Correct_When_Less_Orderings_Than_Threshold()
         {
             // arrange
-            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungOe2 = 4, DigitalisierungsbeschraenkungBar = 500};
+            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungOe2 = 4, DigitalisierungsbeschraenkungAma = 500};
 
             var itemsFromOrdering = new List<OrderItem>
             {
@@ -323,7 +323,7 @@ namespace CMI.Web.Frontend.API.Tests.api
         public void BestimmeKontingent_Bestellkontingent_Should_Be_IntMaxValue_When_User_DisablesThreshold_Ends_Tomorrow()
         {
             // arrange
-            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungBar = 1};
+            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungAma = 1};
 
             var itemsFromOrdering = new List<OrderItem>
             {
@@ -364,7 +364,7 @@ namespace CMI.Web.Frontend.API.Tests.api
         public void BestimmeKontingent_Bestellkontingent_Should_Be_IntMaxValue_When_User_DisablesThreshold_Ends_Today()
         {
             // arrange
-            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungBar = 1};
+            var setting = new DigitalisierungsbeschraenkungSettings {DigitalisierungsbeschraenkungAma = 1};
 
             var itemsFromOrdering = new List<OrderItem>
             {

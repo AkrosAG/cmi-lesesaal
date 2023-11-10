@@ -42,7 +42,7 @@ namespace CMI.Web.Frontend.API.Tests.ElasticMock
                         _source = new TreeRecord
                         {
                             ArchiveRecordId = "1",
-                            PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleBAR}
+                            PrimaryDataFulltextAccessTokens = new List<string> {AccessRoles.RoleAMA}
                         },
                         highlight = new
                         {

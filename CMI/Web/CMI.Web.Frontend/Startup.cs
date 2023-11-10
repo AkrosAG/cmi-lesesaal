@@ -54,7 +54,7 @@ namespace CMI.Web.Frontend
                     doc.Servers.Clear();
                     doc.Servers.Add(new OpenApiServer
                     {
-                        // Basis-URL der Doku auf BAR-Umgebungen stimmen sonst nicht
+                        // Basis-URL der Doku auf AMA-Umgebungen stimmen sonst nicht
                         Url = WebHelper.SwaggerBaseUrl
                     });
                 };

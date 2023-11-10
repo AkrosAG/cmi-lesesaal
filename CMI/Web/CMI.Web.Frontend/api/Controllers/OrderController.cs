@@ -167,8 +167,8 @@ namespace CMI.Web.Frontend.api.Controllers
             var role = access.RolePublicClient.GetRolePublicClientEnum();
 
             User user;
-            if (!string.IsNullOrWhiteSpace(forUserId) && role == AccessRolesEnum.BAR)
-                // BAR User bestellt im Namen eines anderen Benutzer, Kontingent für Empfänger zurückgeben
+            if (!string.IsNullOrWhiteSpace(forUserId) && role == AccessRolesEnum.AMA)
+            // AMA User bestellt im Namen eines anderen Benutzer, Kontingent für Empfänger zurückgeben
             {
                 user = userDataAccess.GetUser(forUserId);
             }
@@ -259,7 +259,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 var bestellungIstFuerAndererBenutzer = userAccess.UserId != bestellerId;
                 if (bestellungIstFuerAndererBenutzer)
                 {
-                    if (GetCurrentUserAccess().RolePublicClient != AccessRoles.RoleBAR)
+                    if (GetCurrentUserAccess().RolePublicClient != AccessRoles.RoleAMA)
                     {
                         var ex = new BadRequestException(
                             "Es wird versucht, für einen anderen Benutzer als den aktuellen Benutzer zu bestellen. Dazu fehlt aber die Berechtigung.");
@@ -340,10 +340,10 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private static void ValidateVerwaltungsausleiheBestellung(UserAccess userAccess)
         {
-            if (userAccess.RolePublicClient != AccessRoles.RoleBVW &&
+            if (userAccess.RolePublicClient != AccessRoles.RoleEMA &&
                 userAccess.RolePublicClient != AccessRoles.RoleAS)
             {
-                throw new BadRequestException("Verwaltungsausleihen sind nur möglich für AS oder BVW Benutzer");
+                throw new BadRequestException("Verwaltungsausleihen sind nur möglich für AS oder EMA Benutzer");
             }
         }
 

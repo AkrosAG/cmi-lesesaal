@@ -222,15 +222,15 @@ namespace CMI.Web.Frontend.api.Entities
             {
                 var attributes = new JObject();
 
-                // Nur wenn die Sektion (category) Felder hat und wir mindestens ein öffentliches Feld haben, oder der Benutzer ein BAR Benutzer ist, gehen wir überhaupt weiter.
+                // Nur wenn die Sektion (category) Felder hat und wir mindestens ein öffentliches Feld haben, oder der Benutzer ein AMA Benutzer ist, gehen wir überhaupt weiter.
                 // (Fall abfangen, dass eine Kategorie nur interne Felder hat
                 if (category?.Fields != null && (category.Fields.Any(f => f.Visibility == (int)DataElementVisibility.@public) ||
-                                                 access.RolePublicClient == AccessRoles.RoleBAR))
+                                                 access.RolePublicClient == AccessRoles.RoleAMA))
                 {
                     foreach (var field in category.Fields)
                     {
-                        // Interne Felder sind nur für BAR Benutzer sichtbar
-                        if (field.Visibility == (int)DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleBAR)
+                        // Interne Felder sind nur für AMA Benutzer sichtbar
+                        if (field.Visibility == (int)DataElementVisibility.@internal && access.RolePublicClient != AccessRoles.RoleAMA)
                         {
                             continue;
                         }
@@ -253,7 +253,17 @@ namespace CMI.Web.Frontend.api.Entities
                         {
                             MapDescriptors(descriptors, attributes);
                         }
-                        else
+                        else if (name.Contains("."))
+                        {
+                            token = jsonEntity.GetTokenByKey(name.Split('.').First(), true) ?? jsonEntity.GetTokenByKey(field.Key, true);
+                            token = token.HasValues ?
+                                ((JProperty)token.First.Children().First(
+                                    ch => ch is JProperty jCh 
+                                          && string.Equals(jCh.Name, name.Split('.')[1],
+                                              StringComparison.CurrentCultureIgnoreCase))).Value
+                                : token;
+                        }
+                        else 
                         {
                             token = jsonEntity.GetTokenByKey(name, true) ?? jsonEntity.GetTokenByKey(field.Key, true);
                         }

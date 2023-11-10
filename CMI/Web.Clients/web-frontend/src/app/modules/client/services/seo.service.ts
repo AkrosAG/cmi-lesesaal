@@ -14,7 +14,6 @@ export class SeoService {
 	constructor(private _title: Title, private _txt: TranslationService) {
 		this._html = jQuery('html');
 		this._head = this._html.find('head');
-		this._siteTitle = this._txt.get('header.title', 'Online-Zugang zum Bundesarchiv');
 	}
 
 	public getTitle(): string {
@@ -22,6 +21,7 @@ export class SeoService {
 	}
 
 	public setTitle(title: string) {
+		this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
 		let seoTitle = title + ((title && title.length > 0) ? ' - ' : '') + this._siteTitle;
 		this._title.setTitle(seoTitle);
 	}
@@ -62,7 +62,7 @@ export class SeoService {
 	}
 
 	public updatePageInfo(url: string): void {
-		this._siteTitle = this._txt.get('header.title', 'Online-Zugang zum Bundesarchiv');
+		this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
 		let description = this._txt.get('page.description', 'recherche.admin.ch');
 
 		try {

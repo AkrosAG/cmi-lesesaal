@@ -29,7 +29,7 @@ namespace CMI.Web.Common.Auth
         public void AcsCommandResultCreated(CommandResult result, Saml2Response response)
         {
             spOptions.Logger.WriteVerbose("SAML2 {Saml2Response}:" + JsonConvert.SerializeObject(response, Formatting.Indented));
-            // Bereits in Anwendung auf Mandant BAR vorhanden
+            // Bereits in Anwendung auf Mandant AMA vorhanden
             if (!HasValidMandant(result))
             {
                 spOptions.Logger.WriteInformation("User hat noch keinen Antrag gestellt");
@@ -53,7 +53,7 @@ namespace CMI.Web.Common.Auth
 
 
             // Prüfen ob eine Rolle Deny enthält oder leer ist (Rolle Deny?)
-            var prefexRole = isPublicClient ? "BAR-recherche" : "BAR-recherche-management-client";
+            var prefexRole = isPublicClient ? "AMA-recherche" : "AMA-recherche-management-client";
             if (roles.Any(
                 role => role.Value.EndsWith($"{prefexRole}.DENY", StringComparison.InvariantCultureIgnoreCase) || role.Value == string.Empty))
             {

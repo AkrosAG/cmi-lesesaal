@@ -174,9 +174,9 @@
 				"dataType": 3
 			},
 			{
-				"defaultLabel":"BAR-interne Konsultation",
-				"key": "barInternalConsultation",
-				"width":"*",
+				"defaultLabel": "AMA-interne Konsultation",
+				"key": "internalConsultation",
+				"width": "*",
 				"visible": false
 			},
 			{
@@ -475,6 +475,11 @@
 			{
 				"defaultLabel": "Gebrauchskopie",
 				"key": "gebrauchskopieStatus",
+				"visible": false
+			},
+			{
+				"defaultLabel": "Temp. Standort",
+				"key": "tempStandort",
 				"visible": false
 			}
 		],

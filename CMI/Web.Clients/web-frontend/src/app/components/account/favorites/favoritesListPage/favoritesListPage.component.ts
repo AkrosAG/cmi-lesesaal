@@ -24,7 +24,7 @@ export class AccountFavoritesListPageComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this._seoService.setTitle(this._txt.translate('Online-Zugang zum Bundesarchiv Favoritenliste', 'accountFavoritesListPageComponent.pageTitle'));
+		this._seoService.setTitle(this._txt.translate('Hochschularchiv der ETH Zürich Virtueller Lesesaal Favoritenliste', 'accountFavoritesListPageComponent.pageTitle'));
 		this._buildCrumbs();
 	}
 

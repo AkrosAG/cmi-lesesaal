@@ -262,7 +262,7 @@ namespace CMI.Web.Frontend.api.Providers
         {
             // To reduce download size all unneeded whitespace is eliminated
             var s = new StringBuilder();
-            if (parent?.Data?.NichtOnlineRecherchierbareDossiers != null && parent.Data?.Level == "Serie" && role != AccessRoles.RoleBAR)
+            if (parent?.Data?.NichtOnlineRecherchierbareDossiers != null && parent.Data?.Level == "Serie" && role != AccessRoles.RoleAMA)
             {
                 var text =
                     $"{HttpUtility.HtmlEncode(parent.Data.NichtOnlineRecherchierbareDossiers.Split('(')[0].Trim())} {GetTranslationTreeNode(language, "onlyVisibleForIdentifiedUsers", "Dossiers sind aus rechtlichen Gründen nur identifizierten BenutzerInnen anzeigbar.")}";

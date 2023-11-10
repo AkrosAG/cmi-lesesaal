@@ -113,16 +113,33 @@
 		"info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
 		"infoBox": "Info box",
 		"infoTitle": "Note",
-		"questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
+		"questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
 		"registerImEiam": "Register in eIAM",
-		"title": "Opening an account for online access to the Federal Archives",
-		"eIam": "Access to recherche.bar.admin.ch is managed by e-Government Identity and Access Management (eIAM).",
-		"registerEiam": "The process of opening an account is conducted outside of recherche.bar.admin.ch. If you encounter any problems registering please contact our <a href=\"\">online advice service</a> or e-mail <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>."
+		"title": "Opening an account for online access to the Federal Archives"
 	},
 	"search": {
 		"advanced": {
 			"addNewGroup": "Add another search group",
 			"field": {
+				"archivalienart": {
+				  "unikatcharakter":	"Text mit Unikatcharakter",
+					"korrespondenzstueck":   "Korrespondenzstück",
+				  "graueLiteratur":   "Graue Literatur u. Publikationen",
+				  "bildlicheDarstellung":   "Bildliche Darstellung (statisch)",
+				  "bewegtesBild":   "Bewegtes Bild",
+				  "physischesObjekt":   "Physisches Objekt",
+				  "medailleMuenze":   "Medaille/Münze",
+				  "linguistischesSystem":   "Linguistisches System (u.a. Lochstreifen)",
+				  "tonMedien":   "Ton-Medien",
+				  "strukturierteDaten":   "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+				  "software":   "Software",
+				  "interaktiveRessource":   "Interaktive Ressource",
+				  "webPages":   "Web pages"
+			  },
+				"ueberlieferungsform": {
+					"analog": "Analog",
+					"digital": "Digital"
+				},
 				"permission": {
 					"freiZugaenglich": "Without restriction",
 					"inSchutzfrist": "Subject to request",
@@ -145,6 +162,7 @@
 			"title": "Advanced search"
 		},
 		"advancedSearch": "Advanced search",
+
 		"archivePlanSearch": "Archive plan",
 		"archivePlanSearchTeaserText": "Search in the archive plan to place the documents in their context.",
 		"ausfuehrlicheBeschreibung": "Detailed description",
@@ -174,8 +192,6 @@
 		"captchaMissingDetails": "Please try again.",
 		"changeSearchCriteria": "Edit search criteria",
 		"dateBetween": "Time period between",
-		"extendedSearch": "Advanced search",
-		"extendedSearchTeaserText": "Adapt the search to your needs.",
 		"facetteEntry": {
 			"bis": "to",
 			"ja": "Yes",
@@ -196,10 +212,13 @@
 			"Abteilung": "Department",
 			"Archiv": "Archives",
 			"frei einsehbar": "Without restriction",
+			"resultateOhnePermission": "Resultate ohne Benutzbarkeit",
 			"Gesuchspflichtig": "Subject to closure period",
 			"Teile davon gesuchspflichtig": "Review necessary",
 			"resultateOhnepermission": "Without Access"
 		},
+		"extendedSearch": "Advanced search",
+		"extendedSearchTeaserText": "Adapt the search to your needs.",
 		"fieldoperator": {
 			"and": "All of the terms",
 			"not": "None of the terms",
@@ -227,9 +246,8 @@
 		"simple": {
 			"beratung": "Advice",
 			"informationen": "Information",
-			"intro": "Find documents about the history of Switzerland since 1798. Browse the catalogue and download dossiers, photos and films or order them to view in the reading room.",
-			"intro2": "For support go to \"Advice\" or \"Information\".",
-			"title": "Online access to the Federal Archives",
+			"intro": "<a href=\"#/en/search/advanced\">Advanced search</a> <br/><br/>Are you interested in the history of ETH Zurich, are you working on a topic related to the history of science or technology, or do you have ancestors who studied, taught or researched at ETH Zurich? Then the ETH Zurich University Archives is the right place for you.<br/>Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+			"title": "Simple search",
 			"unter": "and"
 		},
 		"standardSearch": "Simple search",
@@ -253,6 +271,7 @@
 	},
 	"veExportRecord": {
 		"referenceCode": "Reference code",
+		"fileReference": "File reference",
 		"title": "Title",
 		"creationPeriod": "Creation period",
 		"withinInfo": "Contains",
@@ -260,5 +279,98 @@
 		"accessibility": "Accessibility under ArchA",
 		"fileName": "search-result",
 		"favourites": "favourites"
-	}
+	},
+	"header": {
+		"abmelden": "Log out",
+		"altText": "ETH Zurich University Archives logo – to homepage",
+		"anmelden": "Log in",
+		"barAbbr": "SFA",
+		"homeOrganisationName": "ETH Zurich",
+		"homeOrganisationNameLink": "https://ethz.ch/en.html",
+		"benutzerdaten": "User data",
+		"benutzeroberflaeche": "User interface",
+		"bestellkorb": "Shopping cart",
+		"bestellkorbItemsCount": "Shopping cart ({0})",
+		"bestelluebersicht": "Order overview",
+		"claim": "ETH Zurich University Archives <br/>Virtual Reading Room",
+		"closeMobileNavigation": "Close navigation",
+		"closeNav": "Close navigation",
+		"closeUserAccount": "Close user menu",
+		"breadcrumb1": "ETH Library",
+		"breadcrumb1Link": "https://library.ethz.ch/en/",
+		"breadcrumb2": "University Archives",
+		"breadcrumb2Link": "https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html",
+		"breadcrumb3": "Virtual Reading Room",
+		"breadcrumb3Link": "#/en/search/simple",
+		"favoriten": "Favourites",
+		"languageChoice": "Language settings",
+		"loggedInInfo": "You are logged in as an identified user",
+		"loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
+		"meinkonto": "My user account",
+		"notLoggedInInfo": "You are not logged in",
+		"notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
+		"notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
+		"onlineZugang": "Online access",
+		"openMobileNavigation": "Open navigation",
+		"openUserAccount": "Open user menu",
+		"register": "Register",
+		"srBreadcrumbOrientation": "Navigating the website",
+		"title": "ETH Zurich University Archives | ETH Zurich",
+		"zumBestellkorb": "Navigate to shopping cart with {0} items",
+		"favoritesCount": "Favourites ({0})"
+	},
+	"headerContent": {
+		"component": {
+			"aktiv": "Active",
+			"toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
+			"toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
+		}
+	},
+	"footer": {
+		"footerTitle": "Footer",
+		"title": "ETH Zurich University Archives"
+	},
+	"page": {
+		"description": "vls.hsa.ch",
+		"title": "ETH Zurich University Archives"
+	},
+	"user": {
+	"cancelRegistrationMessage": "Please complete the registration and save the data.",
+	"birthday": "Date of birth",
+	"countryCode": "Country",
+	"emailAddress": "E-mail",
+	"errorLegalAgreementConsent": "Please read and accept the data protection policy.",
+	"familyName": "Last name",
+	"firstName": "First name(s)",
+	"infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
+	"legalAgreementConsentTitle": "Data protection policy",
+	"legelAgreementConsentText": "I agree that the ETH Zurich University Archives can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
+	"mobileTel": "Mobile phone",
+	"organization": "Organisation",
+	"pageTitle": "Enter user data",
+	"phoneNumber": "Phone (land line)",
+	"placeholder": {
+		"birthday": "Date of birth (dd.mm.yyyy)",
+		"emailAddress": "E-mail",
+		"familyName": "Last name",
+		"firstName": "First name",
+		"mobileTel": "Mobile phone",
+		"organization": "Organisation",
+		"phoneNumber": "Phone (land line)",
+		"street": "Street / number",
+		"streetAttachment": "Additional address line",
+		"town": "Place",
+		"zipCode": "Post code"
+	},
+	"preferredLangauge": "Preferred language",
+	"preferredLanguageHelpText": "Please let us know in which language you would like to communicate.",
+	"register": "Enter user data",
+	"requiredFieldsInfo": "Fields marked with a * must be completed.",
+	"savesuccess": "Successfully saved.",
+	"street": "Street / number",
+	"streetAttachment": "Additional address line",
+	"town": "Place",
+	"userdata": "User data",
+	"zipCode": "Post code"
+  }
 }

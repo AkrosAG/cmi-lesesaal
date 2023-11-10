@@ -212,9 +212,9 @@ namespace CMI.Web.Frontend.api.Controllers
         {
             var user = ControllerHelper.UserDataAccess.GetUser(ControllerHelper.GetCurrentUserId());
             if (user.Access.RolePublicClient == AccessRoles.RoleOe3
-                || user.Access.RolePublicClient == AccessRoles.RoleBVW
+                || user.Access.RolePublicClient == AccessRoles.RoleEMA
                 || user.Access.RolePublicClient == AccessRoles.RoleAS
-                || user.Access.RolePublicClient == AccessRoles.RoleBAR)
+                || user.Access.RolePublicClient == AccessRoles.RoleAMA)
             {
                 return sqlDataAccess.HasPendingMigrations(user.EmailAddress);
             }

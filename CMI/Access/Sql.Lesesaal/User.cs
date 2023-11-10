@@ -13,12 +13,12 @@ namespace CMI.Access.Sql.Lesesaal
     {
         [EditNotAllowed] [RequiredDtoField] public string Id { get; set; }
 
-        [EditNotAllowedFor(AccessRolesEnum.Ö3, AccessRolesEnum.AS, AccessRolesEnum.BAR, AccessRolesEnum.BVW)]
+        [EditNotAllowedFor(AccessRolesEnum.Ö3, AccessRolesEnum.AS, AccessRolesEnum.AMA, AccessRolesEnum.EMA)]
         [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten)]
         [RequiredDtoField]
         public string FamilyName { get; set; }
 
-        [EditNotAllowedFor(AccessRolesEnum.Ö3, AccessRolesEnum.AS, AccessRolesEnum.BAR, AccessRolesEnum.BVW)]
+        [EditNotAllowedFor(AccessRolesEnum.Ö3, AccessRolesEnum.AS, AccessRolesEnum.AMA, AccessRolesEnum.EMA)]
         [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten)]
         [RequiredDtoField]
         public string FirstName { get; set; }
@@ -45,7 +45,7 @@ namespace CMI.Access.Sql.Lesesaal
         [RequiredDtoField]
         public string CountryCode { get; set; }
 
-        [EditNotAllowedFor(AccessRolesEnum.AS, AccessRolesEnum.BAR, AccessRolesEnum.BVW)]
+        [EditNotAllowedFor(AccessRolesEnum.AS, AccessRolesEnum.AMA, AccessRolesEnum.EMA)]
         [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten)]
         [RequiredDtoField]
         public string EmailAddress { get; set; }
@@ -92,8 +92,8 @@ namespace CMI.Access.Sql.Lesesaal
         [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungFeldForschungsgruppeDdsBearbeiten)]
         public bool ResearcherGroup { get; set; }
 
-        [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungFeldBarInterneKonsultationBearbeiten)]
-        public bool BarInternalConsultation { get; set; }
+        [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungFeldInterneKonsultationBearbeiten)]
+        public bool InternalConsultation { get; set; }
 
         [EditRequiresFeature(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungUploadAusfuehren)]
         public bool HasIdentifizierungsmittel { get; set; }
