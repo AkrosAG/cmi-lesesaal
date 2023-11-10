@@ -1,17 +1,17 @@
 {
-  "facette": {
-    "active": "Aktiv",
-    "bestaendeUebersicht": "Thematische Übersicht",
-    "bestand": "Bestand",
-    "clearAll": "Alle Filter zurücksetzen ({0})",
-    "digitallyAvailable": "Unterlagen digital vorhanden",
-    "creationPeriodYears": "Entstehungszeitraum",
-    "hideFilter": "Filter ausblenden",
-    "notActive": "Nicht aktiv",
-    "level": "Stufen",
+	"facette": {
+		"active": "Aktiv",
+		"bestaendeUebersicht": "Thematische Übersicht",
+		"bestand": "Bestand",
+		"clearAll": "Alle Filter zurücksetzen ({0})",
+		"digitallyAvailable": "Unterlagen digital vorhanden",
+		"creationPeriodYears": "Entstehungszeitraum",
+		"hideFilter": "Filter ausblenden",
+		"notActive": "Nicht aktiv",
+		"level": "Stufen",
 		"permission": "Benutzbarkeit",
-    "treffer": "Treffer",
-    "weitereTreffer": "Andere",
+		"treffer": "Treffer",
+		"weitereTreffer": "Andere",
 		"sprachen": "Sprachen",
 		"Archivalienart": "Archivalienart",
 		"Koerperschaftsregister": "Körperschaftsregister",
@@ -20,7 +20,7 @@
 		"Sachregister": "Sachregister",
 		"Werkregister": "Werkregister"
 
-  },
+	},
 	"metadata": {
 		"boolean": {
 			"ja": "Ja",
@@ -105,28 +105,94 @@
 			"zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
 		}
 	},
-  "registerInfo": {
-    "cancelRegister": "Abbrechen",
-    "chLoginAltText": "Logo des CH-Logins",
-    "chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
-    "chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
-    "info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
-    "infoBox": "Info-Box",
-    "infoTitle": "Hinweis",
-    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:benutzer-admin@bar.admin.ch\">benutzer-admin@bar.admin.ch</a>.",
-    "registerImEiam": "Registrieren",
-    "title": "Kontoeröffnung für den Online-Zugang zum Bundesarchiv"
-  },
-  "search": {
-    "advanced": {
-      "field": {
+	"registerInfo": {
+		"cancelRegister": "Abbrechen",
+		"chLoginAltText": "Logo des CH-Logins",
+		"chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
+		"chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
+		"info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
+		"infoBox": "Info-Box",
+		"infoTitle": "Hinweis",
+		"questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+		"registerImEiam": "Registrieren",
+		"title": "Kontoeröffnung für das Hochschularchiv der ETH Zürich Virtueller Lesesaal"
+	},
+	"search": {
+		"advanced": {
+			"field": {
+				"archivalienart": {
+					"unikatcharakter":	"Text mit Unikatcharakter",
+					"korrespondenzstueck":   "Korrespondenzstück",
+					"graueLiteratur":   "Graue Literatur u. Publikationen",
+					"bildlicheDarstellung":   "Bildliche Darstellung (statisch)",
+					"bewegtesBild":   "Bewegtes Bild",
+					"physischesObjekt":   "Physisches Objekt",
+					"medailleMuenze":   "Medaille/Münze",
+					"linguistischesSystem":   "Linguistisches System (u.a. Lochstreifen)",
+					"tonMedien":   "Ton-Medien",
+					"strukturierteDaten":   "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+					"software":   "Software",
+					"interaktiveRessource":   "Interaktive Ressource",
+					"webPages":   "Web pages"
+				},
+				"addNewGroup": "Weitere Suchgruppe hinzufügen",
+				"ueberlieferungsform": {
+					"analog": "Analog",
+					"digital": "Digital"
+				},
 				"permission": {
 					"freiZugaenglich": "Frei einsehbar",
 					"inSchutzfrist": "Gesuchspflichtig",
 					"teileinSchutzfrist": "Teile davon gesuchspflichtig"
 				}
-			}
+			},
+			"group": {
+				"addNewField": "Suchfeld hinzufügen",
+				"and": "Alle Begriffe (AND)",
+				"closeGroup": "Suchgruppe schliessen",
+				"fieldChaining": "Verknüpfung der Suchfelder:",
+				"not": "Keiner der Begriffe (NOT)",
+				"or": "Mindestens ein Begriff (OR)"
+			},
+			"groupChaining": "Verknüpfung der Suchgruppen:",
+			"reset": "Zurücksetzen",
+			"search": "Suchen",
+			"showDetailsSyntax": "Zeige Details zur Suchsyntax",
+			"syntax": "Syntax",
+			"title": "Erweiterte Suche"
 		},
+		"advancedSearch": "Erweiterte Suche",
+		"archivePlanSearch": "Archivplan",
+		"archivePlanSearchTeaserText": "Recherchieren Sie im Archivplan und ordnen Sie damit die Unterlagen in ihren Kontext ein.",
+		"ausfuehrlicheBeschreibung": "Ausführliche Beschreibung",
+		"browseArchive": "Thematische Übersicht",
+		"browseArchiveTeaserText": "Das Archiv nach Themen gruppiert: Finden Sie Bestände, die zu Ihrem Thema passen.",
+		"browser": {
+			"backToSearch": "Zurück zum Suchresultat",
+			"first": "Erster Treffer",
+			"last": "Letzter Treffer",
+			"loading": "Lade...",
+			"next": "Nächster Treffer",
+			"nextPage": "Nächste Seite",
+			"nOfM": "Treffer {0} von {1}",
+			"pageToolTipBetween": "Weitere Seiten",
+			"pageToolTipBetweenShow": "Weitere Seiten anzeigen",
+			"pageTooltipHere": "Sie sind auf der Seite {0}",
+			"pageTooltipNext": "Seite {0} anzeigen",
+			"pageTooltipNextPageXofY": "Seite {0} von {1} anzeigen",
+			"pageTooltipPageXofY": "Sie sind auf der Seite {0} von {1}",
+			"previous": "Vorheriger Treffer",
+			"previousPage": "Vorherige Seite",
+			"title": "Suchresultat"
+		},
+		"captchaInvalid": "Die Daten zur Captcha-Überprüfung sind ungültig.",
+		"captchaInvalidDetails": "Bitte versuchen Sie es erneut.",
+		"captchaMissing": "Es fehlen die Daten zur Captcha-Überprüfung.",
+		"captchaMissingDetails": "Bitte versuchen Sie es erneut.",
+		"changeSearchCriteria": "Suchkriterien bearbeiten",
+		"dateBetween": "Zeitraum zwischen",
+		"extendedSearch": "Erweiterte Suche",
+		"extendedSearchTeaserText": "Passen Sie die Suche Ihren Bedürfnissen an.",
 		"facetteEntry": {
 			"bis": "bis",
 			"ja": "Ja",
@@ -143,7 +209,7 @@
 			"Subdossier": "Subdossier",
 			"Dokument": "Dokument",
 			"Einzelstueck": "Einzelstück",
-			"Klassifikation":  "Klassifikation",
+			"Klassifikation": "Klassifikation",
 			"Abteilung": "Abteilung",
 			"Archiv": "Archiv",
 			"frei einsehbar": "Frei einsehbar",
@@ -151,17 +217,159 @@
 			"Gesuchspflichtig": "Gesuchspflichtig",
 			"Teile davon gesuchspflichtig": "Teile davon gesuchspflichtig",
 			"resultateOhnepermission": "Resultate ohne Benutzbarkeit"
+		},
+		"fieldoperator": {
+			"and": "Alle Begriffe",
+			"not": "Keiner der Begriffe",
+			"or": "Mindestens ein Begriff"
+		},
+		"filterTitle": "Filter",
+		"genericTryAgain": "Versuchen Sie, die Suche später erneut auszuführen.",
+		"groupoperator": {
+			"capitalAnd": "UND",
+			"capitalOr": "ODER"
+		},
+		"highUsageInfo": "Bitte bestätigen Sie, dass Sie kein Roboter sind",
+		"highUsageTitle": "Sehr viele zeitnahe Anfragen",
+		"inRange": "Im Zeitraum",
+		"invalidQuery": "Ihre Suchanfrage ist ungültig. Bitte kontrollieren Sie die Syntax.",
+		"lastExecutedQuery": "Ihre Suchanfrage: {0}",
+		"lastSearchResult": "Letztes Suchresultat",
+		"lastSearchResultTeaserText": "Rufen Sie Ihr letztes Suchresultat auf.",
+		"placeHolder": "Suchen Sie in über 3´500´000 Archivalien",
+		"rangeFrom": "Zeitraum von",
+		"rangeTo": "Zeitraum bis",
+		"resetSearch": "Suche zurücksetzen",
+		"runSearch": "Suche auslösen",
+		"searchTerm": "Suchfeld",
+		"simple": {
+			"beratung": "Beratung",
+			"informationen": "Informationen",
+			"intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+			"title": "Einfache Suche",
+			"unter": "und unter"
+		},
+		"standardSearch": "Einfache Suche",
+		"standardSearchTeaserText": "Steigen Sie mit einer einfachen Suche in die Recherche ein.",
+		"synonymes": {
+			"add": "Begriffe in Suche einfügen",
+			"cancel": "Abbrechen",
+			"listTitle": "Zu Ihrer Eingabe wurden folgende alternative Begriffe gefunden",
+			"quellenListTitle": "Quellen",
+			"termdatcollection": "TERMDAT-Sammlungen",
+			"termdatlink": "Die aufgeführten Terme stammen aus folgenden",
+			"trefferTitle": "Begriff gefunden in"
+		},
+		"termToShort": "Bitte geben Sie mindestens ein Zeichen ein.",
+		"termToShortForAll": "Bitte geben Sie mindestens zwei Zeichen ein.",
+		"thematicInventoryOverview": "Thematische Übersicht",
+		"thematicInventoryOverviewTeaserText": "Das Archiv nach Themen gruppiert: Finden Sie Bestände, die zu Ihrem Thema passen.",
+		"trefferTitle": "Treffer",
+		"unexpectedSystemError": "Es ist ein unerwarteter Fehler aufgetreten.",
+		"wenigerAnzeigen": "Weniger anzeigen"
+	},
+	"veExportRecord": {
+		"referenceCode": "Signatur",
+		"fileReference": "Aktenzeichen",
+		"title": "Titel",
+		"creationPeriod": "Entstehungszeitraum",
+		"withinInfo": "Form und Inhalt",
+		"level": "Stufe",
+		"accessibility": "Benutzbarkeit",
+		"fileName": "suchresultat",
+		"favourites": "favoriten"
+	},
+	"header": {
+		"abmelden": "Abmelden",
+		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
+		"anmelden": "Anmelden",
+		"barAbbr": "BAR",
+		"homeOrganisationName": "ETH Zürich",
+		"homeOrganisationNameLink": "https://ethz.ch/de.html",
+		"benutzerdaten": "Benutzerdaten",
+		"benutzeroberflaeche": "Benutzeroberfläche",
+		"bestellkorb": "Bestellkorb",
+		"bestellkorbItemsCount": "Bestellkorb ({0})",
+		"bestelluebersicht": "Bestellübersicht",
+		"claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
+		"closeMobileNavigation": "Navigation schliessen",
+		"closeNav": "Navigation schliessen",
+		"closeUserAccount": "Benutzermenu schliessen",
+		"breadcrumb1": "ETH-Bibliothek",
+		"breadcrumb1Link": "https://library.ethz.ch/",
+		"breadcrumb2": "Hochschularchiv",
+		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
+		"breadcrumb3": "Virtueller Lesesaal",
+		"breadcrumb3Link": "#/de/suche/einfach",
+		"favoriten": "Favoriten",
+		"languageChoice": "Sprachwahl",
+		"loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",
+		"loggedInInfoAsRegisteredUser": "Sie sind als registrierte/r Benutzer/in angemeldet",
+		"meinkonto": "Mein Benutzerkonto",
+		"notLoggedInInfo": "Sie sind nicht angemeldet",
+		"notLoggedInTip": "Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
+		"notLoggedInTipInfo": "Info: Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
+		"onlineZugang": "Online-Zugang",
+		"openMobileNavigation": "Navigation öffnen",
+		"openUserAccount": "Benutzermenu öffnen",
+		"register": "Registrieren",
+		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
+		"title": "Hochschularchiv der ETH Zürich | ETH Zürich",
+		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
+		"favoritesCount": "Favoriten ({0})"
+	},
+	"headerContent": {
+		"component": {
+			"aktiv": "Aktiv",
+			"toolTippLoggedIn": "Weitere Informationen zu Ihrem Benutzerstatus finden Sie auf der Seite «Registrieren & Identifizieren» und unter dem Menü «Informationen»",
+			"toolTippLoggedInAsRegisteredUser": "Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. Wenn Sie Daten innerhalb einer Schutzfrist einsehen wollen, müssen Sie sich vorgängig identifizieren (siehe \"Mein Benutzerkonto\")."
 		}
 	},
-  "veExportRecord": {
-    "referenceCode": "Signatur",
-    "fileReference": "Aktenzeichen",
-    "title": "Titel",
-    "creationPeriod": "Entstehungszeitraum",
-    "withinInfo": "Form und Inhalt",
-    "level": "Stufe",
-    "accessibility": "Benutzbarkeit",
-    "fileName": "suchresultat",
-    "favourites": "favoriten"
-  }
+	"footer": {
+		"footerTitle": "Fusszeile",
+		"title": "Hochschularchiv der ETH Zürich"
+	},
+	"page": {
+		"description": "vls.hsa.ch",
+		"title": "Hochschularchiv der ETH Zürich"
+	},
+	"user": {
+		"cancelRegistrationMessage": "Bitte schliessen Sie die Registrierung ab und speichern Sie die Daten.",
+		"birthday": "Geburtsdatum",
+		"countryCode": "Land",
+		"emailAddress": "E-Mail",
+		"errorLegalAgreementConsent": "Bitte lesen und akzeptieren Sie die Datenschutzerklärung.",
+		"familyName": "Name",
+		"firstName": "Vorname(n)",
+		"infoText": "Bitte erfassen Sie Ihre Benutzerdaten, damit wir Sie bei Bedarf erreichen können. Sie können diese Daten jederzeit aktualisieren.",
+		"legalAgreementConsentTitle": "Datenschutzerklärung",
+		"legelAgreementConsentText": "Ich bin einverstanden, dass das Hochschularchiv der ETH Zürich meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
+		"mobileTel": "Mobiltelefon",
+		"organization": "Organisation",
+		"pageTitle": "Eingabe Benutzerdaten",
+		"phoneNumber": "Telefon (Festnetz)",
+		"placeholder": {
+			"birthday": "Geburtsdatum (tt.mm.jjjj)",
+			"emailAddress": "E-Mail",
+			"familyName": "Name",
+			"firstName": "Vorname(n)",
+			"mobileTel": "Mobiltelefon",
+			"organization": "Organisation",
+			"phoneNumber": "Telefon (Festnetz)",
+			"street": "Strasse / Nr.",
+			"streetAttachment": "Strasse Zusatz",
+			"town": "Ort",
+			"zipCode": "PLZ"
+		},
+		"preferredLangauge": "Bevorzugte Sprache",
+		"preferredLanguageHelpText": "Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.",
+		"register": "Eingabe Benutzerdaten",
+		"requiredFieldsInfo": "Mit einem * gekennzeichnete Felder müssen ausgefüllt werden.",
+		"savesuccess": "Erfolgreich gespeichert.",
+		"street": "Strasse / Nr.",
+		"streetAttachment": "Strasse Zusatz",
+		"town": "Ort",
+		"userdata": "Benutzerdaten",
+		"zipCode": "PLZ"
+	}
 }

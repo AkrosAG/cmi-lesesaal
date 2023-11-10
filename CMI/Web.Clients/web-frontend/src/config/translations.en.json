@@ -60,7 +60,9 @@
       "videoChatPossible": "Video call possible",
       "wizardInfo": "In order to obtain “identified user” status, you must conduct a video call. Before proceeding, please answer the following questions:",
       "wizardTitle": "Apply for “identified user” status",
-      "yes": "Yes"
+      "yes": "Yes",
+      "statusTitle": "Lorem ipsum dolor sit amet",
+      "statusInfo": "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
     },
     "email": "E-mail",
     "errorPhoneNumber": "Telephone numbers can begin with a \"+\", may contain numbers, spaces and \\\"-\\\", and must be between 6 and 20 characters long",
@@ -240,7 +242,7 @@
     "thxTextEischtisgesuch": "We will forward your request to the office responsible. The processing of requests for access can take up to 4 weeks.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "If your request is approved, you will need to identify yourself in order to consult the documents (see <a href=\"{0}\">Registration and identification</a>).",
     "thxTextEischtisgesuchIntroduction": "Thank you for your request to consult the following documents:",
-    "thxTextLesesaal": "Thank you for your order. You can view the documents on your chosen date in the Federal Archives <a href=\"#/{0}\">reading room</a>. The reading room is open Tuesday to Thursday from 9 a.m. to 7 p.m.",
+    "thxTextLesesaal": "Thank you for your order. You can view the documents on your chosen date <a href=\"#/{0}\">reading room</a>. The reading room is open Tuesday to Thursday from 9 a.m. to 7 p.m.",
     "thxTextVerwaltungsausleihe": "Thank you for your order. You will receive your documents within one to two working days by post."
   },
   "clipboard": {
@@ -270,7 +272,7 @@
   "detail": {
     "notFound": "The page you have requested cannot be displayed",
     "notFoundMessage": "It is possible that you do not have the necessary rights. Please check your rights in your <a href=\"#{0}\">user account.</a></br></br>",
-    "notFoundMessage2": "If you have questions about accessibility of documents in the Federal Archives, please contact our advice service or send an e-mail to <a href=\"mailto:bundesarchiv@bar.admin.ch\">bundesarchiv@bar.admin.ch</a>.",
+    "notFoundMessage2": "If you have questions about accessibility of documents, please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
     "notFoundMessageNotOe1": "It is possible that you do not have the necessary rights to access the page. Please check your rights in your <a href=\"#{0}\">user account</a>.</br></br>",
     "notFoundMessageOe1": "It is possible that you do not have the necessary rights to access the page (see <a href=\"#{0}\">Login and identification</a>).</br></br>"
   },
@@ -297,7 +299,7 @@
   },
   "download": {
     "menuTooltip": "To download",
-    "thresholdExceeded": "You have already downloaded {1} files in the last {0}. You have therefore reached the maximum number of files. You will be able to make another download in {2}. Alternatively you can request the Federal Archives to increase your download allocation."
+    "thresholdExceeded": "You have already downloaded {1} files in the last {0}. You have therefore reached the maximum number of files. You will be able to make another download in {2}. Alternatively you can request to increase your download allocation."
   },
   "downloadSection": {
     "downloadSuccess": "Download successfully initiated.",
@@ -322,7 +324,7 @@
     "gesuchDauerInfo": "The processing of requests for access can take up to 4 weeks.",
     "identifizierung": "In order to submit a request for information you must first identify yourself. You can apply for identification in your user account <a href=\"#{0}\" target=\"_blank\">identification function</a>.",
     "identifizierungTitel": "Identification required",
-    "infoTextAbschnittDrei": ". The authorisation to consult records is only valid for the person making the request.",
+    "infoTextAbschnittDrei": "The authorisation to consult records is only valid for the person making the request.",
     "infoTextAbschnittEins": "To consult records that are still subject to a closure period, you require authorisation, which you must apply for by submitting a request. You can have consultation requests for a maximum of 50 dossiers undergoing processing at any one time.",
     "infoTextAbschnittLink": "(see Login and identification)",
     "infoTextAbschnittZwei": "We will then forward your request to the office responsible. The processing of requests for access can take up to 4 weeks. If your request is approved, you must identify yourself to consult the documents ",
@@ -337,7 +339,7 @@
   },
   "engagement": {
     "chatbotInfo": "To use the chatbot (beta) switch to German",
-    "chatInfo": "Chat with the Federal Archives Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
+    "chatInfo": "Chat with the us Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
     "headerTitle": "How may we assist you?"
   },
   "enums": {
@@ -367,7 +369,7 @@
       "unterlagenInSchutzfrist": "Rejected (no authorisation for administration loans – documents within closure period)"
     },
     "eingangsart": {
-      "erfasstDurchBar": "Recorded by SFA",
+      "erfasstDurchAma": "Recorded by SFA",
       "erfasstDurchKunde": "Recorded by customer"
     },
     "entscheidGesuchStatus": {
@@ -403,17 +405,12 @@
       "zumReponierenBereit": "Ready for return to stacks"
     }
   },
-  "error": {
-    "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to bestellung@bar.admin.ch.",
-    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to benutzer-admin@bar.admin.ch.",
-    "unknownErrorTitle": "An error has occurred."
-  },
   "errors": {
     "errorTitle": "Error",
     "pageNotFoundTitle": "Page not found",
     "smartcardErrorMessage": "You have tried to log in using a smartcard. In your role you may only log in using Kerberos. You will be logged out automatically within 8 seconds.",
     "smartcardErrorTitle": "Login only permitted with Kerberos.",
-    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to benutzer-admin@bar.admin.ch.",
+    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to archiv@library.ethz.ch.",
     "unknownErrorTitle": "An error has occurred"
   },
   "facette": {
@@ -467,7 +464,7 @@
     "menuTitle": "Favourites",
     "menuTitleAsFavorite": "Add as favourite",
     "menuTooltip": "Add to favourites",
-    "migrationFailure": "Workbook migration failed. \\nIf the problem persists, please contact the Federal Archives.",
+    "migrationFailure": "Workbook migration failed. \\nIf the problem persists, please contact our advice service or send an e-mail to <a href=\\\"mailto:archiv@library.ethz.ch\\\">archiv@library.ethz.ch</a>..",
     "migrationSuccess": "Workbooks successfully migrated",
     "missingTitle": "Please enter a title for the new list.",
     "newListLabel": "Name of list",
@@ -546,10 +543,6 @@
     "prepareNow": "Prepare now",
     "termsofUse": "I have read and agree to the <a href=\"#{0}\" target=\"_blank\">conditions of use</a>."
   },
-  "footer": {
-    "footerTitle": "Footer",
-    "title": "Swiss Federal Archives SFA"
-  },
   "general": {
     "day": "Day",
     "days": "Days",
@@ -559,58 +552,6 @@
     "minutes": "Minutes",
     "second": "Second",
     "seconds": "Seconds"
-  },
-  "header": {
-    "abmelden": "Log out",
-    "altText": "Swiss Confederation logo – to homepage",
-    "anmelden": "Log in",
-    "barAbbr": "SFA",
-    "barFullname": "Swiss Federal Archives SFA",
-    "benutzerdaten": "User data",
-    "benutzeroberflaeche": "User interface",
-    "bestellkorb": "Shopping cart",
-    "bestellkorbItemsCount": "Shopping cart ({0})",
-    "bestelluebersicht": "Order overview",
-    "claim": "Online access to the Federal Archives",
-    "closeMobileNavigation": "Close navigation",
-    "closeNav": "Close navigation",
-    "closeUserAccount": "Close user menu",
-    "departementEdiAbbr": "FDHA",
-    "departementEdiDescription": "Federal Department of Home Affairs",
-    "departmentBK": "FCh: Swiss Federal Chancellery",
-    "departmentEDA": "FDFA: Federal Department of Foreign Affairs",
-    "departmentEDI": "FDHA: Federal Department of Home Affairs",
-    "departmentEFD": "FDF: Federal Department of Finance",
-    "departmentEJPD": "FDJP: Federal Department of Justice and Police",
-    "departmentUVEK": "DETEC: Federal Department of the Environment, Transport, Energy and Communications",
-    "departmentVBS": "DDPS: Federal Department of Defence, Civil Protection and Sport",
-    "departmentWBF": "EAER: Federal Department of Economic Affairs, Education and Research",
-    "derBundesrat": "The Federal Council",
-    "derBundesratInclDomain": "The Federal Council admin.ch",
-    "favoriten": "Favourites",
-    "languageChoice": "Language settings",
-    "loggedInInfo": "You are logged in as an identified user",
-    "loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
-    "meinkonto": "My user account",
-    "notLoggedInInfo": "You are not logged in",
-    "notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
-    "notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
-    "onlineZugang": "Online access",
-    "openMobileNavigation": "Open navigation",
-    "openUserAccount": "Open user menu",
-    "register": "Register",
-    "srBreadcrumbOrientation": "Navigating the website",
-    "title": "Online access to the Federal Archives",
-    "zumBestellkorb": "Navigate to shopping cart with {0} items",
-    "einstellungen": "Settings",
-    "favoritesCount": "Favourites ({0})"
-  },
-  "headerContent": {
-    "component": {
-      "aktiv": "Active",
-      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
-      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
-    }
   },
   "hitbar": {
     "export": "Download XLS file",
@@ -658,30 +599,30 @@
       "chat": "Chat",
       "chatbot": "Chatbot",
       "chatbotTeaserText": "Ask the chatbot (beta) – it is available around the clock.",
-      "chatTeaserText": "Chat with the Federal Archives Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
+      "chatTeaserText": "Chat with the us Tuesdays to Thursdays from 9 a.m. to 12 midday and 1 p.m. to 4 p.m. – we’ll be happy to help.",
       "email": "E-mail",
       "emailTeaserText": "For more complex enquiries, send us an e-mail.",
       "forum": "Forum",
       "forumTeaserText": "Discuss your questions and experiences with other archive users.",
       "quoteAndPublish": "Citing & publishing",
-      "quoteAndPublishTeaserText": "Rules for correctly citing and publishing documents from the Federal Archives."
+      "quoteAndPublishTeaserText": "Rules for correctly citing and publishing documents."
     },
     "closemenu": "Close navigation",
     "contact": "Contact",
     "deepLinkDetail": "Permanent URL of unit of description",
     "deepLinkSearch": "Permanent URL of search",
     "information": {
-      "apiText": "Are you a developer? The Application Programming Interface (API) of the Swiss Federal Archives allows you to integrate archival search in your application.",
+      "apiText": "Are you a developer? The Application Programming Interface (API) allows you to integrate archival search in your application.",
       "orderAndConsult": "Ordering & consulting",
-      "orderAndConsultTeaserText": "Ordering and viewing analogue and digital documents from the Federal Archives online – important information.",
+      "orderAndConsultTeaserText": "Ordering and viewing analogue and digital documents online – important information.",
       "protectionAndPetitions": "Closure periods & consultation requests",
-      "protectionAndPetitionsTeaserText": "Information about Federal Archives documents that are subject to a closure period, and the consultation requests required.",
+      "protectionAndPetitionsTeaserText": "Information about documents that are subject to a closure period, and the consultation requests required.",
       "registerAndAuthentificate": "Registration & identification",
       "registerAndAuthentificateTeaserText": "Anonymous, registered or identified: the rights of individual user categories at a glance.",
       "search": "Searching",
-      "searchTeaserText": "Guidance and tips for searching on recherche.bar.admin.ch.",
+      "searchTeaserText": "Guidance and tips for searching.",
       "stocks": "Fonds",
-      "stocksTeaserText": "Overview of the fonds of the Federal Archives and the topic areas into which they are divided.",
+      "stocksTeaserText": "Overview of the fonds and the topic areas into which they are divided.",
       "themenuebersicht": "Thematic overview"
     },
     "legal": "Terms and conditions",
@@ -722,16 +663,13 @@
     "title": "Order",
     "userSelect": "User selection",
     "warningInfo": "Warning",
-    "warningTitle": "Lengthy waiting times for digitised documents!",
-    "warningMessagePart1": "Owing to high demand, the digitisation infrastructure is currently under heavy load. You should therefore expect longer processing times for your order. If you wish to view the documents urgently or submit a large order, please order the dossiers for consultation in the reading room.",
-    "warningMessagePart2": "Federal Administration staff can order documents submitted by their administrative unit for delivery direct to the office.",
     "digitalisierungNichtMoeglichTitle": "You have exhausted your quota",
     "digitalisierungNichtMoeglichIntro": "You have already requested us to digitise {0} dossiers.",
-    "digitalisierungNichtMoeglichAsBvw": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
+    "digitalisierungNichtMoeglichAsEma": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
     "digitalisierungNichtMoeglichOthers": "Please order the documents for consultation in the reading room or wait until your existing digitisation orders have been completed.",
     "exceedDigitalisierungTitle": "You can only have {0} more dossiers digitised",
     "exceedDigitalisierungIntro": "Please select below the dossiers you wish to have digitised now. As soon as they have been digitised, you can order further dossiers.",
-    "exceedDigitalisierungAsBvw": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
+    "exceedDigitalisierungAsEma": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
     "exceedDigitalisierungOthers": "Alternatively you can order them for consultation in the reading room at any time."
   },
   "orderCheckoutPageComponent": {
@@ -793,10 +731,6 @@
     "loadingUsers": "Loading users...",
     "submittingOrder": "Your order is being transmitted..."
   },
-  "page": {
-    "description": "recherche.admin.ch",
-    "title": "Swiss Federal Archives SFA"
-  },
   "pagination": {
     "anzahlTreffer": "No. of results per page",
     "titleSr": "Page numbering of results list"
@@ -806,8 +740,7 @@
     "captionTranslation": "row.captionDefault",
     "errorTranslation": "row.errorDefault"
   },
-
-  "searchErrors": {
+	"searchErrors": {
     "multipleResultsFound": "The search for this reference code yielded a number of results. Please enter an unambiguous reference code."
   },
   "searchResultPageComponent": {
@@ -887,14 +820,14 @@
       "reason1": "It is possible that you do not have the necessary rights. Please check your rights in your user account.",
       "reason2": "The documents you are looking for have not yet been catalogued and recorded in the system.",
       "reason3": "Spelling error or unknown search terms: please check the spelling or search for other terms.",
-      "reason4": "There are definitely no documents on your topic in the Federal Archives. You can find other archives in the Archive Addresses of Switzerland database or on the archive portal Europa.",
+      "reason4": "There are definitely no documents on your topic. You can find other archives in the Archive Addresses of Switzerland database or on the archive portal Europa.",
       "showHinweis": "Do not show this tip again"
     },
     "noHitsTitle": "No results for your search term",
     "noHitsTitleForQuery": "No archival materials corresponding to your search - {0} - were found.",
     "oe3RoleRequired": "To order documents with an authorisation to consult, you require \"identified user\" status. To proceed to the identification process please click on this notice.",
     "oe3RoleRequiredTitle": "Order not possible",
-    "reason4": "There are definitely no documents on your topic in the Federal Archives. You can find other archives in the <a href=\"{0}\">Archive Addresses of Switzerland database</a> or on the <a href=\"{1}\">archive portal Europa</a>.",
+    "reason4": "There are definitely no documents on your topic. You can find other archives in the <a href=\"{0}\">Archive Addresses of Switzerland database</a> or on the <a href=\"{1}\">archive portal Europa</a>.",
     "relevance": "Relevance",
     "signatur": "Reference code",
     "zugangTooltip": "Access",
@@ -938,45 +871,6 @@
   },
   "usageSection": {
     "infoSymbol": "Info symbol"
-  },
-  "user": {
-    "cancelRegistrationMessage": "Please complete the registration and save the data.",
-    "birthday": "Date of birth",
-    "countryCode": "Country",
-    "emailAddress": "E-mail",
-    "errorLegalAgreementConsent": "Please read and accept the data protection policy.",
-    "familyName": "Last name",
-    "firstName": "First name(s)",
-    "infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
-    "legalAgreementConsentTitle": "Data protection policy",
-    "legelAgreementConsentText": "I agree that the Swiss Federal Archives (SFA) can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
-    "mobileTel": "Mobile phone",
-    "organization": "Organisation",
-    "pageTitle": "Enter user data",
-    "phoneNumber": "Phone (land line)",
-    "placeholder": {
-      "birthday": "Date of birth (dd.mm.yyyy)",
-      "emailAddress": "E-mail",
-      "familyName": "Last name",
-      "firstName": "First name",
-      "mobileTel": "Mobile phone",
-      "organization": "Organisation",
-      "phoneNumber": "Phone (land line)",
-      "street": "Street / number",
-      "streetAttachment": "Additional address line",
-      "town": "Place",
-      "zipCode": "Post code"
-    },
-    "preferredLangauge": "Preferred language",
-    "preferredLanguageHelpText": "Please let us know in which language you would like to communicate.",
-    "register": "Enter user data",
-    "requiredFieldsInfo": "Fields marked with a * must be completed.",
-    "savesuccess": "Successfully saved.",
-    "street": "Street / number",
-    "streetAttachment": "Additional address line",
-    "town": "Place",
-    "userdata": "User data",
-    "zipCode": "Post code"
   },
   "userAccount": {
     "saveError": "Your user data were not saved",

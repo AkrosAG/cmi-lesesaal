@@ -51,7 +51,7 @@ namespace CMI.Manager.Order
         /// <summary>
         ///     The current user is the user executing the command.
         ///     Most of the time this user is the same as the "Besteller".
-        ///     But there is the possibility, that a BAR user is executing an order on behalf of someone.
+        ///     But there is the possibility, that a AMA user is executing an order on behalf of someone.
         /// </summary>
         public User CurrentUser { get; }
 

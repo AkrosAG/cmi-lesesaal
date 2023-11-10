@@ -22,7 +22,7 @@ namespace CMI.Manager.Cache.Tests
             var parameter = new CacheSettings
             {
                 RetentionSpanUsageCopyAb = "10s",
-                RetentionSpanUsageCopyBarOrAS = "10s",
+                RetentionSpanUsageCopyAMAOrAS = "10s",
                 RetentionSpanUsageCopyPublic = "10s",
                 RetentionSpanUsageCopyEb = "0s",
                 RetentionSpanUsageCopyBenutzungskopie = "20d"
@@ -67,7 +67,7 @@ namespace CMI.Manager.Cache.Tests
             var parameter = new CacheSettings
             {
                 RetentionSpanUsageCopyAb = "10s",
-                RetentionSpanUsageCopyBarOrAS = "10s",
+                RetentionSpanUsageCopyAMAOrAS = "10s",
                 RetentionSpanUsageCopyPublic = "10h",
                 RetentionSpanUsageCopyEb = "0s",
                 RetentionSpanUsageCopyBenutzungskopie = "20d"
@@ -123,7 +123,7 @@ namespace CMI.Manager.Cache.Tests
             var parameter = new CacheSettings
             {
                 RetentionSpanUsageCopyAb = "10s",
-                RetentionSpanUsageCopyBarOrAS = "10s",
+                RetentionSpanUsageCopyAMAOrAS = "10s",
                 RetentionSpanUsageCopyPublic = "10d",
                 RetentionSpanUsageCopyEb = "10d",
                 RetentionSpanUsageCopyBenutzungskopie = "20d"

@@ -46,7 +46,7 @@ namespace CMI.Manager.DocumentConverter.Render
                 }
             };
 
-            var comment = "Schweizerisches Bundesarchiv BAR";
+            var comment = "ETH Zürich AMA";
 
             // https://trac.ffmpeg.org/wiki/Scaling%20(resizing)%20with%20ffmpeg
             // TODO: Wäre schöner, wenn diese Einstellungen in den Parameters oder einer Config-Datei hinterlegt würden

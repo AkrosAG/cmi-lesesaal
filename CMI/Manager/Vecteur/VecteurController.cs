@@ -150,7 +150,7 @@ namespace CMI.Manager.Vecteur
 
                 // Gemeinsame Daten
                 auftrag.Auftragsdaten.AuftragsId = digipoolEntry.OrderItemId.ToString();
-                auftrag.Auftragsdaten.BemerkungenBar = digipoolEntry.InternalComment + "";
+                auftrag.Auftragsdaten.BemerkungenAma = digipoolEntry.InternalComment + "";
                 auftrag.Auftragsdaten.BemerkungenKunde = GetBemerkungKunde(digipoolEntry) + "";
                 auftrag.Auftragsdaten.Bestelldatum = digipoolEntry.OrderDate;
 

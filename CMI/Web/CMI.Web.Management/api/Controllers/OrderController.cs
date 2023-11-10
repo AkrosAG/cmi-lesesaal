@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Extensions;
@@ -33,12 +34,14 @@ namespace CMI.Web.Management.api.Controllers
         private readonly IBus bus;
         private readonly IPublicOrder orderManagerClient;
         private readonly IParameterHelper parameterHelper;
+        private readonly IVecteurActions vecteurActionsClient;
 
 
-        public OrderController(IPublicOrder client,
+        public OrderController(IVecteurActions vecteurActionsClient, IPublicOrder client,
             IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient,
             IParameterHelper parameterHelper, IMailHelper mailHelper, IBus bus)
         {
+            this.vecteurActionsClient = vecteurActionsClient;
             orderManagerClient = client;
             this.findArchiveRecordClient = findArchiveRecordClient;
             this.parameterHelper = parameterHelper;
@@ -608,6 +611,75 @@ namespace CMI.Web.Management.api.Controllers
             }
 
             return BadRequest("");
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungStarten([FromBody] DigitalisierungParams digitalisierungStartenPost)
+        {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungStartenPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if (digitalisierungStartenPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
+            Log.Information("Received SetStatusAushebungBereit call for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
+            await vecteurActionsClient.SetStatusAushebungBereit(digitalisierungStartenPost.OrderItemId);
+
+            Log.Information("Successfully updated status to FuerAushebungBereit for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
+            return Ok("OK");
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungExtern([FromBody] DigitalisierungParams digitalisierungExternPost)
+        {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungExternPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if(digitalisierungExternPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
+            Log.Information("SetStatusDigitalisierungExtern call for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
+            await vecteurActionsClient.SetStatusDigitalisierungExtern(digitalisierungExternPost.OrderItemId);
+
+            Log.Information("Successfully updated status to StatusDigitalisierungExtern for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
+            return Ok("OK");
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DigitalisierungAbschliessen([FromBody] DigitalisierungParams digitalisierungAbschliessenPost)
+        {
+            var access = this.GetManagementAccess();
+            access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen);
+
+            if (digitalisierungAbschliessenPost == null)
+            {
+                return BadRequest("Keine Werte angegeben");
+            }
+
+            if (digitalisierungAbschliessenPost.OrderItemId == 0)
+            {
+                return BadRequest("Keine OrderItemId angegeben");
+            }
+
+            Log.Information("Received SetStatusZumReponierenBereit call for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
+            await vecteurActionsClient.SetStatusZumReponierenBereit(digitalisierungAbschliessenPost.OrderItemId);
+
+            Log.Information("Successfully updated status to ZumReponierenBereit for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
+            return Ok("OK");
         }
 
         private bool CheckNurMahnbareAuftraegeEnthalten(List<int> orderItemIds)

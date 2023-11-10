@@ -67,7 +67,7 @@ namespace CMI.Access.Common.Tests
         {
             var tokens = new List<string>();
 
-            tokens.Add("BAR");
+            tokens.Add("AMA");
 
             if (id % 21 < 18)
             {

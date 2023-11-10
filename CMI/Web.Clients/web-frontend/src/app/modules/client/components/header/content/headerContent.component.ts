@@ -70,11 +70,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	public get versionInfo(): string {
-		let v = this._context.client.version;
-		return v ? `${v.major}.${v.minor}.${v.revision}.${v.build}` : void 0;
-	}
-
 	public get languages(): any[] {
 		this.refresh();
 		return this._languages;
@@ -166,5 +161,9 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	public getTooltippRegisteredUser(): string {
 		return this._txt.translate('Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. ' +
 			'Um sämtliche Daten nutzen zu können, müssen Sie sich vorgängig identifizieren (siehe Seite "Benutzerstatus" im "Benutzerkonto")', 'headerContent.component.toolTippLoggedInAsRegisteredUser');
+	}
+
+	public getHeaderClaim(): string {
+		return this._txt.get('header.claim', 'Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal');
 	}
 }

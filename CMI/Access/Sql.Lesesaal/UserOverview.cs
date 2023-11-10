@@ -59,7 +59,7 @@ namespace CMI.Access.Sql.Lesesaal
 
         [Column(CanBeNull = false)] public bool ResearcherGroup { get; set; }
 
-        [Column(CanBeNull = false)] public bool BarInternalConsultation { get; set; }
+        [Column(CanBeNull = false)] public bool InternalConsultation { get; set; }
 
         [Column(CanBeNull = false)] public bool IsInternalUser { get; set; }
 

@@ -19,6 +19,10 @@ export class SimpleSearchPageComponent implements OnInit {
 		this._seoService.setTitle(this._txt.translate('Einfache Suche', 'simpleSearchPageComponent.pageTitle'));
 	}
 
+	public getIntro(): string {
+		return this._txt.get('search.simple.intro', '');
+	}
+
 	public onSearch(request: SearchRequest): void {
 		this._context.search.request = request;
 		this._context.search.request.advancedSearch = false;

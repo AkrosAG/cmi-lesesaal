@@ -74,9 +74,9 @@ describe('RegisterPage', () => {
 				Oe1: 'Ö1',
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
-				BVW: 'BVW',
+				EMA: 'EMA',
 				AS: 'AS',
-				BAR: 'BAR'
+				AMA: 'AMA'
 			}
 		};
 		url = <UrlService> {
@@ -167,7 +167,7 @@ describe('RegisterPage', () => {
 		});
 	});
 
-	describe('when user is BAR, BVW or AS', () => {
+	describe('when user is AMA, EMA or AS', () => {
 		beforeEach(waitForAsync(async() => {
 			let authService = TestBed.inject(AuthorizationService);
 			spyOn(authService, 'isInternalUser').and.returnValue(true);
@@ -185,10 +185,10 @@ describe('RegisterPage', () => {
 			expect(emailInput.hasAttribute('disabled')).toBeTruthy();
 		});
 
-		it('should have a required organization field', () => {
+		it('should not have a required organization field', () => {
 			fixture.detectChanges();
 			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement as HTMLElement;
-			expect(organizationField.hasAttribute('required')).toBeTruthy();
+			expect(organizationField.hasAttribute('required')).toBeFalsy();
 		});
 	});
 });

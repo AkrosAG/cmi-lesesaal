@@ -39,7 +39,7 @@ namespace CMI.Manager.Index
         public void UpdateArchiveRecord(ConsumeContext<IUpdateArchiveRecord> updateContext)
         {
             var archiveRecord = updateContext.Message.ArchiveRecord;
-            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell BAR , muss verallgemeinet werden
+            var elasticArchiveRecord = ConvertArchiveRecord(archiveRecord); // TODO: speziell AMA , muss verallgemeinet werden
 
             archiveRecordProcessor.PostProcessElasticArchiveRecord(elasticArchiveRecord, archiveRecord);
             
@@ -269,10 +269,15 @@ namespace CMI.Manager.Index
                 {
                     var value = GetValue(detailData, fieldConfiguration);
 
-                    if ((fieldConfiguration.TargetField == "ReferenceCode" || fieldConfiguration.TargetField == "Title") &&
+                    if (fieldConfiguration.TargetField == "ReferenceCode" &&
                         string.IsNullOrWhiteSpace(value as string))
                     {
                         value = "\u200A";   // Hair space
+                    }
+                    else if (fieldConfiguration.TargetField == "Title" &&
+                             string.IsNullOrWhiteSpace(value as string))
+                    {
+                        value = "[ohne Titel]"; // "\u200A";   // Hair space
                     }
 
                     if (value != null && !(fieldConfiguration.Type == ElasticFieldTypes.TypeString && string.IsNullOrEmpty(value.ToString())))

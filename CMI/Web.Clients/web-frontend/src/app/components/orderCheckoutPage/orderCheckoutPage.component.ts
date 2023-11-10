@@ -111,6 +111,6 @@ export class OrderCheckoutPageComponent implements OnInit {
 	}
 
 	private async _canSkipUserPage(): Promise<boolean> {
-		return !this._author.isBarUser();
+		return !this._author.isAmaUser();
 	}
 }

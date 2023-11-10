@@ -10,9 +10,9 @@ export class AuthorizationService {
 		Oe1: 'Ö1',
 		Oe2: 'Ö2',
 		Oe3: 'Ö3',
-		BVW: 'BVW',
+		EMA: 'EMA',
 		AS: 'AS',
-		BAR: 'BAR'
+		AMA: 'AMA'
 	};
 
 	private _getApplicationFeatures(): { [key: string]: string; } {
@@ -112,20 +112,20 @@ export class AuthorizationService {
 		return this.hasRole(this.roles.AS);
 	}
 
-	public isBvwUser(): boolean {
-		return this.hasRole(this.roles.BVW);
+	public isEmaUser(): boolean {
+		return this.hasRole(this.roles.EMA);
 	}
 
 	public allowDataDownload(entity: Entity): boolean {
 		return (entity.isDownloadAllowed);
 	}
 
-	public isBarUser(): boolean {
-		return this.hasRole(this.roles.BAR);
+	public isAmaUser(): boolean {
+		return this.hasRole(this.roles.AMA);
 	}
 
 	public isInternalUser(): boolean {
-		return (this.hasRole(this.roles.BAR) || this.hasRole(this.roles.BVW) || this.hasRole(this.roles.AS));
+		return (this.hasRole(this.roles.AMA) || this.hasRole(this.roles.EMA) || this.hasRole(this.roles.AS));
 	}
 
 	public isExternalUser(): boolean {
