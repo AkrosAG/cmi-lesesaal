@@ -109,7 +109,21 @@ namespace CMI.Web.Frontend.api.Controllers
                 p = JsonConvert.DeserializeObject<Paging>(paging);
             }
 
-            return entityProvider.GetEntity<DetailRecord>(id, access, p);
+            var entity = entityProvider.GetEntity<DetailRecord>(id, access, p);
+            var primaryDataDownloadAccessTokens = entity.ExtensionData.GetValue("primaryDataDownloadAccessTokens")
+                                                                      .Values()
+                                                                      .Select(t => t.Value<string>())
+                                                                      .ToArray();
+            if(access.HasAnyTokenFor(primaryDataDownloadAccessTokens))
+            {
+                // Hat alle Rechte , kann alles sehen 
+                return entity;
+            }
+            else
+            {
+                // TODO: entferne alle Files aus der entity welche nicht angezeigt werden (fehlende Berechtigung)
+                return entity;
+            }
         }
 
         [HttpGet]

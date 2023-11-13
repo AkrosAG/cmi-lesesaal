@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using CMI.Contract.Common.JsonConverters;
 using Newtonsoft.Json;
@@ -78,6 +79,7 @@ namespace CMI.Contract.Common
         public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticArchiveRecordFile> Files { get; set; }
         public List<ElasticReference> References { get; set; }
+        public bool HasProtectedFiles => (Files is not null && Files.Any() && Files.Any(f => f.Publikation.ToLower() != "sofort"));
     }
 
     public class ElasticArchiveRecord : DetailRecord
