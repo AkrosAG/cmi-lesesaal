@@ -569,7 +569,8 @@
       "bestellkorb": "Place in shopping cart",
       "bestellkorbdownload": "Switch to download page ",
       "download": "To download",
-      "favoriten": "Add to favourites"
+      "favoriten": "Add to favourites",
+			"viewer": "View"
     }
   },
   "languages": {
