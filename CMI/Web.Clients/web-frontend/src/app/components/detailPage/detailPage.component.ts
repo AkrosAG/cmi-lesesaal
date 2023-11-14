@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component,  OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ClientContext, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
+import { ClientContext, ConfigService, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
 	EntityRenderService,
@@ -22,10 +22,10 @@ export class DetailPageComponent implements OnInit {
 	public sections: any[] = [];
 	public deepLinkUrl: string;
 	public showDownloadSection = false;
-	public showOrderSection = false;
 	public showViewerSection = false;
+	public showOrderSection = false;
 	public items: Entity[] = [];
-	public isAmaUser: boolean = false;
+	public isAmaUser = false;
 
 	private _error: any;
 	private _rootId: string;
@@ -39,7 +39,8 @@ export class DetailPageComponent implements OnInit {
 				private _route: ActivatedRoute,
 				private _authorization: AuthorizationService,
 				private _scs: ShoppingCartService,
-				private _seoService: SeoService) {
+				private _seoService: SeoService,
+				public _config: ConfigService) {
 	}
 
 	public ngOnInit(): void {
@@ -48,7 +49,6 @@ export class DetailPageComponent implements OnInit {
 		this._route.params.subscribe(params => this._loadEntity(params['id']));
 		this.isAmaUser = this._authorization.isAmaUser();
 	}
-
 	private _buildCrumbs(entity?: Entity): void {
 		const lang = this._context.language;
 		this.crumbs = [];
@@ -97,19 +97,19 @@ export class DetailPageComponent implements OnInit {
 	private async _loadEntity(idOrReference: string): Promise<void> {
 		this.loading = true;
 		this._error = undefined;
+
 		try {
 			const id = this._url.getDetailIdFromReference(idOrReference);
 			let entity = this.entity = await this._entityService.get(id);
 			this.hasFiles = this.entity.files && this.entity.files.length > 0;
-			this.items = [];
 
 			if (!_util.isEmpty(entity)) {
 				this._buildCrumbs(entity);
 
 				this.sections = [];
-				if (entity._context) {
-					let ctx = entity._context;
-					let items = [];
+				if (this.entity._context) {
+					const ctx = entity._context;
+					const items = [];
 					if (ctx.ancestors) {
 						Array.prototype.push.apply(items, ctx.ancestors);
 					}
@@ -125,7 +125,7 @@ export class DetailPageComponent implements OnInit {
 				if (entity._metadata) {
 					for (let key in entity._metadata) {
 						if (entity._metadata.hasOwnProperty(key)) {
-							let sec = this._renderService.renderSection(entity, key);
+							const sec = this._renderService.renderSection(this.entity, key);
 							if (sec) {
 								this.sections.push(sec);
 							}
@@ -133,9 +133,7 @@ export class DetailPageComponent implements OnInit {
 					}
 				}
 
-				this.showViewerSection = this.entity.manifestLink
-					&& this.entity?.primaryDataDownloadAccessTokens.filter(a => a === 'Ö2').length === 1
-					&& this.entity?.primaryDataFulltextAccessTokens.filter(a => a === 'Ö2').length === 1;
+				this.showViewerSection = this.entity.manifestLink  && this.entity.manifestLink !== '';
 				this.showDownloadSection = this._scs.canDownload(this.entity);
 				this.showOrderSection = !this.showDownloadSection && this.entity.canBeOrdered;
 				this.deepLinkUrl = this._url.getExternalDetailUrl(entity.archiveRecordId, entity.title);
@@ -153,11 +151,11 @@ export class DetailPageComponent implements OnInit {
 
 	private createErrorMessage(): any {
 		// Creating "safe" error message without exposing details
-		let details1 = this._txt.get('detail.notFoundMessage',
-				'Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href="#{0}">Anmelden und Identifizieren</a>).</br></br>',
-				this._url.getRegisterAndIdentifyInfo());
+		const details1 = this._txt.get('detail.notFoundMessage',
+			'Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href="#{0}">Anmelden und Identifizieren</a>).</br></br>',
+			this._url.getRegisterAndIdentifyInfo());
 
-		let details2 = this._txt.get('detail.notFoundMessage2',
+		const details2 = this._txt.get('detail.notFoundMessage2',
 			'Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href="mailto:archiv@library.ethz.ch">archiv@library.ethz.ch</a>.');
 
 		return {

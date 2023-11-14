@@ -15,6 +15,7 @@ namespace CMI.Manager.Repository.Properties
             AddDescription<Settings>(x => x.SFTPUser, "Benutzer des SFTP Servers für die Übermittlung in die SSZ");
             AddDescription<Settings>(x => x.TempStoragePath, "Lokaler Arbeitsverzeichnis des Repository Service");
             AddDescription<Settings>(x => x.UseSFTP, "True/False ob mit dem SFTP Server übertragen werden soll.");
+            AddDescription<Settings>(x => x.RepositoryManager, "Which RespositoryManager should be used.");
         }
     }
 }
