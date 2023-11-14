@@ -27,6 +27,7 @@ export class ViewerSectionComponent implements OnInit {
 	public ngOnInit(): void {
 		this.viewerText = this._txt.translate('Konsultieren Sie die Unterlagen', 'onlineViewer.infoText');
 		this.link = this.viewerLink + this.manifestLink;
+		console.log(this.link);
 	}
 
 	public logViewerClick() {
