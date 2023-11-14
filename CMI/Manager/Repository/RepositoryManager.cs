@@ -128,7 +128,6 @@ namespace CMI.Manager.Repository
             try
             {
                 var allIgnoredFiles = new List<RepositoryFile>();
-                
                 var rootFolder = repositoryDataAccess.GetRepositoryRoot(packageId);
                 if (rootFolder != null)
                 {

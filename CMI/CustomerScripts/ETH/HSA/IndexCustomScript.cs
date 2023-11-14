@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace CMI.Contract.Common.Compiler
 {
@@ -132,8 +131,6 @@ namespace CMI.Contract.Common.Compiler
                         break;
                 }
             }
-
-           
         }
 
         private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)

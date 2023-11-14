@@ -653,7 +653,7 @@ This is required for the best possible search experience using date ranges.
                 <xs:element minOccurs="0" name="otherLanguageNames" type="xs:string"/>
                 <xs:element minOccurs="0" name="idName" type="xs:string"/>
                 <xs:element minOccurs="0" name="dateOfBirth" type="xs:date"/>
-				<xs:element minOccurs="0" name="dateOfDeath" type="xs:date"/>
+                <xs:element minOccurs="0" name="dateOfDeath" type="xs:date"/>
                 <xs:sequence maxOccurs="1">
                     <xs:element name="seeAlso" type="xs:string" maxOccurs="unbounded"/>
                 </xs:sequence>
