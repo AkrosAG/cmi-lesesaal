@@ -548,7 +548,8 @@
       "bestellkorb": "In den Bestellkorb legen",
       "bestellkorbdownload": "Zur Downloadseite wechseln ",
       "download": "Zum Download",
-      "favoriten": "Zu den Favoriten hinzufügen"
+      "favoriten": "Zu den Favoriten hinzufügen",
+			"viewer": "Anzeigen"
     }
   },
   "languages": {

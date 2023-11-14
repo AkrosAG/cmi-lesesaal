@@ -17,5 +17,7 @@ namespace CMI.Access.Sql.Lesesaal
         public string Accessibility { get; set; }
         public string WithinInfo { get; set; }
         public dynamic CustomFields { get; set; }
+
+        public string ManifestLink { get; set; }
     }
 }
