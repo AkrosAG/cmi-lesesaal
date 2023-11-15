@@ -105,7 +105,7 @@ namespace CMI.Access.Repository
             Log.Information("Getting repository root for package with id {packageId}", packageId);
             var session = connectionFactory.ConnectToFirstRepository();
 
-            // packageId e. g. IE607568
+            // Do we have a document identifier? These have two @ signs in its packageId
             var isDocument = packageId.Split('@').Length == 3;
             if (isDocument)
             {
