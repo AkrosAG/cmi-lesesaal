@@ -18,7 +18,18 @@ namespace CMI.Manager.Repository.Infrastructure
             var builder = new ContainerBuilder();
 
             // register the different consumers and classes
-            builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
+
+            switch (Properties.Settings.Default.RepositoryManager.ToLowerInvariant())
+            {
+                case "mock":
+                    builder.RegisterType<MockRepositoryManager>().As<IRepositoryManager>();
+                    break;
+              
+                default:
+                    builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
+                    break;
+            }
+           
             builder.RegisterType<RepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
             builder.RegisterType<RepositoryDataAccess>().As<IRepositoryDataAccess>();
             builder.RegisterType<PackageValidator>().As<IPackageValidator>();

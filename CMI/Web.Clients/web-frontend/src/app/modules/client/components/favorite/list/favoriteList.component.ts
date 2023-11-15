@@ -4,7 +4,7 @@ import {Favorite, FavoriteKind, SearchFavorite, VeFavorite} from '../../../model
 import * as moment from 'moment';
 import {FavoriteService} from '../../../services/favorite.service';
 import {FavoriteList} from '../../../model/favorite/favoriteList';
-import {Entity, Utilities as _util} from '@cmi/lesesaal-web-core';
+import {ConfigService, Entity, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
 @Component({
 	selector: 'cmi-viaduc-favorite-list',
@@ -27,12 +27,15 @@ export class FavoriteListComponent implements OnInit {
 	public onExportFavorite: EventEmitter<void> = new EventEmitter<void>();
 
 	public error: any;
+	public viewerLinkBase: string;
 
-	constructor(private _url: UrlService, private _favService: FavoriteService, private _scs: ShoppingCartService) {
+	constructor(private _url: UrlService, private _favService: FavoriteService, private _scs: ShoppingCartService,
+				public _config: ConfigService) {
 	}
 
 	public ngOnInit(): void {
 		this._groupList();
+		this.viewerLinkBase = this._config.getSetting('viewer.url', '');
 	}
 
 	private _groupList(): void {

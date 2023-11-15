@@ -76,6 +76,8 @@ namespace CMI.Web.Common.Helpers
 
         public static string AdditionalInternalUsers => GetStringSetting("additionalInternalUsers", null);
 
+        public static string ViewerUrl => GetStringSetting("viewer-url", "");
+
         #region CMI / App Settings
 
         public static CmiSettings Settings { get; } = new CmiSettings();

@@ -40,6 +40,12 @@ namespace CMI.Manager.DocumentConverter
                     ec.UseRetry(BusConfigurator.ConfigureDefaultRetryPolicy);
                 });
 
+                cfg.ReceiveEndpoint(BusConstants.DocumentConverterJobEndRequestQueue, ec =>
+                {
+                    ec.Consumer(ctx.Resolve<JobEndConsumer>);
+                    ec.UseRetry(BusConfigurator.ConfigureDefaultRetryPolicy);
+                });
+
                 cfg.ReceiveEndpoint(BusConstants.DocumentConverterConversionStartRequestQueue, ec =>
                 {
                     ec.Consumer(ctx.Resolve<ConversionStartConsumer>);
@@ -71,8 +77,7 @@ namespace CMI.Manager.DocumentConverter
                     ec.Consumer(ctx.Resolve<AbbyyOcrTestConsumer>);
                     // Do not allow more than 4 concurrent Abbyy calls
                     ec.PrefetchCount = 4;
-                });
-
+                }); 
             });
 
             container = containerBuilder.Build();

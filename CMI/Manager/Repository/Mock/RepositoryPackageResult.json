@@ -1,0 +1,47 @@
+{
+  "PackageDetails": {
+    "Folders": [],
+    "Files": [
+      {
+        "LogicalName": "CH-BAR#E3210A-01#2005-111#849.tif",
+        "PhysicalName": "CH-BAR#E3210A-01#2005-111#849.tif",
+        "SipOriginalName": null,
+        "MimeType": "image/tiff",
+        "Hash": null,
+        "HashAlgorithm": null,
+        "Exported": false,
+        "SkipOCR": false,
+        "Id": "44a8d877-ee0e-4979-8c59-5a4959852e91;1.0",
+        "SipId": null,
+        "ExtendedProperties": [],
+        "ContentText": null,
+        "SizeInBytes": 8565080
+      },
+      {
+        "LogicalName": "metadata.xml",
+        "PhysicalName": "metadata.xml",
+        "SipOriginalName": null,
+        "MimeType": "text/xml",
+        "Hash": null,
+        "HashAlgorithm": null,
+        "Exported": false,
+        "SkipOCR": false,
+        "Id": "a28a1ff1-857b-4214-9aea-60efb32b6b72;1.0",
+        "SipId": null,
+        "ExtendedProperties": [],
+        "ContentText": null,
+        "SizeInBytes": 3969
+      }
+    ],
+    "SizeInBytes": 8569049,
+    "FileCount": 2,
+    "PackageId": "b320f737-1438-4369-8f7b-57835f7c4b27@COO.2080.100.2.2041618",
+    "PackageFileName": "test.zip",
+    "RepositoryExtractionDuration": 0,
+    "FulltextExtractionDuration": 0,
+    "ArchiveRecordId": "30409372"
+  },
+  "Success": true,
+  "Valid": true,
+  "ErrorMessage": null
+}

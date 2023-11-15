@@ -490,6 +490,44 @@ namespace CMI.Access.Sql.Lesesaal
             }
         }
 
+        public async Task<List<DownloadLogItem>> GetDownloadLogItemsByDate(DateTime startTime, DateTime endTime)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                var downloadLogItems = new List<DownloadLogItem>();
+
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * " +
+                                      "FROM " +
+                                      "DownloadLog " +
+                                      "WHERE DatumVorgang between @startTime AND @endTime";
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = "startTime",
+                        Value = startTime,
+                        SqlDbType = SqlDbType.DateTime
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = "endTime",
+                        Value = endTime,
+                        SqlDbType = SqlDbType.DateTime
+                    });
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            downloadLogItems.Add(DownloadLogItemFromReader(reader));
+                        }
+                    }
+                }
+
+                return downloadLogItems;
+            }
+        }
+
         public async Task<Ordering> GetOrdering(int orderingId, bool includeOrderItems = true)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -1817,6 +1855,24 @@ namespace CMI.Access.Sql.Lesesaal
 
             return primaerdatenAufbereitungItem;
         }
+
+        private DownloadLogItem DownloadLogItemFromReader(SqlDataReader reader)
+        {
+            return new DownloadLogItem
+            {
+                Token = reader["Token"] as string,
+                UserId = reader["UserId"] as string,
+                UserTokens = reader["UserTokens"] as string,
+                Vorgang = reader["Vorgang"] as string,
+                Signatur = reader["Signatur"] as string,
+                Titel = reader["Titel"] as string,
+                Zeitraum = reader["Zeitraum"] as string,
+                Schutzfrist = reader["Schutzfrist"] as string,
+                DatumErstellungToken = Convert.ToDateTime(reader["DatumErstellungToken"]),
+                DatumVorgang = Convert.ToDateTime(reader["DatumVorgang"])
+            };
+        }
+
 
         private OrderItem OrderItemFromReader(SqlDataReader reader)
         {

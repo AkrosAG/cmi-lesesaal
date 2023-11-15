@@ -7,5 +7,7 @@ namespace CMI.Contract.Messaging
         long MutationId { get; set; }
         ArchiveRecord ArchiveRecord { get; set; }
         int PrimaerdatenAuftragId { get; set; }
+        // This flag can be used to surpress the ArchiveRecordUpdatedEvent
+        bool DoNotReportCompletion { get; set; }
     }
 }
