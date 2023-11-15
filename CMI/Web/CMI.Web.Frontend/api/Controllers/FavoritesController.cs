@@ -198,6 +198,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     veFavorite.CanBeOrdered = elasticHit.Data?.CanBeOrdered ?? false;
                     veFavorite.CanBeDownloaded = !string.IsNullOrWhiteSpace(elasticHit.Data?.PrimaryDataLink) &&
                                                  access.HasAnyTokenFor(elasticHit.Data.PrimaryDataDownloadAccessTokens);
+                    veFavorite.ManifestLink = elasticHit.Data?.ManifestLink;
                     yield return veFavorite;
                 }
                 else

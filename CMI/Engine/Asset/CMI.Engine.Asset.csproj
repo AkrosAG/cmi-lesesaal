@@ -43,6 +43,12 @@
     <Reference Include="Automatonymous, Version=5.1.3.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Automatonymous.5.1.3\lib\netstandard2.0\Automatonymous.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator.SolrNet, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SolrNet.1.1.1\lib\net46\CommonServiceLocator.SolrNet.dll</HintPath>
+    </Reference>
     <Reference Include="CSJ2K, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0ca7be2ec378a773, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\CSJ2K.3.0.0\lib\net40-client\CSJ2K.dll</HintPath>
     </Reference>
@@ -88,6 +94,9 @@
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
     </Reference>
+    <Reference Include="SolrNet, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SolrNet.Core.1.1.1\lib\net46\SolrNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -98,6 +107,7 @@
       <HintPath>..\..\..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -143,15 +153,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetPreparationEngine.cs" />
+    <Compile Include="PostProcess\DipExtensions.cs" />
+    <Compile Include="PostProcess\EnumerableExtensions.cs" />
+    <Compile Include="PostProcess\PathHelper.cs" />
+    <Compile Include="PostProcess\PathItem.cs" />
+    <Compile Include="PostProcess\PostProcessIiifFileDistributor.cs" />
+    <Compile Include="PostProcess\ManifestSettings.cs" />
+    <Compile Include="PostProcess\PackageFileLocation.cs" />
+    <Compile Include="ParameterSettings\ViewerConversionSettings.cs" />
+    <Compile Include="PostProcess\PostProcessCombineTextDocuments.cs" />
+    <Compile Include="PostProcess\AssetPostProcessingEngine.cs" />
+    <Compile Include="PostProcess\PostProcessJp2Converter.cs" />
+    <Compile Include="PostProcess\PostProcessIiifOcrIndexer.cs" />
+    <Compile Include="PostProcess\PostProcessManifestCreator.cs" />
+    <Compile Include="PostProcess\PostProcessValidIiifFileTypeChecker.cs" />
+    <Compile Include="PostProcess\ViewerFileLocationSettings.cs" />
+    <Compile Include="PreProcess\AssetPreparationEngine.cs" />
     <Compile Include="DownloadAndStoreFileResult.cs" />
+    <Compile Include="PostProcess\IAssetPostProcessingEngine.cs" />
     <Compile Include="PreProcess\FileResolution.cs" />
-    <Compile Include="PreProcess\PreProcessAnalyzer.cs" />
+    <Compile Include="PreProcess\ImageHelper.cs" />
+    <Compile Include="ProcessAnalyzerBase.cs" />
     <Compile Include="PreProcess\PreProcessAnalyzerDetectAndFlagLargeDimensions.cs" />
     <Compile Include="PreProcess\PreProcessAnalyzerOptimizePdf.cs" />
     <Compile Include="IPdfManipulator.cs" />
     <Compile Include="IPreparationTimeCalculator.cs" />
-    <Compile Include="IAssetPreparationEngine.cs" />
+    <Compile Include="PreProcess\IAssetPreparationEngine.cs" />
     <Compile Include="IScanProcessor.cs" />
     <Compile Include="PreProcess\MetadataXmlUpdater.cs" />
     <Compile Include="PackagePriorizationEngine.cs" />
@@ -164,12 +191,32 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderEngine.cs" />
     <Compile Include="PreProcess\ScanProcessor.cs" />
+    <Compile Include="Solr\SolrRecord.cs" />
+    <Compile Include="Solr\SolrConnectionInfo.cs" />
     <Compile Include="StreamUtility.cs" />
     <Compile Include="TextEngine.cs" />
     <Compile Include="TransformEngine.cs" />
     <Compile Include="Xsl2Processor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OcrXsl\alto__hocr.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OcrXsl\alto__text.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OcrXsl\codes_lookup.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OcrXsl\hocr__alto4.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OcrXsl\hocr__text.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OcrXsl\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="..\..\Contract\Common\Gebrauchskopie\ablieferung.xsd">
       <Link>Html\Xslt\data\ablieferung.xsd</Link>
       <SubType>Designer</SubType>

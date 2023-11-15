@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CMI.Contract.Common.Compiler
 {
@@ -85,6 +87,21 @@ namespace CMI.Contract.Common.Compiler
                     dateRange.ToDate = dateRange.FromDate.AddYears(10);
                     dateRange.SearchToDate = dateRange.ToDate;
                     dateRange.To = dateRange.ToDate.ToString("+yyyyMMdd");
+                }
+            }
+
+            if (archiveRecord.Metadata.DetailData.Any(d => d.ElementName == "CustomFreeTextField04"))
+            {
+                var pattern = @"\bdps_pid=(?<ie>IE\w*)\b";
+                var digitalesOriginal = archiveRecord.Metadata.DetailData.FirstOrDefault(d => 
+                    d.ElementName == "CustomFreeTextField04").ElementValue.FirstOrDefault().TextValues.FirstOrDefault();
+                if (digitalesOriginal != null && digitalesOriginal.Value != "")
+                {
+                    var r = Regex.Match(digitalesOriginal.Value, pattern);
+                    if (r.Success)
+                    {
+                        archiveRecord.Metadata.PrimaryDataLink = r.Groups["ie"].Value;
+                    }
                 }
             }
         }

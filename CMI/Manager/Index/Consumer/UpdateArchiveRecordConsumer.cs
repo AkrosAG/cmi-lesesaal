@@ -42,47 +42,36 @@ namespace CMI.Manager.Index.Consumer
                 {
                     indexManager.UpdateArchiveRecord(context);
                     Log.Information($"Updated archive record {context.Message.ArchiveRecord.ArchiveRecordId} in elastic index.");
-
-                    currentStatus = AufbereitungsStatusEnum.IndizierungAbgeschlossen;
-                    await UpdatePrimaerdatenAuftragStatus(context, AufbereitungsServices.IndexService, currentStatus);
-
-                    // TODO: Review Update DB Ve int to string
-
-                    //// update the individual tokens for download and access 
-                    //// these tokens need to be updated even if the record has no primary data.
-                    //// Use case: Ö2 user asks for Einsichtsgesuch. It gets approved, but record may not (yet) have primary data.
-                    //// var ep = await context.GetSendEndpoint(new Uri(context.SourceAddress, BusConstants.RecalcIndivTokens));
-                    //await ep.Send(new RecalcIndivTokens
-                    //{
-                    //    ArchiveRecordId = context.Message.ArchiveRecord.ArchiveRecordId,
-                    //    ExistingMetadataAccessTokens = context.Message.ArchiveRecord.Security.MetadataAccessToken.ToArray(),
-                    //    ExistingPrimaryDataDownloadAccessTokens = context.Message.ArchiveRecord.Security.PrimaryDataDownloadAccessToken.ToArray(),
-                    //    ExistingPrimaryDataFulltextAccessTokens = context.Message.ArchiveRecord.Security.PrimaryDataFulltextAccessToken.ToArray()
-                    //});
-                    Log.Information(
-                        $"Recalculated and updated individual tokens for archive record {context.Message.ArchiveRecord.ArchiveRecordId} in elastic index.");
-
-                    await context.Publish<IArchiveRecordUpdated>(new
+                    if (!context.Message.DoNotReportCompletion)
                     {
-                        context.Message.MutationId,
-                        context.Message.ArchiveRecord.ArchiveRecordId,
-                        ActionSuccessful = true,
-                        context.Message.PrimaerdatenAuftragId
-                    });
+                        currentStatus = AufbereitungsStatusEnum.IndizierungAbgeschlossen;
+                        await UpdatePrimaerdatenAuftragStatus(context, AufbereitungsServices.IndexService, currentStatus);
+
+                        await context.Publish<IArchiveRecordUpdated>(new
+                        {
+                            context.Message.MutationId,
+                            context.Message.ArchiveRecord.ArchiveRecordId,
+                            ActionSuccessful = true,
+                            context.Message.PrimaerdatenAuftragId
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, "Failed to update archiveRecord with conversationId {ConversationId} in Elastic or SQL", context.ConversationId);
-                    await context.Publish<IArchiveRecordUpdated>(new
+                    if (!context.Message.DoNotReportCompletion)
                     {
-                        context.Message.MutationId,
-                        context.Message.ArchiveRecord.ArchiveRecordId,
-                        ActionSuccessful = false,
-                        context.Message.PrimaerdatenAuftragId,
-                        ErrorMessage = ex.Message,
-                        ex.StackTrace
-                    });
-                    await UpdatePrimaerdatenAuftragStatus(context, AufbereitungsServices.IndexService, currentStatus, ex.Message);
+                        await context.Publish<IArchiveRecordUpdated>(new
+                        {
+                            context.Message.MutationId,
+                            context.Message.ArchiveRecord.ArchiveRecordId,
+                            ActionSuccessful = false,
+                            context.Message.PrimaerdatenAuftragId,
+                            ErrorMessage = ex.Message,
+                            ex.StackTrace
+                        });
+                        await UpdatePrimaerdatenAuftragStatus(context, AufbereitungsServices.IndexService, currentStatus, ex.Message);
+                    }
                 }
             }
         }

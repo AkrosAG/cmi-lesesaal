@@ -52,6 +52,7 @@ import {EngagementBubblesComponent} from './engagementBubbles/engagementBubbles.
 import {UsageSectionComponent} from './detail/usageSection/usageSection.component';
 import {ChatbotDialogComponent} from './chatbotDialog/chatbotDialog.component';
 import { SearchFacetteShowAllComponent } from './search/searchFacetteShowAll/searchFacetteShowAll.component';
+import {ViewerSectionComponent} from './detail/viewerSection/viewerSection.component';
 
 export const ALL_COMPONENTS = [
 	StaticContentComponent,
@@ -107,5 +108,6 @@ export const ALL_COMPONENTS = [
 	EisichtCheckoutOrderDetailsStepComponent,
 	EngagementBubblesComponent,
 	UsageSectionComponent,
-	FileSectionComponent
+	FileSectionComponent,
+	ViewerSectionComponent
 ];
