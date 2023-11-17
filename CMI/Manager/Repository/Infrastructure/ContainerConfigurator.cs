@@ -1,10 +1,11 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using CMI.Access.Repository;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
 using CMI.Engine.PackageMetadata;
+using CMI.Manager.Repository.Mock;
 using MassTransit;
+using System.Reflection;
 
 namespace CMI.Manager.Repository.Infrastructure
 {
@@ -23,15 +24,18 @@ namespace CMI.Manager.Repository.Infrastructure
             {
                 case "mock":
                     builder.RegisterType<MockRepositoryManager>().As<IRepositoryManager>();
+                    builder.RegisterType<MockRepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
+                    builder.RegisterType<MockRepositoryDataAccess>().As<IRepositoryDataAccess>();
                     break;
               
                 default:
                     builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
+                    builder.RegisterType<RepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
+                    builder.RegisterType<RepositoryDataAccess>().As<IRepositoryDataAccess>();
                     break;
             }
            
-            builder.RegisterType<RepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
-            builder.RegisterType<RepositoryDataAccess>().As<IRepositoryDataAccess>();
+         
             builder.RegisterType<PackageValidator>().As<IPackageValidator>();
             builder.RegisterType<MetadataDataAccess>().As<IMetadataDataAccess>();
             builder.RegisterType<PackageHandler>().As<IPackageHandler>();
@@ -44,4 +48,5 @@ namespace CMI.Manager.Repository.Infrastructure
             return builder;
         }
     }
+
 }
