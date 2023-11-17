@@ -28,8 +28,8 @@ public class MockRepositoryManager : IRepositoryManager
         this.packageValidator = packageValidator;
         this.handler = handler;
 
-        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Data\RepositoryPackageInfoResult.json"));
-        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Data\RepositoryPackageResult.json"));
+        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageInfoResult.json"));
+        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageResult.json"));
     }
 
   
@@ -66,7 +66,7 @@ public class MockRepositoryManager : IRepositoryManager
             new List<RepositoryFile>());
         await UpdatePrimaerdatenAuftragStatus(primaerdatenId, AufbereitungsStatusEnum.PaketTransferiert);
 
-        CopayFileToDestination(new FileInfo(@"Mock\test.zip"), tempRootName);
+        CopayFileToDestination(new FileInfo(@"Mock\Data\test.zip"), tempRootName);
         repositoryPackageResult.PackageDetails.PackageFileName = tempRootName + ".zip";
         return repositoryPackageResult;
     }
