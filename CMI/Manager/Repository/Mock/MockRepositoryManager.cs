@@ -1,4 +1,7 @@
-﻿using CMI.Access.Repository;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Repository;
@@ -6,13 +9,8 @@ using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 
-namespace CMI.Manager.Repository;
+namespace CMI.Manager.Repository.Mock;
 
 public class MockRepositoryManager : IRepositoryManager
 {
@@ -30,9 +28,8 @@ public class MockRepositoryManager : IRepositoryManager
         this.packageValidator = packageValidator;
         this.handler = handler;
 
-        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Mock\RepositoryPackageInfoResult.json"));
-        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Mock\RepositoryPackageResult.json"));
-
+        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageInfoResult.json"));
+        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageResult.json"));
     }
 
   
@@ -69,7 +66,7 @@ public class MockRepositoryManager : IRepositoryManager
             new List<RepositoryFile>());
         await UpdatePrimaerdatenAuftragStatus(primaerdatenId, AufbereitungsStatusEnum.PaketTransferiert);
 
-        CopayFileToDestination(new FileInfo(@"Mock\test.zip"), tempRootName);
+        CopayFileToDestination(new FileInfo(@"Mock\Data\test.zip"), tempRootName);
         repositoryPackageResult.PackageDetails.PackageFileName = tempRootName + ".zip";
         return repositoryPackageResult;
     }

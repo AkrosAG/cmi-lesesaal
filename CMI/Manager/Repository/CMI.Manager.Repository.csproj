@@ -139,7 +139,9 @@
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
     <Compile Include="IPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
-    <Compile Include="MockRepositoryManager.cs" />
+    <Compile Include="Mock\MockRepositoryDataAccess.cs" />
+    <Compile Include="Mock\MockRepositoryConnectionFactory.cs" />
+    <Compile Include="Mock\MockRepositoryManager.cs" />
     <Compile Include="PackageValidator.cs" />
     <Compile Include="ParameterSettings\RepositorySyncSettings.cs" />
     <Compile Include="Properties\Documentation.cs" />
@@ -219,13 +221,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-    <Content Include="Mock\RepositoryPackageInfoResult.json">
+    <Content Include="Mock\Data\RepositoryPackageInfoResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Mock\RepositoryPackageResult.json">
+    <None Include="Mock\Data\RepositoryPackageResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Mock\test.zip">
+    <Content Include="Mock\Data\test.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config">
