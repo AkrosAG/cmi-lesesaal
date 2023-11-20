@@ -111,6 +111,8 @@ namespace CMI.Access.Harvest.CMIAIS
                 .From(nameof(Verzeichnungseinheit.BemerkungStandort), vz => vz.BemerkungStandort)
                 .From(nameof(Verzeichnungseinheit.Kuerzel), vz => vz.Kuerzel)
                 .From(nameof(Verzeichnungseinheit.Schadenserhebung), vz => vz.Schadenserhebung)
+                .From(nameof(Verzeichnungseinheit.Digitalisierungsgrad), vz => vz.Digitalisierungsgrad.Item?.Digitalisierungsgrad1)
+                .From(nameof(Verzeichnungseinheit.Erschliessungszustand), vz => vz.Erschliessungszustand.Item?.Bezeichnung)
 
                 .From(nameof(Verzeichnungseinheit.CustomFreeBoolField01), vz => vz.CustomFreeBoolField01)
                 .From(nameof(Verzeichnungseinheit.CustomFreeBoolField02), vz => vz.CustomFreeBoolField02)
@@ -174,9 +176,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 .FromCollection(nameof(Verzeichnungseinheit.Archivalienart), vz => vz?.Archivalienart?.Select(a => a.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
                 .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"))
-                .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"))
-                .FromCollection(nameof(Verzeichnungseinheit.Digitalisierungsgrad), vz => vz.Digitalisierungsgrad.Item?.Digitalisierungsgrad1)
-                .FromCollection(nameof(Verzeichnungseinheit.Erschliessungszustand), vz => vz.Erschliessungszustand.Item?.Bezeichnung);
+                .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"));
         }
         private async Task<ArchiveRecordDisplay> GetDisplaySection(Verzeichnungseinheit cmiRecord, Tektonik.Verzeichnungseinheit cmiRecordTectonic, ArchiveRecord archiveRecord)
         {
