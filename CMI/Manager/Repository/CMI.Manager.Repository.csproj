@@ -224,9 +224,9 @@
     <Content Include="Mock\Data\RepositoryPackageInfoResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Mock\Data\RepositoryPackageResult.json">
+    <Content Include="Mock\Data\RepositoryPackageResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="Mock\Data\test.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
