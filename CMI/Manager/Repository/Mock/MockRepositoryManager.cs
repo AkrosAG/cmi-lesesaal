@@ -75,6 +75,7 @@ public class MockRepositoryManager : IRepositoryManager
 
     public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
     {
+        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = archiveRecordId;
         return repositoryPackageInfoResult;
     }
 
