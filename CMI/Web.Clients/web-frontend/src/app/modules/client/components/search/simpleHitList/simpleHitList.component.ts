@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {UserService} from '../../../services';
 import {UserUiSettings} from '../../../model';
-import {ClientContext, ConfigService, Entity, TranslationService} from '@cmi/lesesaal-web-core';
+import {ClientContext, ConfigService, Entity} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-viaduc-simple-hitlist',
@@ -20,8 +20,7 @@ export class SimpleHitListComponent {
 
 	constructor(public _context: ClientContext,
 				private _config: ConfigService,
-				private _usr: UserService,
-				private _txt: TranslationService) {
+				private _usr: UserService) {
 		this._userSettings = this._config.getUserSettings();
 	}
 
@@ -47,17 +46,5 @@ export class SimpleHitListComponent {
 
 	get isLoggedIn(): boolean {
 		return this._context.authenticated;
-	}
-
-	public GetReason4() {
-		const linkDbArchivaddrSchweiz = 'http://vsa-aas.ch/die-archive/archivadressen/archivadressen-schweiz/';
-		const archivportalEuropa = 'https://www.archivesportaleurope.net/de/home';
-
-		return this._txt.get('simpleHit.reason4',
-			'Es gibt im Bundesarchiv tatsächlich keine Unterlagen zu Ihrem Thema. Weitere Archive finden Sie in der ' +
-			'<a href="{0}">Datenbank Archivadressen der Schweiz</a> ' +
-			'oder auf dem ' +
-			'<a href="{1}">Archivportal Europa</a>.',
-			linkDbArchivaddrSchweiz, archivportalEuropa);
 	}
 }
