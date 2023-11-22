@@ -35,17 +35,18 @@ public class MockRepositoryManager : IRepositoryManager
   
     public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, int primaerdatenAuftragId)
     {
-        return await GetPackageInternal(primaerdatenAuftragId);
+        return await GetPackageInternal(primaerdatenAuftragId, archiveRecordId);
     }
 
     public async Task<RepositoryPackageResult> AppendPackageToArchiveRecord(ArchiveRecord archiveRecord, long mutationId, int primaerdatenId)
     {
-        await GetPackageInternal(primaerdatenId);
+        await GetPackageInternal(primaerdatenId, archiveRecord.ArchiveRecordId);
         archiveRecord.PrimaryData.Add(repositoryPackageResult.PackageDetails);
+
         return repositoryPackageResult;
     }
 
-    private async Task<RepositoryPackageResult> GetPackageInternal(int primaerdatenId)
+    private async Task<RepositoryPackageResult> GetPackageInternal(int primaerdatenId, string archiveRecordId)
     {
         var tempRootName = Path.GetRandomFileName();
         var storagePath = Settings.Default.TempStoragePath;
@@ -68,15 +69,15 @@ public class MockRepositoryManager : IRepositoryManager
 
         CopayFileToDestination(new FileInfo(@"Mock\Data\test.zip"), tempRootName);
         repositoryPackageResult.PackageDetails.PackageFileName = tempRootName + ".zip";
+        repositoryPackageResult.PackageDetails.ArchiveRecordId = archiveRecordId;
         return repositoryPackageResult;
     }
 
     public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
     {
+        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = archiveRecordId;
         return repositoryPackageInfoResult;
-
     }
-
 
     private async Task UpdatePrimaerdatenAuftragStatus(int primaerdatenAuftragId, AufbereitungsStatusEnum status, string errorText = null)
     {
