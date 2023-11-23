@@ -1,4 +1,30 @@
 {
+	"checkoutOrderDetailsStep": {
+		"artDerArbeit": "Art der Arbeit",
+		"commentTitle": "Bemerkung zur Bestellung",
+		"datumLesesaal": "Datum Lesesaal",
+		"datumLesesaalText": "Bitte wählen Sie ein Datum aus (Bearbeitung mind. 2 Arbeitstage).",
+		"invalidDate": "An diesem Tag hat der Lesesaal nicht geöffnet. Bitte wählen Sie ein gültiges Datum aus.",
+		"mandatoryArtDerArbeit": "Bitte geben Sie die Art der Arbeit an, für die Sie die Unterlagen benötigen.",
+		"mandatoryDate": "Bitte wählen Sie ein Datum für Ihren Besuch im Lesesaal.",
+		"pleaseChoose": "Bitte wählen"
+	},
+	"checkoutSubmittedStep": {
+		"cartText": "Sie haben noch offene Bestellungen im <a href=\"#/{0}\">Bestellkorb</a>.",
+		"checkStatusText": "Den Status Ihrer Bestellung können Sie in Ihrem <a href=\"#/{0}\">Benutzerkonto</a> verfolgen.",
+		"disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Bundesarchiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
+		"thxTextDigi": "Vielen Dank für Ihren Auftrag. Sie erhalten eine E-Mail, sobald die Unterlagen digitalisiert worden sind. Die Bearbeitung Ihres Auftrags dauert in der Regel zwei Wochen.",
+		"thxTextEischtisgesuch": "Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.",
+		"thxTextEischtisgesuchAnmeldenUndIndentifizieren": "Falls Ihr Gesuch bewilligt wird, müssen Sie sich identifizieren, um die Unterlagen zu konsultieren (siehe <a href=\"{0}\">Anmelden und Identifizieren</a>).",
+		"thxTextEischtisgesuchIntroduction": "Vielen Dank für Ihr Einsichtsgesuch in folgende Unterlagen:",
+		"thxTextLesesaal": "Vielen Dank für Ihren Auftrag. Sie können die gewünschten Unterlagen am gewählten Datum im Lesesaal Sammlungen und Archive einsehen. Der Lesesaal ist von Montag bis Freitag von 10 bis 17 Uhr geöffnet.",
+		"thxTextVerwaltungsausleihe": "Vielen Dank für Ihre Bestellung. Sie erhalten die Unterlagen innerhalb von ein bis zwei Arbeitstagen per Post."
+	},
+	"error": {
+		"orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+		"unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+		"unknownErrorTitle": "Es ist ein Fehler aufgetreten."
+	},
 	"facette": {
 		"active": "Aktiv",
 		"bestaendeUebersicht": "Thematische Übersicht",
@@ -20,6 +46,56 @@
 		"Sachregister": "Sachregister",
 		"Werkregister": "Werkregister"
 
+	},
+	"footer": {
+		"footerTitle": "Fusszeile",
+		"title": "Hochschularchiv der ETH Zürich"
+	},
+	"header": {
+		"abmelden": "Abmelden",
+		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
+		"anmelden": "Anmelden",
+		"barAbbr": "BAR",
+		"homeOrganisationName": "ETH Zürich",
+		"homeOrganisationNameLink": "https://ethz.ch/de.html",
+		"benutzerdaten": "Benutzerdaten",
+		"benutzeroberflaeche": "Benutzeroberfläche",
+		"bestellkorb": "Bestellkorb",
+		"bestellkorbItemsCount": "Bestellkorb ({0})",
+		"bestelluebersicht": "Bestellübersicht",
+		"claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
+		"closeMobileNavigation": "Navigation schliessen",
+		"closeNav": "Navigation schliessen",
+		"closeUserAccount": "Benutzermenu schliessen",
+		"breadcrumb1": "ETH-Bibliothek",
+		"breadcrumb1Link": "https://library.ethz.ch/",
+		"breadcrumb2": "Hochschularchiv",
+		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
+		"breadcrumb3": "Virtueller Lesesaal",
+		"breadcrumb3Link": "#/de/suche/einfach",
+		"favoriten": "Favoriten",
+		"languageChoice": "Sprachwahl",
+		"loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",
+		"loggedInInfoAsRegisteredUser": "Sie sind als registrierte/r Benutzer/in angemeldet",
+		"meinkonto": "Mein Benutzerkonto",
+		"notLoggedInInfo": "Sie sind nicht angemeldet",
+		"notLoggedInTip": "Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
+		"notLoggedInTipInfo": "Info: Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
+		"onlineZugang": "Online-Zugang",
+		"openMobileNavigation": "Navigation öffnen",
+		"openUserAccount": "Benutzermenu öffnen",
+		"register": "Registrieren",
+		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
+		"title": "Hochschularchiv der ETH Zürich | ETH Zürich",
+		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
+		"favoritesCount": "Favoriten ({0})"
+	},
+	"headerContent": {
+		"component": {
+			"aktiv": "Aktiv",
+			"toolTippLoggedIn": "Weitere Informationen zu Ihrem Benutzerstatus finden Sie auf der Seite «Registrieren & Identifizieren» und unter dem Menü «Informationen»",
+			"toolTippLoggedInAsRegisteredUser": "Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. Wenn Sie Daten innerhalb einer Schutzfrist einsehen wollen, müssen Sie sich vorgängig identifizieren (siehe \"Mein Benutzerkonto\")."
+		}
 	},
 	"metadata": {
 		"boolean": {
@@ -105,6 +181,37 @@
 			"zugangsUndBenutzungsbedingungen": "Zugangs- und Benutzungsbedingungen"
 		}
 	},
+	"orderCheckoutPage": {
+		"bestellbestaetigung": "Bestellbestätigung",
+		"chooseShippingType": "Lieferart auswählen",
+		"finishOrder": "Bestellung abschliessen",
+		"inMyName": "In meinem eigenen Namen",
+		"inTheNameOfAnother": "Im Namen eines anderen Benutzers",
+		"iWantThisDossierOrdered": "Ich möchte dieses Dossier bestellen",
+		"iWantThisDossierPlural": " Ich möchte diese Unterlagen",
+		"iWantThisDossierSingular": " Ich möchte diese Unterlagen",
+		"mandatoryShippingType": "Bitte wählen Sie eine Lieferart aus.",
+		"mandatoryUser": "Bitte wählen Sie einen Benutzer aus, für den Sie die Bestellung durchführen möchten.",
+		"nextPage": "Weiter",
+		"orderDetails": "Angaben zur Bestellung",
+		"previousPage": "Zurück",
+		"reasons": "Begründung",
+		"title": "Bestellen",
+		"userSelect": "Benutzerauswahl",
+		"warningInfo": "Warnung",
+		"digitalisierungNichtMoeglichTitle": "Kontingent ausgeschöpft",
+		"digitalisierungNichtMoeglichIntro": "Sie haben uns bereits mit der Digitalisierung von {0} Dossiers beauftragt.",
+		"digitalisierungNichtMoeglichAsEma": "Bitte bestellen Sie die Unterlagen in den Lesesaal, ins Amt oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
+		"digitalisierungNichtMoeglichOthers": "Bitte bestellen Sie die Unterlagen in den Lesesaal oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
+		"exceedDigitalisierungTitle": "Sie können nur noch {0} Dossiers digitalisieren lassen",
+		"exceedDigitalisierungIntro": "Bitte wählen Sie unten jene Dossiers aus, die Sie jetzt digitalisieren lassen möchten. Sobald diese digitalisiert sind, können Sie weitere Dossier in Auftrag geben.",
+		"exceedDigitalisierungAsEma": "Alternativ dazu ist eine Bestellung in den Lesesaal oder ins Amt jederzeit möglich.",
+		"exceedDigitalisierungOthers": "Alternativ dazu ist eine Bestellung in den Lesesaal jederzeit möglich."
+	},
+	"page": {
+		"description": "vls.hsa.ch",
+		"title": "Hochschularchiv der ETH Zürich"
+	},
 	"registerInfo": {
 		"cancelRegister": "Abbrechen",
 		"chLoginAltText": "Logo des CH-Logins",
@@ -121,19 +228,19 @@
 		"advanced": {
 			"field": {
 				"archivalienart": {
-					"unikatcharakter":	"Text mit Unikatcharakter",
-					"korrespondenzstueck":   "Korrespondenzstück",
-					"graueLiteratur":   "Graue Literatur u. Publikationen",
-					"bildlicheDarstellung":   "Bildliche Darstellung (statisch)",
-					"bewegtesBild":   "Bewegtes Bild",
-					"physischesObjekt":   "Physisches Objekt",
-					"medailleMuenze":   "Medaille/Münze",
-					"linguistischesSystem":   "Linguistisches System (u.a. Lochstreifen)",
-					"tonMedien":   "Ton-Medien",
-					"strukturierteDaten":   "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
-					"software":   "Software",
-					"interaktiveRessource":   "Interaktive Ressource",
-					"webPages":   "Web pages"
+					"unikatcharakter": "Text mit Unikatcharakter",
+					"korrespondenzstueck": "Korrespondenzstück",
+					"graueLiteratur": "Graue Literatur u. Publikationen",
+					"bildlicheDarstellung": "Bildliche Darstellung (statisch)",
+					"bewegtesBild": "Bewegtes Bild",
+					"physischesObjekt": "Physisches Objekt",
+					"medailleMuenze": "Medaille/Münze",
+					"linguistischesSystem": "Linguistisches System (u.a. Lochstreifen)",
+					"tonMedien": "Ton-Medien",
+					"strukturierteDaten": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+					"software": "Software",
+					"interaktiveRessource": "Interaktive Ressource",
+					"webPages": "Web pages"
 				},
 				"addNewGroup": "Weitere Suchgruppe hinzufügen",
 				"ueberlieferungsform": {
@@ -268,70 +375,36 @@
 		"unexpectedSystemError": "Es ist ein unerwarteter Fehler aufgetreten.",
 		"wenigerAnzeigen": "Weniger anzeigen"
 	},
-	"veExportRecord": {
+	"shoppingCartPage": {
+		"ablieferung": "Ablieferung",
+		"addManuallySectionTitle": "Dossiers manuell zum Bestellkorb hinzufügen",
+		"addToCart": "Hinzufügen",
+		"aktenzeichen": "Aktenzeichen",
+		"archivNr": "Archivnummer",
+		"bestellenText": "Wir werden Ihre Bestellung hinsichtlich Zugänglichkeit überprüfen. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
+		"dossierTitel": "Dossiertitel",
+		"einsichtsbewilligungenNotwendig": "Für diese Dossiers sind Einsichtsbewilligungen notwendig:",
+		"einsichtsBewilligungVorhanden": "Sie verfügen für diese Unterlagen bereits über eine Einsichtsbewilligung? Bitte kontaktieren Sie uns.",
+		"einsichtsGesuchEinreichen": "Einsichtsgesuch einreichen",
+		"einsichtsGesuchStellen": "Weiter",
+		"einsichtsGesuchStellenText": "Für diese Unterlagen sind Einsichtsbewilligungen notwendig. Wenn Sie bereits eine Bewilligung besitzen, klicken Sie bitte auf \"Bewilligung bereits vorhanden\". Ansonsten klicken Sie auf \"Weiter\".",
+		"emptyCart": "Der Bestellkorb ist leer.",
+		"exampleAblieferung": "z. B. 1988/234",
+		"fieldIsRequired": "Dies ist ein Pflichtfeld",
+		"fieldsMarkedWithAreCompulsory": "*: Diese Felder müssen ausgefüllt werden.",
+		"headingTitleText": "Bestellen Sie Unterlagen in den Lesesaal, stellen Sie Digitalisierungsanträge oder reichen Sie Einsichtsgesuche ein.",
+		"inputArchivNrIsRequired": "Dieses oder das Behältnisnummer-Feld muss ausgefüllt sein.",
+		"inputBehaeltnisNrIsRequired": "Dieses oder das Archivnummer-Feld muss ausgefüllt sein.",
+		"order": "Weiter",
 		"referenceCode": "Signatur",
-		"fileReference": "Aktenzeichen",
-		"title": "Titel",
-		"creationPeriod": "Entstehungszeitraum",
-		"withinInfo": "Form und Inhalt",
-		"level": "Stufe",
-		"accessibility": "Benutzbarkeit",
-		"fileName": "suchresultat",
-		"favourites": "favoriten"
-	},
-	"header": {
-		"abmelden": "Abmelden",
-		"altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
-		"anmelden": "Anmelden",
-		"barAbbr": "BAR",
-		"homeOrganisationName": "ETH Zürich",
-		"homeOrganisationNameLink": "https://ethz.ch/de.html",
-		"benutzerdaten": "Benutzerdaten",
-		"benutzeroberflaeche": "Benutzeroberfläche",
-		"bestellkorb": "Bestellkorb",
-		"bestellkorbItemsCount": "Bestellkorb ({0})",
-		"bestelluebersicht": "Bestellübersicht",
-		"claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
-		"closeMobileNavigation": "Navigation schliessen",
-		"closeNav": "Navigation schliessen",
-		"closeUserAccount": "Benutzermenu schliessen",
-		"breadcrumb1": "ETH-Bibliothek",
-		"breadcrumb1Link": "https://library.ethz.ch/",
-		"breadcrumb2": "Hochschularchiv",
-		"breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
-		"breadcrumb3": "Virtueller Lesesaal",
-		"breadcrumb3Link": "#/de/suche/einfach",
-		"favoriten": "Favoriten",
-		"languageChoice": "Sprachwahl",
-		"loggedInInfo": "Sie sind als identifizierte/r Benutzer/in angemeldet",
-		"loggedInInfoAsRegisteredUser": "Sie sind als registrierte/r Benutzer/in angemeldet",
-		"meinkonto": "Mein Benutzerkonto",
-		"notLoggedInInfo": "Sie sind nicht angemeldet",
-		"notLoggedInTip": "Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
-		"notLoggedInTipInfo": "Info: Melden Sie sich an, um zusätzliche Funktionen wie Favoritenverwaltung oder Bestellungen nutzen zu können.",
-		"onlineZugang": "Online-Zugang",
-		"openMobileNavigation": "Navigation öffnen",
-		"openUserAccount": "Benutzermenu öffnen",
-		"register": "Registrieren",
-		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
-		"title": "Hochschularchiv der ETH Zürich | ETH Zürich",
-		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-		"favoritesCount": "Favoriten ({0})"
-	},
-	"headerContent": {
-		"component": {
-			"aktiv": "Aktiv",
-			"toolTippLoggedIn": "Weitere Informationen zu Ihrem Benutzerstatus finden Sie auf der Seite «Registrieren & Identifizieren» und unter dem Menü «Informationen»",
-			"toolTippLoggedInAsRegisteredUser": "Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. Wenn Sie Daten innerhalb einer Schutzfrist einsehen wollen, müssen Sie sich vorgängig identifizieren (siehe \"Mein Benutzerkonto\")."
-		}
-	},
-	"footer": {
-		"footerTitle": "Fusszeile",
-		"title": "Hochschularchiv der ETH Zürich"
-	},
-	"page": {
-		"description": "vls.hsa.ch",
-		"title": "Hochschularchiv der ETH Zürich"
+		"searchFailedMessage": "Es ist ein Fehler bei der Suche aufgetreten. Details: {0}",
+		"searchFailedTitle": "Suche fehlgeschlagen",
+		"teilBestand": "(Teil-)Bestand",
+		"title": "Bestellkorb",
+		"unterlagenBestellen": "Unterlagen bestellen (kostenlos)",
+		"veNotFound": "Keine Verzeichnungseinheit mit dieser Signatur gefunden",
+		"veNotFoundTitle": "Nicht gefunden",
+		"zeitraumDossier": "Zeitraum des Dossiers"
 	},
 	"user": {
 		"cancelRegistrationMessage": "Bitte schliessen Sie die Registrierung ab und speichern Sie die Daten.",
@@ -371,5 +444,16 @@
 		"town": "Ort",
 		"userdata": "Benutzerdaten",
 		"zipCode": "PLZ"
+	},
+	"veExportRecord": {
+		"referenceCode": "Signatur",
+		"fileReference": "Aktenzeichen",
+		"title": "Titel",
+		"creationPeriod": "Entstehungszeitraum",
+		"withinInfo": "Form und Inhalt",
+		"level": "Stufe",
+		"accessibility": "Benutzbarkeit",
+		"fileName": "suchresultat",
+		"favourites": "favoriten"
 	}
 }

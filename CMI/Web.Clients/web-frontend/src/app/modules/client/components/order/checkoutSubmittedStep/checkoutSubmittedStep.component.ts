@@ -87,8 +87,7 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 	}
 
 	private _getHtmlTextForLesesaal(): string {
-		return this._txt.translate('Vielen Dank für Ihren Auftrag. Sie können die gewünschten Unterlagen am gewählten Datum im' +
-			' <a href="#/{0}">Lesesaal</a> einsehen. Der Lesesaal ist von Dienstag bis Donnerstag von 9 bis 19 Uhr geöffnet.', 'checkoutSubmittedStep.thxTextLesesaal', this._url.getContactUrl());
+		return this._txt.translate('Vielen Dank für Ihren Auftrag. Sie können die gewünschten Unterlagen am gewählten Datum im Lesesaal Sammlungen und Archive einsehen. Der Lesesaal ist von Montag bis Freitag von 10 bis 17 Uhr geöffnet.', 'checkoutSubmittedStep.thxTextLesesaal');
 	}
 
 	private _getHtmlForDigitalisat(): string {
