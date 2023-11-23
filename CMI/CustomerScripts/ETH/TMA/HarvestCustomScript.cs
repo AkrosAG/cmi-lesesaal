@@ -8,14 +8,13 @@ namespace CMI.Contract.Common.Compiler
     {
         public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
-
             // Metadata Tokens
             var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
             switch (publikation.ToLower())
             {
                 case "sofort":
 
-                    if (record.Metadata.Files != null && record.Metadata.Files.Any() && record.Metadata.Files.All(f => f.Publikation.ToLower() == "sofort"))
+                    if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Any() && archiveRecord.Metadata.Files.All(f => f.Publikation.ToLower() == "sofort"))
                     {
                         archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                         archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });

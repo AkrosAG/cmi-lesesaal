@@ -79,7 +79,22 @@ namespace CMI.Contract.Common
         public List<ElasticDescriptor> Descriptors { get; set; }
         public List<ElasticArchiveRecordFile> Files { get; set; }
         public List<ElasticReference> References { get; set; }
-        public bool HasProtectedFiles => (Files is not null && Files.Any() && Files.Any(f => f.Publikation.ToLower() != "sofort"));
+        public bool HasProtectedFiles { get; set; }
+
+        // => (Files is not null && Files.Any() && Files.Any(f => f.Publikation.ToLower() != "sofort"));
+    }
+
+    public static class DetailRecordExtensions
+    {
+        public static bool CheckForProtectedFiles(this DetailRecord record)
+        {
+            if (record == null)
+            {
+                return false;
+            }
+
+            return (record.Files is not null && record.Files.Any() && record.Files.Any(f => f.Publikation.ToLower() != "sofort"));
+        }
     }
 
     public class ElasticArchiveRecord : DetailRecord

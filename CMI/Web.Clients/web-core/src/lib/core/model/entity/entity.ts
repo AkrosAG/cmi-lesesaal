@@ -15,6 +15,7 @@ export interface Entity {
 	isAnonymized?: boolean;
 	HasImage?: boolean;
 	HasAudioVideo?: boolean;
+	hasProtectedFiles: boolean;
 	nichtOnlineRecherchierbareDossiers?: string;
 	isWithinProtectionRange?: boolean;
 	canBeOrdered?: boolean;
