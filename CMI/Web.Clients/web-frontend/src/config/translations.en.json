@@ -212,16 +212,6 @@
     "minimize": "Minimise chatbot (beta)",
     "title": "Chatbot (beta)"
   },
-  "checkoutOrderDetailsStep": {
-    "artDerArbeit": "Nature of work",
-    "commentTitle": "Comment on order",
-    "datumLesesaal": "Reading room date",
-    "datumLesesaalText": "I would like to consult the documents in the reading room on",
-    "invalidDate": "The reading room is not open on this day. Please select a valid date.",
-    "mandatoryArtDerArbeit": "Please indicate the nature of the work for which you require the documents.",
-    "mandatoryDate": "Please select a date for your visit to the reading room.",
-    "pleaseChoose": "Please select"
-  },
   "checkoutPersonsStep": {
     "reasonTitle": "Reason for consultation"
   },
@@ -233,17 +223,6 @@
     "title": "Bodies that deliver records may consult the records they have supplied during the closure period. In order to consult them, you must be authorised by your administrative unit, which will also be notified automatically every time you order records of this kind.",
     "title2": "If these records contain personal data, they may only be borrowed for specific reasons ",
     "yesTheseItemsContainsPersonData": "Yes, these records contain personal data"
-  },
-  "checkoutSubmittedStep": {
-    "cartText": "You still have open orders in your <a href=\"#/{0}\">shopping cart</a>.",
-    "checkStatusText": "You can monitor the status of your order in your <a href=\"#/{0}\">user account</a>.",
-    "disclaimerText": "The video call will be recorded but the recording will be deleted once identification is complete. The Federal Archives will store only a copy of the identification document, the photograph and the user information in tabular form. You may request information about your stored data at any time (Art. 8 FADP).",
-    "thxTextDigi": "Thank you for your order. You will receive an e-mail as soon as the documents have been digitised. It will normally take two weeks to process your order.",
-    "thxTextEischtisgesuch": "We will forward your request to the office responsible. The processing of requests for access can take up to 4 weeks.",
-    "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "If your request is approved, you will need to identify yourself in order to consult the documents (see <a href=\"{0}\">Registration and identification</a>).",
-    "thxTextEischtisgesuchIntroduction": "Thank you for your request to consult the following documents:",
-    "thxTextLesesaal": "Thank you for your order. You can view the documents on your chosen date <a href=\"#/{0}\">reading room</a>. The reading room is open Tuesday to Thursday from 9 a.m. to 7 p.m.",
-    "thxTextVerwaltungsausleihe": "Thank you for your order. You will receive your documents within one to two working days by post."
   },
   "clipboard": {
     "success": "Successfully copied to the clipboard!",
@@ -646,33 +625,6 @@
     "frombar": "(This order was initiated by the Federal Archives.)",
     "unknowtext": "[Not visible]"
   },
-  "orderCheckoutPage": {
-    "bestellbestaetigung": "Order confirmation",
-    "chooseShippingType": "Select form of delivery",
-    "finishOrder": "Complete order",
-    "inMyName": "In my own name",
-    "inTheNameOfAnother": "On behalf of another user",
-    "iWantThisDossierOrdered": "I would like to order this dossier",
-    "iWantThisDossierPlural": "I would like to order these dossiers",
-    "iWantThisDossierSingular": "I would like to order this dossier",
-    "mandatoryShippingType": "Please select a form of delivery.",
-    "mandatoryUser": "Please select a user for whom you wish to carry out the order.",
-    "nextPage": "Continue",
-    "orderDetails": "Details of order",
-    "previousPage": "Go back",
-    "reasons": "Reason",
-    "title": "Order",
-    "userSelect": "User selection",
-    "warningInfo": "Warning",
-    "digitalisierungNichtMoeglichTitle": "You have exhausted your quota",
-    "digitalisierungNichtMoeglichIntro": "You have already requested us to digitise {0} dossiers.",
-    "digitalisierungNichtMoeglichAsEma": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
-    "digitalisierungNichtMoeglichOthers": "Please order the documents for consultation in the reading room or wait until your existing digitisation orders have been completed.",
-    "exceedDigitalisierungTitle": "You can only have {0} more dossiers digitised",
-    "exceedDigitalisierungIntro": "Please select below the dossiers you wish to have digitised now. As soon as they have been digitised, you can order further dossiers.",
-    "exceedDigitalisierungAsEma": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
-    "exceedDigitalisierungOthers": "Alternatively you can order them for consultation in the reading room at any time."
-  },
   "orderCheckoutPageComponent": {
     "pageTitle": "Order"
   },
@@ -766,37 +718,6 @@
     "title": "Title",
     "unExpectedError": "An unexpected error has occurred. Please try again later."
   },
-  "shoppingCartPage": {
-    "ablieferung": "Delivery",
-    "addManuallySectionTitle": "Add dossiers to shopping cart manually",
-    "addToCart": "Add",
-    "aktenzeichen": "File reference",
-    "archivNr": "Archive number",
-    "bestellenText": "These documents are freely accessible to you or their accessibility must be reviewed by the SFA. Please click on \"Continue\" to proceed with the order process.",
-    "dossierTitel": "Dossier title",
-    "einsichtsbewilligungenNotwendig": "Authorisations are required to consult these dossiers:",
-    "einsichtsBewilligungVorhanden": "Have you already received authorisation to consult these documents? Please contact us.",
-    "einsichtsGesuchEinreichen": "Submit consultation request",
-    "einsichtsGesuchStellen": "Continue",
-    "einsichtsGesuchStellenText": "Authorisations are required to consult these documents: If you have already received authorisation, please click on \"Authorisation already obtained\". Otherwise, click on \"Continue\".",
-    "emptyCart": "Your shopping cart is empty.",
-    "exampleAblieferung": "e.g. 1988/234",
-    "fieldIsRequired": "This is a mandatory field",
-    "fieldsMarkedWithAreCompulsory": "*: These fields must be completed.",
-    "headingTitleText": "Order the documents for the reading room or as an administration loan, place digitisation orders or submit requests to consult records.",
-    "inputArchivNrIsRequired": "This field or the container number field must be completed.",
-    "inputBehaeltnisNrIsRequired": "This field or the archive number field must be completed.",
-    "order": "Continue",
-    "referenceCode": "Reference code",
-    "searchFailedMessage": "An error has occurred in the search. Details: {0}",
-    "searchFailedTitle": "Search failed",
-    "teilBestand": "(Sub-)fonds",
-    "title": "Shopping cart",
-    "unterlagenBestellen": "Order documents (free of charge)",
-    "veNotFound": "No unit of description with this reference code found",
-    "veNotFoundTitle": "Not found",
-    "zeitraumDossier": "Time period of dossier"
-  },
   "shoppingCartPageComponent": {
     "pageTitle": "Shopping cart"
   },
@@ -882,7 +803,6 @@
   "orderSection": {
     "orderText": "Add documents to your shopping cart. There you can order them directly or you can submit a consultation request."
   },
-
 	"canDeactivateGuard": {
 	  "Title": "Warning",
 	  "close": "Close",
