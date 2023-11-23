@@ -8,7 +8,7 @@
 			<h1 class="page-title">
 				<span>{{'Bestellkorb' | translate:'shoppingCartPage.title'}}</span>
 			</h1>
-			<p>{{'Bestellen Sie Unterlagen in den Lesesaal, als Verwaltungsausleihe, erteilen Sie Digitalisierungsaufträge oder reichen Sie Einsichtsgesuche ein.' | translate:'shoppingCartPage.headingTitleText'}}</p>
+			<p>{{'Bestellen Sie Unterlagen in den Lesesaal, stellen Sie Digitalisierungsanträge oder reichen Sie Einsichtsgesuche ein.' | translate:'shoppingCartPage.headingTitleText'}}</p>
 		</div>
 
 		<div *ngIf="hasItemsInCart(); else emptyCart">
@@ -17,7 +17,7 @@
 					<div *ngIf="orderableItems.length > 0">
 						<h2>{{'Unterlagen bestellen' |
 							translate:'shoppingCartPage.unterlagenBestellen'}}</h2>
-						<p>{{'Diese Unterlagen sind für Sie frei zugänglich oder müssen vom AMA hinsichtlich Zugänglichkeit geprüft werden. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.' | translate:'shoppingCartPage.bestellenText'}}</p>
+						<p>{{'Wir werden Ihre Bestellung hinsichtlich Zugänglichkeit überprüfen. Bitte klicken Sie auf "Weiter", um den Bestellvorgang fortzusetzen.' | translate:'shoppingCartPage.bestellenText'}}</p>
 						<cmi-viaduc-shoppingcart-list [items]="orderableItems"></cmi-viaduc-shoppingcart-list>
 						<div class="col-xs-9 shc-info-col">
 

@@ -397,7 +397,7 @@
     "firstName": "Vorname(n)",
     "infoText": "Bitte erfassen Sie Ihre Benutzerdaten, damit wir Sie bei Bedarf erreichen können. Sie können diese Daten jederzeit aktualisieren.",
     "legalAgreementConsentTitle": "Datenschutzerklärung",
-    "legelAgreementConsentText": "Ich bin einverstanden, dass das Max Frisch-Archiv an der ETH-Bibliothek meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
+    "legelAgreementConsentText": "Ich bin einverstanden, dass das Thomas-Mann-Archiv meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
     "mobileTel": "Mobiltelefon",
     "organization": "Organisation",
     "pageTitle": "Eingabe Benutzerdaten",
