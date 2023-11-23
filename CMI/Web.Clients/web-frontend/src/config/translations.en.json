@@ -251,7 +251,7 @@
   "detail": {
     "notFound": "The page you have requested cannot be displayed",
     "notFoundMessage": "It is possible that you do not have the necessary rights. Please check your rights in your <a href=\"#{0}\">user account.</a></br></br>",
-    "notFoundMessage2": "If you have questions about accessibility of documents, please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
+    "notFoundMessage2": "If you have questions about accessibility of documents, please send an e-mail.",
     "notFoundMessageNotOe1": "It is possible that you do not have the necessary rights to access the page. Please check your rights in your <a href=\"#{0}\">user account</a>.</br></br>",
     "notFoundMessageOe1": "It is possible that you do not have the necessary rights to access the page (see <a href=\"#{0}\">Login and identification</a>).</br></br>"
   },
@@ -742,7 +742,6 @@
       "reason1": "It is possible that you do not have the necessary rights. Please check your rights in your user account.",
       "reason2": "The documents you are looking for have not yet been catalogued and recorded in the system.",
       "reason3": "Spelling error or unknown search terms: please check the spelling or search for other terms.",
-      "reason4": "There are definitely no documents on your topic. You can find other archives in the Archive Addresses of Switzerland database or on the archive portal Europa.",
       "showHinweis": "Do not show this tip again"
     },
     "noHitsTitle": "No results for your search term",
