@@ -38,7 +38,7 @@
 	"@@CMI.Manager.Asset.Properties.Settings.hOcrCopyDestinationPath@@": "D:\\localdata\\IIIF\\solr\\hOcr",	
 	"@@CMI.Manager.Asset.Properties.Settings.SolrUrl@@": "SkipSolrForTesting",	
 	"@@CMI.Manager.Asset.Properties.Settings.PasswordSeed@@": "Å¿KùprK¡®xPzu6gBô·w²ÈXúÞticAâA¶ÛCú±W¢æg¹t3Z¦5£Ðì9ã«JªnöFú®³½Å±ÐÞO¬ÁäÙ¤6þuG1ûO²¸èôb2sZðÎ¥ÉÏ£»Ê¶b¡h±fóu®BkÐ6Bm2ÛI¹ØzÃhNz¶G5mV³bÓÕ7E¶þñ¥oèÃñhÎHîúöálÌÆÅ4b¬ÔU¬b8¶qx2Qì¨â²ñS»y¨Ü9¢e»Ð¼74LÏ4¹©HÒc´ÿò·¤ì½¾f²ºW£FNð¡ãß§£IÕ¦Ò¤¨³kÙ¶ÓZjÓ©Ø4ÃeüòÔÄAÉ1ÅeÉ6YTÔrûsVÜûÙ¶tEÉíÇVp¨ÕBæbrMR¢ûvÓ»¡BÖlÖãgÁ¸Q®ÅÖ²aq±Xôr¯°±¯Aù¢ÍÑÜêEN¦peÉ9¯ªÕ6úbßzõv7·¡ßZ3©ÍWÄõmîØgý¶Æz«xc¬0¶ÀûÝâÍËm©að¸V¯ÅóîªþäL¦3«o¢1ÿÞÞ¯Pïà²ðU©ÃLÅuJkE¥9Ûh½Û±Ó»àÀAjÚLÁìuÕ¸×èVò8®ZÈKµtf·ÏHkbÓfjqÿ42Y¦WRÎÐþ½YvnðéÁÄwËBx¡7LTõÁó»nîºzy¼â¥aÅóíþB½0ÇlnS¨ßÛTÅwÇEÛýféÃIV¨jõJíãtpºçÞñÐYfÇèUTqåîå¢ycþ¬73ñ¹³¥×h¾CPrüµg0ÖÄ¤Öc©´c»£°jï¢ÔéÇYåhcüOfâ´QbË°µHmE6Z¶èðûztÀMÁÛS§ZÄpÌLÈ¨2mßyBôHM2Q2µÖíÏåÞÄ¿Çö¬lyµbëòÈY°îï³OhpÍe¤¼úÜa0¹lkÉ¡4Zï¡Mæöíåkøbµm2Eò£Î´ÜýµÌlg±2·¨£O9J×8µÙ»Çtå©¬Ï×kxüÐ¡¼6ð¤üÔåñ7¡kmÕØµºÆùëÄ£ë¤Pð´wX×ópõ´äcî´0ÂöñìÖÜïÁhu´¨csjvlWcÅ±öD¶ãÿ7¶ÚÒXv¤åuPqÎgnîRAwØõOöâÑKÅûxÌHû¦¿ÊåsËí¥RyP¿ÍÑÇ´Få«ôüÝÔÐ¥Û¼BOÒ1æ6BÄ¤°9h©åÜÏêó¶¹q¤6ðqG²Ïèfè3ïàIäsÌiÎuîà÷Êò»¯ûè4¿®oHmOÝ¾¸Èü¾Z¥t§Ùî7´¦ãyñµPlÕYÅts¨ÀSMWøÚ¸UpÂ¶K¦B«yß¶¬0ÇjÅF0ÿXÞÀ¤r7§¶ãkÿKðÿîº¹Ú¬í¬©3·H·¾Z«hPÇä±E½äÒMMÒàvêÛªÇ¹vÁÍÝÜS¬PõUíTîfÚ3±P´Â1ïEôô÷ÆÓÑýoÆRÎèr¡«mtþÌH·ÜeGØsøMÓ",
-	"@@CMI.Manager.Asset.Properties.Settings.PickupPath@@": "D:\\localdata\\PickupPath",
+	"@@CMI.Manager.Asset.Properties.Settings.PickupPath@@": "D:\\localdata\\Final",
 	"@@CMI.Manager.Asset.Properties.Settings.SolrCoreName@@": "iiif",
 	"@@CMI.Manager.Asset.Properties.Settings.TextExtractParallelism@@": 4,
 	"@@CMI.Manager.Asset.Properties.IiifManifest.ApiServerUri@@": "https://recherche.library.ethz.ch/client/iiif/",

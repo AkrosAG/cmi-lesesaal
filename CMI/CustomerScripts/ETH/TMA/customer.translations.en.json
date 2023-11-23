@@ -1,4 +1,25 @@
 {
+  "checkoutOrderDetailsStep": {
+    "artDerArbeit": "Nature of work",
+    "commentTitle": "Comment on order",
+    "datumLesesaal": "Reading room date",
+    "datumLesesaalText": "Please select a date (processing minimum 2 workdays).",
+    "invalidDate": "The reading room is not open on this day. Please select a valid date.",
+    "mandatoryArtDerArbeit": "Please indicate the nature of the work for which you require the documents.",
+    "mandatoryDate": "Please select a date for your visit to the reading room.",
+    "pleaseChoose": "Please select"
+  },
+  "checkoutSubmittedStep": {
+    "cartText": "You still have open orders in your <a href=\"#/{0}\">shopping cart</a>.",
+    "checkStatusText": "You can monitor the status of your order in your <a href=\"#/{0}\">user account</a>.",
+    "disclaimerText": "The video call will be recorded but the recording will be deleted once identification is complete. The Federal Archives will store only a copy of the identification document, the photograph and the user information in tabular form. You may request information about your stored data at any time (Art. 8 FADP).",
+    "thxTextDigi": "Thank you for your order. You will receive an e-mail as soon as the documents have been digitised. It will normally take two weeks to process your order.",
+    "thxTextEischtisgesuch": "We will forward your request to the office responsible. The processing of requests for access can take up to 4 weeks.",
+    "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "If your request is approved, you will need to identify yourself in order to consult the documents (see <a href=\"{0}\">Registration and identification</a>).",
+    "thxTextEischtisgesuchIntroduction": "Thank you for your request to consult the following documents:",
+    "thxTextLesesaal": "Thank you for your order. You can consult the requested documents on the selected date in the Reading Room Collections and Archives (Opening hours: Monday to Friday 10 am - 5 pm).",
+    "thxTextVerwaltungsausleihe": "Thank you for your order. You will receive your documents within one to two working days by post."
+  },
   "error": {
     "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to tma@library.ethz.ch.",
     "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to tma@library.ethz.ch.",
@@ -24,6 +45,56 @@
     "Personenregister": "Register of persons",
     "Sachregister": "Subject index",
     "Werkregister": "Register of works"
+  },
+  "footer": {
+    "footerTitle": "Footer",
+    "title": "Thomas Mann Archive"
+  },
+  "header": {
+    "abmelden": "Log out",
+    "altText": "ETH Zurich University Archives logo – to homepage",
+    "anmelden": "Log in",
+    "barAbbr": "SFA",
+    "homeOrganisationName": "ETH Zurich",
+    "homeOrganisationNameLink": "https://ethz.ch/en.html",
+    "benutzerdaten": "User data",
+    "benutzeroberflaeche": "User interface",
+    "bestellkorb": "Shopping cart",
+    "bestellkorbItemsCount": "Shopping cart ({0})",
+    "bestelluebersicht": "Order overview",
+    "claim": "Virtual Reading Room",
+    "closeMobileNavigation": "Close navigation",
+    "closeNav": "Close navigation",
+    "closeUserAccount": "Close user menu",
+    "breadcrumb1": "ETH Library",
+    "breadcrumb1Link": "https://library.ethz.ch/en/",
+    "breadcrumb2": "Thomas Mann Archive",
+    "breadcrumb2Link": "https://tma.ethz.ch",
+    "breadcrumb3": "Virtual Reading Room",
+    "breadcrumb3Link": "#/en/search/simple",
+    "favoriten": "Favourites",
+    "languageChoice": "Language settings",
+    "loggedInInfo": "You are logged in as an identified user",
+    "loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
+    "meinkonto": "My user account",
+    "notLoggedInInfo": "You are not logged in",
+    "notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
+    "notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
+    "onlineZugang": "Online access",
+    "openMobileNavigation": "Open navigation",
+    "openUserAccount": "Open user menu",
+    "register": "Register",
+    "srBreadcrumbOrientation": "Navigating the website",
+    "title": "Thomas Mann Archive | ETH Zurich",
+    "zumBestellkorb": "Navigate to shopping cart with {0} items",
+    "favoritesCount": "Favourites ({0})"
+  },
+  "headerContent": {
+    "component": {
+      "aktiv": "Active",
+      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
+      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
+    }
   },
   "metadata": {
     "boolean": {
@@ -109,6 +180,37 @@
       "sachverwandteUnterlagen": "Related documents",
       "zugangsUndBenutzungsbedingungen": "Conditions of access and use"
     }
+  },
+  "orderCheckoutPage": {
+    "bestellbestaetigung": "Order confirmation",
+    "chooseShippingType": "Select form of delivery",
+    "finishOrder": "Complete order",
+    "inMyName": "In my own name",
+    "inTheNameOfAnother": "On behalf of another user",
+    "iWantThisDossierOrdered": "I would like to order this dossier",
+    "iWantThisDossierPlural": "I wish to",
+    "iWantThisDossierSingular": "I wish to",
+    "mandatoryShippingType": "Please select a form of delivery.",
+    "mandatoryUser": "Please select a user for whom you wish to carry out the order.",
+    "nextPage": "Continue",
+    "orderDetails": "Details of order",
+    "previousPage": "Go back",
+    "reasons": "Reason",
+    "title": "Order",
+    "userSelect": "User selection",
+    "warningInfo": "Warning",
+    "digitalisierungNichtMoeglichTitle": "You have exhausted your quota",
+    "digitalisierungNichtMoeglichIntro": "You have already requested us to digitise {0} dossiers.",
+    "digitalisierungNichtMoeglichAsEma": "Please order the documents for consultation in the reading room or delivery to the office, or wait until your existing digitisation orders have been completed.",
+    "digitalisierungNichtMoeglichOthers": "Please order the documents for consultation in the reading room or wait until your existing digitisation orders have been completed.",
+    "exceedDigitalisierungTitle": "You can only have {0} more dossiers digitised",
+    "exceedDigitalisierungIntro": "Please select below the dossiers you wish to have digitised now. As soon as they have been digitised, you can order further dossiers.",
+    "exceedDigitalisierungAsEma": "Alternatively you can order them for consultation in the reading room or delivery to the office at any time.",
+    "exceedDigitalisierungOthers": "Alternatively you can order them for consultation in the reading room at any time."
+  },
+  "page": {
+    "description": "vls.tma.ch",
+    "title": "Thomas Mann Archive"
   },
   "registerInfo": {
     "cancelRegister": "Cancel",
@@ -254,70 +356,36 @@
     "unexpectedSystemError": "An unexpected error has occurred.",
     "wenigerAnzeigen": "Show fewer"
   },
-  "veExportRecord": {
+  "shoppingCartPage": {
+    "ablieferung": "Delivery",
+    "addManuallySectionTitle": "Add dossiers to shopping cart manually",
+    "addToCart": "Add",
+    "aktenzeichen": "File reference",
+    "archivNr": "Archive number",
+    "bestellenText": "We will check your order regarding the accessibility of the requested documents. Please click \"Continue\" to proceed with your order.",
+    "dossierTitel": "Dossier title",
+    "einsichtsbewilligungenNotwendig": "Authorisations are required to consult these dossiers:",
+    "einsichtsBewilligungVorhanden": "Have you already received authorisation to consult these documents? Please contact us.",
+    "einsichtsGesuchEinreichen": "Submit consultation request",
+    "einsichtsGesuchStellen": "Continue",
+    "einsichtsGesuchStellenText": "Authorisations are required to consult these documents: If you have already received authorisation, please click on \"Authorisation already obtained\". Otherwise, click on \"Continue\".",
+    "emptyCart": "Your shopping cart is empty.",
+    "exampleAblieferung": "e.g. 1988/234",
+    "fieldIsRequired": "This is a mandatory field",
+    "fieldsMarkedWithAreCompulsory": "*: These fields must be completed.",
+    "headingTitleText": "Order documents for the reading room, make a request for digitisation or a request for access.",
+    "inputArchivNrIsRequired": "This field or the container number field must be completed.",
+    "inputBehaeltnisNrIsRequired": "This field or the archive number field must be completed.",
+    "order": "Continue",
     "referenceCode": "Reference code",
-    "fileReference": "File reference",
-    "title": "Title",
-    "creationPeriod": "Creation period",
-    "withinInfo": "Contains",
-    "level": "Level",
-    "accessibility": "Accessibility under ArchA",
-    "fileName": "search-result",
-    "favourites": "favourites"
-  },
-  "header": {
-    "abmelden": "Log out",
-    "altText": "ETH Zurich University Archives logo – to homepage",
-    "anmelden": "Log in",
-    "barAbbr": "SFA",
-    "homeOrganisationName": "ETH Zurich",
-    "homeOrganisationNameLink": "https://ethz.ch/en.html",
-    "benutzerdaten": "User data",
-    "benutzeroberflaeche": "User interface",
-    "bestellkorb": "Shopping cart",
-    "bestellkorbItemsCount": "Shopping cart ({0})",
-    "bestelluebersicht": "Order overview",
-    "claim": "Virtual Reading Room",
-    "closeMobileNavigation": "Close navigation",
-    "closeNav": "Close navigation",
-    "closeUserAccount": "Close user menu",
-    "breadcrumb1": "ETH Library",
-    "breadcrumb1Link": "https://library.ethz.ch/en/",
-    "breadcrumb2": "Thomas Mann Archive",
-    "breadcrumb2Link": "https://tma.ethz.ch",
-    "breadcrumb3": "Virtual Reading Room",
-    "breadcrumb3Link": "#/en/search/simple",
-    "favoriten": "Favourites",
-    "languageChoice": "Language settings",
-    "loggedInInfo": "You are logged in as an identified user",
-    "loggedInInfoAsRegisteredUser": "You are logged in as a registered user",
-    "meinkonto": "My user account",
-    "notLoggedInInfo": "You are not logged in",
-    "notLoggedInTip": "Log in to use additional functions such as managing favourites and placing orders.",
-    "notLoggedInTipInfo": "Information: Log in to use additional functions such as managing favourites and placing orders.",
-    "onlineZugang": "Online access",
-    "openMobileNavigation": "Open navigation",
-    "openUserAccount": "Open user menu",
-    "register": "Register",
-    "srBreadcrumbOrientation": "Navigating the website",
-    "title": "Thomas Mann Archive | ETH Zurich",
-    "zumBestellkorb": "Navigate to shopping cart with {0} items",
-    "favoritesCount": "Favourites ({0})"
-  },
-  "headerContent": {
-    "component": {
-      "aktiv": "Active",
-      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
-      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
-    }
-  },
-  "footer": {
-    "footerTitle": "Footer",
-    "title": "Thomas Mann Archive"
-  },
-  "page": {
-    "description": "vls.tma.ch",
-    "title": "Thomas Mann Archive"
+    "searchFailedMessage": "An error has occurred in the search. Details: {0}",
+    "searchFailedTitle": "Search failed",
+    "teilBestand": "(Sub-)fonds",
+    "title": "Shopping cart",
+    "unterlagenBestellen": "Order documents (free of charge)",
+    "veNotFound": "No unit of description with this reference code found",
+    "veNotFoundTitle": "Not found",
+    "zeitraumDossier": "Time period of dossier"
   },
   "user": {
     "cancelRegistrationMessage": "Please complete the registration and save the data.",
@@ -329,7 +397,7 @@
     "firstName": "First name(s)",
     "infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
     "legalAgreementConsentTitle": "Data protection policy",
-    "legelAgreementConsentText": "I agree that the Thomas Mann Archive can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
+    "legelAgreementConsentText": "I agree that the Max Frisch Archive at the ETH Library can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
     "mobileTel": "Mobile phone",
     "organization": "Organisation",
     "pageTitle": "Enter user data",
@@ -357,5 +425,16 @@
     "town": "Place",
     "userdata": "User data",
     "zipCode": "Post code"
+  },
+  "veExportRecord": {
+    "referenceCode": "Reference code",
+    "fileReference": "File reference",
+    "title": "Title",
+    "creationPeriod": "Creation period",
+    "withinInfo": "Contains",
+    "level": "Level",
+    "accessibility": "Accessibility under ArchA",
+    "fileName": "search-result",
+    "favourites": "favourites"
   }
 }

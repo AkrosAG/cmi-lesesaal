@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using CMI.Contract.Parameter;
+using Castle.Components.DictionaryAdapter.Xml;
+using CMI.Contract.Common;
 
 namespace CMI.Web.Frontend.ParameterSettings
 {
@@ -13,7 +15,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         #region Lieferart Auswahl 'Digital erhalten'
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: DE")]
-        [DefaultValue("<strong>digital</strong> erhalten. Sie erhalten das digitalisierte Dossier in rund 30 Tagen. Alles Weitere zur Digitalisierung finden Sie unter <a href=\"https://www.recherche.bar.admin.ch/recherche/#/de/informationen/bestellen-und-konsultieren\" target=\"_blank\" rel=\"noopener noreferrer\">Bestellen und Konsultieren</a>.")]
+        [DefaultValue("digital erhalten und stelle einen Digitalisierungsantrag.")]
         public string DeliveryTypeDigitalDE { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: FR")]
@@ -25,7 +27,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         public string DeliveryTypeDigitalIT { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: EN")]
-        [DefaultValue("for <strong>digital</strong> delivery. You will receive the digitised dossier in approximately 30 days. For more information about digitisation, go to <a href=\"https://www.recherche.bar.admin.ch/recherche/#/en/information/ordering-and-consulting\" target=\"_blank\" rel=\"noopener noreferrer\">Ordering and consulting</a>.")]
+        [DefaultValue("receive scans of these documents and submit a digitisation request.")]
         public string DeliveryTypeDigitalEN { get; set; }
 
         [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: IT")]
@@ -37,11 +39,11 @@ namespace CMI.Web.Frontend.ParameterSettings
         public string DigitalOrderWarningTextFR { get; set; }
 
         [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: EN")]
-        [DefaultValue("<h4 class=\"alert-heading\">Please note</h4><p>Digitization orders are chargeable.</p>")]
+        [DefaultValue("Requests for digitisation may be rejected by the archive. The digitisation of documents is subject to a fee <a href =\"https://ethz.ch/content/dam/ethz/associates/ethlibrary-dam/documents/Benutzungsbestimmungen/f_library_gebuehrenblatt_2020_en.pdf\" target =\"_blank\" rel=\"noopener noreferrer\">(ETH Library fees)</a>. You will receive a price calculation in advance.")]
         public string DigitalOrderWarningTextEN { get; set; }
 
         [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: DE")]
-        [DefaultValue("<h4 class=\"alert-heading\">Hinweis</h4><p>Digitalisierungsaufträge sind kostenpflichtig.</p>")]
+        [DefaultValue("Ein Digitalisierungsantrag kann durch das Archiv abgelehnt werden. Die Digitalisierung von Unterlagen ist kostenpflichtig <a href=\"https://ethz.ch/content/dam/ethz/associates/ethlibrary-dam/documents/Benutzungsbestimmungen/f_library_gebuehrenblatt_2020_de.pdf\" target =\"_blank\" rel=\"noopener noreferrer\">(Gebührenordnung der ETH-Bibliothek)</a>. Sie bekommen vorgängig eine Offerte zugestellt.")]
         public string DigitalOrderWarningTextDE { get; set; }
 
         #endregion
@@ -50,7 +52,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         #region Lieferart Auswahl 'In den Lesesaal bestellen'
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: DE")]
-        [DefaultValue("zur Konsultation in den <strong>Lesesaal</strong> bestellen. Bestellen Sie 24 Stunden im Voraus, damit Ihnen die Unterlagen am gewünschten Tag zur Verfügung stehen (Dienstag, Mittwoch und Donnerstag).")]
+        [DefaultValue("zur Konsultation in den <strong>Lesesaal</strong> bestellen (Bestellungen müssen mindestens 2 Arbeitstage im Voraus erfolgen).")]
         public string DeliveryTypeReadingRoomDE { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: FR")]
@@ -62,7 +64,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         public string DeliveryTypeReadingRoomIT { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: EN")]
-        [DefaultValue("for consultation in the <strong>reading room</strong>. Order 24 hours in advance to ensure that your documents are ready for you on your desired day (Tuesday, Wednesday and Thursday).")]
+        [DefaultValue("order these documents for consultation in the <strong>reading room</strong>. (Orders must be placed at least 2 workdays in advance)")]
         public string DeliveryTypeReadingRoomEN { get; set; }
 
         #endregion

@@ -1,8 +1,8 @@
 <form [formGroup]="form">
 	<div class="ocp-orderkind-container">
 		<span>{{ cartCount === 1
-		? ('Ich möchte dieses Dossier'| translate:'orderCheckoutPage.iWantThisDossierSingular')
-		: ('Ich möchte diese Dossiers'| translate:'orderCheckoutPage.iWantThisDossierPlural') }}
+		? ('Ich möchte diese Unterlagen'| translate:'orderCheckoutPage.iWantThisDossierSingular')
+		: ('Ich möchte diese Unterlagen'| translate:'orderCheckoutPage.iWantThisDossierPlural') }}
 		</span>
 		<fieldset>
 			<div class="form-group" [ngClass]="{'has-warning': form.hasError('required', ['shippingType']) && nextClicked}">
