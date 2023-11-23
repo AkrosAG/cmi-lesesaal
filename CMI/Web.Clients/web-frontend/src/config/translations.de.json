@@ -209,16 +209,6 @@
     "minimize": "Chatbot (Beta) minimieren",
     "title": "Chatbot (Beta)"
   },
-  "checkoutOrderDetailsStep": {
-    "artDerArbeit": "Art der Arbeit",
-    "commentTitle": "Bemerkung zur Bestellung",
-    "datumLesesaal": "Datum Lesesaal",
-    "datumLesesaalText": "Ich möchte die Unterlagen im Lesesaal konsultieren am",
-    "invalidDate": "An diesem Tag hat der Lesesaal nicht geöffnet. Bitte wählen Sie ein gültiges Datum aus.",
-    "mandatoryArtDerArbeit": "Bitte geben Sie die Art der Arbeit an, für die Sie die Unterlagen benötigen.",
-    "mandatoryDate": "Bitte wählen Sie ein Datum für Ihren Besuch im Lesesaal.",
-    "pleaseChoose": "Bitte wählen"
-  },
   "checkoutPersonsStep": {
     "reasonTitle": "Begründung Einsichtnahme"
   },
@@ -230,17 +220,6 @@
     "title": "Die abliefernden Stellen können auch während der Schutzfrist in die von ihnen abgelieferten Unterlagen Einsicht nehmen. Für deren Konsultation müssen Sie von Ihrer Verwaltungseinheit berechtigt sein. Diese erhält zudem eine automatische Benachrichtigung, jedes Mal wenn Sie solche Unterlagen bestellen.",
     "title2": "Enthalten diese Unterlagen Personendaten, ist eine Ausleihe nur aus bestimmten Gründen zulässig ",
     "yesTheseItemsContainsPersonData": "Ja, diese Unterlagen enthalten Personendaten"
-  },
-  "checkoutSubmittedStep": {
-    "cartText": "Sie haben noch offene Bestellungen im <a href=\"#/{0}\">Bestellkorb</a>.",
-    "checkStatusText": "Den Status Ihrer Bestellung können Sie in Ihrem <a href=\"#/{0}\">Benutzerkonto</a> verfolgen.",
-    "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Bundesarchiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
-    "thxTextDigi": "Vielen Dank für Ihren Auftrag. Sie erhalten eine E-Mail, sobald die Unterlagen digitalisiert worden sind. Die Bearbeitung Ihres Auftrags dauert in der Regel zwei Wochen.",
-    "thxTextEischtisgesuch": "Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.",
-    "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "Falls Ihr Gesuch bewilligt wird, müssen Sie sich identifizieren, um die Unterlagen zu konsultieren (siehe <a href=\"{0}\">Anmelden und Identifizieren</a>).",
-    "thxTextEischtisgesuchIntroduction": "Vielen Dank für Ihr Einsichtsgesuch in folgende Unterlagen:",
-    "thxTextLesesaal": "Vielen Dank für Ihren Auftrag. Sie können die gewünschten Unterlagen am gewählten Datum im <a href=\"#/{0}\">Lesesaal</a> einsehen. Der Lesesaal ist von Dienstag bis Donnerstag von 9 bis 19 Uhr geöffnet.",
-    "thxTextVerwaltungsausleihe": "Vielen Dank für Ihre Bestellung. Sie erhalten die Unterlagen innerhalb von ein bis zwei Arbeitstagen per Post."
   },
   "clipboard": {
     "success": "Erfolgreich in die Zwischenablage kopiert!",
@@ -269,7 +248,7 @@
   "detail": {
     "notFound": "Die gewünschte Seite kann nicht angezeigt werden",
     "notFoundMessage": "Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href=\"#{0}\">Anmelden und Identifizieren</a>).</br></br>",
-    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>."
+    "notFoundMessage2": "Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte per E-Mail an das Archiv."
   },
   "detailHierarchy": {
     "activePosition": "Aktuell angezeigte Verzeichnungseinheit"
@@ -624,33 +603,6 @@
     "frombar": "(Diese Bestellung wurde durch die ETH ausgelöst.)",
     "unknowtext": "[Nicht sichtbar]"
   },
-  "orderCheckoutPage": {
-    "bestellbestaetigung": "Bestellbestätigung",
-    "chooseShippingType": "Lieferart auswählen",
-    "finishOrder": "Bestellung abschliessen",
-    "inMyName": "In meinem eigenen Namen",
-    "inTheNameOfAnother": "Im Namen eines anderen Benutzers",
-    "iWantThisDossierOrdered": "Ich möchte dieses Dossier bestellen",
-    "iWantThisDossierPlural": "Ich möchte diese Dossiers",
-    "iWantThisDossierSingular": "Ich möchte dieses Dossier",
-    "mandatoryShippingType": "Bitte wählen Sie eine Lieferart aus.",
-    "mandatoryUser": "Bitte wählen Sie einen Benutzer aus, für den Sie die Bestellung durchführen möchten.",
-    "nextPage": "Weiter",
-    "orderDetails": "Angaben zur Bestellung",
-    "previousPage": "Zurück",
-    "reasons": "Begründung",
-    "title": "Bestellen",
-    "userSelect": "Benutzerauswahl",
-    "warningInfo": "Warnung",
-    "digitalisierungNichtMoeglichTitle": "Kontingent ausgeschöpft",
-    "digitalisierungNichtMoeglichIntro": "Sie haben uns bereits mit der Digitalisierung von {0} Dossiers beauftragt.",
-    "digitalisierungNichtMoeglichAsEma": "Bitte bestellen Sie die Unterlagen in den Lesesaal, ins Amt oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
-    "digitalisierungNichtMoeglichOthers": "Bitte bestellen Sie die Unterlagen in den Lesesaal oder warten Sie, bis Ihre Digitalisierungsaufträge abgeschlossen sind.",
-    "exceedDigitalisierungTitle": "Sie können nur noch {0} Dossiers digitalisieren lassen",
-    "exceedDigitalisierungIntro": "Bitte wählen Sie unten jene Dossiers aus, die Sie jetzt digitalisieren lassen möchten. Sobald diese digitalisiert sind, können Sie weitere Dossier in Auftrag geben.",
-    "exceedDigitalisierungAsEma": "Alternativ dazu ist eine Bestellung in den Lesesaal oder ins Amt jederzeit möglich.",
-    "exceedDigitalisierungOthers": "Alternativ dazu ist eine Bestellung in den Lesesaal jederzeit möglich."
-  },
   "orderCheckoutPageComponent": {
     "pageTitle": "Bestellung"
   },
@@ -875,37 +827,6 @@
     "title": "Titel",
     "unExpectedError": "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut."
   },
-  "shoppingCartPage": {
-    "ablieferung": "Ablieferung",
-    "addManuallySectionTitle": "Dossiers manuell zum Bestellkorb hinzufügen",
-    "addToCart": "Hinzufügen",
-    "aktenzeichen": "Aktenzeichen",
-    "archivNr": "Archivnummer",
-    "bestellenText": "Diese Unterlagen sind für Sie frei zugänglich oder müssen vom AMA hinsichtlich Zugänglichkeit geprüft werden. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
-    "dossierTitel": "Dossiertitel",
-    "einsichtsbewilligungenNotwendig": "Für diese Dossiers sind Einsichtsbewilligungen notwendig:",
-    "einsichtsBewilligungVorhanden": "Sie verfügen für diese Unterlagen bereits über eine Einsichtsbewilligung? Bitte kontaktieren Sie uns.",
-    "einsichtsGesuchEinreichen": "Einsichtsgesuch einreichen",
-    "einsichtsGesuchStellen": "Weiter",
-    "einsichtsGesuchStellenText": "Für diese Unterlagen sind Einsichtsbewilligungen notwendig. Wenn Sie bereits eine Bewilligung besitzen, klicken Sie bitte auf \"Bewilligung bereits vorhanden\". Ansonsten klicken Sie auf \"Weiter\".",
-    "emptyCart": "Der Bestellkorb ist leer.",
-    "exampleAblieferung": "z. B. 1988/234",
-    "fieldIsRequired": "Dies ist ein Pflichtfeld",
-    "fieldsMarkedWithAreCompulsory": "*: Diese Felder müssen ausgefüllt werden.",
-    "headingTitleText": "Bestellen Sie Unterlagen in den Lesesaal, als Verwaltungsausleihe, erteilen Sie Digitalisierungsaufträge oder reichen Sie Einsichtsgesuche ein.",
-    "inputArchivNrIsRequired": "Dieses oder das Behältnisnummer-Feld muss ausgefüllt sein.",
-    "inputBehaeltnisNrIsRequired": "Dieses oder das Archivnummer-Feld muss ausgefüllt sein.",
-    "order": "Weiter",
-    "referenceCode": "Signatur",
-    "searchFailedMessage": "Es ist ein Fehler bei der Suche aufgetreten. Details: {0}",
-    "searchFailedTitle": "Suche fehlgeschlagen",
-    "teilBestand": "(Teil-)Bestand",
-    "title": "Bestellkorb",
-    "unterlagenBestellen": "Unterlagen bestellen (kostenlos)",
-    "veNotFound": "Keine Verzeichnungseinheit mit dieser Signatur gefunden",
-    "veNotFoundTitle": "Nicht gefunden",
-    "zeitraumDossier": "Zeitraum des Dossiers"
-  },
   "shoppingCartPageComponent": {
     "pageTitle": "Bestellkorb"
   },
@@ -927,10 +848,9 @@
     "noHitsInfo": {
       "header": "Es kann verschiedene Gründe haben, warum Ihre Suche keine Treffer ergeben hat:",
       "hinweis": "Hinweis",
-      "reason1": "Metadaten, die Personennamen und besonders schützenswerte Personendaten oder Persönlichkeitsprofile enthalten, darf erst nach Ablauf der Schutzfrist publiziert werden. Diese Metadaten sind nur im Lesesaal einsehbar.",
+      "reason1": "Metadaten, die Personennamen und besonders schützenswerte Personendaten oder Persönlichkeitsprofile enthalten, darf erst nach Ablauf der Schutzfrist publiziert werden.",
       "reason2": "Die gesuchten Unterlagen sind noch nicht erschlossen und im System erfasst.",
       "reason3": "Tippfehler oder unbekannte Suchbegriffe: Bitte prüfen Sie die Schreibweise oder suchen Sie nach anderen Begriffen.",
-      "reason4": "Es gibt tatsächlich keine Unterlagen zu Ihrem Thema. Weitere Archive finden Sie in der <a href=\"{0}\">Datenbank Archivadressen der Schweiz</a> oder auf dem <a href=\"{1}\">Archivportal Europa</a>.",
       "showHinweis": "Diesen Hinweis zukünftig nicht mehr anzeigen"
     },
     "noHitsTitle": "Keine Treffer zu Ihrem Suchbegriff",
