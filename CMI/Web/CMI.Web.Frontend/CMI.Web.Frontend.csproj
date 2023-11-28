@@ -374,6 +374,7 @@
     <Content Include="content\de\500.html" />
     <Content Include="content\de\informationen\api.html" />
     <Content Include="content\de\informationen\bestellen-und-konsultieren.html" />
+    <Content Include="content\de\konto\kontoeroeffnung.html" />
     <Content Include="content\de\suche\bestaendeuebersicht.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
