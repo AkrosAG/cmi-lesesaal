@@ -18,7 +18,6 @@ import {AccountFavoritesListPageComponent} from './components/account/favorites/
 import {AuthGuard, DefaultContextGuard, DefaultRedirectGuard, DetailContextGuard} from './modules/client/routing';
 import {PreloadedResolver, TranslationsLoadedResolver, UserSettingsResolver} from './modules/client/routing';
 import {OrderEinsichtCheckoutPageComponent} from './components/orderEinsichtCheckoutPage/orderEinsichtCheckoutPage.component';
-import {RegisterPageInfoComponent} from './components/register/registerPageInfo/registerPageInfo.component';
 import {RegisterPageComponent} from './components/register/registerPage/registerPage.component';
 import {ErrorPageComponent} from './components/errorPage/errorPage.component';
 import {ErrorSmartcardPageComponent} from './components/errorPage/errorSmartcardPage.component';
@@ -193,7 +192,7 @@ export const defaultRouteChildren: any = [
 			{
 				path: 'kontoeroeffnung',
 				_localize: {'fr': 'creation-d-un-compte', 'it': 'apertura-di-un-conto', 'en': 'opening-an-account'},
-				component: RegisterPageInfoComponent
+				component: StaticPageComponent
 			},
 			{
 				path: 'registrieren',

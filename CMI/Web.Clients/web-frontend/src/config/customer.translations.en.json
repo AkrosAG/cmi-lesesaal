@@ -214,7 +214,7 @@
 	},
 	"registerInfo": {
 		"cancelRegister": "Cancel",
-		"chLoginAltText": "CH-Login logo",
+		"link": "#/en/information/login-and-identification",
 		"chLoginException": "Exception: Federal Administration staff must register via “FED-LOGIN“.",
 		"chooseCHLogin": "Please select the “CH-LOGIN” option in the next step.",
 		"info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
