@@ -16,6 +16,7 @@ export class AccountPageComponent implements OnInit {
 	public isRegistered: boolean = true;
 	public isIdentified: boolean = false;
 	public showOnboarding: boolean = false;
+	public activeColumn: string = '1';
 
 	constructor(private _txt: TranslationService,
 				private _url: UrlService,
@@ -31,7 +32,12 @@ export class AccountPageComponent implements OnInit {
 		// this component is only visible for registered user, so everything != ö2 is identified
 		this.isRegistered = this._authService.hasRole('Ö2');
 		this.isIdentified = !this.isRegistered;
-
+		if (this.isRegistered) {
+			this.activeColumn = '3';
+		} else if (this.isIdentified) {
+			this.activeColumn = '2';
+		}
+		console.log(this.activeColumn);
 		this._userService.GetOnboardingUri()
 			.then(link => {
 				this.showOnboarding = link ? true : false;
