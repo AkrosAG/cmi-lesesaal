@@ -453,6 +453,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ManagementTranslationHelper.cs" />
+    <Compile Include="Helpers\ReportType.cs" />
     <Compile Include="ParameterSettings\AushebungsauftraegeTemplate.cs" />
     <Compile Include="ParameterSettings\LaenderSetting.cs" />
     <Compile Include="ParameterSettings\StatusUebergangSettings.cs" />

@@ -139,6 +139,9 @@
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
     <Compile Include="IPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
+    <Compile Include="Mock\MockRepositoryDataAccess.cs" />
+    <Compile Include="Mock\MockRepositoryConnectionFactory.cs" />
+    <Compile Include="Mock\MockRepositoryManager.cs" />
     <Compile Include="PackageValidator.cs" />
     <Compile Include="ParameterSettings\RepositorySyncSettings.cs" />
     <Compile Include="Properties\Documentation.cs" />
@@ -218,6 +221,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
+    <Content Include="Mock\Data\RepositoryPackageInfoResult.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mock\Data\RepositoryPackageResult.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Mock\Data\test.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -270,6 +282,10 @@
     <ProjectReference Include="..\..\Utilities\Logging\Configurator\CMI.Utilities.Logging.Configurator.csproj">
       <Project>{39326685-b5ab-40dc-8fa3-09a9502e7be0}</Project>
       <Name>CMI.Utilities.Logging.Configurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Web\CMI.Web.Common\CMI.Web.Common.csproj">
+      <Project>{D0CB96A3-F09E-46F3-B3AE-DF11E627F0E4}</Project>
+      <Name>CMI.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -36,6 +36,7 @@ namespace CMI.Contract.Common
     public class SearchRecord : TreeRecord
     {
         public string PrimaryDataLink { get; set; }
+        public string ManifestLink { get; set; }
         public bool CanBeOrdered { get; set; }
         public string Contains { get; set; }
         public string Permission { get; set; }

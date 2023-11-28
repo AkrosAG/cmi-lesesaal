@@ -4,23 +4,27 @@ using System.IO;
 using Aspose.Pdf;
 using CMI.Contract.Common;
 using CMI.Engine.Asset.ParameterSettings;
-using CSJ2K;
 using Serilog;
 using Image = System.Drawing.Image;
 
 namespace CMI.Engine.Asset.PreProcess
 {
-    public class PreProcessAnalyzerDetectAndFlagLargeDimensions : PreProcessAnalyzer
+    public class PreProcessAnalyzerDetectAndFlagLargeDimensions : ProcessAnalyzerBase
     {
-        public PreProcessAnalyzerDetectAndFlagLargeDimensions(FileResolution fileResolution, AssetPreparationSettings settings) : base(fileResolution, settings)
+        private readonly ImageHelper imageHelper;
+        private readonly AssetPreparationSettings settings;
+
+        public PreProcessAnalyzerDetectAndFlagLargeDimensions(ImageHelper imageHelper, AssetPreparationSettings settings)
         {
+            this.imageHelper = imageHelper;
+            this.settings = settings;
         }
 
-        protected override void AnalyzeFiles(string tempFolder, List<RepositoryFile> files)
+        protected override void AnalyzeFiles(string rootOrSubFolder, List<RepositoryFile> files)
         {
             foreach (var file in files)
             {
-                var sourceFile = new FileInfo(Path.Combine(tempFolder, file.PhysicalName));
+                var sourceFile = new FileInfo(Path.Combine(rootOrSubFolder, file.PhysicalName));
                 if (sourceFile.Exists)
                 {
                     Log.Information("FileName: {FullName}, detect and flag large dimensions", sourceFile.FullName);
@@ -34,16 +38,12 @@ namespace CMI.Engine.Asset.PreProcess
                                     file.SkipOCR = ShouldSkipPdf(pdfDocument, sourceFile.FullName);
                                 }
                             }
+
                             break;
                         case ".jp2":
-                            var decodedImage = J2kImage.FromFile(sourceFile.FullName);
-                            var jp2Bitmap = decodedImage.As<Bitmap>();
-                            TestImageDimension(file, jp2Bitmap, sourceFile);
-                            break;
                         case ".tif":
                         case ".tiff":
-                            var tiffBitmap = Image.FromFile(sourceFile.FullName);
-                            TestImageDimension(file, tiffBitmap, sourceFile);
+                            TestImageDimension(file, sourceFile);
                             break;
                     }
                 }
@@ -58,9 +58,10 @@ namespace CMI.Engine.Asset.PreProcess
         /// Tests if image dimension is larger than allowed.
         /// If yes, the file is marked for skipping
         /// </summary>
-        private void TestImageDimension(RepositoryFile file, Image bitmap, FileInfo sourceFile)
+        private void TestImageDimension(RepositoryFile file, FileInfo sourceFile)
         {
-            file.SkipOCR = IsImageTooLarge(bitmap, sourceFile.FullName);
+            var size = imageHelper.GetImageSize(sourceFile.FullName);
+            file.SkipOCR = IsImageTooLarge(size, sourceFile.FullName);
             if (file.SkipOCR)
             {
                 Log.Information("Detected oversized image file. Skipping OCR recognition for file: {FullName}", sourceFile.FullName);
@@ -79,9 +80,10 @@ namespace CMI.Engine.Asset.PreProcess
                         image.Save(stream);
 
                         var bitmap = Image.FromStream(stream);
-                        if (IsImageTooLarge(bitmap, path))
+                        if (IsImageTooLarge(bitmap))
                         {
-                            Log.Information("Detected PDF with large dimension on page number {Number}. Skipping file: {FileName}", pdfPage.Number, pdfDocument.FileName);
+                            Log.Information("Detected PDF with large dimension on page number {Number}. Skipping file: {FileName}", pdfPage.Number,
+                                pdfDocument.FileName);
                             return true;
                         }
                     }
@@ -97,13 +99,22 @@ namespace CMI.Engine.Asset.PreProcess
         /// it is excluded from the font recognition because it will probably not find anything.
         /// </summary>
         /// <returns>True or false if it should skip or not</returns>
-        private bool IsImageTooLarge(Image bitmap, string path)
+        private bool IsImageTooLarge(Size size, string path)
         {
-            var resolution = fileResolution.GetResolution(bitmap, path);
-            var width = 25.4 * bitmap.Width / resolution;
-            var height = 25.4 * bitmap.Height / resolution;
+            var resolution = imageHelper.GetResolution(path);
+            var width = 25.4 * size.Width / resolution;
+            var height = 25.4 * size.Height / resolution;
             return width > settings.SizeThreshold || height > settings.SizeThreshold;
         }
 
+        private bool IsImageTooLarge(Image bitmap)
+        {
+            var resolution = imageHelper.GetResolutionFromBitmap(bitmap);
+            var width = 25.4 * bitmap.Width / resolution;
+            var height = 25.4 * bitmap.Height / resolution;
+            return width > settings.SizeThreshold || height > settings.SizeThreshold;
+
+        }
     }
 }
+

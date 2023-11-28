@@ -18,7 +18,7 @@
                                 <xs:annotation>
                                     <xs:documentation>accessToken contains a string, identifiying who has access to the UoD.
 Examples for the token can be:
-- BAR
+- AMA
 - Ö3
 - Ö2
 </xs:documentation>
@@ -29,7 +29,7 @@ Examples for the token can be:
                                 <xs:annotation>
                                     <xs:documentation>accessToken contains a string, identifiying who has access to the fulltext of the primary data files.
 Examples for the token can be:
-- BAR
+- AMA
 - AS_YYYY
 - FG_XXXX
 - EB_XXXX
@@ -42,7 +42,7 @@ Examples for the token can be:
                                 <xs:annotation>
                                     <xs:documentation>accessToken contains a string, identifiying who has access to the download of the primary data files.
 Examples for the token can be:
-- BAR
+- AMA
 - AS_YYYY
 - FG_XXXX
 - EB_XXXXX
@@ -237,9 +237,7 @@ Examples for the token can be:
                                                   <xs:element name="containerLocation"
                                                   type="xs:string"/>
                                                   <xs:element name="containerType" type="xs:string"/>
-                                                  <xs:element name="idName" type="xs:string"/>
-                                                  <xs:element name="dateOfBirth" type="xs:date"/>
-                                                  <xs:element name="dateOfDeath" type="xs:date"/>
+                                                  <xs:element name="idName" type="xs:string"/>                                                  
                                                   <xs:element minOccurs="0" name="containerCode"
                                                   type="xs:string"/>
                                                   <xs:element minOccurs="0"
@@ -354,7 +352,12 @@ Examples for the token can be:
                                     <xs:documentation>A link or other identifier to the primary data for the unit.</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="aggregationFields">
+                            <xs:element name="manifestLink" type="xs:string">
+	                            <xs:annotation>
+		                            <xs:documentation>A link or other identifier to the IIIF manifest</xs:documentation>
+	                            </xs:annotation>
+                            </xs:element>
+							<xs:element name="aggregationFields">
                                 <xs:annotation>
                                     <xs:documentation>A collection of special values that allows filtering in the search client.</xs:documentation>
                                 </xs:annotation>
@@ -654,6 +657,8 @@ This is required for the best possible search experience using date ranges.
                 <xs:element minOccurs="0" name="description" type="xs:string"/>
                 <xs:element minOccurs="0" name="otherLanguageNames" type="xs:string"/>
                 <xs:element minOccurs="0" name="idName" type="xs:string"/>
+                <xs:element minOccurs="0" name="dateOfBirth" type="xs:date"/>
+                <xs:element minOccurs="0" name="dateOfDeath" type="xs:date"/>
                 <xs:sequence maxOccurs="1">
                     <xs:element name="seeAlso" type="xs:string" maxOccurs="unbounded"/>
                 </xs:sequence>

@@ -27,6 +27,8 @@ namespace CMI.Access.Sql.Lesesaal
 
         Task<List<PrimaerdatenAufbereitungItem>> GetPrimaerdatenaufbereitungItemsByDate(DateTime startTime, DateTime endTime);
 
+        Task<List<DownloadLogItem>> GetDownloadLogItemsByDate(DateTime startTime, DateTime endTime);
+
         Task<Ordering> GetOrdering(int orderingId, bool includeOrderItems = true);
 
         Task<OrderItem> GetOrderItem(int orderItemId);

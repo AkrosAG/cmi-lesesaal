@@ -131,8 +131,6 @@ namespace CMI.Contract.Common.Compiler
                         break;
                 }
             }
-
-
         }
 
         private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)
