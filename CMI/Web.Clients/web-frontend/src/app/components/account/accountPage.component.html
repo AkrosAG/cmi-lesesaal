@@ -24,12 +24,12 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<cmi-viaduc-account-type-info-list [isRegistered]="isRegistered" [isIdentified]="isIdentified" [canCollapse]="false"></cmi-viaduc-account-type-info-list>
+						<cmi-benutzertabelle-static-page  [activeColumn]="this.activeColumn" ></cmi-benutzertabelle-static-page>
 					</div>
 				</div>
 				<div [ngSwitch]="showOnboarding">
 					<div *ngSwitchCase='true'><cmi-digital-onboarding-assistant *ngIf="isRegistered"></cmi-digital-onboarding-assistant></div>
-					<div *ngSwitchCase='false'><cmi-status-info-user></cmi-status-info-user></div>	
+					<div *ngSwitchCase='false'><cmi-status-info-user></cmi-status-info-user></div>
 				</div>
 			</div>
 		</div>
