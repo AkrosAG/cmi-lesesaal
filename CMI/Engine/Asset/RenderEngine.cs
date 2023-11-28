@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CMI.Contract.DocumentConverter;
+using CMI.Engine.Asset.ParameterSettings;
+using CMI.Engine.Asset.PreProcess;
 using MassTransit;
 using Rebex;
 using Rebex.Net;
 using Serilog;
+using JobContext = CMI.Contract.DocumentConverter.JobContext;
 
 namespace CMI.Engine.Asset
 {
@@ -15,18 +18,27 @@ namespace CMI.Engine.Asset
     {
         private readonly IRequestClient<ConversionStartRequest> conversionRequestClient;
         private readonly IRequestClient<JobInitRequest> jobInitRequestClient;
+        private readonly IRequestClient<JobEndRequest> jobEndRequestClient;
         private readonly IRequestClient<SupportedFileTypesRequest> supportedFileTypesRequestClient;
+        private readonly ImageHelper imageHelper;
+        private readonly ViewerConversionSettings viewerConversionSettings;
         private readonly string sftpLicenseKey;
         private string[] supportedFileTypes;
 
         public RenderEngine(IRequestClient<JobInitRequest> jobInitRequestClient,
+            IRequestClient<JobEndRequest> jobEndRequestClient,
             IRequestClient<ConversionStartRequest> conversionRequestClient,
             IRequestClient<SupportedFileTypesRequest> supportedFileTypesRequestClient,
+            ImageHelper imageHelper,
+            ViewerConversionSettings viewerConversionSettings,
             string sftpLicenseKey)
         {
             this.jobInitRequestClient = jobInitRequestClient;
+            this.jobEndRequestClient = jobEndRequestClient;
             this.conversionRequestClient = conversionRequestClient;
             this.supportedFileTypesRequestClient = supportedFileTypesRequestClient;
+            this.imageHelper = imageHelper;
+            this.viewerConversionSettings = viewerConversionSettings;
             this.sftpLicenseKey = sftpLicenseKey;
         }
 
@@ -94,6 +106,10 @@ namespace CMI.Engine.Asset
                 Log.Information(
                     $"Retrieved conversion result for file {fi.FullName} in {stopWatch.ElapsedMilliseconds} ms. Length of content is {result.LengthOfContent} bytes.");
 
+                // Remove the job
+                await jobEndRequestClient.GetResponse<JobEndResult>(new JobEndRequest { JobGuid = convertionResponse.JobGuid });
+                Log.Information($"Removed the job with the id {convertionResponse.JobGuid}.");
+
                 return result.TargetPath;
             }
             catch (Exception ex)
@@ -101,6 +117,16 @@ namespace CMI.Engine.Asset
                 Log.Error(ex, "Unexpected error while converting file {FullName}", fi.FullName);
                 throw;
             }
+        }
+
+        public Task<string> ConvertImageToPdf(string file)
+        {
+            if (File.Exists(file))
+            {
+                return Task.FromResult(imageHelper.ConvertToPdf(file, 100, viewerConversionSettings.JpegQualitaetInProzent));
+            }
+
+            return Task.FromResult(file);
         }
 
         private async Task UploadFile(JobInitResult jobInitResult, FileInfo toBeConverted)
@@ -141,7 +167,7 @@ namespace CMI.Engine.Asset
                         throw new InvalidOperationException($"Was unable to download file  {targetPath} from sftp server");
                     }
 
-                    return new DownloadAndStoreFileResult {LengthOfContent = lengthOfContent, TargetPath = targetPath};
+                    return new DownloadAndStoreFileResult { LengthOfContent = lengthOfContent, TargetPath = targetPath };
                 }
             }
             catch (Exception e)

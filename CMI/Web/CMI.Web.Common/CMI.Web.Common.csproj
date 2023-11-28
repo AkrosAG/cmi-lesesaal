@@ -274,13 +274,12 @@
     <Compile Include="Helpers\CmiSettings.cs" />
     <Compile Include="Helpers\CustomExceptionLogger.cs" />
     <Compile Include="Helpers\DirectoryHelper.cs" />
+    <Compile Include="Helpers\DownloadLogHelper.cs" />
     <Compile Include="Helpers\ExcelExportHelper.cs" />
-    <Compile Include="Helpers\FileDownloadHelper.cs" />
     <Compile Include="Helpers\FrontendHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\ICmiSettings.cs" />
     <Compile Include="Helpers\IDirectoryHelper.cs" />
-    <Compile Include="Helpers\IFileDownloadHelper.cs" />
     <Compile Include="Helpers\IServiceHelper.cs" />
     <Compile Include="Helpers\ITranslator.cs" />
     <Compile Include="Helpers\IWebCmiConfigProvider.cs" />
@@ -308,6 +307,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <EmbeddedResource Include="Aspose.Total.NET.lic" />
+    <Compile Include="Helpers\IDownloadLogHelper.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

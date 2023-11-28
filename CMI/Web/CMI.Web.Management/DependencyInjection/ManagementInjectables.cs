@@ -50,7 +50,7 @@ namespace CMI.Web.Management.DependencyInjection
 
             builder.RegisterType<OrderManagerClient>().As<IPublicOrder>();
             builder.RegisterType<VecteurActionsClient>().As<IVecteurActions>();
-            builder.RegisterType<FileDownloadHelper>().As<IFileDownloadHelper>();
+            builder.RegisterType<DownloadLogHelper>().As<IDownloadLogHelper>();
             builder.RegisterType<AbbyyProgressInfo>().SingleInstance().AsSelf();
 
             // register all the consumers

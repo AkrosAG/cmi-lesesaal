@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
-using CMI.Contract.Parameter;
 using CMI.Engine.Asset;
+using CMI.Engine.Asset.PreProcess;
 using CMI.Manager.Asset.Consumers;
 using FluentAssertions;
 using MassTransit.Testing;

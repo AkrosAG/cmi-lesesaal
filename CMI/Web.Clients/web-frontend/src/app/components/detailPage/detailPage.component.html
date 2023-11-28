@@ -15,6 +15,9 @@
 
 				<div class="section">
 					<div class="section-content">
+						<cmi-viaduc-viewer-section *ngIf="showViewerSection" [archiveRecordId]="entity.archiveRecordId" [manifestLink]="entity.manifestLink" [viewerLink]="_config.getSetting('viewer.url', '')"></cmi-viaduc-viewer-section>
+					</div>
+					<div class="section-content">
 						<cmi-viaduc-download-section *ngIf="showDownloadSection" [entity]="entity"></cmi-viaduc-download-section>
 						<cmi-viaduc-order-section *ngIf="showOrderSection" [entity]="entity"></cmi-viaduc-order-section>
 						<cmi-viaduc-usage-section *ngIf="!showDownloadSection && !showOrderSection"

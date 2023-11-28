@@ -66,8 +66,13 @@ namespace CMI.Engine.PackageMetadata
             // If using the Alfresco Repository, then we simply return a "hard coded" file
             if (repositoryAccess.GetRepositoryName().StartsWith("Alfresco", StringComparison.InvariantCultureIgnoreCase))
             {
-                var defaultMetadata = GetFileFromRessource();
-                File.WriteAllText(Path.Combine(folderName, "metadata.xml"), defaultMetadata);
+                var directory = new DirectoryInfo(folderName);
+                if (directory.Parent != null)
+                {
+                    MoveMetadataXml(Path.Combine(directory.Parent.FullName, "content"), directory.FullName);
+                    package.Files.Remove(package.Files.FirstOrDefault(f =>
+                        f.PhysicalName.Equals("metadata.xml", StringComparison.InvariantCultureIgnoreCase)));
+                }
                 return;
             }
 
@@ -739,6 +744,17 @@ namespace CMI.Engine.PackageMetadata
                 {
                     return reader.ReadToEnd();
                 }
+            }
+        }
+
+        private void MoveMetadataXml(string contentDir, string targetDir)
+        {
+            Log.Information("Trying to move metadata.xml from content folder (Alfresco) to header folder.");
+            // There MUST be a metadata.xml in the content folder if we are using Alfresco
+            var sourceFile = new FileInfo(Path.Combine(contentDir, "metadata.xml"));
+            if (sourceFile.Exists)
+            {
+                sourceFile.MoveTo(Path.Combine(targetDir, "metadata.xml"));
             }
         }
 

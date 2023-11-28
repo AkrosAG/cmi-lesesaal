@@ -32,6 +32,9 @@ export interface Entity {
 	isDownloadAllowed: boolean;
 	images?: string[];
 	primaryDataDownloadAccessTokens: string[];
+	primaryDataFulltextAccessTokens: string[];
+	fieldAccessTokens: string[];
+	manifestLink?: string;
 
 	explanation: {
 		value: string,

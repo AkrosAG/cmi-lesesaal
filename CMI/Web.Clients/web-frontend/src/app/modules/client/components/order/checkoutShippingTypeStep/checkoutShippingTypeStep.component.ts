@@ -59,10 +59,10 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		'damit Ihnen die Unterlagen am gewünschten Tag zur Verfügung stehen (Dienstag, Mittwoch und Donnerstag).');
 
 		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
-		
+
 		let tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers', '').split(';');
-		this.isDigitalUser = this._author.hasAnyAccessToken(tokens);
-		
+		this.isDigitalUser =  this._author.hasAnyAccessToken(tokens);
+
 		let activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
 			this.form.patchValue({
