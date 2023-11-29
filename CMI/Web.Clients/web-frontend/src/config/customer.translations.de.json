@@ -214,15 +214,12 @@
 	},
 	"registerInfo": {
 		"cancelRegister": "Abbrechen",
-		"chLoginAltText": "Logo des CH-Logins",
-		"chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
-		"chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
-		"info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
+		"info1": "Sie können den Virtuellen Lesesaal anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
 		"infoBox": "Info-Box",
 		"infoTitle": "Hinweis",
 		"questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
 		"registerImEiam": "Registrieren",
-		"title": "Kontoeröffnung für das Hochschularchiv der ETH Zürich Virtueller Lesesaal"
+		"title": "Kontoeröffnung für den Virtuellen Lesesaal des Hochschularchivs der ETH Zürich"
 	},
 	"search": {
 		"advanced": {

@@ -1,0 +1,219 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta name="language" content="en">
+</head>
+<body>
+
+    <div class="container container-main">
+        <!--content-begin-->
+        <div id="content-wrapper">
+            <div class="container-fluid hidden-xs">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mod mod-breadcrumb">
+                            <h2 id="br1" class="hidden">Breadcrumb</h2>
+                            <ol class="breadcrumb" aria-labelledby="br1">
+                                <li><a href="/en/" title="Thomas Mann Archive"><i class="glyphicon glyphicon-home"></i></a><span class="icon icon--greater"></span></li>
+                                <li class="active" aria-selected="true" aria-label="current page">Account opening</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 main-column" id="content" role="main">
+                        <div class="row">
+                            <div class="col-md-12 main-content">
+                                <h1>
+                                    Opening an account for the Virtual Reading Room of the Thomas Mann Archive
+                                </h1>
+
+                                <p>
+                                    You can use the Virtual Reading Room anonymously, as a registered user or as an identified user. The functions will vary depending on your user status.
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-2" />
+                                    <div class="col-md-8">
+                                        <table class="table table-responsive">
+                                            <caption class="sr-only">List of rights for each user typep</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="description-col">
+                                                        <div>
+                                                            <a cli class="text-toggle collapsed" data-toggle="collapse" href="#tableBody" aria-expanded="false" aria-controls="tableBody">
+                                                                <span class="text-collapsed">
+                                                                    Hide/Show functions for every user status
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col"></th>
+                                                    <th class="text-center" scope="col">
+                                                        <span class="glyphicon glyphicon-old-man user-col-icon" style="font-size: 48px"></span> <br />
+                                                        <span class="block-span">
+                                                            Anonymous
+                                                        </span>
+                                                        <span class="block-span">
+                                                            (no account)
+                                                        </span>
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        <span class="glyphicon glyphicon-old-man user-col-icon" style="font-size: 48px"></span> <br />
+                                                        <span class="block-span">
+                                                            Register
+                                                        </span>
+                                                        <span class="block-span">
+                                                            (with account)
+                                                        </span>
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        <span class="glyphicon glyphicon-user-key user-col-icon" style="font-size: 48px"></span> <br />
+                                                        <span class="block-span">
+                                                            Identified
+                                                        </span>
+                                                        <span class="block-span">
+                                                            (with account)
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableBody" [ngClass]="{'collapse': canCollapse}">
+
+                                                <tr>
+                                                    <th scope="row">
+                                                        Search in public metadata
+                                                    </th>
+                                                    <td/>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">View publicly accessible documents</th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+
+
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+
+
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Download publicly&nbsp;accessible documents
+                                                    </th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="row">Manage favourites</th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Order documentes for consultation in the reading room </th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Request for access to restricted documents</th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="row">Download documents requiring authorisation</th>
+                                                    <td />
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-remove text-danger" aria-label="Nicht erlaubt"></span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="glyphicon glyphicon-ok text-success" aria-label="Erlaubt"></span>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-2" />
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 main-content">
+                                        <p>
+                                            Please register if you don’t have an account. Information on the registration process can be found under
+                                            <a href="en/information/login-and-identification" target="_blank">Login and identification</a>.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="btn" href="#/en/search/simple">
+                                        Cancel
+                                    </a>
+                                    <a class="btn btn-primary" href="AuthServices/SignIn?ReturnUrl=%2Fclient%2FAuth%2FExternalSignIn">
+                                        Register
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--content-end-->
+    </div>
+</body>
+</html>

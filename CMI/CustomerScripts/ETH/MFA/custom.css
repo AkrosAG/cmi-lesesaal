@@ -149,9 +149,9 @@ cmi-viaduc-footer a:visited {
     font-weight: 700;
 }
 
-.nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
-    border-left-color: #215caf !important;
-}
+    .nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
+        border-left-color: #215caf !important;
+    }
 
 .help-block, .text-danger {
     color: #215caf !important;
@@ -172,4 +172,30 @@ cmi-viaduc-footer a:visited {
 .btn.active:focus, .btn:focus, .carousel-control:focus, .chosen-container-active .chosen-single, .dropdown-toggle:focus, .form-control:focus, :not([class*=col-]):focus, a:focus, button:focus, input[type=checkbox]:focus, input[type=file]:focus, input[type=radio]:focus {
     outline: none !important;
     outline-offset: 1px;
+}
+
+
+/*------------------------------------------------------
+Benutzerberechtigungstabelle
+--------------------------------------------------------*/
+
+.user-col-icon {
+    font-size: 48px;
+}
+
+.active-col-header {
+    border-top: 2px solid #215caf !important;
+    border-left: 2px solid #215caf !important;
+    border-right: 2px solid #215caf !important;
+}
+
+.active-col-row {
+    border-left: 2px solid #215caf;
+    border-right: 2px solid #215caf;
+}
+
+.active-col-row-last {
+    border-left: 2px solid #215caf !important;
+    border-right: 2px solid #215caf !important;
+    border-bottom: 2px solid #215caf !important;
 }

@@ -131,7 +131,8 @@
     "pageTitle": "Favoritenliste"
   },
   "accountPageComponent": {
-    "pageTitle": "Konto"
+    "pageTitle": "Konto",
+		"userTable": "de\\informationen\\benutzerTabelle.html"
   },
   "accountSettingsPageComponent": {
     "pageTitle": "Benutzeroberfläche"

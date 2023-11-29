@@ -173,6 +173,34 @@ cmi-viaduc-footer a:visited {
     outline-offset: 1px;
 }
 
+
+
+/*------------------------------------------------------
+Benutzerberechtigungstabelle
+--------------------------------------------------------*/
+
+.user-col-icon {
+    font-size: 48px;
+}
+
+.active-col-header {
+    border-top: 2px solid #B7352D !important;
+    border-left: 2px solid #B7352D !important;
+    border-right: 2px solid #B7352D !important;
+}
+
+.active-col-row {
+    border-left: 2px solid #B7352D;
+    border-right: 2px solid #B7352D;
+}
+
+.active-col-row-last {
+    border-left: 2px solid #B7352D !important;
+    border-right: 2px solid #B7352D !important;
+    border-bottom: 2px solid #B7352D !important;
+}
+
+
 /*------------------------------------------------------
  Header center only HSA
 --------------------------------------------------------*/
