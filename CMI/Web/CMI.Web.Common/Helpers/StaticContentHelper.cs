@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -78,6 +79,12 @@ namespace CMI.Web.Common.Helpers
                 currentDoc.LoadHtml(html);
 
                 var contentNode = currentDoc.DocumentNode.SelectSingleNode($"//div[@id = '{ContentWrapperId}']");
+                if (contentNode != null)
+                {
+                    return contentNode;
+                }
+
+                contentNode = currentDoc.DocumentNode.SelectSingleNode($"//table[@id = '{ContentWrapperId}']");
                 if (contentNode != null)
                 {
                     return contentNode;

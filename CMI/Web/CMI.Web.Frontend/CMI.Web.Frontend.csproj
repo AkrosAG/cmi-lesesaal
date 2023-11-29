@@ -382,6 +382,7 @@
     <Content Include="content\en\500.html" />
     <Content Include="content\en\account\opening-an-account.html" />
     <Content Include="content\en\information\api.html" />
+    <Content Include="content\en\information\userTable.html" />
     <Content Include="content\en\search\thematic-overview.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -53,10 +53,8 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, html);
-                if (contentNode == null)
+                if (contentNode.Name.ToLower() == "table")
                 {
-                    // 
-                    var user = GetUserAccess();
                     contentHtml = html;
                 }
                 else

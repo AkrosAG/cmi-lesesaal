@@ -1,15 +1,16 @@
-import {Component, Input, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { StaticContentService} from '../../modules/client';
 
 @Component({
 	selector: 'cmi-benutzertabelle-static-page',
 	templateUrl: 'staticPageBenutzertable.component.html'
 })
-export class StaticPageBenutzertableComponent implements OnDestroy {
+export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 	@Input()
 	public activeColumn: string;
+	@Input()
+	public contentUrl: string;
 
-	public contentUrl ='de\\informationen\\benutzerTabelle.html';
 	public loadedHtml: string;
 	private _navigationSubscription: any = null;
 
@@ -18,11 +19,14 @@ export class StaticPageBenutzertableComponent implements OnDestroy {
 	private  activeLastRow:string =  'id="column_${0}_row_last" class="text-center';
 
 	constructor(private _static: StaticContentService) {
-		this._loadContent();
+	}
 
+	public ngOnInit(): void {
+		this._loadContent();
 	}
 
 	private _loadContent() {
+		console.log(this.contentUrl, this.activeColumn);
 		const routeInfo = this._static.getStaticRouteInfo(this.contentUrl);
 		const subscription = this._static.getContent(routeInfo.route)
 			.subscribe(
@@ -52,5 +56,4 @@ export class StaticPageBenutzertableComponent implements OnDestroy {
 		}
 		this._navigationSubscription = null;
 	}
-
 }
