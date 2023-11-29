@@ -53,8 +53,17 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var contentNode = StaticContentHelper.FindStaticContentNode(FrontendSettings.Instance, html);
-                contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettings.Instance, RequestContext, relativeUrl, language,
-                    contentNode.OuterHtml);
+                if (contentNode.Name.ToLower() == "table")
+                {
+                    contentHtml = html;
+                }
+                else
+                {
+                    contentHtml = StaticContentHelper.ProcessStaticMarkupForSpa(FrontendSettings.Instance, RequestContext, relativeUrl, language,
+                        contentNode.OuterHtml);
+                }
+
+                
             }
             catch (Exception ex)
             {
