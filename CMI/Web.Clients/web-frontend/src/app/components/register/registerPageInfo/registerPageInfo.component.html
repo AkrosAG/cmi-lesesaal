@@ -15,9 +15,18 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<p>Sofern Sie noch kein Konto eröffnet haben, müssen Sie sich registrieren. Informationen zum Registrierungsprozess finden Sie unter
-				<a href="{{'/informationen/registrieren-und-identifizieren' | translate:'registerInfo.test'}}" target="_blank">Registrieren und Identifizieren</a>.
-			</p>
+			<div class="alert alert-info info-box" role="alert">
+				<span class="sr-only">{{'Info-Box' | translate:'registerInfo.infoBox'}}</span>
+				<div class="pull-right ch-login img-rounded">
+					<img src="./assets/img/CH-Login.svg" alt="{{'Logo des CH-Logins' | translate: 'registerInfo.chLoginAltText'}}"/>
+				</div>
+				<h2>
+					{{'Hinweis' | translate: 'registerInfo.infoTitle'}}
+				</h2>
+				<p>{{'Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».' | translate: 'registerInfo.chooseCHLogin'}}</p>
+				<p>{{'Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.' | translate: 'registerInfo.chLoginException'}}</p>
+				<p [innerHtml]="getTextFragen()"></p>
+			</div>
 		</div>
 	</div>
 	<div class="pull-right">
