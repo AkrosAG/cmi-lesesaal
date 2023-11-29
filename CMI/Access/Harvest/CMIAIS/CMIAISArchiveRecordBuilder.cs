@@ -44,14 +44,15 @@ namespace CMI.Access.Harvest.CMIAIS
                 AddDetailData(metaDataBuilder);
                 Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
 
-                var record = archiveRecordBuilder.Build();
-                record.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, record);
+                var archiveRecord = archiveRecordBuilder.Build();
+                await archiveRecord.AddFileContentAsync(cmiRecord);
+                archiveRecord.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, archiveRecord);
                 
-                await processHandler.PostProcessArchiveRecord(record);
+                await processHandler.PostProcessArchiveRecord(archiveRecord);
                 Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to build the record with id {archiveRecordId}");
                 stopwatch.Stop();
 
-                return record;
+                return archiveRecord;
             }
             catch (Exception ex)
             {
