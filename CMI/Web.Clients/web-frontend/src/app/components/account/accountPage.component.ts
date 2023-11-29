@@ -17,6 +17,7 @@ export class AccountPageComponent implements OnInit {
 	public isIdentified: boolean = false;
 	public showOnboarding: boolean = false;
 	public activeColumn: string = '1';
+	public tableSite: string;
 
 	constructor(private _txt: TranslationService,
 				private _url: UrlService,
@@ -28,16 +29,17 @@ export class AccountPageComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.submitIdRequestUrl = this._cfg.getSetting('account.submitIdRequestUrl');
+		this.tableSite = this._txt.translate('de\\informationen\\benutzerTabelle.html', 'accountPageComponent.userTable');
 
 		// this component is only visible for registered user, so everything != ö2 is identified
 		this.isRegistered = this._authService.hasRole('Ö2');
 		this.isIdentified = !this.isRegistered;
 		if (this.isRegistered) {
-			this.activeColumn = '3';
-		} else if (this.isIdentified) {
 			this.activeColumn = '2';
+		} else if (this.isIdentified) {
+			this.activeColumn = '3';
 		}
-		console.log(this.activeColumn);
+
 		this._userService.GetOnboardingUri()
 			.then(link => {
 				this.showOnboarding = link ? true : false;

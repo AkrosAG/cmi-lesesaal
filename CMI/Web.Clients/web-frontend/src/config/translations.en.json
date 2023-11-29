@@ -133,7 +133,8 @@
     "pageTitle": "Favourites list"
   },
   "accountPageComponent": {
-    "pageTitle": "Account"
+    "pageTitle": "Account",
+		"userTable": "en\\information\\userTable.html"
   },
   "accountSettingsPageComponent": {
     "pageTitle": "User interface"
