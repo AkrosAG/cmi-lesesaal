@@ -134,7 +134,7 @@
   },
   "accountPageComponent": {
     "pageTitle": "Account",
-		"userTable": "en\\information\\userTable.html"
+    "userTable": "en\\information\\userTable.html"
   },
   "accountSettingsPageComponent": {
     "pageTitle": "User interface"

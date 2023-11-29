@@ -214,7 +214,6 @@
 	},
 	"registerInfo": {
 		"cancelRegister": "Abbrechen",
-		"link": "#/de/informationen/registrieren-und-identifizieren",
 		"info1": "Sie können den Virtuellen Lesesaal anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
 		"infoBox": "Info-Box",
 		"infoTitle": "Hinweis",
