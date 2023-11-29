@@ -82,6 +82,12 @@ namespace CMI.Web.Common.Helpers
                 {
                     return contentNode;
                 }
+
+                contentNode = currentDoc.DocumentNode.SelectSingleNode($"//table[@id = '{ContentWrapperId}']");
+                if (contentNode != null)
+                {
+                    return contentNode;
+                }
             }
 
             return null;
