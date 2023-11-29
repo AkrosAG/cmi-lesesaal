@@ -43,7 +43,6 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 Descriptors = GetDescriptors(cmiRecord),
                 Containers = GetContainers(cmiRecord)
             };
-            archiveRecord.Metadata.Files.AddFileContent(cmiRecord);
             return new MetaDataBuilder(cmiRecord, cmicRecordTectonic, archiveRecord, this);
         }
 
