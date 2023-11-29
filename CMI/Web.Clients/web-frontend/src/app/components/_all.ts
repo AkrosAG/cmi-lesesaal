@@ -23,6 +23,7 @@ import {RegisterPageInfoComponent} from './register/registerPageInfo/registerPag
 import {ErrorSmartcardPageComponent} from './errorPage/errorSmartcardPage.component';
 import {CollectionOverviewComponent} from './collection/collection-overview/collection-overview.component';
 import {CollectionPageComponent} from './collection/collection-page/collection-page.component';
+import {StaticPageBenutzertableComponent} from './staticPageBenutzertable/staticPageBenutzertable.component';
 
 export const ALL_COMPONENTS = [
 	RootComponent,
@@ -36,6 +37,7 @@ export const ALL_COMPONENTS = [
 	AuthPageComponent,
 	ErrorPageComponent,
 	StaticPageComponent,
+	StaticPageBenutzertableComponent,
 	ArchivplanPageComponent,
 	ContactDetailPageComponent,
 	AccountSettingsPageComponent,
