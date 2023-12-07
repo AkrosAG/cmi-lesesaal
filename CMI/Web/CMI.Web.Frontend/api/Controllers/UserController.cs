@@ -19,13 +19,15 @@ namespace CMI.Web.Frontend.api.Controllers
     public class UserController : ApiFrontendControllerBase
     {
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly IUserAccessProvider userAccessProvider;
         private readonly IParameterHelper parameterHelper = new ParameterHelper();
         private readonly UserDataAccess userDataAccess = new UserDataAccess(WebHelper.Settings["sqlConnectionString"]);
 
 
-        public UserController(IAuthenticationHelper authenticationHelper)
+        public UserController(IAuthenticationHelper authenticationHelper, IUserAccessProvider userAccessProvider)
         {
             this.authenticationHelper = authenticationHelper;
+            this.userAccessProvider = userAccessProvider;
         }
 
         /// <summary>
@@ -105,7 +107,11 @@ namespace CMI.Web.Frontend.api.Controllers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
-            return userDataAccess.GetAllUsers().Where(u => !Users.IsSystemUser(u.Id));
+            var userId = ControllerHelper.GetCurrentUserId();
+            var language = WebHelper.GetClientLanguage(Request);
+
+            var userAccess = userAccessProvider.GetUserAccess(language, userId);
+            return userAccess.CombinedTokens.Contains(AccessRoles.RoleAMA) ? userDataAccess.GetAllUsers().Where(u => !Users.IsSystemUser(u.Id)) : null;
         }
 
         [HttpGet]
