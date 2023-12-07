@@ -61,8 +61,7 @@
       "wizardInfo": "In order to obtain “identified user” status, you must conduct a video call. Before proceeding, please answer the following questions:",
       "wizardTitle": "Apply for “identified user” status",
       "yes": "Yes",
-      "statusTitle": "Lorem ipsum dolor sit amet",
-      "statusInfo": "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+      "statusInfo": "For further information check <a href=\"#/en/information/login-and-identification\"> Login and identification</a>."
     },
     "email": "E-mail",
     "errorPhoneNumber": "Telephone numbers can begin with a \"+\", may contain numbers, spaces and \\\"-\\\", and must be between 6 and 20 characters long",
