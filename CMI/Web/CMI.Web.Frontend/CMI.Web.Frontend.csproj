@@ -355,6 +355,7 @@
     <Content Include="App_Data_Template\Synonyme\WAFFE18.txt" />
     <Content Include="content\css\2-klick-logo.jpg" />
     <Content Include="content\css\admin.css" />
+    <Content Include="content\css\custom.css" />
     <Content Include="content\css\dummy_facebook.png" />
     <Content Include="content\css\dummy_gplus.png" />
     <Content Include="content\css\dummy_twitter.png" />
