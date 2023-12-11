@@ -11,13 +11,13 @@ cmi-viaduc-simple-search-page a, search-result a, simple-hit a,
     visited: black;
 }
 
-#mainContent a, .edit-mode a, .pull-right a {
-    text-decoration: none;
-    transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
-    border-bottom-color: #B7352D;
-    color: black;
-    visited: black;
-}
+    #mainContent a, .edit-mode a, .pull-right a {
+        text-decoration: none;
+        transition: color 80ms cubic-bezier(0.42, 0, 0.58, 1),border-bottom-color 80ms cubic-bezier(0.42, 0, 0.58, 1);
+        border-bottom-color: #B7352D;
+        color: black;
+        visited: black;
+    }
 
     #mainContent a:hover, .pull-right a:hover {
         color: #B7352D;
@@ -148,9 +148,9 @@ cmi-viaduc-footer a:visited {
     font-weight: 700;
 }
 
-    .nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
-        border-left-color: #B7352D !important;
-    }
+.nav-process li a:active:after, .nav-process li a:focus:after, .nav-process li a:hover:after, .nav-process li.active a:after {
+    border-left-color: #B7352D !important;
+}
 
 .help-block, .text-danger {
     color: #B7352D !important;
