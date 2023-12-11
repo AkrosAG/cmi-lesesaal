@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslationService } from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-status-info-user',
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
 	styleUrls: ['./status-info-user.component.less']
 })
 export class StatusInfoUserComponent {
+
+	constructor(private _txt: TranslationService) {
+	}
+
+	public getInfoMessage(): string {
+		return this._txt.get('account.digitalOnboarding.statusInfo',
+			'Sofern Sie noch nicht den Status Identifiziert haben, schauen Sie bitte unter <a href=\"#/de/informationen/registrieren-und-identifizieren\">Registrieren und Identifizieren</a>.');
+	}
 }
