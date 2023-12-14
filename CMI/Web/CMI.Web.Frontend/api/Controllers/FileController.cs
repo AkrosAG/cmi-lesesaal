@@ -161,9 +161,15 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     return NotFound();
                 }
+
                 var file = record.Files.FirstOrDefault(f => f.Filename == name);
                 if (file is not null)
                 {
+                    if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
+                    {
+                        return BadRequest($"{name} access not allowed.");
+                    }
+
                     var mediaType = MimeMapping.GetMimeMapping(file.Filename);
                     var buffer = Convert.FromBase64String(file.Base64Content);
 
