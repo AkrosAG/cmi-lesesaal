@@ -20,7 +20,6 @@ namespace CMI.Contract.Common.Compiler
 
                     if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0 && archiveRecord.Metadata.Files.Any(f => f.Publikation.ToLower() != "sofort"))
                     {
-                        archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
                         archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
                         archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
                     }
