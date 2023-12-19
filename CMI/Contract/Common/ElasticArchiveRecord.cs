@@ -81,8 +81,6 @@ namespace CMI.Contract.Common
         public List<ElasticArchiveRecordFile> Files { get; set; }
         public List<ElasticReference> References { get; set; }
         public bool HasProtectedFiles { get; set; }
-
-        // => (Files is not null && Files.Any() && Files.Any(f => f.Publikation.ToLower() != "sofort"));
     }
 
     public static class DetailRecordExtensions
