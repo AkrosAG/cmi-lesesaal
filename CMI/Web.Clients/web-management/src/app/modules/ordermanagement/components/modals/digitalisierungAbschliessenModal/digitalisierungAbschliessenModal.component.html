@@ -4,7 +4,10 @@
 	</cmi-blocker>
 
 	<cmi-viaduc-modal-body>
-		<p>Wollen Sie für den Auftrag wirklich die Digitalisierung abschliessen?</p>
+		<p *ngIf="ids.length > 1; else singular">Wollen Sie für die {{ids.length}} markierten Aufträge wirklich die Digitalisierung abschliessen?</p>
+		<ng-template #singular>
+			<p>Wollen Sie für den Auftrag wirklich die Digitalisierung abschliessen?</p>
+		</ng-template>
 	</cmi-viaduc-modal-body>
 	<cmi-viaduc-modal-footer>
 		<button class="btn btn-default" (click)="cancel()">Abbrechen</button>
