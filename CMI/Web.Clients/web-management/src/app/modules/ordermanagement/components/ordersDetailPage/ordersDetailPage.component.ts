@@ -53,6 +53,8 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 
 	public isNavFixed = false;
 
+	public isDigitalisierungsAuftrag = false;
+
 	private _recordId: number;
 
 	@ViewChild('formOrderDetail', {static: false})
@@ -105,9 +107,9 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			this._buildCrumbs();
 			this._ord.getAuftragOrderingDetailFields().subscribe(fields => {
 				this.fieldInfos = fields;
+			this.isDigitalisierungsAuftrag = r.orderingType == ShippingType.Digitalisierungsauftrag;
 			});
 		});
-
 	}
 
 	private _buildCrumbs(): void {
@@ -122,6 +124,8 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			label: this.detailRecord.dossiertitel
 		});
 	}
+
+
 
 	public hasRight(): boolean {
 		return this._aut.hasApplicationFeature(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeView);
