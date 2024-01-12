@@ -45,7 +45,7 @@ export class DigitalisierungAbschliessenModalComponent implements OnInit {
 
 	public ok() {
 		this.isLoading = true;
-		this._ord.digitalisierungAbschliessen(this.ids[0]).subscribe(() => {
+		this._ord.digitalisierungAbschliessen(this.ids).subscribe(() => {
 			const msg = `Die Digitalisierung wurde abgeschlossen.`;
 			this._toastr.success(msg, 'Erfolgreich', { timeOut: 5000});
 				this.open = false;

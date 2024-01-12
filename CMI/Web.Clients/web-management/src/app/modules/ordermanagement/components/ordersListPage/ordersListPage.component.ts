@@ -43,6 +43,9 @@ export class OrdersListPageComponent implements OnInit {
 	public showAuftraegeReponieren = false;
 	public showAuftraegeMahnungVersenden = false;
 	public showAuftraegeErinnerungVersenden = false;
+	public showDigitalisierungStarten = false;
+	public showDigitalisierungExtern = false;
+	public showDigitalisierungAbschliessen = false;
 	public showBarCode = false;
 	public hasRight = false;
 
@@ -433,6 +436,39 @@ export class OrdersListPageComponent implements OnInit {
 		}
 
 		this.showBarCode = true;
+	}
+
+	public showDigitalisierungStartenModal() {
+		this.showDigitalisierungStarten = this.CheckForDigitializationOrder();
+	}
+
+	public showDigitalisierungExternModal() {
+		this.showDigitalisierungExtern = this.CheckForDigitializationOrder();
+	}
+
+	public showDigitalisierungAbschliessenModal() {
+		this.showDigitalisierungAbschliessen = this.CheckForDigitializationOrder();
+	}
+
+	public CheckForDigitializationOrder(): boolean {
+		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen)) {
+			return false;
+		}
+
+		if (this.ordersList.checkedRowsCount > 0) {
+			const checkedItems = Array.from(this.ordersList.currentChecked.values());
+
+			const filtered = checkedItems.filter((i: OrderingFlatItem) =>
+				i.orderingType !== ShippingType.Digitalisierungsauftrag);
+
+			if (filtered.length > 0) {
+				this._ui.showError(`Mindestens ein markierter Auftrag ist nicht vom Typ «Digitalisierungsauftrag». 
+				Der erste fehlerhafte Auftrag hat die ID ${filtered[0].itemId}`,
+					'Digitalisierung nicht erlaubt');
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public barcodesChanged(value: string[]) {
