@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using CMI.Contract.Common;
 using System.Linq;
-using System.IO;
-using CMI.Access.Harvest.Properties;
-using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS.Mapping
 {
