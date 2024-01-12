@@ -109,7 +109,23 @@ namespace CMI.Web.Frontend.api.Controllers
                 p = JsonConvert.DeserializeObject<Paging>(paging);
             }
 
-            return entityProvider.GetEntity<DetailRecord>(id, access, p);
+            var entity = entityProvider.GetEntity<DetailRecord>(id, access, p);
+            if(entity is null)
+            {
+                throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
+            }
+            if(access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
+            {
+                return entity;
+            }
+            else
+            {
+                entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
+                var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation.ToLower() == "sofort").ToList();
+                entity.Data.Files = withoutProtectedFiles;
+                
+                return entity;
+            }
         }
 
         [HttpGet]

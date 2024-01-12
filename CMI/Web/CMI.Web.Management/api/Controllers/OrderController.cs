@@ -624,15 +624,18 @@ namespace CMI.Web.Management.api.Controllers
                 return BadRequest("Keine Werte angegeben");
             }
 
-            if (digitalisierungStartenPost.OrderItemId == 0)
+            if (digitalisierungStartenPost.OrderItemIds.Length == 0)
             {
                 return BadRequest("Keine OrderItemId angegeben");
             }
 
-            Log.Information("Received SetStatusAushebungBereit call for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
-            await vecteurActionsClient.SetStatusAushebungBereit(digitalisierungStartenPost.OrderItemId);
+            foreach(var orderId in digitalisierungStartenPost.OrderItemIds)
+            {
+                Log.Information("Received SetStatusAushebungBereit call for order with id {auftragsid}.", orderId);
+                await vecteurActionsClient.SetStatusAushebungBereit(orderId);
+                Log.Information("Successfully updated status to FuerAushebungBereit for order with id {auftragsid}.",orderId);
+            }
 
-            Log.Information("Successfully updated status to FuerAushebungBereit for order with id {auftragsid}.", digitalisierungStartenPost.OrderItemId);
             return Ok("OK");
         }
 
@@ -647,15 +650,18 @@ namespace CMI.Web.Management.api.Controllers
                 return BadRequest("Keine Werte angegeben");
             }
 
-            if(digitalisierungExternPost.OrderItemId == 0)
+            if(digitalisierungExternPost.OrderItemIds.Length == 0)
             {
                 return BadRequest("Keine OrderItemId angegeben");
             }
 
-            Log.Information("SetStatusDigitalisierungExtern call for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
-            await vecteurActionsClient.SetStatusDigitalisierungExtern(digitalisierungExternPost.OrderItemId);
+            foreach (var orderId in digitalisierungExternPost.OrderItemIds)
+            {
+                Log.Information("Received SetStatusDigitalisierungExtern call for order with id {auftragsid}.", orderId);
+                await vecteurActionsClient.SetStatusDigitalisierungExtern(orderId);
+                Log.Information("Successfully updated status to SetStatusDigitalisierungExtern for order with id {auftragsid}.", orderId);
+            }
 
-            Log.Information("Successfully updated status to StatusDigitalisierungExtern for order with id {auftragsid}.", digitalisierungExternPost.OrderItemId);
             return Ok("OK");
         }
 
@@ -670,15 +676,18 @@ namespace CMI.Web.Management.api.Controllers
                 return BadRequest("Keine Werte angegeben");
             }
 
-            if (digitalisierungAbschliessenPost.OrderItemId == 0)
+            if (digitalisierungAbschliessenPost.OrderItemIds.Length == 0)
             {
                 return BadRequest("Keine OrderItemId angegeben");
             }
 
-            Log.Information("Received SetStatusZumReponierenBereit call for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
-            await vecteurActionsClient.SetStatusZumReponierenBereit(digitalisierungAbschliessenPost.OrderItemId);
+            foreach (var orderId in digitalisierungAbschliessenPost.OrderItemIds)
+            {
+                Log.Information("Received SetStatusZumReponierenBereit call for order with id {auftragsid}.", orderId);
+                await vecteurActionsClient.SetStatusZumReponierenBereit(orderId);
+                Log.Information("Successfully updated status to SetStatusZumReponierenBereit for order with id {auftragsid}.", orderId);
+            }
 
-            Log.Information("Successfully updated status to ZumReponierenBereit for order with id {auftragsid}.", digitalisierungAbschliessenPost.OrderItemId);
             return Ok("OK");
         }
 

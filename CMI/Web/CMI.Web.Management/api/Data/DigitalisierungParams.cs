@@ -2,6 +2,6 @@
 {
     public class DigitalisierungParams
     {
-        public int OrderItemId { get; set; }
+        public int[] OrderItemIds { get; set; }
     }
 }

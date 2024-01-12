@@ -228,6 +228,7 @@ namespace CMI.Manager.Index
                     SizeInBytes = f.FileSize,
                     Base64Content = f.ContentText,
                     Art = f.Kind,
+                    Publikation= f.Publikation,
                     Version = f.SortOrder // SortOrder is used here to transport the version
                 });
                 elasticArchiveRecord.Files.AddRange(files);

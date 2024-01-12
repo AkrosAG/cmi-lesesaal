@@ -326,6 +326,11 @@ Examples for the token can be:
                                                   <xs:documentation>The extracted full text of the document</xs:documentation>
                                                   </xs:annotation>
                                                   </xs:element>
+												  <xs:element name="publikation" type="xs:string">
+												  <xs:annotation>
+												  <xs:documentation>Access control to data from AIS</xs:documentation>
+												  </xs:annotation>
+												  </xs:element>
                                                   <xs:element name="sortOrder" type="xs:int">
                                                   <xs:annotation>
                                                   <xs:documentation>The order in which the documents are displayed in the web frontend</xs:documentation>

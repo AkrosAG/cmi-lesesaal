@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using CMI.Access.Harvest.Properties;
 using CMI.Contract.Common;
 using Serilog;
@@ -33,10 +34,10 @@ namespace CMI.Access.Harvest
                                 file.Filename);                         // Filename
         }
 
-        public static void AddFileContent(this List<ArchiveRecordMetadataFile> list, Verzeichnungseinheit record)
+        public static async Task AddFileContentAsync(this ArchiveRecord archiveRecord, Verzeichnungseinheit record)
         {
             var source = record.Dateien.Where(f => f.IsOriginal()).ToList();
-            if (source.Any())
+            if (source.Any() && archiveRecord.Metadata.Files != null)
             {
                 foreach (var file in source)
                 {
@@ -44,7 +45,7 @@ namespace CMI.Access.Harvest
                     Log.Information($"Check file {path}.");
                     if (File.Exists(path))
                     {
-                        var bytes = File.ReadAllBytes(path);
+                        var bytes = await ReadAllBytesAsync(path);
                         var metadataFile = new ArchiveRecordMetadataFile
                         {
                             Title = file.Titel,
@@ -55,13 +56,22 @@ namespace CMI.Access.Harvest
                             Description = file.Bemerkungen,
                             ContentText = Convert.ToBase64String(bytes),
                             Kind = file.Art.Item.Bezeichnung,
+                            Publikation= file.Publikation,
                             SortOrder = ((int)file.LastVersion.Nr)  // Value is a decimal and will be truncated
                         };
-                        list.Add(metadataFile);
+                        archiveRecord.Metadata.Files.Add(metadataFile);
                         Log.Information($"Added file content to Metadata: {bytes.LongLength} Bytes.");
                     }
                 }
             }
+        }
+
+        private static async Task<byte[]> ReadAllBytesAsync(string path)
+        {
+            using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true);
+            var buffer = new byte[fileStream.Length];
+            await fileStream.ReadAsync(buffer, 0, buffer.Length);
+            return buffer;
         }
     }
 

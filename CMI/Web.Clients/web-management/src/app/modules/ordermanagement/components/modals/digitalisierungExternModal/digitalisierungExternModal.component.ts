@@ -27,7 +27,6 @@ export class DigitalisierungExternModalComponent implements OnInit {
 	public onSubmitted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	public isLoading = false;
-
 	private _open = true;
 
 	constructor(private _ord: OrderService,
@@ -45,7 +44,7 @@ export class DigitalisierungExternModalComponent implements OnInit {
 
 	public ok() {
 		this.isLoading = true;
-		this._ord.digitalisierungExtern(this.ids[0]).subscribe(() => {
+		this._ord.digitalisierungExtern(this.ids).subscribe(() => {
 			const msg = `Die Digitalisierung extern wurde gestartet.`;
 			this._toastr.success(msg, 'Erfolgreich', { timeOut: 5000});
 				this.open = false;
