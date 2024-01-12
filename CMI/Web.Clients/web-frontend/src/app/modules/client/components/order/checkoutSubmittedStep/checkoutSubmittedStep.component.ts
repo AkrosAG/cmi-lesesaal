@@ -91,8 +91,7 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 	}
 
 	private _getHtmlForDigitalisat(): string {
-		return this._txt.translate('Vielen Dank für Ihren Auftrag. Sie erhalten eine E-Mail, sobald die Unterlagen digitalisiert worden sind. ' +
-			'Die Bearbeitung Ihres Auftrags dauert in der Regel zwei Wochen.', 'checkoutSubmittedStep.thxTextDigi', this._url.getContactUrl());
+		return this._txt.translate(' Vielen Dank für den Auftrag. Sie erhalten per E-Mail eine Offerte zugestellt.', 'checkoutSubmittedStep.thxTextDigi', this._url.getContactUrl());
 	}
 
 	private _getTitleForEinsichtsgesuch(): string {
