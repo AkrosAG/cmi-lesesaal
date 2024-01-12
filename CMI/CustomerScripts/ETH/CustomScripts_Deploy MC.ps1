@@ -27,11 +27,11 @@ $arr["ETH"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\Management\client\co
 $arr["ETH"]["logo.svg"] = "D:\localapps\LesesaalWeb\Management\client\assets\img";
 $arr["ETH"]["logo.png"] = "D:\localapps\LesesaalWeb\Management\client\assets\img";
 
-$arr["MFA"] = @{}
-$arr["MFA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\css";
-$arr["MFA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\MFA\Management\client\config";
-$arr["MFA"]["logo.svg"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\img";
-$arr["MFA"]["logo.png"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\img";
+$arr["TMA"] = @{}
+$arr["TMA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\css";
+$arr["TMA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\TMA\Management\client\config";
+$arr["TMA"]["logo.svg"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\img";
+$arr["TMA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\img";
 
 $arr["DEV"] = @{}
 $arr["DEV"]["loading-site.css"] = "D:\localapps\LesesaalWeb\DEV\Management\client\assets\css";
