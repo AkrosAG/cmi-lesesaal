@@ -262,7 +262,9 @@
     "activePosition": "Currently displayed unit of description"
   },
   "detailPageComponent": {
-    "pageTitle": "Detail view"
+    "pageTitle": "Detail view",
+    "gesuchEinreichen": "Add to cart",
+    "hasProtectedFilesText": "Protected files. Authorisation is required for access."
   },
   "detailSection": {
     "internalField": "Field only visible to SFA users"

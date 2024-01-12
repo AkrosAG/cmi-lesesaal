@@ -293,6 +293,7 @@
 					</xsd:choice>
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="Publikation" type="xsd:string"/>
 		</xsd:sequence>
 		<xsd:attribute name="OBJ_GUID" type="xsd:string" use="required"/>
 	</xsd:complexType>
