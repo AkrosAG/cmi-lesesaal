@@ -15,4 +15,13 @@
 			<br/><span *ngIf="file.description">{{file.description}}</span>
 		</div>
 	</div>
+	<div>
+		<cmi-viaduc-usage-section *ngIf="showHasProtectedFiles"
+							  [text]="'' | translate:'detailPageComponent.hasProtectedFilesText'">
+		<a class="btn" (click)="orderVe()">
+			<span class="icon icon--cart"></span>&nbsp;
+			<span>{{ 'Gesuch einreichen' | translate:'detailPageComponent.gesuchEinreichen' }}</span>
+		</a>
+	</cmi-viaduc-usage-section>
+	</div>
 </div>
