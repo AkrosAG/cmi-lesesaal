@@ -257,7 +257,9 @@
     "information": "Information"
   },
   "detailPageComponent": {
-    "pageTitle": "Detailansicht"
+    "pageTitle": "Detailansicht",
+    "gesuchEinreichen": "In den Bestellkorb",
+    "hasProtectedFilesText": "Geschützte Dateien vorhanden. Für die Einsichtnahme ist eine Bewilligung erforderlich."
   },
   "detailSection": {
     "internalField": "Feld nur für AMA Benutzer sichtbar"

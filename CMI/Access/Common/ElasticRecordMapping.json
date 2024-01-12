@@ -415,7 +415,8 @@
           "base64Content": { "type": "text" },
           "description": { "type": "text" },
           "art": { "type": "text" },
-          "version": { "type": "integer" }
+          "version": { "type": "integer" },
+          "publikation": { "type": "text" }
         }
       },
       "descriptors": {
