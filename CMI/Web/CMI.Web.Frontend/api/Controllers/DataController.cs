@@ -121,7 +121,7 @@ namespace CMI.Web.Frontend.api.Controllers
             else
             {
                 entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
-                var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation.ToLower() == "sofort").ToList();
+                var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation != null &&  f.Publikation.ToLower() == "sofort").ToList();
                 entity.Data.Files = withoutProtectedFiles;
                 
                 return entity;
