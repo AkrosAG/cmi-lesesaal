@@ -387,6 +387,28 @@
     "veNotFoundTitle": "Not found",
     "zeitraumDossier": "Time period of dossier"
   },
+  "syntaxHelp": {
+    "fuzzy": "Search for similar but not identical words using the fuzzy operator.",
+    "fuzzyExample": "e.g.: in order to find&nbsp;«Universität», «Université», «University» etc. use: Universität~",
+    "gewichtung": "Use ^ to increase the weighting of a word.",
+    "gewichtungExample": "e.g.: Max Frisch^2",
+    "group": "Use brackets to group operators.",
+    "groupExample": "e.g.:  (Max OR Lina) AND Frisch",
+    "hochkommas": "Place quotation marks around a phrase to search for that exact phrase.",
+    "hochkommasExample": "e.g.: \"Der Mensch erscheint im Holozän\"",
+    "minus": "Use - in front of a search term to exclude it from the hit list.",
+    "minusExample": "e.g.: -Frisch",
+    "not": "Use NOT to exclude individual terms.",
+    "notExample": "e.g.: NOT Lina",
+    "or": "Use OR between search terms to find all results containing one or other of the search terms.",
+    "orExample": "e.g.: Max OR Frisch",
+    "plus": "Use  + in front of a search term to make it mandatory in the hit list.",
+    "plusExample": "e.g.: +Frisch",
+    "proximity": "Use proximity searches. The number indicates the maximum number of words between the terms.",
+    "proximityExample": "e.g.: \"Verleger Unseld\" ~5",
+    "wildcard": "Use * or ? to replace one or more letters (not supported at the start of a word).",
+    "wildcardExample": "e.g.: Preis*, Me?er"
+  },
   "user": {
     "cancelRegistrationMessage": "Please complete the registration and save the data.",
     "birthday": "Date of birth",
