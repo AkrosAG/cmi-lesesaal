@@ -92,7 +92,7 @@ namespace CMI.Contract.Common
                 return false;
             }
 
-            return (record.Files is not null && record.Files.Any() && record.Files.Any(f => f.Publikation.ToLower() != "sofort"));
+            return (record.Files is not null && record.Files.Any() && record.Files.Any( f => f.Publikation != null && f.Publikation.ToLower() != "sofort"));
         }
     }
 
