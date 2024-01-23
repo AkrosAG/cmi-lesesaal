@@ -410,7 +410,7 @@
 		"gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten, wie «Universität»: Universität&nbsp;ETH^2",
 		"group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
 		"groupExample": "Bsp.: (ETH OR Zürich) AND Hochschule",
-		"hochkommas": "Schliessen Sie eine Phrase in Hochkommas ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
+		"hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
 		"hochkommasExample": "Bsp.: \"Schweizerischer Schulrat\"",
 		"minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste aus zu schliessen.",
 		"minusExample": "Bsp.: -Einstein",
@@ -422,7 +422,7 @@
 		"plusExample": "Bsp.: +Einstein",
 		"proximity": "Suchen Sie in der Nähe von (Proximity Searches). Die Zahl gibt die maximale Anzahl Wörter zwischen den Begriffen an.",
 		"proximityExample": "Bsp.: \"Professor Einstein\" ~5",
-		"wildcard": "Benutzen Sie * oder ?, um mehrere (*) oder einzelne (?) Buchstaben zu ersetzen (wird am Wortanfang nicht unterstützt).",
+		"wildcard": "Benutzen Sie * oder ?, um mehrere oder einzelne Buchstaben zu ersetzen (wird am Wortanfang nicht unterstützt).",
 		"wildcardExample": "Bsp.: Wissenschaft*, Me?er"
 	},
 	"user": {
