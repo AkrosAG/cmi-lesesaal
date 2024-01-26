@@ -9,7 +9,7 @@ using MassTransit;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
-    internal class RosettaRepositoryProvider: IRepositoryProvider
+    public class RosettaRepositoryProvider: IRepositoryProvider
     {
         private readonly IRosettaDataAccess rosettaDataAccess;
         private readonly IPackageHandler handler;
