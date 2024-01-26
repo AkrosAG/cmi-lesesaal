@@ -132,17 +132,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consumer\AppendPackageConsumer.cs" />
-    <Compile Include="Consumer\CheckDirConsumer.cs" />
+    <Compile Include="Consumer\CheckRepositoryConsumer.cs" />
     <Compile Include="Consumer\DownloadPackageConsumer.cs" />
     <Compile Include="Consumer\ReadPackageMetadataConsumer.cs" />
     <Compile Include="FileHashException.cs" />
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
-    <Compile Include="IPackageValidator.cs" />
+    <Compile Include="Systems\Bar\DirRepositoryCheck.cs" />
+    <Compile Include="Systems\Bar\IDirPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
-    <Compile Include="Mock\MockRepositoryDataAccess.cs" />
-    <Compile Include="Mock\MockRepositoryConnectionFactory.cs" />
-    <Compile Include="Mock\MockRepositoryManager.cs" />
-    <Compile Include="PackageValidator.cs" />
+    <Compile Include="Systems\Mock\MockRepositoryProvider.cs" />
+    <Compile Include="Systems\Bar\DirPackageValidator.cs" />
     <Compile Include="ParameterSettings\RepositorySyncSettings.cs" />
     <Compile Include="Properties\Documentation.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -150,6 +149,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Systems\Bar\DirRepositoryProvider.cs" />
+    <Compile Include="Systems\IRepositoryProvider.cs" />
+    <Compile Include="Systems\Rosetta\RosettaRepositoryCheck.cs" />
+    <Compile Include="Systems\Rosetta\RosettaRepositoryProvider.cs" />
     <Compile Include="RepositoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryService.cs" />
@@ -221,13 +224,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-    <Content Include="Mock\Data\RepositoryPackageInfoResult.json">
+    <Content Include="Systems\Mock\Data\RepositoryPackageInfoResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Mock\Data\RepositoryPackageResult.json">
+    <Content Include="Systems\Mock\Data\RepositoryPackageResult.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Mock\Data\test.zip">
+    <Content Include="Systems\Mock\Data\test.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config">
@@ -288,7 +291,9 @@
       <Name>CMI.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mock\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

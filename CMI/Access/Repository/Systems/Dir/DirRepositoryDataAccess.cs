@@ -11,17 +11,17 @@ using DotCMIS.Data.Extensions;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace CMI.Access.Repository
+namespace CMI.Access.Repository.Systems.Dir
 {
-    public class RepositoryDataAccess : IRepositoryDataAccess
+    public class DirRepositoryDataAccess : IDirRepositoryDataAccess
     {
-        private readonly IRepositoryConnectionFactory connectionFactory;
-        private readonly IMetadataDataAccess metadataAccess;
+        private readonly IDirRepositoryConnectionFactory connectionFactory;
+        private readonly IDirMetadataDataAccess dirMetadataAccess;
 
-        public RepositoryDataAccess(IRepositoryConnectionFactory connectionFactory, IMetadataDataAccess metadataAccess)
+        public DirRepositoryDataAccess(IDirRepositoryConnectionFactory connectionFactory, IDirMetadataDataAccess dirMetadataAccess)
         {
             this.connectionFactory = connectionFactory;
-            this.metadataAccess = metadataAccess;
+            this.dirMetadataAccess = dirMetadataAccess;
         }
 
         public List<RepositoryFolder> GetFolders(string folderId)
@@ -38,7 +38,7 @@ namespace CMI.Access.Repository
                     if (subFolder != null)
                     {
                         var extensions = subFolder.GetExtensions(ExtensionLevel.Object);
-                        var isDossier = !string.IsNullOrEmpty(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"));
+                        var isDossier = !string.IsNullOrEmpty(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"));
                         retVal.Add(GetRepositoryFolder(subFolder, extensions, isDossier));
                     }
                 }
@@ -74,10 +74,10 @@ namespace CMI.Access.Repository
                             LogicalName = document.Name,
                             SizeInBytes = document.ContentStreamLength ?? 0,
                             MimeType = document.ContentStreamMimeType,
-                            Hash = metadataAccess.GetExtendedPropertyValue(extensions, "Fixity Value"),
-                            HashAlgorithm = metadataAccess.GetExtendedPropertyValue(extensions, "Fixity Algorithm Ref"),
-                            SipOriginalName = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:datei/datei/originalName"),
-                            SipId = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:datei/datei@id")
+                            Hash = dirMetadataAccess.GetExtendedPropertyValue(extensions, "Fixity Value"),
+                            HashAlgorithm = dirMetadataAccess.GetExtendedPropertyValue(extensions, "Fixity Algorithm Ref"),
+                            SipOriginalName = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:datei/datei/originalName"),
+                            SipId = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:datei/datei@id")
                         };
 
                         // Check if file should be ignored
@@ -159,14 +159,14 @@ namespace CMI.Access.Repository
                 if (folder != null)
                 {
                     var extensions = folder.GetExtensions(ExtensionLevel.Object);
-                    var aipAtDossierId = metadataAccess.GetExtendedPropertyValue(extensions, "AIP-ID_Dossier-ID");
+                    var aipAtDossierId = dirMetadataAccess.GetExtendedPropertyValue(extensions, "AIP-ID_Dossier-ID");
 
                     // First condition is used to check an AMA repository. Second condition only applies to CMI Alfresco Repro
                     if (aipAtDossierId != null && aipAtDossierId.Equals(packageId, StringComparison.InvariantCultureIgnoreCase) ||
                         description.Equals(packageId, StringComparison.InvariantCultureIgnoreCase))
                     {
                         Log.Verbose("Found correct folder object. Folder name is {Name}.", folder.Name);
-                        var isDossier = !string.IsNullOrEmpty(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id")) ||
+                        var isDossier = !string.IsNullOrEmpty(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id")) ||
                                         isAlfresco;
                         return GetRepositoryFolder(folder, extensions, isDossier);
                     }
@@ -201,7 +201,7 @@ namespace CMI.Access.Repository
                 {
                     var description = result["cmis:description"].FirstValue.ToString();
                     var extensions = folder.GetExtensions(ExtensionLevel.Object);
-                    var documentId = metadataAccess.GetExtendedPropertyValue(extensions, "Catalogue Reference");
+                    var documentId = dirMetadataAccess.GetExtendedPropertyValue(extensions, "Catalogue Reference");
 
                     // For AMA repository: The last segment must match the catalogue reference value
                     // For Alfresco repository: Description must match the package id
@@ -209,7 +209,7 @@ namespace CMI.Access.Repository
                         isAlfresco && description.Equals(packageId, StringComparison.InvariantCultureIgnoreCase))
                     {
                         Log.Verbose("Found correct folder object. Folder name is {Name}.", folder.Name);
-                        var isDossier = !string.IsNullOrEmpty(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"));
+                        var isDossier = !string.IsNullOrEmpty(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"));
                         return GetRepositoryFolder(folder, extensions, isDossier);
                     }
                 }
@@ -233,8 +233,8 @@ namespace CMI.Access.Repository
         private string GetFolderSipId(IList<ICmisExtensionElement> extensions, bool isDossier)
         {
             return isDossier
-                ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id")
-                : metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dokument/dokument@id");
+                ? dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id")
+                : dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dokument/dokument@id");
         }
     }
 }
