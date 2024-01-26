@@ -387,6 +387,28 @@
     "veNotFoundTitle": "Nicht gefunden",
     "zeitraumDossier": "Zeitraum des Dossiers"
   },
+  "syntaxHelp": {
+    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Worten mit dem Fuzzy-Operator.",
+    "fuzzyExample": "Bsp.,um «Universität», «Université», «University» etc. zu finden: Universität~",
+    "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
+    "gewichtungExample": "Bsp.: um «Frisch» doppelt so hoch zu gewichten, wie «Max»: Max Frisch^2",
+    "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
+    "groupExample": "Bsp.: (Max OR Lina) AND Frisch",
+    "hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
+    "hochkommasExample": "Bsp.: \"Der Mensch erscheint im Holozän\"",
+    "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste aus zu schliessen.",
+    "minusExample": "Bsp.: -Frisch",
+    "not": "Benutzen Sie NOT, um einzelne Begriffe auszuschliessen.",
+    "notExample": "Bsp.: NOT Lina",
+    "or": "Benutzen Sie OR, um alle Resultate mit dem einen oder dem anderen Suchbegriff zu finden.",
+    "orExample": "Bsp.: Max OR Frisch",
+    "plus": "Verwenden Sie ein + vor einem Suchbegriff, um diesen zwingend in der Trefferliste zu erhalten.",
+    "plusExample": "Bsp.: +Frisch",
+    "proximity": "Suchen Sie in der Nähe von (Proximity Searches). Die Zahl gibt die maximale Anzahl Wörter zwischen den Begriffen an.",
+    "proximityExample": "Bsp.: \"Verleger  Unseld\" ~5",
+    "wildcard": "Benutzen Sie * oder ?, um mehrere oder einzelne Buchstaben zu ersetzen (wird am Wortanfang nicht unterstützt).",
+    "wildcardExample": "Bsp.: Preis* oder Me?er"
+  },
   "user": {
     "cancelRegistrationMessage": "Bitte schliessen Sie die Registrierung ab und speichern Sie die Daten.",
     "birthday": "Geburtsdatum",
