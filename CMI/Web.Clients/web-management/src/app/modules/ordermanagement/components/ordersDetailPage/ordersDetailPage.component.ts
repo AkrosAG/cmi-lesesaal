@@ -107,7 +107,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			this._buildCrumbs();
 			this._ord.getAuftragOrderingDetailFields().subscribe(fields => {
 				this.fieldInfos = fields;
-			this.isDigitalisierungsAuftrag = r.orderingType == ShippingType.Digitalisierungsauftrag;
+			this.isDigitalisierungsAuftrag = r.orderingType === ShippingType.Digitalisierungsauftrag;
 			});
 		});
 	}
