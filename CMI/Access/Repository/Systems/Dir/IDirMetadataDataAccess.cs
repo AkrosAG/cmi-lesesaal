@@ -2,9 +2,9 @@
 using CMI.Contract.Common.Gebrauchskopie;
 using DotCMIS.Data.Extensions;
 
-namespace CMI.Access.Repository
+namespace CMI.Access.Repository.Systems.Dir
 {
-    public interface IMetadataDataAccess
+    public interface IDirMetadataDataAccess
     {
         /// <summary>
         ///     Gets a value for a property in the extended objects list.

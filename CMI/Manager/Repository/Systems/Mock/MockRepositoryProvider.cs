@@ -6,47 +6,34 @@ using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Repository;
 using CMI.Manager.Repository.Properties;
+using CMI.Manager.Repository.Systems.Bar;
 using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace CMI.Manager.Repository.Mock;
+namespace CMI.Manager.Repository.Systems.Mock;
 
-public class MockRepositoryManager : IRepositoryManager
+public class MockRepositoryProvider : IRepositoryProvider
 {
     private const string contentFolderName = "content";
     private const string headerFolderName = "header";
     private readonly RepositoryPackageInfoResult repositoryPackageInfoResult;
     private readonly RepositoryPackageResult repositoryPackageResult;
     private readonly IBus bus;
-    private readonly IPackageValidator packageValidator; 
+    private readonly IDirPackageValidator dirPackageValidator;
     private readonly IPackageHandler handler;
 
-    public MockRepositoryManager(IBus bus, IPackageValidator packageValidator, IPackageHandler handler)
+    public MockRepositoryProvider(IBus bus, IDirPackageValidator dirPackageValidator, IPackageHandler handler)
     {
         this.bus = bus;
-        this.packageValidator = packageValidator;
+        this.dirPackageValidator = dirPackageValidator;
         this.handler = handler;
 
         repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageInfoResult.json"));
         repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageResult.json"));
     }
 
-  
-    public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, int primaerdatenAuftragId)
-    {
-        return await GetPackageInternal(primaerdatenAuftragId, archiveRecordId);
-    }
-
-    public async Task<RepositoryPackageResult> AppendPackageToArchiveRecord(ArchiveRecord archiveRecord, long mutationId, int primaerdatenId)
-    {
-        await GetPackageInternal(primaerdatenId, archiveRecord.ArchiveRecordId);
-        archiveRecord.PrimaryData.Add(repositoryPackageResult.PackageDetails);
-
-        return repositoryPackageResult;
-    }
-
-    private async Task<RepositoryPackageResult> GetPackageInternal(int primaerdatenId, string archiveRecordId)
+    public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
     {
         var tempRootName = Path.GetRandomFileName();
         var storagePath = Settings.Default.TempStoragePath;
@@ -57,15 +44,15 @@ public class MockRepositoryManager : IRepositoryManager
 
         var tempRootFolder = Path.Combine(storagePath, tempRootName);
         Directory.CreateDirectory(tempRootFolder);
-        await UpdatePrimaerdatenAuftragStatus(primaerdatenId, AufbereitungsStatusEnum.PrimaerdatenExtrahiert);
+        await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, AufbereitungsStatusEnum.PrimaerdatenExtrahiert);
         // Ensure valid file names and prevent too long paths and file names
-        packageValidator.EnsureValidPhysicalFileAndFolderNames(repositoryPackageResult.PackageDetails,
+        dirPackageValidator.EnsureValidPhysicalFileAndFolderNames(repositoryPackageResult.PackageDetails,
             Path.Combine(tempRootFolder, contentFolderName));
-        await UpdatePrimaerdatenAuftragStatus(primaerdatenId, AufbereitungsStatusEnum.ZipDateiErzeugt);
-     
+        await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, AufbereitungsStatusEnum.ZipDateiErzeugt);
+
         await handler.CreateMetadataXml(Path.Combine(tempRootFolder, headerFolderName), repositoryPackageResult.PackageDetails,
             new List<RepositoryFile>());
-        await UpdatePrimaerdatenAuftragStatus(primaerdatenId, AufbereitungsStatusEnum.PaketTransferiert);
+        await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, AufbereitungsStatusEnum.PaketTransferiert);
 
         CopayFileToDestination(new FileInfo(@"Mock\Data\test.zip"), tempRootName);
         repositoryPackageResult.PackageDetails.PackageFileName = tempRootName + ".zip";

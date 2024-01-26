@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using CMI.Access.Repository;
+using CMI.Access.Repository.Systems.Dir;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Contract.Messaging;
@@ -16,22 +16,22 @@ using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace CMI.Engine.PackageMetadata
+namespace CMI.Engine.PackageMetadata.Systems.Dir
 {
-    public class PackageHandler : IPackageHandler
+    public class DirPackageHandler : IPackageHandler
     {
         private const string subFondsLevelIdentifier = "Teilbestand";
         private readonly IRequestClient<GetArchiveRecordsForPackageRequest> indexClient;
-        private readonly IMetadataDataAccess metadataAccess;
-        private readonly IRepositoryDataAccess repositoryAccess;
+        private readonly IDirMetadataDataAccess dirMetadataAccess;
+        private readonly IDirRepositoryDataAccess dirRepositoryAccess;
         private IFolder entryFolder; // This is the folder the user requested. Metadatea can be above and below this folder
 
 
-        public PackageHandler(IRepositoryDataAccess repositoryAccess, IMetadataDataAccess metadataAccess,
+        public DirPackageHandler(IDirRepositoryDataAccess dirRepositoryAccess, IDirMetadataDataAccess dirMetadataAccess,
             IRequestClient<GetArchiveRecordsForPackageRequest> indexClient)
         {
-            this.repositoryAccess = repositoryAccess;
-            this.metadataAccess = metadataAccess;
+            this.dirRepositoryAccess = dirRepositoryAccess;
+            this.dirMetadataAccess = dirMetadataAccess;
             // Needing the bus here, is not ideal. But the bus is the only way to access data in the SSZ zone from the BV zone
             this.indexClient = indexClient;
             FoldersTreeList = new FolderInfoList();
@@ -64,7 +64,7 @@ namespace CMI.Engine.PackageMetadata
                       $"ageId {package.PackageId}: {JsonConvert.SerializeObject(indexRecords)}");
 
             // If using the Alfresco Repository, then we simply return a "hard coded" file
-            if (repositoryAccess.GetRepositoryName().StartsWith("Alfresco", StringComparison.InvariantCultureIgnoreCase))
+            if (dirRepositoryAccess.GetRepositoryName().StartsWith("Alfresco", StringComparison.InvariantCultureIgnoreCase))
             {
                 var directory = new DirectoryInfo(folderName);
                 if (directory.Parent != null)
@@ -128,8 +128,8 @@ namespace CMI.Engine.PackageMetadata
         private void InitFolders(RepositoryPackage package)
         {
             Log.Verbose("Initializing folders for package {packageId}", package.PackageId);
-            var entryPoint = repositoryAccess.GetRepositoryRoot(package.PackageId);
-            entryFolder = repositoryAccess.GetCmisFolder(entryPoint.Id);
+            var entryPoint = dirRepositoryAccess.GetRepositoryRoot(package.PackageId);
+            entryFolder = dirRepositoryAccess.GetCmisFolder(entryPoint.Id);
 
             // Traverse each parent and create a info folder object
             Log.Verbose("Traverse up from the entry folder");
@@ -271,7 +271,7 @@ namespace CMI.Engine.PackageMetadata
 
             var extensions = folder.CmisFolder.GetExtensions(ExtensionLevel.Object);
 
-            var packageId = metadataAccess.GetExtendedPropertyValue(extensions, "AIP-ID_Dossier-ID");
+            var packageId = dirMetadataAccess.GetExtendedPropertyValue(extensions, "AIP-ID_Dossier-ID");
             var archiveRecord = indexRecords.FirstOrDefault(a => a.PrimaryDataLink.Equals(packageId, StringComparison.InvariantCultureIgnoreCase));
             if (archiveRecord != null)
             {
@@ -305,7 +305,7 @@ namespace CMI.Engine.PackageMetadata
             // with the AIP@Dossier_ID from the parent dossier with the id of the document.
             // But to lookup the record, we can use the documentId as this id must be unique within a package
             var extensions = folder.CmisFolder.GetExtensions(ExtensionLevel.Object);
-            var dokumentId = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument@id");
+            var dokumentId = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument@id");
             Log.Verbose("Found the id of the document:  {id}", dokumentId);
 
             var archiveRecord = indexRecords.FirstOrDefault(a => a.PrimaryDataLink.EndsWith(dokumentId, StringComparison.InvariantCultureIgnoreCase));
@@ -348,7 +348,7 @@ namespace CMI.Engine.PackageMetadata
             foreach (var repositoryFolder in repositoryFolders)
             {
                 Log.Verbose("Add folder with logical name {LogicalName}", repositoryFolder.LogicalName);
-                var cmisFolder = repositoryAccess.GetCmisFolder(repositoryFolder.Id);
+                var cmisFolder = dirRepositoryAccess.GetCmisFolder(repositoryFolder.Id);
                 var addedFolder = AddFolderToTreeList(cmisFolder, false, false);
                 addedFolder.Parent = parent;
 
@@ -359,7 +359,7 @@ namespace CMI.Engine.PackageMetadata
 
         private FolderInfo AddFolderToTreeList(IFolder cmisFolder, bool addToStart, bool isOrderedItem)
         {
-            var type = metadataAccess.GetExtendedPropertyValue(cmisFolder.GetExtensions(ExtensionLevel.Object), "type");
+            var type = dirMetadataAccess.GetExtendedPropertyValue(cmisFolder.GetExtensions(ExtensionLevel.Object), "type");
             if (Enum.TryParse(type, true, out PackageFolderType cmisType))
             {
                 var folderInfo = new FolderInfo
@@ -395,45 +395,45 @@ namespace CMI.Engine.PackageMetadata
             if (ablieferung != null)
             {
                 ablieferung.Ablieferungsnummer =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferungsnummer");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferungsnummer");
                 ablieferung.Ablieferungstyp =
-                    Enum.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferungstyp"), true,
+                    Enum.TryParse(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferungstyp"), true,
                         out Ablieferungstyp typ)
                         ? typ
                         : Ablieferungstyp.FILES;
                 ablieferung.AblieferndeStelle =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferndeStelle");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ablieferndeStelle");
                 ablieferung.Entstehungszeitraum =
-                    metadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Ablieferung/ablieferung/entstehungszeitraum");
-                ablieferung.Bemerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/bemerkung");
+                    dirMetadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Ablieferung/ablieferung/entstehungszeitraum");
+                ablieferung.Bemerkung = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/bemerkung");
 
 
                 // Provenienz
                 ablieferung.Provenienz.AktenbildnerName =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/aktenbildnerName");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/aktenbildnerName");
                 ablieferung.Provenienz.SystemName =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/systemName");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/systemName");
                 ablieferung.Provenienz.SystemBeschreibung =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/systemBeschreibung");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/systemBeschreibung");
                 ablieferung.Provenienz.VerwandteSysteme =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/verwandteSysteme");
-                ablieferung.Provenienz.ArchivierungsmodusLoeschvorschriften = metadataAccess.GetExtendedPropertyValue(extensions,
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/verwandteSysteme");
+                ablieferung.Provenienz.ArchivierungsmodusLoeschvorschriften = dirMetadataAccess.GetExtendedPropertyValue(extensions,
                     "ARELDA:Ablieferung/ablieferung/provenienz/archivierungsmodusLoeschvorschriften");
                 ablieferung.Provenienz.Registratur =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/registratur");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/provenienz/registratur");
 
                 // Ordnungssystem
                 var teilbestand = orderedRecord.ArchiveplanContext.FirstOrDefault(c =>
                     c.Level.Equals(subFondsLevelIdentifier, StringComparison.InvariantCultureIgnoreCase));
                 ablieferung.Ordnungssystem.Name = teilbestand != null
                     ? teilbestand.Title
-                    : metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/name");
+                    : dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/name");
                 ablieferung.Ordnungssystem.Generation =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Generation");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Generation");
                 ablieferung.Ordnungssystem.Mitbenutzung =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Mitbenutzung");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Mitbenutzung");
                 ablieferung.Ordnungssystem.Bemerkung =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Bemerkung");
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ablieferung/ablieferung/ordnungssystem/Bemerkung");
             }
         }
 
@@ -444,19 +444,19 @@ namespace CMI.Engine.PackageMetadata
 
             var position = new OrdnungssystempositionDIP
             {
-                Nummer = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Nummer"),
-                Titel = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Titel"),
-                Id = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition@id"),
-                FederfuehrendeOrganisationseinheit = metadataAccess.GetExtendedPropertyValue(extensions,
+                Nummer = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Nummer"),
+                Titel = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Titel"),
+                Id = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition@id"),
+                FederfuehrendeOrganisationseinheit = dirMetadataAccess.GetExtendedPropertyValue(extensions,
                     "ARELDA:Ordnungssystemposition/Ordnungssystemposition/FederfuehrendeOrganisationseinheit"),
-                Klassifizierungskategorie = metadataAccess.GetExtendedPropertyValue(extensions,
+                Klassifizierungskategorie = dirMetadataAccess.GetExtendedPropertyValue(extensions,
                     "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Klassifizierungskategorie"),
                 Datenschutz = bool.TryParse(
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Datenschutz"),
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Datenschutz"),
                     out var datanschutz) && datanschutz,
-                Oeffentlichkeitsstatus = metadataAccess.GetExtendedPropertyValue(extensions,
+                Oeffentlichkeitsstatus = dirMetadataAccess.GetExtendedPropertyValue(extensions,
                     "ARELDA:Ordnungssystemposition/Ordnungssystemposition/Oeffentlichkeitsstatus"),
-                OeffentlichkeitsstatusBegruendung = metadataAccess.GetExtendedPropertyValue(extensions,
+                OeffentlichkeitsstatusBegruendung = dirMetadataAccess.GetExtendedPropertyValue(extensions,
                     "ARELDA:Ordnungssystemposition/Ordnungssystemposition/OeffentlichkeitsstatusBegruendung")
             };
 
@@ -472,41 +472,41 @@ namespace CMI.Engine.PackageMetadata
 
             var dossier = new DossierDIP
             {
-                Aktenzeichen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Aktenzeichen"),
-                Zusatzmerkmal = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Zusatzmerkmal"),
+                Aktenzeichen = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Aktenzeichen"),
+                Zusatzmerkmal = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Zusatzmerkmal"),
                 Titel = string.IsNullOrEmpty(dossierRecord?.Title)
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Titel")
+                    ? dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Titel")
                     : dossierRecord.Title,
                 Inhalt = string.IsNullOrEmpty(dossierRecord?.Contains)
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Inhalt")
+                    ? dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Inhalt")
                     : dossierRecord.Contains,
-                Id = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"),
+                Id = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dossier/dossier@id"),
                 Erscheinungsform =
-                    Enum.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Erscheinungsform"), true,
+                    Enum.TryParse(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Erscheinungsform"), true,
                         out ErscheinungsformDossier ef)
                         ? ef
                         : ErscheinungsformDossier.keineAngabe,
-                Umfang = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Umfang"),
+                Umfang = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Umfang"),
                 FederfuehrendeOrganisationseinheit =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/FederfuehrendeOrganisationseinheit"),
-                Eroeffnungsdatum = metadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dossier/Dossier/Eroeffnungsdatum"),
-                Abschlussdatum = metadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dossier/Dossier/Abschlussdatum"),
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/FederfuehrendeOrganisationseinheit"),
+                Eroeffnungsdatum = dirMetadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dossier/Dossier/Eroeffnungsdatum"),
+                Abschlussdatum = dirMetadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dossier/Dossier/Abschlussdatum"),
                 Entstehungszeitraum = dossierRecord?.CreationPeriod == null
-                    ? metadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Dossier/Dossier/Entstehungszeitraum")
+                    ? dirMetadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Dossier/Dossier/Entstehungszeitraum")
                     : GetEntstehungszeitraum(dossierRecord.CreationPeriod),
-                EntstehungszeitraumAnmerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/EntstehungszeitraumAnmerkung"),
-                Klassifizierungskategorie = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Klassifizierungskategorie"),
-                Datenschutz = bool.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Datenschutz"),
+                EntstehungszeitraumAnmerkung = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/EntstehungszeitraumAnmerkung"),
+                Klassifizierungskategorie = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Klassifizierungskategorie"),
+                Datenschutz = bool.TryParse(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Datenschutz"),
                     out var datenschutz) && datenschutz,
-                Oeffentlichkeitsstatus = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Oeffentlichkeitsstatus"),
+                Oeffentlichkeitsstatus = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Oeffentlichkeitsstatus"),
                 OeffentlichkeitsstatusBegruendung =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/OeffentlichkeitsstatusBegruendung"),
-                SonstigeBestimmungen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/SonstigeBestimmungen"),
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/OeffentlichkeitsstatusBegruendung"),
+                SonstigeBestimmungen = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/SonstigeBestimmungen"),
                 // ToDO: In order to handle Vorgang we would need code that can handle collections. Currently we don't need that property.
                 // Vorgang = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Vorgang"),  
-                Bemerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Bemerkung"),
+                Bemerkung = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dossier/Dossier/Bemerkung"),
                 DateiRef = addDateiRefList
-                    ? GetFilteredDateiRef(metadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dossier/Dossier/DateiRef"), filesToIgnore)
+                    ? GetFilteredDateiRef(dirMetadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dossier/Dossier/DateiRef"), filesToIgnore)
                     : null
             };
 
@@ -554,7 +554,7 @@ namespace CMI.Engine.PackageMetadata
             }
 
             var reihenfolge =
-                metadataAccess.GetExtendedPropertyBagValue(extensions, "ARELDA:Dossier/Dossier/Zusatzdaten/Merkmal", "ReihenfolgeAnalogesDossier");
+                dirMetadataAccess.GetExtendedPropertyBagValue(extensions, "ARELDA:Dossier/Dossier/Zusatzdaten/Merkmal", "ReihenfolgeAnalogesDossier");
             if (!string.IsNullOrEmpty(reihenfolge))
             {
                 dossier.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "ReihenfolgeAnalogesDossier", Value = reihenfolge});
@@ -578,27 +578,27 @@ namespace CMI.Engine.PackageMetadata
             var dokument = new DokumentDIP
             {
                 Titel = string.IsNullOrEmpty(documentRecord?.Title)
-                    ? metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Titel")
+                    ? dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Titel")
                     : documentRecord.Title,
-                Id = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dokument/dokument@id"),
+                Id = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:dokument/dokument@id"),
                 Erscheinungsform =
-                    Enum.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Erscheinungsform"), true,
+                    Enum.TryParse(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Erscheinungsform"), true,
                         out ErscheinungsformDokument ef)
                         ? ef
                         : ErscheinungsformDokument.nichtdigital,
-                Registrierdatum = metadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dokument/Dokument/Registrierdatum"),
+                Registrierdatum = dirMetadataAccess.GetHistorischerZeitpunkt(extensions, "ARELDA:Dokument/Dokument/Registrierdatum"),
                 Entstehungszeitraum = documentRecord?.CreationPeriod == null
-                    ? metadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Dokument/Dokument/Entstehungszeitraum")
+                    ? dirMetadataAccess.GetHistorischerZeitraum(extensions, "ARELDA:Dokument/Dokument/Entstehungszeitraum")
                     : GetEntstehungszeitraum(documentRecord.CreationPeriod),
-                Klassifizierungskategorie = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Klassifizierungskategorie"),
-                Datenschutz = bool.TryParse(metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Datenschutz"),
+                Klassifizierungskategorie = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Klassifizierungskategorie"),
+                Datenschutz = bool.TryParse(dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Datenschutz"),
                     out var datenschutz) && datenschutz,
-                Oeffentlichkeitsstatus = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Oeffentlichkeitsstatus"),
+                Oeffentlichkeitsstatus = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Oeffentlichkeitsstatus"),
                 OeffentlichkeitsstatusBegruendung =
-                    metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/OeffentlichkeitsstatusBegruendung"),
-                SonstigeBestimmungen = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/SonstigeBestimmungen"),
-                Bemerkung = metadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Bemerkung"),
-                DateiRef = GetFilteredDateiRef(metadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dokument/Dokument/DateiRef"),
+                    dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/OeffentlichkeitsstatusBegruendung"),
+                SonstigeBestimmungen = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/SonstigeBestimmungen"),
+                Bemerkung = dirMetadataAccess.GetExtendedPropertyValue(extensions, "ARELDA:Dokument/Dokument/Bemerkung"),
+                DateiRef = GetFilteredDateiRef(dirMetadataAccess.GetExtendedPropertyValues(extensions, "ARELDA:Dokument/Dokument/DateiRef"),
                     filesToIgnore)
             };
 
@@ -656,7 +656,7 @@ namespace CMI.Engine.PackageMetadata
             }
 
             var reihenfolge =
-                metadataAccess.GetExtendedPropertyBagValue(extensions, "ARELDA:Dokument/Dokument/Zusatzdaten/Merkmal", "ReihenfolgeAnalogesDossier");
+                dirMetadataAccess.GetExtendedPropertyBagValue(extensions, "ARELDA:Dokument/Dokument/Zusatzdaten/Merkmal", "ReihenfolgeAnalogesDossier");
             if (!string.IsNullOrEmpty(reihenfolge))
             {
                 dokument.zusatzDaten.Add(new ZusatzDatenMerkmal {Name = "ReihenfolgeAnalogesDossier", Value = reihenfolge});
@@ -735,7 +735,7 @@ namespace CMI.Engine.PackageMetadata
 
         private string GetFileFromRessource()
         {
-            var resourceName = "CMI.Engine.PackageMetadata.DefaultAlfrescoMetadataFile.xml";
+            var resourceName = "CMI.Engine.PackageMetadata.Systems.Dir.DefaultAlfrescoMetadataFile.xml";
             var assembly = Assembly.GetExecutingAssembly();
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))

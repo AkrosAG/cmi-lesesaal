@@ -1,11 +1,18 @@
-﻿using Autofac;
-using CMI.Access.Repository;
+﻿using System;
+using Autofac;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
-using CMI.Engine.PackageMetadata;
-using CMI.Manager.Repository.Mock;
 using MassTransit;
 using System.Reflection;
+using CMI.Access.Repository.Systems.Dir;
+using CMI.Access.Repository.Systems.Rosetta;
+using CMI.Contract.Monitoring;
+using CMI.Engine.PackageMetadata.Systems.Dir;
+using CMI.Engine.PackageMetadata.Systems.Rosetta;
+using CMI.Manager.Repository.Systems;
+using CMI.Manager.Repository.Systems.Bar;
+using CMI.Manager.Repository.Systems.Mock;
+using CMI.Manager.Repository.Systems.Rosetta;
 
 namespace CMI.Manager.Repository.Infrastructure
 {
@@ -19,26 +26,37 @@ namespace CMI.Manager.Repository.Infrastructure
             var builder = new ContainerBuilder();
 
             // register the different consumers and classes
+            builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
 
-            switch (Properties.Settings.Default.RepositoryManager.ToLowerInvariant())
+            var providerName = Properties.Settings.Default.RepositoryManager.ToLowerInvariant();
+            switch (providerName)
             {
                 case "mock":
-                    builder.RegisterType<MockRepositoryManager>().As<IRepositoryManager>();
-                    builder.RegisterType<MockRepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
-                    builder.RegisterType<MockRepositoryDataAccess>().As<IRepositoryDataAccess>();
+                    builder.RegisterType<MockRepositoryProvider>().As<IRepositoryProvider>();
+                    // Der Mock verwendet denselben PackageHandler wie der DIR
+                    builder.RegisterType<DirPackageHandler>().As<IPackageHandler>();
                     break;
-              
+
+                case "rosetta":
+                    builder.RegisterType<RosettaRepositoryProvider>().As<IRepositoryProvider>();
+                    builder.RegisterType<RosettaPackageHandler>().As<IPackageHandler>();
+                    builder.RegisterType<RosettaDataAccess>().As<IRosettaDataAccess>();
+                    builder.RegisterType<RosettaRepositoryCheck>().As<IRepositoryCheck>();
+                    break;
+
+                case "dir":
+                    builder.RegisterType<DirRepositoryProvider>().As<IRepositoryProvider>();
+                    builder.RegisterType<DirRepositoryConnectionFactory>().As<IDirRepositoryConnectionFactory>();
+                    builder.RegisterType<DirPackageValidator>().As<IDirPackageValidator>();
+                    builder.RegisterType<DirPackageHandler>().As<IPackageHandler>();
+                    builder.RegisterType<DirRepositoryDataAccess>().As<IDirRepositoryDataAccess>();
+                    builder.RegisterType<DirMetadataDataAccess>().As<IDirMetadataDataAccess>();
+                    builder.RegisterType<DirRepositoryCheck>().As<IRepositoryCheck>();
+                    break;
                 default:
-                    builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
-                    builder.RegisterType<RepositoryConnectionFactory>().As<IRepositoryConnectionFactory>();
-                    builder.RegisterType<RepositoryDataAccess>().As<IRepositoryDataAccess>();
-                    break;
+                    throw new NotImplementedException($"Der Provider mit dem Namen {providerName} ist nicht implementiert.");
             }
-           
-         
-            builder.RegisterType<PackageValidator>().As<IPackageValidator>();
-            builder.RegisterType<MetadataDataAccess>().As<IMetadataDataAccess>();
-            builder.RegisterType<PackageHandler>().As<IPackageHandler>();
+
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
 
             // register all the consumers

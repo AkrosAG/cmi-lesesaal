@@ -255,8 +255,8 @@
     <Compile Include="DownlaodPackageConsumerTests.cs" />
     <Compile Include="ExtensionElementConverter.cs" />
     <Compile Include="MetadataAccessTests.cs" />
-    <Compile Include="PackageHandlerTests.cs" />
-    <Compile Include="PackageValidatorTests.cs" />
+    <Compile Include="DirPackageHandlerTests.cs" />
+    <Compile Include="DirPackageValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppendPackageConsumerTests.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CMI.Contract.Common;
+using CMI.Manager.Repository.Systems.Bar;
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ using NUnit.Framework;
 namespace CMI.Manager.Repository.Tests
 {
     [TestFixture]
-    public class PackageValidatorTests
+    public class DirPackageValidatorTests
     {
         private const int maxLevel = 5;
         private const int numberOfFoldersPerLevel = 2;
@@ -87,7 +88,7 @@ namespace CMI.Manager.Repository.Tests
         {
             // Arrange
             var package = CreateTestData();
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
 
             // Act
             validator.CreateValidNames(package);
@@ -101,7 +102,7 @@ namespace CMI.Manager.Repository.Tests
         {
             // Arrange
             var package = CreateTestData();
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
 
             // Act
             validator.CreateValidNames(package);
@@ -116,7 +117,7 @@ namespace CMI.Manager.Repository.Tests
         {
             // Arrange
             var package = CreateTestData();
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
 
             // Act
             validator.CreateValidNames(package);
@@ -130,7 +131,7 @@ namespace CMI.Manager.Repository.Tests
         {
             // Arrange
             var package = CreateTestData();
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
 
             // Act
             validator.CreateValidNames(package);
@@ -144,7 +145,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_object_count_of_temp_object_is_correct()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
             validator.CreateValidNames(package);
 
@@ -165,7 +166,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_we_have_too_long_path_names_correct()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
             validator.CreateValidNames(package);
 
@@ -180,7 +181,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_too_long_path_names_are_shortened()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Act
@@ -195,7 +196,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_a_long_root_path_shortens_max_path_length_below_200_chars()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Act
@@ -211,7 +212,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_a_normal_root_path_shortens_max_path_length_to_exactly_200_chars()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Act
@@ -226,7 +227,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_empty_value_if_no_element_too_short()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var packageItems = new List<TempValidationObject>
             {
                 new TempValidationObject
@@ -251,7 +252,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_shorter_name_for_folder()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var longEntry =
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores";
             var packageItems = new List<TempValidationObject>
@@ -283,7 +284,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_shorter_name_for_folder_on_second_level()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             // 300 Zeichen
             var longEntry =
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lore";
@@ -315,7 +316,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_shorter_name_for_folder_with_more_than_average_overflow()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             // 40 Zeichen
             var longEntry =
                 "Lorem ipsum dolor sit amet, consetetur s";
@@ -348,7 +349,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_shorter_name_for_file()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             // file name with 200 chars + 4 chars for extension
             var longEntry =
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores.pdf";
@@ -382,7 +383,7 @@ namespace CMI.Manager.Repository.Tests
         public void New_name_returns_shorter_name_for_file_without_extension()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             // file name with 200 chars
             var longEntry =
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, At vero eos et accusam et justo duo doloresi";
@@ -416,7 +417,7 @@ namespace CMI.Manager.Repository.Tests
         public void Update_package_folder_with_new_name()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Act
@@ -433,7 +434,7 @@ namespace CMI.Manager.Repository.Tests
         public void Update_package_file_with_new_name()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Act
@@ -450,7 +451,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_trainling_dots_at_the_end_of_names_are_removed()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             // file 119 and Dir 5 have illegal endings in test file
             var package = CreateTestData();
 
@@ -467,7 +468,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_duplicate_file_names_are_extended_with_suffix()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
             // Pick a directory and add files with same name
             var dir = package.Folders.FirstOrDefault(f => f.Id == "Dir00000032");
@@ -492,7 +493,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_duplicate_file_names_are_extended_with_suffix2()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
 
             // Sample Package has one duplicate file "\PLUS_3\PLUS3_Bern_V1\P0.pdf"
             var packageTestData = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "packageSampleData.json"), Encoding.UTF8);
@@ -510,7 +511,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_duplicate_file_names_on_deep_nested_folders_with_illegal_chars_are_extended_with_suffix()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Get to the lowest level folder
@@ -542,7 +543,7 @@ namespace CMI.Manager.Repository.Tests
         public void Make_sure_very_long_duplicate_file_names_on_deep_nested_folders_are_extended_with_suffix()
         {
             // Arrange
-            var validator = new PackageValidator();
+            var validator = new DirPackageValidator();
             var package = CreateTestData();
 
             // Get to the lowest level folder
