@@ -8,32 +8,55 @@ namespace CMI.Contract.Common.Compiler
     {
         public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
-            // Metadata Tokens
-            var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
-            switch (publikation.ToLower())
+            // Metadata Tokens werden bestimmt durch  Benutzbarkeit
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+            switch (benutzbarkeit.ToLower())
             {
-                case "sofort":
-
+                case "frei einsehbar":
+                    // Zugrgriff ist für alle frei, Beschränkung Files wenn nicht sofort publiziert wird (siehe unten)
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                     archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                     archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    break;
 
-                    if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0 && archiveRecord.Metadata.Files.Any(f => f.Publikation.ToLower() != "sofort"))
-                    {
-                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                    }
+                case "teilweise gesuchspflichtig":
+                case "gesuchspflichtig":
+
+                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
                     break;
 
                 default:
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
                     archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
                     break;
             }
 
-            // Benutzbarkeit
-            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+            if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0)
+            {
+                var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
+                switch (publikation.ToLower())
+                {
+                    case "sofort":
+                        // Wenn es mehrere Files gibt, und eines davon nicht sofort publiziert ist, dann ist der Zugriff auf die Files beschränkt
+                        if (archiveRecord.Metadata.Files.Any(f => f.Publikation.ToLower() != "sofort"))
+                        {
+                            archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                            archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                        }
+
+                        break;
+
+                    default:
+                        // Zugriff auf Files ist beschränkt
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                        break;
+                }
+            }
+
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
 
             switch (level.ToLower())
