@@ -881,24 +881,6 @@
     "errorMessage": "Die gewünschte Seite kann nicht angezeigt werden",
     "errorTitle": "Es trat ein Fehler beim Laden der Seite auf. System-Meldung: {0}"
   },
-  "syntaxHelp": {
-    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Worten mit dem Fuzzy-Operator.",
-    "fuzzyExample": "Bsp., um \"Bundesrat\", \"Bundesräte\", \"Bundesrats\" etc. zu finden: \"Bundesrat~\"",
-    "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
-    "gewichtungExample": "Bsp.: Bundesrat^2 Parlament",
-    "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
-    "groupExample": "Bsp.: (Bundesrat OR Bundespräsident) AND Parlament",
-    "hochkommas": "Schliessen Sie eine Phrase in Hochkommas ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
-    "hochkommasExample": "Bsp.: \"Basler Übereinkommen\"",
-    "not": "Benutzen Sie NOT, um einzelne Begriffe auszuschliessen.",
-    "notExample": "Bsp.: Bundesrat NOT Parlament",
-    "or": "Benutzen Sie OR zwischen Suchbegriffen, um alle Resultate mit dem einen oder dem anderen Suchbegriff zu finden.",
-    "orExample": "Bsp.: Bundesrat OR Bundespräsident",
-    "proximity": "Suchen Sie in der Nähe von (Proximity Searches). Die Zahl gibt die maximale Anzahl Wörter zwischen den Begriffen an.",
-    "proximityExample": "Bsp.: \"Professor Einstein\" ~5",
-    "wildcard": "Benutzen Sie * oder ?, um mehrere (*) oder einzelne (?) Buchstaben zu ersetzen (wird am Wortanfang nicht unterstützt).",
-    "wildcardExample": "Bsp.: Bundes*, Me?er"
-  },
   "usageSection": {
     "infoSymbol": "Info-Symbol"
   },

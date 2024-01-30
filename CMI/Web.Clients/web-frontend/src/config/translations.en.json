@@ -774,24 +774,6 @@
     "errorMessage": "The page you have requested cannot be displayed",
     "errorTitle": "Error loading the page. System message: {0}"
   },
-  "syntaxHelp": {
-    "fuzzy": "Search for similar but not identical words using the fuzzy operator.",
-    "fuzzyExample": "E.g. in order to find \"Bundesrat\", \"Bundesräte\", \"Bundesrats\" etc., use: \"Bundesrat~\"",
-    "gewichtung": "Use ^ to increase the weighting of a word.",
-    "gewichtungExample": "e.g.: Bundesrat^2 Parlament",
-    "group": "Use brackets to group operators.",
-    "groupExample": "e.g.: (Bundesrat OR Bundespräsident) AND Parlament",
-    "hochkommas": "Place quotation marks around a phrase to search for that exact phrase.",
-    "hochkommasExample": "e.g.: \"Basler Übereinkommen\"",
-    "not": "Use NOT to exclude individual terms.",
-    "notExample": "e.g.: Bundesrat NOT Parlament",
-    "or": "Use OR between search terms to find all results containing one or other of the search terms.",
-    "orExample": "e.g.: Bundesrat OR Bundespräsident",
-    "proximity": "Use proximity searches. The number indicates the maximum number of words between the terms.",
-    "proximityExample": "e.g.: \"Professor Einstein\" ~5",
-    "wildcard": "Use ? or * to replace one (?) or more (*) letters (not supported at the start of a word).",
-    "wildcardExample": "e.g.: Bundes*, Me?er"
-  },
   "usageSection": {
     "infoSymbol": "Info symbol"
   },
