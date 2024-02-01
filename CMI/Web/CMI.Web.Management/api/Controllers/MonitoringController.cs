@@ -177,7 +177,7 @@ namespace CMI.Web.Management.api.Controllers
 
             var elasticSearch = monitoringBus.CreateRequestClient<TestElasticsearchRequest>(
                 new Uri(address, BusConstants.MonitoringElasticSearchTestQueue), timeout);
-            var dirTest = monitoringBus.CreateRequestClient<DirCheckRequest>(
+            var dirTest = monitoringBus.CreateRequestClient<RepositoryCheckRequest>(
                 new Uri(address, BusConstants.MonitoringDirCheckQueue), timeout);
             var aisDbTest = monitoringBus.CreateRequestClient<AisDbCheckRequest>(
                 new Uri(address, BusConstants.MonitoringAisDbCheckQueue), timeout);
@@ -333,7 +333,7 @@ namespace CMI.Web.Management.api.Controllers
             return result;
         }
 
-        private async Task<MonitoringResult> TestDir(IRequestClient<DirCheckRequest> requestClient)
+        private async Task<MonitoringResult> TestDir(IRequestClient<RepositoryCheckRequest> requestClient)
         {
             var result = new MonitoringResult {MonitoredServices = "DIR"};
             var watch = new Stopwatch();
@@ -341,7 +341,7 @@ namespace CMI.Web.Management.api.Controllers
             try
             {
                 watch.Start();
-                var response = (await requestClient.GetResponse<DirCheckResponse>(new DirCheckRequest())).Message;
+                var response = (await requestClient.GetResponse<RepositoryCheckResponse>(new RepositoryCheckRequest())).Message;
                 watch.Stop();
 
                 if (response.Ok)

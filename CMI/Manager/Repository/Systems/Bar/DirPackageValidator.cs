@@ -4,17 +4,17 @@ using System.IO;
 using System.Linq;
 using CMI.Contract.Common;
 
-namespace CMI.Manager.Repository
+namespace CMI.Manager.Repository.Systems.Bar
 {
-    public class PackageValidator : IPackageValidator
+    public class DirPackageValidator : IDirPackageValidator
     {
-        private const int MaxAllowedPathLength = 260;
+        private const int maxAllowedPathLength = 260;
 
         private readonly List<char> forbiddenFileChars = new List<char> {'?', '<', '>', ':', '|', '\\', '/', '*', '\"', '^', '`', '~'};
 
         private readonly List<char> forbiddenPathChars = new List<char> {'?', '<', '>', ':', '|', '\\', '/', '*', '\"', '^', '`', '~'};
 
-        public PackageValidator()
+        public DirPackageValidator()
         {
             // As per documentation: GetInvalidPathChars and GetInvalidFileNameChars DO NOT include ALL invalid chars. Therefore we are combining our personal list
             forbiddenPathChars.AddRange(Path.GetInvalidPathChars().Where(c => !forbiddenPathChars.Contains(c)));
@@ -30,7 +30,7 @@ namespace CMI.Manager.Repository
         {
             // Make sure, that the max path length is shortened, if the root folder name length is very long.
             // But do not make the max path length bigger than 200, as the end users unzip path might be
-            MaxPathLength = MaxAllowedPathLength - rootFolderName.Length < 200 ? MaxAllowedPathLength - rootFolderName.Length : MaxPathLength;
+            MaxPathLength = maxAllowedPathLength - rootFolderName.Length < 200 ? maxAllowedPathLength - rootFolderName.Length : MaxPathLength;
 
             CreateValidNames(package);
 

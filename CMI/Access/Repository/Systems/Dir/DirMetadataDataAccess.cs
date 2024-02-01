@@ -6,9 +6,9 @@ using DotCMIS.Data.Extensions;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace CMI.Access.Repository
+namespace CMI.Access.Repository.Systems.Dir
 {
-    public class MetadataDataAccess : IMetadataDataAccess
+    public class DirMetadataDataAccess : IDirMetadataDataAccess
     {
         /// <inheritdoc />
         /// <summary>

@@ -6,16 +6,16 @@ using DotCMIS.Client;
 using DotCMIS.Client.Impl;
 using Serilog;
 
-namespace CMI.Access.Repository
+namespace CMI.Access.Repository.Systems.Dir
 {
-    public class RepositoryConnectionFactory : IRepositoryConnectionFactory
+    public class DirRepositoryConnectionFactory : IDirRepositoryConnectionFactory
     {
         private readonly string connectionMode;
         private readonly string password;
         private readonly string serviceUrl;
         private readonly string user;
 
-        public RepositoryConnectionFactory()
+        public DirRepositoryConnectionFactory()
         {
             user = Settings.Default.RepositoryUser;
             password = Settings.Default.RepositoryPassword;
@@ -69,7 +69,7 @@ namespace CMI.Access.Repository
             catch (Exception ex)
             {
                 Log.Error(ex, "Unknown error while getting session to CMIS repository. Error message is: {Message}", ex.Message);
-                throw new RepositoryConnectionException(ex);
+                throw new DirRepositoryConnectionException(ex);
             }
         }
     }

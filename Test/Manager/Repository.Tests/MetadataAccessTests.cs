@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using CMI.Access.Repository;
+using CMI.Access.Repository.Systems.Dir;
 using DotCMIS.Data.Extensions;
 using FluentAssertions;
 using Newtonsoft.Json;
@@ -16,7 +16,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_simple_matadata_property_must_return_correct_value()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -38,7 +38,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_nested_matadata_property_must_return_correct_value()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -60,7 +60,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_nested_matadata_property_with_attribute_must_return_correct_value()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -83,7 +83,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_inexisting_simple_matadata_property_returns_null_or_empty()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -105,7 +105,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_inexisting_nested_matadata_property_with_attribute_returns_null_or_empty()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -127,7 +127,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_inexisting_nested_matadata_property_returns_null_or_empty()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -149,7 +149,7 @@ namespace CMI.Manager.Repository.Tests
         public void Casing_of_property_path_is_irrelevant_to_result()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dateiTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -174,7 +174,7 @@ namespace CMI.Manager.Repository.Tests
         public void Get_nested_matadata_collection_property_must_return_correct_list()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dossierTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -198,7 +198,7 @@ namespace CMI.Manager.Repository.Tests
         public void Historischer_zeitpunkt_from_inexisting_element_is_null()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dossierTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -221,7 +221,7 @@ namespace CMI.Manager.Repository.Tests
         public void Historischer_zeitpunkt_from_element_returns_value()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dossierTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
@@ -244,7 +244,7 @@ namespace CMI.Manager.Repository.Tests
         public void Historischer_Zeitraum_from_element_returns_value()
         {
             // Arrange
-            var sut = new MetadataDataAccess();
+            var sut = new DirMetadataDataAccess();
             var jsonText = File.ReadAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "dossierTestData.json"), Encoding.UTF8);
             var data = new List<ICmisExtensionElement>
             {
