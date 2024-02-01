@@ -57,7 +57,7 @@ namespace CMI.Manager.Repository
                     ec.Consumer(ctx.Resolve<ReadPackageMetadataConsumer>);
                     ec.UseRetry(retryPolicy => retryPolicy.Exponential(3, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
-                cfg.ReceiveEndpoint(BusConstants.MonitoringDirCheckQueue, ec => { ec.Consumer(ctx.Resolve<CheckDirConsumer>); });
+                cfg.ReceiveEndpoint(BusConstants.MonitoringDirCheckQueue, ec => { ec.Consumer(ctx.Resolve<CheckRepositoryConsumer>); });
 
                 helper.SubscribeAllSettingsInAssembly(Assembly.GetExecutingAssembly(), cfg);
             });

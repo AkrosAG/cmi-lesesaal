@@ -5,7 +5,7 @@ using DotCMIS.Client;
 
 namespace CMI.Contract.Repository
 {
-    public interface IRepositoryDataAccess
+    public interface IDirRepositoryDataAccess
     {
         /// <summary>
         ///     Gets the folders for a given parent folder.

@@ -45,9 +45,10 @@
   <ItemGroup>
     <Compile Include="AbbyyOcrTestRequest.cs" />
     <Compile Include="AbbyyOcrTestResponse.cs" />
-    <Compile Include="DirCheckRequest.cs" />
+    <Compile Include="RepositoryCheck.cs" />
+    <Compile Include="RepositoryCheckRequest.cs" />
     <Compile Include="AisDbCheckRequest.cs" />
-    <Compile Include="DirCheckResponse.cs" />
+    <Compile Include="RepositoryCheckResponse.cs" />
     <Compile Include="AisDbCheckResponse.cs" />
     <Compile Include="DocumentConverterInfoRequest.cs" />
     <Compile Include="DocumentConverterInfoResponse.cs" />
