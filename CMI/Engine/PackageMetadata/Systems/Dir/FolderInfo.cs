@@ -4,7 +4,7 @@ using DotCMIS.Client;
 using Newtonsoft.Json;
 using Serilog;
 
-namespace CMI.Engine.PackageMetadata
+namespace CMI.Engine.PackageMetadata.Systems.Dir
 {
     /// <summary>
     ///     Helper object to store information about the folders from the repository.
