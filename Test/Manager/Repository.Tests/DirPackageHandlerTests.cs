@@ -4,20 +4,20 @@ using System.IO;
 using System.Linq;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
-using CMI.Engine.PackageMetadata;
+using CMI.Engine.PackageMetadata.Systems.Dir;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace CMI.Manager.Repository.Tests
 {
     [TestFixture]
-    public class PackageHandlerTests
+    public class DirPackageHandlerTests
     {
         [Test]
         public void Finding_nested_ordnungssystemposition_returns_correct_item()
         {
             // Arrange
-            var sut = new PackageHandler(null, null, null);
+            var sut = new DirPackageHandler(null, null, null);
             var dip = (PaketDIP) Paket.LoadFromFile(Path.Combine(TestContext.CurrentContext.TestDirectory, "dipTestdata1.xml"));
 
             // Act
@@ -31,7 +31,7 @@ namespace CMI.Manager.Repository.Tests
         public void Finding_nested_dossier_returns_correct_item()
         {
             // Arrange
-            var sut = new PackageHandler(null, null, null);
+            var sut = new DirPackageHandler(null, null, null);
             var dip = (PaketDIP) Paket.LoadFromFile(Path.Combine(TestContext.CurrentContext.TestDirectory, "dipTestdata1.xml"));
 
             // Act

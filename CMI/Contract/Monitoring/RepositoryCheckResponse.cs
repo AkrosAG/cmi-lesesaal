@@ -1,6 +1,6 @@
 ﻿namespace CMI.Contract.Monitoring
 {
-    public class DirCheckResponse
+    public class RepositoryCheckResponse
     {
         public bool Ok { get; set; }
 
