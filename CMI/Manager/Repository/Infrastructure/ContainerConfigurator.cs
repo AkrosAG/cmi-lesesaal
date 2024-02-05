@@ -33,8 +33,9 @@ namespace CMI.Manager.Repository.Infrastructure
             {
                 case "mock":
                     builder.RegisterType<MockRepositoryProvider>().As<IRepositoryProvider>();
-                    // Der Mock verwendet denselben PackageHandler wie der DIR
-                    builder.RegisterType<DirPackageHandler>().As<IPackageHandler>();
+                    builder.RegisterType<MockPackageHandler>().As<IPackageHandler>();
+                    builder.RegisterType<DirPackageValidator>().As<IDirPackageValidator>();
+
                     break;
 
                 case "rosetta":
@@ -43,7 +44,6 @@ namespace CMI.Manager.Repository.Infrastructure
                     builder.RegisterType<RosettaDataAccess>().As<IRosettaDataAccess>();
                     builder.RegisterType<RosettaRepositoryCheck>().As<IRepositoryCheck>();
                     break;
-
                 case "dir":
                     builder.RegisterType<DirRepositoryProvider>().As<IRepositoryProvider>();
                     builder.RegisterType<DirRepositoryConnectionFactory>().As<IDirRepositoryConnectionFactory>();

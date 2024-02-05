@@ -146,6 +146,7 @@
     <Compile Include="Systems\Bar\DirRepositoryCheck.cs" />
     <Compile Include="Systems\Bar\IDirPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
+    <Compile Include="Systems\Mock\MockPackageHandler.cs" />
     <Compile Include="Systems\Mock\MockRepositoryProvider.cs" />
     <Compile Include="Systems\Bar\DirPackageValidator.cs" />
     <Compile Include="ParameterSettings\RepositorySyncSettings.cs" />
