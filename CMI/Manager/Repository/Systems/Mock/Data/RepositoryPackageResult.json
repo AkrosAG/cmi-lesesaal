@@ -24,7 +24,7 @@
         "MimeType": "text/xml",
         "Hash": null,
         "HashAlgorithm": null,
-        "Exported": false,
+        "Exported": true,
         "SkipOCR": false,
         "Id": "a28a1ff1-857b-4214-9aea-60efb32b6b72;1.0",
         "SipId": null,
