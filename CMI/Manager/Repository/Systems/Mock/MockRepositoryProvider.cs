@@ -28,9 +28,8 @@ public class MockRepositoryProvider : IRepositoryProvider
         this.bus = bus;
         this.dirPackageValidator = dirPackageValidator;
         this.handler = handler;
-
-        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageInfoResult.json"));
-        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Mock\Data\RepositoryPackageResult.json"));
+        repositoryPackageInfoResult = JsonConvert.DeserializeObject<RepositoryPackageInfoResult>(File.ReadAllText(@"Systems\Mock\Data\RepositoryPackageInfoResult.json"));
+        repositoryPackageResult = JsonConvert.DeserializeObject<RepositoryPackageResult>(File.ReadAllText(@"Systems\Mock\Data\RepositoryPackageResult.json"));
     }
 
     public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
@@ -54,7 +53,7 @@ public class MockRepositoryProvider : IRepositoryProvider
             new List<RepositoryFile>());
         await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, AufbereitungsStatusEnum.PaketTransferiert);
 
-        CopayFileToDestination(new FileInfo(@"Mock\Data\test.zip"), tempRootName);
+        CopayFileToDestination(new FileInfo(@"Systems\Mock\Data\test.zip"), tempRootName);
         repositoryPackageResult.PackageDetails.PackageFileName = tempRootName + ".zip";
         repositoryPackageResult.PackageDetails.ArchiveRecordId = archiveRecordId;
         return repositoryPackageResult;
