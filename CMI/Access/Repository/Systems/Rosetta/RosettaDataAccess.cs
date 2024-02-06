@@ -26,8 +26,8 @@ public class RosettaDataAccess: IRosettaDataAccess
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.Method = "post";
             httpWebRequest.PreAuthenticate = true;
-            // Das funktioniert nicht NetworkCredential(username, password);
-            string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(username + ":" + password));
+            // credentials müssen selber konvertiert werden, dass httpWebRequest.Credentials = new NetworkCredential(username, password) funktioniert nicht NetworkCredential(username, password);
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(username + ":" + password));
             httpWebRequest.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
             var responseObj = httpWebRequest.GetResponse();
 
@@ -60,7 +60,5 @@ public class RosettaDataAccess: IRosettaDataAccess
         }
 
         return Task.FromResult(entityData);
-
     }
-
 }
