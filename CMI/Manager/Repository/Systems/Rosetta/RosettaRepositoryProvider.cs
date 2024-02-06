@@ -32,7 +32,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            var result=rosettaDataAccess.ExportIntellectualEntity(packageId);
+            var result= rosettaDataAccess.ExportIntellectualEntity(packageId);
             // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
             return null;
         }
