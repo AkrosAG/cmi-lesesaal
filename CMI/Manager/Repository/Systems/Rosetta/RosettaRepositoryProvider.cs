@@ -9,7 +9,7 @@ using MassTransit;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
-    public class RosettaRepositoryProvider: IRepositoryProvider
+    public class RosettaRepositoryProvider : IRepositoryProvider
     {
         private readonly IRosettaDataAccess rosettaDataAccess;
         private readonly IPackageHandler handler;
@@ -32,7 +32,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            throw new NotImplementedException();
+            var result=rosettaDataAccess.ExportIntellectualEntity(packageId);
+            // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
+            return null;
         }
     }
 }
