@@ -1,5 +1,4 @@
-﻿using CMI.Access.Repository.Systems.Dir;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CMI.Access.Repository.Properties;
 using System.IO;
 using System.Net;
@@ -11,20 +10,11 @@ namespace CMI.Access.Repository.Systems.Rosetta;
 
 public class RosettaDataAccess: IRosettaDataAccess
 {
-    private readonly string password;
-    private readonly string serviceUrl;
-    private readonly string username;
-    private readonly string exportOption;
+    private readonly string password = Settings.Default.RepositoryPassword;
+    private readonly string serviceUrl = Settings.Default.RepositoryServiceUrl;
+    private readonly string username = Settings.Default.RepositoryUser;
+    private readonly string exportOption = Settings.Default.RepositoryExportOption;
 
-
-    public RosettaDataAccess()
-    {
-        username = Settings.Default.RepositoryUser;
-        password = Settings.Default.RepositoryPassword;
-        serviceUrl = Settings.Default.RepositoryServiceUrl;
-        exportOption = Settings.Default.RepositoryExportOption;
-    }
-    
 
     public Task<string> ExportIntellectualEntity(string entityId)
     {
