@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RepositoryServiceUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:8080/alfresco/api/-default-/public/cmis/versions/1.0/atom</Value>
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryServiceUrl@@</Value>
     </Setting>
     <Setting Name="ConnectionMode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">atom</Value>
