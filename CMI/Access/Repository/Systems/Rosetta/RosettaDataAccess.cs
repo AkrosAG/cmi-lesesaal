@@ -51,14 +51,15 @@ public class RosettaDataAccess: IRosettaDataAccess
         catch (WebException ex)
         {
             var response = (HttpWebResponse)ex.Response;
+            var responseErrorData = string.Empty;
             using (var stream = response.GetResponseStream())
             {
                 var sr = new StreamReader(stream);
-                entityData = sr.ReadToEnd();
+                responseErrorData = sr.ReadToEnd();
                 sr.Close();
             }
             
-            Log.Error(ex, $"Unexpected error while export Intellectual Entity {entityData}");
+            Log.Error(ex, $"Unexpected error while export Intellectual Entity {responseErrorData}");
             throw;
         }
         catch (Exception ex)
