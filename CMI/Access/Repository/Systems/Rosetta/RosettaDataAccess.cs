@@ -49,7 +49,7 @@ public class RosettaDataAccess: IRosettaDataAccess
                 sr.Close();
             }
             
-            Log.Error(ex, $"Unexpected error while export Intellectual Entity {responseErrorData}");
+            Log.Error(ex, $"Known errors when exporting Intellectual Entity {responseErrorData}");
             throw;
         }
         catch (Exception ex)
