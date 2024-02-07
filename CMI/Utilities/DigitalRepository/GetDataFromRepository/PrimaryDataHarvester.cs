@@ -15,7 +15,6 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
     {
         private readonly IRepositoryManager manager;
         private readonly IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient;
-        private event EventHandler Started = delegate { };
 
         public PrimaryDataHarvester(IRepositoryManager manager, IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient)
         {
@@ -25,28 +24,6 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
 
 
 
-        /// <summary>
-        ///     Starts the Harvest Service.
-        ///     Called by the service host when the service is started.
-        /// </summary>
-        public void Start(string veId)
-        {
-            // As the real start method is async and we can not have async start methods in 
-            // TopShelf we create an event that is called during startup. 
-            Started += OnStarted;
-            Started(this, new EventArgsVeId(veId));
-        }
-        
-
-        private async void OnStarted(object sender, EventArgs args)
-        {
-            Started -= OnStarted;
-            if (args is EventArgsVeId veId)
-            {
-                await SavePrimaryData(veId.veId);
-            }
-            Log.Information("Daten geholt!!!");
-        }
 
         public async Task SavePrimaryData(string veId)
         {
