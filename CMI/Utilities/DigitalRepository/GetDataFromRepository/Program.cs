@@ -31,13 +31,13 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
 
             Log.Information("service started");
             var veIds = ConfigurationRead("archiveRecordIdOrSignature.json");
+            var harvester = container.Resolve<PrimaryDataHarvester>();
+
             // Loop through every entry in the list.
             foreach (var veId in veIds.RecordIdOrSig)
             {
-                var harvester = container.Resolve<PrimaryDataHarvester>();
+                harvester.SavePrimaryData(veId).GetAwaiter().GetResult();
                 Log.Information($"Get data from Repository {veId}");
-
-                harvester.Start(veId);
             }
 
             Log.Debug("Daten wurden geholt!!!");

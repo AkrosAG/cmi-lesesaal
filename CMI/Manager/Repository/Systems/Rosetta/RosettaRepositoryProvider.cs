@@ -25,9 +25,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             this.bus = bus;
         }
 
-        public Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
+        public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            throw new NotImplementedException();
+            await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            return null;
         }
 
         public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
