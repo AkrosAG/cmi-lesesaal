@@ -25,13 +25,13 @@ public class RosettaDataAccess : IRosettaDataAccess
             // Call a web rest service to export the intellectual entity
             // Use post method to call the service and use basic authentication
             var url = string.Format(serviceUrl, entityId);
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var request = WebRequest.Create(url);
             request.Method = "POST";
             request.ContentType = "application/xml";
             request.Accept = "application/xml";
             request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes($"{username}:{password}")));
             
-            var response = (HttpWebResponse)request.GetResponse();
+            var response = request.GetResponse();
             using var stream = response.GetResponseStream();
             if (stream != null)
             {
