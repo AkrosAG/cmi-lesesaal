@@ -46,7 +46,7 @@ public class RosettaDataAccess : IRosettaDataAccess
         catch (WebException ex)
         {
             var response = (HttpWebResponse)ex.Response;
-            string responseErrorData;
+            var responseErrorData = string.Empty;
             using (var stream = response.GetResponseStream())
             {
                 if (stream != null)
