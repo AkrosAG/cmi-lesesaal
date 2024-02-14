@@ -24,6 +24,14 @@ namespace CMI.Access.Harvest
             }
         }
 
+        public static string GetCdwsUrl(this Datei file, string cdwsEndpoint)
+        {
+            var baseUrl = cdwsEndpoint?.ToLower().Replace("index", "files");
+            var fileUrl = $"{baseUrl}/{file.File.ID}/{file.LastVersion.Nr}/{file.LastVersion.Items[0].Ansicht}";
+
+            return fileUrl;
+        }
+
         public static string GetFullPath(this Datei file, string root)
         {
             return Path.Combine(root,                                   // CDWS_ROOT
@@ -54,13 +62,14 @@ namespace CMI.Access.Harvest
                             FileExtension = file.FileExtension,
                             FileSize = bytes.LongLength,
                             Description = file.Bemerkungen,
-                            ContentText = Convert.ToBase64String(bytes),
                             Kind = file.Art.Item.Bezeichnung,
                             Publikation= file.Publikation,
                             SortOrder = ((int)file.LastVersion.Nr)  // Value is a decimal and will be truncated
                         };
+
+                        metadataFile.ContentText = file.GetCdwsUrl(Settings.Default.CdwsEndpoint);
+                        Log.Information($"Add file content to Metadata: {bytes.LongLength} Bytes. Endpoint: {metadataFile.ContentText}");
                         archiveRecord.Metadata.Files.Add(metadataFile);
-                        Log.Information($"Added file content to Metadata: {bytes.LongLength} Bytes.");
                     }
                 }
             }
