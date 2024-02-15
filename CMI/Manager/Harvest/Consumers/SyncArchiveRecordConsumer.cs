@@ -177,9 +177,9 @@ namespace CMI.Manager.Harvest.Consumers
                     {ArchiveRecordId = archiveRecordId, IncludeFulltextContent = true});
                 return result.Message.ElasticArchiveRecord;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Log.Error(e, $"Unexpected error fetching archive record from index with id {archiveRecordId}.");
+                Log.Information( $"ArchiveRecord {archiveRecordId} is not yet stored in Elastic.");
                 return null;
             }
         }
