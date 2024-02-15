@@ -171,7 +171,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     }
 
                     var mediaType = MimeMapping.GetMimeMapping(file.Filename);
-                    var buffer = await GetFileContentFromUrlAsync(file.Base64Content);
+                    var buffer = await GetFileContentFromUrlAsync(file.DownloadUrl);
                     if (buffer != null && buffer.Any())
                     {
                         var response = new HttpResponseMessage
