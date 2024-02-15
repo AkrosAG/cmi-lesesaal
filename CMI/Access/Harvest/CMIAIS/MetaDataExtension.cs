@@ -61,9 +61,9 @@ namespace CMI.Access.Harvest
                         Kind = file.Art.Item.Bezeichnung,
                         Publikation = file.Publikation,
                         SortOrder = ((int)file.LastVersion.Nr),  // Value is a decimal and will be truncated
-                        ContentText = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
+                        DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
                     };
-                    Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.ContentText}");
+                    Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
                     archiveRecord.Metadata.Files.Add(metadataFile);
                 }
             }

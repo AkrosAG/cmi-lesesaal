@@ -46,7 +46,7 @@ namespace CMI.Contract.Common
         /// The actual "pyhisical" records. In our case these are either digital born data, or scanned files.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable = false)]
-        public List<RepositoryPackage> primaryData { get; set; }
+        public List<RepositoryPackage> PrimaryData { get; set; }
         /// <summary>
         /// The internal id of the record from the source system.
         /// </summary>
@@ -58,7 +58,7 @@ namespace CMI.Contract.Common
         /// </summary>
         public ArchiveRecord()
         {
-            this.primaryData = new List<RepositoryPackage>();
+            this.PrimaryData = new List<RepositoryPackage>();
             this.Metadata = new ArchiveRecordMetadata();
             this.Display = new ArchiveRecordDisplay();
             this.Security = new ArchiveRecordSecurity();
@@ -367,9 +367,9 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("idName")]
         public string IdName { get; set; }
         [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfBirth")]
-        public System.DateTime DateOfBirth { get; set; }
+        public System.DateTime? DateOfBirth { get; set; }
         [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfDeath")]
-        public System.DateTime DateOfDeath { get; set; }
+        public System.DateTime? DateOfDeath { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("seeAlso", ElementName = "seeAlso")]
         public List<string> SeeAlso { get; set; }
         /// <summary>
@@ -427,7 +427,7 @@ namespace CMI.Contract.Common
         /// A list that contains all the information to quickly build an archive plan for display.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute("archiveplanContextItem", IsNullable = false)]
-        public List<ArchiveplanContextItem> archiveplanContext { get; set; }
+        public List<ArchiveplanContextItem> ArchiveplanContext { get; set; }
         [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "previousArchiveRecordId")]
         public string PreviousArchiveRecordId { get; set; }
         [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "nextArchiveRecordId")]
@@ -442,7 +442,7 @@ namespace CMI.Contract.Common
         /// </summary>
         public ArchiveRecordDisplay()
         {
-            this.archiveplanContext = new List<ArchiveplanContextItem>();
+            this.ArchiveplanContext = new List<ArchiveplanContextItem>();
         }
     }
 
@@ -459,7 +459,7 @@ namespace CMI.Contract.Common
     {
 
         [System.Xml.Serialization.XmlArrayItemAttribute("dataElement", IsNullable = false)]
-        public List<DataElement> detailData { get; set; }
+        public List<DataElement> DetailData { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("usage")]
         public ArchiveRecordMetadataUsage Usage { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("nodeInfo")]
@@ -468,7 +468,7 @@ namespace CMI.Contract.Common
         /// A list of descriptors (keywords) that help categorize the current UoD.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute("descriptor", IsNullable = false)]
-        public List<Descriptor> descriptors { get; set; }
+        public List<Descriptor> Descriptors { get; set; }
         /// <summary>
         /// A list with containers where the archival records are physically stored.
         /// </summary>
@@ -478,9 +478,9 @@ namespace CMI.Contract.Common
         /// ArchiveRecords may be linked to other archiveRecords.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute("reference", IsNullable = false)]
-        public List<ArchiveRecordMetadataReference> references { get; set; }
+        public List<ArchiveRecordMetadataReference> References { get; set; }
         [System.Xml.Serialization.XmlArrayItemAttribute("file", IsNullable = false)]
-        public List<ArchiveRecordMetadataFile> files { get; set; }
+        public List<ArchiveRecordMetadataFile> Files { get; set; }
         /// <summary>
         /// The year in which this record was added to the archive collection.
         /// </summary>
@@ -500,21 +500,21 @@ namespace CMI.Contract.Common
         /// A collection of special values that allows filtering in the search client.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable = false)]
-        public List<AggregationField> aggregationFields { get; set; }
+        public List<AggregationField> AggregationFields { get; set; }
 
         /// <summary>
         /// ArchiveRecordMetadata class constructor
         /// </summary>
         public ArchiveRecordMetadata()
         {
-            this.aggregationFields = new List<AggregationField>();
-            this.files = new List<ArchiveRecordMetadataFile>();
-            this.references = new List<ArchiveRecordMetadataReference>();
+            this.AggregationFields = new List<AggregationField>();
+            this.Files = new List<ArchiveRecordMetadataFile>();
+            this.References = new List<ArchiveRecordMetadataReference>();
             this.Containers = new ArchiveRecordMetadataContainers();
-            this.descriptors = new List<Descriptor>();
+            this.Descriptors = new List<Descriptor>();
             this.NodeInfo = new NodeInfo();
             this.Usage = new ArchiveRecordMetadataUsage();
-            this.detailData = new List<DataElement>();
+            this.DetailData = new List<DataElement>();
         }
     }
 
@@ -585,7 +585,7 @@ namespace CMI.Contract.Common
         /// A data element can have several text representations in different languages. Mostly, only default language representation will be available, but for date ranges (ca. 1950 / approx. 1950) or boolans (Ja / Yes) different languages will be available.
         /// </summary>
         [System.Xml.Serialization.XmlArrayItemAttribute("textValue", IsNullable = false)]
-        public List<DataElementElementValueTextValue> textValues { get; set; }
+        public List<DataElementElementValueTextValue> TextValues { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("dateRange")]
         public DateRange DateRange { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("durationInSeconds")]
@@ -619,7 +619,7 @@ namespace CMI.Contract.Common
             this.BlobValueBase64 = new DataElementElementValueBlobValueBase64();
             this.FloatValue = new DataElementElementValueFloatValue();
             this.DateRange = new DateRange();
-            this.textValues = new List<DataElementElementValueTextValue>();
+            this.TextValues = new List<DataElementElementValueTextValue>();
         }
     }
 
@@ -890,7 +890,7 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute(DataType = "date", IsNullable = true, ElementName = "protectionEndDate")]
         public System.Nullable<System.DateTime> ProtectionEndDate { get; set; }
         /// <summary>
-        /// Indicates if the protection end date cannot be underrun. (Nicht unterschreitbar).
+        /// Indicates if the protection end date cannot be underrun. (Nicht unterschreitAMA).
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("cannotFallBelow")]
         public bool CannotFallBelow { get; set; }
@@ -910,7 +910,7 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("permission")]
         public string Permission { get; set; }
         /// <summary>
-        /// Indicates the physical usability of the archive item. (Physische Benutzerbarkeit)
+        /// Indicates the physical usability of the archive item. (Physische BenutzerAMAkeit)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("physicalUsability")]
         public string PhysicalUsability { get; set; }
@@ -1134,18 +1134,18 @@ namespace CMI.Contract.Common
         /// <summary>
         /// The extracted full text of the document
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("downloadUrl")]
-        public string DownloadUrl { get; set; }
-        /// <summary>
-        /// Access control to data from AIS
-        /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("publikation")]
-        public string Publikation { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute("contentText")]
+        public string ContentText { get; set; }
         /// <summary>
         /// The order in which the documents are displayed in the web frontend
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("sortOrder")]
         public int SortOrder { get; set; }
+        /// <summary>
+        /// Access control to data from AIS
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute("publikation")]
+        public string Publikation { get; set; }
     }
 
     /// <summary>
