@@ -16,8 +16,8 @@ namespace CMI.Contract.Common
     using System.ComponentModel;
     using System.Xml;
     using System.Collections.Generic;
-    
-    
+
+
     /// <summary>
     /// A archveRecord is a container for all the different data that one Unit of Description holds
     /// </summary>
@@ -25,11 +25,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecord")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="archiveRecord")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecord")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "archiveRecord")]
     public partial class ArchiveRecord
     {
-        
+
         [System.Xml.Serialization.XmlElementAttribute("security")]
         public ArchiveRecordSecurity Security { get; set; }
         /// <summary>
@@ -45,14 +45,14 @@ namespace CMI.Contract.Common
         /// <summary>
         /// The actual "pyhisical" records. In our case these are either digital born data, or scanned files.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable = false)]
         public List<RepositoryPackage> primaryData { get; set; }
         /// <summary>
         /// The internal id of the record from the source system.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="archiveRecordId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "archiveRecordId")]
         public string ArchiveRecordId { get; set; }
-        
+
         /// <summary>
         /// ArchiveRecord class constructor
         /// </summary>
@@ -64,16 +64,16 @@ namespace CMI.Contract.Common
             this.Security = new ArchiveRecordSecurity();
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordSecurity")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordSecurity")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordSecurity")]
     public partial class ArchiveRecordSecurity
     {
-        
+
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the UoD.
         /// Examples for the token can be:
@@ -81,7 +81,7 @@ namespace CMI.Contract.Common
         /// - Ö3
         /// - Ö2
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("metadataAccessToken", ElementName="metadataAccessToken")]
+        [System.Xml.Serialization.XmlElementAttribute("metadataAccessToken", ElementName = "metadataAccessToken")]
         public List<string> MetadataAccessToken { get; set; }
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the fulltext of the primary data files.
@@ -91,7 +91,7 @@ namespace CMI.Contract.Common
         /// - FG_XXXX
         /// - EB_XXXX
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("primaryDataFulltextAccessToken", ElementName="primaryDataFulltextAccessToken")]
+        [System.Xml.Serialization.XmlElementAttribute("primaryDataFulltextAccessToken", ElementName = "primaryDataFulltextAccessToken")]
         public List<string> PrimaryDataFulltextAccessToken { get; set; }
         /// <summary>
         /// accessToken contains a string, identifiying who has access to the download of the primary data files.
@@ -101,10 +101,10 @@ namespace CMI.Contract.Common
         /// - FG_XXXX
         /// - EB_XXXXX
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("primaryDataDownloadAccessToken", ElementName="primaryDataDownloadAccessToken")]
+        [System.Xml.Serialization.XmlElementAttribute("primaryDataDownloadAccessToken", ElementName = "primaryDataDownloadAccessToken")]
         public List<string> PrimaryDataDownloadAccessToken { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -112,13 +112,13 @@ namespace CMI.Contract.Common
     [System.Xml.Serialization.XmlRootAttribute("aggregationField")]
     public partial class AggregationField
     {
-        
-        [System.Xml.Serialization.XmlElementAttribute("values", ElementName="values")]
+
+        [System.Xml.Serialization.XmlElementAttribute("values", ElementName = "values")]
         public List<string> Values { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="aggregationName")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "aggregationName")]
         public string AggregationName { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -126,50 +126,50 @@ namespace CMI.Contract.Common
     [System.Xml.Serialization.XmlRootAttribute("repositoryPackage")]
     public partial class RepositoryPackage
     {
-        
-        [System.Xml.Serialization.XmlElementAttribute("folders", ElementName="folders")]
+
+        [System.Xml.Serialization.XmlElementAttribute("folders", ElementName = "folders")]
         public List<RepositoryFolder> Folders { get; set; }
         /// <summary>
         /// A collection of files
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("files", ElementName="files")]
+        [System.Xml.Serialization.XmlElementAttribute("files", ElementName = "files")]
         public List<RepositoryFile> Files { get; set; }
         /// <summary>
         /// The total size of all files in the package in bytes.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sizeInBytes")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sizeInBytes")]
         public long SizeInBytes { get; set; }
         /// <summary>
         /// The total number of all files in the package.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="fileCount")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "fileCount")]
         public int FileCount { get; set; }
         /// <summary>
         /// A string containing an identifier to find the root of the package in the digital repository.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="packageId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "packageId")]
         public string PackageId { get; set; }
         /// <summary>
         /// The name of the zip file. The name must be without path information.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="packageFileName")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "packageFileName")]
         public string PackageFileName { get; set; }
         /// <summary>
         /// Returns the duration in ticks for extracting all data from the repository.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="repositoryExtractionDuration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "repositoryExtractionDuration")]
         public long RepositoryExtractionDuration { get; set; }
         /// <summary>
         /// Returns the duration in ticks for extracting the full text of all files in the package (if any).
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="fulltextExtractionDuration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "fulltextExtractionDuration")]
         public long FulltextExtractionDuration { get; set; }
         /// <summary>
         /// In case the package is used as a standalone type, the archive record id identifies to which record this package belongs.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="archiveRecordId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "archiveRecordId")]
         public string ArchiveRecordId { get; set; }
-        
+
         /// <summary>
         /// RepositoryPackage class constructor
         /// </summary>
@@ -179,7 +179,7 @@ namespace CMI.Contract.Common
             this.Folders = new List<RepositoryFolder>();
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -187,7 +187,7 @@ namespace CMI.Contract.Common
     [System.Xml.Serialization.XmlRootAttribute("repositoryFolder")]
     public partial class RepositoryFolder
     {
-        
+
         [System.Xml.Serialization.XmlElementAttribute("logicalName")]
         public string LogicalName { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("physicalName")]
@@ -198,11 +198,11 @@ namespace CMI.Contract.Common
         public string SipId { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("sipType")]
         public RepositoryFolderSipType SipType { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute("folders", ElementName="folders")]
+        [System.Xml.Serialization.XmlElementAttribute("folders", ElementName = "folders")]
         public List<RepositoryFolder> Folders { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute("files", ElementName="files")]
+        [System.Xml.Serialization.XmlElementAttribute("files", ElementName = "files")]
         public List<RepositoryFile> Files { get; set; }
-        
+
         /// <summary>
         /// RepositoryFolder class constructor
         /// </summary>
@@ -212,19 +212,19 @@ namespace CMI.Contract.Common
             this.Folders = new List<RepositoryFolder>();
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="repositoryFolderSipType")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "repositoryFolderSipType")]
     [System.Xml.Serialization.XmlRootAttribute("repositoryFolderSipType")]
     public enum RepositoryFolderSipType
     {
-        
+
         dossier,
-        
+
         dokument,
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -232,7 +232,7 @@ namespace CMI.Contract.Common
     [System.Xml.Serialization.XmlRootAttribute("repositoryFile")]
     public partial class RepositoryFile
     {
-        
+
         /// <summary>
         /// Contains the file name including the extension, but without the path information.
         /// </summary>
@@ -271,7 +271,7 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("sipId")]
         public string SipId { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute("extendedProperties", ElementName="extendedProperties")]
+        [System.Xml.Serialization.XmlElementAttribute("extendedProperties", ElementName = "extendedProperties")]
         public List<ExtendedProperty> ExtendedProperties { get; set; }
         /// <summary>
         /// The whole content of the document as text only. Can be used for full text indexing.
@@ -279,9 +279,9 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("contentText")]
         public string ContentText { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sizeInBytes")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sizeInBytes")]
         public long SizeInBytes { get; set; }
-        
+
         /// <summary>
         /// RepositoryFile class constructor
         /// </summary>
@@ -290,7 +290,7 @@ namespace CMI.Contract.Common
             this.ExtendedProperties = new List<ExtendedProperty>();
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -298,13 +298,13 @@ namespace CMI.Contract.Common
     [System.Xml.Serialization.XmlRootAttribute("extendedProperty")]
     public partial class ExtendedProperty
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="name")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "name")]
         public string Name { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
     }
-    
+
     /// <summary>
     /// An archive context item contains all necessary information to show/display an archive record within the archive plan.
     /// </summary>
@@ -312,11 +312,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveplanContextItem")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="archiveplanContextItem")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveplanContextItem")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "archiveplanContextItem")]
     public partial class ArchiveplanContextItem
     {
-        
+
         /// <summary>
         /// A simple id identifying an icon
         /// </summary>
@@ -342,10 +342,10 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("dateRangeText")]
         public string DateRangeText { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="archiveRecordId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "archiveRecordId")]
         public string ArchiveRecordId { get; set; }
     }
-    
+
     /// <summary>
     /// This element is a container for describing a descriptor.
     /// </summary>
@@ -353,11 +353,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="descriptor")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="descriptor")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "descriptor")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "descriptor")]
     public partial class Descriptor
     {
-        
+
         [System.Xml.Serialization.XmlElementAttribute("name")]
         public string Name { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("description")]
@@ -366,29 +366,29 @@ namespace CMI.Contract.Common
         public string OtherLanguageNames { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("idName")]
         public string IdName { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="dateOfBirth")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfBirth")]
         public System.DateTime DateOfBirth { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="dateOfDeath")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfDeath")]
         public System.DateTime DateOfDeath { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute("seeAlso", ElementName="seeAlso")]
+        [System.Xml.Serialization.XmlElementAttribute("seeAlso", ElementName = "seeAlso")]
         public List<string> SeeAlso { get; set; }
         /// <summary>
         /// Optional a function describing in what kind of relationship this descriptor represents.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="function")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "function")]
         public string Function { get; set; }
         /// <summary>
         /// Indicates the thesaurus from which this descriptor is coming from.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="thesaurus")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "thesaurus")]
         public string Thesaurus { get; set; }
         /// <summary>
         /// Defines the origin of the descriptor. Can be used to differentiate between manual given keywords or keywords that were auto extracted from the text using some kind of speech services.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="source")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "source")]
         public string Source { get; set; }
     }
-    
+
     /// <summary>
     /// Data that is used for controlling the UI. Most of the data could be calculated from other data withing the records, but we store it here for fast access.
     /// </summary>
@@ -396,11 +396,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordDisplay")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordDisplay")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordDisplay")]
     public partial class ArchiveRecordDisplay
     {
-        
+
         /// <summary>
         /// The name or identification of the display template to use for public view.
         /// </summary>
@@ -426,17 +426,17 @@ namespace CMI.Contract.Common
         /// <summary>
         /// A list that contains all the information to quickly build an archive plan for display.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute("archiveplanContextItem", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("archiveplanContextItem", IsNullable = false)]
         public List<ArchiveplanContextItem> archiveplanContext { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="previousArchiveRecordId")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "previousArchiveRecordId")]
         public string PreviousArchiveRecordId { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="nextArchiveRecordId")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "nextArchiveRecordId")]
         public string NextArchiveRecordId { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="parentArchiveRecordId")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "parentArchiveRecordId")]
         public string ParentArchiveRecordId { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="firstChildArchiveRecordId")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "firstChildArchiveRecordId")]
         public string FirstChildArchiveRecordId { get; set; }
-        
+
         /// <summary>
         /// ArchiveRecordDisplay class constructor
         /// </summary>
@@ -445,7 +445,7 @@ namespace CMI.Contract.Common
             this.archiveplanContext = new List<ArchiveplanContextItem>();
         }
     }
-    
+
     /// <summary>
     /// A wealth of information about the archive record.
     /// </summary>
@@ -453,12 +453,12 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadata")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadata")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadata")]
     public partial class ArchiveRecordMetadata
     {
-        
-        [System.Xml.Serialization.XmlArrayItemAttribute("dataElement", IsNullable=false)]
+
+        [System.Xml.Serialization.XmlArrayItemAttribute("dataElement", IsNullable = false)]
         public List<DataElement> detailData { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("usage")]
         public ArchiveRecordMetadataUsage Usage { get; set; }
@@ -467,7 +467,7 @@ namespace CMI.Contract.Common
         /// <summary>
         /// A list of descriptors (keywords) that help categorize the current UoD.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute("descriptor", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("descriptor", IsNullable = false)]
         public List<Descriptor> descriptors { get; set; }
         /// <summary>
         /// A list with containers where the archival records are physically stored.
@@ -477,9 +477,9 @@ namespace CMI.Contract.Common
         /// <summary>
         /// ArchiveRecords may be linked to other archiveRecords.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute("reference", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("reference", IsNullable = false)]
         public List<ArchiveRecordMetadataReference> references { get; set; }
-        [System.Xml.Serialization.XmlArrayItemAttribute("file", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("file", IsNullable = false)]
         public List<ArchiveRecordMetadataFile> files { get; set; }
         /// <summary>
         /// The year in which this record was added to the archive collection.
@@ -499,9 +499,9 @@ namespace CMI.Contract.Common
         /// <summary>
         /// A collection of special values that allows filtering in the search client.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable = false)]
         public List<AggregationField> aggregationFields { get; set; }
-        
+
         /// <summary>
         /// ArchiveRecordMetadata class constructor
         /// </summary>
@@ -517,7 +517,7 @@ namespace CMI.Contract.Common
             this.detailData = new List<DataElement>();
         }
     }
-    
+
     /// <summary>
     /// A data element is a container for an individual field. It can consists of one ore more values.
     /// </summary>
@@ -525,44 +525,44 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElement")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="dataElement")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElement")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "dataElement")]
     public partial class DataElement
     {
-        
-        [System.Xml.Serialization.XmlElementAttribute("elementValue", ElementName="elementValue")]
+
+        [System.Xml.Serialization.XmlElementAttribute("elementValue", ElementName = "elementValue")]
         public List<DataElementElementValue> ElementValue { get; set; }
         /// <summary>
         /// Optionally the internal id of the element if any.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="elementId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "elementId")]
         public string ElementId { get; set; }
         /// <summary>
         /// A unique name for an element.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="elementName")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "elementName")]
         public string ElementName { get; set; }
         /// <summary>
         /// Optionally the EAD code for that element.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="eadCode")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "eadCode")]
         public string EadCode { get; set; }
         /// <summary>
         /// The specific type of that data element.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="elementType")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "elementType")]
         public DataElementElementType ElementType { get; set; }
         /// <summary>
         /// Indicates if the value of this element should be added to the full text index.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="includeInFullTextIndex")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "includeInFullTextIndex")]
         public bool IncludeInFullTextIndex { get; set; }
         /// <summary>
         /// Indicates the visibility of this element. Can either be public or internal
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="visibility")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "visibility")]
         public DataElementVisibility Visibility { get; set; }
-        
+
         /// <summary>
         /// DataElement class constructor
         /// </summary>
@@ -571,20 +571,20 @@ namespace CMI.Contract.Common
             this.ElementValue = new List<DataElementElementValue>();
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValue")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValue")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValue")]
     public partial class DataElementElementValue
     {
-        
+
         /// <summary>
         /// A data element can have several text representations in different languages. Mostly, only default language representation will be available, but for date ranges (ca. 1950 / approx. 1950) or boolans (Ja / Yes) different languages will be available.
         /// </summary>
-        [System.Xml.Serialization.XmlArrayItemAttribute("textValue", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("textValue", IsNullable = false)]
         public List<DataElementElementValueTextValue> textValues { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("dateRange")]
         public DateRange DateRange { get; set; }
@@ -596,9 +596,9 @@ namespace CMI.Contract.Common
         public int IntValue { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("booleanValue")]
         public bool BooleanValue { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="time", ElementName="timeValue")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "time", ElementName = "timeValue")]
         public System.DateTime TimeValue { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="dateValue")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateValue")]
         public System.DateTime DateValue { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("blobValueBase64")]
         public DataElementElementValueBlobValueBase64 BlobValueBase64 { get; set; }
@@ -606,9 +606,9 @@ namespace CMI.Contract.Common
         public DataElementElementValueLink Link { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("entityLink")]
         public DataElementElementValueEntityLink EntityLink { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sequence")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sequence")]
         public int Sequence { get; set; }
-        
+
         /// <summary>
         /// DataElementElementValue class constructor
         /// </summary>
@@ -622,7 +622,7 @@ namespace CMI.Contract.Common
             this.textValues = new List<DataElementElementValueTextValue>();
         }
     }
-    
+
     /// <summary>
     /// Each element must have a text representation. For textual values this is the text itself. For a duration it could be "1 hour 12min" or for a date range it could be "ca. 1960 - ca. 1970"
     /// </summary>
@@ -630,19 +630,19 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValueTextValue")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValueTextValue")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValueTextValue")]
     public partial class DataElementElementValueTextValue
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="language", AttributeName="lang")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "language", AttributeName = "lang")]
         public string Lang { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="isDefaultLang")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "isDefaultLang")]
         public bool IsDefaultLang { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
     }
-    
+
     /// <summary>
     /// This element is used to describe a date range.
     /// </summary>
@@ -650,11 +650,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dateRange")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="dateRange")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dateRange")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "dateRange")]
     public partial class DateRange
     {
-        
+
         /// <summary>
         /// Date is entered as a string in the form +YYYYMMDD. Depending on how many digits are entered the "exactness" of the date is evaluated.
         /// First digit plus or minus
@@ -675,185 +675,185 @@ namespace CMI.Contract.Common
         /// 
         /// If the date operator is "before", "to", "s.d." or "N/A" the FromDate equals DateTime.Min
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="fromDate")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "fromDate")]
         public System.DateTime FromDate { get; set; }
         /// <summary>
         /// The SearchFromDate is usually identical to the FromDate. But if the FromApproxIndicator is true we move the from date to an earlier date. How much depends on the whole date range and the precision of the from date.
         /// This is required for the best possible search experience using date ranges.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="searchFromDate")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "searchFromDate")]
         public System.DateTime SearchFromDate { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("fromApproxIndicator")]
         public bool FromApproxIndicator { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("to")]
         public string To { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="toDate")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "toDate")]
         public System.DateTime ToDate { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", ElementName="searchToDate")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "searchToDate")]
         public System.DateTime SearchToDate { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("toApproxIndicator")]
         public bool ToApproxIndicator { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="dateOperator")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "dateOperator")]
         public DateRangeDateOperator DateOperator { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dateRangeDateOperator")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dateRangeDateOperator")]
     [System.Xml.Serialization.XmlRootAttribute("dateRangeDateOperator")]
     public enum DateRangeDateOperator
     {
-        
+
         between,
-        
+
         fromTo,
-        
+
         after,
-        
+
         startingWith,
-        
+
         before,
-        
+
         to,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("s.d.")]
         sd,
-        
+
         exact,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("n/a")]
         na,
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValueFloatValue")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValueFloatValue")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValueFloatValue")]
     public partial class DataElementElementValueFloatValue
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="decimalPositions")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "decimalPositions")]
         public int DecimalPositions { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public float Value { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValueBlobValueBase64")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValueBlobValueBase64")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValueBlobValueBase64")]
     public partial class DataElementElementValueBlobValueBase64
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="mimeType")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "mimeType")]
         public string MimeType { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValueLink")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValueLink")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValueLink")]
     public partial class DataElementElementValueLink
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="href")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "href")]
         public string Href { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementValueEntityLink")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementValueEntityLink")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementValueEntityLink")]
     public partial class DataElementElementValueEntityLink
     {
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="entityRecordId")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "entityRecordId")]
         public string EntityRecordId { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="entityType")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "entityType")]
         public string EntityType { get; set; }
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementElementType")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementElementType")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementElementType")]
     public enum DataElementElementType
     {
-        
+
         text,
-        
+
         memo,
-        
+
         selection,
-        
+
         date,
-        
+
         datePrecise,
-        
+
         dateRange,
-        
+
         integer,
-        
+
         @float,
-        
+
         boolean,
-        
+
         time,
-        
+
         timespan,
-        
+
         hyperlink,
-        
+
         header,
-        
+
         entityLink,
-        
+
         accrual,
-        
+
         fileLink,
-        
+
         mailLink,
-        
+
         image,
-        
+
         media,
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="dataElementVisibility")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "dataElementVisibility")]
     [System.Xml.Serialization.XmlRootAttribute("dataElementVisibility")]
     public enum DataElementVisibility
     {
-        
+
         @public,
-        
+
         @internal,
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataUsage")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataUsage")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataUsage")]
     public partial class ArchiveRecordMetadataUsage
     {
-        
+
         /// <summary>
         /// Internal flag indicating that the unit should be visible online. Can be used to override a protection end date. Attribute is used in the calculation of the end visibility of meta- and primarydata.
         /// </summary>
@@ -877,17 +877,17 @@ namespace CMI.Contract.Common
         /// <summary>
         /// The type of base date used to calculate the protection end date.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="protectionBaseDate")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "protectionBaseDate")]
         public string ProtectionBaseDate { get; set; }
         /// <summary>
         /// The protection duration in years according to the protection category.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="protectionDuration")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "protectionDuration")]
         public System.Nullable<int> ProtectionDuration { get; set; }
         /// <summary>
         /// The protection end date. (Schutzfrist Enddatum)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true, ElementName="protectionEndDate")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", IsNullable = true, ElementName = "protectionEndDate")]
         public System.Nullable<System.DateTime> ProtectionEndDate { get; set; }
         /// <summary>
         /// Indicates if the protection end date cannot be underrun. (Nicht unterschreitbar).
@@ -930,37 +930,37 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("license")]
         public ArchiveRecordMetadataUsageLicense License { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataUsageLicense")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataUsageLicense")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataUsageLicense")]
     public enum ArchiveRecordMetadataUsageLicense
     {
-        
+
         CC0,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY")]
         CCBY,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY-SA")]
         CCBYSA,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY-ND")]
         CCBYND,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY-NC")]
         CCBYNC,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY-NC-SA")]
         CCBYNCSA,
-        
+
         [System.Xml.Serialization.XmlEnumAttribute("CC BY-NC-ND")]
         CCBYNCND,
-        
+
         Undefined,
     }
-    
+
     /// <summary>
     /// The node information defines the position of this archive record in regard to the other records. Archive records are arranged in a hierarchy (tree graph).
     /// </summary>
@@ -968,15 +968,15 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="nodeInfo")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="nodeInfo")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "nodeInfo")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "nodeInfo")]
     public partial class NodeInfo
     {
-        
+
         /// <summary>
         /// The id of the parent node. Each archive record has exactly one parent, except for the root node.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, ElementName="parentArchiveRecordId")]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, ElementName = "parentArchiveRecordId")]
         public string ParentArchiveRecordId { get; set; }
         /// <summary>
         /// The path is the concatenated string containing the archive record ids from the root down to the current level.
@@ -1009,7 +1009,7 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("childCount")]
         public long ChildCount { get; set; }
     }
-    
+
     /// <summary>
     /// A list with containers where the archival records are physically stored.
     /// </summary>
@@ -1017,19 +1017,19 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataContainers")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataContainers")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataContainers")]
     public partial class ArchiveRecordMetadataContainers
     {
-        
+
         /// <summary>
         /// This element contains the data describing a container.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("container", ElementName="container")]
+        [System.Xml.Serialization.XmlElementAttribute("container", ElementName = "container")]
         public List<ArchiveRecordMetadataContainersContainer> Container { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="numberOfContainers")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "numberOfContainers")]
         public int NumberOfContainers { get; set; }
-        
+
         /// <summary>
         /// ArchiveRecordMetadataContainers class constructor
         /// </summary>
@@ -1038,7 +1038,7 @@ namespace CMI.Contract.Common
             this.Container = new List<ArchiveRecordMetadataContainersContainer>();
         }
     }
-    
+
     /// <summary>
     /// This element contains the data describing a container.
     /// </summary>
@@ -1046,11 +1046,11 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataContainersContainer")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataContainersContainer")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataContainersContainer")]
     public partial class ArchiveRecordMetadataContainersContainer
     {
-        
+
         [System.Xml.Serialization.XmlElementAttribute("containerLocation")]
         public string ContainerLocation { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("containerType")]
@@ -1062,16 +1062,16 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("containerCarrierMaterial")]
         public string ContainerCarrierMaterial { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataReference")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataReference")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataReference")]
     public partial class ArchiveRecordMetadataReference
     {
-        
+
         /// <summary>
         /// A human readable name for the linked entity.
         /// </summary>
@@ -1082,19 +1082,19 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("role")]
         public string Role { get; set; }
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="archiveRecordId")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "archiveRecordId")]
         public string ArchiveRecordId { get; set; }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="archiveRecordMetadataFile")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "archiveRecordMetadataFile")]
     [System.Xml.Serialization.XmlRootAttribute("archiveRecordMetadataFile")]
     public partial class ArchiveRecordMetadataFile
     {
-        
+
         /// <summary>
         /// The full file name as found on the disk
         /// </summary>
@@ -1129,7 +1129,7 @@ namespace CMI.Contract.Common
         /// <summary>
         /// The document encoded as base64Binary
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", ElementName="contentBinary")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "base64Binary", ElementName = "contentBinary")]
         public byte[] ContentBinary { get; set; }
         /// <summary>
         /// The extracted full text of the document
@@ -1147,7 +1147,7 @@ namespace CMI.Contract.Common
         [System.Xml.Serialization.XmlElementAttribute("sortOrder")]
         public int SortOrder { get; set; }
     }
-    
+
     /// <summary>
     /// This element is used to list all individual datafields the item can have.
     /// </summary>
@@ -1155,14 +1155,14 @@ namespace CMI.Contract.Common
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, TypeName="detailData")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false, ElementName="detailData")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "detailData")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "detailData")]
     public partial class DetailData
     {
-        
-        [System.Xml.Serialization.XmlElementAttribute("dataElement", ElementName="dataElement")]
+
+        [System.Xml.Serialization.XmlElementAttribute("dataElement", ElementName = "dataElement")]
         public List<DataElement> DataElement { get; set; }
-        
+
         /// <summary>
         /// DetailData class constructor
         /// </summary>

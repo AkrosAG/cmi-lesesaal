@@ -315,8 +315,6 @@ Examples for the token can be:
                                                   </xs:annotation>
                                                   </xs:element>
                                                   <xs:element name="fileSize" type="xs:long"/>
-                                                  <xs:element name="contentBinary"
-                                                  type="xs:base64Binary">
                                                   <xs:annotation>
                                                   <xs:documentation>The document encoded as base64Binary</xs:documentation>
                                                   </xs:annotation>

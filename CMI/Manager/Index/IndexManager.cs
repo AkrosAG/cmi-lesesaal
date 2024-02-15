@@ -226,7 +226,7 @@ namespace CMI.Manager.Index
                     Description = f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
-                    Base64Content = f.DownloadUrl,
+                    DownloadUrl = f.DownloadUrl,
                     Art = f.Kind,
                     Publikation= f.Publikation,
                     Version = f.SortOrder // SortOrder is used here to transport the version
