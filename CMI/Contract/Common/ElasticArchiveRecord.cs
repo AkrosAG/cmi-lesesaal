@@ -285,7 +285,7 @@ namespace CMI.Contract.Common
         public long SizeInBytes { get; set; }
         public string Filename { get; set; }
         public string Extension { get; set; }
-        public string Base64Content { get; set; }
+        public string DownloadUrl { get; set; }
         public string Description { get; set; }
         public string Art { get; set; }
         public int Version { get; set; }

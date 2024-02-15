@@ -125,8 +125,6 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		});
 	}
 
-
-
 	public hasRight(): boolean {
 		return this._aut.hasApplicationFeature(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeView);
 	}
