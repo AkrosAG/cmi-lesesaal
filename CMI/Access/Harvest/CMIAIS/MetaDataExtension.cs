@@ -24,6 +24,14 @@ namespace CMI.Access.Harvest
             }
         }
 
+        public static string GetCdwsUrl(this Datei file, string cdwsEndpoint)
+        {
+            var baseUrl = cdwsEndpoint?.ToLower().Replace("index", "files");
+            var fileUrl = $"{baseUrl}{file.File.ID}/{file.LastVersion.Nr}/{file.LastVersion.Items[0].Ansicht}";
+
+            return fileUrl;
+        }
+
         public static string GetFullPath(this Datei file, string root)
         {
             return Path.Combine(root,                                   // CDWS_ROOT
@@ -34,34 +42,29 @@ namespace CMI.Access.Harvest
                                 file.Filename);                         // Filename
         }
 
-        public static async Task AddFileContentAsync(this ArchiveRecord archiveRecord, Verzeichnungseinheit record)
+        public static void AddFileInformation(this ArchiveRecord archiveRecord, Verzeichnungseinheit record)
         {
             var source = record.Dateien.Where(f => f.IsOriginal()).ToList();
             if (source.Any() && archiveRecord.Metadata.Files != null)
             {
                 foreach (var file in source)
                 {
-                    var path = file.GetFullPath(Settings.Default.CdwsRoot);
-                    Log.Information($"Check file {path}.");
-                    if (File.Exists(path))
+                    var fileSize = long.TryParse(file.FileSize, out var size) ? size : 0;
+                    var metadataFile = new ArchiveRecordMetadataFile
                     {
-                        var bytes = await ReadAllBytesAsync(path);
-                        var metadataFile = new ArchiveRecordMetadataFile
-                        {
-                            Title = file.Titel,
-                            FileType = file.FileType,
-                            FileName = file.Filename,
-                            FileExtension = file.FileExtension,
-                            FileSize = bytes.LongLength,
-                            Description = file.Bemerkungen,
-                            ContentText = Convert.ToBase64String(bytes),
-                            Kind = file.Art.Item.Bezeichnung,
-                            Publikation= file.Publikation,
-                            SortOrder = ((int)file.LastVersion.Nr)  // Value is a decimal and will be truncated
-                        };
-                        archiveRecord.Metadata.Files.Add(metadataFile);
-                        Log.Information($"Added file content to Metadata: {bytes.LongLength} Bytes.");
-                    }
+                        Title = file.Titel,
+                        FileType = file.FileType,
+                        FileName = file.Filename,
+                        FileExtension = file.FileExtension,
+                        FileSize = fileSize,
+                        Description = file.Bemerkungen,
+                        Kind = file.Art.Item.Bezeichnung,
+                        Publikation = file.Publikation,
+                        SortOrder = ((int)file.LastVersion.Nr),  // Value is a decimal and will be truncated
+                        DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
+                    };
+                    Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
+                    archiveRecord.Metadata.Files.Add(metadataFile);
                 }
             }
         }

@@ -171,25 +171,28 @@ namespace CMI.Web.Frontend.api.Controllers
                     }
 
                     var mediaType = MimeMapping.GetMimeMapping(file.Filename);
-                    var buffer = Convert.FromBase64String(file.Base64Content);
+                    var buffer = await GetFileContentFromUrlAsync(file.DownloadUrl);
+                    if (buffer != null && buffer.Any())
+                    {
+                        var response = new HttpResponseMessage
+                        {
+                            Content = new StreamContent(new MemoryStream(buffer))
+                        };
+                        response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
+                        response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
+                        {
+                            FileName = name
+                        } :
+                        new ContentDispositionHeaderValue("inline")
+                        {
+                            FileName = name
+                        };
 
-                    var response = new HttpResponseMessage
-                    {
-                        Content = new StreamContent(new MemoryStream(buffer))
-                    };
-                    response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-                    response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
-                    {
-                        FileName = name
-                    } :
-                    new ContentDispositionHeaderValue("inline")
-                    {
-                        FileName = name
-                    };
-                    
-                    var result = await Task.FromResult(response);
-                    return ResponseMessage(result);
+                        var result = await Task.FromResult(response);
+                        return ResponseMessage(result);
+                    }
                 }
+                
                 return BadRequest($"{name} could not be found.");
             }
             catch (Exception e)
@@ -426,6 +429,24 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             return access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens);
+        }
+
+        private async Task<byte[]> GetFileContentFromUrlAsync(string url)
+        {
+            using var httpClient = new HttpClient();
+            try
+            {
+                var response = await httpClient.GetAsync(url);
+                if(response.IsSuccessStatusCode) 
+                {
+                    return await response.Content.ReadAsByteArrayAsync();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Log.Error(ex, "HTTP request failed: {message}", ex.Message);
+            }
+            return null;
         }
     }
 }
