@@ -45,7 +45,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
 
                 var archiveRecord = archiveRecordBuilder.Build();
-                await archiveRecord.AddFileContentAsync(cmiRecord);
+                archiveRecord.AddFileInformation(cmiRecord);
                 archiveRecord.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, archiveRecord);
                 
                 await processHandler.PostProcessArchiveRecord(archiveRecord);
