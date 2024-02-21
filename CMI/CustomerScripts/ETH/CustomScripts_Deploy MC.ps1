@@ -20,13 +20,6 @@ $arr["HSA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\HSA\Management\clien
 $arr["HSA"]["logo.svg"] = "D:\localapps\LesesaalWeb\HSA\Management\client\assets\img";
 $arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\HSA\Management\client\assets\img";
 
-
-$arr["ETH"] = @{}
-$arr["ETH"]["loading-site.css"] = "D:\localapps\LesesaalWeb\Management\client\assets\css";
-$arr["ETH"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\Management\client\config";
-$arr["ETH"]["logo.svg"] = "D:\localapps\LesesaalWeb\Management\client\assets\img";
-$arr["ETH"]["logo.png"] = "D:\localapps\LesesaalWeb\Management\client\assets\img";
-
 $arr["TMA"] = @{}
 $arr["TMA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\css";
 $arr["TMA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\TMA\Management\client\config";
@@ -44,7 +37,6 @@ $arr["DEV"]["logo.png"] = "D:\localapps\LesesaalWeb\DEV\Management\client\assets
 ## Source
 switch($target) {
     "DEV" { $source = ".\HSA\" }
-    "ETH" { $source = ".\HSA\" }
     "HSA" { $source = ".\HSA\" }
 
     "MFA" { $source = ".\MFA\" }
