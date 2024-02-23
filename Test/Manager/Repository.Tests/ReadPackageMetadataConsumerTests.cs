@@ -35,7 +35,7 @@ namespace CMI.Manager.Repository.Tests
                 var mutationId = 666;
                 var errMsg = "Some error message";
                 var appendResult = new RepositoryPackageInfoResult { Valid = false, Success = false, ErrorMessage = errMsg };
-                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).Returns(appendResult);
+                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(appendResult);
 
                 var readMetadataConsumer = harness.Consumer(() => readPackageMetadataConsumer.Object);
                 harness.Consumer(() => new ReadPackageMetadataConsumer(repositoryManager.Object));
@@ -88,7 +88,7 @@ namespace CMI.Manager.Repository.Tests
                 var mutationId = 999;
                 var errMsg = "Some other error message";
                 var appendResult = new RepositoryPackageInfoResult { Valid = false, Success = true, ErrorMessage = errMsg };
-                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).Returns(appendResult);
+                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(appendResult);
 
                 var readMetadataConsumer = harness.Consumer(() => readPackageMetadataConsumer.Object);
                 harness.Consumer(() => new ReadPackageMetadataConsumer(repositoryManager.Object));
@@ -143,7 +143,7 @@ namespace CMI.Manager.Repository.Tests
                 var errMsg = string.Empty;
                 var appendResult = new RepositoryPackageInfoResult
                     { Valid = true, Success = true, ErrorMessage = errMsg, PackageDetails = new RepositoryPackage { ArchiveRecordId = ar.ArchiveRecordId } };
-                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).Returns(appendResult);
+                repositoryManager.Setup(e => e.ReadPackageMetadata(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(appendResult);
 
                 var readMetadataConsumer = harness.Consumer(() => readPackageMetadataConsumer.Object);
                 harness.Consumer(() => new ReadPackageMetadataConsumer(repositoryManager.Object));
