@@ -42,6 +42,7 @@ namespace CMI.Manager.Repository.Infrastructure
                     builder.RegisterType<RosettaRepositoryProvider>().As<IRepositoryProvider>();
                     builder.RegisterType<RosettaPackageHandler>().As<IPackageHandler>();
                     builder.RegisterType<RosettaDataAccess>().As<IRosettaDataAccess>();
+                    builder.RegisterType<RosettaConnector>();
                     builder.RegisterType<RosettaRepositoryCheck>().As<IRepositoryCheck>();
                     break;
                 case "dir":

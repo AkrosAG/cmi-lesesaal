@@ -67,6 +67,7 @@
     <Compile Include="Systems\Dir\DirRepositoryConnectionFactory.cs" />
     <Compile Include="Systems\Dir\DirRepositoryDataAccess.cs" />
     <Compile Include="Systems\Rosetta\IRosettaDataAccess.cs" />
+    <Compile Include="Systems\Rosetta\RosettaConnector.cs" />
     <Compile Include="Systems\Rosetta\RosettaDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
