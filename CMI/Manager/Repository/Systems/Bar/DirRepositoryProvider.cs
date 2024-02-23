@@ -235,7 +235,7 @@ public class DirRepositoryProvider: IRepositoryProvider
         return retVal;
     }
 
-    public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
     {
         // Init the return value
         var retVal = new RepositoryPackageInfoResult
@@ -286,7 +286,7 @@ public class DirRepositoryProvider: IRepositoryProvider
             throw;
         }
 
-        return retVal;
+        return await Task.FromResult(retVal);
     }
 
     private async Task UpdatePrimaerdatenAuftragStatus(int primaerdatenAuftragId, AufbereitungsStatusEnum status, string errorText = null)

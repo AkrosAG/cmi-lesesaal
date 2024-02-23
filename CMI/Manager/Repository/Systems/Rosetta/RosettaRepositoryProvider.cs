@@ -31,9 +31,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return null;
         }
 
-        public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
+        public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            var result= rosettaDataAccess.ExportIntellectualEntity(packageId);
+            var result= await rosettaDataAccess.ExportIntellectualEntity(packageId);
             // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
             return null;
         }

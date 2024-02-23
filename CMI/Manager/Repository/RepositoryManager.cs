@@ -94,7 +94,7 @@ public class RepositoryManager : IRepositoryManager
         }
     }
 
-    public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
     {
         // Init the return value
         var retVal = new RepositoryPackageInfoResult
@@ -106,7 +106,7 @@ public class RepositoryManager : IRepositoryManager
 
         try
         {
-            return repositoryProvider.ReadPackageMetadata(packageId, archiveRecordId);
+            return await repositoryProvider.ReadPackageMetadata(packageId, archiveRecordId);
         }
         catch (Exception ex)
         {

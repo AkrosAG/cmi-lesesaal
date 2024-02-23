@@ -31,7 +31,7 @@ namespace CMI.Manager.Repository.Consumer
                 if (context.Message.ArchiveRecord != null)
                 {
                     // Get the package from the repository
-                    var result = repositoryManager.ReadPackageMetadata(context.Message.ArchiveRecord.Metadata.PrimaryDataLink,
+                    var result = await repositoryManager.ReadPackageMetadata(context.Message.ArchiveRecord.Metadata.PrimaryDataLink,
                         context.Message.ArchiveRecord.ArchiveRecordId);
 
                     // Inform the world about the created package
