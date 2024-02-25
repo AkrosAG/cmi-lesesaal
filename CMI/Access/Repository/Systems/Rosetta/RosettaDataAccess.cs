@@ -23,10 +23,13 @@ public class RosettaDataAccess : IRosettaDataAccess
     {
         entityId ??= "IE444295";
 
-        var result = await rosettaConnector.InitExport(entityId);
-
-        Log.Information($"Intellectual Entity {entityId} exported successfully.");
-
-        return result;
+        var path = await rosettaConnector.ExportEntityAsync(entityId);
+        if(!string.IsNullOrEmpty(path))
+        {
+            Log.Information($"Intellectual Entity {entityId} exported successfully to {path}.");
+            return path;
+        }
+        
+        return null;
     }
 }
