@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Linq;
+using System.Data.SqlTypes;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+
 using CMI.Access.Repository.Properties;
 using Serilog;
 
@@ -12,32 +14,74 @@ namespace CMI.Access.Repository.Systems.Rosetta
 {
     public class RosettaConnector
     {
+        private const int maxCommandExecutionTime = 60000;
+        private const int maxCommandTimeout = 1000;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
 
-        public async Task<string> InitExport(string entityId)
+        public async Task<string> ExportEntityAsync(string entityId)
         {
             // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE7731039?op=export
 
-            var url = $"{Settings.Default.RepositoryServiceUrl}{entityId}?op=export";
-            var xmlString = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
+            var url = $"{Settings.Default.RepositoryServiceUrl}/rest/v0/ies/{entityId}?op=export";
+            var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
 
-            var processUrl = GetProcessUrl(xmlString);
-            if (string.IsNullOrEmpty(processUrl))
+            var entityExportResult = new EntityExportResult(exportXml);
+
+            if (string.IsNullOrEmpty(entityExportResult.ProcessUrl))
             {
                 Log.Error("Failed to get process URL for entity {entityId}", entityId);
                 return null;
             }
 
-            return await WaitUntilReady(processUrl);    
+            var timeoutCancellation = new CancellationTokenSource(maxCommandExecutionTime);
+            try
+            {
+                var success =  await WaitForCompletitionAsync(entityExportResult.ProcessUrl, timeoutCancellation.Token);
+                return success ? entityExportResult.ExportPath : null;
+            }
+            catch (OperationCanceledException)
+            {
+                if (timeoutCancellation.IsCancellationRequested)
+                {
+                    Log.Error("Export process for entity {entityId} timed out", entityId);
+                }
+                throw;
+            }
         }
 
-        public async Task<string> WaitUntilReady(string path)
+        private async Task<bool> WaitForCompletitionAsync(string processUrl, CancellationToken stopToken)
         {
-            return await Task.FromResult("");
+            processUrl = $"{Settings.Default.RepositoryServiceUrl}/{processUrl}";
+            Log.Information("Getting status for export process {processUrl}", processUrl);
+
+            using var httpClient = GetHttpClient();
+            while (true)
+            {   
+                stopToken.ThrowIfCancellationRequested();
+                var response = await httpClient.GetAsync(processUrl,HttpCompletionOption.ResponseContentRead, stopToken);
+                response.EnsureSuccessStatusCode();
+                
+                var statusXml = await response.Content.ReadAsStringAsync();
+                var statusElement = XDocument.Parse(statusXml).Root.Element("status");
+                
+                switch (statusElement?.Value)
+                {
+                    case "COMPLETED_SUCCESS":
+                        return true;
+                    case "RUNNING":
+                        Log.Information("Process status: {status}", statusElement.Value);
+                        break;
+                    default:
+                        Log.Error("Failed to get status for process {processUrl}: {status}", processUrl, statusElement?.Value ?? "NULL");
+                        return false;
+                }
+               
+                await Task.Delay(maxCommandTimeout, stopToken);
+            }
         }
 
-        public async Task<string> PostAsync(string url, HttpContent content)
+        private async Task<string> PostAsync(string url, HttpContent content)
         {
             using var httpClient = GetHttpClient();
             try
@@ -56,19 +100,9 @@ namespace CMI.Access.Repository.Systems.Rosetta
             return null;
         }
 
-        private string GetProcessUrl(string xml)
-        {
-            var xmlDoc = XDocument.Parse(xml);
-            var node = xmlDoc.Descendants("info")
-                        .FirstOrDefault(e => e.Attribute("desc")?.Value == "process_instance_id_link");
-
-            return node?.Value;
-        }
-
         private HttpClient GetHttpClient()
         {
             var httpClient = new HttpClient();
-
 
             var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
