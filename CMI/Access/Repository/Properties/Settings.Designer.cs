@@ -26,12 +26,25 @@ namespace CMI.Access.Repository.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryServiceUrl@@")]
-        public string RepositoryServiceUrl {
+        public string RepositoryServiceUrl
+        {
             get {
                 return ((string)(this["RepositoryServiceUrl"]));
             }
         }
-        
+
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryExportIEUrl@@")]
+        public string RepositoryExportIEUrl
+        {
+            get
+            {
+                return ((string)(this["RepositoryExportIEUrl"]));
+            }
+        }
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("atom")]

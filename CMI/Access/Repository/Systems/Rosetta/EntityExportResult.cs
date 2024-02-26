@@ -3,9 +3,13 @@ using System.Xml.Linq;
 
 namespace CMI.Access.Repository.Systems.Rosetta
 {
-    internal class EntityExportResult(string xml)
+    internal class EntityExportResult
     {
-        private readonly XDocument xmlDoc = !string.IsNullOrEmpty(xml) ? XDocument.Parse(xml) : null;
+        internal EntityExportResult(string xml)
+        {
+            xmlDoc = !string.IsNullOrEmpty(xml) ? XDocument.Parse(xml) : null;
+        }
+        private readonly XDocument xmlDoc;
 
         public string ProcessUrl => xmlDoc?.Descendants("info")
                 .FirstOrDefault(e => e.Attribute("desc")?.Value == "process_instance_id_link")?.Value;

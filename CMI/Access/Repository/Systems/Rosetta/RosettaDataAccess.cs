@@ -21,7 +21,7 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<string> ExportIntellectualEntity(string entityId)
     {
-        entityId ??= "IE444295";
+        entityId = "IE444295";
 
         var path = await rosettaConnector.ExportEntityAsync(entityId);
         if(!string.IsNullOrEmpty(path))
