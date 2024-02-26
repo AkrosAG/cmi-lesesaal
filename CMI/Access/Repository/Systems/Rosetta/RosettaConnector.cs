@@ -18,7 +18,7 @@ namespace CMI.Access.Repository.Systems.Rosetta
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
 
-        public async Task<string> ExportEntityAsync(string entityId)
+        public async Task<string> StartExportAsync(string entityId)
         {
             // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE444295?op=export
             var url = string.Format(Settings.Default.RepositoryExportIEUrl, entityId);
