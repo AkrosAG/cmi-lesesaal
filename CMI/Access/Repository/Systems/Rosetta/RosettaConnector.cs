@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlTypes;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -21,9 +20,8 @@ namespace CMI.Access.Repository.Systems.Rosetta
 
         public async Task<string> ExportEntityAsync(string entityId)
         {
-            // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE7731039?op=export
-
-            var url = $"{Settings.Default.RepositoryServiceUrl}/rest/v0/ies/{entityId}?op=export";
+            // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE444295?op=export
+            var url = string.Format(Settings.Default.RepositoryExportIEUrl, entityId);
             var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
 
             var entityExportResult = new EntityExportResult(exportXml);

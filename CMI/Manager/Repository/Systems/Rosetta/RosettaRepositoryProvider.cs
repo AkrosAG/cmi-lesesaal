@@ -27,14 +27,16 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
+            var result =  await rosettaDataAccess.ExportIntellectualEntity(packageId);
+
             return null;
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            var result= await rosettaDataAccess.ExportIntellectualEntity(packageId);
-            // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
+            // andere Methode verwenden
+            await rosettaDataAccess.ExportIntellectualEntity(packageId);
             return null;
         }
     }
