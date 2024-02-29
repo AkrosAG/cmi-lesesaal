@@ -169,15 +169,7 @@ namespace CMI.Manager.Index
                     Role = s.Role
                 })
                 .ToList();
-            elasticArchiveRecord.Containers = archiveRecord.Metadata.Containers.Container.Select(s => new ElasticContainer
-                {
-                    ContainerLocation = s.ContainerLocation,
-                    ContainerType = s.ContainerType,
-                    IdName = s.IdName,
-                    ContainerCode = s.ContainerCode,
-                    ContainerCarrierMaterial = s.ContainerCarrierMaterial
-                })
-                .ToList();
+
             elasticArchiveRecord.Descriptors = archiveRecord.Metadata.Descriptors.Select(s => new ElasticDescriptor
                 {
                     Description = s.Description,
@@ -206,11 +198,10 @@ namespace CMI.Manager.Index
 
                 })
                 .ToList();
-
            
 
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
-            
+            GenerateStandortInfo(elasticArchiveRecord, archiveRecord.Metadata.Containers.Container);
 
             // If we receive data in the ElasticPrimaryData field, then we use this field. If not, then the PrimaryData field is used
             elasticArchiveRecord.PrimaryData = archiveRecord.ElasticPrimaryData != null && archiveRecord.ElasticPrimaryData.Any()
@@ -463,6 +454,28 @@ namespace CMI.Manager.Index
             var filename = $"{referenceCode}_{Regex.Match(name, ".{0,20}$").Value}";
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
+
+
+        private void GenerateStandortInfo(ElasticArchiveRecord elasticArchiveRecord, List<ArchiveRecordMetadataContainersContainer> standortContainer)
+        {
+            if (standortContainer?.Count > 0)
+            {
+                var standort = new ElasticDetailData
+                {
+                    ElementName = "Standort",
+                    TextValues = new List<string>(),
+                    TypeName = ElasticFieldTypes.TypeString
+                };
+
+                foreach (var ebene in standortContainer)
+                {
+                    standort.TextValues.Add($"{ebene.IdName}: {ebene.ContainerCode}");
+                }
+
+                elasticArchiveRecord.DetailData.Add(standort);
+            }
+        }
+
 
         private static bool ContainsCustomFieldDigitaleVersion(dynamic customFields)
         {
