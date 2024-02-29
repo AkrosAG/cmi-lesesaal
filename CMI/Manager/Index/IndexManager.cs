@@ -454,8 +454,7 @@ namespace CMI.Manager.Index
             var filename = $"{referenceCode}_{Regex.Match(name, ".{0,20}$").Value}";
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
-
-
+        
         private void GenerateStandortInfo(ElasticArchiveRecord elasticArchiveRecord, List<ArchiveRecordMetadataContainersContainer> standortContainer)
         {
             if (standortContainer?.Count > 0)
@@ -469,14 +468,13 @@ namespace CMI.Manager.Index
 
                 foreach (var ebene in standortContainer)
                 {
-                    standort.TextValues.Add($"{ebene.IdName}: {ebene.ContainerCode}");
+                    standort.TextValues.Add($"{ebene.ContainerCode}: {ebene.IdName}");
                 }
 
                 elasticArchiveRecord.DetailData.Add(standort);
             }
         }
-
-
+        
         private static bool ContainsCustomFieldDigitaleVersion(dynamic customFields)
         {
             if (customFields is Dictionary<string, object> && ((IDictionary<string, object>)customFields).ContainsKey("digitaleVersion"))
