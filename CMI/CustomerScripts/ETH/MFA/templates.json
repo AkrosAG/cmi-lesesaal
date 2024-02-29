@@ -226,6 +226,46 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link auf digitales Original",
+                "en": "Link to Born Digital"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Tektonikpfad",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Tektonikpfad",
+                "en": "Tectonic path"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zum Umfang",
+                "en": "Extent Note"
+              }
             }
           ]
         },
@@ -756,6 +796,46 @@
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link auf digitales Original",
+                "en": "Link to Born Digital"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Tektonikpfad",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Tektonikpfad",
+                "en": "Tectonic path"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zum Umfang",
+                "en": "Extent Note"
               }
             }
           ]
@@ -1291,6 +1371,46 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link auf digitales Original",
+                "en": "Link to Born Digital"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Tektonikpfad",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Tektonikpfad",
+                "en": "Tectonic path"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zum Umfang",
+                "en": "Extent Note"
+              }
             }
           ]
         },
@@ -1824,6 +1944,46 @@
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link auf digitales Original",
+                "en": "Link to Born Digital"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Tektonikpfad",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Tektonikpfad",
+                "en": "Tectonic path"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BemerkungUmfang",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bemerkungen zum Umfang",
+                "en": "Extent Note"
               }
             }
           ]
