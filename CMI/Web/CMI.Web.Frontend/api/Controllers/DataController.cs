@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web.Http;
 using System.Web.Http.Results;
 using CMI.Access.Sql.Lesesaal;
@@ -109,22 +110,32 @@ namespace CMI.Web.Frontend.api.Controllers
                 p = JsonConvert.DeserializeObject<Paging>(paging);
             }
 
-            var entity = entityProvider.GetEntity<DetailRecord>(id, access, p);
-            if(entity is null)
-            {
-                throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
-            }
-            if(access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
+            var entity = entityProvider.GetEntity<DetailRecord>(id, access, p) ?? throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
+
+            // Haben alle im CDWS vorhandenen Dateien einer VE den Feldwert bei Publikation "Sofort",
+            // dann werden diese sämtlichen Usern angezeigt(Ö1 und höher).
+            // Die User können die Dateien ohne Einsichtsgesuch einsehen und herunterladen.
+            if (entity.Data.Files != null && entity.Data.Files.All(f => f.Publikation != null && f.Publikation.ToLower() == "sofort"))
             {
                 return entity;
             }
-            else
+
+            // Hat mindestens eine im CDWS vorhandenen Dateien einer VE einen anderen Feldwert bei Publikation als "Sofort",
+            // dann können nur AMA(vormals:BAR) User diese einsehen und herunterladen.Angemeldete User einer anderen Berechtigungsstufe (Ö2 und höher)
+            // können in diesem Fall ein Einsichtsgesuch stellen.
+            if (entity.Data.Files != null && entity.Data.Files.Any(f => f.Publikation != null && f.Publikation.ToLower() != "sofort"))
             {
-                entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
-                var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation != null &&  f.Publikation.ToLower() == "sofort").ToList();
-                entity.Data.Files = withoutProtectedFiles;
-                
-                return entity;
+                if (access.HasAnyTokenFor(new[] { "AMA" }))
+                {
+                    return entity;
+                }
+                else
+                {
+                    entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
+                    var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation != null && f.Publikation.ToLower() == "sofort").ToList();
+                    entity.Data.Files = withoutProtectedFiles;
+                    return entity;
+                }
             }
         }
 
