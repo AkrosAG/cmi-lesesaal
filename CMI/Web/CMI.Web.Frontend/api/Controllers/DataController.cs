@@ -112,6 +112,12 @@ namespace CMI.Web.Frontend.api.Controllers
 
             var entity = entityProvider.GetEntity<DetailRecord>(id, access, p) ?? throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
 
+            // ???
+            if (access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
+            {
+                return entity;
+            }
+            
             // Haben alle im CDWS vorhandenen Dateien einer VE den Feldwert bei Publikation "Sofort",
             // dann werden diese sämtlichen Usern angezeigt(Ö1 und höher).
             // Die User können die Dateien ohne Einsichtsgesuch einsehen und herunterladen.
@@ -131,6 +137,10 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
                 else
                 {
+                    // Sind zu einer VE Dateien vorhanden, zu denen der User keine Berechtigung hat,
+                    // dann wird folgender Hinweis angezeigt(z.B.wenn der User nicht angemeldet ist
+                    // oder die Benutzerstufe ein Einsichtsgesuch erfordert):
+
                     entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
                     var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation != null && f.Publikation.ToLower() == "sofort").ToList();
                     entity.Data.Files = withoutProtectedFiles;
@@ -145,7 +155,7 @@ namespace CMI.Web.Frontend.api.Controllers
             var access = GetUserAccess(language ?? WebHelper.GetClientLanguage(Request));
 
             var idList = !string.IsNullOrEmpty(ids)
-                ? ids.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries).ToList()
+                ? ids.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList()
                 : new List<string>();
 
             return entityProvider.GetEntities<TreeRecord>(idList, access, paging);
@@ -162,7 +172,7 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 string language = WebHelper.GetClientLanguage(Request);
                 var error = entityProvider.CheckSearchParameters(search, language);
-                
+
                 if (!string.IsNullOrEmpty(error))
                 {
                     return new BadRequestErrorMessageResult(error, this);
@@ -208,7 +218,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     {
                         Error = new ApiError
                         {
-                            StatusCode = (int) HttpStatusCode.Forbidden,
+                            StatusCode = (int)HttpStatusCode.Forbidden,
                             Message = error,
                             Details = string.Empty
                         }
@@ -251,7 +261,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 {
                     Error = new ApiError
                     {
-                        StatusCode = (int) HttpStatusCode.InternalServerError,
+                        StatusCode = (int)HttpStatusCode.InternalServerError,
                         Message = FrontendSettings.Instance.GetTranslation(language, "search.unexpectedSystemError",
                             "Es ist ein unerwarteter Fehler aufgetreten.")
                     }
@@ -319,7 +329,7 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             // Need to convert to Json, because Frontent client cannot parse direct value
-            return Ok(new BooleanResponseDto {Value = result});
+            return Ok(new BooleanResponseDto { Value = result });
         }
 
 
@@ -367,7 +377,7 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 Error = new ApiError
                 {
-                    StatusCode = (int) HttpStatusCode.PreconditionFailed,
+                    StatusCode = (int)HttpStatusCode.PreconditionFailed,
                     Identifier = "Captcha.Missing",
                     Message = settings.GetTranslation(language, "search.captchaMissing", "Es fehlen die Daten zur Captcha-Überprüfung.")
                 }
@@ -382,7 +392,7 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 Error = new ApiError
                 {
-                    StatusCode = (int) HttpStatusCode.PreconditionFailed,
+                    StatusCode = (int)HttpStatusCode.PreconditionFailed,
                     Identifier = "Captcha.Invalid",
                     Message = settings.GetTranslation(language, "search.captchaInvalid", "Die Daten zur Captcha-Überprüfung sind ungültig."),
                     Details = settings.GetTranslation(language, "search.captchaInvalidDetails", "Bitte versuchen Sie es erneut.")
