@@ -112,40 +112,20 @@ namespace CMI.Web.Frontend.api.Controllers
 
             var entity = entityProvider.GetEntity<DetailRecord>(id, access, p) ?? throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
 
-            // ???
             if (access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
             {
                 return entity;
             }
-            
-            // Haben alle im CDWS vorhandenen Dateien einer VE den Feldwert bei Publikation "Sofort",
-            // dann werden diese sämtlichen Usern angezeigt(Ö1 und höher).
-            // Die User können die Dateien ohne Einsichtsgesuch einsehen und herunterladen.
-            if (entity.Data.Files != null && entity.Data.Files.All(f => f.Publikation != null && f.Publikation.ToLower() == "sofort"))
+            else
             {
+                var hasProtectedFiles = entity.Data.CheckForProtectedFiles();
+                if(hasProtectedFiles)
+                {
+                    entity.Data.HasProtectedFiles = true;
+                    entity.Data.Files = new List<ElasticArchiveRecordFile>();
+                }
+                
                 return entity;
-            }
-
-            // Hat mindestens eine im CDWS vorhandenen Dateien einer VE einen anderen Feldwert bei Publikation als "Sofort",
-            // dann können nur AMA(vormals:BAR) User diese einsehen und herunterladen.Angemeldete User einer anderen Berechtigungsstufe (Ö2 und höher)
-            // können in diesem Fall ein Einsichtsgesuch stellen.
-            if (entity.Data.Files != null && entity.Data.Files.Any(f => f.Publikation != null && f.Publikation.ToLower() != "sofort"))
-            {
-                if (access.HasAnyTokenFor(new[] { "AMA" }))
-                {
-                    return entity;
-                }
-                else
-                {
-                    // Sind zu einer VE Dateien vorhanden, zu denen der User keine Berechtigung hat,
-                    // dann wird folgender Hinweis angezeigt(z.B.wenn der User nicht angemeldet ist
-                    // oder die Benutzerstufe ein Einsichtsgesuch erfordert):
-
-                    entity.Data.HasProtectedFiles = entity.Data.CheckForProtectedFiles();
-                    var withoutProtectedFiles = entity.Data.Files.Where(f => f.Publikation != null && f.Publikation.ToLower() == "sofort").ToList();
-                    entity.Data.Files = withoutProtectedFiles;
-                    return entity;
-                }
             }
         }
 
