@@ -111,7 +111,6 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             var entity = entityProvider.GetEntity<DetailRecord>(id, access, p) ?? throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
-
             if (access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
             {
                 return entity;
@@ -124,7 +123,6 @@ namespace CMI.Web.Frontend.api.Controllers
                     entity.Data.HasProtectedFiles = true;
                     entity.Data.Files = new List<ElasticArchiveRecordFile>();
                 }
-                
                 return entity;
             }
         }
