@@ -151,6 +151,7 @@ namespace CMI.Web.Frontend.api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> GetMetadataFile(string id, string name, bool download = false)
         {
             try
