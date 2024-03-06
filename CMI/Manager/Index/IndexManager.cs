@@ -223,6 +223,8 @@ namespace CMI.Manager.Index
                     Version = f.SortOrder // SortOrder is used here to transport the version
                 });
                 elasticArchiveRecord.Files.AddRange(files);
+                elasticArchiveRecord.HasProtectedFiles =  elasticArchiveRecord.Files.Any(f => f.Publikation.ToLower() != "sofort");
+                
                 Log.Information($"Added {files.Count()} files to {nameof(elasticArchiveRecord)}");
             }
 

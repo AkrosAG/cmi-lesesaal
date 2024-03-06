@@ -49,32 +49,34 @@ namespace CMI.Access.Harvest
             {
                 foreach (var file in source)
                 {
-                    var fileSize = long.TryParse(file.FileSize, out var size) ? size : 0;
-                    var metadataFile = new ArchiveRecordMetadataFile
+                    var path = file.GetFullPath(Settings.Default.CdwsRoot);
+                    Log.Information($"Check file {path}.");
+                    if (File.Exists(path))
                     {
-                        Title = file.Titel,
-                        FileType = file.FileType,
-                        FileName = file.Filename,
-                        FileExtension = file.FileExtension,
-                        FileSize = fileSize,
-                        Description = file.Bemerkungen,
-                        Kind = file.Art.Item.Bezeichnung,
-                        Publikation = file.Publikation,
-                        SortOrder = ((int)file.LastVersion.Nr),  // Value is a decimal and will be truncated
-                        DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
-                    };
-                    Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
-                    archiveRecord.Metadata.Files.Add(metadataFile);
+                        var fileInfo = new FileInfo(path);
+
+                        var metadataFile = new ArchiveRecordMetadataFile
+                        {
+                            Title = file.Titel,
+                            FileType = file.FileType,
+                            FileName = file.Filename,
+                            FileExtension = file.FileExtension,
+                            FileSize = fileInfo.Length,
+                            Description = file.Bemerkungen,
+                            Kind = file.Art.Item.Bezeichnung,
+                            Publikation = file.Publikation,
+                            SortOrder = ((int)file.LastVersion.Nr),  // Value is a decimal and will be truncated
+                            DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
+                        };
+                        Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
+                        archiveRecord.Metadata.Files.Add(metadataFile);
+                    }
+                    else
+                    {
+                        Log.Warning($"File {path} not found.");
+                    }
                 }
             }
-        }
-
-        private static async Task<byte[]> ReadAllBytesAsync(string path)
-        {
-            using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true);
-            var buffer = new byte[fileStream.Length];
-            await fileStream.ReadAsync(buffer, 0, buffer.Length);
-            return buffer;
         }
     }
 
