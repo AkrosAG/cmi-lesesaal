@@ -19,6 +19,7 @@ namespace CMI.Contract.Common.Compiler
                     archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                     break;
 
+                case "teile davon gesuchspflichtig":
                 case "teilweise gesuchspflichtig":
                 case "gesuchspflichtig":
 
