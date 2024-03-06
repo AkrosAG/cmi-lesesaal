@@ -101,7 +101,7 @@ export class DetailPageComponent implements OnInit {
 		try {
 			const id = this._url.getDetailIdFromReference(idOrReference);
 			let entity = this.entity = await this._entityService.get(id);
-			this.hasFiles = this.entity.files && this.entity.files.length > 0;
+			this.hasFiles = (this.entity.files && this.entity.files.length > 0) || this.entity.hasProtectedFiles;
 
 			if (!_util.isEmpty(entity)) {
 				this._buildCrumbs(entity);
