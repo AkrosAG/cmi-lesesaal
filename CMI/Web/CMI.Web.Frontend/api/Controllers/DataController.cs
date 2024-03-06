@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
 using System.Web.Http;
 using System.Web.Http.Results;
 using CMI.Access.Sql.Lesesaal;
@@ -115,16 +114,13 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 return entity;
             }
-            else
+
+            if (entity.Data.HasProtectedFiles)
             {
-                var hasProtectedFiles = entity.Data.CheckForProtectedFiles();
-                if(hasProtectedFiles)
-                {
-                    entity.Data.HasProtectedFiles = true;
-                    entity.Data.Files = new List<ElasticArchiveRecordFile>();
-                }
-                return entity;
+                entity.Data.Files = new List<ElasticArchiveRecordFile>();
             }
+
+            return entity;
         }
 
         [HttpGet]

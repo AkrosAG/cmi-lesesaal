@@ -83,18 +83,6 @@ namespace CMI.Contract.Common
         public bool HasProtectedFiles { get; set; }
     }
 
-    public static class DetailRecordExtensions
-    {
-        public static bool CheckForProtectedFiles(this DetailRecord record)
-        {
-            if (record == null)
-            {
-                return false;
-            }
-            return (record.Files is not null && record.Files.Any() && record.Files.Any( f => f.Publikation != null && f.Publikation.ToLower() != "sofort"));
-        }
-    }
-
     public class ElasticArchiveRecord : DetailRecord
     {
         public ElasticArchiveRecord()
