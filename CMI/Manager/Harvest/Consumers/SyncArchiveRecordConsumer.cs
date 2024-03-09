@@ -84,8 +84,10 @@ namespace CMI.Manager.Harvest.Consumers
                             return;
                         }
 
-                        // Fetch the (eventally) existing archive record
                         var elasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId);
+
+                        // TODO: Remove
+                        archiveRecord.Metadata.PrimaryDataLink = "TEST";
 
                         // Does the AIS data provide a primary data link?
                         if (string.IsNullOrEmpty(archiveRecord.Metadata.PrimaryDataLink))
@@ -106,6 +108,9 @@ namespace CMI.Manager.Harvest.Consumers
                         }
                         else
                         {
+                            // TODO: Remove
+                            elasticRecord.PrimaryDataLink = ".";
+                            
                             // Is the primary data of the existing elastic record and the ais record the same?
                             // And is the full resync option NOT set
                             if (elasticRecord != null && elasticRecord.PrimaryDataLink == archiveRecord.Metadata.PrimaryDataLink &&
