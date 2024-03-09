@@ -251,6 +251,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RepositoryPackageBuilderTests .cs" />
     <Compile Include="ExportStatusTest.cs" />
     <Compile Include="ReadPackageMetadataConsumerTests.cs" />
     <Compile Include="DownlaodPackageConsumerTests.cs" />
