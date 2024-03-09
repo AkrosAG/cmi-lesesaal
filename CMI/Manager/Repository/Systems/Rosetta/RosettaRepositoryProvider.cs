@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using Autofac.Features.Metadata;
+using System.Xml;
 using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
 using MassTransit;
+using Serilog;
+using System.Xml.Linq;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -15,28 +20,33 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IRosettaDataAccess rosettaDataAccess;
         private readonly IPackageHandler handler;
         private readonly IParameterHelper parameterHelper;
+        private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
+     
 
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler,
-            IParameterHelper parameterHelper, IBus bus)
+            IParameterHelper parameterHelper, RepositoryPackageBuilder builder,  IBus bus)
         {
             this.rosettaDataAccess = rosettaDataAccess;
             this.handler = handler;
             this.parameterHelper = parameterHelper;
             this.bus = bus;
+            this.builder = builder;
         }
 
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
             // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
+            
             var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
             var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
+            
             if(response.Message.ElasticArchiveRecord == null)
             {
                 return new RepositoryPackageResult
                 {
                     Success = false,
-                    ErrorMessage = "ArchiveRecord not found."
+                    ErrorMessage = "ArchiveRecord in Elastic not found."
                 };
             }
 
@@ -50,27 +60,31 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            var repositoryPackage = BuildRepositoryPackage(exportPath, response.Message.ElasticArchiveRecord, createMetadataXml, fileTypesToIgnore, primaerdatenAuftragId);
             return new RepositoryPackageResult
             {
                 Success = true,
-                PackageDetails = repositoryPackage
-            };
-        }
-
-        private RepositoryPackage BuildRepositoryPackage(string exportPath, ElasticArchiveRecord elasticArchiveRecord, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
-        {
-            return new RepositoryPackage
-            {
-                ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId,
-                SizeInBytes = 0,
+                PackageDetails = null
             };
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            // andere Methode verwenden
-            await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            packageId = "IE444295";
+
+            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            var fileUrl = $@"{fileshare}\IE268715\ie.xml";
+            
+            if(!File.Exists(fileUrl))
+            {
+                return new RepositoryPackageInfoResult
+                {
+                    Success = false,
+                    ErrorMessage = $"File {fileUrl} not found."
+                };
+            }
+
+            var package = await builder.BuildAsync(fileUrl);
+
             return null;
         }
     }
