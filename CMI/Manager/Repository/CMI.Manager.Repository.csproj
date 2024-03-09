@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Systems\Bar\DirRepositoryProvider.cs" />
     <Compile Include="Systems\IRepositoryProvider.cs" />
+    <Compile Include="Systems\Rosetta\RepositoryPackageBuilder.cs" />
     <Compile Include="Systems\Rosetta\RosettaRepositoryCheck.cs" />
     <Compile Include="Systems\Rosetta\RosettaRepositoryProvider.cs" />
     <Compile Include="RepositoryManager.cs" />
