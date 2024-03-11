@@ -412,7 +412,7 @@
           "sizeInBytes": { "type": "long" },
           "fileName": { "type": "text" },
           "extension": { "type": "text" },
-          "base64Content": { "type": "text" },
+          "downloadUrl": { "type": "text" },
           "description": { "type": "text" },
           "art": { "type": "text" },
           "version": { "type": "integer" },
@@ -616,6 +616,9 @@
         "type": "boolean"
       },
       "hasImage": {
+        "type": "boolean"
+      },
+      "hasProtectedFiles": {
         "type": "boolean"
       },
       "isPhysicalyUsable": {

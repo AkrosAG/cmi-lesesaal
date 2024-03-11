@@ -18,7 +18,7 @@ $arr["HSA"]["IndexCustomScript.cs"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\HSA\Frontend\client\config\css"
 $arr["HSA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config\js";
 $arr["HSA"]["logo.svg"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
-$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config";
+$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
 $arr["HSA"]["templates.json"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["custom.css"] = "D:\localapps\LesesaalWeb\HSA\Frontend\client\config\css";
 
@@ -33,23 +33,9 @@ $arr["DEV"]["IndexCustomScript.cs"] = "D:\localdata\dev\CustomScripts";
 $arr["DEV"]["loading-site.css"] = "D:\localapps\LesesaalWeb\DEV\Frontend\client\config\css";
 $arr["DEV"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config\js";
 $arr["DEV"]["logo.svg"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\assets\img";
-$arr["DEV"]["logo.png"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config";
+$arr["DEV"]["logo.png"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\assets\img";
 $arr["DEV"]["templates.json"] = "D:\localdata\dev\CustomScripts";
 $arr["DEV"]["custom.css"] = "D:\localapps\LesesaalWeb\DEV\Frontend\client\config\css";
-
-$arr["ETH"] = @{}
-$arr["ETH"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\Frontend\client\config";
-$arr["ETH"]["customer.translations.de.json"] = "D:\localapps\LesesaalWeb\Frontend\client\config";
-$arr["ETH"]["customer.translations.en.json"] = "D:\localapps\LesesaalWeb\Frontend\client\config";
-$arr["ETH"]["Facetten.json"] = "D:\localdata\CustomScripts";
-$arr["ETH"]["HarvestCustomScript.cs"] = "D:\localdata\CustomScripts";
-$arr["ETH"]["IndexCustomScript.cs"] = "D:\localdata\CustomScripts";
-$arr["ETH"]["loading-site.css"] = "D:\localapps\LesesaalWeb\Frontend\client\config\css";
-$arr["ETH"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\Frontend\client\config\js";
-$arr["ETH"]["logo.svg"] = "D:\localapps\LesesaalWeb\Frontend\client\assets\img";
-$arr["ETH"]["logo.png"] = "D:\localapps\LesesaalWeb\Frontend\client\assets\img";
-$arr["ETH"]["templates.json"] = "D:\localdata\CustomScripts";
-$arr["ETH"]["custom.css"] = "D:\localapps\LesesaalWeb\Frontend\client\config\css";
 
 $arr["TMA"] = @{}
 $arr["TMA"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config";
@@ -61,7 +47,7 @@ $arr["TMA"]["IndexCustomScript.cs"] = "D:\localdata\TMA\CustomScripts";
 $arr["TMA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\css";
 $arr["TMA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\js";
 $arr["TMA"]["logo.svg"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
-$arr["TMA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config";
+$arr["TMA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
 $arr["TMA"]["templates.json"] = "D:\localdata\TMA\CustomScripts";
 $arr["TMA"]["custom.css"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\css";
 
@@ -76,14 +62,13 @@ $arr["MFA"]["IndexCustomScript.cs"] = "D:\localdata\MFA\CustomScripts";
 $arr["MFA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\css";
 $arr["MFA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\js";
 $arr["MFA"]["logo.svg"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\assets\img";
-$arr["MFA"]["logo.png"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config";
+$arr["MFA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
 $arr["MFA"]["templates.json"] = "D:\localdata\MFA\CustomScripts";
 $arr["MFA"]["custom.css"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\css";
 
 ## Source
 switch($target) {
     "DEV" { $source = ".\HSA\" }
-    "ETH" { $source = ".\HSA\" }
     "HSA" { $source = ".\HSA\" }
 
     "MFA" { $source = ".\MFA\" }
