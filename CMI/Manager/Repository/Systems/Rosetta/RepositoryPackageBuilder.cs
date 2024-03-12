@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -15,6 +17,7 @@ using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
 using MassTransit;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
@@ -48,11 +51,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 throw;
             }
 
-            var package = GetPackageFromXml(root, archiveRecord);
+            var package = GetPackageFromXml(archiveRecord);
             dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
 
-            var dossier = GetDossierFromXml(root, archiveRecord);
-            dip.Dossier.Add(dossier);
+            dip.Dossier = new List<DossierDIP>{ GetDossierFromElastic(archiveRecord) };
 
             var entryStruct = root.XPathSelectElements("/mets:mets/mets:structMap/mets:div/mets:div/mets:div[@TYPE='LOGIC']", namespaceManager)
                                   
@@ -70,19 +72,30 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return await Task.FromResult<RepositoryPackage>(null);
         }
 
-        private PaketDIP GetPackageFromXml(XDocument root, ElasticArchiveRecord archiveRecord)
+
+        public void CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
+        {
+            var package = GetPackageFromXml(archiveRecord);
+            var dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
+
+            dip.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
+
+            ((Paket)package).SaveToFile(Path.Combine(fileUrl, "metadata.xml"));
+        }
+
+        private PaketDIP GetPackageFromXml(ElasticArchiveRecord archiveRecord)
         {
             var package = new PaketDIP
             {
                 Generierungsdatum = DateTime.Now,
                 SchemaVersion = SchemaVersion.Item41,
-                Ablieferung = new AblieferungDIP()
+                Ablieferung = new AblieferungDIP
                 {
                     Ablieferungstyp = Ablieferungstyp.FILES, // Anhand Feld Erwerbsarten ableiten
                     AblieferndeStelle =  "Aus Feld Akzessionen der VE, ggf. nach oben navigieren",
-                    Provenienz = new ProvenienzDIP()
+                    Provenienz = new ProvenienzDIP
                     {
-                        AktenbildnerName = "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
+                        AktenbildnerName = archiveRecord.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
                     },
                     Ordnungssystem = new OrdnungssystemDIP()
                     {
@@ -98,35 +111,37 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return package;
         }
 
-        private DossierDIP GetDossierFromXml(XDocument root, ElasticArchiveRecord archiveRecord)
+        private DossierDIP GetDossierFromElastic( ElasticArchiveRecord archiveRecord)
         {
-            var dossier = new DossierDIP()
+            var dossier = new DossierDIP
             {
-                Id = Guid.NewGuid().ToString(), // ID wäre die GUID der VE,
-                Aktenzeichen = "Verwaltungssignatur",
-                Titel = "Titel der VE oder sonst DC.title aus DmdSec",
-                Inhalt = "Form und Inhalt",
+                Id = archiveRecord.ArchiveRecordId,
+                Aktenzeichen = archiveRecord.AdministrativeHistory,
+                Titel = archiveRecord.Title,
+                Inhalt = archiveRecord.Contains,
                 Erscheinungsform = ErscheinungsformDossier.digital, // Ableiten aus Überlieferungsformen
-                Umfang = "Aus Feld Umfang",
-                Entstehungszeitraum = new HistorischerZeitraum()
+                Umfang = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("Umfang"))
+                    ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("Umfang")).TextValues)
+                    : string.Empty,
+                Entstehungszeitraum = new HistorischerZeitraum
                 {
-                    Von = new HistorischerZeitpunkt() { Datum = "aus Entstehungszeitraum" },
-                    Bis = new HistorischerZeitpunkt() { Datum = "aus Entstehungszeitraum" }
+                    Von = new() { Datum = archiveRecord.CreationPeriod?.StartDateText },
+                    Bis = new() { Datum = archiveRecord.CreationPeriod?.EndDateText }
                 },
-                EntstehungszeitraumAnmerkung = "Aus Feld Bemerkungen zur Datierung",
-                Datenschutz = false, // Ableiten aus ablauf schutzfrist
-                Oeffentlichkeitsstatus = "Feld Benutzbarkeit",
-                SonstigeBestimmungen = "Aus Feld Zugangsbestimmungen",
-                zusatzDaten = new List<ZusatzDatenMerkmal>()
+                EntstehungszeitraumAnmerkung = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("BemerkungDatierung"))
+                    ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("BemerkungDatierung")).TextValues)
+                    : string.Empty,
+                Datenschutz = archiveRecord.ProtectionEndDate?.Date <= DateTime.Now, // Ableiten aus ablauf schutzfrist
+                Oeffentlichkeitsstatus = archiveRecord.Permission,
+                SonstigeBestimmungen = archiveRecord.Accessibility,
+                zusatzDaten = new List<ZusatzDatenMerkmal>
                 {
-                    new ZusatzDatenMerkmal() {Name = "Signatur", Value = "Aus Feld Signatur"},
-                    new ZusatzDatenMerkmal() {Name = "Stufe", Value = "Aus Feld Stufe"},
-                    new ZusatzDatenMerkmal() {Name = "Frühere Signaturen", Value = "Aus Feld Alte Signatur"},
-                    new ZusatzDatenMerkmal()
-                        {Name = "Archivplankontext", Value = "Serialisiertes XML des Archivplankontexts"},
-                    new ZusatzDatenMerkmal()
-                        {Name = "Identifikation digitales Magazin", Value = "Nummer der IE"},
-                },
+                    new() { Name = "Signatur", Value = archiveRecord.ReferenceCode },
+                    new() { Name = "Stufe", Value = archiveRecord.Level },
+                    new() { Name = "Frühere Signaturen", Value = archiveRecord.FormerReferenceCode },
+                    new() { Name = "Archivplankontext", Value = JsonConvert.SerializeObject(archiveRecord.ArchiveplanContext) },
+                    new() { Name = "Identifikation digitales Magazin", Value = archiveRecord.PrimaryDataLink }
+                }
             };
 
             return dossier;

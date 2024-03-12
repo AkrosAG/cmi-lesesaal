@@ -22,7 +22,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IParameterHelper parameterHelper;
         private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
-     
 
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler,
             IParameterHelper parameterHelper, RepositoryPackageBuilder builder,  IBus bus)
@@ -62,19 +61,16 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             return new RepositoryPackageResult
             {
-                Success = true,
-                PackageDetails = null
-            };
+                Success = true
+        };
         }
 
-        public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
+        public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
-            packageId = "IE444295";
-
-            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(packageId);
-            var fileUrl = $@"{fileshare}\IE268715\ie.xml";
-            
-            if(!File.Exists(fileUrl))
+            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(elasticArchiveRecord.PrimaryDataLink);
+            var fileUrl = $@"{fileshare}\ie.xml";
+           
+            if (!File.Exists(fileUrl))
             {
                 return new RepositoryPackageInfoResult
                 {
@@ -83,12 +79,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
-            var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
+            builder.CreateMetadataXml( $@"{fileshare}", elasticArchiveRecord);
 
-            var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
-
-            return null;
+            return new RepositoryPackageInfoResult
+            {
+                Success = File.Exists($@"{fileshare}\metadata.xml"),
+                Valid = true // ToDo
+            };
         }
     }
 }
