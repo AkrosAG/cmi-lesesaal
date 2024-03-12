@@ -56,18 +56,16 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             dip.Dossier = new List<DossierDIP>{ GetDossierFromElastic(archiveRecord) };
 
-            var entryStruct = root.XPathSelectElements("/mets:mets/mets:structMap/mets:div/mets:div/mets:div[@TYPE='LOGIC']", namespaceManager)
-                                  
-                                  .ToList();
-            if(entryStruct.Any() == false)
+            var structureMapLogical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='LOGICAL']", namespaceManager);
+            var structureMapPhysical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='PHYSICAL']", namespaceManager);
+
+            var structureMap = structureMapLogical ?? structureMapPhysical;
+            var master = structureMap.XPathSelectElement("//mets:structMap/mets:div[contains(@LABEL,'MASTER')]", namespaceManager);
+            if(master == null)
             {
-                entryStruct = root.XPathSelectElements("/mets:mets/mets:structMap[@TYPE='PHYSICAL']", namespaceManager)
-                                  .ToList();
+                Log.Error("Der Preservation Master muss mindestens vorhanden sein.");
+                return null;
             }
-
-
-            var master = entryStruct.AncestorsAndSelf();
-            // (e => e.Attributes().Any(a => a.Value == "PRESERVATION_MASTER;VIEW"));
 
             return await Task.FromResult<RepositoryPackage>(null);
         }
