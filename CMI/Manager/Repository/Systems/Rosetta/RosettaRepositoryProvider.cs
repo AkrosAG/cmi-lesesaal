@@ -79,8 +79,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            builder.CreateMetadataXml( $@"{fileshare}", elasticArchiveRecord);
 
+            builder.CreateMetadataXml( $@"{fileshare}", elasticArchiveRecord);
+            // ToDo var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
             return new RepositoryPackageInfoResult
             {
                 Success = File.Exists($@"{fileshare}\metadata.xml"),
