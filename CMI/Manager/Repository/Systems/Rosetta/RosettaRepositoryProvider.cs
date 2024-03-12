@@ -22,6 +22,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IParameterHelper parameterHelper;
         private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
+     
 
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler,
             IParameterHelper parameterHelper, RepositoryPackageBuilder builder,  IBus bus)
@@ -61,16 +62,19 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             return new RepositoryPackageResult
             {
-                Success = true
-        };
+                Success = true,
+                PackageDetails = null
+            };
         }
 
-        public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
+        public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
         {
-            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(elasticArchiveRecord.PrimaryDataLink);
-            var fileUrl = $@"{fileshare}\ie.xml";
-           
-            if (!File.Exists(fileUrl))
+            packageId = "IE444295";
+
+            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            var fileUrl = $@"{fileshare}\IE268715\ie.xml";
+            
+            if(!File.Exists(fileUrl))
             {
                 return new RepositoryPackageInfoResult
                 {
@@ -79,13 +83,22 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            builder.CreateMetadataXml( $@"{fileshare}", elasticArchiveRecord);
+            var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
+            var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
 
-            return new RepositoryPackageInfoResult
+            var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
+            if(package == null)
             {
-                Success = File.Exists($@"{fileshare}\metadata.xml"),
-                Valid = true // ToDo
-            };
+                return new RepositoryPackageInfoResult
+                {
+                    Success = false,
+                    ErrorMessage = "Package could not be created."
+                };
+            }
+
+            // TODO: DLS-333 Rosetta-Anbindung (Import einer IntellectualEntity)
+
+            return null;
         }
     }
 }
