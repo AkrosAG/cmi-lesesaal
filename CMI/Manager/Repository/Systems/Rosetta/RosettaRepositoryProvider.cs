@@ -87,6 +87,16 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
 
             var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
+            if(package == null)
+            {
+                return new RepositoryPackageInfoResult
+                {
+                    Success = false,
+                    ErrorMessage = "Package could not be created."
+                };
+            }
+
+            // TODO: DLS-333 Rosetta-Anbindung (Import einer IntellectualEntity)
 
             return null;
         }
