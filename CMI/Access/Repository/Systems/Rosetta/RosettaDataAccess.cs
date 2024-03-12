@@ -21,10 +21,11 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<string> ExportIntellectualEntity(string entityId)
     {
+        entityId = "IE444295";
         var path = await rosettaConnector.StartExportAsync(entityId); 
         if(!string.IsNullOrEmpty(path))
         {
-            path = @"\\nas12.ethz.ch\ethbib_rosetta_test_vls_transfer_s1\vls";
+            path = $@"X:\\{entityId}"; // Map this  @"\\nas12.ethz.ch\ethbib_rosetta_test_vls_transfer_s1";
             Log.Information($"Intellectual Entity {entityId} exported successfully to {path}.");
             return path;
         }

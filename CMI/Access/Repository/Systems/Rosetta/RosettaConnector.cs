@@ -20,7 +20,7 @@ namespace CMI.Access.Repository.Systems.Rosetta
 
         public async Task<string> StartExportAsync(string entityId)
         {
-            // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE444295?op=export
+            // e. g.: "https://app.data-archive-test.ethz.ch/rest/v0/ies/{0}?op=export&export_path=/transdata/eth_vls&representation_packaging=tar",
             var url = string.Format(Settings.Default.RepositoryExportIEUrl, entityId);
             var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
 

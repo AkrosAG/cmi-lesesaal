@@ -94,23 +94,25 @@ public class RepositoryManager : IRepositoryManager
         }
     }
 
-    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
+
+
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
         // Init the return value
         var retVal = new RepositoryPackageInfoResult
         {
             Success = false,
             Valid = false,
-            PackageDetails = new RepositoryPackage {ArchiveRecordId = archiveRecordId}
+            PackageDetails = new RepositoryPackage {ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId}
         };
 
         try
         {
-            return await repositoryProvider.ReadPackageMetadata(packageId, archiveRecordId);
+            return await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord);
         }
         catch (Exception ex)
         {
-            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", packageId);
+            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", elasticArchiveRecord.PrimaryData);
             retVal.ErrorMessage = "Failed to get package metadata from repository";
             throw;
         }
