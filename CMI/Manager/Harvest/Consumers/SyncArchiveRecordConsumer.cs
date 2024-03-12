@@ -86,9 +86,6 @@ namespace CMI.Manager.Harvest.Consumers
 
                         var elasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId);
 
-                        // TODO: Remove
-                        archiveRecord.Metadata.PrimaryDataLink = "TEST";
-
                         // Does the AIS data provide a primary data link?
                         if (string.IsNullOrEmpty(archiveRecord.Metadata.PrimaryDataLink))
                         {
@@ -108,9 +105,6 @@ namespace CMI.Manager.Harvest.Consumers
                         }
                         else
                         {
-                            // TODO: Remove
-                            elasticRecord.PrimaryDataLink = ".";
-                            
                             // Is the primary data of the existing elastic record and the ais record the same?
                             // And is the full resync option NOT set
                             if (elasticRecord != null && elasticRecord.PrimaryDataLink == archiveRecord.Metadata.PrimaryDataLink &&
@@ -135,7 +129,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 {
                                     message.MutationId,
                                     ArchiveRecord = archiveRecord,
-                                    ElasticRecord = elasticRecord
+                                    ElasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId)
                                 });
                                 Log.Information("Put {CommandName} message on repository queue queue with mutation ID: {MutationId}",
                                     nameof(IScheduleForPackageSync), context.Message.MutationId);

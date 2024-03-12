@@ -235,24 +235,24 @@ public class DirRepositoryProvider: IRepositoryProvider
         return retVal;
     }
 
-    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
         // Init the return value
         var retVal = new RepositoryPackageInfoResult
         {
             Success = false,
             Valid = false,
-            PackageDetails = new RepositoryPackage { ArchiveRecordId = archiveRecordId }
+            PackageDetails = new RepositoryPackage { ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId }
         };
 
         try
         {
             var allIgnoredFiles = new List<RepositoryFile>();
-            var rootFolder = dirRepositoryDataAccess.GetRepositoryRoot(packageId);
+            var rootFolder = dirRepositoryDataAccess.GetRepositoryRoot(elasticArchiveRecord.PrimaryDataLink);
             if (rootFolder != null)
             {
                 // Get the metadata about the packages
-                retVal.PackageDetails.PackageId = packageId;
+                retVal.PackageDetails.PackageId = elasticArchiveRecord.PrimaryDataLink;
                 retVal.PackageDetails.Folders = dirRepositoryDataAccess.GetFolders(rootFolder.Id);
                 retVal.PackageDetails.Files = dirRepositoryDataAccess.GetFiles(rootFolder.Id, ignoredFilenameRegex, out var ignored);
                 allIgnoredFiles.AddRange(ignored);
@@ -281,7 +281,7 @@ public class DirRepositoryProvider: IRepositoryProvider
         }
         catch (Exception ex)
         {
-            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", packageId);
+            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", elasticArchiveRecord.PrimaryDataLink);
             retVal.ErrorMessage = "Failed to get package metadata from repository";
             throw;
         }
