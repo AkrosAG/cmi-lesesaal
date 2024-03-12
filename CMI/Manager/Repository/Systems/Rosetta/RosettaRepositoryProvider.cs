@@ -83,7 +83,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            var package = await builder.BuildAsync(fileUrl);
+            var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
+            var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
+
+            var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
 
             return null;
         }

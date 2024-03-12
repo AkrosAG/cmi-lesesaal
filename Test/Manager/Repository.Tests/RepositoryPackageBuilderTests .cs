@@ -26,7 +26,7 @@ namespace CMI.Manager.Repository.Tests
             
             // Act
             var builder = new RepositoryPackageBuilder(null, null);
-            await builder.BuildAsync(fileUrl);
+            await builder.BuildAsync(fileUrl,new ElasticArchiveRecord());
 
             // Assert
         }
