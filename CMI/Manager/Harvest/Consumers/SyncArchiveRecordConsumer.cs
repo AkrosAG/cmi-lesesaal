@@ -84,7 +84,6 @@ namespace CMI.Manager.Harvest.Consumers
                             return;
                         }
 
-                        // Fetch the (eventally) existing archive record
                         var elasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId);
 
                         // Does the AIS data provide a primary data link?
@@ -130,7 +129,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 {
                                     message.MutationId,
                                     ArchiveRecord = archiveRecord,
-                                    ElasticRecord = elasticRecord
+                                    ElasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId)
                                 });
                                 Log.Information("Put {CommandName} message on repository queue queue with mutation ID: {MutationId}",
                                     nameof(IScheduleForPackageSync), context.Message.MutationId);
@@ -177,9 +176,9 @@ namespace CMI.Manager.Harvest.Consumers
                     {ArchiveRecordId = archiveRecordId, IncludeFulltextContent = true});
                 return result.Message.ElasticArchiveRecord;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Log.Error(e, $"Unexpected error fetching archive record from index with id {archiveRecordId}.");
+                Log.Information( $"ArchiveRecord {archiveRecordId} is not yet stored in Elastic.");
                 return null;
             }
         }

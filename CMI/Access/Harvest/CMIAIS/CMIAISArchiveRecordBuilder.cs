@@ -45,7 +45,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
 
                 var archiveRecord = archiveRecordBuilder.Build();
-                await archiveRecord.AddFileContentAsync(cmiRecord);
+                archiveRecord.AddFileInformation(cmiRecord);
                 archiveRecord.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, archiveRecord);
                 
                 await processHandler.PostProcessArchiveRecord(archiveRecord);
@@ -178,7 +178,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 .FromCollection(nameof(Verzeichnungseinheit.Ueberlieferungsform), vz => vz?.Ueberlieferungsform?.Select(u => u.Bezeichnung))
                 .FromCollection(nameof(Verzeichnungseinheit.Provenienz), vz => vz?.Provenienz?.Select(a => a.OffiziellerName))
                 .FromCollection(nameof(Verzeichnungseinheit.Archivalienart), vz => vz?.Archivalienart?.Select(a => a.Bezeichnung))
-                .FromCollection(nameof(Verzeichnungseinheit.Standort), vz => vz?.Standort?.Select(a => a.ToString()))
+               
                 .FromCollection(nameof(Verzeichnungseinheit.Umfang), vz => vz?.Umfang?.Select(u => $"{u.Wert} {u.Masseinheit}"))
                 .FromCollection(nameof(Verzeichnungseinheit.Akzession), vz => vz.Akzession?.Select(a => $"{a.Akzessionsnummer} {a.Titel}"));
         }

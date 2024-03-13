@@ -3,70 +3,77 @@ using CMI.Access.Repository.Properties;
 using System.IO;
 using System.Net;
 using System;
+using System.Linq;
 using Serilog;
-using System.Text;
+using CMI.Access.Repository.Systems.Rosetta.Helper;
 
 namespace CMI.Access.Repository.Systems.Rosetta;
 
 public class RosettaDataAccess : IRosettaDataAccess
 {
-    private readonly string password = Settings.Default.RepositoryPassword;
-    private readonly string serviceUrl = Settings.Default.RepositoryServiceUrl;
-    private readonly string username = Settings.Default.RepositoryUser;
+    private readonly string userName = Settings.Default.RepositoryDirectoryUser;
+    private readonly string password = Settings.Default.RepositoryDirectoryPassword;
+    private readonly string directory = Settings.Default.RepositoryDirectory;
+    private readonly string domain = Settings.Default.RepositoryDomain;
 
+    private readonly RosettaConnector rosettaConnector;
 
-    public Task<string> ExportIntellectualEntity(string entityId)
+    public RosettaDataAccess(RosettaConnector connector)
     {
-        var entityData = string.Empty;
-        try
+        rosettaConnector = connector;
+    }
+
+    public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
+    {
+        entityId = "IE444295";
+        var success = await rosettaConnector.StartExportAsync(entityId); 
+        if(success)
         {
-            // e. g.: https://app.data-archive-test.ethz.ch/rest/v0/ies/IE7731039?op=export
-
-            // Call a web rest service to export the intellectual entity
-            // Use post method to call the service and use basic authentication
-            var url = string.Format(serviceUrl, entityId);
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
-            request.ContentType = "application/xml";
-            request.Accept = "application/xml";
-            request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes($"{username}:{password}")));
-            
-            var response = (HttpWebResponse)request.GetResponse();
-            using var stream = response.GetResponseStream();
-            if (stream != null)
+            using (new ConnectToSharedFolder(directory, new NetworkCredential(userName, password, domain)))
             {
-                var sr = new StreamReader(stream);
-                entityData = sr.ReadToEnd();
-                sr.Close();
-            }
-
-            Log.Information($"Intellectual Entity {entityId} exported successfully.");
-
-        }
-        catch (WebException ex)
-        {
-            var response = (HttpWebResponse)ex.Response;
-            var responseErrorData = string.Empty;
-            using (var stream = response.GetResponseStream())
-            {
-                if (stream != null)
+                var directoryEntity = Directory.GetDirectories(directory).First(f => f.EndsWith(entityId));
+                var copyPath = Path.Combine(defaultTempStoragePath, entityId);
+                if (Directory.Exists(copyPath))
                 {
-                    var sr = new StreamReader(stream);
-                    responseErrorData = sr.ReadToEnd();
-                    sr.Close();
+                    Directory.Delete(copyPath, true);
                 }
+                CopyDirectory(directoryEntity, copyPath);
+                Directory.Delete(directoryEntity, true);
             }
-
-            Log.Error(ex, $"Known errors when exporting Intellectual Entity {responseErrorData}");
-            throw;
+            Log.Information($"Intellectual Entity {entityId} exported successfully to {Path.Combine(defaultTempStoragePath, entityId)}");
         }
-        catch (Exception ex)
+        
+        return success;
+    }
+
+    private static void CopyDirectory(string sourceDir, string destinationDir)
+    {
+        // Get information about the source directory
+        var dir = new DirectoryInfo(sourceDir);
+
+        // Check if the source directory exists
+        if (!dir.Exists)
         {
-
-            Log.Error(ex, "Unexpected error while export Intellectual Entity.");
-            throw;
+            throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
         }
 
-        return Task.FromResult(entityData);
+        // Cache directories before we start copying
+        var dirs = dir.GetDirectories();
+
+        // Create the destination directory
+        Directory.CreateDirectory(destinationDir);
+
+        // Get the files in the source directory and copy to the destination directory
+        foreach (var file in dir.GetFiles())
+        {
+            string targetFilePath = Path.Combine(destinationDir, file.Name);
+            file.CopyTo(targetFilePath);
+        }
+
+        foreach (DirectoryInfo subDir in dirs)
+        {
+            string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+            CopyDirectory(subDir.FullName, newDestinationDir);
+        }
     }
 }

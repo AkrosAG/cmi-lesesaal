@@ -8,5 +8,5 @@ public interface IRepositoryProvider
 {
     Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId);
 
-    RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId);
+    Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord);
 }

@@ -56,6 +56,12 @@ namespace CMI.Access.Harvest.CMIAIS.Mapping
                 ContainerCode = m.Kuerzel
             }));
 
+            containers.AddRange(cmiRecord.Standort.OfType<Gebaeude>().Select(m => new ArchiveRecordMetadataContainersContainer
+            {
+                IdName = m.Bezeichnung,
+                ContainerCode = m.Kuerzel
+            }));
+
             return new ArchiveRecordMetadataContainers
             {
                 Container = containers,
