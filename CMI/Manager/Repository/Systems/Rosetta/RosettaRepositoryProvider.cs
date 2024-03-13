@@ -25,7 +25,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IBus bus;
 
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler,
-            IParameterHelper parameterHelper, RepositoryPackageBuilder builder,  IBus bus)
+            IParameterHelper parameterHelper, RepositoryPackageBuilder builder, IBus bus)
         {
             this.rosettaDataAccess = rosettaDataAccess;
             this.handler = handler;
@@ -36,12 +36,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            // ToDo: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity)
-            
             var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
             var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
-            
-            if(response.Message.ElasticArchiveRecord == null)
+
+            if (response.Message.ElasticArchiveRecord == null)
             {
                 return new RepositoryPackageResult
                 {
@@ -50,32 +48,32 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            // Die IntellectualEntity ist schon exportiert
-            // var exportPath =  await rosettaDataAccess.ExportIntellectualEntity(packageId);
-            // if(exportPath == null)
+            // TODO: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity) - Logik implementieren
+
+            return new RepositoryPackageResult
             {
-                return new RepositoryPackageResult
-                {
-                    Success = false,
-                    ErrorMessage = "Export has failed."
-                };
-            }
+                Success = false,
+                ErrorMessage = "Export has failed."
+            };
+
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
 
-            success = success
-                ? builder.CreateMetadataXml($@"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}",
-                    elasticArchiveRecord)
-                : false;
+            var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
 
-            // ToDo var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
+            //TODO: Nur zum Testen
+            fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, "IE444295")}";
+
+            var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+
             return new RepositoryPackageInfoResult
             {
                 Success = success,
-                Valid = success // ToDo
+                PackageDetails = package,
+                Valid = success 
             };
         }
     }
