@@ -8,73 +8,115 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CMI.Access.Repository.Properties {
-    
-    
+namespace CMI.Access.Repository.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator",
+        "17.8.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
+
+        public static Settings Default
+        {
+            get { return defaultInstance; }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryServiceUrl@@")]
-        public string RepositoryServiceUrl {
-            get {
-                return ((string)(this["RepositoryServiceUrl"]));
-            }
+        public string RepositoryServiceUrl
+        {
+            get { return ((string)(this["RepositoryServiceUrl"])); }
         }
-        
+
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryExportIEUrl@@")]
+        public string RepositoryExportIEUrl
+        {
+            get { return ((string)(this["RepositoryExportIEUrl"])); }
+        }
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("atom")]
-        public string ConnectionMode {
-            get {
-                return ((string)(this["ConnectionMode"]));
-            }
+        public string ConnectionMode
+        {
+            get { return ((string)(this["ConnectionMode"])); }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Fixity Algorithm Ref")]
-        public string FixityAlgorithmRefElementName {
-            get {
-                return ((string)(this["FixityAlgorithmRefElementName"]));
-            }
+        public string FixityAlgorithmRefElementName
+        {
+            get { return ((string)(this["FixityAlgorithmRefElementName"])); }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Fixity Value")]
-        public string FixityValueElementName {
-            get {
-                return ((string)(this["FixityValueElementName"]));
-            }
+        public string FixityValueElementName
+        {
+            get { return ((string)(this["FixityValueElementName"])); }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryUser@@")]
-        public string RepositoryUser {
-            get {
-                return ((string)(this["RepositoryUser"]));
-            }
+        public string RepositoryUser
+        {
+            get { return ((string)(this["RepositoryUser"])); }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryPassword@@")]
-        public string RepositoryPassword {
-            get {
-                return ((string)(this["RepositoryPassword"]));
-            }
+        public string RepositoryPassword
+        {
+            get { return ((string)(this["RepositoryPassword"])); }
+        }
+
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryDirectoryUser@@")]
+        public string RepositoryDirectoryUser
+
+        {
+            get { return ((string)(this["RepositoryDirectoryUser"])); }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryDirectory@@")]
+        public string RepositoryDirectory
+
+        {
+            get { return ((string)(this["RepositoryDirectory"])); }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryDirectoryPassword@@")]
+        public string RepositoryDirectoryPassword
+
+        {
+            get { return ((string)(this["RepositoryDirectoryPassword"])); }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryDomain@@")]
+        public string RepositoryDomain
+
+        {
+            get { return ((string)(this["RepositoryDomain"])); }
         }
     }
 }

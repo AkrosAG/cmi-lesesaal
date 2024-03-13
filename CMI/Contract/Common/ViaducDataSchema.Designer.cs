@@ -1134,8 +1134,8 @@ namespace CMI.Contract.Common
         /// <summary>
         /// The extracted full text of the document
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute("contentText")]
-        public string ContentText { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute("downloadUrl")]
+        public string DownloadUrl { get; set; }
         /// <summary>
         /// The order in which the documents are displayed in the web frontend
         /// </summary>
@@ -1146,6 +1146,8 @@ namespace CMI.Contract.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute("publikation")]
         public string Publikation { get; set; }
+
+        
     }
 
     /// <summary>

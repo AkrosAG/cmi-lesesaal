@@ -59,10 +59,10 @@ public class MockRepositoryProvider : IRepositoryProvider
         return repositoryPackageResult;
     }
 
-    public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
-        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = archiveRecordId;
-        return repositoryPackageInfoResult;
+        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId;
+        return await Task.FromResult(repositoryPackageInfoResult);
     }
 
     private async Task UpdatePrimaerdatenAuftragStatus(int primaerdatenAuftragId, AufbereitungsStatusEnum status, string errorText = null)
