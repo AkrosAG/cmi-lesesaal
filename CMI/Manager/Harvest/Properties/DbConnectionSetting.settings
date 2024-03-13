@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMI.Manager.Harvest.Properties" GeneratedClassName="DbConnectionSetting">
   <Profiles />
   <Settings>
-    <Setting Name="ConnectionStringEF" Type="System.String" Scope="Application">
+    <Setting Name="ConnectionStringEF" Type="System.String" scope="Application">
       <Value Profile="(Default)">metadata=res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.csdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.ssdl|res://*/CMI.Access.Sql.Lesesaal.EF.Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=&quot;@@CMI.SqlServer.DbConnectionSetting.ConnectionStringEF@@&quot;</Value>
     </Setting>
   </Settings>
