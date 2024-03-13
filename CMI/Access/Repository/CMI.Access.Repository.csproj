@@ -58,7 +58,7 @@
     <Compile Include="Systems\Dir\DirMetadataDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Documentation.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
+	<Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -67,6 +67,7 @@
     <Compile Include="Systems\Dir\DirRepositoryConnectionFactory.cs" />
     <Compile Include="Systems\Dir\DirRepositoryDataAccess.cs" />
     <Compile Include="Systems\Rosetta\EntityExportResult.cs" />
+    <Compile Include="Systems\Rosetta\Helper\ConnectToSharedFolder.cs" />
     <Compile Include="Systems\Rosetta\IRosettaDataAccess.cs" />
     <Compile Include="Systems\Rosetta\RosettaConnector.cs" />
     <Compile Include="Systems\Rosetta\RosettaDataAccess.cs" />
@@ -90,7 +91,7 @@
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+	  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup />
