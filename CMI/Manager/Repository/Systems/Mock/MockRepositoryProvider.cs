@@ -59,9 +59,9 @@ public class MockRepositoryProvider : IRepositoryProvider
         return repositoryPackageResult;
     }
 
-    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
-        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = archiveRecordId;
+        repositoryPackageInfoResult.PackageDetails.ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId;
         return await Task.FromResult(repositoryPackageInfoResult);
     }
 
