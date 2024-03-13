@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
+using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
@@ -33,9 +35,11 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             this.bus = bus;
         }
 
-        public async Task<RepositoryPackage> BuildAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
+        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
+            var success = false;
             OrdnungssystempositionDIP dip;
+            
             var namespaceManager = new XmlNamespaceManager(new NameTable());
             namespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
             
@@ -61,13 +65,20 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             var structureMap = structureMapLogical ?? structureMapPhysical;
             var master = structureMap.XPathSelectElement("//mets:structMap/mets:div[contains(@LABEL,'MASTER')]", namespaceManager);
+            
             if(master == null)
             {
                 Log.Error("Der Preservation Master muss mindestens vorhanden sein.");
-                return null;
+                success = false;
             }
 
-            return await Task.FromResult<RepositoryPackage>(null);
+            // TODO: Noch nicht vollständig
+
+            var metadataXmlPath = Path.Combine(Settings.Default.TempStoragePath, "metadata.xml");
+            success = success ? CreateMetadataXml(metadataXmlPath, archiveRecord) : false;
+
+
+            return await Task.FromResult(new RepositoryPackage());
         }
 
 
@@ -82,6 +93,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return true;
         }
 
+
+        // TODO: Noch nicht vollständig
         private PaketDIP GetPackageFromXml(ElasticArchiveRecord archiveRecord)
         {
             var package = new PaketDIP
