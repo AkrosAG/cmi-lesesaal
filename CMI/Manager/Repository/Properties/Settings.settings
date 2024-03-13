@@ -2,31 +2,31 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMI.Manager.Repository.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TempStoragePath" Type="System.String" Scope="Application">
+    <Setting Name="TempStoragePath" Type="System.String" scope="Application">
       <Value Profile="(Default)">C:\Temp\Repository</Value>
     </Setting>
-    <Setting Name="FileCopyDestinationPath" Type="System.String" Scope="Application">
+    <Setting Name="FileCopyDestinationPath" Type="System.String" scope="Application">
       <Value Profile="(Default)">C:\Temp\Final</Value>
     </Setting>
-    <Setting Name="UseSFTP" Type="System.Boolean" Scope="Application">
+    <Setting Name="UseSFTP" Type="System.Boolean" scope="Application">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="SFTPHost" Type="System.String" Scope="Application">
+    <Setting Name="SFTPHost" Type="System.String" scope="Application">
       <Value Profile="(Default)">@@CMI.Manager.Repository.Properties.Settings.SFTPHost@@</Value>
     </Setting>
-    <Setting Name="SFTPPort" Type="System.Int32" Scope="Application">
+    <Setting Name="SFTPPort" Type="System.Int32" scope="Application">
       <Value Profile="(Default)">22</Value>
     </Setting>
-    <Setting Name="SFTPKeyFile" Type="System.String" Scope="Application">
+    <Setting Name="SFTPKeyFile" Type="System.String" scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SFTPUser" Type="System.String" Scope="Application">
+    <Setting Name="SFTPUser" Type="System.String" scope="Application">
       <Value Profile="(Default)">@@CMI.Manager.Repository.Properties.Settings.SFTPUser@@</Value>
     </Setting>
-    <Setting Name="SFTPPassword" Type="System.String" Scope="Application">
+    <Setting Name="SFTPPassword" Type="System.String" scope="Application">
       <Value Profile="(Default)">@@CMI.Manager.Repository.Properties.Settings.SFTPPassword@@</Value>
     </Setting>
-    <Setting Name="RepositoryManager" Type="System.String" Scope="Application">
+    <Setting Name="RepositoryManager" Type="System.String" scope="Application">
       <Value Profile="(Default)">@@CMI.Manager.Repository.Properties.Settings.RepositoryManager@@</Value>
     </Setting>
   </Settings>

@@ -12,6 +12,7 @@ using CMI.Contract.Repository;
 using MassTransit;
 using Serilog;
 using System.Xml.Linq;
+using CMI.Manager.Repository.Properties;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -49,8 +50,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 };
             }
 
-            var exportPath =  await rosettaDataAccess.ExportIntellectualEntity(packageId);
-            if(exportPath == null)
+            // Die IntellectualEntity ist schon exportiert
+            // var exportPath =  await rosettaDataAccess.ExportIntellectualEntity(packageId);
+            // if(exportPath == null)
             {
                 return new RepositoryPackageResult
                 {
@@ -58,34 +60,22 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     ErrorMessage = "Export has failed."
                 };
             }
-
-            return new RepositoryPackageResult
-            {
-                Success = true
-        };
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
-            var fileshare = await rosettaDataAccess.ExportIntellectualEntity(elasticArchiveRecord.PrimaryDataLink);
-            var fileUrl = $@"{fileshare}\ie.xml";
-           
-            if (!File.Exists(fileUrl))
-            {
-                return new RepositoryPackageInfoResult
-                {
-                    Success = false,
-                    ErrorMessage = $"File {fileUrl} not found."
-                };
-            }
+            var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
 
+            success = success
+                ? builder.CreateMetadataXml($@"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}",
+                    elasticArchiveRecord)
+                : false;
 
-            builder.CreateMetadataXml( $@"{fileshare}", elasticArchiveRecord);
             // ToDo var package = await builder.BuildAsync(fileUrl, response.Message.ElasticArchiveRecord);
             return new RepositoryPackageInfoResult
             {
-                Success = File.Exists($@"{fileshare}\metadata.xml"),
-                Valid = true // ToDo
+                Success = success,
+                Valid = success // ToDo
             };
         }
     }
