@@ -17,11 +17,11 @@ namespace CMI.Access.Repository.Systems.Rosetta
         private const int maxCommandTimeout = 1000;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
-
-        public async Task<string> StartExportAsync(string entityId)
+        private readonly string exportIeUrl = Settings.Default.RepositoryExportIEUrl;
+        public async Task<bool> StartExportAsync(string entityId)
         {
             // e. g.: "https://app.data-archive-test.ethz.ch/rest/v0/ies/{0}?op=export&export_path=/transdata/eth_vls&representation_packaging=tar",
-            var url = string.Format(Settings.Default.RepositoryExportIEUrl, entityId);
+            var url = string.Format(exportIeUrl, entityId);
             var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
 
             var entityExportResult = new EntityExportResult(exportXml);
@@ -29,14 +29,14 @@ namespace CMI.Access.Repository.Systems.Rosetta
             if (string.IsNullOrEmpty(entityExportResult.ProcessUrl))
             {
                 Log.Error("Failed to get process URL for entity {entityId}", entityId);
-                return null;
+                return false;
             }
 
             var timeoutCancellation = new CancellationTokenSource(maxCommandExecutionTime);
             try
             {
                 var success =  await WaitForCompletitionAsync(entityExportResult.ProcessUrl, timeoutCancellation.Token);
-                return success ? entityExportResult.ExportPath : null;
+                return success;
             }
             catch (OperationCanceledException)
             {
