@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMI.Manager.Harvest" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="CustomScriptPath" Type="System.String" scope="Application">
+    <Setting Name="CustomScriptPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Manager.Harvest.Settings.CustomScript@@</Value>
     </Setting>
   </Settings>
