@@ -71,7 +71,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         }
 
 
-        public void CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
+        public bool CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
             var package = GetPackageFromXml(archiveRecord);
             var dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
@@ -79,6 +79,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             dip.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
 
             ((Paket)package).SaveToFile(Path.Combine(fileUrl, "metadata.xml"));
+            return true;
         }
 
         private PaketDIP GetPackageFromXml(ElasticArchiveRecord archiveRecord)
