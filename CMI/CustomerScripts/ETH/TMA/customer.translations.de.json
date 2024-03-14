@@ -333,7 +333,7 @@
     "simple": {
       "beratung": "Beratung",
       "informationen": "Informationen",
-      "intro": "<a href=\"/#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Thomas Mann? Eine wachsende Zahl von Handschriften ist in unserem virtuellen Lesesaal frei zugänglich. Für geschützte Dokumente können Sie nach der Registrierung ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:tma@library.ethz.ch\">tma@library.ethz.ch</a>.",
+      "intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Thomas Mann? Eine wachsende Zahl von Handschriften ist in unserem virtuellen Lesesaal frei zugänglich. Für geschützte Dokumente können Sie nach der Registrierung ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:tma@library.ethz.ch\">tma@library.ethz.ch</a>.",
       "title": "Einfache Suche",
       "unter": "und unter"
     },
