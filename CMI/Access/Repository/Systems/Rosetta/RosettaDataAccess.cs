@@ -90,8 +90,6 @@ public class RosettaDataAccess : IRosettaDataAccess
 
         // Cache directories before we start copying
         var dirs = dir.GetDirectories();
-
-        // Create the destination repositoryDirectory
         Directory.CreateDirectory(destinationDir);
 
         // Get the files in the repository directory and copy to the local directory
