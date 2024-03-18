@@ -1,14 +1,11 @@
 ﻿using CMI.Access.Repository.Properties;
 using CMI.Access.Repository.Systems.Rosetta.Helper;
-
-using System.Threading.Tasks;
-using System.IO;
-using System.Net;
-using System;
-using System.IO.Compression;
-using System.Linq;
 using Serilog;
-
+using System;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace CMI.Access.Repository.Systems.Rosetta;
 
@@ -16,7 +13,7 @@ public class RosettaDataAccess : IRosettaDataAccess
 {
     private readonly string userName = Settings.Default.RepositoryDirectoryUser;
     private readonly string password = Settings.Default.RepositoryDirectoryPassword;
-    private readonly string directory = Settings.Default.RepositoryDirectory;
+    private readonly string repositoryDirectory = Settings.Default.RepositoryDirectory;
     private readonly string domain = Settings.Default.RepositoryDomain;
 
     private readonly RosettaConnector rosettaConnector;
@@ -33,11 +30,11 @@ public class RosettaDataAccess : IRosettaDataAccess
         var success = await rosettaConnector.StartExportAsync(entityId); 
         if(success)
         {
-            using (new ConnectToSharedFolder(directory, new NetworkCredential(userName, password, domain)))
+            using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
             {
                 try
                 {
-                    CopyAndExtractIntellectualEntity(defaultTempStoragePath, entityId);
+                    CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
                 }
                 catch (Exception e)
                 {
@@ -51,50 +48,53 @@ public class RosettaDataAccess : IRosettaDataAccess
         return success;
     }
 
-    private void CopyAndExtractIntellectualEntity(string defaultTempStoragePath, string entityId)
+    private void CopyNecessaryExtractIntellectualEntityFiles(string defaultTempStoragePath, string entityId)
     {
-        var directoryEntity = Directory.GetDirectories(directory).First(f => f.EndsWith(entityId));
+        var directoryEntity = Directory.GetDirectories(repositoryDirectory).First(f => f.EndsWith(entityId));
         var copyPath = Path.Combine(defaultTempStoragePath, entityId);
         if (Directory.Exists(copyPath))
         {
             Directory.Delete(copyPath, true);
         }
 
-        CopyDirectory(directoryEntity, copyPath);
-        var dir = Directory.GetDirectories(copyPath).Length == 1
-            ? Directory.GetDirectories(copyPath).First()
-            : throw new Exception("Too many directories, one was expected");
-        var file = Directory.GetFiles(dir, "*.tar").Length == 1
-            ? Directory.GetFiles(dir, "*.tar").First()
-            : throw new Exception("Too many tar-Files, one was expected");
-        
-        var fileInfo = new FileInfo(file);
-        var newDic = Directory.CreateDirectory(Path.Combine(dir,
-            fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length)));
+        var files =  Directory.GetFiles(directoryEntity, "*.tar", SearchOption.AllDirectories);
+        if (files.Length > 1)
+        {
+            Log.Warning("There is more than one tar file in the package. A tar file was expected, the other TAR file cannot be processed in the primary data preparation process.");
+        }
+        foreach (var file in files)
+        {
+            var fileInfo = new FileInfo(file);
+            var tarFileName = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
+            if (Directory.GetDirectories(directoryEntity).Any(dic => dic.EndsWith(tarFileName)))
+            {
+                // Die tar Datei wird nicht benötigt und wird vor dem kopieren gelöscht
+                File.Delete(fileInfo.FullName);
+                break;
+            }
+        }
 
-        // ToDo: Anderes entpackungstool verwenden
-        ZipFile.ExtractToDirectory(fileInfo.FullName, newDic.FullName);
+        CopyDirectory(directoryEntity, copyPath);
         Directory.Delete(directoryEntity, true);
     }
 
     private static void CopyDirectory(string sourceDir, string destinationDir)
     {
-        // Get information about the source directory
         var dir = new DirectoryInfo(sourceDir);
 
         // Check if the source directory exists
         if (!dir.Exists)
         {
-            throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+            throw new DirectoryNotFoundException($"Source repositoryDirectory not found: {dir.FullName}");
         }
 
         // Cache directories before we start copying
         var dirs = dir.GetDirectories();
 
-        // Create the destination directory
+        // Create the destination repositoryDirectory
         Directory.CreateDirectory(destinationDir);
 
-        // Get the files in the source directory and copy to the destination directory
+        // Get the files in the repository directory and copy to the local directory
         foreach (var file in dir.GetFiles())
         {
             var targetFilePath = Path.Combine(destinationDir, file.Name);
