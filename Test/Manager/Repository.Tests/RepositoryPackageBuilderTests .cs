@@ -21,12 +21,17 @@ namespace CMI.Manager.Repository.Tests
         public async Task Build_Repository_Package_returns_correct_item()
         {
             // Arrange
-            var fileshare = @"\\nas12.ethz.ch\ethbib_rosetta_test_vls_transfer_s1\vls";
-            var fileUrl = $@"{fileshare}\IE268715\ie.xml";
-            
+            var fileshare = @"C:\Temp\Repository";
+            var fileUrl = $@"{fileshare}\IE444295\ie.xml";
+            var archiveRecord = new ElasticArchiveRecord
+            {
+                ArchiveRecordId = "IE444295",
+                DetailData = new List<ElasticDetailData>()
+            };
+
             // Act
             var builder = new RepositoryPackageBuilder(null, null);
-            await builder.BuildRepositoryPackageAsync(fileUrl,new ElasticArchiveRecord());
+            await builder.BuildRepositoryPackageAsync(fileUrl, archiveRecord);
 
             // Assert
         }
