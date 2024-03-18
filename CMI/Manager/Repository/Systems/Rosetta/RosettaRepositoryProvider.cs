@@ -60,12 +60,12 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
+            // Test IEs Must remove
+            elasticArchiveRecord.PrimaryDataLink = new Random().Next(0, 1) == 1 ? "IE444295" : "IE607568";
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
 
             var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
 
-            //TODO: Nur zum Testen
-            fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, "IE444295")}";
 
             var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
 

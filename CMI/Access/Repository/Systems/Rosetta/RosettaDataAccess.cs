@@ -25,8 +25,6 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
-        // Test IE
-        entityId = "IE444295";
         var success = await rosettaConnector.StartExportAsync(entityId); 
         if(success)
         {
@@ -58,10 +56,6 @@ public class RosettaDataAccess : IRosettaDataAccess
         }
 
         var files =  Directory.GetFiles(directoryEntity, "*.tar", SearchOption.AllDirectories);
-        if (files.Length > 1)
-        {
-            Log.Warning("There is more than one tar file in the package. A tar file was expected, the other TAR file cannot be processed in the primary data preparation process.");
-        }
         foreach (var file in files)
         {
             var fileInfo = new FileInfo(file);
@@ -70,7 +64,6 @@ public class RosettaDataAccess : IRosettaDataAccess
             {
                 // Die tar Datei wird nicht benötigt und wird vor dem kopieren gelöscht
                 File.Delete(fileInfo.FullName);
-                break;
             }
         }
 
