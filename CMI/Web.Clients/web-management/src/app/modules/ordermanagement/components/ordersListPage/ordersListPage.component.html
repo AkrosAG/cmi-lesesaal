@@ -112,11 +112,11 @@
 									<span><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;{{ 'Digitalisierung extern' | translate:'orderDetailPage.digitalisierungExtern' }}</span>
 								</button>
 
-								<button class="btn btn-link" [disabled]="checkedCount === 0" (click)="showDigitalisierungAbschliessenModal()">
+								<button class="btn btn-link" [disabled]="disabledDigitalisierungAbschliessen" (click)="showDigitalisierungAbschliessenModal()">
 									<span><span class="glyphicon glyphicon-check"></span>&nbsp;{{ 'Digitalisierung abschliessen' | translate:'orderDetailPage.digitalisierungFinish' }}</span>
 								</button>
 
-								<button class="btn btn-link" [disabled]="checkedCount === 0" (click)="showAuftraegeReponierenModal()">
+								<button class="btn btn-link" [disabled]="disabledAuftraegeReponieren" (click)="showAuftraegeReponierenModal()">
 									<span><span class="glyphicon glyphicon-transfer"></span>&nbsp;{{ 'Aufträge reponieren ({0})' | translate:'orderOverviewPage.reponieren':checkedCount }}</span>
 								</button>
 

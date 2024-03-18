@@ -48,6 +48,7 @@ export class OrdersListPageComponent implements OnInit {
 	public showDigitalisierungAbschliessen = false;
 	public showBarCode = false;
 	public hasRight = false;
+	public hasDigitalisierungsAuftrag = false;
 
 	// @ts-ignore
 	private barcodeSet: boolean;
@@ -124,6 +125,33 @@ export class OrdersListPageComponent implements OnInit {
 
 	public get checkedCount() {
 		return this.ordersList ? this.ordersList.checkedRowsCount : 0;
+	}
+
+	public get disabledDigitalisierungAbschliessen() {
+		if(this.checkedCount > 0)
+		{
+			const checkedItems = Array.from(this.ordersList.currentChecked.values());
+			const filtered = checkedItems.filter((i: OrderingFlatItem) =>
+					i.status == InternalStatus.Ausgeliehen && i.orderingType === ShippingType.Digitalisierungsauftrag
+				);
+	
+				return (filtered.length === this.checkedCount) ? false:true;
+		}
+		return true;
+	}
+
+	public get disabledAuftraegeReponieren() {
+		if(this.checkedCount > 0)
+		{
+			const checkedItems = Array.from(this.ordersList.currentChecked.values());
+			const filtered = checkedItems.filter((i: OrderingFlatItem) =>
+					i.status == InternalStatus.Ausgeliehen && 
+					(i.orderingType === ShippingType.Lesesaalausleihen || i.orderingType === ShippingType.Verwaltungsausleihe)
+				);
+	
+				return (filtered.length === this.checkedCount) ? false:true;
+		}
+		return true;
 	}
 
 	public get checkedIds() {
