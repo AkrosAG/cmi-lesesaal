@@ -29,19 +29,21 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IRosettaDataAccess rosettaDataAccess;
         private readonly IBus bus;
 
+        private readonly XmlNamespaceManager defaultNamespaceManager;
+
         public RepositoryPackageBuilder(IRosettaDataAccess rosettaDataAccess, IBus bus)
         {
             this.rosettaDataAccess = rosettaDataAccess;
             this.bus = bus;
+
+            this.defaultNamespaceManager = new XmlNamespaceManager(new NameTable());
+            this.defaultNamespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
         }
 
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
             var success = false;
             OrdnungssystempositionDIP dip;
-            
-            var namespaceManager = new XmlNamespaceManager(new NameTable());
-            namespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
             
             XDocument root;
             try
@@ -58,31 +60,41 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var package = GetPackageFromXml(archiveRecord);
             dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
 
-            dip.Dossier = new List<DossierDIP>{ GetDossierFromElastic(archiveRecord) };
+            var dossier = GetDossierFromElastic(archiveRecord);
+            dip.Dossier = new List<DossierDIP>{ dossier };
 
-            var structureMapLogical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='LOGICAL']", namespaceManager);
-            var structureMapPhysical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='PHYSICAL']", namespaceManager);
+            var structureMapLogical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='LOGICAL']", defaultNamespaceManager);
+            var structureMapPhysical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='PHYSICAL']", defaultNamespaceManager);
 
             var structureMap = structureMapLogical ?? structureMapPhysical;
-            var master = structureMap.XPathSelectElement("//mets:structMap/mets:div[contains(@LABEL,'MASTER')]", namespaceManager);
+            var master = structureMap.XPathSelectElement("//mets:structMap/mets:div[contains(@LABEL,'MASTER')]", defaultNamespaceManager);
             
             if(master == null)
             {
                 Log.Error("Der Preservation Master muss mindestens vorhanden sein.");
-                success = false;
+                return await Task.FromResult<RepositoryPackage>(null);
             }
 
-            // TODO: Noch nicht vollständig
+            var tableOfContent = master.XPathSelectElement("//mets:div/mets:div[1]",defaultNamespaceManager);
 
+            AddSubdossiers(dossier, tableOfContent);
+
+            // Generiere noch das Inhaltsverzeichnis
+            var contentRoot = new OrdnerDIP
+            {
+                Id = $"contentRoot{DateTime.Now.Ticks}",
+                Name = "content",
+                OriginalName = "content"
+            };
+            
             var metadataXmlPath = Path.Combine(Settings.Default.TempStoragePath, "metadata.xml");
             success = success ? CreateMetadataXml(metadataXmlPath, archiveRecord) : false;
 
-
-            return await Task.FromResult(new RepositoryPackage());
+            return await Task.FromResult<RepositoryPackage>(null);
         }
 
 
-        public bool CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
+        private bool CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
             var package = GetPackageFromXml(archiveRecord);
             var dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
@@ -93,8 +105,34 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return true;
         }
 
+        private string GetAmdSecIdFromFileSec(string fileId, List<object> items)
+        {
+            throw new NotImplementedException();
+        }
 
-        // TODO: Noch nicht vollständig
+        private string GetTechnicalMetadataForFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddSubdossiers(DossierDIP dossier, XElement root)
+        {
+            if (root == null)
+            {
+                return;
+            }
+            var elements = root.XPathSelectElements("mets:div",defaultNamespaceManager).ToList();
+            foreach (var element in elements)
+            {
+                var subDossier = new DossierDIP
+                {
+                    // TODO:
+                };
+                dossier.Dossier = new List<DossierDIP> { subDossier };
+                AddSubdossiers(subDossier, element);
+            }
+        }
+
         private PaketDIP GetPackageFromXml(ElasticArchiveRecord archiveRecord)
         {
             var package = new PaketDIP

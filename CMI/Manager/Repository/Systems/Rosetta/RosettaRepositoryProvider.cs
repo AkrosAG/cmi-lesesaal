@@ -55,19 +55,22 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Success = false,
                 ErrorMessage = "Export has failed."
             };
-
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
-            // Test IEs Must remove
-            elasticArchiveRecord.PrimaryDataLink = new Random().Next(0, 1) == 1 ? "IE444295" : "IE607568";
+            RepositoryPackage package = null;
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
 
-            var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
+            if(success)
+            {
+                var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
 
-
-            var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+                //TODO: Nur zum Testen
+                fileUrl = $@"{Settings.Default.TempStoragePath}\IE444295\ie.xml";
+                package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+                success = package != null;
+            }
 
             return new RepositoryPackageInfoResult
             {
