@@ -618,6 +618,9 @@
       "hasImage": {
         "type": "boolean"
       },
+      "hasProtectedFiles": {
+        "type": "boolean"
+      },
       "isPhysicalyUsable": {
         "type": "boolean"
       },
