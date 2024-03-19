@@ -23,12 +23,16 @@ namespace CMI.Access.Repository.Systems.Rosetta
             // e. g.: "https://app.data-archive-test.ethz.ch/rest/v0/ies/{0}?op=export&export_path=/transdata/eth_vls&representation_packaging=tar",
             var url = string.Format(exportIeUrl, entityId);
             var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
-
+            if (string.IsNullOrEmpty(exportXml))
+            {
+                Log.Error($"Failed to get process URL for entity {entityId}");
+                return false;
+            }
             var entityExportResult = new EntityExportResult(exportXml);
 
             if (string.IsNullOrEmpty(entityExportResult.ProcessUrl))
             {
-                Log.Error("Failed to get process URL for entity {entityId}", entityId);
+                Log.Error($"Failed to get process URL for entity {entityId} ErrorMessage {entityExportResult.ErrorMessage}");
                 return false;
             }
 
@@ -71,7 +75,7 @@ namespace CMI.Access.Repository.Systems.Rosetta
                         Log.Information("Process status: {status}", statusElement.Value);
                         break;
                     default:
-                        Log.Error("Failed to get status for process {processUrl}: {status}", processUrl, statusElement?.Value ?? "NULL");
+                        Log.Error($"Failed to get status for process {processUrl}: {statusElement?.Value}");
                         return false;
                 }
                
