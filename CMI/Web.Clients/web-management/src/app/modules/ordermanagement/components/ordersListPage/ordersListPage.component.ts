@@ -48,7 +48,6 @@ export class OrdersListPageComponent implements OnInit {
 	public showDigitalisierungAbschliessen = false;
 	public showBarCode = false;
 	public hasRight = false;
-	public hasDigitalisierungsAuftrag = false;
 
 	// @ts-ignore
 	private barcodeSet: boolean;
