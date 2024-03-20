@@ -44,7 +44,7 @@ export class OrdersEinsichtListPageComponent implements OnInit, AfterViewInit {
 	public showDigitalisierungAusloesen = false;
 	public showInVorlageExportieren = false;
 	public hasRight = false;
-
+	
 	private _previousPreFilter: SelectionPreFilter = null;
 
 	constructor(private _txt: TranslationService,
