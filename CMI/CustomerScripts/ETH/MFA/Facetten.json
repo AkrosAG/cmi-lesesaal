@@ -6,16 +6,7 @@
     "Title": "level",
     "Type": "Term",
     "Missing": "",
-    "Index": "1"
-  },
-  {
-    "Field": "permission.keyword",
-    "Size": 10,
-    "Sort": "_term",
-    "Title": "permission",
-    "Type": "Term",
-    "Missing": "",
-    "Index": "2"
+    "Index": "1"  
   },
   {
     "Field": "facetten.text01",

@@ -9,15 +9,6 @@
     "Index": "1"
   },
   {
-    "Field": "permission.keyword",
-    "Size": 10,
-    "Sort": "_term",
-    "Title": "permission",
-    "Type": "Term",
-    "Missing": "",
-    "Index": "2"
-  },
-  {
     "Field": "facetten.text01",
     "Size": 10,
     "Sort": "_term",
