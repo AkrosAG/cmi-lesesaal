@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿using CMI.Access.Repository.Systems.Rosetta;
+using CMI.Contract.Common;
+using CMI.Contract.Common.Gebrauchskopie;
+using CMI.Manager.Repository.Systems.Rosetta.Schema;
+using MassTransit;
+using Newtonsoft.Json;
+using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.XPath;
-using Autofac.Features.Metadata;
-using CMI.Access.Repository.Systems.Rosetta;
-using CMI.Contract.Common;
-using CMI.Contract.Common.Gebrauchskopie;
-using CMI.Contract.Parameter;
-using CMI.Contract.Repository;
-using CMI.Manager.Repository.Properties;
-using MassTransit;
-using Newtonsoft.Json;
-using Serilog;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -42,43 +34,63 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
-            var success = false;
-            OrdnungssystempositionDIP dip;
-            
-            XDocument root;
-            try
+            var mets = Mets.LoadFromFile(Path.Combine(fileUrl, "ie.xml"));
+            var namespaceManager = new XmlNamespaceManager(new NameTable());
+            namespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
+
+            if (mets.DmdSec[0].MdWrap.Item is MdSecTypeMdWrapXmlData metadatenWrapper)
             {
-                root = XDocument.Load(fileUrl);
-                
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, $@"Error while loading {fileUrl} file.");
-                throw;
+                var dcCoreList = metadatenWrapper.Any[0].ChildNodes.OfType<XmlElement>().Select(n => new DcElement
+                {
+                    Element = n.Name,
+                    Text = n.InnerText
+                }).ToList();
             }
 
+            // --------------------------------------------------------------------------------------------------
+            // Für jede Repräsentation gibt es eine Struct Map. 
+            // Repräsentationen können z.B. sein
+            // - Preservation Master
+            // - Modified Master
+            // - Derivative Copy
+            // Und für jede Repräsentation kann es eine Logische und eine Physische Struct Map geben.
+            // Uns interessiert die Struktur und Dateien des Modified Masters. Ist dieser nicht vorhanden,
+            // dann verwenden wir den Preservation Master, der immer vorhanden ist.
+            // Ebenso suchen wir zuerst nach den "LOGICAL" StructMaps und erst danach nach den "LOGICAL"
+            // --------------------------------------------------------------------------------------------------
+
+            // Gibt es logische Struct Maps?
+            var entryStruct =
+                mets.StructMap.Where(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            DivType master = null;
+            // Gibt es keine logische Struct Maps (müsste es neu immer geben), kehren wir zur physischen zurück
+            if (entryStruct.Any())
+            {
+                // Jetzt holen wir den Modified oder wenn nicht vorhanden den Preservation Master
+                master = entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("MODIFIED_MASTER"))?.Div ??
+                         entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("PRESERVATION_MASTER")).Div;
+            }
+            else
+            {
+                entryStruct = mets.StructMap.Where(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+                // Jetzt holen wir den Modified oder wenn nicht vorhanden den Preservation Master
+                master = entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("MODIFIED MASTER"))?.Div ??
+                         entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("PRESERVATION MASTER")).Div;
+            }
+             
+            Debug.Assert(master != null, "Der Preservation Master muss mindestens vorhanden sein.");
+
+            // Das erste DIV des Masters ist immer die "Table of Contents". Dieses DIV ist für uns das Root
+            var tableOfContent = master.Div.First();
+          
             var package = GetPackageFromXml(archiveRecord);
-            dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
+            var ordnungssystemposition = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
+            // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
+            ordnungssystemposition.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
+            // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
+            AddSubdossiers(ordnungssystemposition.Dossier.First(), tableOfContent.Div, mets);
 
-            var dossier = GetDossierFromElastic(archiveRecord);
-            dip.Dossier = new List<DossierDIP>{ dossier };
-
-            var structureMapLogical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='LOGICAL']", defaultNamespaceManager);
-            var structureMapPhysical = root.XPathSelectElement("/mets:mets/mets:structMap[@TYPE='PHYSICAL']", defaultNamespaceManager);
-
-            var structureMap = structureMapLogical ?? structureMapPhysical;
-            var master = structureMap.XPathSelectElement("//mets:structMap/mets:div[contains(@LABEL,'MASTER')]", defaultNamespaceManager);
-            
-            if(master == null)
-            {
-                Log.Error("Der Preservation Master muss mindestens vorhanden sein.");
-                return await Task.FromResult<RepositoryPackage>(null);
-            }
-
-            var tableOfContent = master.XPathSelectElement("//mets:div/mets:div[1]",defaultNamespaceManager);
-
-            AddSubdossiers(dossier, tableOfContent);
-
+            // TODO: Noch nicht vollständig
             // Generiere noch das Inhaltsverzeichnis
             var contentRoot = new OrdnerDIP
             {
@@ -86,23 +98,198 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Name = "content",
                 OriginalName = "content"
             };
-            
-            var metadataXmlPath = Path.Combine(Settings.Default.TempStoragePath, "metadata.xml");
-            success = success ? CreateMetadataXml(metadataXmlPath, archiveRecord) : false;
 
-            return await Task.FromResult<RepositoryPackage>(null);
+            package.Inhaltsverzeichnis.Ordner.Add(contentRoot);
+
+            AddInhaltsverzeichnis(contentRoot, fileUrl, mets);
+
+            var metadataXmlPath = Path.Combine(fileUrl, "metadata.xml");
+            ((Paket)package).SaveToFile(metadataXmlPath);
+
+            return await Task.FromResult(new RepositoryPackage());
         }
 
-
-        private bool CreateMetadataXml(string fileUrl, ElasticArchiveRecord archiveRecord)
+        private static void AddSubdossiers(DossierDIP dossier, List<DivType> div, Mets mets)
         {
-            var package = GetPackageFromXml(archiveRecord);
-            var dip = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
+            foreach (var divType in div)
+            {
+                if (string.Equals(divType.TYPE, "FILE", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var dokument = new DokumentDIP()
+                    {
+                        Id = divType.Fptr.First().ID,
+                        Titel = GetTechnicalMetadataForFile(divType.Fptr.First().FILEID, Section.GeneralFileCharacteristics, SectionGeneralFileCharacteristics.Label, mets),
+                        Erscheinungsform = ErscheinungsformDokument.digital,  // Abzuleiten vom Feld Überlieferungsformen
 
-            dip.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
+                        DateiRef = new List<string>()
+                    };
 
-            ((Paket)package).SaveToFile(Path.Combine(fileUrl, "metadata.xml"));
-            return true;
+                    // Bei Rosetta gibt es vermutlich immer nur einen FilePointer, aber theoretisch könnte es auch mehr sein
+                    foreach (var fptr in divType.Fptr)
+                    {
+                        dokument.DateiRef.Add(fptr.FILEID);
+                    }
+
+                    dossier.Dokument.Add(dokument);
+                }
+
+                // Muss verifiziert werden, ob es wirklich Folder ist, oder was anderes
+                // bei unseren Beispieldaten gibt es keine Unterordner
+                if (string.Equals(divType.TYPE, "FOLDER", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var subDossier = new DossierDIP()
+                    {
+                        Id = divType.ID,
+                        DateiRef = new List<string>(),
+                        Titel = divType.LABEL,
+                        Entstehungszeitraum = dossier.Entstehungszeitraum  // Vererben von Vater
+                    };
+
+                    // Rekursiv Dateien und weitere Dossiers hinzufügen
+                    AddSubdossiers(subDossier, divType.Div, mets);
+
+                    dossier.Dossier.Add(subDossier);
+                }
+            }
+        }
+
+        private static void AddInhaltsverzeichnis(OrdnerDIP ordner, string filePath, Mets mets)
+        {
+            var dirs = Directory.GetDirectories(filePath);
+
+            // Get the files in the repository directory and copy to the local directory
+            foreach (var file in Directory.GetFiles(filePath))
+            {
+                var fileInfo = new FileInfo(file);
+                if (fileInfo.Exists)
+                {
+                    var datei = new DateiDIP();
+                    if (fileInfo.Name.Contains('_'))
+                    {
+                        var id = fileInfo.Name.Substring(0, fileInfo.Name.IndexOf('_'));
+                        datei.Id = id;
+                        datei.Name = fileInfo.Name;
+                        datei.Pruefalgorithmus = DateiPruefalgorithmus(mets, id);
+                        datei.OriginalName = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
+                                SectionGeneralFileCharacteristics.FileOriginalName, mets);
+                        datei.Pruefsumme = GetTechnicalMetadataForFile(id, Section.FileFixity, SectionFileFixity.FixityValue, mets);
+
+                        datei.Eigenschaft = new List<EigenschaftDatei>
+                        {
+                            new EigenschaftDatei
+                            {
+                                Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
+                                    SectionGeneralFileCharacteristics.FileSizeBytes, mets),
+                                Name = "FileSizeBytes"
+                            },
+                            new EigenschaftDatei
+                            {
+                                Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
+                                    SectionGeneralFileCharacteristics.FormatLibraryId, mets),
+                                Name = "FormatLibraryId"
+                            },
+                            new EigenschaftDatei
+                            {
+                                Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
+                                    SectionGeneralFileCharacteristics.FileModificationDate, mets),
+                                Name = "FileModificationDate"
+                            }
+                        };
+                    }
+                    else
+                    {
+                        datei.Id = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
+                        datei.Name = fileInfo.Name;
+                    }
+
+                    ordner.Datei.Add(datei);
+                }
+            }
+
+            foreach (var subDir in dirs)
+            {
+                var subOrdner = new OrdnerDIP
+                {
+                    Id = subDir,
+                    Name = subDir
+                };
+                AddInhaltsverzeichnis(subOrdner, subDir, mets);
+                ordner.Ordner.Add(subOrdner);
+            }
+        }
+
+        private static Pruefalgorithmus DateiPruefalgorithmus(Mets mets, string id)
+        {
+            switch (GetTechnicalMetadataForFile(id, Section.FileFixity, SectionFileFixity.FixityType, mets))
+            {
+                case "MD5":
+                    return Pruefalgorithmus.MD5;
+                case "SHA1":
+                    return Pruefalgorithmus.SHA1;
+                case "SHA256":
+                    return Pruefalgorithmus.SHA256;
+                case "SHA512":
+                    return Pruefalgorithmus.SHA512;
+                default:
+                    return Pruefalgorithmus.MD5;
+
+            }
+        }
+
+        private static string GetAmdSecIdFromFileSec(string fileId, List<object> items)
+        {
+            string retVal = null;
+            foreach (var item in items)
+            {
+                if (item is FileType file)
+                {
+                    if (file.ID.Equals(fileId))
+                    {
+                        retVal = file.ADMID;
+                        break;
+                    }
+                }
+
+                if (item is FileGrpType grp)
+                {
+                    retVal = GetAmdSecIdFromFileSec(fileId, grp.Items);
+                }
+            }
+
+            return retVal;
+        }
+
+        private static string GetTechnicalMetadataForFile(string fileId, string sectionName, string keyId, Mets mets)
+        {
+            try
+            {
+                var amdSecId = GetAmdSecIdFromFileSec(fileId, mets.FileSec.FileGrp.Cast<object>().ToList());
+
+                var amdSec = mets.AmdSec.Find(a => a.ID.Equals(amdSecId));
+
+                if (amdSec.TechMD[0].MdWrap.Item is MdSecTypeMdWrapXmlData technischeMetadatenWrapper)
+                {
+                    var xmlDoc = XDocument.Parse(technischeMetadatenWrapper.Any[0].OuterXml);
+                    var element = xmlDoc.Descendants().FirstOrDefault(n =>
+                        n.Attributes().Any(a => a.Name.LocalName.Equals("id") && a.Value.Equals(sectionName)));
+                    if (element != null)
+                    {
+                        var value = element.Descendants().FirstOrDefault(n => n.Name.LocalName.Equals("key") &&
+                                                                              n.Attributes().Any(a => a.Name.LocalName.Equals("id")
+                                                                                  && a.Value.Equals(keyId)));
+                        return value?.Value;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Log.Warning(e, $"Field {fileId} was in xml not found");
+                return $"Field {fileId} Not found";
+            }
+
+            // Finde File in fileSec
+            return fileId;
         }
 
         private string GetAmdSecIdFromFileSec(string fileId, List<object> items)

@@ -16,5 +16,8 @@ namespace CMI.Access.Repository.Systems.Rosetta
 
         public string ExportPath => xmlDoc?.Descendants("info")
                 .FirstOrDefault(e => e.Attribute("desc")?.Value == "full_export_path")?.Value;
+
+        public string ErrorMessage => xmlDoc?.Descendants("errorsExist")
+            .FirstOrDefault(e => e.Attribute("error")?.Value == "errorMessage")?.Value;
     }
 }
