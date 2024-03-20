@@ -494,7 +494,9 @@ namespace CMI.Web.Frontend.api.Elastic
                             {
                                 Field = $"{facet.Field}", Order = new List<TermsOrder> { new() { Key = facet.Sort } },
                                 Missing = facet.Missing,
-                                Size = facetsFilters != null && facetsFilters.Any(fac => fac.Facet.Equals(facet.Title) && fac.ShowAll)
+                                Size = facetsFilters != null && facetsFilters.Any(fac => (fac.Facet.Equals(facet.Title) 
+                                                                                         || fac.Facet.StartsWith("facetten.creationPeriodYears") && facet.Title.Equals("creationPeriodYears100"))
+                                                                                         && fac.ShowAll)
                                     ? int.MaxValue
                                     : facet.Size
                             }, facetsFilters);
@@ -806,7 +808,7 @@ namespace CMI.Web.Frontend.api.Elastic
 
                         // Wähle den Bucket, der weniger als 10 Einträge hat. Oder dann ganz am Ende den Jahrhundertfilter
                         if (GetSelectedCreationPeriod(facetsFilters) == string.Empty && (((BucketAggregate)primaryAggregation).Items.Count < 10 ||
-                                                                                         entry.Key == "facet_facetten.creationPeriodYears100"
+                                                                                         entry.Key == "facet_creationPeriodYears100"
                             ) ||
                             GetSelectedCreationPeriod(facetsFilters) == entry.Key)
                         {
