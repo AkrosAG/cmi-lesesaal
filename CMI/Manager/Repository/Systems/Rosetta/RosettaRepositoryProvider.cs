@@ -19,23 +19,23 @@ namespace CMI.Manager.Repository.Systems.Rosetta
     public class RosettaRepositoryProvider : IRepositoryProvider
     {
         private readonly IRosettaDataAccess rosettaDataAccess;
-        private readonly IPackageHandler handler;
-        private readonly IParameterHelper parameterHelper;
         private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
 
-        public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler,
-            IParameterHelper parameterHelper, RepositoryPackageBuilder builder, IBus bus)
-        {
-            this.rosettaDataAccess = rosettaDataAccess;
-            this.handler = handler;
-            this.parameterHelper = parameterHelper;
-            this.bus = bus;
-            this.builder = builder;
-        }
+        private readonly string[] iEs = { "IE444295", "IE607568"
+            , "IE609791", "IE610326", "IE611472", "IE611480", "IE611508"
+            , "IE611531", "IE611662", "IE611671", "IE611682", "IE611691", "IE611696"};
 
-        public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
+
+        public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, RepositoryPackageBuilder builder, IBus bus)
         {
+            this.rosettaDataAccess = rosettaDataAccess;        
+            this.bus = bus;
+            this.builder = builder;                              
+        }
+                                                                 
+        public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
+        {                                                        
             var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
             var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
 
@@ -60,21 +60,27 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
-            // Test IEs Must remove
-            elasticArchiveRecord.PrimaryDataLink = new Random().Next(0, 1) == 1 ? "IE444295" : "IE607568";
+            // Test IEs Must remove, only for tests
+            elasticArchiveRecord.PrimaryDataLink = iEs[new Random().Next(0, 2)] ;
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
-
-            var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
-
-
-            var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+            if (success)
+            {
+                var fileUrl = $"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}";
+                var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+                return new RepositoryPackageInfoResult
+                {
+                    Success = true,
+                    PackageDetails = package,
+                    Valid = true
+                };
+            }
 
             return new RepositoryPackageInfoResult
             {
-                Success = success,
-                PackageDetails = package,
-                Valid = success 
+                Success = false,
+                Valid = false
             };
+            
         }
     }
 }
