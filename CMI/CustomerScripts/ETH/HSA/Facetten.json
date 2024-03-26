@@ -24,7 +24,7 @@
     "Title": "Personenregister",
     "Type": "Term",
     "Missing": "",
-    "Index": "6"
+    "Index": "3"
   },
   {
     "Field": "facetten.text02",
@@ -42,7 +42,7 @@
     "Title": "Archivalienart",
     "Type": "Term",
     "Missing": "",
-    "Index": "4"
+    "Index": "6"
   },
   {
     "Field": "facetten.text04",
@@ -51,7 +51,7 @@
     "Title": "Körperschaftsregister",
     "Type": "Term",
     "Missing": "",
-    "Index": "3"
+    "Index": "4"
   },
   {
     "Field": "facetten.creationPeriodYears001",
