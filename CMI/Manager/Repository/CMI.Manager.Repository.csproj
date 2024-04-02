@@ -143,6 +143,8 @@
     <Compile Include="Consumer\ReadPackageMetadataConsumer.cs" />
     <Compile Include="FileHashException.cs" />
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
+    <Compile Include="Systems\Rosetta\Schema\DivType.Extension.cs" />
+    <Compile Include="Systems\Rosetta\Schema\Mets.Partial.cs" />
     <Compile Include="Systems\Bar\DirRepositoryCheck.cs" />
     <Compile Include="Systems\Bar\IDirPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
