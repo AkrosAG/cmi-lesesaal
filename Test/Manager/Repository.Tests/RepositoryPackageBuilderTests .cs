@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Manager.Repository.Systems.Rosetta;
@@ -15,6 +16,7 @@ namespace CMI.Manager.Repository.Tests
         [TestCase("IE611682")]
         [TestCase("IE611691")]
         [TestCase("IE611696")]
+        [Ignore("Diese Tests muss bewusst bzw.Bedarf ausgeführt werden")]
         public async Task Build_Repository_Package_returns_correct_item(string id)
         {
             // Arrange
