@@ -34,5 +34,5 @@ namespace CMI.Manager.Repository.Tests
 
             // Assert
         }
-    }
+    } 
 }
