@@ -67,7 +67,7 @@ namespace CMI.Contract.Common.Compiler
                         text.Append(descriptor.Name);
                         if (!string.IsNullOrEmpty(descriptor.Function))
                         {
-                            text.Append(" : " + descriptor.Function);
+                            text.Append(": " + descriptor.Function);
                         }
 
                         elasticArchiveRecord.Facetten.Text04.Add(text.ToString());
@@ -85,7 +85,7 @@ namespace CMI.Contract.Common.Compiler
 
                         if (!string.IsNullOrEmpty(descriptor.Function))
                         {
-                            text.Append(" : " + descriptor.Function);
+                            text.Append(": " + descriptor.Function);
                         }
 
                         elasticArchiveRecord.Facetten.Text05.Add(text.ToString());
@@ -141,7 +141,7 @@ namespace CMI.Contract.Common.Compiler
                         descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
                     }
                 }
-
+                
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "koerperschaftsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "ortsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "werkregister", true);
