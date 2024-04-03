@@ -1,4 +1,5 @@
-﻿namespace CMI.Manager.Repository.Systems.Rosetta.Schema
+﻿
+namespace CMI.Manager.Repository.Systems.Rosetta.Schema
 {
     public class Section
     {

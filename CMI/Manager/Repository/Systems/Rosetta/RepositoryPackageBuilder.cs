@@ -21,139 +21,113 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly IRosettaDataAccess rosettaDataAccess;
         private readonly IBus bus;
 
+        private readonly XmlNamespaceManager defaultNamespaceManager;
+
         public RepositoryPackageBuilder(IRosettaDataAccess rosettaDataAccess, IBus bus)
         {
             this.rosettaDataAccess = rosettaDataAccess;
             this.bus = bus;
+
+            this.defaultNamespaceManager = new XmlNamespaceManager(new NameTable());
+            this.defaultNamespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
         }
 
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
         {
-            var mets = Mets.LoadFromFile(Path.Combine(fileUrl, "ie.xml"));
-            var namespaceManager = new XmlNamespaceManager(new NameTable());
-            namespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
-
-            if (mets.DmdSec[0].MdWrap.Item is MdSecTypeMdWrapXmlData metadatenWrapper)
-            {
-                var dcCoreList = metadatenWrapper.Any[0].ChildNodes.OfType<XmlElement>().Select(n => new DcElement
-                {
-                    Element = n.Name,
-                    Text = n.InnerText
-                }).ToList();
-            }
-
-            // --------------------------------------------------------------------------------------------------
-            // Für jede Repräsentation gibt es eine Struct Map. 
-            // Repräsentationen können z.B. sein
-            // - Preservation Master
-            // - Modified Master
-            // - Derivative Copy
-            // Und für jede Repräsentation kann es eine Logische und eine Physische Struct Map geben.
-            // Uns interessiert die Struktur und Dateien des Modified Masters. Ist dieser nicht vorhanden,
-            // dann verwenden wir den Preservation Master, der immer vorhanden ist.
-            // Ebenso suchen wir zuerst nach den "LOGICAL" StructMaps und erst danach nach den "LOGICAL"
-            // --------------------------------------------------------------------------------------------------
-
-            // Gibt es logische Struct Maps?
-            var entryStruct =
-                mets.StructMap.Where(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
-            DivType master = null;
-            // Gibt es keine logische Struct Maps (müsste es neu immer geben), kehren wir zur physischen zurück
-            if (entryStruct.Any())
-            {
-                // Jetzt holen wir den Modified oder wenn nicht vorhanden den Preservation Master
-                master = entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("MODIFIED_MASTER"))?.Div ??
-                         entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("PRESERVATION_MASTER")).Div;
-            }
-            else
-            {
-                entryStruct = mets.StructMap.Where(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
-                // Jetzt holen wir den Modified oder wenn nicht vorhanden den Preservation Master
-                master = entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("MODIFIED MASTER"))?.Div ??
-                         entryStruct.Find(m => m.Div.LABEL.ToUpper().Contains("PRESERVATION MASTER")).Div;
-            }
-             
-            Debug.Assert(master != null, "Der Preservation Master muss mindestens vorhanden sein.");
+            var mets = Mets.LoadFromFile(fileUrl);
 
             // Das erste DIV des Masters ist immer die "Table of Contents". Dieses DIV ist für uns das Root
-            var tableOfContent = master.Div.First();
-          
+            var tableOfContent = mets.GetTableOfContent();
+
             var package = GetPackageFromXml(archiveRecord);
             var ordnungssystemposition = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
             // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
             ordnungssystemposition.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
             // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
-            AddSubdossiers(ordnungssystemposition.Dossier.First(), tableOfContent.Div, mets);
+            var dossierDip = ordnungssystemposition.Dossier.First();
+            AddSubdossiers(dossierDip, tableOfContent, mets);
 
-            // TODO: Noch nicht vollständig
-            // Generiere noch das Inhaltsverzeichnis
+            // TODO: Noch nicht vollständig Generiere noch das Inhaltsverzeichnis
             var contentRoot = new OrdnerDIP
             {
                 Id = $"contentRoot{DateTime.Now.Ticks}",
                 Name = "content",
-                OriginalName = "content"
+                OriginalName = "content",
             };
 
             package.Inhaltsverzeichnis.Ordner.Add(contentRoot);
+            var folder = mets.GetImportFolderName();
 
-            AddInhaltsverzeichnis(contentRoot, fileUrl, mets);
+            var rootPath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
+            AddInhaltsverzeichnis(contentRoot, rootPath, mets);
 
-            var metadataXmlPath = Path.Combine(fileUrl, "metadata.xml");
+            var metadataXmlPath = Path.Combine(Path.GetDirectoryName(fileUrl), "metadata.xml");
             ((Paket)package).SaveToFile(metadataXmlPath);
 
-            return await Task.FromResult(new RepositoryPackage());
+            var result = new RepositoryPackage
+            {
+                // TODO: Hier muss noch das Package in das Repository geschrieben werden
+            };
+
+            return await Task.FromResult(result);
         }
 
-        private static void AddSubdossiers(DossierDIP dossier, List<DivType> div, Mets mets)
+        private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
         {
-            foreach (var divType in div)
+            foreach (var div in root.Div)
             {
-                if (string.Equals(divType.TYPE, "FILE", StringComparison.InvariantCultureIgnoreCase))
+                // Verarbeite File nodes
+                if (div.IsFileNode())
                 {
-                    var dokument = new DokumentDIP()
-                    {
-                        Id = divType.Fptr.First().ID,
-                        Titel = GetTechnicalMetadataForFile(divType.Fptr.First().FILEID, Section.GeneralFileCharacteristics, SectionGeneralFileCharacteristics.Label, mets),
-                        Erscheinungsform = ErscheinungsformDokument.digital,  // Abzuleiten vom Feld Überlieferungsformen
-
-                        DateiRef = new List<string>()
-                    };
-
-                    // Bei Rosetta gibt es vermutlich immer nur einen FilePointer, aber theoretisch könnte es auch mehr sein
-                    foreach (var fptr in divType.Fptr)
-                    {
-                        dokument.DateiRef.Add(fptr.FILEID);
-                    }
-
-                    dossier.Dokument.Add(dokument);
+                    ProcessFileNode(dossier, div, mets);
                 }
 
-                // Muss verifiziert werden, ob es wirklich Folder ist, oder was anderes
-                // bei unseren Beispieldaten gibt es keine Unterordner
-                if (string.Equals(divType.TYPE, "FOLDER", StringComparison.InvariantCultureIgnoreCase))
+                // Verarbeite Verzeicnisse or Null Type nodes welche als Verzeichnisse interpretiert werden
+                if (div.IsFolderNode() || div.IsEmptyTypeNode())
                 {
-                    var subDossier = new DossierDIP()
-                    {
-                        Id = divType.ID,
-                        DateiRef = new List<string>(),
-                        Titel = divType.LABEL,
-                        Entstehungszeitraum = dossier.Entstehungszeitraum  // Vererben von Vater
-                    };
-
-                    // Rekursiv Dateien und weitere Dossiers hinzufügen
-                    AddSubdossiers(subDossier, divType.Div, mets);
-
-                    dossier.Dossier.Add(subDossier);
+                    ProcessFolderOrEmptyNode(dossier, div, mets);
                 }
             }
         }
 
-        private static void AddInhaltsverzeichnis(OrdnerDIP ordner, string filePath, Mets mets)
+        private static void ProcessFileNode(DossierDIP dossier, DivType div, Mets mets)
         {
-            var dirs = Directory.GetDirectories(filePath);
+            var firstFptr = div.Fptr.First();
+            var dokument = new DokumentDIP()
+            {
+                Id = firstFptr.ID,
+                Titel = GetTechnicalMetadataForFile(firstFptr.FILEID, Section.GeneralFileCharacteristics, SectionGeneralFileCharacteristics.Label, mets),
+                Erscheinungsform = ErscheinungsformDokument.digital,
+                // Bei Rosetta gibt es vermutlich immer nur einen FilePointer, aber theoretisch könnte es auch mehr sein
+                DateiRef = div.Fptr.Select(fptr => fptr.FILEID).ToList()
+            };
+
+            dossier.Dokument.Add(dokument);
+        }
+
+        private static void ProcessFolderOrEmptyNode(DossierDIP dossier, DivType div, Mets mets)
+        {
+            var subDossier = new DossierDIP()
+            {
+                Id = div.ID,
+                DateiRef = new List<string>(),
+                Titel = div.LABEL,
+                Entstehungszeitraum = dossier.Entstehungszeitraum
+            };
+
+            if (div.HasSubNodes())
+            {
+                AddSubdossiers(subDossier, div, mets);
+                dossier.Dossier.Add(subDossier);
+            }
+        }
+
+        private static void AddInhaltsverzeichnis(OrdnerDIP ordner, string rootPath, Mets mets)
+        {
+            var subdirs = Directory.GetDirectories(rootPath);
 
             // Get the files in the repository directory and copy to the local directory
-            foreach (var file in Directory.GetFiles(filePath))
+            foreach (var file in Directory.GetFiles(rootPath))
             {
                 var fileInfo = new FileInfo(file);
                 if (fileInfo.Exists)
@@ -201,7 +175,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 }
             }
 
-            foreach (var subDir in dirs)
+            foreach (var subDir in subdirs)
             {
                 var subOrdner = new OrdnerDIP
                 {
@@ -233,26 +207,26 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         private static string GetAmdSecIdFromFileSec(string fileId, List<object> items)
         {
-            string retVal = null;
             foreach (var item in items)
             {
-                if (item is FileType file)
+                if (item is FileType file && file.ID.Equals(fileId))
                 {
-                    if (file.ID.Equals(fileId))
-                    {
-                        retVal = file.ADMID;
-                        break;
-                    }
+                    return file.ADMID;
                 }
 
                 if (item is FileGrpType grp)
                 {
-                    retVal = GetAmdSecIdFromFileSec(fileId, grp.Items);
+                    var retVal = GetAmdSecIdFromFileSec(fileId, grp.Items);
+                    if (retVal != null)
+                    {
+                        return retVal;
+                    }
                 }
             }
 
-            return retVal;
+            return null;
         }
+
 
         private static string GetTechnicalMetadataForFile(string fileId, string sectionName, string keyId, Mets mets)
         {
@@ -287,8 +261,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return fileId;
         }
 
-
-        // TODO: Noch nicht vollständig
         private PaketDIP GetPackageFromXml(ElasticArchiveRecord archiveRecord)
         {
             var package = new PaketDIP
@@ -298,7 +270,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Ablieferung = new AblieferungDIP
                 {
                     Ablieferungstyp = Ablieferungstyp.FILES, // Anhand Feld Erwerbsarten ableiten
-                    AblieferndeStelle =  "Aus Feld Akzessionen der VE, ggf. nach oben navigieren",
+                    AblieferndeStelle = "Aus Feld Akzessionen der VE, ggf. nach oben navigieren",
                     Provenienz = new ProvenienzDIP
                     {
                         AktenbildnerName = archiveRecord.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
@@ -317,7 +289,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return package;
         }
 
-        private DossierDIP GetDossierFromElastic( ElasticArchiveRecord archiveRecord)
+        private DossierDIP GetDossierFromElastic(ElasticArchiveRecord archiveRecord)
         {
             var dossier = new DossierDIP
             {

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Packaging;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
-using CMI.Contract.Common.Gebrauchskopie;
-using CMI.Engine.PackageMetadata.Systems.Dir;
 using CMI.Manager.Repository.Systems.Rosetta;
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace CMI.Manager.Repository.Tests
@@ -17,16 +10,27 @@ namespace CMI.Manager.Repository.Tests
     [TestFixture]
     public class RepositoryPackageBuilderTests
     {
-        [Test]
-        public async Task Build_Repository_Package_returns_correct_item()
+        [TestCase("IE610326")]
+        [TestCase("IE611480")]
+        [TestCase("IE611671")]
+        [TestCase("IE611682")]
+        [TestCase("IE611691")]
+        [TestCase("IE611696")]
+        [Ignore("Diese Tests muss bewusst bzw.Bedarf ausgeführt werden")]
+        public async Task Build_Repository_Package_returns_correct_item(string id)
         {
             // Arrange
-            var fileshare = @"\\nas12.ethz.ch\ethbib_rosetta_test_vls_transfer_s1\vls";
-            var fileUrl = $@"{fileshare}\IE268715\ie.xml";
-            
+            var fileshare = @"C:\Temp\Repository";
+            var fileUrl = $@"{fileshare}\{id}\ie.xml";
+            var archiveRecord = new ElasticArchiveRecord
+            {
+                ArchiveRecordId = id,
+                DetailData = new List<ElasticDetailData>()
+            };
+
             // Act
             var builder = new RepositoryPackageBuilder(null, null);
-            await builder.BuildRepositoryPackageAsync(fileUrl,new ElasticArchiveRecord());
+            await builder.BuildRepositoryPackageAsync(fileUrl, archiveRecord);
 
             // Assert
         }
