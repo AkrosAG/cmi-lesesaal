@@ -52,7 +52,6 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	public gebrauchskopieStatus: any[] = [];
 
 	public isNavFixed = false;
-
 	public isDigitalisierungsAuftrag = false;
 
 	private _recordId: number;
