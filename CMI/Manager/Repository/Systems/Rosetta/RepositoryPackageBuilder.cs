@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,13 +40,12 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             var package = GetPackageFromXml(archiveRecord);
             var ordnungssystemposition = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
-            // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
+            
             ordnungssystemposition.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
-            // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
             var dossierDip = ordnungssystemposition.Dossier.First();
+            // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
             AddSubdossiers(dossierDip, tableOfContent, mets);
 
-            // TODO: Noch nicht vollständig Generiere noch das Inhaltsverzeichnis
             var contentRoot = new OrdnerDIP
             {
                 Id = $"contentRoot{DateTime.Now.Ticks}",
@@ -83,7 +81,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 }
 
                 // Verarbeite Verzeicnisse or Null Type nodes welche als Verzeichnisse interpretiert werden
-                if (div.IsFolderNode() || div.IsEmptyTypeNode())
+                else if (div.IsFolderNode() || div.IsEmptyTypeNode())
                 {
                     ProcessFolderOrEmptyNode(dossier, div, mets);
                 }
@@ -226,8 +224,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             return null;
         }
-
-
+        
         private static string GetTechnicalMetadataForFile(string fileId, string sectionName, string keyId, Mets mets)
         {
             try
