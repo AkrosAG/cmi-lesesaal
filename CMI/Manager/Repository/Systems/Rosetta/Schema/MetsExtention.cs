@@ -1,33 +1,32 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
-using Autofac.Features.Metadata;
-using MassTransit;
-using Serilog;
 
 namespace CMI.Manager.Repository.Systems.Rosetta.Schema
 {
-    public partial class Mets
+    public static class MetsExtention
     {
-        private MdSecTypeMdWrapXmlData Wrapper => DmdSec[0].MdWrap.Item as MdSecTypeMdWrapXmlData;
-
-        public IDictionary<string, string> GetMetaData()
+        public static MdSecTypeMdWrapXmlData Wrapper(this Mets mets)
         {
-            return Wrapper?.Any[0].ChildNodes.OfType<XmlElement>()
+          return mets.DmdSec[0].MdWrap.Item as MdSecTypeMdWrapXmlData;
+        }
+
+        public static IDictionary<string, string> GetMetaData(this Mets mets)
+        {
+            var wrapper = mets.DmdSec[0].MdWrap.Item as MdSecTypeMdWrapXmlData;
+            return wrapper?.Any[0].ChildNodes.OfType<XmlElement>()
                 .ToDictionary(n => Regex.Replace(n.Name, @"^.+:", string.Empty), n => n.InnerText);
         }
 
-        public DivType GetTableOfContent()
+        public static DivType GetTableOfContent(this Mets mets)
         {
-            return GetMasterNode().Div.First();
+            return mets.GetMasterNode().Div.First();
         }
 
-        public DivType GetMasterNode()
+        public static DivType GetMasterNode(this Mets mets)
         {
             DivType master = null;
             Predicate<StructMapType> modifiedMaster = (StructMapType m) =>
@@ -51,7 +50,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta.Schema
             // --------------------------------------------------------------------------------------------------
 
             // Gibt es logische Struct Maps?
-            var entryStruct = StructMap.Where(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            var entryStruct = mets.StructMap.Where(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
             
             // Gibt es keine logische Struct Maps (müsste es neu immer geben), kehren wir zur physischen zurück
             if (entryStruct != null && entryStruct.Any())
@@ -61,7 +60,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta.Schema
             }
             else
             {
-                entryStruct = StructMap.Where(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+                entryStruct = mets.StructMap.Where(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
                 // Jetzt holen wir den Modified oder wenn nicht vorhanden den Preservation Master
                 master = entryStruct.Find(modifiedMaster)?.Div ?? entryStruct.Find(preservationMaster)?.Div;
             }
@@ -69,11 +68,11 @@ namespace CMI.Manager.Repository.Systems.Rosetta.Schema
             return master ?? throw new KeyNotFoundException("Master node could not be found");
         }
 
-        public string GetImportFolderName()
+        public static string GetImportFolderName(this Mets mets)
         {
             var pattern = @"^[^-]+";
-            var structMap = StructMap.FirstOrDefault(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)) ?? 
-                            StructMap.FirstOrDefault(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase));
+            var structMap = mets.StructMap.FirstOrDefault(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)) ??
+                            mets.StructMap.FirstOrDefault(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase));
             
             var regex = new Regex(pattern);
             var match = regex.Match(structMap.ID);
