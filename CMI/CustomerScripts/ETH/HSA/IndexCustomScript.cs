@@ -67,7 +67,7 @@ namespace CMI.Contract.Common.Compiler
                         text.Append(descriptor.Name);
                         if (!string.IsNullOrEmpty(descriptor.Function))
                         {
-                            text.Append(" : " + descriptor.Function);
+                            text.Append(": " + descriptor.Function);
                         }
 
                         elasticArchiveRecord.Facetten.Text04.Add(text.ToString());
