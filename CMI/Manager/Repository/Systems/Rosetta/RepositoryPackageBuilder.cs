@@ -62,7 +62,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var contentDir = Path.Combine(zipDir, "content");
             var headerDir = Path.Combine(zipDir, "header");
             Directory.CreateDirectory(headerDir);
-            RosettaDataAccess.CopyDirectory(folder, contentDir);
+            RosettaDataAccess.CopyDirectory(rootPath, contentDir);
             var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
             ((Paket)package).SaveToFile(metadataXmlPath);
 
