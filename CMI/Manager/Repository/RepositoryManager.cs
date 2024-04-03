@@ -94,8 +94,6 @@ public class RepositoryManager : IRepositoryManager
         }
     }
 
-
-
     public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
         // Init the return value
