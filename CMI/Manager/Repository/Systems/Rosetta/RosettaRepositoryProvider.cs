@@ -63,8 +63,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
             if (success)
             {
-                var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink)}\ie.xml";
-                var package = await builder.BuildRepositoryPackageAsync(fileUrl, elasticArchiveRecord);
+                var package = await builder.BuildRepositoryPackageAsync(elasticArchiveRecord);
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,
