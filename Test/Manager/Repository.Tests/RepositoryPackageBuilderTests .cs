@@ -20,17 +20,16 @@ namespace CMI.Manager.Repository.Tests
         public async Task Build_Repository_Package_returns_correct_item(string id)
         {
             // Arrange
-            var fileshare = @"C:\Temp\Repository";
-            var fileUrl = $@"{fileshare}\{id}\ie.xml";
             var archiveRecord = new ElasticArchiveRecord
             {
                 ArchiveRecordId = id,
+                PrimaryDataLink = id,
                 DetailData = new List<ElasticDetailData>()
             };
 
             // Act
-            var builder = new RepositoryPackageBuilder(null, null);
-            await builder.BuildRepositoryPackageAsync(fileUrl, archiveRecord);
+            var builder = new RepositoryPackageBuilder();
+            await builder.BuildRepositoryPackageAsync(archiveRecord);
 
             // Assert
         }

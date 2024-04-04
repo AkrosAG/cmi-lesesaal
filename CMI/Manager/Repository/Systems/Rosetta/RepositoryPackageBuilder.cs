@@ -1,6 +1,7 @@
 ﻿using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
+using CMI.Manager.Repository.Properties;
 using CMI.Manager.Repository.Systems.Rosetta.Schema;
 using MassTransit;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
@@ -17,22 +19,17 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 {
     public class RepositoryPackageBuilder
     {
-        private readonly IRosettaDataAccess rosettaDataAccess;
-        private readonly IBus bus;
-
         private readonly XmlNamespaceManager defaultNamespaceManager;
 
-        public RepositoryPackageBuilder(IRosettaDataAccess rosettaDataAccess, IBus bus)
+        public RepositoryPackageBuilder()
         {
-            this.rosettaDataAccess = rosettaDataAccess;
-            this.bus = bus;
-
-            this.defaultNamespaceManager = new XmlNamespaceManager(new NameTable());
-            this.defaultNamespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
+            defaultNamespaceManager = new XmlNamespaceManager(new NameTable());
+            defaultNamespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
         }
 
-        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string fileUrl, ElasticArchiveRecord archiveRecord)
+        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord)
         {
+            var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
 
             // Das erste DIV des Masters ist immer die "Table of Contents". Dieses DIV ist für uns das Root
@@ -58,18 +55,40 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             var rootPath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
             AddInhaltsverzeichnis(contentRoot, rootPath, mets);
+            
 
-            var metadataXmlPath = Path.Combine(Path.GetDirectoryName(fileUrl), "metadata.xml");
+            var zipFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId + ".zip");
+            var zipDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId);
+            var contentDir = Path.Combine(zipDir, "content");
+            var headerDir = Path.Combine(zipDir, "header");
+            Directory.CreateDirectory(headerDir);
+            RosettaDataAccess.CopyDirectory(rootPath, contentDir);
+            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
             ((Paket)package).SaveToFile(metadataXmlPath);
 
+            if (File.Exists(zipFile))
+            {
+                File.Delete(zipFile);
+            }
+            ZipFile.CreateFromDirectory(zipDir, zipFile);
+            Directory.Delete(zipDir, true);
             var result = new RepositoryPackage
             {
-                // TODO: Hier muss noch das Package in das Repository geschrieben werden
+                PackageFileName = archiveRecord.ArchiveRecordId + ".zip",
+                PackageId= archiveRecord.PrimaryDataLink,
+                ArchiveRecordId = archiveRecord.ArchiveRecordId,
+                // TODo:
+                SizeInBytes = 8569049,
+                FileCount = 2,
+                RepositoryExtractionDuration = 0,
+                FulltextExtractionDuration = 0,
+                // Files = ,
+                // Folders = 
             };
 
             return await Task.FromResult(result);
         }
-
+        
         private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
         {
             foreach (var div in root.Div)

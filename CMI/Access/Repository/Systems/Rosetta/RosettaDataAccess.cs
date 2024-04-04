@@ -71,7 +71,7 @@ public class RosettaDataAccess : IRosettaDataAccess
         Directory.Delete(directoryEntity, true);
     }
 
-    private static void CopyDirectory(string sourceDir, string destinationDir)
+    public static void CopyDirectory(string sourceDir, string destinationDir)
     {
         var dir = new DirectoryInfo(sourceDir);
 
