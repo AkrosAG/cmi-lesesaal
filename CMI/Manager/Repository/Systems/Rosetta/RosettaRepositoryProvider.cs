@@ -28,12 +28,27 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             this.builder = builder;                              
             this.bus = bus;
         }
-                                                                 
+
+        public List<RepositoryPackage> PrimaryData { get; set; }
+
+        /// <summary>
+        /// We already have the package. Here the order is updated, the name comes because the interface is used on several repositories.
+        /// </summary>
+        /// <param name="packageId"></param>
+        /// <param name="archiveRecordId"></param>
+        /// <param name="createMetadataXml"></param>
+        /// <param name="fileTypesToIgnore"></param>
+        /// <param name="primaerdatenAuftragId"></param>
+        /// <returns></returns>
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            Debug.Assert(fileTypesToIgnore != null, "fileTypesToIgnore must not be null");
+            // already done in ReadPackageMetadata
             var currentStatus = AufbereitungsStatusEnum.AuftragGestartet;
             await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+
+
             var retVal = new RepositoryPackageResult
             {
                 Success = true,
@@ -42,9 +57,11 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             retVal.Success = true;
             retVal.Valid = true;
-            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
-            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
 
+
+            // already done in ReadPackageMetadata
+            currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             return retVal;
         }
 
@@ -56,11 +73,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             if (success)
             {
                 var package = await builder.BuildRepositoryPackageAsync(elasticArchiveRecord);
-
-                var list = new List<RepositoryPackage> { package };
-                elasticArchiveRecord.PrimaryData = list.ToElasticArchiveRecordPackage(); 
-
-
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CMI.Contract.Messaging;
+using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Serilog;
 using Serilog.Context;
@@ -33,17 +34,35 @@ namespace CMI.Manager.Repository.Consumer
             {
                 Log.Information("Received {CommandName} command with conversationId {ConversationId} from the bus",
                     nameof(IArchiveRecordAppendPackage), context.ConversationId);
+                var vaidPackage = false;
+                if (Settings.Default.RepositoryManager == "rosetta")
+                {
+                    // We already have the data, just set the order status and zip the file
+                    await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
+                        context.Message.PrimaerdatenAuftragId);
+                    if (context.Message.ArchiveRecord != null && context.Message.ArchiveRecord.PrimaryData.Count > 0)
+                    {
+                        vaidPackage = true;
+                    }
+                }
+                else
+                {
+                    // Need to clear the existing primary data that just contain the metadata. 
+                    // Required because the append Package is adding the same information again.
+                    context.Message.ArchiveRecord?.PrimaryData.Clear();
+                    // Get the package from the repository
+                    var result = await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
+                        context.Message.PrimaerdatenAuftragId);
 
-                // Need to clear the existing primary data that just contain the metadata. 
-                // Required because the append Package is adding the same information again.
-                //context.Message.ArchiveRecord?.PrimaryData.Clear();
-
-                // Get the package from the repository
-                var result = await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
-                    context.Message.PrimaerdatenAuftragId);
+                    // Inform the world about the created package
+                    if (result != null && result.Success && result.Valid)
+                    {
+                        vaidPackage = true;
+                    }
+                }
 
                 // Inform the world about the created package
-                if (context.Message.ArchiveRecord != null && context.Message.ArchiveRecord.PrimaryData.Count > 0)
+                if (vaidPackage)
                 {
                     Log.Information("Package creation was successful for packageId {packageId}", context.Message.ElasticRecord.PrimaryDataLink);
                   //  Debug.Assert(context.Message.ElasticRecord.PrimaryData.First()..PackageFileName != null);
@@ -60,9 +79,9 @@ namespace CMI.Manager.Repository.Consumer
                 else
                 {
                     // If package creation was not successful, stop syncing here and return failure.
-                    //Log.Error(
-                    //    "Failed to extract primary data from repository for archiveRecord with conversationId {ConversationId} with message {ErrorMessage}",
-                    //    context.ConversationId, result?.ErrorMessage);
+                    Log.Error(
+                        "Failed to extract primary data from repository for archiveRecord with conversationId {ConversationId} with RepositoryManager {RepositoryManager}",
+                        context.ConversationId, Settings.Default.RepositoryManager);
                     await context.Publish<IArchiveRecordUpdated>(new
                     {
                         context.Message.MutationId,
