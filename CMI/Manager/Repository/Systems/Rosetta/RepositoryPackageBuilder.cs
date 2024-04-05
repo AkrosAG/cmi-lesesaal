@@ -120,7 +120,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var firstFptr = div.Fptr.First();
             var dokument = new DokumentDIP()
             {
-                Id = firstFptr.ID,
+                Id = string.IsNullOrEmpty(firstFptr.ID) ?  firstFptr.FILEID : firstFptr.ID,
                 Titel = GetTechnicalMetadataForFile(firstFptr.FILEID, Section.GeneralFileCharacteristics, SectionGeneralFileCharacteristics.Label, mets),
                 Erscheinungsform = ErscheinungsformDokument.digital,
                 // Bei Rosetta gibt es vermutlich immer nur einen FilePointer, aber theoretisch könnte es auch mehr sein
