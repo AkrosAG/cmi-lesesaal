@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Parameter;
@@ -65,10 +66,12 @@ public class RepositoryManager : IRepositoryManager
                 // Getting the package, but for syncing we don't need the overhead of creating the metadata stuff
                 var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, false,
                     fileTypesToIgnore.Select(f => f.Trim()).ToList(),
-                    primaerdatenId);
+                primaerdatenId);
 
-                // Output duration
-                var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
+                packageResult.PackageDetails = archiveRecord.PrimaryData.FirstOrDefault();
+
+                    // Output duration
+                    var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
                 Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
                     packageId,
                     packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
@@ -76,7 +79,7 @@ public class RepositoryManager : IRepositoryManager
                 if (packageResult.Success && packageResult.Valid)
                 {
                     // Append the package to the archive record
-                    archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
+                    // elasticArchiveRecord.PrimaryData.Add(packageResult.PackageDetails);
                     return packageResult;
                 }
 
@@ -96,23 +99,24 @@ public class RepositoryManager : IRepositoryManager
 
     public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
-        // Init the return value
-        var retVal = new RepositoryPackageInfoResult
-        {
-            Success = false,
-            Valid = false,
-            PackageDetails = new RepositoryPackage {ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId}
-        };
-
         try
         {
-            return await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord);
+             var readPackage = await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord);
+                
+             return readPackage;
         }
         catch (Exception ex)
         {
             Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", elasticArchiveRecord.PrimaryData);
-            retVal.ErrorMessage = "Failed to get package metadata from repository";
-            throw;
+            // Init the return value
+            var retVal = new RepositoryPackageInfoResult
+            {
+                Success = false,
+                Valid = false,
+                PackageDetails = new RepositoryPackage { ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId },
+                ErrorMessage = "Failed to get package metadata from repository"
+            };
+            return retVal;
         }
     }
 
