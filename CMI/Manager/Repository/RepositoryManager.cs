@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Parameter;
 using CMI.Manager.Repository.ParameterSettings;
+using CMI.Manager.Repository.Properties;
 using CMI.Manager.Repository.Systems;
 using Serilog;
 using Serilog.Context;
@@ -63,23 +64,35 @@ public class RepositoryManager : IRepositoryManager
             if (!string.IsNullOrEmpty(packageId) && !string.IsNullOrEmpty(archiveRecordId))
             {
                 var fileTypesToIgnore = syncSettings.IgnorierteDateitypenFuerSynchronisierung.Split(',');
-                // Getting the package, but for syncing we don't need the overhead of creating the metadata stuff
+               
                 var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, false,
                     fileTypesToIgnore.Select(f => f.Trim()).ToList(),
                 primaerdatenId);
 
-                packageResult.PackageDetails = archiveRecord.PrimaryData.FirstOrDefault();
 
+                if (Settings.Default.RepositoryManager != "rosetta")
+                {
                     // Output duration
                     var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
-                Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
-                    packageId,
-                    packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
+                    Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
+                        packageId,
+                        packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
+
+                    if (packageResult.Success && packageResult.Valid)
+                    {
+                        // Append the package to the archive record
+                        archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
+                        return packageResult;
+                    }
+                }
+                else
+                { 
+                    // With Rosetta we already have the package. Here the order is updated, the name comes because the interface is used on several repositories.
+                    packageResult.PackageDetails = archiveRecord.PrimaryData.FirstOrDefault();
+                }
 
                 if (packageResult.Success && packageResult.Valid)
                 {
-                    // Append the package to the archive record
-                    // elasticArchiveRecord.PrimaryData.Add(packageResult.PackageDetails);
                     return packageResult;
                 }
 
@@ -101,9 +114,7 @@ public class RepositoryManager : IRepositoryManager
     {
         try
         {
-             var readPackage = await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord);
-                
-             return readPackage;
+             return await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord); 
         }
         catch (Exception ex)
         {

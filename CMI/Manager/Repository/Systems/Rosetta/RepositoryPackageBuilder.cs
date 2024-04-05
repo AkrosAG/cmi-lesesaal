@@ -97,7 +97,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return await Task.FromResult(result);
         }
 
-
         private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
         {
             foreach (var div in root.Div)
