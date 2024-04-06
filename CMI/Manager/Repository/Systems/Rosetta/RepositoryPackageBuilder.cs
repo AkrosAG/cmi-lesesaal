@@ -3,7 +3,6 @@ using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Manager.Repository.Properties;
 using CMI.Manager.Repository.Systems.Rosetta.Schema;
-using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
 using System;
@@ -14,12 +13,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using File = System.IO.File;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
     public class RepositoryPackageBuilder
     {
         private readonly XmlNamespaceManager defaultNamespaceManager;
+        private int totalFileSize;
+        private List<RepositoryFile> files;
+        private List<RepositoryFolder> rootFolder;
 
         public RepositoryPackageBuilder()
         {
@@ -29,6 +32,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord)
         {
+            totalFileSize = 0;
+            files = new List<RepositoryFile>();
+            rootFolder = new List<RepositoryFolder>();
+
             var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
 
@@ -54,8 +61,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var folder = mets.GetImportFolderName();
 
             var rootPath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
-            AddInhaltsverzeichnis(contentRoot, rootPath, mets);
-            
+
+            AddInhaltsverzeichnis(contentRoot, rootPath, mets, rootFolder);
 
             var zipFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId + ".zip");
             var zipDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId);
@@ -70,6 +77,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             {
                 File.Delete(zipFile);
             }
+
+            var preZip = DateTime.Now;
             ZipFile.CreateFromDirectory(zipDir, zipFile);
             Directory.Delete(zipDir, true);
             var result = new RepositoryPackage
@@ -77,18 +86,17 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 PackageFileName = archiveRecord.ArchiveRecordId + ".zip",
                 PackageId= archiveRecord.PrimaryDataLink,
                 ArchiveRecordId = archiveRecord.ArchiveRecordId,
-                // TODo:
-                SizeInBytes = 8569049,
-                FileCount = 2,
-                RepositoryExtractionDuration = 0,
+                SizeInBytes = totalFileSize,
+                FileCount = package.Inhaltsverzeichnis.Datei.Count,
+                RepositoryExtractionDuration = DateTime.Now.Ticks - preZip.Ticks,
                 FulltextExtractionDuration = 0,
-                // Files = ,
-                // Folders = 
+                Files = files,
+                Folders = rootFolder
             };
 
             return await Task.FromResult(result);
         }
-        
+
         private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
         {
             foreach (var div in root.Div)
@@ -112,7 +120,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var firstFptr = div.Fptr.First();
             var dokument = new DokumentDIP()
             {
-                Id = firstFptr.ID,
+                Id = string.IsNullOrEmpty(firstFptr.ID) ?  firstFptr.FILEID : firstFptr.ID,
                 Titel = GetTechnicalMetadataForFile(firstFptr.FILEID, Section.GeneralFileCharacteristics, SectionGeneralFileCharacteristics.Label, mets),
                 Erscheinungsform = ErscheinungsformDokument.digital,
                 // Bei Rosetta gibt es vermutlich immer nur einen FilePointer, aber theoretisch könnte es auch mehr sein
@@ -139,10 +147,11 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             }
         }
 
-        private static void AddInhaltsverzeichnis(OrdnerDIP ordner, string rootPath, Mets mets)
+        private void AddInhaltsverzeichnis(OrdnerDIP ordner, string rootPath, Mets mets, List<RepositoryFolder> folders)
         {
+            var subFolders = new List<RepositoryFolder>();
             var subdirs = Directory.GetDirectories(rootPath);
-
+            var subFiles = new List<RepositoryFile>();
             // Get the files in the repository directory and copy to the local directory
             foreach (var file in Directory.GetFiles(rootPath))
             {
@@ -160,21 +169,23 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                                 SectionGeneralFileCharacteristics.FileOriginalName, mets);
                         datei.Pruefsumme = GetTechnicalMetadataForFile(id, Section.FileFixity, SectionFileFixity.FixityValue, mets);
 
+                        var sizeInBytes = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
+                            SectionGeneralFileCharacteristics.FileSizeBytes, mets);
+                        totalFileSize = Convert.ToInt32(sizeInBytes);
                         datei.Eigenschaft = new List<EigenschaftDatei>
                         {
-                            new EigenschaftDatei
+                            new ()
                             {
-                                Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
-                                    SectionGeneralFileCharacteristics.FileSizeBytes, mets),
+                                Value = sizeInBytes,
                                 Name = "FileSizeBytes"
                             },
-                            new EigenschaftDatei
+                            new()
                             {
                                 Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
                                     SectionGeneralFileCharacteristics.FormatLibraryId, mets),
                                 Name = "FormatLibraryId"
                             },
-                            new EigenschaftDatei
+                            new ()
                             {
                                 Value = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
                                     SectionGeneralFileCharacteristics.FileModificationDate, mets),
@@ -189,8 +200,19 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     }
 
                     ordner.Datei.Add(datei);
+                    subFiles.Add(new RepositoryFile
+                    {
+                        PhysicalName = fileInfo.FullName,
+                        Exported = true,
+                        HashAlgorithm = datei.Pruefalgorithmus.ToString(),
+                        Hash = datei.Pruefsumme,
+                        MimeType = fileInfo.Extension,
+                        Id  = datei.Id
+                    });
                 }
             }
+
+            files.AddRange(subFiles);
 
             foreach (var subDir in subdirs)
             {
@@ -199,8 +221,25 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     Id = subDir,
                     Name = subDir
                 };
-                AddInhaltsverzeichnis(subOrdner, subDir, mets);
+               
+                subFolders.Add(new RepositoryFolder()
+                {
+                    LogicalName = subDir,
+                    PhysicalName = subDir, 
+                    Id = subDir
+                });
+                AddInhaltsverzeichnis(subOrdner, subDir, mets, subFolders);
                 ordner.Ordner.Add(subOrdner);
+
+            }
+
+            if (subFolders.Count > 0)
+            {
+                folders.Add(new RepositoryFolder
+                {
+                    Files = files,
+                    Folders = subFolders
+                });
             }
         }
 

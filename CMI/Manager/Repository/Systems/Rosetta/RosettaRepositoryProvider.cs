@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Autofac.Features.Metadata;
-using System.Xml;
-using CMI.Access.Repository.Systems.Rosetta;
+﻿using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
-using CMI.Contract.Parameter;
-using CMI.Contract.Repository;
+using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Serilog;
-using System.Xml.Linq;
-using CMI.Manager.Repository.Properties;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -22,38 +17,52 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
 
+
         private readonly string[] iEs = { "IE609791", "IE610326", "IE611472", "IE611480", "IE611508"
             , "IE611531", "IE611662", "IE611671", "IE611682", "IE611691", "IE611696"};
 
 
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, RepositoryPackageBuilder builder, IBus bus)
         {
-            this.rosettaDataAccess = rosettaDataAccess;        
-            this.bus = bus;
+            this.rosettaDataAccess = rosettaDataAccess;       
             this.builder = builder;                              
+            this.bus = bus;
         }
-                                                                 
+
+        public List<RepositoryPackage> PrimaryData { get; set; }
+
+        /// <summary>
+        /// We already have the package. Here the order is updated, the name comes because the interface is used on several repositories.
+        /// </summary>
+        /// <param name="packageId"></param>
+        /// <param name="archiveRecordId"></param>
+        /// <param name="createMetadataXml"></param>
+        /// <param name="fileTypesToIgnore"></param>
+        /// <param name="primaerdatenAuftragId"></param>
+        /// <returns></returns>
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
-        {                                                        
-            var requestClient = bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(bus.Address, BusConstants.IndexManagerFindArchiveRecordMessageQueue), TimeSpan.FromSeconds(10));
-            var response = await requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
+        {
+            // already done in ReadPackageMetadata
+            var currentStatus = AufbereitungsStatusEnum.AuftragGestartet;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
 
-            if (response.Message.ElasticArchiveRecord == null)
+
+            var retVal = new RepositoryPackageResult
             {
-                return new RepositoryPackageResult
-                {
-                    Success = false,
-                    ErrorMessage = "ArchiveRecord in Elastic not found."
-                };
-            }
-
-            // TODO: DLS-333 Rosetta-Anbindung (Export einer IntellectualEntity) - Logik implementieren
-
-            return new RepositoryPackageResult
-            {
-                Success = false,
-                ErrorMessage = "Export has failed."
+                Success = true,
+                Valid = true
             };
+
+            retVal.Success = true;
+            retVal.Valid = true;
+
+
+            // already done in ReadPackageMetadata
+            currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            return retVal;
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
@@ -79,5 +88,24 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
             
         }
+
+        private async Task UpdatePrimaerdatenAuftragStatus(int primaerdatenAuftragId, AufbereitungsStatusEnum status, string errorText = null)
+        {
+            if (primaerdatenAuftragId > 0)
+            {
+                Log.Information("Auftrag mit Id {PrimaerdatenAuftragId} wurde im Repository-Service auf Status {Status} gesetzt.",
+                    primaerdatenAuftragId, status.ToString());
+
+                var ep = await bus.GetSendEndpoint(new Uri(bus.Address, BusConstants.AssetManagerUpdatePrimaerdatenAuftragStatusMessageQueue));
+                await ep.Send<IUpdatePrimaerdatenAuftragStatus>(new UpdatePrimaerdatenAuftragStatus
+                {
+                    PrimaerdatenAuftragId = primaerdatenAuftragId,
+                    Service = AufbereitungsServices.RepositoryService,
+                    Status = status,
+                    ErrorText = errorText
+                });
+            }
+        }
+
     }
 }
