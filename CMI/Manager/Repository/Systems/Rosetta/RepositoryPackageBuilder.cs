@@ -65,7 +65,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
            
             var preZip = DateTime.Now;
-            await ZipFileManager.BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
+            await RosettaZipFileManager.BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
 
             var result = new RepositoryPackage
             {

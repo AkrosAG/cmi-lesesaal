@@ -9,7 +9,7 @@ using Serilog;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
-    public static class ZipFileManager
+    public static class RosettaZipFileManager
     {
         public static async Task BuildZipFileAsync(string sourcePath, string archiveRecordId, PaketDIP package)
         {
