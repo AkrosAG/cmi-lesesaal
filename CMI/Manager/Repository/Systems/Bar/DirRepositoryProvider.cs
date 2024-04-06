@@ -21,7 +21,7 @@ using Serilog.Events;
 
 namespace CMI.Manager.Repository.Systems.Bar;
 
-public class DirRepositoryProvider: IRepositoryProvider
+public class DirRepositoryProvider : IRepositoryProvider
 {
     private readonly IDirRepositoryDataAccess dirRepositoryDataAccess;
     private const string contentFolderName = "content";
