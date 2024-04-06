@@ -29,9 +29,10 @@ namespace CMI.Manager.Repository.Tests
 
             // Act
             var builder = new RepositoryPackageBuilder();
-            await builder.BuildRepositoryPackageAsync(archiveRecord);
+            var package = await builder.BuildRepositoryPackageAsync(archiveRecord);
 
             // Assert
+            Assert.IsNotNull(package);
         }
     } 
 }

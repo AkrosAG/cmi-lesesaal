@@ -60,27 +60,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             package.Inhaltsverzeichnis.Ordner.Add(contentRoot);
             var folder = mets.GetImportFolderName();
 
-            var rootPath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
-
-            AddInhaltsverzeichnis(contentRoot, rootPath, mets, rootFolder);
-
-            var zipFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId + ".zip");
-            var zipDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId);
-            var contentDir = Path.Combine(zipDir, "content");
-            var headerDir = Path.Combine(zipDir, "header");
-            Directory.CreateDirectory(headerDir);
-            RosettaDataAccess.CopyDirectory(rootPath, contentDir);
-            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
-            ((Paket)package).SaveToFile(metadataXmlPath);
-
-            if (File.Exists(zipFile))
-            {
-                File.Delete(zipFile);
-            }
-
+            var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
+            Log.Information($"Package Source Path: {sourcePath}");
+            AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
+           
             var preZip = DateTime.Now;
-            ZipFile.CreateFromDirectory(zipDir, zipFile);
-            Directory.Delete(zipDir, true);
+            await ZipFileManager.BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
+
             var result = new RepositoryPackage
             {
                 PackageFileName = archiveRecord.ArchiveRecordId + ".zip",

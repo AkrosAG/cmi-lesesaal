@@ -169,6 +169,7 @@
     <Compile Include="RepositoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryService.cs" />
+    <Compile Include="Systems\Rosetta\ZipFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Contract\Common\Gebrauchskopie\ablieferung.xsd">
