@@ -442,7 +442,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
             case ".jpg":
                 return CreateImageBody(dokument, relativeUri, isFileRefToDossier, fileName, dimensions);
             default:
-                return CreateDokumentBody(dokument, relativeUri, isFileRefToDossier, fileName);
+                return CreateDokumentBody(dokument, relativeUri, fileName);
         }
     }
 
@@ -469,12 +469,12 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
         };
     }
 
-    private BodyClass CreateDokumentBody(DokumentDIP dokument, string relativeUri, bool isFileRefToDossier, string fileName)
+    private BodyClass CreateDokumentBody(DokumentDIP dokument, string relativeUri, string fileName)
     {
         return new BodyClass
         {
             Id = new Uri(manifestSettings.PublicContentWebUri,
-                $"{relativeUri}/{(isFileRefToDossier ? "" : GetFileName(dokument.Id))}/{fileName}"),
+                $"{relativeUri}/{fileName}"),
             Type = "foaf:Document",
             Format = GetMimeMapping(fileName)
         };
