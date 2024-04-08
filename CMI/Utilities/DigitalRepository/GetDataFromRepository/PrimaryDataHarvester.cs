@@ -47,7 +47,7 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
                     };
 
                     Log.Information($"Daten von folgender VeId: {veId} werden geholt, mit Datenlink {record.Metadata.PrimaryDataLink}");
-                    var packageResultAsync = await manager.GetPackage(record.Metadata.PrimaryDataLink, record.ArchiveRecordId, 0);
+                    var packageResultAsync = await manager.ReadPackageMetadata(archiveRecord.ElasticArchiveRecord);
 
                     if (packageResultAsync.Success)
                     {
