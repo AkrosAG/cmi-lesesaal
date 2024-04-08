@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Manager.Repository.Systems.Rosetta;

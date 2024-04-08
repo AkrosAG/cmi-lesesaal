@@ -65,7 +65,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
            
             var preZip = DateTime.Now;
-            await RosettaZipFileManager.BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
+            await BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
 
             var result = new RepositoryPackage
             {
@@ -87,13 +87,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         {
             foreach (var div in root.Div)
             {
-                // Verarbeite File nodes
+                // Verarbeite NOdes vom Typ File
                 if (div.IsFileNode())
                 {
                     ProcessFileNode(dossier, div, mets);
                 }
 
-                // Verarbeite Verzeicnisse or Null Type nodes welche als Verzeichnisse interpretiert werden
+                // Verarbeite Nodes vom Typ Verzeichniss or Null Type nodes welche als Verzeichnisse interpretiert werden
                 else if (div.IsFolderNode() || div.IsEmptyTypeNode())
                 {
                     ProcessFolderOrEmptyNode(dossier, div, mets);
@@ -364,6 +364,30 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
 
             return dossier;
+        }
+
+        private async Task BuildZipFileAsync(string sourcePath, string archiveRecordId, PaketDIP package)
+        {
+            var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId + ".zip");
+            var zipBaseDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId);
+
+            var contentDir = Path.Combine(zipBaseDir, "content");
+            var headerDir = Path.Combine(zipBaseDir, "header");
+            Directory.CreateDirectory(headerDir);
+
+            await Task.Run(() => RosettaDataAccess.CopyDirectory(sourcePath, contentDir));
+
+            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
+            await Task.Run(() => ((Paket)package).SaveToFile(metadataXmlPath));
+
+            if (File.Exists(targetFile))
+            {
+                File.Delete(targetFile);
+            }
+
+            await Task.Run(() => ZipFile.CreateFromDirectory(zipBaseDir, targetFile));
+            Log.Information("Created zip file {0}", targetFile);
+            await Task.Run(() => Directory.Delete(zipBaseDir, true));
         }
     }
 }
