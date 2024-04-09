@@ -24,7 +24,10 @@ namespace CMI.Manager.Order.Status
         {
             Context.ThrowIfAuftragstypIsNot(new[] {OrderType.Digitalisierungsauftrag});
             Context.ThrowIfUserIsNot(Users.Vecteur);
-            Context.MailPortfolio.AddFinishedMail<Verzoegerungsmeldung>(CreateEmailData());
+
+            // https://cmiag.myjetbrains.com/youtrack/issue/DLS-383 - Deaktivierung der Verzögerungsmeldung bei externer Digitalisierungsaufträgen
+            // Context.MailPortfolio.AddFinishedMail<Verzoegerungsmeldung>(CreateEmailData());
+
             Context.SetNewStatus(AuftragStatusRepo.DigitalisierungExtern);
         }
 
