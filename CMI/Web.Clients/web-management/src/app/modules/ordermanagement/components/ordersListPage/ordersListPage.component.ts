@@ -367,6 +367,14 @@ export class OrdersListPageComponent implements OnInit {
 		this.showAuftraegeAusleihen = true;
 	}
 
+	public showAuftraegeReponierenModal() {
+		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannReponieren)) {
+			return;
+		}
+
+		this.showAuftraegeReponieren = true;
+	}
+
 	public showAuftraegeZuruecksetzenModal() {
 		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannZuruecksetzen)) {
 			return;
@@ -430,32 +438,6 @@ export class OrdersListPageComponent implements OnInit {
 		this.showBarCode = true;
 	}
 
-	public showAuftraegeAbschliessenReponierenModal() {
-		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannReponieren)) {
-			return;
-		}
-
-		let shippingType: ShippingType[] = [];
-		shippingType.push(ShippingType.Lesesaalausleihen);
-		shippingType.push(ShippingType.Verwaltungsausleihe);
-		
-		if(this.checkForEqualOrderType(shippingType))
-		{
-			this.showAuftraegeReponieren = true;
-			return;
-		}
-		shippingType = [];
-		shippingType.push(ShippingType.Digitalisierungsauftrag);
-		
-		if(this.checkForEqualOrderType(shippingType))
-		{
-			this.showDigitalisierungAbschliessen = true;
-			return;
-		}
-
-		this._ui.showError('Mindestens ein markierter Auftrag ist nicht vom gleichen Typ.','Abschliessen/Reponieren nicht erlaubt');
-	}
-
 	public showDigitalisierungStartenModal() {
 		this.showDigitalisierungStarten = this.CheckForDigitializationOrder();
 	}
@@ -466,23 +448,6 @@ export class OrdersListPageComponent implements OnInit {
 
 	public showDigitalisierungAbschliessenModal() {
 		this.showDigitalisierungAbschliessen = this.CheckForDigitializationOrder();
-	}
-
-	public checkForEqualOrderType(orderType:ShippingType[]): boolean {
-		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannAuftraegeAusleihen)) {
-			return false;
-		}
-
-		if (this.ordersList.checkedRowsCount > 0) {
-			const checkedItems = Array.from(this.ordersList.currentChecked.values());
-			const filtered = checkedItems.filter((i: OrderingFlatItem) =>
-				orderType.includes(i.orderingType));
-
-			if (filtered.length === checkedItems.length) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public CheckForDigitializationOrder(): boolean {
