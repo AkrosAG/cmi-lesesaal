@@ -164,6 +164,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	}
 
 	public getHeaderClaim(): string {
-		return this._txt.get('header.claim', 'Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal');
+		return this._txt.translate('Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal', 'header.claim');
 	}
 }
