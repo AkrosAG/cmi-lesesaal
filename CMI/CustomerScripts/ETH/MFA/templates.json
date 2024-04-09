@@ -248,16 +248,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Tektonikpfad",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Tektonikpfad",
-                "en": "Tectonic path"
-              }
-            },
-            {
               "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
@@ -816,16 +806,6 @@
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Tektonikpfad",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Tektonikpfad",
-                "en": "Tectonic path"
               }
             },
             {
@@ -1393,16 +1373,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Tektonikpfad",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Tektonikpfad",
-                "en": "Tectonic path"
-              }
-            },
-            {
               "DbFieldName": "DetailData.BemerkungUmfang",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1964,16 +1934,6 @@
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Tektonikpfad",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Tektonikpfad",
-                "en": "Tectonic path"
               }
             },
             {
