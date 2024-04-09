@@ -12,7 +12,7 @@ export class TranslationService {
 	private _texts: { [key: string]: any };
 
 	private _commonKey: string = '_';
-	private _showMissingInfo: boolean = true;
+	private _showMissingInfo: boolean = false;
 	private _isLocalhost: boolean = false;
 
 	constructor(private _context: ClientContext, private _preloadService: PreloadService) {
@@ -20,12 +20,12 @@ export class TranslationService {
 		supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
 		supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
 		this._supportedLanguages = supported;
-
-		this._setup();
-
+		
 		this._preloadService.translationsLoaded.subscribe(translations => {
 			if (translations && translations.language === this._language) {
 				this._setup(true);
+				// First load the translations and then display the missing info if the translation text is still missing
+				this._showMissingInfo = true;
 			}
 		});
 
