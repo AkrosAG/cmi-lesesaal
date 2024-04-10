@@ -60,27 +60,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             package.Inhaltsverzeichnis.Ordner.Add(contentRoot);
             var folder = mets.GetImportFolderName();
 
-            var rootPath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
-
-            AddInhaltsverzeichnis(contentRoot, rootPath, mets, rootFolder);
-
-            var zipFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId + ".zip");
-            var zipDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecord.ArchiveRecordId);
-            var contentDir = Path.Combine(zipDir, "content");
-            var headerDir = Path.Combine(zipDir, "header");
-            Directory.CreateDirectory(headerDir);
-            RosettaDataAccess.CopyDirectory(rootPath, contentDir);
-            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
-            ((Paket)package).SaveToFile(metadataXmlPath);
-
-            if (File.Exists(zipFile))
-            {
-                File.Delete(zipFile);
-            }
-
+            var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
+            Log.Information($"Package Source Path: {sourcePath}");
+            AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
+           
             var preZip = DateTime.Now;
-            ZipFile.CreateFromDirectory(zipDir, zipFile);
-            Directory.Delete(zipDir, true);
+            BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
+
             var result = new RepositoryPackage
             {
                 PackageFileName = archiveRecord.ArchiveRecordId + ".zip",
@@ -101,13 +87,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         {
             foreach (var div in root.Div)
             {
-                // Verarbeite File nodes
+                // Verarbeite Nodes vom Typ File
                 if (div.IsFileNode())
                 {
                     ProcessFileNode(dossier, div, mets);
                 }
 
-                // Verarbeite Verzeicnisse or Null Type nodes welche als Verzeichnisse interpretiert werden
+                // Verarbeite Nodes vom Typ Verzeichniss or Null Type nodes welche als Verzeichnisse interpretiert werden
                 else if (div.IsFolderNode() || div.IsEmptyTypeNode())
                 {
                     ProcessFolderOrEmptyNode(dossier, div, mets);
@@ -325,17 +311,17 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Ablieferung = new AblieferungDIP
                 {
                     Ablieferungstyp = Ablieferungstyp.FILES, // Anhand Feld Erwerbsarten ableiten
-                    AblieferndeStelle = "Aus Feld Akzessionen der VE, ggf. nach oben navigieren",
-                    Provenienz = new ProvenienzDIP
+                    AblieferndeStelle = archiveRecord?.DetailData?.FirstOrDefault(d => d.ElementName.Equals("AbgebendeStelle", StringComparison.InvariantCultureIgnoreCase))?.TextValues?.First(),
+            Provenienz = new ProvenienzDIP
                     {
-                        AktenbildnerName = archiveRecord.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
+                        AktenbildnerName = archiveRecord?.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
                     },
                     Ordnungssystem = new OrdnungssystemDIP()
                     {
                         Name = "Ordnungssystem",
-                        Ordnungssystemposition = new List<OrdnungssystempositionDIP>()
+                        Ordnungssystemposition = new List<OrdnungssystempositionDIP>
                         {
-                            new OrdnungssystempositionDIP() {Id = "1"},
+                            new () {Id = "1"}
                         }
                     }
                 }
@@ -378,6 +364,30 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
 
             return dossier;
+        }
+
+        private void BuildZipFileAsync(string sourcePath, string archiveRecordId, PaketDIP package)
+        {
+            var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId + ".zip");
+            var zipBaseDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId);
+
+            var contentDir = Path.Combine(zipBaseDir, "content");
+            var headerDir = Path.Combine(zipBaseDir, "header");
+            Directory.CreateDirectory(headerDir);
+
+            RosettaDataAccess.CopyDirectory(sourcePath, contentDir);
+
+            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
+            ((Paket)package).SaveToFile(metadataXmlPath);
+
+            if (File.Exists(targetFile))
+            {
+                File.Delete(targetFile);
+            }
+
+            ZipFile.CreateFromDirectory(zipBaseDir, targetFile);
+            Log.Information("Created zip file {0}. ArchiveRecord Id: {1}", targetFile, archiveRecordId);
+            Directory.Delete(zipBaseDir, true);
         }
     }
 }
