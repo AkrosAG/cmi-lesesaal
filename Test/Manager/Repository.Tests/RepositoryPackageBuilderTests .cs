@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Manager.Repository.Systems.Rosetta;
@@ -29,9 +28,10 @@ namespace CMI.Manager.Repository.Tests
 
             // Act
             var builder = new RepositoryPackageBuilder();
-            await builder.BuildRepositoryPackageAsync(archiveRecord);
+            var package = await builder.BuildRepositoryPackageAsync(archiveRecord);
 
             // Assert
+            Assert.IsNotNull(package);
         }
     } 
 }
