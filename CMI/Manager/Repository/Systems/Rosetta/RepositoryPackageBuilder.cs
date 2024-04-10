@@ -87,7 +87,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         {
             foreach (var div in root.Div)
             {
-                // Verarbeite NOdes vom Typ File
+                // Verarbeite Nodes vom Typ File
                 if (div.IsFileNode())
                 {
                     ProcessFileNode(dossier, div, mets);
@@ -311,17 +311,17 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Ablieferung = new AblieferungDIP
                 {
                     Ablieferungstyp = Ablieferungstyp.FILES, // Anhand Feld Erwerbsarten ableiten
-                    AblieferndeStelle = "Aus Feld Akzessionen der VE, ggf. nach oben navigieren",
-                    Provenienz = new ProvenienzDIP
+                    AblieferndeStelle = archiveRecord?.DetailData?.FirstOrDefault(d => d.ElementName.Equals("AbgebendeStelle", StringComparison.InvariantCultureIgnoreCase))?.TextValues?.First(),
+            Provenienz = new ProvenienzDIP
                     {
-                        AktenbildnerName = archiveRecord.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
+                        AktenbildnerName = archiveRecord?.AdministrativeHistory?.Substring(0, 200) // "Die ersten 200 Zeichen aus der Verwaltungsgeschichte übernehmen.",
                     },
                     Ordnungssystem = new OrdnungssystemDIP()
                     {
                         Name = "Ordnungssystem",
-                        Ordnungssystemposition = new List<OrdnungssystempositionDIP>()
+                        Ordnungssystemposition = new List<OrdnungssystempositionDIP>
                         {
-                            new OrdnungssystempositionDIP() {Id = "1"},
+                            new () {Id = "1"}
                         }
                     }
                 }
