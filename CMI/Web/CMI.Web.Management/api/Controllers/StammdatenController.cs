@@ -29,7 +29,7 @@ namespace CMI.Web.Management.api.Controllers
         [HttpGet]
         public IEnumerable<NameAndId> GetArtDerArbeiten()
         {
-            return stammdatenAccess.GetArtDerArbeiten(WebHelper.GetClientLanguage(Request));
+            return stammdatenAccess.GetArtDerArbeiten("de");
         }
 
         [HttpGet]

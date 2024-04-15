@@ -21,7 +21,7 @@ export class SeoService {
 	}
 
 	public setTitle(title: string) {
-		this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
+		this._siteTitle = this._txt.translate(' ', 'header.title');
 		let seoTitle = title + ((title && title.length > 0) ? ' - ' : '') + this._siteTitle;
 		this._title.setTitle(seoTitle);
 	}
