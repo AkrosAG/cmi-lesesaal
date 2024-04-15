@@ -5,7 +5,7 @@
 	<div class="row">
 		<div id="mainDetailContent" class="col-sm-9 page-content">
 			<cmi-loader *ngIf="loading" class="cmi-visible"></cmi-loader>
-			<div *ngIf="entity">
+			<div *ngIf="entity && !hasError">
 				<div class="page-header">
 					<h1 class="page-title">
 						<span *ngIf="entity.iconClasses"><i [class]="entity.iconClasses"></i>&nbsp;</span>
