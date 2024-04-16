@@ -213,11 +213,17 @@ namespace CMI.Web.Common.api
                     {
                         userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
                     }
-                    // runterstufen auf Ö3
-                    else if (rolePublicClient == AccessRoles.RoleOe3 && (user.RolePublicClient.Equals(AccessRoles.RoleAMA) &&
-                             user.RolePublicClient.Equals(AccessRoles.RoleAS) || !user.RolePublicClient.Equals(AccessRoles.RoleAS)))
+                    // runterstufen auf Ö3, von EMA, AMA und AS
+                    else if ((rolePublicClient == AccessRoles.RoleOe3 || rolePublicClient == AccessRoles.RoleOe2) && (user.RolePublicClient.Equals(AccessRoles.RoleAMA) ||
+                                 user.RolePublicClient.Equals(AccessRoles.RoleAS) || user.RolePublicClient.Equals(AccessRoles.RoleEMA)))
                     {
                         userDataAccess.UpdatePublicClientRole(user.UserExtId, AccessRoles.RoleOe3, loginSystem);
+                    }
+                    // hochstufen auf EMA von Ö2 oder Ö3
+                    else if (rolePublicClient == AccessRoles.RoleEMA && !(user.RolePublicClient.Equals(AccessRoles.RoleAMA) ||
+                                 user.RolePublicClient.Equals(AccessRoles.RoleAS) || user.RolePublicClient.Equals(AccessRoles.RoleEMA)))
+                    {
+                        userDataAccess.UpdatePublicClientRole(user.UserExtId, AccessRoles.RoleEMA, loginSystem);
                     }
                 }
 
