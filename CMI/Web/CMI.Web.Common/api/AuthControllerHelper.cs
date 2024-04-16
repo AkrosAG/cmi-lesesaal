@@ -204,17 +204,20 @@ namespace CMI.Web.Common.api
                 }
 
                 // Prüfen ob ein automatische hoch- oder runterstufen stattfinden soll
-                // Ö2 zu Ö3 und umgekehrt ist immer möglich und wird gemacht.
-                // Ist jemand nicht mehr internal User, dann wird er auf Ö3 zurückgestuft.
+                // Es gibt nur eine runter- und hochstufung zur Oe3 und ein hochstufung zu EMA
                 var rolePublicClient = controllerHelper.GetInitialTokenFromClaims();
                 if (rolePublicClient != user.RolePublicClient)
                 {
-                    // Ist die "initiale" Role weniger als EMA, oder die Rolle ist EMA und der Benutzer ist weder AS noch AMA, 
-                    // dann müssen wir updaten
-                    if (rolePublicClient != AccessRoles.RoleEMA || !user.RolePublicClient.Equals(AccessRoles.RoleAMA) &&
-                                                                  !user.RolePublicClient.Equals(AccessRoles.RoleAS))
+                    // hochstufen auf ö3 oder EMA
+                    if (user.RolePublicClient == AccessRoles.RoleOe2)
                     {
                         userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
+                    }
+                    // runterstufen auf Ö3
+                    else if (rolePublicClient == AccessRoles.RoleOe3 && (user.RolePublicClient.Equals(AccessRoles.RoleAMA) &&
+                             user.RolePublicClient.Equals(AccessRoles.RoleAS) || !user.RolePublicClient.Equals(AccessRoles.RoleAS)))
+                    {
+                        userDataAccess.UpdatePublicClientRole(user.UserExtId, AccessRoles.RoleOe3, loginSystem);
                     }
                 }
 
