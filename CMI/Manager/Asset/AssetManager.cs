@@ -396,7 +396,7 @@ namespace CMI.Manager.Asset
                     var ep = await bus.GetSendEndpoint(new Uri(bus.Address, BusConstants.RepositoryManagerDownloadPackageMessageQueue));
                     await ep.Send<IDownloadPackage>(downloadPackage);
                     Log.Information("Put {CommandName} message on repository queue with archive record id: {ArchiveRecordId}", nameof(IDownloadPackage),
-                        downloadPackage.ArchiveRecordId);
+                        downloadPackage.ElasticArchiveRecord.ArchiveRecordId);
                 }
         }
 
