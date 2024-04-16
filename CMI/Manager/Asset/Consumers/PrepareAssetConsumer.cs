@@ -65,7 +65,7 @@ namespace CMI.Manager.Asset.Consumers
                             {
                                 PackageId = message.AssetId,
                                 CallerId = message.CallerId,
-                                ArchiveRecordId = message.ArchiveRecordId,
+                                ElasticArchiveRecord = archiveRecord.ElasticArchiveRecord,
                                 RetentionCategory = message.RetentionCategory,
                                 Recipient = context.Message.Recipient,
                                 DeepLinkToVe = context.Message.DeepLinkToVe
