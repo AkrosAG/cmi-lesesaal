@@ -342,11 +342,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 Umfang = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("Umfang"))
                     ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("Umfang")).TextValues)
                     : string.Empty,
-                Entstehungszeitraum = new HistorischerZeitraum
-                {
-                    Von = new() { Datum = archiveRecord.CreationPeriod?.StartDateText },
-                    Bis = new() { Datum = archiveRecord.CreationPeriod?.EndDateText }
-                },
+                Entstehungszeitraum = GetEntstehungszeitraum(archiveRecord.CreationPeriod),
                 EntstehungszeitraumAnmerkung = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("BemerkungDatierung"))
                     ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("BemerkungDatierung")).TextValues)
                     : string.Empty,
@@ -364,6 +360,18 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
 
             return dossier;
+        }
+
+
+        private HistorischerZeitraum GetEntstehungszeitraum(ElasticTimePeriod creationPeriod)
+        {
+            var retVal = new HistorischerZeitraum
+            {
+                Von = new HistorischerZeitpunkt
+                    { Ca = creationPeriod.StartDateApproxIndicator, Datum = creationPeriod.StartDate.ToString("yyyy-MM-dd") },
+                Bis = new HistorischerZeitpunkt { Ca = creationPeriod.EndDateApproxIndicator, Datum = creationPeriod.EndDate.ToString("yyyy-MM-dd") }
+            };
+            return retVal;
         }
 
         private void BuildZipFileAsync(string sourcePath, string archiveRecordId, PaketDIP package)
