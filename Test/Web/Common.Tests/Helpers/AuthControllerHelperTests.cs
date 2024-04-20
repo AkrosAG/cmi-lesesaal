@@ -663,7 +663,7 @@ namespace CMI.Web.Common.Tests.Helpers
         }
 
         [Test]
-        public void TryUpdaterUser_With_Internal_User_Should_Update_User_From_Claims()
+        public void TryUpdaterUser_With_Internal_User_Should_NOT_Update_User_From_Claims()
         {
             // arrange
             var user = new User()
@@ -685,15 +685,11 @@ namespace CMI.Web.Common.Tests.Helpers
             sut.TryUpdateUser("1", new List<ClaimInfo>());
 
             // assert
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.Surname)));
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.GivenName)));
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.Email)));
-
             mockUserDataAccess.Verify(m =>
                 m.UpdateUserOnLogin(It.Is<User>(u => u.EmailAddress == "claimvalue"), It.IsAny<string>(), It.IsAny<string>()));
 
             mockUserDataAccess.Verify(m =>
-                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()));
+                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()), Times.Never);
 
         }
 
@@ -914,7 +910,7 @@ namespace CMI.Web.Common.Tests.Helpers
         }
         
         [Test]
-        public void TryUpdateUser_PublicClientRole_With_Internal_User_Update_User_From_Initial_Token()
+        public void Try_DO_NOT_UpdateUser_PublicClientRole_With_Internal_User_Update_User_From_Initial_Token()
         {
             // arrange
             var user = new User()
@@ -937,7 +933,7 @@ namespace CMI.Web.Common.Tests.Helpers
 
             // assert
             mockUserDataAccess.Verify(m =>
-                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()));
+                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()), Times.Never);
 
         }
     
