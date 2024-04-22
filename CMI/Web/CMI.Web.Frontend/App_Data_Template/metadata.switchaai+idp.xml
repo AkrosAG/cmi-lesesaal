@@ -28,8 +28,8 @@ cacheDuration="PT15M" validUntil="2019-02-22T15:57:56.9158548Z"
 	</Signature>
 	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
 		<Extensions>
-			<init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login"/>
-			<idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login" index="1"/>
+			<init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Login"/>
+			<idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Login" index="4"/>
 		</Extensions>
 		<KeyDescriptor>
 			<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
@@ -40,11 +40,11 @@ cacheDuration="PT15M" validUntil="2019-02-22T15:57:56.9158548Z"
 				</X509Data>
 			</KeyInfo>
 		</KeyDescriptor>
-		<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Artifact/SOAP" index="1"/>
-		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/SLO/Redirect"/>
-		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/SLO/POST"/>
-		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Frecherche-dev.library.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
-		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://recherche-dev.library.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Frecherche-dev.library.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
+		<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Artifact/SOAP" index="4"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Logout"/>
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Logout"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Fvls-t.hsa.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://vls-t.hsa.ethz.ch/Shibboleth.sso/Login?target=https%3A%2F%2Fvls-t.hsa.ethz.ch%2Fclient%2F%23%2Fauth%2Fsuccess"/>
 
 		<Attribute
 		  NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
