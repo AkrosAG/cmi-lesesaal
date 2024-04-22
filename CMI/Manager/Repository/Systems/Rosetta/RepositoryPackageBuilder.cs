@@ -54,7 +54,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             {
                 Id = $"contentRoot{DateTime.Now.Ticks}",
                 Name = "content",
-                OriginalName = "content",
+                OriginalName = "content"
             };
 
             package.Inhaltsverzeichnis.Ordner.Add(contentRoot);
@@ -120,7 +120,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         {
             var subDossier = new DossierDIP()
             {
-                Id = div.ID,
+                Id = div.ID ?? div.LABEL,
                 DateiRef = new List<string>(),
                 Titel = div.LABEL,
                 Entstehungszeitraum = dossier.Entstehungszeitraum
