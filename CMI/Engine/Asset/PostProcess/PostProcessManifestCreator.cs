@@ -512,7 +512,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
         if (!string.IsNullOrEmpty(entstehungszeitraum))
         {
             presentation.Metadata.Add(AddRequiredStatementElement("Entstehungszeitraum", entstehungszeitraum, "Entstehungszeitraum",
-                "Date de création", "Periodo di costituzione", "Creation period"));
+                "Date de création", "Periodo di costituzione", "Date"));
         }
 
         if (!string.IsNullOrEmpty(dossier.Aktenzeichen))
@@ -528,7 +528,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
 
         if (!string.IsNullOrEmpty(darin))
         {
-            presentation.Metadata.Add(AddRequiredStatementElement("Darin", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
+            presentation.Metadata.Add(AddRequiredStatementElement("Form und Inhalt", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
         }
 
         #endregion
@@ -571,7 +571,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
 
         if (!string.IsNullOrEmpty(darin))
         {
-            presentation.Metadata.Add(AddRequiredStatementElement("Darin", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
+            presentation.Metadata.Add(AddRequiredStatementElement("Form und Inhalt", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
         }
     }
 
