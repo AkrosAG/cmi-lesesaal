@@ -663,15 +663,21 @@ namespace CMI.Web.Common.Tests.Helpers
         }
 
         [Test]
-        public void TryUpdaterUser_With_Internal_User_Should_Update_User_From_Claims()
+        public void TryUpdaterUser_With_Internal_User_Should_NOT_Update_User_From_Claims()
         {
             // arrange
+            var user = new User()
+            {
+                IsInternalUser = true,
+                RolePublicClient = AccessRoles.RoleOe3
+            };
             var mockUserDataAccess = new Mock<IUserDataAccess>();
-            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(new User());
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleEMA);
 
             var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
 
@@ -679,29 +685,34 @@ namespace CMI.Web.Common.Tests.Helpers
             sut.TryUpdateUser("1", new List<ClaimInfo>());
 
             // assert
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.Surname)));
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.GivenName)));
-            controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == ClaimTypes.Email)));
-
             mockUserDataAccess.Verify(m =>
                 m.UpdateUserOnLogin(It.Is<User>(u => u.EmailAddress == "claimvalue"), It.IsAny<string>(), It.IsAny<string>()));
+
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()), Times.Never);
+
         }
 
         [Test]
         public void TryUpdaterUser_With_External_User_Should_Not_Update_User_From_Db_If_There_Are_No_Changes()
         {
             // arrange
-            var mockUserDataAccess = new Mock<IUserDataAccess>();
-            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(new User
+            var user = new User
             {
+                IsInternalUser = false,
+                RolePublicClient = AccessRoles.RoleOe2,
                 FamilyName = "Meier",
                 FirstName = "Bruno",
                 EmailAddress = "bruno.meier@cmiag.ch"
-            });
+            };
+
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
             controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleOe2);
 
             var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
 
@@ -714,6 +725,9 @@ namespace CMI.Web.Common.Tests.Helpers
             controllerHelperMock.Verify(m => m.GetFromClaim(It.Is<string>(val => val == "/identity/claims/emailaddress")), Times.Never);
 
             mockUserDataAccess.Verify(m => m.UpdateUserOnLogin(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -894,5 +908,146 @@ namespace CMI.Web.Common.Tests.Helpers
             // asset
             action.Should().NotThrow();
         }
+        
+        [Test]
+        public void Try_DO_NOT_UpdateUser_PublicClientRole_With_Internal_User_Update_User_From_Initial_Token()
+        {
+            // arrange
+            var user = new User()
+            {
+                IsInternalUser = true,
+                RolePublicClient = AccessRoles.RoleOe3
+            };
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
+
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
+            controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleEMA);
+
+            var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
+
+            // act
+            sut.TryUpdateUser("1", new List<ClaimInfo>());
+
+            // assert
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleEMA, It.IsAny<string>()), Times.Never);
+
+        }
+    
+        [Test]
+        public void Try_DO_Not_UpdateUser_PublicClientRole_With_Oe3_Update_User_From_Initial_Token()
+        {
+            // arrange
+            var user = new User()
+            {
+                IsInternalUser = false,
+                RolePublicClient = AccessRoles.RoleOe3
+            };
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
+
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
+            controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleOe2);
+
+            var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
+
+            // act
+            sut.TryUpdateUser("1", new List<ClaimInfo>());
+
+            // assert
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+
+        }
+
+        [Test]
+        public void Try_DO_Not_UpdateUser_PublicClientRole_With_Internal_AMA_User_Update_User_From_Initial_Token()
+        {
+            // arrange
+            var user = new User
+            {
+                IsInternalUser = true,
+                RolePublicClient = AccessRoles.RoleAMA
+            };
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
+
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
+            controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleEMA);
+
+            var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
+
+            // act
+            sut.TryUpdateUser("1", new List<ClaimInfo>());
+
+            // assert
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+
+        }
+        
+        [Test]
+        public void Try_DO_Not_UpdateUser_PublicClientRole_With_Internal_AS_User_Update_User_From_Initial_Token()
+        {
+            // arrange
+            var user = new User()
+            {
+                IsInternalUser = true,
+                RolePublicClient = AccessRoles.RoleAS
+            };
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
+
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
+            controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleEMA);
+
+            var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
+
+            // act
+            sut.TryUpdateUser("1", new List<ClaimInfo>());
+
+            // assert
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+
+        }
+        
+        [Test]
+        public void Try_UpdateUser_PublicClientRole_With_Internal_AS_User_Update_User_From_Initial_Token()
+        {
+            // arrange
+            var user = new User()
+            {
+                IsInternalUser = true,
+                RolePublicClient = AccessRoles.RoleEMA
+            };
+            var mockUserDataAccess = new Mock<IUserDataAccess>();
+            mockUserDataAccess.Setup(m => m.GetUser(It.IsAny<string>())).Returns(user);
+
+            var controllerHelperMock = new Mock<IControllerHelper>();
+            controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(false);
+            controllerHelperMock.Setup(m => m.GetFromClaim(It.IsAny<string>())).Returns("claimvalue");
+            controllerHelperMock.Setup(m => m.GetInitialTokenFromClaims()).Returns(AccessRoles.RoleOe2);
+
+            var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
+
+            // act
+            sut.TryUpdateUser("1", new List<ClaimInfo>());
+
+            // assert
+            mockUserDataAccess.Verify(m =>
+                m.UpdatePublicClientRole(It.IsAny<string>(), AccessRoles.RoleOe3, It.IsAny<string>()));
+
+        }
+
     }
 }

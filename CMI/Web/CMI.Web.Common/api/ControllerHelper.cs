@@ -64,6 +64,12 @@ namespace CMI.Web.Common.api
             return false;
         }
 
+        public bool IsMember()
+        {
+            var isStaff = GetFromClaim("affiliation")?.ToLowerInvariant().Contains("member".ToLowerInvariant());
+            return isStaff.HasValue && isStaff.Value;
+        }
+
         public bool IsHomeOrganizationEth()
         {
             var isEthEmployee = GetFromClaim("homeOrganization")?.ToLowerInvariant().Contains("ethz.ch".ToLowerInvariant());
@@ -90,21 +96,21 @@ namespace CMI.Web.Common.api
 
         public string GetInitialTokenFromClaims()
         {
+            // Ist jemand staff und von der ETH ist er ein interner Benutzer und erhält die Rolle EMA
             if (IsInternalUser())
             {
                 return AccessRoles.RoleEMA;
             }
 
-            // Hat jemand eine ganz normale edu-id, ist dieser Ö2 Benutzer
+            // Ist jemand member or staff von irgend einer Organisation erhält er die Rolle Ö3
             var homeOrganization = GetFromClaim("homeOrganization")?.ToLowerInvariant();
-            if (homeOrganization == "eduid.ch")
+            if (!string.IsNullOrEmpty(homeOrganization) && (IsStaff() || IsMember()))
             {
-                return AccessRoles.RoleOe2;
+                return AccessRoles.RoleOe3;
             }
 
-            // Alle anderen erhalten die Ö3 Rolle
-            return AccessRoles.RoleOe3;
-
+            // Alle anderen erhalten die Ö2 Rolle
+            return AccessRoles.RoleOe2;
         }
 
         public string GetFromClaim(string field)
