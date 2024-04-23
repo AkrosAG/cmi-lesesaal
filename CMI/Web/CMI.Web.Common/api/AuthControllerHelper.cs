@@ -204,17 +204,16 @@ namespace CMI.Web.Common.api
                 }
 
                 // Prüfen ob ein automatische hoch- oder runterstufen stattfinden soll
-                // Ö2 zu Ö3 und umgekehrt ist immer möglich und wird gemacht.
-                // Ist jemand nicht mehr internal User, dann wird er auf Ö3 zurückgestuft.
-                var rolePublicClient = controllerHelper.GetInitialTokenFromClaims();
-                if (rolePublicClient != user.RolePublicClient)
+                // Es gibt nur eine Runterstufung zu Oe3 falls ein früherer EMA/AS/AMA Benutzer nicht mehr 
+                // die Voraussetzungen erfüllt und als initiale Rolle Ö3 oder Ö2 erhält
+                var initialRole = controllerHelper.GetInitialTokenFromClaims();
+                if (initialRole != user.RolePublicClient)
                 {
-                    // Ist die "initiale" Role weniger als EMA, oder die Rolle ist EMA und der Benutzer ist weder AS noch AMA, 
-                    // dann müssen wir updaten
-                    if (rolePublicClient != AccessRoles.RoleEMA || !user.RolePublicClient.Equals(AccessRoles.RoleAMA) &&
-                                                                  !user.RolePublicClient.Equals(AccessRoles.RoleAS))
+                    // runterstufen auf Ö3, von EMA, AMA und AS
+                    if ((initialRole == AccessRoles.RoleOe3 || initialRole == AccessRoles.RoleOe2) && (user.RolePublicClient.Equals(AccessRoles.RoleAMA) ||
+                                 user.RolePublicClient.Equals(AccessRoles.RoleAS) || user.RolePublicClient.Equals(AccessRoles.RoleEMA)))
                     {
-                        userDataAccess.UpdatePublicClientRole(user.UserExtId, rolePublicClient, loginSystem);
+                        userDataAccess.UpdatePublicClientRole(user.UserExtId, AccessRoles.RoleOe3, loginSystem);
                     }
                 }
 
@@ -269,29 +268,16 @@ namespace CMI.Web.Common.api
             }
 
             /*
-             * UseCase Nr	Viaduc-User	    affiliation	        homeOrganization
-                1	        Ö3	            member	            ethz.ch
-                2	        Ö3	            member OR staff	    NOT(ethz.ch)
-                3	        EMA	            staff	            ethz.ch
-                4	        Ö2	            member OR staff	    NULL
+             Die folgende Tabelle enthält die Regeln für die Überprüfung
+
+             Rolle	Affiliation	HomeOrganization	Bemerkung
+             Ö2	    egal	    egal	            Wenn jemand von Shibboleth autorisiert wurde kann er in jedem Fall die Rolle Ö2 haben.
+             Ö3	    egal	    egal	            Wenn jemand von Shibboleth autorisiert wurde, darf er auch die Rolle Ö3 haben. Es wird keine 2-Faktor Authentifizierung gefordert (auch nicht für andere User-Stufen).
+             EMA    staff	    ethz.ch	            Damit jemand die EMA-Rolle haben darf, muss er an der ETH arbeiten.
+             AS	    staff	    ethz.ch	            Damit jemand die AS-Rolle haben darf, muss er an der ETH arbeiten.
+             AMA    staff	    ethz.ch	            Damit jemand die AMA-Rolle haben darf, muss er an der ETH arbeiten.
 
              * */
-
-            //if (role == AccessRoles.RoleOe2 && !controllerHelper.NoHomeOrganization())
-            //{
-            //    throw new AuthenticationException("Ein Ö2 Benutzer darf keiner Organisation zugeordnet sein");
-            //}
-
-            //if (role == AccessRoles.RoleOe3 && controllerHelper.NoHomeOrganization())
-            //{
-            //    throw new AuthenticationException("Ein Ö3 Benutzer muss einer Organisation zugeordnet sein");
-            //}
-
-            if ((role == AccessRoles.RoleEMA || role == AccessRoles.RoleAS || role == AccessRoles.RoleAMA) &&
-                !controllerHelper.IsInternalUser())
-            {
-                throw new AuthenticationException("Interne Benutzerrollen (EMA, AS und AMA) müssen als Staff der ETH Zürich deklariert sein");
-            }
 
             // Public-Client
             if (isPublicClient)
@@ -300,15 +286,17 @@ namespace CMI.Web.Common.api
                 {
                     // Keine spezial Behandlung
                     case AccessRolesEnum.Ö2:
-                    case AccessRolesEnum.EMA:
                     case AccessRolesEnum.Ö3:
                         return AuthStatus.Ok;
 
+                    case AccessRolesEnum.EMA:
                     case AccessRolesEnum.AS:
                     case AccessRolesEnum.AMA:
-                        return controllerHelper.IsInternalUser()
-                            ? AuthStatus.Ok
-                            : AuthStatus.KeineKerberosAuthentication;
+                        if (controllerHelper.IsInternalUser())
+                        {
+                            return AuthStatus.Ok;
+                        } 
+                        throw new AuthenticationException("Interne Benutzerrollen (EMA, AS und AMA) müssen als Staff der ETH Zürich deklariert sein");
 
                     default:
                         throw new InvalidOperationException("Nicht definiertes Rollen handling");
@@ -326,7 +314,6 @@ namespace CMI.Web.Common.api
                         : AuthStatus.KeineKerberosAuthentication;
                 default:
                     return AuthStatus.KeineRolleDefiniert;
-                    // throw new ArgumentOutOfRangeException(nameof(role), "Nicht definiertes Rollen handling");
             }
         }
 
