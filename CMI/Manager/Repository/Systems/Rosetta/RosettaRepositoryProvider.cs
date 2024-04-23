@@ -6,7 +6,6 @@ using MassTransit;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
