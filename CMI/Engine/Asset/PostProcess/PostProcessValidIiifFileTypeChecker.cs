@@ -20,16 +20,24 @@ namespace CMI.Engine.Asset.PostProcess
                     {
                         case ".wav":
                         case ".mpeg4":
-                        case ".txt":
                         case "siard":
                             throw new ArgumentException($"File {sourceFile.Name} not suitable for viewer");
                         case ".xml":
                             if (!IsPremisFile(sourceFile))
                                 throw new ArgumentException($"File {sourceFile.Name} not suitable for viewer");
                             break;
+                        case ".txt":
+                            if (!IsErrorFile(sourceFile))
+                                throw new ArgumentException($"File {sourceFile.Name} not suitable for viewer");
+                            break;
                     }
                 }
             }
+        }
+
+        private bool IsErrorFile(FileInfo sourceFile)
+        {
+            return sourceFile.Name.EndsWith(".error.txt");
         }
 
         private bool IsPremisFile(FileInfo sourceFile)

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using CMI.Contract.DocumentConverter;
 using CMI.Manager.DocumentConverter.Abbyy;
 using CMI.Manager.DocumentConverter.Extraction.Interfaces;
+using CMI.Manager.DocumentConverter.Properties;
 using Serilog;
 
 namespace CMI.Manager.DocumentConverter.Extraction
@@ -46,10 +48,8 @@ namespace CMI.Manager.DocumentConverter.Extraction
 
         public override ExtractionResult ExtractText(IDoc doc, ITextExtractorSettings settings)
         {
-            // Es wird von einer vorhandenen ABBYY-Installation ausgegangen.
-            // Falls es keine Installation von ABBYY gibt, handelt es sich mit grosser Wahrscheinlichkeit um das Testsystem.
-            // In diesem Fall wird ein Standard-Text zurückgegeben
-            //
+            // Die ETH hat keine Abbyy Lizenz Stand 2024
+          
             if (!abbyPathExistsInSettings)
             {
                 var result = new ExtractionResult(settings.MaxExtractionSize)
@@ -79,7 +79,9 @@ namespace CMI.Manager.DocumentConverter.Extraction
         {
             if (string.IsNullOrWhiteSpace(PathToAbbyyFrEngineDll))
             {
-                throw new ArgumentException("Path to FrEngine.dll not set");
+                var exception = new ArgumentException("Path to FrEngine.dll not set");
+                Log.Warning(exception, exception.Message);
+                return false;
             }
 
             if (!File.Exists(PathToAbbyyFrEngineDll))
