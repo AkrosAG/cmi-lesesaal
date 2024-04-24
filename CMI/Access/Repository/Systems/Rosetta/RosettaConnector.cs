@@ -73,7 +73,10 @@ namespace CMI.Access.Repository.Systems.Rosetta
                     case "COMPLETED_SUCCESS":
                         return true;
                     case "RUNNING":
-                        Log.Information("Process status: {status}", statusElement.Value);
+                        Log.Debug("Process status: RUNNING");
+                        break;
+                    case "PENDING":
+                        Log.Debug("Process status: PENDING");
                         break;
                     default:
                         Log.Error($"Failed to get status for process {processUrl}: {statusElement?.Value}");
