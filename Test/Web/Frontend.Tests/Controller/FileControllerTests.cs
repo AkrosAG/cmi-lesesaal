@@ -486,7 +486,8 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                         PackageId = "a valid packageid",
                         FileCount = 1
                     }
-                }
+                },
+                PrimaryDataLink = "a valid packageid"
             });
 
             var mockElasticResponse = new Mock<ISearchResponse<ElasticArchiveRecord>>();
@@ -530,7 +531,8 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                         PackageId = "a valid packageid",
                         FileCount = 1
                     }
-                }
+                },
+                PrimaryDataLink = "a valid packageid"
             });
 
             var mockElasticResponse = new Mock<ISearchResponse<ElasticArchiveRecord>>();
