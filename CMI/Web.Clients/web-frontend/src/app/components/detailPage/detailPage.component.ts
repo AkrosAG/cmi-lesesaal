@@ -80,7 +80,6 @@ export class DetailPageComponent implements OnInit {
 		} else {
 			this._entityService.getArchivplanRootNodes().then(r => {
 				this._rootId = r[0];
-				console.log(this._rootId);
 			});
 
 			this.crumbs.push({
