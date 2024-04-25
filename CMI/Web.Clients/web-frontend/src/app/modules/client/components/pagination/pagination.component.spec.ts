@@ -49,7 +49,6 @@ describe('PaginationComponent', () => {
 
 		pagination.onPaged = <EventEmitter<Paging> > {
 			emit: p => {
-				console.log('emitted!', p);
 			}
 		};
 

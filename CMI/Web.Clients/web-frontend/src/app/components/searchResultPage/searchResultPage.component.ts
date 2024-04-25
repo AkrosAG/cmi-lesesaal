@@ -313,7 +313,7 @@ export class SearchResultPageComponent implements OnInit {
 				this._fileSaver.saveDownloadResponseToFile(event);
 			},
 			(error) => {
-				console.log(error);
+				console.error(error);
 				this.loading = false;
 			},
 			() => {
