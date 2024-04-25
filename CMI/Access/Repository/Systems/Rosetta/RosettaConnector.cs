@@ -14,8 +14,8 @@ namespace CMI.Access.Repository.Systems.Rosetta
     public class RosettaConnector
     {
         // IE610326 benötigt mehr Zeit
-        private const int maxCommandExecutionTime = 500000;
-        private const int maxCommandTimeout = 6000;
+        private const int maxCommandExecutionTime = 600000;
+        private const int maxCommandTimeout = 8000;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
         private readonly string exportIeUrl = Settings.Default.RepositoryExportIEUrl;
@@ -73,7 +73,10 @@ namespace CMI.Access.Repository.Systems.Rosetta
                     case "COMPLETED_SUCCESS":
                         return true;
                     case "RUNNING":
-                        Log.Information("Process status: {status}", statusElement.Value);
+                        Log.Debug("Process status: RUNNING");
+                        break;
+                    case "PENDING":
+                        Log.Debug("Process status: PENDING");
                         break;
                     default:
                         Log.Error($"Failed to get status for process {processUrl}: {statusElement?.Value}");
