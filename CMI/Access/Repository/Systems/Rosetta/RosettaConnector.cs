@@ -14,8 +14,8 @@ namespace CMI.Access.Repository.Systems.Rosetta
     public class RosettaConnector
     {
         // IE610326 benötigt mehr Zeit
-        private const int maxCommandExecutionTime = 500000;
-        private const int maxCommandTimeout = 6000;
+        private const int maxCommandExecutionTime = 600000;
+        private const int maxCommandTimeout = 8000;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
         private readonly string exportIeUrl = Settings.Default.RepositoryExportIEUrl;
