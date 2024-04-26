@@ -335,10 +335,12 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var dossier = new DossierDIP
             {
                 Id = archiveRecord.ArchiveRecordId,
-                Aktenzeichen = archiveRecord.AdministrativeHistory,
+                Aktenzeichen = archiveRecord.DetailData.Any(d => d.ElementName == "Verwaltungssignatur") ? string.Join(",", archiveRecord.DetailData?.FirstOrDefault(d => d.ElementName == "Verwaltungssignatur")?.TextValues.ToArray()) : string.Empty, 
                 Titel = archiveRecord.Title,
                 Inhalt = archiveRecord.Contains,
-                Erscheinungsform = ErscheinungsformDossier.digital, // Ableiten aus Überlieferungsformen
+                Erscheinungsform = archiveRecord.DetailData.Any(d => d.ElementName == "Ueberlieferungsform") ?
+                    archiveRecord.DetailData?.FirstOrDefault(d => d.ElementName == "Ueberlieferungsform")?.TextValues.FirstOrDefault().ToLower() == "analog" ?
+                    ErscheinungsformDossier.nichtdigital : ErscheinungsformDossier.digital : ErscheinungsformDossier.keineAngabe,
                 Umfang = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("Umfang"))
                     ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("Umfang")).TextValues)
                     : string.Empty,
