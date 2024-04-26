@@ -46,7 +46,6 @@ namespace CMI.Manager.DocumentConverter.Tests
         }
 
         [Test]
-        [Ignore("Fix with new Task")]
         public void Setting_empty_Abbyy_installation_path_throws_exception()
         {
             // Arrange
