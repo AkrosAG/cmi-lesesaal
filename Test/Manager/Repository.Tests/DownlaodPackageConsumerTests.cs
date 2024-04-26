@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace CMI.Manager.Repository.Tests
 {
     [TestFixture]
-    [Ignore("Fix with new Task")]
     public class DownlaodPackageConsumerTests : InMemoryTestFixture
     {
         private readonly Mock<IConsumer<IDownloadPackage>> downloadPackageConsumer = new Mock<IConsumer<IDownloadPackage>>();
