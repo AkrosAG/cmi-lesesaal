@@ -646,6 +646,7 @@
     <Content Include="Html\Xslt\data\test_metadata5.xml" />
     <Content Include="Html\Xslt\gebrauchskopie.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup />

@@ -60,10 +60,6 @@
                                     <xsl:with-param name="orderedItem" select="$orderedUnit/node()"/>
                                 </xsl:call-template>
 
-                                <xsl:call-template name="renderPageOrdnungssystem">
-                                    <xsl:with-param name="ordnungssystem" select="ablieferung/ordnungssystem"/>
-                                </xsl:call-template>
-
                                 <xsl:call-template name="renderPageAblieferung">
                                     <xsl:with-param name="paket" select="//paket"/>
                                 </xsl:call-template>
@@ -1191,9 +1187,6 @@
                                             <a role="menuitem" class="menuItemDokumente" href="#" data-i18n="viaduc-nav-documents">Dokumente</a>
                                         </li>
                                         <li role="presentation">
-                                            <a role="menuitem" class="menuItemOrdnungssystem" href="#" data-i18n="viaduc-nav-ordnungssystem">Ordnungssystem</a>
-                                        </li>
-                                        <li role="presentation">
                                             <a role="menuitem" class="menuItemPaketinformation" href="#" data-i18n="viaduc-nav-paket-info">Paketinformationen</a>
                                         </li>
                                     </ul>
@@ -1212,9 +1205,6 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a class="menuItemDokumente" href="#" data-i18n="viaduc-nav-documents">Dokumente</a>
-                </li>
-                <li class="dropdown">
-                    <a class="menuItemOrdnungssystem" href="#" data-i18n="viaduc-nav-ordnungssystem">Ordnungssystem</a>
                 </li>
                 <li class="dropdown">
                     <a class="menuItemPaketinformation" href="#" data-i18n="viaduc-nav-paket-info">Paketinformationen</a>
@@ -1252,15 +1242,6 @@
                 </xsl:call-template>
                 <xsl:apply-templates select="ablieferung/provenienz"/>
                 <xsl:apply-templates select="ablieferung"/>
-            </div>
-        </div>
-    </xsl:template>
-
-    <xsl:template name="renderPageOrdnungssystem">
-        <xsl:param name="ordnungssystem" required="yes"/>
-        <div class="row pageOrdnungssystem" style="display: none;">
-            <div class="col-md-12">
-                <xsl:apply-templates select="$ordnungssystem"/>
             </div>
         </div>
     </xsl:template>
