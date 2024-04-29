@@ -6,12 +6,12 @@ var localeEn = {
     "last-updated": "2018-08-08",
     "locale": "en"
   },
-  "viaduc-header-title": "Hochschularchiv der ETH Zürich",
+    "viaduc-header-title": "ETH Zurich University Archives",
   "viaduc-nav-documents": "Documents",
   "viaduc-nav-ordnungssystem": "Classification system",
   "viaduc-nav-paket-info": "Package information",
   "viaduc-nav-mobile-title": "Offline viewer",
-  "viaduc-footer-bar": "Hochschularchiv der ETH Zürich",
+    "viaduc-footer-bar": "ETH Zurich University Archives",
     "viaduc-footer-rechtliches": "<a target='_blank' href='https://ethz.ch/en/footer/data-protection.html' data-i18n='[html]viaduc-footer-rechtliches'>Conditions of use and data protection</a>",
   "viaduc-title-identifikation": "Identification",
   "viaduc-label-signatur": "Reference code",
@@ -78,5 +78,5 @@ var localeEn = {
   "viaduc-label-ablieferungstyp": "Submission type",
   "viaduc-label-abliefernde_stelle": "Submitting authority",
   "viaduc-label-identifikation": "Identification",
-  "viaduc-meta-institution": "Hochschularchiv ETH"
+  "viaduc-meta-institution": "ETH Zurich University Archives"
 }
