@@ -1132,9 +1132,9 @@
 
             <div class="clearfix">
                 <a href="/" class="brand hidden-xs">
-                    <img src="./design/img/logo-CH.svg" onerror="this.onerror = null; this.src = './design/img/logo-CH.png'" alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
+                    <img src="./design/img/logo.svg" onerror="this.onerror = null; this.src = './design/img/logo.png'" alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
                     <div class="brand-header">
-                        <h1 data-i18n="viaduc-header-title">Schweizerisches Bundesarchiv BAR</h1>
+                        <h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
                         <xsl:choose>
                             <xsl:when test="not(parent::dossier)">
                                 <br/>
