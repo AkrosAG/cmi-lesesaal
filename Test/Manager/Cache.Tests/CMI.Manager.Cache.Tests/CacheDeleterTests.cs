@@ -13,7 +13,6 @@ namespace CMI.Manager.Cache.Tests
     public class CacheDeleterTests
     {
         [Test]
-        [Ignore("DoTo Reactivate")]
         public async Task Deleter_Should_Delete_Two_Files_According_Schedule()
         {
             // arrange

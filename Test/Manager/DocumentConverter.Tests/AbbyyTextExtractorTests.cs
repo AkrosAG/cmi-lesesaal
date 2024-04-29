@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using CMI.Manager.DocumentConverter.Abbyy;
 using CMI.Manager.DocumentConverter.Extraction;
 using CMI.Manager.DocumentConverter.Extraction.Interfaces;
@@ -46,18 +45,37 @@ namespace CMI.Manager.DocumentConverter.Tests
         }
 
         [Test]
-        [Ignore("Fix with new Task")]
-        public void Setting_empty_Abbyy_installation_path_throws_exception()
+        public void Setting_empty_Abbyy_installation_path_throws_no_exception()
         {
             // Arrange
             var worker = new Mock<IAbbyyWorker>();
             worker.Setup(s => s.ExtractTextFromDocument(It.IsAny<string>(), new DefaultTextExtractorSettings("Dummy")))
                 .Returns(new ExtractionResult(int.MaxValue));
             var sut = new AbbyyTextExtractor(worker.Object);
-
+            var fi = new FileInfo(Path.GetTempFileName());;
             // Act
-            Assert.Throws<ArgumentException>(() => sut.PathToAbbyyFrEngineDll = string.Empty);
 
+            sut.PathToAbbyyFrEngineDll = string.Empty;
+            sut.MissingAbbyyPathInstallationMessage = "Missing-Message";
+
+            var result = sut.ExtractText(new Doc( fi, "id"), new DefaultTextExtractorSettings("Dummy"));
+
+            // Test
+            result.HasError.Should().BeTrue();
+            result.ErrorMessage.Should().Be($"Missing-Message - {fi.Name}");
+
+        }
+
+        [Test]
+        public void Setting_non_existent_directory_Abbyy_installation_path_throws_exception()
+        {
+            // Arrange
+            var worker = new Mock<IAbbyyWorker>();
+            worker.Setup(s => s.ExtractTextFromDocument(It.IsAny<string>(), new DefaultTextExtractorSettings("Dummy")))
+                .Returns(new ExtractionResult(int.MaxValue));
+            var sut = new AbbyyTextExtractor(worker.Object);
+            // Act
+            Assert.Throws<FileNotFoundException>(() => sut.PathToAbbyyFrEngineDll = "X:\\mich gibt es nicht");
         }
 
         [Test]
