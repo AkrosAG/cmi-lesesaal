@@ -559,12 +559,70 @@ namespace CMI.Manager.Harvest.Tests
             // Arrange
             var archvieRecordId = "34527";
             var mutationId = 66267;
-            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(() => null);
+            var elasticArchiveRecord = new ElasticArchiveRecord { ArchiveRecordId = archvieRecordId };
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(() => Task.FromResult<ArchiveRecord>(null));
             harvestManager.Setup(e => e.UpdateMutationStatus(It.IsAny<MutationStatusInfo>())).Verifiable();
-
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() =>
-                new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+
+            var response = new Mock<Response<FindArchiveRecordResponse>>();
+            response.Setup(r => r.Message).Returns(new FindArchiveRecordResponse
+                { ArchiveRecordId = archvieRecordId, ElasticArchiveRecord = elasticArchiveRecord });
+
+
+            findArchiveRecordClient.Setup(e => e.GetResponse<FindArchiveRecordResponse>(It.IsAny<FindArchiveRecordRequest>(), It.IsAny<CancellationToken>(), It.IsAny<RequestTimeout>())).Returns(
+                Task.FromResult(response.Object));
+
+            await harness.Start();
+            try
+            {
+                // Act
+                await harness.InputQueueSendEndpoint.Send<ISyncArchiveRecord>(new
+                {
+                    ArchiveRecordId = archvieRecordId,
+                    MutationId = mutationId,
+                    Action = "UpDaTe"
+                });
+
+                // did the endpoint consume the message
+                Assert.That(await harness.Consumed.Any<ISyncArchiveRecord>());
+
+                // did the actual consumer consume the message
+                Assert.That(await consumer.Consumed.Any<ISyncArchiveRecord>());
+
+                // Assert
+                harvestManager.Verify(
+                    v => v.UpdateMutationStatus(It.Is<MutationStatusInfo>(m =>
+                        m.ChangeFromStatus == ActionStatus.SyncInProgress && m.NewStatus == ActionStatus.SyncAborted && m.MutationId == mutationId)),
+                    Times.Once);
+            }
+            finally
+            {
+                await harness.Stop();
+            }
+        }
+
+
+        [Test]
+        public async Task If_update_is_requested_for_record_without_accessToken_the_sync_is_aborted()
+        {
+            // Arrange
+            var archvieRecordId = "34527";
+            var mutationId = 66267;
+            var elasticArchiveRecord = new ElasticArchiveRecord { ArchiveRecordId = archvieRecordId };
+            var archiveRecord = new ArchiveRecord { ArchiveRecordId = archvieRecordId, Security = new ArchiveRecordSecurity() { MetadataAccessToken = new List<string>() { } } };
+            harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(() => Task.FromResult(archiveRecord));
+            harvestManager.Setup(e => e.UpdateMutationStatus(It.IsAny<MutationStatusInfo>())).Verifiable();
+            var harness = new InMemoryTestHarness();
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+
+            var response = new Mock<Response<FindArchiveRecordResponse>>();
+            response.Setup(r => r.Message).Returns(new FindArchiveRecordResponse
+            { ArchiveRecordId = archvieRecordId, ElasticArchiveRecord = elasticArchiveRecord });
+
+
+            findArchiveRecordClient.Setup(e => e.GetResponse<FindArchiveRecordResponse>(It.IsAny<FindArchiveRecordRequest>(), It.IsAny<CancellationToken>(), It.IsAny<RequestTimeout>())).Returns(
+                Task.FromResult(response.Object));
 
             await harness.Start();
             try
