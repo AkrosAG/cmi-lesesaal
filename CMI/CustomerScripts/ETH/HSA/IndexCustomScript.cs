@@ -94,7 +94,7 @@ namespace CMI.Contract.Common.Compiler
                     }
                 }
 
-                CreateThesaurusDetail(elasticArchiveRecord, ref counter, "koerperschaftsregister");
+                CreateThesaurusDetailWithLink(elasticArchiveRecord, ref counter, "körperschaftsregister", "koerperschaftsregister");
             }
 
             if (elasticArchiveRecord.DetailData.Any(d => d.ElementName.StartsWith("Link") || d.ElementName == "URL"))
@@ -133,27 +133,32 @@ namespace CMI.Contract.Common.Compiler
             }
         }
 
-        private static void CreateThesaurusDetail(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, bool withDate = false)
+        private static void CreateThesaurusDetailWithLink(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, string typeNameWithoutUmlauts)
         {
-            var descriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeName)).OrderBy(d => d.Name);
+            var personDescriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeName)).OrderBy(d => d.Name).ToList();
+            if (!string.IsNullOrEmpty(typeNameWithoutUmlauts))
+            {
+                var personDescriptors2 = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeNameWithoutUmlauts))
+                    .OrderBy(d => d.Name).ToList();
 
-            foreach (var descriptor in descriptors)
+                personDescriptors.AddRange(personDescriptors2);
+            }
+            foreach (var descriptor in personDescriptors)
             {
                 descriptor.SortingNumber = counter++;
-                if (withDate && descriptor.DateOfBirth != null)
+                if (descriptor.DateOfBirth != null)
                 {
                     string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
                         descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
-                        descriptor.DateOfDeath.Year.ToString(), yearOfDeath); descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
+                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath);
                 }
                 else
                 {
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
                 }
-
-                descriptor.Source = "";
             }
         }
+
     }
 }

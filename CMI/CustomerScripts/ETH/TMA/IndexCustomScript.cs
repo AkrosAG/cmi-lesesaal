@@ -123,26 +123,11 @@ namespace CMI.Contract.Common.Compiler
                     }
                 }
 
+
                 // ID Name erzeugen für Deskriptoren
-                var personDescriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals("personenregister")).OrderBy(d => d.Name);
                 int counter = 0;
-                foreach (var descriptor in personDescriptors)
-                {
-                    descriptor.SortingNumber = counter++;
-                    if (descriptor.DateOfBirth != null)
-                    {
-                        string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
-                        descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
-                            descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
-                            descriptor.DateOfBirth.Year.ToString(), yearOfDeath);
-                    }
-                    else
-                    {
-                        descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
-                    }
-                }
-                
-                CreateThesaurusDetail(elasticArchiveRecord, ref counter, "koerperschaftsregister");
+                CreateThesaurusDetailWithLink(elasticArchiveRecord, ref counter, "personenregister", string.Empty);
+                CreateThesaurusDetailWithLink(elasticArchiveRecord, ref counter, "körperschaftsregister", "koerperschaftsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "ortsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "werkregister", true);
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "sachregister");
@@ -161,6 +146,33 @@ namespace CMI.Contract.Common.Compiler
                     }
                 }
 
+            }
+        }
+
+        private static void CreateThesaurusDetailWithLink(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, string typeNameWithoutUmlauts)
+        {
+            var personDescriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeName)).OrderBy(d => d.Name).ToList();
+            if (!string.IsNullOrEmpty(typeNameWithoutUmlauts))
+            {
+                var personDescriptors2 = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeNameWithoutUmlauts))
+                    .OrderBy(d => d.Name).ToList();
+
+                personDescriptors.AddRange(personDescriptors2);
+            }
+            foreach (var descriptor in personDescriptors)
+            {
+                descriptor.SortingNumber = counter++;
+                if (descriptor.DateOfBirth != null)
+                {
+                    string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
+                    descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
+                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
+                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath);
+                }
+                else
+                {
+                    descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
+                }
             }
         }
 
