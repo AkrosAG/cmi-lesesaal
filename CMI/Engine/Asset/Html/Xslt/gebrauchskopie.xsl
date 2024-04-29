@@ -1117,12 +1117,6 @@
                                 <a href="javascript:setLocale('de')" lang="de" title="Deutsch" aria-label="Deutsch">DE</a>
                             </li>
                             <li>
-                                <a href="javascript:setLocale('fr')" lang="fr" title="Français" aria-label="Français">FR</a>
-                            </li>
-                            <li>
-                                <a href="javascript:setLocale('it')" lang="it" title="Italiano" aria-label="Italiano">IT</a>
-                            </li>
-                            <li>
                                 <a href="javascript:setLocale('en')" lang="en" title="English" aria-label="English">EN</a>
                             </li>
                         </ul>

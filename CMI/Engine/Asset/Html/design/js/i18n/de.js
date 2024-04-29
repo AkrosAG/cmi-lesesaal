@@ -78,5 +78,5 @@ var localeDe = {
   "viaduc-label-ablieferungstyp": "Ablieferungstyp",
   "viaduc-label-abliefernde_stelle": "Abliefernde Stelle",
   "viaduc-label-identifikation": "Identifikation",
-  "viaduc-meta-institution": "Hochschularchiv ETH"
+    "viaduc-meta-institution": "Hochschularchiv der ETH Zürich"
 }
