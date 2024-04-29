@@ -7,6 +7,7 @@ var localeDe = {
     "locale": "de"
   },
   "viaduc-header-title": "Hochschularchiv der ETH Zürich",
+  "viaduc-header-sub": "Virtueller Lesesaal",
   "viaduc-nav-documents": "Dokumente",
   "viaduc-nav-ordnungssystem": "Ordnungssystem",
   "viaduc-nav-paket-info": "Paketinformationen",

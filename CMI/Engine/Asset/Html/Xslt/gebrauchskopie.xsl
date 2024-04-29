@@ -1125,30 +1125,32 @@
             </div>
 
             <div class="clearfix">
-                <a href="/" class="brand hidden-xs">
+                <a href="https://ethz.ch/" class="brand hidden-xs">
                     <img src="./design/img/logo.svg" onerror="this.onerror = null; this.src = './design/img/logo.png'" alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
-                    <div class="brand-header">
-                        <h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
-                        <xsl:choose>
-                            <xsl:when test="not(parent::dossier)">
-                                <br/>
-                                <p>
-                                    <xsl:value-of select="$orderedItem/zusatzDaten/merkmal[@name = 'Signatur']"/>
-                                    <xsl:text>&#160;</xsl:text>
-                                    <xsl:value-of select="$orderedItem/titel"/>
-                                    <xsl:choose>
-                                        <xsl:when test="$orderedItem/entstehungszeitraum">
-                                            <xsl:text>&#160;(</xsl:text>
-                                            <xsl:call-template name="historischerZeitraum">
-                                                <xsl:with-param name="zeitraum" select="$orderedItem/entstehungszeitraum"/>
-                                            </xsl:call-template>
-                                            <xsl:text>)</xsl:text>
-                                        </xsl:when>
-                                    </xsl:choose>
-                                </p>
-                            </xsl:when>
-                        </xsl:choose>
-                    </div>
+					<div class="brand-header">
+						<h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
+						<br/>
+						<h1 data-i18n="viaduc-header-sub">Virtueller Lesesaal</h1>
+						<xsl:choose>
+							<xsl:when test="not(parent::dossier)">
+								<br/>
+								<p>
+									<xsl:value-of select="$orderedItem/zusatzDaten/merkmal[@name = 'Signatur']"/>
+									<xsl:text>&#160;</xsl:text>
+									<xsl:value-of select="$orderedItem/titel"/>
+									<xsl:choose>
+										<xsl:when test="$orderedItem/entstehungszeitraum">
+											<xsl:text>&#160;(</xsl:text>
+											<xsl:call-template name="historischerZeitraum">
+												<xsl:with-param name="zeitraum" select="$orderedItem/entstehungszeitraum"/>
+											</xsl:call-template>
+											<xsl:text>)</xsl:text>
+										</xsl:when>
+									</xsl:choose>
+								</p>
+							</xsl:when>
+						</xsl:choose>
+					</div>
                 </a>
             </div>
         </header>
