@@ -557,6 +557,25 @@
     "IsRepeatable": 0
   },
   {
+    "ElementId": "Benutzbarkeit",
+    "ElementName": "Benutzbarkeit",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Benutzbarkeit",
+    "TargetField": "Benutzbarkeit",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "Publikation",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "Publikation",
+    "TargetField": "Publikation",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementName": "CustomFreeTextField01",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Lizenz",
