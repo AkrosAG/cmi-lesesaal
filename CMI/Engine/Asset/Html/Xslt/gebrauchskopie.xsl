@@ -40,6 +40,7 @@
                 <link rel="stylesheet" href="./design/css/admin.css"/>
                 <link rel="stylesheet" href="./design/css/print.css"/>
                 <link rel="stylesheet" href="./design/css/cmi.css"/>
+				<link rel="stylesheet" href="./design/css/viewer.css"/>
                 <link rel="stylesheet" href="./design/jsTreeTheme/style.min.css"/>
                 <title>Offline Viewer</title>
             </head>
