@@ -199,6 +199,7 @@
     <Compile Include="Xsl2Processor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Html\design\css\viewer.css" />
     <Content Include="OcrXsl\alto__hocr.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
