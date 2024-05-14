@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using CMI.Access.Harvest.Properties;
 using CMI.Contract.Common;
 using Serilog;
@@ -34,7 +32,7 @@ namespace CMI.Access.Harvest
 
         public static string GetFullPath(this Datei file, string root)
         {
-            return Path.Combine(root,                                   // CDWS_ROOT
+            return Path.Combine(root,                        // CDWS_ROOT
                                 $"{file.OBJ_GUID}",                     // OBJ_GUID
                                 file.FileId,                            // ID
                                 $"{file.LastVersion.Nr}",               // NR    
@@ -53,23 +51,35 @@ namespace CMI.Access.Harvest
                     Log.Information($"Check file {path}.");
                     if (File.Exists(path))
                     {
-                        var fileInfo = new FileInfo(path);
-
-                        var metadataFile = new ArchiveRecordMetadataFile
+                        if (string.IsNullOrEmpty(file.Publikation))
                         {
-                            Title = file.Titel,
-                            FileType = file.FileType,
-                            FileName = file.Filename,
-                            FileExtension = file.FileExtension,
-                            FileSize = fileInfo.Length,
-                            Description = file.Bemerkungen,
-                            Kind = file.Art.Item.Bezeichnung,
-                            Publikation = file.Publikation,
-                            SortOrder = ((int)file.LastVersion.Nr),  // Value is a decimal and will be truncated
-                            DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
-                        };
-                        Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
-                        archiveRecord.Metadata.Files.Add(metadataFile);
+                            continue;
+                        }
+                        switch (file.Publikation.ToLower())
+                        {
+                            case "keinepublikation":
+                            case "nichtdefiniert":
+                                break;
+                            default:
+                                var fileInfo = new FileInfo(path);
+
+                                var metadataFile = new ArchiveRecordMetadataFile
+                                {
+                                    Title = file.Titel,
+                                    FileType = file.FileType,
+                                    FileName = file.Filename,
+                                    FileExtension = file.FileExtension,
+                                    FileSize = fileInfo.Length,
+                                    Description = file.Bemerkungen,
+                                    Kind = file.Art.Item.Bezeichnung,
+                                    Publikation = file.Publikation,
+                                    SortOrder = (int)file.LastVersion.Nr,  // Value is a decimal and will be truncated
+                                    DownloadUrl = file.GetCdwsUrl(Settings.Default.CdwsEndpoint)
+                                };
+                                Log.Information($"Add file content to Metadata: {file.FileSize} Bytes. Endpoint: {metadataFile.DownloadUrl}");
+                                archiveRecord.Metadata.Files.Add(metadataFile);
+                                break;
+                        }
                     }
                     else
                     {
