@@ -17,6 +17,7 @@ namespace CMI.Access.Repository.Properties
         "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
     {
+       
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
 
@@ -114,9 +115,26 @@ namespace CMI.Access.Repository.Properties
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryDomain@@")]
         public string RepositoryDomain
-
         {
             get { return ((string)(this["RepositoryDomain"])); }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryCommandTimeout@@")]
+        public int RepositoryCommandTimeout
+
+        {
+            get { return ((int)(this["RepositoryCommandTimeout"])); }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Access.Repository.Properties.Settings.RepositoryTimeout@@")]
+        public int RepositoryTimeout
+
+        {
+            get { return ((int)(this["RepositoryTimeout"])); }
         }
     }
 }
