@@ -54,7 +54,8 @@ namespace CMI.Contract.Common.Compiler
 
         private void CalculateMetadataAccessTokens(ArchiveRecord archiveRecord)
         {
-            // Metadata Tokens werden bestimmt durch  Benutzbarkeit
+
+            // Regel 1
             var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
             if (string.IsNullOrEmpty(publikation))
             {
@@ -64,15 +65,18 @@ namespace CMI.Contract.Common.Compiler
 
             switch (publikation.ToLower())
             {
+                // Regel 1
                 case "keine publikation":
                 case "nicht definiert":
                     archiveRecord.Security.MetadataAccessToken = new List<string>();
                     break;
 
+                // Regel 2
                 case "sofort":
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                     break;
 
+                // Regel 3
                 case "nach ablauf schutzfrist":
                     if (archiveRecord.Metadata.Usage.ProtectionEndDate.HasValue &&
                         archiveRecord.Metadata.Usage.ProtectionEndDate.Value > DateTime.Today)
@@ -85,6 +89,7 @@ namespace CMI.Contract.Common.Compiler
                     }
 
                     break;
+                // Regel 4
                 default:
                     archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
                     break;
@@ -104,16 +109,26 @@ namespace CMI.Contract.Common.Compiler
             switch (benutzbarkeit.ToLower())
             {
                 case "frei einsehbar":
-                    if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0 && archiveRecord.Metadata.Files.Any(f => f.Publikation.ToLower() != "sofort"))
-                    {
-                        // Wenn es mehrere Files gibt, und eines davon nicht sofort publiziert ist, dann ist der Zugriff auf die Files beschränkt
-                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                    }
-                    else
+                    // Regel 2
+                    if (archiveRecord.Metadata.Files == null || archiveRecord.Metadata.Files.Count == 0)
                     {
                         archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
                         archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                        return;
+                    }
+
+                    // Regel 3
+                    if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0 &&
+                        archiveRecord.Metadata.Files.All(f => f.Publikation.ToLower() == "sofort"))
+                    {
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    }
+                    // Regel 4
+                    else
+                    {
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
                     }
 
                     break;
