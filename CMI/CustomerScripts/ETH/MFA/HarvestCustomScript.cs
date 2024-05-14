@@ -8,57 +8,11 @@ namespace CMI.Contract.Common.Compiler
     {
         public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
-            // Metadata Tokens werden bestimmt durch  Benutzbarkeit
-            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
-            switch (benutzbarkeit.ToLower())
-            {
-                case "frei einsehbar":
-                    // Zugrgriff ist für alle frei, Beschränkung Files wenn nicht sofort publiziert wird (siehe unten)
-                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
-                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
-                    break;
-
-                case "teile davon gesuchspflichtig":
-                case "teilweise gesuchspflichtig":
-                case "gesuchspflichtig":
-
-                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
-                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                    break;
-
-                default:
-                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
-                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                    break;
-            }
-
-            if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0)
-            {
-                var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
-                switch (publikation.ToLower())
-                {
-                    case "sofort":
-                        // Wenn es mehrere Files gibt, und eines davon nicht sofort publiziert ist, dann ist der Zugriff auf die Files beschränkt
-                        if (archiveRecord.Metadata.Files.Any(f => f.Publikation.ToLower() != "sofort"))
-                        {
-                            archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                            archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                        }
-
-                        break;
-
-                    default:
-                        // Zugriff auf Files ist beschränkt
-                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
-                        break;
-                }
-            }
+            CalculateMetadataAccessTokens(archiveRecord);
+            CalculatePrimaryDataAccessTokens(archiveRecord);
 
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
 
             switch (level.ToLower())
             {
@@ -124,7 +78,93 @@ namespace CMI.Contract.Common.Compiler
         {
         }
 
+        private void CalculateMetadataAccessTokens(ArchiveRecord archiveRecord)
+        {
 
+            // Regel 1
+            var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
+            if (string.IsNullOrEmpty(publikation))
+            {
+                archiveRecord.Security.MetadataAccessToken = new List<string>();
+                return;
+            }
+
+            switch (publikation.ToLower())
+            {
+                // Regel 1
+                case "keine publikation":
+                case "nicht definiert":
+                    archiveRecord.Security.MetadataAccessToken = new List<string>();
+                    break;
+
+                // Regel 2
+                case "sofort":
+                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    break;
+
+                // Regel 3
+                case "nach ablauf schutzfrist":
+                    if (archiveRecord.Metadata.Usage.ProtectionEndDate.HasValue &&
+                        archiveRecord.Metadata.Usage.ProtectionEndDate.Value > DateTime.Today)
+                    {
+                        archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
+                    }
+                    else
+                    {
+                        archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    }
+
+                    break;
+                // Regel 4
+                default:
+                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
+                    break;
+            }
+        }
+
+        private void CalculatePrimaryDataAccessTokens(ArchiveRecord archiveRecord)
+        {
+            // PrimaryData Tokens werden bestimmt durch  Benutzbarkeit
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+            if (string.IsNullOrEmpty(benutzbarkeit))
+            {
+                archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>();
+                archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>();
+                return;
+            }
+            switch (benutzbarkeit.ToLower())
+            {
+                case "frei einsehbar":
+                    // Regel 2
+                    if (archiveRecord.Metadata.Files == null || archiveRecord.Metadata.Files.Count == 0)
+                    {
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                        return;
+                    }
+
+                    // Regel 3
+                    if (archiveRecord.Metadata.Files != null && archiveRecord.Metadata.Files.Count > 0 &&
+                        archiveRecord.Metadata.Files.All(f => f.Publikation.ToLower() == "sofort"))
+                    {
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA", "AS", "EMA", "Ö1", "Ö2", "Ö3" });
+                    }
+                    // Regel 4
+                    else
+                    {
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                    }
+
+                    break;
+                default:
+                    // Zugriff auf Files ist beschränkt
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                    break;
+            }
+        }
         private string GetDefaultElementValue(List<DataElement> detailData, string fieldName)
         {
             var element = detailData.FirstOrDefault(d => d.ElementName.Equals(fieldName, StringComparison.InvariantCultureIgnoreCase));
