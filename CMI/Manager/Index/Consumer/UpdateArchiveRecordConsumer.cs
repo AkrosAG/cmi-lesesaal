@@ -46,6 +46,19 @@ namespace CMI.Manager.Index.Consumer
                     {
                         currentStatus = AufbereitungsStatusEnum.IndizierungAbgeschlossen;
                         await UpdatePrimaerdatenAuftragStatus(context, AufbereitungsServices.IndexService, currentStatus);
+                        // update the individual tokens for download and access 
+                        // these tokens need to be updated even if the record has no primary data.
+                        // Use case: Ö2 user asks for Einsichtsgesuch. It gets approved, but record may not (yet) have primary data.
+                        var ep = await context.GetSendEndpoint(new Uri(context.SourceAddress, BusConstants.RecalcIndivTokens));
+                        await ep.Send(new RecalcIndivTokens
+                        {
+                            ArchiveRecordId = context.Message.ArchiveRecord.ArchiveRecordId,
+                            ExistingMetadataAccessTokens = context.Message.ArchiveRecord.Security.MetadataAccessToken.ToArray(),
+                            ExistingPrimaryDataDownloadAccessTokens = context.Message.ArchiveRecord.Security.PrimaryDataDownloadAccessToken.ToArray(),
+                            ExistingPrimaryDataFulltextAccessTokens = context.Message.ArchiveRecord.Security.PrimaryDataFulltextAccessToken.ToArray()
+                        });
+                        Log.Information(
+                            $"Recalculated and updated individual tokens for archive record {context.Message.ArchiveRecord.ArchiveRecordId} in elastic index.");
 
                         await context.Publish<IArchiveRecordUpdated>(new
                         {
