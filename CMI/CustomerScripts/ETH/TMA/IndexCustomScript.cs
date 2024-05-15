@@ -126,8 +126,8 @@ namespace CMI.Contract.Common.Compiler
 
                 // ID Name erzeugen für Deskriptoren
                 int counter = 0;
-                CreateThesaurusDetailWithLink(elasticArchiveRecord, ref counter, "personenregister", string.Empty);
-                CreateThesaurusDetailWithLink(elasticArchiveRecord, ref counter, "körperschaftsregister", "koerperschaftsregister");
+                CreateThesaurusDetail(elasticArchiveRecord, ref counter, "personenregister", true);
+                CreateThesaurusDetailWithUmlauts(elasticArchiveRecord, ref counter, "körperschaftsregister", "koerperschaftsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "ortsregister");
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "werkregister", true);
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "sachregister");
@@ -149,17 +149,17 @@ namespace CMI.Contract.Common.Compiler
             }
         }
 
-        private static void CreateThesaurusDetailWithLink(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, string typeNameWithoutUmlauts)
+        private static void CreateThesaurusDetailWithUmlauts(ElasticArchiveRecord elasticArchiveRecord, ref int counter, string typeName, string typeNameWithoutUmlauts)
         {
-            var personDescriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeName)).OrderBy(d => d.Name).ToList();
+            var descriptors = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeName)).OrderBy(d => d.Name).ToList();
             if (!string.IsNullOrEmpty(typeNameWithoutUmlauts))
             {
-                var personDescriptors2 = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeNameWithoutUmlauts))
+                var descriptorsWithUmlauts = elasticArchiveRecord.Descriptors.Where(d => d.Thesaurus.ToLower().Equals(typeNameWithoutUmlauts))
                     .OrderBy(d => d.Name).ToList();
 
-                personDescriptors.AddRange(personDescriptors2);
+                descriptors.AddRange(descriptorsWithUmlauts);
             }
-            foreach (var descriptor in personDescriptors)
+            foreach (var descriptor in descriptors)
             {
                 descriptor.SortingNumber = counter++;
                 if (descriptor.DateOfBirth != null)
@@ -188,14 +188,12 @@ namespace CMI.Contract.Common.Compiler
                     string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
                         descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
-                        descriptor.DateOfDeath.Year.ToString(), yearOfDeath); descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
+                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath); 
                 }
                 else
                 {
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
                 }
-
-                descriptor.Source = "";
             }
         }
     }

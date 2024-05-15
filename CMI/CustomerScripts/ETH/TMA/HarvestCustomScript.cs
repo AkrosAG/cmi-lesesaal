@@ -8,6 +8,8 @@ namespace CMI.Contract.Common.Compiler
     {
         public void PostProcessArchiveRecord(ArchiveRecord archiveRecord)
         {
+            CalculateMetadataAccessTokens(archiveRecord);
+            CalculatePrimaryDataAccessTokens(archiveRecord);
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
 
             switch (level.ToLower())
