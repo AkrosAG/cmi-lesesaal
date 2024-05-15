@@ -159,8 +159,8 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	}
 
 	public getTooltippRegisteredUser(): string {
-		return this._txt.translate('Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. ' +
-			'Um sämtliche Daten nutzen zu können, müssen Sie sich vorgängig identifizieren (siehe Seite "Benutzerstatus" im "Benutzerkonto")', 'headerContent.component.toolTippLoggedInAsRegisteredUser');
+		return this._txt.translate('Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Archiv. ' +
+			'Wenn Sie Daten innerhalb einer Schutzfrist einsehen wollen, müssen Sie sich vorgängig identifizieren (siehe "Mein Benutzerkonto")', 'headerContent.component.toolTippLoggedInAsRegisteredUser');
 	}
 
 	public getHeaderClaim(): string {
