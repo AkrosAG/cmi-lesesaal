@@ -16,11 +16,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         private readonly RepositoryPackageBuilder builder;
         private readonly IBus bus;
 
-
-        private readonly string[] iEs = { "IE609791", "IE610326", "IE611472", "IE611480", "IE611508"
-            , "IE611531", "IE611662", "IE611671", "IE611682", "IE611691", "IE611696"};
-
-
         public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, RepositoryPackageBuilder builder, IBus bus)
         {
             this.rosettaDataAccess = rosettaDataAccess;       
@@ -66,8 +61,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
-            // Test IEs Must remove, only for tests
-            elasticArchiveRecord.PrimaryDataLink = iEs[new Random().Next(0, 10)] ;
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
             if (success)
             {
