@@ -101,7 +101,7 @@ namespace CMI.Contract.Common.Compiler
             var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
             if (string.IsNullOrEmpty(publikation))
             {
-                archiveRecord.Security.MetadataAccessToken = new new List<string>();
+                archiveRecord.Security.MetadataAccessToken = new List<string>();
                 return;
             }
 
@@ -110,7 +110,7 @@ namespace CMI.Contract.Common.Compiler
                 // Regel 1
                 case "keine publikation":
                 case "nicht definiert":
-                    archiveRecord.Security.MetadataAccessToken = new new List<string>();
+                    archiveRecord.Security.MetadataAccessToken = new List<string>();
                     break;
                 
                 // Regel 2
@@ -144,8 +144,8 @@ namespace CMI.Contract.Common.Compiler
             var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
             if (string.IsNullOrEmpty(benutzbarkeit))
             {
-                archiveRecord.Security.PrimaryDataDownloadAccessToken = new new List<string>();
-                archiveRecord.Security.PrimaryDataFulltextAccessToken = new new List<string>();
+                archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>();
+                archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>();
                 return;
             }
             switch (benutzbarkeit.ToLower())
