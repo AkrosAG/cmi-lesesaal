@@ -397,7 +397,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9
 		CMI\CustomerScripts\ETH\HSA\customer.settings.json = CMI\CustomerScripts\ETH\HSA\customer.settings.json
 		CMI\CustomerScripts\ETH\HSA\customer.translations.de.json = CMI\CustomerScripts\ETH\HSA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\HSA\customer.translations.en.json = CMI\CustomerScripts\ETH\HSA\customer.translations.en.json
+		CMI\CustomerScripts\ETH\HSA\Viewer\design\js\i18n\de.js = CMI\CustomerScripts\ETH\HSA\Viewer\design\js\i18n\de.js
+		CMI\CustomerScripts\ETH\HSA\Viewer\design\js\i18n\en.js = CMI\CustomerScripts\ETH\HSA\Viewer\design\js\i18n\en.js
 		CMI\CustomerScripts\ETH\HSA\facetten.json = CMI\CustomerScripts\ETH\HSA\facetten.json
+		CMI\CustomerScripts\ETH\HSA\Viewer\Xslt\gebrauchskopie.xsl = CMI\CustomerScripts\ETH\HSA\Viewer\Xslt\gebrauchskopie.xsl
 		CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs
 		CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs
 		CMI\CustomerScripts\ETH\HSA\HTMLSite\konto\kontoeroeffnung.html = CMI\CustomerScripts\ETH\HSA\HTMLSite\konto\kontoeroeffnung.html
@@ -406,6 +409,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9
 		CMI\CustomerScripts\ETH\HSA\HTMLSite\account\opening-an-account.html = CMI\CustomerScripts\ETH\HSA\HTMLSite\account\opening-an-account.html
 		CMI\CustomerScripts\ETH\HSA\templates.json = CMI\CustomerScripts\ETH\HSA\templates.json
 		CMI\CustomerScripts\ETH\HSA\HTMLSite\account\userTable.html = CMI\CustomerScripts\ETH\HSA\HTMLSite\account\userTable.html
+		CMI\CustomerScripts\ETH\HSA\Viewer\design\css\viewer.css = CMI\CustomerScripts\ETH\HSA\Viewer\design\css\viewer.css
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MFA", "MFA", "{C1970419-83BD-4C08-BF2E-2A311C07E13D}"
