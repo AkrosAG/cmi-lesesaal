@@ -40,7 +40,6 @@
                 <link rel="stylesheet" href="./design/css/admin.css"/>
                 <link rel="stylesheet" href="./design/css/print.css"/>
                 <link rel="stylesheet" href="./design/css/cmi.css"/>
-				<link rel="stylesheet" href="./design/css/viewer.css"/>
                 <link rel="stylesheet" href="./design/jsTreeTheme/style.min.css"/>
                 <title>Offline Viewer</title>
             </head>
@@ -59,6 +58,10 @@
 
                                 <xsl:call-template name="renderPageDossier">
                                     <xsl:with-param name="orderedItem" select="$orderedUnit/node()"/>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="renderPageOrdnungssystem">
+                                    <xsl:with-param name="ordnungssystem" select="ablieferung/ordnungssystem"/>
                                 </xsl:call-template>
 
                                 <xsl:call-template name="renderPageAblieferung">
@@ -1118,6 +1121,12 @@
                                 <a href="javascript:setLocale('de')" lang="de" title="Deutsch" aria-label="Deutsch">DE</a>
                             </li>
                             <li>
+                                <a href="javascript:setLocale('fr')" lang="fr" title="Français" aria-label="Français">FR</a>
+                            </li>
+                            <li>
+                                <a href="javascript:setLocale('it')" lang="it" title="Italiano" aria-label="Italiano">IT</a>
+                            </li>
+                            <li>
                                 <a href="javascript:setLocale('en')" lang="en" title="English" aria-label="English">EN</a>
                             </li>
                         </ul>
@@ -1126,32 +1135,30 @@
             </div>
 
             <div class="clearfix">
-                <a href="https://ethz.ch/" class="brand hidden-xs">
-                    <img src="./design/img/logo.svg" onerror="this.onerror = null; this.src = './design/img/logo.png'" alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
-					<div class="brand-header">
-						<h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
-						<br/>
-						<h1 data-i18n="viaduc-header-sub">Virtueller Lesesaal</h1>
-						<xsl:choose>
-							<xsl:when test="not(parent::dossier)">
-								<br/>
-								<p>
-									<xsl:value-of select="$orderedItem/zusatzDaten/merkmal[@name = 'Signatur']"/>
-									<xsl:text>&#160;</xsl:text>
-									<xsl:value-of select="$orderedItem/titel"/>
-									<xsl:choose>
-										<xsl:when test="$orderedItem/entstehungszeitraum">
-											<xsl:text>&#160;(</xsl:text>
-											<xsl:call-template name="historischerZeitraum">
-												<xsl:with-param name="zeitraum" select="$orderedItem/entstehungszeitraum"/>
-											</xsl:call-template>
-											<xsl:text>)</xsl:text>
-										</xsl:when>
-									</xsl:choose>
-								</p>
-							</xsl:when>
-						</xsl:choose>
-					</div>
+                <a href="/" class="brand hidden-xs">
+                    <img src="./design/img/logo-CH.svg" onerror="this.onerror = null; this.src = './design/img/logo-CH.png'" alt="Logo der Schweizerischen Eidgenossenschaft – zur Startseite"/>
+                    <div class="brand-header">
+                        <h1 data-i18n="viaduc-header-title">Schweizerisches Bundesarchiv BAR</h1>
+                        <xsl:choose>
+                            <xsl:when test="not(parent::dossier)">
+                                <br/>
+                                <p>
+                                    <xsl:value-of select="$orderedItem/zusatzDaten/merkmal[@name = 'Signatur']"/>
+                                    <xsl:text>&#160;</xsl:text>
+                                    <xsl:value-of select="$orderedItem/titel"/>
+                                    <xsl:choose>
+                                        <xsl:when test="$orderedItem/entstehungszeitraum">
+                                            <xsl:text>&#160;(</xsl:text>
+                                            <xsl:call-template name="historischerZeitraum">
+                                                <xsl:with-param name="zeitraum" select="$orderedItem/entstehungszeitraum"/>
+                                            </xsl:call-template>
+                                            <xsl:text>)</xsl:text>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                </p>
+                            </xsl:when>
+                        </xsl:choose>
+                    </div>
                 </a>
             </div>
         </header>
@@ -1184,6 +1191,9 @@
                                             <a role="menuitem" class="menuItemDokumente" href="#" data-i18n="viaduc-nav-documents">Dokumente</a>
                                         </li>
                                         <li role="presentation">
+                                            <a role="menuitem" class="menuItemOrdnungssystem" href="#" data-i18n="viaduc-nav-ordnungssystem">Ordnungssystem</a>
+                                        </li>
+                                        <li role="presentation">
                                             <a role="menuitem" class="menuItemPaketinformation" href="#" data-i18n="viaduc-nav-paket-info">Paketinformationen</a>
                                         </li>
                                     </ul>
@@ -1202,6 +1212,9 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a class="menuItemDokumente" href="#" data-i18n="viaduc-nav-documents">Dokumente</a>
+                </li>
+                <li class="dropdown">
+                    <a class="menuItemOrdnungssystem" href="#" data-i18n="viaduc-nav-ordnungssystem">Ordnungssystem</a>
                 </li>
                 <li class="dropdown">
                     <a class="menuItemPaketinformation" href="#" data-i18n="viaduc-nav-paket-info">Paketinformationen</a>
@@ -1239,6 +1252,15 @@
                 </xsl:call-template>
                 <xsl:apply-templates select="ablieferung/provenienz"/>
                 <xsl:apply-templates select="ablieferung"/>
+            </div>
+        </div>
+    </xsl:template>
+
+    <xsl:template name="renderPageOrdnungssystem">
+        <xsl:param name="ordnungssystem" required="yes"/>
+        <div class="row pageOrdnungssystem" style="display: none;">
+            <div class="col-md-12">
+                <xsl:apply-templates select="$ordnungssystem"/>
             </div>
         </div>
     </xsl:template>
