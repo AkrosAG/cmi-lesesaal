@@ -1,11 +1,4 @@
-﻿using CMI.Access.Repository.Systems.Rosetta;
-using CMI.Contract.Common;
-using CMI.Contract.Common.Gebrauchskopie;
-using CMI.Manager.Repository.Properties;
-using CMI.Manager.Repository.Systems.Rosetta.Schema;
-using Newtonsoft.Json;
-using Serilog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -13,38 +6,96 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using CMI.Access.Repository.Systems.Rosetta;
+using CMI.Contract.Common;
+using CMI.Contract.Common.Gebrauchskopie;
+using CMI.Contract.Messaging;
+using CMI.Engine.PackageMetadata.Systems.Rosetta.Schema;
+using MassTransit;
+using Newtonsoft.Json;
+using Serilog;
 using File = System.IO.File;
 
-namespace CMI.Manager.Repository.Systems.Rosetta
+namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 {
-    public class RepositoryPackageBuilder
+    public class RepositoryPackageBuilder : IRepositoryPackageBuilder
     {
+        private string tempStoragePath = string.Empty;
+        private string fileCopyDestinationPath = string.Empty;
+
         private readonly XmlNamespaceManager defaultNamespaceManager;
         private int totalFileSize;
         private List<RepositoryFile> files;
         private List<RepositoryFolder> rootFolder;
+        private IRequestClient<FindArchiveRecordRequest> indexClient;
 
-        public RepositoryPackageBuilder()
+        public RepositoryPackageBuilder(IRequestClient<FindArchiveRecordRequest> indexClient)
         {
+            this.indexClient = indexClient;
             defaultNamespaceManager = new XmlNamespaceManager(new NameTable());
             defaultNamespaceManager.AddNamespace("mets", "http://www.loc.gov/METS/");
         }
 
-        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord)
+        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string archiveRecordId, string packageId)
         {
             totalFileSize = 0;
             files = new List<RepositoryFile>();
             rootFolder = new List<RepositoryFolder>();
+            var result = new RepositoryPackage
+            {
+                PackageFileName = archiveRecordId + ".zip",
+                PackageId= packageId,
+                ArchiveRecordId = archiveRecordId,
+                SizeInBytes = totalFileSize,
+                FileCount = 5, //Todo
+                FulltextExtractionDuration = 0,
+                Files = files,
+                Folders = rootFolder
+            };
 
-            var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
+            return await Task.FromResult(result);
+        }
+
+
+        public void BuildZipFile(string archiveRecordId, string primaryDataLink)
+        {
+            var fileUrl = $@"{Path.Combine(tempStoragePath, primaryDataLink)}\ie.xml";
+            var mets = Mets.LoadFromFile(fileUrl);
+
+            var folder = mets.GetImportFolderName();
+
+            var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
+            var targetFile = Path.Combine(fileCopyDestinationPath, archiveRecordId + ".zip");
+            var zipBaseDir = Path.Combine(fileCopyDestinationPath, archiveRecordId);
+
+            var contentDir = Path.Combine(zipBaseDir, "content");
+            var headerDir = Path.Combine(zipBaseDir, "header");
+            Directory.CreateDirectory(headerDir);
+
+            RosettaDataAccess.CopyDirectory(sourcePath, contentDir);
+
+
+            if (File.Exists(targetFile))
+            {
+                File.Delete(targetFile);
+            }
+
+            ZipFile.CreateFromDirectory(zipBaseDir, targetFile);
+            Log.Information("Created zip file {0}. ArchiveRecord Id: {1}", targetFile, archiveRecordId);
+            Directory.Delete(zipBaseDir, true);
+        }
+
+        public async Task CreateMetadataXml(string archiveRecordId)
+        {
+            var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId }).Result.Message.ElasticArchiveRecord;
+            var fileUrl = $@"{Path.Combine(tempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
 
             // Das erste DIV des Masters ist immer die "Table of Contents". Dieses DIV ist für uns das Root
             var tableOfContent = mets.GetTableOfContent();
-
             var package = GetPackageFromXml(archiveRecord);
             var ordnungssystemposition = package.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
-            
+
             ordnungssystemposition.Dossier = new List<DossierDIP> { GetDossierFromElastic(archiveRecord) };
             var dossierDip = ordnungssystemposition.Dossier.First();
             // Jetzt lesen wir Rekursiv die Dateien und Unterordner aus und fügen diese dem Dossier hinzu
@@ -63,24 +114,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
             Log.Information($"Package Source Path: {sourcePath}");
             AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
-           
-            var preZip = DateTime.Now;
-            BuildZipFileAsync(sourcePath, archiveRecord.ArchiveRecordId, package);
 
-            var result = new RepositoryPackage
-            {
-                PackageFileName = archiveRecord.ArchiveRecordId + ".zip",
-                PackageId= archiveRecord.PrimaryDataLink,
-                ArchiveRecordId = archiveRecord.ArchiveRecordId,
-                SizeInBytes = totalFileSize,
-                FileCount = package.Inhaltsverzeichnis.Datei.Count,
-                RepositoryExtractionDuration = DateTime.Now.Ticks - preZip.Ticks,
-                FulltextExtractionDuration = 0,
-                Files = files,
-                Folders = rootFolder
-            };
-
-            return await Task.FromResult(result);
+            var headerDir = Path.Combine(fileCopyDestinationPath, archiveRecord.ArchiveRecordId, "header");
+            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
+            ((Paket)package).SaveToFile(metadataXmlPath);
         }
 
         private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
@@ -363,8 +400,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             return dossier;
         }
-
-
+        
         private HistorischerZeitraum GetEntstehungszeitraum(ElasticTimePeriod creationPeriod)
         {
             var retVal = new HistorischerZeitraum
@@ -376,28 +412,5 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             return retVal;
         }
 
-        private void BuildZipFileAsync(string sourcePath, string archiveRecordId, PaketDIP package)
-        {
-            var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId + ".zip");
-            var zipBaseDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId);
-
-            var contentDir = Path.Combine(zipBaseDir, "content");
-            var headerDir = Path.Combine(zipBaseDir, "header");
-            Directory.CreateDirectory(headerDir);
-
-            RosettaDataAccess.CopyDirectory(sourcePath, contentDir);
-
-            var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
-            ((Paket)package).SaveToFile(metadataXmlPath);
-
-            if (File.Exists(targetFile))
-            {
-                File.Delete(targetFile);
-            }
-
-            ZipFile.CreateFromDirectory(zipBaseDir, targetFile);
-            Log.Information("Created zip file {0}. ArchiveRecord Id: {1}", targetFile, archiveRecordId);
-            Directory.Delete(zipBaseDir, true);
-        }
     }
 }

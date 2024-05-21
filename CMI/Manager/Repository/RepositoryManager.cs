@@ -69,26 +69,17 @@ public class RepositoryManager : IRepositoryManager
                     fileTypesToIgnore.Select(f => f.Trim()).ToList(),
                 primaerdatenId);
 
+                // Output duration
+                var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
+                Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
+                    packageId,
+                    packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
 
-                if (Settings.Default.RepositoryManager != "rosetta")
+                if (packageResult.Success && packageResult.Valid)
                 {
-                    // Output duration
-                    var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
-                    Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
-                        packageId,
-                        packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
-
-                    if (packageResult.Success && packageResult.Valid)
-                    {
-                        // Append the package to the archive record
-                        archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
-                        return packageResult;
-                    }
-                }
-                else
-                { 
-                    // With Rosetta we already have the package. Here the order is updated, the name comes because the interface is used on several repositories.
-                    packageResult.PackageDetails = archiveRecord.PrimaryData.FirstOrDefault();
+                    // Append the package to the archive record
+                    archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
+                    return packageResult;
                 }
 
                 if (packageResult.Success && packageResult.Valid)

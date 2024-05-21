@@ -143,8 +143,6 @@
     <Compile Include="Consumer\ReadPackageMetadataConsumer.cs" />
     <Compile Include="FileHashException.cs" />
     <Compile Include="Infrastructure\ContainerConfigurator.cs" />
-    <Compile Include="Systems\Rosetta\Schema\DivType.Extension.cs" />
-    <Compile Include="Systems\Rosetta\Schema\MetsExtention.cs" />
     <Compile Include="Systems\Bar\DirRepositoryCheck.cs" />
     <Compile Include="Systems\Bar\IDirPackageValidator.cs" />
     <Compile Include="IRepositoryManager.cs" />
@@ -160,10 +158,6 @@
     </Compile>
     <Compile Include="Systems\Bar\DirRepositoryProvider.cs" />
     <Compile Include="Systems\IRepositoryProvider.cs" />
-    <Compile Include="Systems\Rosetta\Schema\DcElement.cs" />
-    <Compile Include="Systems\Rosetta\Schema\mets.Designer.cs" />
-    <Compile Include="Systems\Rosetta\Schema\Section.cs" />
-    <Compile Include="Systems\Rosetta\RepositoryPackageBuilder.cs" />
     <Compile Include="Systems\Rosetta\RosettaRepositoryCheck.cs" />
     <Compile Include="Systems\Rosetta\RosettaRepositoryProvider.cs" />
     <Compile Include="RepositoryManager.cs" />

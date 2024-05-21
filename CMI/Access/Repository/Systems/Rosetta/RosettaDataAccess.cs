@@ -25,24 +25,35 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
-        var success = await rosettaConnector.StartExportAsync(entityId); 
-        if(success)
+        var success = false;
+        var directory = Path.Combine(defaultTempStoragePath, entityId);
+        if (Directory.Exists(directory))
         {
-            using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
-            {
-                try
-                {
-                    CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
-                }
-                catch (Exception e)
-                {
-                    success = false;
-                    Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
-                }
-            }
-            Log.Information($"Intellectual Entity {entityId} exported successfully to {Path.Combine(defaultTempStoragePath, entityId)}");
+            success = true;
+            Log.Information($"Intellectual Entity {entityId} exists {directory}");
         }
-        
+        else
+        {
+            success = await rosettaConnector.StartExportAsync(entityId);
+            if (success)
+            {
+                using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
+                {
+                    try
+                    {
+                        CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
+                    }
+                    catch (Exception e)
+                    {
+                        success = false;
+                        Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
+                    }
+                }
+
+                Log.Information($"Intellectual Entity {entityId} exported successfully to {directory}");
+            }
+        }
+
         return success;
     }
 

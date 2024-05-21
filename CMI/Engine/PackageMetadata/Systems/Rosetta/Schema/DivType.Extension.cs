@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMI.Manager.Repository.Systems.Rosetta.Schema
+namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
 {
     public static class DivTypeExtension
     {

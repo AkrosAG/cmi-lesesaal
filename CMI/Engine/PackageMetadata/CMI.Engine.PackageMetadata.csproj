@@ -78,6 +78,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Diagnostics.DiagnosticSource.6.0.1\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
@@ -128,7 +129,14 @@
     <Compile Include="PackageFolderType.cs" />
     <Compile Include="Systems\Dir\DirPackageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Systems\Rosetta\IRepositoryPackageBuilder.cs" />
+    <Compile Include="Systems\Rosetta\RepositoryPackageBuilder.cs" />
     <Compile Include="Systems\Rosetta\RosettaPackageHandler.cs" />
+    <Compile Include="Systems\Rosetta\Schema\DcElement.cs" />
+    <Compile Include="Systems\Rosetta\Schema\DivType.Extension.cs" />
+    <Compile Include="Systems\Rosetta\Schema\mets.Designer.cs" />
+    <Compile Include="Systems\Rosetta\Schema\MetsExtention.cs" />
+    <Compile Include="Systems\Rosetta\Schema\Section.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Access\Repository\CMI.Access.Repository.csproj">
