@@ -39,30 +39,16 @@ namespace CMI.Manager.Repository.Consumer
                 Log.Information("Received {CommandName} command with conversationId {ConversationId} from the bus", nameof(IDownloadPackage),
                     context.ConversationId);
 
-                RepositoryPackage repositoryPackage = null;
-                var succes = false;
-                var errorMessage = string.Empty;
-
-                if (Settings.Default.RepositoryManager == "rosetta")
-                {
-                    var result = await repositoryManager.ReadPackageMetadata(context.Message.ElasticArchiveRecord);
-                    succes = result.Success && result.Valid;
-                    repositoryPackage = result.PackageDetails;
-                    errorMessage = result.ErrorMessage;
-                }
-                else
-                {
-                    // Get the package from the repository
-                    // We are not waiting for it to end, because we want to free the consumer as early as possible
-                    var packageId = context.Message.PackageId;
-                    var result = await repositoryManager.GetPackage(packageId, archiveRecordId, context.Message.PrimaerdatenAuftragId);
-                    succes = result.Success && result.Valid; 
-                    repositoryPackage = result.PackageDetails;
-                    errorMessage = result.ErrorMessage;
-                }
+                // Get the package from the repository
+                // We are not waiting for it to end, because we want to free the consumer as early as possible
+                var packageId = context.Message.PackageId;
+                var result = await repositoryManager.GetPackage(packageId, archiveRecordId, context.Message.PrimaerdatenAuftragId);
+                var success = result.Success && result.Valid;
+                var repositoryPackage = result.PackageDetails;
+                var errorMessage = result.ErrorMessage;
 
                 // Do we have a valid package?
-                if (succes)
+                if (success)
                 {
                     // Forward the downloaded package to the asset manager for transformation
                     var endpoint = await context.GetSendEndpoint(new Uri(bus.Address, BusConstants.AssetManagerPrepareForTransformation));

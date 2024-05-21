@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Manager.Repository.Properties;
 using MassTransit;
@@ -38,12 +39,7 @@ namespace CMI.Manager.Repository.Consumer
                 if (Settings.Default.RepositoryManager == "rosetta")
                 {
                     // We already have the data, just set the order status and zip the file
-                    await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
-                        context.Message.PrimaerdatenAuftragId);
-                    if (context.Message.ArchiveRecord != null && context.Message.ArchiveRecord.PrimaryData.Count > 0)
-                    {
-                        vaidPackage = true;
-                    }
+                    vaidPackage = context.Message?.ArchiveRecord?.PrimaryData?.Count > 0;
                 }
                 else
                 {

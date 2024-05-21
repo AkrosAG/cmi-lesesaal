@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace CMI.Manager.Repository.Systems.Rosetta.Schema
+namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
 {
     public static class MetsExtention
     {

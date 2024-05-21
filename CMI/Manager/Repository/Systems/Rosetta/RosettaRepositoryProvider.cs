@@ -1,23 +1,27 @@
 ﻿using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
+using CMI.Contract.Repository;
 using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CMI.Engine.PackageMetadata.Systems.Rosetta;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
     public class RosettaRepositoryProvider : IRepositoryProvider
     {
         private readonly IRosettaDataAccess rosettaDataAccess;
-        private readonly RepositoryPackageBuilder builder;
+        private readonly IRepositoryPackageBuilder builder;
         private readonly IBus bus;
+        private readonly IPackageHandler handler;
 
-        public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, RepositoryPackageBuilder builder, IBus bus)
+        public RosettaRepositoryProvider(IRosettaDataAccess rosettaDataAccess, IPackageHandler handler, IRepositoryPackageBuilder builder, IBus bus)
         {
+            this.handler = handler;
             this.rosettaDataAccess = rosettaDataAccess;       
             this.builder = builder;                              
             this.bus = bus;
@@ -36,12 +40,33 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         /// <returns></returns>
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            // already done in ReadPackageMetadata
             var currentStatus = AufbereitungsStatusEnum.AuftragGestartet;
             await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, packageId);
             currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
             await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
 
+
+            if (success)
+            {
+                var repositoryPackage = await builder.BuildRepositoryPackageAsync(archiveRecordId, packageId);
+                // ToDo: fileTypesToIgnore
+                if (createMetadataXml)
+                {
+                    await handler.CreateMetadataXml("Braucht man bei Rosetta nicht", repositoryPackage, new List<RepositoryFile>());
+                }
+                
+
+                return new RepositoryPackageResult
+                {
+                    Success = true,
+                    PackageDetails = repositoryPackage,
+                    Valid = true
+                };
+            }
+
+            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
 
             var retVal = new RepositoryPackageResult
             {
@@ -53,7 +78,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             retVal.Valid = true;
 
 
-            // already done in ReadPackageMetadata
+            builder.BuildZipFile(archiveRecordId, packageId);
             currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
             await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             return retVal;
@@ -64,7 +89,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
             if (success)
             {
-                var package = await builder.BuildRepositoryPackageAsync(elasticArchiveRecord);
+                var package = await builder.BuildRepositoryPackageAsync(elasticArchiveRecord.ArchiveRecordId, elasticArchiveRecord.PrimaryDataLink);
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,

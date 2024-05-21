@@ -1,16 +1,27 @@
-﻿using System;
+﻿using CMI.Contract.Common;
+using CMI.Contract.Messaging;
+using CMI.Contract.Repository;
+using MassTransit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CMI.Contract.Common;
-using CMI.Contract.Repository;
 
 namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 {
-    public class RosettaPackageHandler: IPackageHandler
+    public class RosettaPackageHandler : IPackageHandler
     {
-        public Task CreateMetadataXml(string folderName, RepositoryPackage package, List<RepositoryFile> filesToIgnore)
+        private readonly IRepositoryPackageBuilder builder;
+
+
+        public RosettaPackageHandler(IRepositoryPackageBuilder builder)
         {
-            throw new NotImplementedException();
+            this.builder = builder;
+           
+        }
+
+        public async Task CreateMetadataXml(string folderName, RepositoryPackage package, List<RepositoryFile> filesToIgnore)
+        {
+            await builder.CreateMetadataXml(package.ArchiveRecordId);
         }
     }
+
 }

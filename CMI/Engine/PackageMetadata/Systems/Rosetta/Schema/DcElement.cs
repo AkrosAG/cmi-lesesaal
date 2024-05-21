@@ -1,4 +1,4 @@
-﻿namespace CMI.Manager.Repository.Systems.Rosetta.Schema
+﻿namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
 {
     public class DcElement
     {
