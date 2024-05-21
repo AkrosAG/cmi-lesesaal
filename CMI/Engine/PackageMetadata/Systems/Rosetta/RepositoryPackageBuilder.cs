@@ -10,7 +10,9 @@ using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Common;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Contract.Messaging;
+using CMI.Engine.PackageMetadata.Properties;
 using CMI.Engine.PackageMetadata.Systems.Rosetta.Schema;
+using CMI.Utilities.Bus.Configuration;
 using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
@@ -20,8 +22,8 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 {
     public class RepositoryPackageBuilder : IRepositoryPackageBuilder
     {
-        private string tempStoragePath = string.Empty;
-        private string fileCopyDestinationPath = string.Empty;
+        private readonly string tempStoragePath = Settings.Default.TempStoragePath;
+        private readonly string fileCopyDestinationPath = Settings.Default.FileCopyDestinationPath;
 
         private readonly XmlNamespaceManager defaultNamespaceManager;
         private int totalFileSize;
@@ -411,6 +413,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
             };
             return retVal;
         }
+
 
     }
 }

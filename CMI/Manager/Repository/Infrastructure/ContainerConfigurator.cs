@@ -13,6 +13,8 @@ using CMI.Manager.Repository.Systems;
 using CMI.Manager.Repository.Systems.Bar;
 using CMI.Manager.Repository.Systems.Mock;
 using CMI.Manager.Repository.Systems.Rosetta;
+using CMI.Contract.Messaging;
+using CMI.Utilities.Bus.Configuration;
 
 namespace CMI.Manager.Repository.Infrastructure
 {
@@ -39,7 +41,7 @@ namespace CMI.Manager.Repository.Infrastructure
                     break;
 
                 case "rosetta":
-                  
+                    builder.Register(CreateFindArchiveRecordRequestClient);
                     builder.RegisterType<RosettaPackageHandler>().As<IPackageHandler>();
                     builder.RegisterType<RosettaDataAccess>().As<IRosettaDataAccess>();
                     builder.RegisterType<RosettaConnector>();
@@ -68,6 +70,15 @@ namespace CMI.Manager.Repository.Infrastructure
                 .AsSelf();
             return builder;
         }
+
+        private static IRequestClient<FindArchiveRecordRequest> CreateFindArchiveRecordRequestClient(IComponentContext context)
+        {
+            var requestTimeout = TimeSpan.FromMinutes(10);
+            var bus = context.Resolve<IBusControl>();
+            return bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerFindArchiveRecordMessageQueue), requestTimeout);
+        }
+
+
     }
 
 }

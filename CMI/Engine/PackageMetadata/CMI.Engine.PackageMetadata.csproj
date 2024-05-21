@@ -124,6 +124,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <Compile Include="Systems\Dir\FolderInfo.cs" />
     <Compile Include="LinqExtension.cs" />
     <Compile Include="PackageFolderType.cs" />
@@ -155,10 +160,18 @@
       <Project>{7D2520D6-A2FD-4D99-8DCA-213BB2AD5CF6}</Project>
       <Name>CMI.Contract.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Bus\Configuration\CMI.Utilities.Bus.Configuration.csproj">
+      <Project>{72606585-274A-444F-AA34-C7F228F94460}</Project>
+      <Name>CMI.Utilities.Bus.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Systems\Dir\DefaultAlfrescoMetadataFile.xml" />
