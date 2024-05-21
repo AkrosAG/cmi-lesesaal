@@ -8,5 +8,6 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
         Task<RepositoryPackage> BuildRepositoryPackageAsync(string archiveRecordId, string packageId);
         Task CreateMetadataXml(string archiveRecordId);
         void BuildZipFile(string archiveRecordId, string primaryDataLink);
+
     }
 }
