@@ -68,7 +68,6 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
             RosettaDataAccess.CopyDirectory(sourcePath, contentDir);
 
-
             if (File.Exists(targetFile))
             {
                 File.Delete(targetFile);
@@ -110,13 +109,13 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
             var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
             Log.Information($"Package Source Path: {sourcePath}");
             AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder, files);
-            var zipBaseDir = Path.Combine(fileCopyDestinationPath, archiveRecord.ArchiveRecordId);
-            if (!Directory.Exists(zipBaseDir))
+            var pickupDirectory = Path.Combine(fileCopyDestinationPath, archiveRecord.ArchiveRecordId);
+            if (!Directory.Exists(pickupDirectory))
             {
-                Directory.CreateDirectory(zipBaseDir);
+                Directory.CreateDirectory(pickupDirectory);
             }
 
-            var headerDir = Path.Combine(zipBaseDir, "header");
+            var headerDir = Path.Combine(pickupDirectory, "header");
             if (!Directory.Exists(headerDir))
             {
                 Directory.CreateDirectory(headerDir);
