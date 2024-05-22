@@ -17,7 +17,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
         public async Task CreateMetadataXml(string folderName, RepositoryPackage package, List<RepositoryFile> filesToIgnore)
         {
-            await builder.CreateMetadataXml(package.ArchiveRecordId);
+            await builder.CreateMetadataXml(package);
         }
     }
 

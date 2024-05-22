@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Parameter;
 using CMI.Manager.Repository.ParameterSettings;
-using CMI.Manager.Repository.Properties;
 using CMI.Manager.Repository.Systems;
 using Serilog;
 using Serilog.Context;
@@ -65,7 +63,7 @@ public class RepositoryManager : IRepositoryManager
             {
                 var fileTypesToIgnore = syncSettings.IgnorierteDateitypenFuerSynchronisierung.Split(',');
                
-                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, false,
+                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, true,
                     fileTypesToIgnore.Select(f => f.Trim()).ToList(),
                 primaerdatenId);
 
