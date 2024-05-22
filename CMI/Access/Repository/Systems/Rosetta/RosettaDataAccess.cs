@@ -25,11 +25,6 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
-        var directory = Path.Combine(defaultTempStoragePath, entityId);
-        if (Directory.Exists(directory))
-        {
-            Directory.Delete(directory, true);
-        }
         var success = await rosettaConnector.StartExportAsync(entityId);
         if (success)
         {
@@ -46,7 +41,7 @@ public class RosettaDataAccess : IRosettaDataAccess
                 }
             }
 
-            Log.Information($"Intellectual Entity {entityId} exported successfully to {directory}");
+            Log.Information($"Intellectual Entity {entityId} exported successfully to {Path.Combine(defaultTempStoragePath, entityId)}");
         }
         else
         {
@@ -78,6 +73,7 @@ public class RosettaDataAccess : IRosettaDataAccess
         }
 
         CopyDirectory(directoryEntity, copyPath);
+        Directory.Delete(directoryEntity, true);
     }
 
     public static void CopyDirectory(string sourceDir, string destinationDir)
