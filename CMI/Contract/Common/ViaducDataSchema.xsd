@@ -79,6 +79,7 @@ Examples for the token can be:
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="canBeOrdered" type="xs:boolean"/>
+                            <xs:element name="needsOrderRequest" type="xs:boolean"/>
                             <xs:element name="archiveplanContext">
                                 <xs:annotation>
                                     <xs:documentation>A list that contains all the information to quickly build an archive plan for display. </xs:documentation>
@@ -237,7 +238,7 @@ Examples for the token can be:
                                                   <xs:element name="containerLocation"
                                                   type="xs:string"/>
                                                   <xs:element name="containerType" type="xs:string"/>
-                                                  <xs:element name="idName" type="xs:string"/>                                                  
+                                                  <xs:element name="idName" type="xs:string"/>
                                                   <xs:element minOccurs="0" name="containerCode"
                                                   type="xs:string"/>
                                                   <xs:element minOccurs="0"
@@ -315,19 +316,16 @@ Examples for the token can be:
                                                   </xs:annotation>
                                                   </xs:element>
                                                   <xs:element name="fileSize" type="xs:long"/>
-                                                  <xs:annotation>
-                                                  <xs:documentation>The document encoded as base64Binary</xs:documentation>
-                                                  </xs:annotation>                                                 
                                                   <xs:element name="downloadUrl" type="xs:string">
                                                   <xs:annotation>
                                                   <xs:documentation>The extracted full text of the document</xs:documentation>
                                                   </xs:annotation>
                                                   </xs:element>
-												  <xs:element name="publikation" type="xs:string">
-												  <xs:annotation>
-												  <xs:documentation>Access control to data from AIS</xs:documentation>
-												  </xs:annotation>
-												  </xs:element>
+                                                  <xs:element name="publikation" type="xs:string">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Access control to data from AIS</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
                                                   <xs:element name="sortOrder" type="xs:int">
                                                   <xs:annotation>
                                                   <xs:documentation>The order in which the documents are displayed in the web frontend</xs:documentation>
@@ -350,11 +348,11 @@ Examples for the token can be:
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="manifestLink" type="xs:string">
-	                            <xs:annotation>
-		                            <xs:documentation>A link or other identifier to the IIIF manifest</xs:documentation>
-	                            </xs:annotation>
+                                <xs:annotation>
+                                    <xs:documentation>A link or other identifier to the IIIF manifest</xs:documentation>
+                                </xs:annotation>
                             </xs:element>
-							<xs:element name="aggregationFields">
+                            <xs:element name="aggregationFields">
                                 <xs:annotation>
                                     <xs:documentation>A collection of special values that allows filtering in the search client.</xs:documentation>
                                 </xs:annotation>
