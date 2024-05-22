@@ -366,10 +366,10 @@ namespace CMI.Contract.Common
         public string OtherLanguageNames { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("idName")]
         public string IdName { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfBirth")]
-        public System.DateTime DateOfBirth { get; set; }
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", ElementName = "dateOfDeath")]
-        public System.DateTime DateOfDeath { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", IsNullable = true, ElementName = "dateOfBirth")]
+        public System.Nullable<System.DateTime> DateOfBirth { get; set; }
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "date", IsNullable = true, ElementName = "dateOfDeath")]
+        public System.Nullable<System.DateTime> DateOfDeath { get; set; }
         [System.Xml.Serialization.XmlElementAttribute("seeAlso", ElementName = "seeAlso")]
         public List<string> SeeAlso { get; set; }
         /// <summary>
