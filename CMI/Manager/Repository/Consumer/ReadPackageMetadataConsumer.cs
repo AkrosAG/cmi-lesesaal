@@ -36,8 +36,6 @@ namespace CMI.Manager.Repository.Consumer
                     // Inform the world about the created package
                     if (result != null && result.Success && result.Valid)
                     {
-                        // Add the metadata to the archive record.
-                        context.Message.ArchiveRecord.PrimaryData.Add(result.PackageDetails);
                         Log.Information("Package metadata extraction was successful for packageId {packageId}", result.PackageDetails.PackageId);
 
                         var endpoint = await context.GetSendEndpoint(new Uri(context.SourceAddress,

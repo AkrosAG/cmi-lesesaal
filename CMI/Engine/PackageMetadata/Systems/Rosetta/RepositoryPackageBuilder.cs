@@ -12,7 +12,6 @@ using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Contract.Messaging;
 using CMI.Engine.PackageMetadata.Properties;
 using CMI.Engine.PackageMetadata.Systems.Rosetta.Schema;
-using CMI.Utilities.Bus.Configuration;
 using MassTransit;
 using Newtonsoft.Json;
 using Serilog;
@@ -26,9 +25,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
         private readonly string fileCopyDestinationPath = Settings.Default.FileCopyDestinationPath;
 
         private readonly XmlNamespaceManager defaultNamespaceManager;
-        private int totalFileSize;
-        private List<RepositoryFile> files;
-        private List<RepositoryFolder> rootFolder;
+        
         private IRequestClient<FindArchiveRecordRequest> indexClient;
 
         public RepositoryPackageBuilder(IRequestClient<FindArchiveRecordRequest> indexClient)
@@ -40,19 +37,14 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(string archiveRecordId, string packageId)
         {
-            totalFileSize = 0;
-            files = new List<RepositoryFile>();
-            rootFolder = new List<RepositoryFolder>();
+            var sourcePath = Path.Combine(tempStoragePath, packageId);
             var result = new RepositoryPackage
             {
                 PackageFileName = archiveRecordId + ".zip",
                 PackageId= packageId,
                 ArchiveRecordId = archiveRecordId,
-                SizeInBytes = totalFileSize,
-                FileCount = 5, //Todo
-                FulltextExtractionDuration = 0,
-                Files = files,
-                Folders = rootFolder
+                SizeInBytes = CalcTotalSize(sourcePath),
+                FulltextExtractionDuration = 0
             };
 
             return await Task.FromResult(result);
@@ -87,9 +79,11 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
             Directory.Delete(zipBaseDir, true);
         }
 
-        public async Task CreateMetadataXml(string archiveRecordId)
+        public Task CreateMetadataXml(RepositoryPackage repositoryPackage)
         {
-            var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId }).Result.Message.ElasticArchiveRecord;
+            var files = new List<RepositoryFile>();
+            var rootFolder = new List<RepositoryFolder>();
+             var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = repositoryPackage.ArchiveRecordId }).Result.Message.ElasticArchiveRecord;
             var fileUrl = $@"{Path.Combine(tempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
 
@@ -115,11 +109,25 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
             var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
             Log.Information($"Package Source Path: {sourcePath}");
-            AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder);
+            AddInhaltsverzeichnis(contentRoot, sourcePath, mets, rootFolder, files);
+            var zipBaseDir = Path.Combine(fileCopyDestinationPath, archiveRecord.ArchiveRecordId);
+            if (!Directory.Exists(zipBaseDir))
+            {
+                Directory.CreateDirectory(zipBaseDir);
+            }
 
-            var headerDir = Path.Combine(fileCopyDestinationPath, archiveRecord.ArchiveRecordId, "header");
+            var headerDir = Path.Combine(zipBaseDir, "header");
+            if (!Directory.Exists(headerDir))
+            {
+                Directory.CreateDirectory(headerDir);
+            }
             var metadataXmlPath = Path.Combine(headerDir, "metadata.xml");
             ((Paket)package).SaveToFile(metadataXmlPath);
+            repositoryPackage.Files = files;
+            repositoryPackage.FileCount = files.Count;
+            repositoryPackage.Folders = rootFolder;
+
+            return Task.CompletedTask;
         }
 
         private static void AddSubdossiers(DossierDIP dossier, DivType root, Mets mets)
@@ -172,7 +180,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
             }
         }
 
-        private void AddInhaltsverzeichnis(OrdnerDIP ordner, string rootPath, Mets mets, List<RepositoryFolder> folders)
+        private void AddInhaltsverzeichnis(OrdnerDIP ordner, string rootPath, Mets mets, List<RepositoryFolder> folders, List<RepositoryFile> files)
         {
             var subFolders = new List<RepositoryFolder>();
             var subdirs = Directory.GetDirectories(rootPath);
@@ -196,7 +204,6 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
                         var sizeInBytes = GetTechnicalMetadataForFile(id, Section.GeneralFileCharacteristics,
                             SectionGeneralFileCharacteristics.FileSizeBytes, mets);
-                        totalFileSize = Convert.ToInt32(sizeInBytes);
                         datei.Eigenschaft = new List<EigenschaftDatei>
                         {
                             new ()
@@ -253,7 +260,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
                     PhysicalName = subDir, 
                     Id = subDir
                 });
-                AddInhaltsverzeichnis(subOrdner, subDir, mets, subFolders);
+                AddInhaltsverzeichnis(subOrdner, subDir, mets, subFolders, subFiles);
                 ordner.Ordner.Add(subOrdner);
 
             }
@@ -266,6 +273,22 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
                     Folders = subFolders
                 });
             }
+        }
+
+        private long CalcTotalSize(string rootPath)
+        {
+            var totalFileSize = 0;
+            foreach (var file in Directory.GetFiles(rootPath))
+            {
+                var fileInfo = new FileInfo(file);
+                if (fileInfo.Exists)
+                {
+                    totalFileSize += Convert.ToInt32(fileInfo.Length);
+                }
+
+            }
+
+            return totalFileSize;
         }
 
         private static Pruefalgorithmus DateiPruefalgorithmus(Mets mets, string id)

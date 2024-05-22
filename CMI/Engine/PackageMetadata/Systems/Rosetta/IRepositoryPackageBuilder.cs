@@ -6,7 +6,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
     public interface IRepositoryPackageBuilder
     {
         Task<RepositoryPackage> BuildRepositoryPackageAsync(string archiveRecordId, string packageId);
-        Task CreateMetadataXml(string archiveRecordId);
+        Task CreateMetadataXml(RepositoryPackage repositoryPackage);
         void BuildZipFile(string archiveRecordId, string primaryDataLink);
 
     }

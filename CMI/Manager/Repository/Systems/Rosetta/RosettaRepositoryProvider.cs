@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Engine.PackageMetadata.Systems.Rosetta;
+using System.Diagnostics;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -40,48 +41,41 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         /// <returns></returns>
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
+            var watch = new Stopwatch();
             var currentStatus = AufbereitungsStatusEnum.AuftragGestartet;
+            watch.Start();
+            var repositoryPackageResult = new RepositoryPackageResult
+            {
+                Success = false,
+                Valid = false
+            };
+
             await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, packageId);
-            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
-            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
-
-
+           
             if (success)
             {
+                currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
+                await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+               
                 var repositoryPackage = await builder.BuildRepositoryPackageAsync(archiveRecordId, packageId);
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
                 {
                     await handler.CreateMetadataXml("Braucht man bei Rosetta nicht", repositoryPackage, new List<RepositoryFile>());
                 }
-                
+                watch.Stop();
+                repositoryPackage.RepositoryExtractionDuration = watch.ElapsedMilliseconds;
+                repositoryPackageResult.Success = true;
+                repositoryPackageResult.PackageDetails = repositoryPackage;
+                repositoryPackageResult.Valid = true;
 
-                return new RepositoryPackageResult
-                {
-                    Success = true,
-                    PackageDetails = repositoryPackage,
-                    Valid = true
-                };
+                builder.BuildZipFile(archiveRecordId, packageId);
+                currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
+                await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             }
-
-            currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
-            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
-
-            var retVal = new RepositoryPackageResult
-            {
-                Success = true,
-                Valid = true
-            };
-
-            retVal.Success = true;
-            retVal.Valid = true;
-
-
-            builder.BuildZipFile(archiveRecordId, packageId);
-            currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
-            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
-            return retVal;
+            
+            return repositoryPackageResult;
         }
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)

@@ -25,33 +25,32 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
-        var success = false;
         var directory = Path.Combine(defaultTempStoragePath, entityId);
         if (Directory.Exists(directory))
         {
-            success = true;
-            Log.Information($"Intellectual Entity {entityId} exists {directory}");
+            Directory.Delete(directory, true);
+        }
+        var success = await rosettaConnector.StartExportAsync(entityId);
+        if (success)
+        {
+            using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
+            {
+                try
+                {
+                    CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
+                }
+                catch (Exception e)
+                {
+                    success = false;
+                    Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
+                }
+            }
+
+            Log.Information($"Intellectual Entity {entityId} exported successfully to {directory}");
         }
         else
         {
-            success = await rosettaConnector.StartExportAsync(entityId);
-            if (success)
-            {
-                using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
-                {
-                    try
-                    {
-                        CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
-                    }
-                    catch (Exception e)
-                    {
-                        success = false;
-                        Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
-                    }
-                }
-
-                Log.Information($"Intellectual Entity {entityId} exported successfully to {directory}");
-            }
+            Log.Error( $"Rosetta export failed with Intellectual Entity {entityId}");
         }
 
         return success;
@@ -79,7 +78,6 @@ public class RosettaDataAccess : IRosettaDataAccess
         }
 
         CopyDirectory(directoryEntity, copyPath);
-        Directory.Delete(directoryEntity, true);
     }
 
     public static void CopyDirectory(string sourceDir, string destinationDir)
