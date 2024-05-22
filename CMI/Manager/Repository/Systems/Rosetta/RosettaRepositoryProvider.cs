@@ -41,23 +41,24 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         /// <returns></returns>
         public async Task<RepositoryPackageResult> GetPackage(string packageId, string archiveRecordId, bool createMetadataXml, List<string> fileTypesToIgnore, int primaerdatenAuftragId)
         {
-            var watch = new Stopwatch();
+            Log.Information("RosettaRepositoryProvider GetPackage {packageId} for archiveRecord {archiveRecordId}", packageId, archiveRecordId);
             var currentStatus = AufbereitungsStatusEnum.AuftragGestartet;
+            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            var watch = new Stopwatch();
             watch.Start();
             var repositoryPackageResult = new RepositoryPackageResult
             {
                 Success = false,
                 Valid = false
             };
-
-            await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
+            
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, packageId);
            
             if (success)
             {
                 currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
-               
+
                 var repositoryPackage = await builder.BuildRepositoryPackageAsync(archiveRecordId, packageId);
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
@@ -80,6 +81,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
         {
+            Log.Information("Read Package Metadata {PrimaryDataLink} for archiveRecord {archiveRecordId}", elasticArchiveRecord.PrimaryDataLink, elasticArchiveRecord.ArchiveRecordId);
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
             if (success)
             {
