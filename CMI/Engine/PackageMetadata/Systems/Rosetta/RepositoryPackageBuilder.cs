@@ -268,7 +268,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
             {
                 folders.Add(new RepositoryFolder
                 {
-                    Files = files,
+                    Files = subFiles,
                     Folders = subFolders
                 });
             }

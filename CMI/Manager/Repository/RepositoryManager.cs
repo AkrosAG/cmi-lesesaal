@@ -62,10 +62,8 @@ public class RepositoryManager : IRepositoryManager
             if (!string.IsNullOrEmpty(packageId) && !string.IsNullOrEmpty(archiveRecordId))
             {
                 var fileTypesToIgnore = syncSettings.IgnorierteDateitypenFuerSynchronisierung.Split(',');
-               
-                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, true,
-                    fileTypesToIgnore.Select(f => f.Trim()).ToList(),
-                primaerdatenId);
+                var fileTypesToIgnoreList =  fileTypesToIgnore.Select(f => f.Trim()).ToList();
+                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, true,  fileTypesToIgnoreList, primaerdatenId);
 
                 // Output duration
                 var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
