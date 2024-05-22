@@ -259,7 +259,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
                     PhysicalName = subDir, 
                     Id = subDir
                 });
-                AddInhaltsverzeichnis(subOrdner, subDir, mets, subFolders, subFiles);
+                AddInhaltsverzeichnis(subOrdner, subDir, mets, subFolders, files);
                 ordner.Ordner.Add(subOrdner);
 
             }
