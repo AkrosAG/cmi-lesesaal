@@ -10,6 +10,7 @@ namespace CMI.Contract.Common.Compiler
         {
             CalculateMetadataAccessTokens(archiveRecord);
             CalculatePrimaryDataAccessTokens(archiveRecord);
+            CalculateCanBeOrderWithRequest(archiveRecord);
 
             var dateRange = GetDateRangeValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
             var dateRangeText = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
@@ -36,7 +37,7 @@ namespace CMI.Contract.Common.Compiler
         {
         }
 
-        private void CalculateCanBeOrderWitnRequest(ArchiveRecord archiveRecord)
+        private void CalculateCanBeOrderWithRequest(ArchiveRecord archiveRecord)
         {
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
             var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
@@ -46,7 +47,6 @@ namespace CMI.Contract.Common.Compiler
                 case "frei einsehbar":
                     switch (level.ToLower())
                     {
-
                         case "bestand":
                         case "dossier":
                         case "einzelstück":

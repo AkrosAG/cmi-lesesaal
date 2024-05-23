@@ -12,7 +12,7 @@ namespace CMI.Contract.Common.Compiler
         {
             CalculateMetadataAccessTokens(archiveRecord);
             CalculatePrimaryDataAccessTokens(archiveRecord);
-            CalculateCanBeOrderWitnRequest(archiveRecord);
+            CalculateCanBeOrderWithRequest(archiveRecord);
 
             var dateRange = GetDateRangeValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
             var dateRangeText = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
@@ -54,7 +54,7 @@ namespace CMI.Contract.Common.Compiler
         {
         }
 
-        private void CalculateCanBeOrderWitnRequest(ArchiveRecord archiveRecord)
+        private void CalculateCanBeOrderWithRequest(ArchiveRecord archiveRecord)
         {
             var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
             var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
@@ -90,7 +90,7 @@ namespace CMI.Contract.Common.Compiler
                         case "einzelstück":
                         case "einzelstueck":
                             archiveRecord.Display.CanBeOrdered = true;
-                            archiveRecord.Display.NeedsOrderRequest = false;
+                            archiveRecord.Display.NeedsOrderRequest = true;
                             break;
                         case "bestand":
                         case "serie":
