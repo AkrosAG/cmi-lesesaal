@@ -89,9 +89,6 @@ namespace CMI.Contract.Common.Compiler
                         case "dossier":
                         case "einzelstück":
                         case "einzelstueck":
-                            archiveRecord.Display.CanBeOrdered = true;
-                            archiveRecord.Display.NeedsOrderRequest = true;
-                            break;
                         case "bestand":
                         case "serie":
                             archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
