@@ -11,7 +11,6 @@ using System.Linq;
 using System.Xml.Linq;
 using CMI.Engine.PackageMetadata.Systems.Rosetta.Schema;
 using Newtonsoft.Json;
-using CMI.Engine.PackageMetadata.Properties;
 using System.Threading.Tasks;
 
 namespace CMI.Engine.PackageMetadata.Systems.Rosetta
@@ -41,7 +40,7 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
 
             var paket = GetPackageFromXml(archiveRecord);
             var ordnungssystemposition = paket.Ablieferung.Ordnungssystem.Ordnungssystemposition.First();
-            var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, archiveRecord.PrimaryDataLink)}\ie.xml";
+            var fileUrl = $@"{Path.Combine(folderName, archiveRecord.PrimaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
 
             // Das erste DIV des Masters ist immer die "Table of Contents". Dieses DIV ist für uns das Root
