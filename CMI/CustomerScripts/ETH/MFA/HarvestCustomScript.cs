@@ -11,48 +11,6 @@ namespace CMI.Contract.Common.Compiler
             CalculateMetadataAccessTokens(archiveRecord);
             CalculatePrimaryDataAccessTokens(archiveRecord);
 
-            var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
-            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
-
-            switch (level.ToLower())
-            {
-                case "klassifikation":
-                    archiveRecord.Display.CanBeOrdered = false;
-                    break;
-                case "bestand":
-                case "serie":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
-                    break;
-                case "dossier":
-                case "einzelstück":
-                case "einzelstueck":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = true;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
-                    break;
-                default:
-                    archiveRecord.Display.CanBeOrdered = false;
-                    break;
-            }
-
             var dateRange = GetDateRangeValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
             var dateRangeText = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
             if (dateRange != null)
@@ -76,6 +34,60 @@ namespace CMI.Contract.Common.Compiler
 
         public void PostProcessElasticArchiveRecord(ElasticArchiveRecord elasticArchiveRecord, ArchiveRecord archiveRecord)
         {
+        }
+
+        private void CalculateCanBeOrderWitnRequest(ArchiveRecord archiveRecord)
+        {
+            var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+
+            switch (benutzbarkeit.ToLower())
+            {
+                case "frei einsehbar":
+                    switch (level.ToLower())
+                    {
+
+                        case "bestand":
+                        case "dossier":
+                        case "einzelstück":
+                        case "einzelstueck":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            archiveRecord.Display.NeedsOrderRequest = false;
+                            break;
+                        case "serie":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                    }
+
+                    break;
+
+                case "gesuchspflichtig":
+                    switch (level.ToLower())
+                    {
+                        case "dossier":
+                        case "einzelstück":
+                        case "einzelstueck":
+                        case "bestand":
+                        case "serie":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                    }
+                    break;
+                default:
+                    archiveRecord.Display.CanBeOrdered = false;
+                    archiveRecord.Display.NeedsOrderRequest = true;
+                    break;
+            }
         }
 
         private void CalculateMetadataAccessTokens(ArchiveRecord archiveRecord)
