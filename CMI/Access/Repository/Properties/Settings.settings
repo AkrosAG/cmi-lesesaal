@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RepositoryServiceUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:8080/alfresco/api/-default-/public/cmis/versions/1.0/atom</Value>
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryServiceUrl@@</Value>
     </Setting>
     <Setting Name="ConnectionMode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">atom</Value>
@@ -19,6 +19,27 @@
     </Setting>
     <Setting Name="RepositoryPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryPassword@@</Value>
+    </Setting>
+    <Setting Name="RepositoryDirectoryUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryDirectoryUser@@</Value>
+    </Setting>
+    <Setting Name="RepositoryDirectoryPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryDirectoryPassword@@</Value>
+    </Setting>
+    <Setting Name="RepositoryExportIEUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryExportIEUrl@@</Value>
+    </Setting>
+    <Setting Name="RepositoryCommandTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="RepositoryTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="RepositoryDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryDirectory@@</Value>
+    </Setting>
+    <Setting Name="RepositoryDomain" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Access.Repository.Properties.Settings.RepositoryDomain@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>

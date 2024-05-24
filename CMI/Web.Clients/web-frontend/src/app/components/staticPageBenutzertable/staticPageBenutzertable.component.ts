@@ -26,7 +26,6 @@ export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 	}
 
 	private _loadContent() {
-		console.log(this.contentUrl, this.activeColumn);
 		const routeInfo = this._static.getStaticRouteInfo(this.contentUrl);
 		const subscription = this._static.getContent(routeInfo.route)
 			.subscribe(
@@ -34,13 +33,11 @@ export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 					this.activeHeader =  this.activeHeader.replace( '${0}', this.activeColumn);
 					this.activeRow =  this.activeRow.replace( '${0}', this.activeColumn);
 					this.activeLastRow =  this.activeLastRow.replace( '${0}', this.activeColumn);
-					console.log(this.activeHeader, this.activeRow, this.activeLastRow );
 					html = html.replace(this.activeHeader, 'class="active-col-header text-center"');
 					html = html.replace(this.activeLastRow, 'class="active-col-row-last text-center"');
 					const regExp = new RegExp(this.activeRow, 'g');
 					html = html.replace(regExp, 'class="active-col-row text-center');
 					this.loadedHtml = html;
-					console.log(this.loadedHtml);
 					subscription.unsubscribe();
 				},
 				error => {

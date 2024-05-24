@@ -30,9 +30,10 @@ namespace CMI.Manager.Asset.Consumers
                 Log.Information("Received {CommandName} command.", nameof(IScheduleForPackageSync));
 
                 var archiveRecord = context.Message.Workload.ArchiveRecord;
-                await assetManager.RegisterJobInPreparationQueue(archiveRecord.ArchiveRecordId, archiveRecord.Metadata.PrimaryDataLink,
+                var elasticArchiveRecord = context.Message.Workload.ElasticRecord;
+                await assetManager.RegisterJobInPreparationQueue(archiveRecord.ArchiveRecordId, elasticArchiveRecord.PrimaryDataLink,
                     AufbereitungsArtEnum.Sync, AufbereitungsServices.AssetService,
-                    archiveRecord.PrimaryData.ToElasticArchiveRecordPackage(), context.Message.Workload);
+                    elasticArchiveRecord.PrimaryData, context.Message.Workload);
             }
         }
     }
