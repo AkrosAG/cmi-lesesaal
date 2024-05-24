@@ -50,8 +50,6 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 		this._seoService.setTitle(this._txt.translate('Eingabe Benutzerdaten', 'user.pageTitle'));
 		this._buildCrumbs();
 		this.languages = [{ name: this._txt.get('languages.de', 'Deutsch'), code: 'de' },
-							{ name: this._txt.get('languages.fr', 'Französisch'), code: 'fr' },
-							{ name: this._txt.get('languages.it', 'Italienisch'), code: 'it' },
 							{ name: this._txt.get('languages.en', 'Englisch'), code: 'en' }];
 
 		await this._countriesService.loadCountries(this._context.language).then(countries => {

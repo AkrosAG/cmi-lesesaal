@@ -86,7 +86,6 @@ namespace CMI.Manager.Harvest.Consumers
                             return;
                         }
 
-                        // Fetch the (eventally) existing archive record
                         var elasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId);
 
                         // Does the AIS data provide a primary data link?
@@ -132,7 +131,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 {
                                     message.MutationId,
                                     ArchiveRecord = archiveRecord,
-                                    ElasticRecord = elasticRecord
+                                    ElasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId)
                                 });
                                 Log.Information("Put {CommandName} message on repository queue queue with mutation ID: {MutationId}",
                                     nameof(IScheduleForPackageSync), context.Message.MutationId);

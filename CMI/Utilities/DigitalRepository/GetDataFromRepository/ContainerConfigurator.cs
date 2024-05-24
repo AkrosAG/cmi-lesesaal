@@ -5,8 +5,10 @@ using Autofac;
 using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
+using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
 using CMI.Engine.PackageMetadata.Systems.Rosetta;
+using CMI.Manager.Repository;
 using CMI.Manager.Repository.Systems;
 using CMI.Manager.Repository.Systems.Rosetta;
 using CMI.Utilities.Bus.Configuration;
@@ -29,6 +31,8 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
             builder.RegisterType<RosettaPackageHandler>().As<IPackageHandler>();
             builder.RegisterType<RosettaDataAccess>().As<IRosettaDataAccess>();
             builder.RegisterType<RosettaRepositoryCheck>().As<IRepositoryCheck>();
+            builder.RegisterType<RepositoryManager>().As<IRepositoryManager>();
+            builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
 
 
             // register all the consumers
@@ -46,7 +50,7 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
 
         private static IRequestClient<FindArchiveRecordRequest> CreateFindArchiveRecordRequestClient(IComponentContext context)
         {
-            var requestTimeout = TimeSpan.FromMinutes(10);
+            var requestTimeout = TimeSpan.FromSeconds(10);
             var bus = context.Resolve<IBusControl>();
             return bus.CreateRequestClient<FindArchiveRecordRequest>(new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerFindArchiveRecordMessageQueue), requestTimeout);
         }
@@ -55,7 +59,7 @@ namespace CMI.Utilities.DigitalRepository.PrimaryDataHarvester
             GetArchiveRecordsForPackageRequestClientCallback(IComponentContext context)
         {
             var serviceUrl = string.Format(BusConstants.IndexManagagerRequestBase, nameof(GetArchiveRecordsForPackageRequest));
-            var requestTimeout = TimeSpan.FromMinutes(10);
+            var requestTimeout = TimeSpan.FromSeconds(10);
             var bus = context.Resolve<IBusControl>();
 
             return bus.CreateRequestClient<GetArchiveRecordsForPackageRequest>(new Uri(bus.Address, serviceUrl), requestTimeout);

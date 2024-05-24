@@ -122,7 +122,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     return NotFound();
                 }
 
-                var packageId = record.PrimaryData.FirstOrDefault()?.PackageId ?? string.Empty;
+                var packageId = record.PrimaryDataLink;
                 var status = CheckStatusAsync(packageId, record, access);
                 if (!(status is StatusCodeResult) || ((StatusCodeResult)status).StatusCode != HttpStatusCode.OK)
                 {

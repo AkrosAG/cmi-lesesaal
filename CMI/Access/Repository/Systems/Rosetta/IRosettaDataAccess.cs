@@ -4,6 +4,6 @@ namespace CMI.Access.Repository.Systems.Rosetta
 {
     public interface IRosettaDataAccess
     {
-        public Task<string> ExportIntellectualEntity(string entityId);
+        public Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId);
     }
 }
