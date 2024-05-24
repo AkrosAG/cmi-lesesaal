@@ -113,6 +113,7 @@ namespace CMI.Manager.Index
             elasticArchiveRecord.HasImage = archiveRecord.Display.ContainsImages;
             elasticArchiveRecord.HasAudioVideo = archiveRecord.Display.ContainsMedia;
             elasticArchiveRecord.CanBeOrdered = archiveRecord.Display.CanBeOrdered;
+            elasticArchiveRecord.NeedsOrderRequest = archiveRecord.Display.NeedsOrderRequest;
             elasticArchiveRecord.TreePath = archiveRecord.Metadata.NodeInfo.Path;
             elasticArchiveRecord.TreeSequence = archiveRecord.Metadata.NodeInfo.Sequence;
             elasticArchiveRecord.TreeLevel = archiveRecord.Metadata.NodeInfo.Level;

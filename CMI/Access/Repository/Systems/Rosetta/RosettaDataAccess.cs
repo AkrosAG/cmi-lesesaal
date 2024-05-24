@@ -25,8 +25,8 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
-        var success = await rosettaConnector.StartExportAsync(entityId); 
-        if(success)
+        var success = await rosettaConnector.StartExportAsync(entityId);
+        if (success)
         {
             using (new ConnectToSharedFolder(repositoryDirectory, new NetworkCredential(userName, password, domain)))
             {
@@ -40,9 +40,14 @@ public class RosettaDataAccess : IRosettaDataAccess
                     Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
                 }
             }
+
             Log.Information($"Intellectual Entity {entityId} exported successfully to {Path.Combine(defaultTempStoragePath, entityId)}");
         }
-        
+        else
+        {
+            Log.Error( $"Rosetta export failed with Intellectual Entity {entityId}");
+        }
+
         return success;
     }
 

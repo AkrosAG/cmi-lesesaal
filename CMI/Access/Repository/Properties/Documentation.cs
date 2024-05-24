@@ -17,6 +17,8 @@ namespace CMI.Access.Repository.Properties
             AddDescription<Settings>(x => x.RepositoryDirectoryPassword, "Passwort vom NAS");
             AddDescription<Settings>(x => x.RepositoryDirectory, "Name des Netzlaufwerks");
             AddDescription<Settings>(x => x.RepositoryDomain, "Domaine in der das Netzlaufwerks ist");
+            AddDescription<Settings>(x => x.RepositoryTimeout, "Die Zeit bis ein Export einer IE aus Rosetta erfolgen muss");
+            AddDescription<Settings>(x => x.RepositoryCommandTimeout, "Die Zeit bis Rosetta auf eine Anfrage antworten muss");
         }
     }
 }

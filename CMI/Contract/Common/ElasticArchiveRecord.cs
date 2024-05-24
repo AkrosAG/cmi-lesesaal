@@ -38,6 +38,7 @@ namespace CMI.Contract.Common
         public string PrimaryDataLink { get; set; }
         public string ManifestLink { get; set; }
         public bool CanBeOrdered { get; set; }
+        public bool NeedsOrderRequest { get; set; }
         public string Contains { get; set; }
         public string Permission { get; set; }
         public string Accessibility { get; set; }
