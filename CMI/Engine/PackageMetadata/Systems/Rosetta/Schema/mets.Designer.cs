@@ -5,7 +5,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #pragma warning disable
-namespace CMI.Manager.Repository.Systems.Rosetta.Schema
+namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
 {
     using System;
     using System.Diagnostics;

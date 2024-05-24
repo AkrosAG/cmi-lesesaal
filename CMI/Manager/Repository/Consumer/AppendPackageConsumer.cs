@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Manager.Repository.Properties;
 using MassTransit;
@@ -34,35 +35,16 @@ namespace CMI.Manager.Repository.Consumer
             {
                 Log.Information("Received {CommandName} command with conversationId {ConversationId} from the bus",
                     nameof(IArchiveRecordAppendPackage), context.ConversationId);
-                var vaidPackage = false;
-                if (Settings.Default.RepositoryManager == "rosetta")
-                {
-                    // We already have the data, just set the order status and zip the file
-                    await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
-                        context.Message.PrimaerdatenAuftragId);
-                    if (context.Message.ArchiveRecord != null && context.Message.ArchiveRecord.PrimaryData.Count > 0)
-                    {
-                        vaidPackage = true;
-                    }
-                }
-                else
-                {
-                    // Need to clear the existing primary data that just contain the metadata. 
-                    // Required because the append Package is adding the same information again.
-                    context.Message.ArchiveRecord?.PrimaryData.Clear();
-                    // Get the package from the repository
-                    var result = await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
-                        context.Message.PrimaerdatenAuftragId);
 
-                    // Inform the world about the created package
-                    if (result != null && result.Success && result.Valid)
-                    {
-                        vaidPackage = true;
-                    }
-                }
+                // Need to clear the existing primary data that just contain the metadata. 
+                // Required because the append Package is adding the same information again.
+                context.Message.ArchiveRecord?.PrimaryData.Clear();
+                // Get the package from the repository
+                var result = await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
+                    context.Message.PrimaerdatenAuftragId);
 
                 // Inform the world about the created package
-                if (vaidPackage)
+                if (result != null && result.Success && result.Valid)
                 {
                     Log.Information("Package creation was successful for packageId {packageId}", context.Message.ElasticRecord.PrimaryDataLink);
                   //  Debug.Assert(context.Message.ElasticRecord.PrimaryData.First()..PackageFileName != null);

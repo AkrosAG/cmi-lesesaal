@@ -65,6 +65,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 ChangeFromStatus = ActionStatus.SyncInProgress,
                                 ErrorMessage = "Record was not found in the database anymore. Might have been deleted in the meantime."
                             });
+                            await DeleteElasticRecord(context, message);
                             return;
                         }
 
@@ -81,6 +82,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 ErrorMessage =
                                     "Record can not be synced to Lesesaal due to it's security level. Record should not have entered the sync queue in the first place."
                             });
+                            await DeleteElasticRecord(context, message);
                             return;
                         }
 
@@ -138,20 +140,25 @@ namespace CMI.Manager.Harvest.Consumers
 
                         break;
                     case "delete":
-                        var epDelete = await context.GetSendEndpoint(new Uri(context.SourceAddress,
-                            BusConstants.IndexManagerRemoveArchiveRecordMessageQueue));
-                        await epDelete.Send<IRemoveArchiveRecord>(new
-                        {
-                            message.MutationId,
-                            message.ArchiveRecordId
-                        });
-                        Log.Information("Put {CommandName} message on index queue with mutation ID: {MutationId}", nameof(IRemoveArchiveRecord),
-                            context.Message.MutationId);
+                        await DeleteElasticRecord(context, message);
                         break;
                     default:
                         throw new NotSupportedException($"The action: {message.Action} is not a supported action name!");
                 }
             }
+        }
+
+        private static async Task DeleteElasticRecord(ConsumeContext<ISyncArchiveRecord> context, ISyncArchiveRecord message)
+        {
+            var epDelete = await context.GetSendEndpoint(new Uri(context.SourceAddress,
+                BusConstants.IndexManagerRemoveArchiveRecordMessageQueue));
+            await epDelete.Send<IRemoveArchiveRecord>(new
+            {
+                message.MutationId,
+                message.ArchiveRecordId
+            });
+            Log.Information("Put {CommandName} message on index queue with mutation ID: {MutationId}", nameof(IRemoveArchiveRecord),
+                context.Message.MutationId);
         }
 
         private static async Task UpdateArchiveRecord(ConsumeContext<ISyncArchiveRecord> context, ISyncArchiveRecord message,

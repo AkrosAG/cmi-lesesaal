@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace CMI.Manager.Repository.Tests
 {
     [TestFixture]
-    [Ignore("Fix with new Task")]
     public class DownlaodPackageConsumerTests : InMemoryTestFixture
     {
         private readonly Mock<IConsumer<IDownloadPackage>> downloadPackageConsumer = new Mock<IConsumer<IDownloadPackage>>();
@@ -77,7 +76,11 @@ namespace CMI.Manager.Repository.Tests
                 PackageId = packageId,
                 ArchiveRecordId = archiveRecordId,
                 CallerId = "someCaller",
-                RetentionCategory = CacheRetentionCategory.UsageCopyPublic
+                RetentionCategory = CacheRetentionCategory.UsageCopyPublic,
+                ElasticArchiveRecord = new ElasticArchiveRecord
+                {
+                    ArchiveRecordId = "654"
+                }
             });
 
             // Wait for the results
@@ -116,7 +119,11 @@ namespace CMI.Manager.Repository.Tests
                 PackageId = packageId,
                 ArchiveRecordId = archiveRecordId,
                 CallerId = "someCaller",
-                RetentionCategory = CacheRetentionCategory.UsageCopyPublic
+                RetentionCategory = CacheRetentionCategory.UsageCopyPublic,
+                ElasticArchiveRecord = new ElasticArchiveRecord
+                {
+                    ArchiveRecordId = "651"
+                }
             });
 
             // Wait for the results
@@ -154,7 +161,11 @@ namespace CMI.Manager.Repository.Tests
                 PackageId = packageId,
                 ArchiveRecordId = archiveRecordId,
                 CallerId = "someCaller",
-                RetentionCategory = CacheRetentionCategory.UsageCopyPublic
+                RetentionCategory = CacheRetentionCategory.UsageCopyPublic,
+                ElasticArchiveRecord = new ElasticArchiveRecord
+                {
+                    ArchiveRecordId = "651"
+                }
             });
 
             // Wait for the results

@@ -13,14 +13,15 @@ namespace CMI.Access.Repository.Systems.Rosetta
 {
     public class RosettaConnector
     {
-        // IE610326 benötigt mehr Zeit
-        private const int maxCommandExecutionTime = 600000;
-        private const int maxCommandTimeout = 8000;
+        private readonly int maxCommandExecutionTime = Settings.Default.RepositoryTimeout;
+        private readonly int maxCommandTimeout = Settings.Default.RepositoryCommandTimeout;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
         private readonly string exportIeUrl = Settings.Default.RepositoryExportIEUrl;
+
         public async Task<bool> StartExportAsync(string entityId)
         {
+            Log.Information("Start Export entity: {entityId}", entityId);
             // e. g.: "https://app.data-archive-test.ethz.ch/rest/v0/ies/{0}?op=export&export_path=/transdata/eth_vls&representation_packaging=tar",
             var url = string.Format(exportIeUrl, entityId);
             var exportXml = await PostAsync(url, new StringContent(string.Empty, Encoding.UTF8, "application/xml"));
