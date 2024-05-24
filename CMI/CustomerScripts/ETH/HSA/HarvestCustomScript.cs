@@ -12,48 +12,7 @@ namespace CMI.Contract.Common.Compiler
         {
             CalculateMetadataAccessTokens(archiveRecord);
             CalculatePrimaryDataAccessTokens(archiveRecord);
-
-            var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe"); 
-            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
-
-            switch (level.ToLower())
-            {
-                case "klassifikation":
-                    archiveRecord.Display.CanBeOrdered = false;
-                    break;
-                case "bestand":
-                case "serie":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
-                    break;
-                case "dossier":
-                case "einzelstück":
-                case "einzelstueck":
-                    switch (benutzbarkeit.ToLower())
-                    {
-                        case "frei einsehbar":
-                        case "gesuchspflichtig":
-                            archiveRecord.Display.CanBeOrdered = true;
-                            break;
-                        default:
-                            archiveRecord.Display.CanBeOrdered = false;
-                            break;
-                    }
-
-                    break;
-                default:
-                    archiveRecord.Display.CanBeOrdered = false;
-                    break;
-            }
+            CalculateCanBeOrderWithRequest(archiveRecord);
 
             var dateRange = GetDateRangeValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
             var dateRangeText = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "entstehungszeitraum");
@@ -95,13 +54,66 @@ namespace CMI.Contract.Common.Compiler
         {
         }
 
+        private void CalculateCanBeOrderWithRequest(ArchiveRecord archiveRecord)
+        {
+            var level = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "verzeichnungsstufe");
+            var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
+
+            switch (benutzbarkeit.ToLower())
+            {
+                case "frei einsehbar":
+                    switch (level.ToLower())
+                    {
+                        case "dossier":
+                        case "einzelstück":
+                        case "einzelstueck":
+                            archiveRecord.Display.CanBeOrdered = true;
+                            archiveRecord.Display.NeedsOrderRequest = false;
+                            break;
+                        case "bestand":
+                        case "serie":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            archiveRecord.Display.NeedsOrderRequest = false;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                    }
+
+                    break;
+
+                case "gesuchspflichtig":
+                    switch (level.ToLower())
+                    {
+                        case "dossier":
+                        case "einzelstück":
+                        case "einzelstueck":
+                        case "bestand":
+                        case "serie":
+                            archiveRecord.Display.CanBeOrdered = archiveRecord.Metadata.NodeInfo.ChildCount <= 0;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                        default:
+                            archiveRecord.Display.CanBeOrdered = false;
+                            archiveRecord.Display.NeedsOrderRequest = true;
+                            break;
+                    }
+                    break;
+                default:
+                    archiveRecord.Display.CanBeOrdered = false;
+                    archiveRecord.Display.NeedsOrderRequest = true;
+                    break;
+            }
+        }
+
         private void CalculateMetadataAccessTokens(ArchiveRecord archiveRecord)
         {
             // Regel 1
             var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
             if (string.IsNullOrEmpty(publikation))
             {
-                archiveRecord.Security.MetadataAccessToken = new new List<string>();
+                archiveRecord.Security.MetadataAccessToken = new List<string>();
                 return;
             }
 
@@ -110,7 +122,7 @@ namespace CMI.Contract.Common.Compiler
                 // Regel 1
                 case "keine publikation":
                 case "nicht definiert":
-                    archiveRecord.Security.MetadataAccessToken = new new List<string>();
+                    archiveRecord.Security.MetadataAccessToken = new List<string>();
                     break;
                 
                 // Regel 2
@@ -144,8 +156,8 @@ namespace CMI.Contract.Common.Compiler
             var benutzbarkeit = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "benutzbarkeit");
             if (string.IsNullOrEmpty(benutzbarkeit))
             {
-                archiveRecord.Security.PrimaryDataDownloadAccessToken = new new List<string>();
-                archiveRecord.Security.PrimaryDataFulltextAccessToken = new new List<string>();
+                archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>();
+                archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>();
                 return;
             }
             switch (benutzbarkeit.ToLower())

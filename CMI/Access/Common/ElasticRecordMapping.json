@@ -624,6 +624,9 @@
       "isPhysicalyUsable": {
         "type": "boolean"
       },
+      "needsOrderRequest": {
+        "type": "boolean"
+      },
       "treeLevel": {
         "type": "long"
       },
