@@ -190,7 +190,8 @@ namespace CMI.Access.Harvest.CMIAIS
                 ExternalDisplayTemplateName = $"{cmiRecord.TypeName}_Extern",
                 ContainsImages = archiveRecord?.Metadata?.DetailData?.Any(d => d.ElementType == DataElementElementType.image) ?? false,
                 ContainsMedia = archiveRecord?.Metadata?.DetailData?.Any(d => d.ElementType == DataElementElementType.media) ?? false,
-                CanBeOrdered = false // Wird im Custom Script gesetzt/überschrieben
+                CanBeOrdered = false, // Wird im Custom Script gesetzt/überschrieben
+                NeedsOrderRequest = true // Wird im Custom Script gesetzt/überschrieben
             };
             
             await CalculateTreeContext(display, cmiRecord, cmiRecordTectonic, archiveRecord);
