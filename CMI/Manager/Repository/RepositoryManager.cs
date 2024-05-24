@@ -64,22 +64,16 @@ public class RepositoryManager : IRepositoryManager
                 var fileTypesToIgnore = syncSettings.IgnorierteDateitypenFuerSynchronisierung.Split(',');
                 var fileTypesToIgnoreList =  fileTypesToIgnore.Select(f => f.Trim()).ToList();
                 var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, true,  fileTypesToIgnoreList, primaerdatenId);
-
-                // Output duration
-                var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
-                Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
-                    packageId,
-                    packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
-
+                
                 if (packageResult.Success && packageResult.Valid)
                 {
+                    // Output duration
+                    var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
+                    Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
+                        packageId,
+                        packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
                     // Append the package to the archive record
                     archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
-                    return packageResult;
-                }
-
-                if (packageResult.Success && packageResult.Valid)
-                {
                     return packageResult;
                 }
 

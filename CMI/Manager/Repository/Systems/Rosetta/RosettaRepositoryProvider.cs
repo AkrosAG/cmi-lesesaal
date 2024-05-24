@@ -67,7 +67,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
                 {
-                    await handler.CreateMetadataXml(Settings.Default.FileCopyDestinationPath, repositoryPackage, new List<RepositoryFile>());
+                    await handler.CreateMetadataXml(Settings.Default.TempStoragePath, repositoryPackage, new List<RepositoryFile>());
                 }
                 watch.Stop();
                 repositoryPackage.RepositoryExtractionDuration = watch.ElapsedMilliseconds;
@@ -108,7 +108,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         
         public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord)
         {
-            
             var files = new List<RepositoryFile>();
             var rootFolder = new List<RepositoryFolder>();
 
@@ -199,7 +198,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
             var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId + ".zip");
-            var zipBaseDir = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId);
+            var zipBaseDir = Path.Combine(Settings.Default.TempStoragePath, archiveRecordId);
 
             var contentDir = Path.Combine(zipBaseDir, "content");
             var headerDir = Path.Combine(zipBaseDir, "header");
