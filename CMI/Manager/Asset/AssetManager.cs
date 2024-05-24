@@ -438,6 +438,10 @@ namespace CMI.Manager.Asset
                 var tempFolder = Path.Combine(fi.DirectoryName ?? throw new InvalidOperationException(), fi.Name.Remove(fi.Name.Length - fi.Extension.Length));
                 try
                 {
+                    if (Directory.Exists(tempFolder))
+                    {
+                        Directory.Delete(tempFolder, true);
+                    }
                     ZipFile.ExtractToDirectory(packageFileName, tempFolder);
 
                     // Primaerdatenauftrag could be 0 if we have a Benutzungskopie
