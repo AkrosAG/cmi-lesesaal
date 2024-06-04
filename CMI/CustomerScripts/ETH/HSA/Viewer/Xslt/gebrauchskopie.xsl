@@ -1175,7 +1175,7 @@
 					<div class="brand-header">
 						<h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
 						<br/>
-						<h1 data-i18n="viaduc-header-sub">Virtueller Lesesaal</h1>
+						<p data-i18n="viaduc-header-sub">Virtueller Lesesaal</p>
 						<xsl:choose>
 							<xsl:when test="not(parent::dossier)">
 								<br/>

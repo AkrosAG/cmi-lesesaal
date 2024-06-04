@@ -970,12 +970,19 @@ hr{
 	.1)
 }
 
-.jstree-document a {color: #069!important;}
-.jstree-document a:hover {
-    color: #005580!important;
-    text-decoration: underline!important;
-}
-
 .table td.textWrapAll {
     word-break: break-all;
+}
+
+.body {
+    font-family:Arial!important;
+}
+
+a:hover {
+    color: #454545!important;
+    text-decoration: none!important;
+}
+
+div.col-md-12 a {
+    color: #B7352D!important;
 }
