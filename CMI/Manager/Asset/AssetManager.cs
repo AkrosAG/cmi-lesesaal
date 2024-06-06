@@ -803,7 +803,7 @@ namespace CMI.Manager.Asset
             }
         }
 
-        private void CreateIndexHtml(string tempFolder, string packageId)
+        public void CreateIndexHtml(string tempFolder, string packageId)
         {
             Log.Information("Creating index.html file.");
 
