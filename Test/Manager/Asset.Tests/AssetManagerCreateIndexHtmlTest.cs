@@ -20,7 +20,7 @@ namespace CMI.Manager.Asset.Tests
     [TestFixture]
     public class AssetManagerCreateIndexHtmlTest
     {
-        [TestCase(@"C:\Temp\Final\f21510358da444888e9a6a7adb251300", "IE611508")]
+        [TestCase(@"C:\Temp\Final\7a4ba05f160849739d70992ac81de07c", "IE611508")]
         public void Create_IndexHtml_with_content(string sourcefolder, string packageId)
         {
             var targetFilename = Path.Combine(sourcefolder, "index.html");
