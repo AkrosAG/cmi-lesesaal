@@ -165,7 +165,10 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
                     ErscheinungsformDossier.nichtdigital : ErscheinungsformDossier.digital : ErscheinungsformDossier.keineAngabe,
                 Umfang = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("Umfang"))
                     ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("Umfang")).TextValues)
-                    : string.Empty,
+                    : archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("BemerkungUmfang"))
+                        ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("BemerkungUmfang")).TextValues)
+                : string.Empty,
+
                 Entstehungszeitraum = GetEntstehungszeitraum(archiveRecord.CreationPeriod),
                 EntstehungszeitraumAnmerkung = archiveRecord.DetailData.Any(dd => dd.ElementName.Equals("BemerkungDatierung"))
                     ? string.Join(",", archiveRecord.DetailData.First(dd => dd.ElementName.Equals("BemerkungDatierung")).TextValues)

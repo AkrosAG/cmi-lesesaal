@@ -248,6 +248,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetManagerCreateIndexHtmlTest.cs" />
     <Compile Include="AssetManagerTests.cs" />
     <Compile Include="GetAssetStatusConsumerTests.cs" />
     <Compile Include="MetadataXmlUpdateTests.cs" />
