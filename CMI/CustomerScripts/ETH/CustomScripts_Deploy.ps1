@@ -21,6 +21,12 @@ $arr["HSA"]["logo.svg"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\i
 $arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
 $arr["HSA"]["templates.json"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["custom.css"] = "D:\localapps\LesesaalWeb\HSA\Frontend\client\config\css";
+$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
+$arr["HSA"]["templates.json"] = "D:\localdata\HSA\CustomScripts";
+$arr["HSA"]["gebrauchskopieCustomer.css"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i18n";
+$arr["HSA"]["gebrauchskopie.xsl"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i18n";
+$arr["HSA"]["en.js"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i18n";
+$arr["HSA"]["de.js"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i18n";
 
 
 $arr["DEV"] = @{}

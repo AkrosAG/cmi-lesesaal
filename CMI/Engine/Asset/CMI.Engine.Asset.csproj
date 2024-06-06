@@ -200,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Html\design\css\viewer.css" />
+    <Content Include="Html\design\img\logo.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="OcrXsl\alto__hocr.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -397,7 +400,7 @@
     <Content Include="Html\design\css\admin.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Html\design\css\cmi.css">
+    <Content Include="Html\design\css\gebrauchskopieCustomer.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Html\design\css\images\2-klick-logo.jpg">
@@ -532,10 +535,7 @@
     <Content Include="Html\design\img\loading.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Html\design\img\logo-CH.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Html\design\img\logo-CH.svg">
+    <Content Include="Html\design\img\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Html\design\img\overlay.png">
@@ -560,12 +560,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Html\design\img\social-sharing-xing.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Html\design\img\swiss.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Html\design\img\swiss.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Html\design\img\Twitter_logo_blue.png">

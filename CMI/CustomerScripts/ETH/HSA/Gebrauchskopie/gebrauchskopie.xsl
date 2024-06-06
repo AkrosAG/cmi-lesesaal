@@ -1175,7 +1175,7 @@
 					<div class="brand-header">
 						<h1 data-i18n="viaduc-header-title">Hochschularchiv der ETH Zürich</h1>
 						<br/>
-						<p data-i18n="viaduc-header-sub">Virtueller Lesesaal</p>
+						<h1 data-i18n="viaduc-header-sub">Virtueller Lesesaal</h1>
 						<xsl:choose>
 							<xsl:when test="not(parent::dossier)">
 								<br/>
@@ -1261,12 +1261,12 @@
 				<img class="visible-xs" src="./design/img/logo-CH.svg" onerror="this.onerror = null; this.src = './design/img/logo-CH.png'" alt="back to home"/>
 			</div>
 
-			<div class="footer-address">
-				<span class="hidden-xs" data-i18n="viaduc-footer-bar">Schweizerisches Bundesarchiv BAR</span>
+			<div class="address">
+				<span class="hidden-xs" data-i18n="viaduc-footer-bar">Hochschularchiv der ETH Zürich</span>
 				<nav class="pull-right">
 					<ul>
 						<li>
-							<span data-i18n="[html]viaduc-footer-rechtliches">Rechtliche Grundlagen</span>
+							<span data-i18n="[html]viaduc-footer-rechtliches">Nutzungsbestimmungen und Datenschutz</span>
 						</li>
 					</ul>
 				</nav>
