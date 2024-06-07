@@ -291,7 +291,18 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		const selectedItemids = [this._recordId];
 		this._ord.getAushebungsAuftragHtml(selectedItemids).subscribe(html => {
 			this._ui.showHtmlInNewTab(html, this._txt.get('aushebungsauftrag', 'Aushebungsauftrag'));
-		});
+		},
+			error => {
+				switch (error.status) {
+					case 409:
+						this._ui.showWarning('Die Verzeichnungseinheit ist nicht mehr im System verfügbar.');
+						break;
+					default:
+						this._ui.showError(error.message);
+						break;
+				}
+			}
+		);
 	}
 
 	public showVersandkontrolle() {
