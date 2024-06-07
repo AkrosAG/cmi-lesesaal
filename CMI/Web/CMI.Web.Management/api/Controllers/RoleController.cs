@@ -184,60 +184,48 @@ namespace CMI.Web.Management.api.Controllers
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             JObject result = null;
             var access = this.GetManagementAccess();
-            try
+
+            if (access.EiamRole != AccessRoles.RoleMgntAppo)
             {
-
-
-
-                if (access.EiamRole != AccessRoles.RoleMgntAppo)
-                {
-                    throw new ForbiddenException("Sie haben keine 'APPO' Rechte");
-                }
-
-                if (!access.ApplicationFeatures.Contains(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten))
-                {
-                    throw new ForbiddenException(
-                        "Sie haben keine 'Benutzer und Rollen bearbeiten' Rechte");
-                }
-
-
-                var userToEdit = userDataAccess.GetUser(userId);
-                if (string.IsNullOrEmpty(userToEdit.EiamRoles))
-                {
-                    throw new ForbiddenException("Der zu bearbeitende Benutzer hat keinen Zugriff auf den Management-Client");
-                }
-
-                using (var tran = new TransactionScope())
-                {
-                    var existing = userToEdit.Roles.Select(r => r.Id.ToString()).ToList();
-                    var removeIds = existing.Where(id => !data.RoleIds.Contains(id)).ToList();
-                    var insertIds = data.RoleIds.Where(id => !existing.Contains(id)).ToList();
-
-                    foreach (var roleId in insertIds)
-                    {
-                        applicationRoleUserDataAccess.InsertRoleUser(Convert.ToInt32(roleId), userId, access.UserId);
-                    }
-
-                    foreach (var roleId in removeIds)
-                    {
-                        applicationRoleUserDataAccess.RemoveRoleUser(Convert.ToInt32(roleId), userId, access.UserId);
-                    }
-
-                    tran.Complete();
-                }
-
-                result = new JObject { { "success", true } };
-                response.Content = new JsonContent(result);
+                throw new ForbiddenException("Sie haben keine 'APPO' Rechte");
             }
-            catch (Exception ex)
+
+            if (!access.ApplicationFeatures.Contains(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten))
             {
-                response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                var info = new JObject { { "error", ex.HResult }, { "message", ex.Message } };
-                response.Content = new JsonContent(info);
+                throw new InvalidOperationException(
+                    "Sie haben keine 'Benutzer und Rollen bearbeiten' Rechte");
             }
+
+
+            var userToEdit = userDataAccess.GetUser(userId);
+            if (string.IsNullOrEmpty(userToEdit.EiamRoles))
+            {
+                throw new ForbiddenException("Der zu bearbeitende Benutzer hat keinen Zugriff auf den Management-Client");
+            }
+
+            using (var tran = new TransactionScope())
+            {
+                var existing = userToEdit.Roles.Select(r => r.Id.ToString()).ToList();
+                var removeIds = existing.Where(id => !data.RoleIds.Contains(id)).ToList();
+                var insertIds = data.RoleIds.Where(id => !existing.Contains(id)).ToList();
+
+                foreach (var roleId in insertIds)
+                {
+                    applicationRoleUserDataAccess.InsertRoleUser(Convert.ToInt32(roleId), userId, access.UserId);
+                }
+
+                foreach (var roleId in removeIds)
+                {
+                    applicationRoleUserDataAccess.RemoveRoleUser(Convert.ToInt32(roleId), userId, access.UserId);
+                }
+
+                tran.Complete();
+            }
+
+            result = new JObject { { "success", true } };
+            response.Content = new JsonContent(result);
 
             return response;
-           
         }
 
         #endregion
