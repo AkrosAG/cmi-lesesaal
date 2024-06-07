@@ -185,100 +185,86 @@ namespace CMI.Engine.MailTemplate
         {
             return InElasticIndexierteVe.FromElasticArchiveRecord(GetElasticArchiveRecord(archiveRecordId));
         }
-        /// <summary>
-        /// Holt den ArchiveRecord vom Elastic Index.
-        /// Da wir ab und zu Timeout Probleme hatten, und dies zu unschönen resultaten führten, haben wir
-        /// die Methode versucht robuster zu machen, indem bei einem Fehler (in der Regel ein RabbitMq Timeout)
-        /// der Aufruf erneut versucht wird. Ebenso haben wir das Timeout des Aufrufs erhöht.
-        /// </summary>
-        /// <param name="archiveRecordId"></param>
-        /// <param name="getUnprotectedVersion"></param>
-        /// <returns></returns>
+
         private ElasticArchiveRecord GetElasticArchiveRecord(string archiveRecordId)
         {
             ElasticArchiveRecord retVal;
             var retryCount = 0;
             var success = false;
 
-            do
+            try
             {
-                try
-                {
-                    // Bei Fehlerfall warten wir ab retryCount > 0
-                    // RetryCount = 0   -->    0 ms
-                    // RetryCount = 1   --> 2000 ms
-                    // RetryCount = 2   --> 8000 ms
-                    Thread.Sleep(1000 * ((3 ^ retryCount) - 1));
+                // Bei Fehlerfall warten wir ab retryCount > 0
+                // RetryCount = 0   -->    0 ms
+                // RetryCount = 1   --> 2000 ms
+                // RetryCount = 2   --> 8000 ms
+                Thread.Sleep(1000 * ((3 ^ retryCount) - 1));
 
-                    var requestClient =
-                        CreateRequestClient<FindArchiveRecordRequest>(bus, BusConstants.IndexManagerFindArchiveRecordMessageQueue);
-                    var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
-                    task.Wait();
-                    
-                    retVal = task.Result.Message.ElasticArchiveRecord ?? new ElasticArchiveRecord
+                var requestClient =
+                    CreateRequestClient<FindArchiveRecordRequest>(bus, BusConstants.IndexManagerFindArchiveRecordMessageQueue);
+                var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
+                task.Wait();
+
+                retVal = task.Result.Message.ElasticArchiveRecord ?? new ElasticArchiveRecord
+                {
+                    ArchiveRecordId = archiveRecordId,
+                    Title = "Record not found in Elastic",
+                    CreationPeriod = new ElasticTimePeriod
                     {
-                        ArchiveRecordId = archiveRecordId,
-                        Title = "Record not found in Elastic",
-                        CreationPeriod = new ElasticTimePeriod
+                        StartDate = DateTime.MaxValue,
+                        EndDate = DateTime.MaxValue,
+                        Text = DateTime.MaxValue.ToShortDateString(),
+                        StartDateText = DateTime.MaxValue.ToShortDateString(),
+                        EndDateText = DateTime.MaxValue.ToShortDateString(),
+                        Years = new List<int> { 9999 }
+                    }
+                };
+                if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
+                {
+                    retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
+                    {
+                        new()
                         {
-                            StartDate = DateTime.MaxValue,
-                            EndDate = DateTime.MaxValue,
-                            Text = DateTime.MaxValue.ToShortDateString(),
-                            StartDateText = DateTime.MaxValue.ToShortDateString(),
-                            EndDateText = DateTime.MaxValue.ToShortDateString(),
-                            Years = new List<int> { 9999 }
+                            ArchiveRecordId = "999999999",
+                            Level = "Dossier"
                         }
                     };
-                    if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
-                    {
-                        retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
-                        {
-                            new()
-                            {
-                                ArchiveRecordId = "999999999",
-                                Level = "Dossier"
-                            }
-                        };
-                    }
-
-                    // Could retrieve value from Elastic
-                    success = true;
                 }
-                catch (Exception e)
+            }
+            catch (Exception e)
+            {
+                Log.Error(e,
+                    "Es gab ein Problem beim Zusammenbauen von einem Record mit der id {archiveRecordId},es wird ein default Record zurückgegeben. Fehler: {message}",
+                    archiveRecordId, e.Message);
+                retVal = new ElasticArchiveRecord
                 {
-                    Log.Error(e,
-                        "Es gab ein Problem beim Zusammenbauen von einem Record mit der id {archiveRecordId},es wird ein default Record zurückgegeben. Fehler: {message}",
-                        archiveRecordId, e.Message);
-                    retVal = new ElasticArchiveRecord
+                    ArchiveRecordId = archiveRecordId,
+                    Title = "Error while fetching record from Elastic",
+                    CreationPeriod = new ElasticTimePeriod
                     {
-                        ArchiveRecordId = archiveRecordId,
-                        Title = "Error while fetching record from Elastic",
-                        CreationPeriod = new ElasticTimePeriod
+                        StartDate = DateTime.MaxValue,
+                        EndDate = DateTime.MaxValue,
+                        Text = DateTime.MaxValue.ToShortDateString(),
+                        StartDateText = DateTime.MaxValue.ToShortDateString(),
+                        EndDateText = DateTime.MaxValue.ToShortDateString(),
+                        Years = new List<int> { 9999 }
+                    }
+                };
+                if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
+                {
+                    retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
+                    {
+                        new()
                         {
-                            StartDate = DateTime.MaxValue,
-                            EndDate = DateTime.MaxValue,
-                            Text = DateTime.MaxValue.ToShortDateString(),
-                            StartDateText = DateTime.MaxValue.ToShortDateString(),
-                            EndDateText = DateTime.MaxValue.ToShortDateString(),
-                            Years = new List<int> { 9999 }
+                            ArchiveRecordId = "999999999",
+                            Level = "Dossier"
                         }
                     };
-                    if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
-                    {
-                        retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
-                        {
-                            new()
-                            {
-                                ArchiveRecordId = "999999999",
-                                Level = "Dossier"
-                            }
-                        };
-                    }
-
-                    retryCount++;
                 }
-            } while (retryCount < 3 && !success);
 
+                retryCount++;
+            }
+            
             return retVal;
         }
 
