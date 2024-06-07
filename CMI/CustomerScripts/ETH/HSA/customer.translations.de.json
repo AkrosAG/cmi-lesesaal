@@ -407,7 +407,7 @@
     "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Worten mit dem Fuzzy-Operator.",
     "fuzzyExample": "Bsp.,um «Universität», «Université», «University» etc. zu finden: Universität~",
     "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
-    "gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten, wie «Universität»: Universität&nbsp;ETH^2",
+    "gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten, wie «Universität»: Universität ETH^2",
     "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
     "groupExample": "Bsp.: (ETH OR Zürich) AND Hochschule",
     "hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",

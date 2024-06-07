@@ -5,7 +5,7 @@ namespace CMI.Contract.Messaging
     public interface IDownloadPackage
     {
         string PackageId { get; set; }
-        string ArchiveRecordId { get; set; }
+        ElasticArchiveRecord ElasticArchiveRecord { get; set; }
         string CallerId { get; set; }
         CacheRetentionCategory RetentionCategory { get; set; }
         string Recipient { get; set; }

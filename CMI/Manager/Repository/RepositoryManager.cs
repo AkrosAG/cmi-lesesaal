@@ -62,19 +62,16 @@ public class RepositoryManager : IRepositoryManager
             if (!string.IsNullOrEmpty(packageId) && !string.IsNullOrEmpty(archiveRecordId))
             {
                 var fileTypesToIgnore = syncSettings.IgnorierteDateitypenFuerSynchronisierung.Split(',');
-                // Getting the package, but for syncing we don't need the overhead of creating the metadata stuff
-                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, false,
-                    fileTypesToIgnore.Select(f => f.Trim()).ToList(),
-                    primaerdatenId);
-
-                // Output duration
-                var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
-                Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
-                    packageId,
-                    packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
-
+                var fileTypesToIgnoreList =  fileTypesToIgnore.Select(f => f.Trim()).ToList();
+                var packageResult = await repositoryProvider.GetPackage(packageId, archiveRecordId, true,  fileTypesToIgnoreList, primaerdatenId);
+                
                 if (packageResult.Success && packageResult.Valid)
                 {
+                    // Output duration
+                    var timespan = new TimeSpan(DateTime.Now.Ticks - startTime.Ticks);
+                    Log.Information("Package {packageId} with {SizeInBytes} bytes fetched in {TotalSeconds} seconds. Valid status is: {Valid}",
+                        packageId,
+                        packageResult.PackageDetails.SizeInBytes, timespan.TotalSeconds, packageResult.Valid);
                     // Append the package to the archive record
                     archiveRecord.PrimaryData.Add(packageResult.PackageDetails);
                     return packageResult;
@@ -94,25 +91,24 @@ public class RepositoryManager : IRepositoryManager
         }
     }
 
-    public RepositoryPackageInfoResult ReadPackageMetadata(string packageId, string archiveRecordId)
+    public async Task<RepositoryPackageInfoResult> ReadPackageMetadata(ElasticArchiveRecord elasticArchiveRecord)
     {
-        // Init the return value
-        var retVal = new RepositoryPackageInfoResult
-        {
-            Success = false,
-            Valid = false,
-            PackageDetails = new RepositoryPackage {ArchiveRecordId = archiveRecordId}
-        };
-
         try
         {
-            return repositoryProvider.ReadPackageMetadata(packageId, archiveRecordId);
+             return await repositoryProvider.ReadPackageMetadata(elasticArchiveRecord); 
         }
         catch (Exception ex)
         {
-            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", packageId);
-            retVal.ErrorMessage = "Failed to get package metadata from repository";
-            throw;
+            Log.Error(ex, "Failed to get package metadata with id {packageId} from repository", elasticArchiveRecord.PrimaryData);
+            // Init the return value
+            var retVal = new RepositoryPackageInfoResult
+            {
+                Success = false,
+                Valid = false,
+                PackageDetails = new RepositoryPackage { ArchiveRecordId = elasticArchiveRecord.ArchiveRecordId },
+                ErrorMessage = "Failed to get package metadata from repository"
+            };
+            return retVal;
         }
     }
 

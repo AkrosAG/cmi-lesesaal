@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using CMI.Contract.Common.Gebrauchskopie;
 using Iiif.API.Presentation;
 
@@ -442,7 +443,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
             case ".jpg":
                 return CreateImageBody(dokument, relativeUri, isFileRefToDossier, fileName, dimensions);
             default:
-                return CreateDokumentBody(dokument, relativeUri, isFileRefToDossier, fileName);
+                return CreateDokumentBody(dokument, relativeUri, fileName);
         }
     }
 
@@ -469,12 +470,12 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
         };
     }
 
-    private BodyClass CreateDokumentBody(DokumentDIP dokument, string relativeUri, bool isFileRefToDossier, string fileName)
+    private BodyClass CreateDokumentBody(DokumentDIP dokument, string relativeUri, string fileName)
     {
         return new BodyClass
         {
             Id = new Uri(manifestSettings.PublicContentWebUri,
-                $"{relativeUri}/{(isFileRefToDossier ? "" : GetFileName(dokument.Id))}/{fileName}"),
+                $"{relativeUri}/{fileName}"),
             Type = "foaf:Document",
             Format = GetMimeMapping(fileName)
         };
@@ -511,7 +512,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
         if (!string.IsNullOrEmpty(entstehungszeitraum))
         {
             presentation.Metadata.Add(AddRequiredStatementElement("Entstehungszeitraum", entstehungszeitraum, "Entstehungszeitraum",
-                "Date de création", "Periodo di costituzione", "Creation period"));
+                "Date de création", "Periodo di costituzione", "Date"));
         }
 
         if (!string.IsNullOrEmpty(dossier.Aktenzeichen))
@@ -527,7 +528,7 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
 
         if (!string.IsNullOrEmpty(darin))
         {
-            presentation.Metadata.Add(AddRequiredStatementElement("Darin", darin, "Darin", "Contenu", "Contiene", "Contains"));
+            presentation.Metadata.Add(AddRequiredStatementElement("Form und Inhalt", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
         }
 
         #endregion
@@ -565,12 +566,12 @@ public class PostProcessManifestCreator : IPostProcessManifestCreator
         if (!string.IsNullOrEmpty(entstehungszeitraum))
         {
             presentation.Metadata.Add(AddRequiredStatementElement("Entstehungszeitraum", entstehungszeitraum, "Entstehungszeitraum",
-                "Date de création", "Periodo di costituzione", "Creation period"));
+                "Date de création", "Periodo di costituzione", "Date"));
         }
 
         if (!string.IsNullOrEmpty(darin))
         {
-            presentation.Metadata.Add(AddRequiredStatementElement("Darin", darin, "Darin", "Contenu", "Contiene", "Contains"));
+            presentation.Metadata.Add(AddRequiredStatementElement("Form und Inhalt", darin, "Form und Inhalt", "Contenu", "Contiene", "Scope and Content"));
         }
     }
 

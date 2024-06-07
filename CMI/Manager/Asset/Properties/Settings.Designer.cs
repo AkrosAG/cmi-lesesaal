@@ -29,7 +29,7 @@ namespace CMI.Manager.Asset.Properties
 
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\Final")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Manager.Asset.Properties.Settings.PickupPath@@")]
         public string PickupPath
         {
             get

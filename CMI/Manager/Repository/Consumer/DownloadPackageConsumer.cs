@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
+using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Serilog;
 using Serilog.Context;
@@ -29,7 +30,8 @@ namespace CMI.Manager.Repository.Consumer
         public async Task Consume(ConsumeContext<IDownloadPackage> context)
         {
             var conversationEnricher = new PropertyEnricher(nameof(context.ConversationId), context.ConversationId);
-            var archiveRecordIdEnricher = new PropertyEnricher(nameof(context.Message.ArchiveRecordId), context.Message.ArchiveRecordId);
+            var archiveRecordId = context.Message.ElasticArchiveRecord.ArchiveRecordId;
+            var archiveRecordIdEnricher = new PropertyEnricher(nameof(archiveRecordId), archiveRecordId);
             var packageIdEnricher = new PropertyEnricher(nameof(context.Message.PackageId), context.Message.PackageId);
 
             using (LogContext.Push(conversationEnricher, archiveRecordIdEnricher, packageIdEnricher))
@@ -40,11 +42,13 @@ namespace CMI.Manager.Repository.Consumer
                 // Get the package from the repository
                 // We are not waiting for it to end, because we want to free the consumer as early as possible
                 var packageId = context.Message.PackageId;
-                var archiveRecordId = context.Message.ArchiveRecordId;
                 var result = await repositoryManager.GetPackage(packageId, archiveRecordId, context.Message.PrimaerdatenAuftragId);
+                var success = result.Success && result.Valid;
+                var repositoryPackage = result.PackageDetails;
+                var errorMessage = result.ErrorMessage;
 
                 // Do we have a valid package?
-                if (result.Success && result.Valid)
+                if (success)
                 {
                     // Forward the downloaded package to the asset manager for transformation
                     var endpoint = await context.GetSendEndpoint(new Uri(bus.Address, BusConstants.AssetManagerPrepareForTransformation));
@@ -58,14 +62,14 @@ namespace CMI.Manager.Repository.Consumer
                         Language = context.Message.Language,
                         ProtectWithPassword = context.Message.RetentionCategory != CacheRetentionCategory.UsageCopyPublic,
                         PrimaerdatenAuftragId = context.Message.PrimaerdatenAuftragId,
-                        RepositoryPackage = result.PackageDetails
+                        RepositoryPackage = repositoryPackage
                     });
 
                     // also publish the event, that the package is downloaded
                     await context.Publish<IPackageDownloaded>(
                         new
                         {
-                            PackageInfo = result
+                            PackageInfo = repositoryPackage
                         });
                 }
                 else
@@ -74,10 +78,10 @@ namespace CMI.Manager.Repository.Consumer
                     await context.Publish<IAssetReady>(new AssetReady
                     {
                         Valid = false,
-                        ErrorMessage = result.ErrorMessage,
+                        ErrorMessage = errorMessage,
                         AssetType = AssetType.Gebrauchskopie,
                         CallerId = context.Message.CallerId,
-                        ArchiveRecordId = context.Message.ArchiveRecordId,
+                        ArchiveRecordId = archiveRecordId,
                         RetentionCategory = context.Message.RetentionCategory,
                         Recipient = context.Message.Recipient,
                         PrimaerdatenAuftragId = context.Message.PrimaerdatenAuftragId
