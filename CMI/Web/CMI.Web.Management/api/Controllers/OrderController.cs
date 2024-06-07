@@ -57,6 +57,17 @@ namespace CMI.Web.Management.api.Controllers
             var access = ManagementControllerHelper.GetUserAccess();
 
             access.AssertFeatureOrThrow(ApplicationFeature.AuftragsuebersichtAuftraegeKannAushebungsauftraegeDrucken);
+            var orderItems = await orderManagerClient.FindOrderItems(orderItemIds);
+            foreach (var item in orderItems)
+            {
+                var elasticItem = await GetElasticArchiveRecord(item.VeId);
+                if (elasticItem == null || !elasticItem.CanBeOrdered)
+                {
+                    // $"Auftrag {item.OrderId} hat keinen ElasticItem {item.VeId}
+                    return Conflict();
+                }
+            }
+
 
             var expando = builder
                 .AddUser(access.UserId)
