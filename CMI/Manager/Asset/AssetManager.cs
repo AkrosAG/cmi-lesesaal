@@ -396,7 +396,7 @@ namespace CMI.Manager.Asset
                     var ep = await bus.GetSendEndpoint(new Uri(bus.Address, BusConstants.RepositoryManagerDownloadPackageMessageQueue));
                     await ep.Send<IDownloadPackage>(downloadPackage);
                     Log.Information("Put {CommandName} message on repository queue with archive record id: {ArchiveRecordId}", nameof(IDownloadPackage),
-                        downloadPackage.ArchiveRecordId);
+                        downloadPackage.ElasticArchiveRecord.ArchiveRecordId);
                 }
         }
 
@@ -438,6 +438,10 @@ namespace CMI.Manager.Asset
                 var tempFolder = Path.Combine(fi.DirectoryName ?? throw new InvalidOperationException(), fi.Name.Remove(fi.Name.Length - fi.Extension.Length));
                 try
                 {
+                    if (Directory.Exists(tempFolder))
+                    {
+                        Directory.Delete(tempFolder, true);
+                    }
                     ZipFile.ExtractToDirectory(packageFileName, tempFolder);
 
                     // Primaerdatenauftrag could be 0 if we have a Benutzungskopie
@@ -799,7 +803,7 @@ namespace CMI.Manager.Asset
             }
         }
 
-        private void CreateIndexHtml(string tempFolder, string packageId)
+        public void CreateIndexHtml(string tempFolder, string packageId)
         {
             Log.Information("Creating index.html file.");
 

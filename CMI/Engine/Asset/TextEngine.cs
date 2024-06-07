@@ -76,6 +76,10 @@ namespace CMI.Engine.Asset
                 var extractionResult = (await extractionRequestClient.GetResponse<ExtractionStartResult>(requestSettings)).Message;
                 if (extractionResult.IsInvalid)
                 {
+                    if (extractionResult.ErrorMessage.StartsWith("ABBYY IS NOT INSTALLED"))
+                    {
+                        return string.Empty;
+                    }
                     throw new Exception(extractionResult.ErrorMessage);
                 }
 

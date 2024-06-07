@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using CMI.Contract.Common;
 using CMI.Contract.Messaging;
+using CMI.Manager.Repository.Properties;
 using MassTransit;
 using Serilog;
 using Serilog.Context;
@@ -36,7 +39,6 @@ namespace CMI.Manager.Repository.Consumer
                 // Need to clear the existing primary data that just contain the metadata. 
                 // Required because the append Package is adding the same information again.
                 context.Message.ArchiveRecord?.PrimaryData.Clear();
-
                 // Get the package from the repository
                 var result = await repositoryManager.AppendPackageToArchiveRecord(context.Message.ArchiveRecord, context.Message.MutationId,
                     context.Message.PrimaerdatenAuftragId);
@@ -44,8 +46,8 @@ namespace CMI.Manager.Repository.Consumer
                 // Inform the world about the created package
                 if (result != null && result.Success && result.Valid)
                 {
-                    Log.Information("Package creation was successful for packageId {packageId}", result.PackageDetails.PackageId);
-                    Debug.Assert(result.PackageDetails.PackageFileName != null);
+                    Log.Information("Package creation was successful for packageId {packageId}", context.Message.ElasticRecord.PrimaryDataLink);
+                  //  Debug.Assert(context.Message.ElasticRecord.PrimaryData.First()..PackageFileName != null);
                     var endpoint = await context.GetSendEndpoint(new Uri(context.SourceAddress,
                         BusConstants.AssetManagerPrepareForRecognition));
 
@@ -60,15 +62,15 @@ namespace CMI.Manager.Repository.Consumer
                 {
                     // If package creation was not successful, stop syncing here and return failure.
                     Log.Error(
-                        "Failed to extract primary data from repository for archiveRecord with conversationId {ConversationId} with message {ErrorMessage}",
-                        context.ConversationId, result?.ErrorMessage);
+                        "Failed to extract primary data from repository for archiveRecord with conversationId {ConversationId} with RepositoryManager {RepositoryManager}",
+                        context.ConversationId, Settings.Default.RepositoryManager);
                     await context.Publish<IArchiveRecordUpdated>(new
                     {
                         context.Message.MutationId,
                         context.Message.ArchiveRecord?.ArchiveRecordId,
                         context.Message.PrimaerdatenAuftragId,
                         ActionSuccessful = false,
-                        result?.ErrorMessage
+                      
                     });
                 }
             }

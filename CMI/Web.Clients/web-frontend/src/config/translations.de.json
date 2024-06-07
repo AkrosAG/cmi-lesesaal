@@ -601,6 +601,10 @@
     "next": "Nächste",
     "previous": "Vorherige"
   },
+	"onlineViewer": {
+		"buttonText": "Anzeigen",
+		"infoText" : "Konsultieren Sie die Unterlagen"
+	},
   "order": {
     "frombar": "(Diese Bestellung wurde durch die ETH ausgelöst.)",
     "unknowtext": "[Nicht sichtbar]"
