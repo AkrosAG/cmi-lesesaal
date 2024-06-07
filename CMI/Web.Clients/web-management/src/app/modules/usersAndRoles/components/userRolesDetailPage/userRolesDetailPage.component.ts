@@ -222,7 +222,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public canManageManagementClientRole(eiamRoles: string): boolean {
-		let hasRoles = this._authorization.hasRole(this._authorization.roles.APPO);
+		const hasRoles = this._authorization.hasRole(this._authorization.roles.APPO) && this.allowBereichBenutzerdatenBearbeiten;
 		return hasRoles && eiamRoles &&
 			(eiamRoles.indexOf(this._authorization.roles.APPO) >= 0 || eiamRoles.indexOf(this._authorization.roles.ALLOW) >= 0 );
 	}

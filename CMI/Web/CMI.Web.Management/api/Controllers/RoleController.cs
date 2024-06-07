@@ -227,8 +227,6 @@ namespace CMI.Web.Management.api.Controllers
                 }
 
                 result = new JObject { { "success", true } };
-
-
                 response.Content = new JsonContent(result);
             }
             catch (Exception ex)

@@ -189,17 +189,9 @@ namespace CMI.Engine.MailTemplate
         private ElasticArchiveRecord GetElasticArchiveRecord(string archiveRecordId)
         {
             ElasticArchiveRecord retVal;
-            var retryCount = 0;
-            var success = false;
 
             try
             {
-                // Bei Fehlerfall warten wir ab retryCount > 0
-                // RetryCount = 0   -->    0 ms
-                // RetryCount = 1   --> 2000 ms
-                // RetryCount = 2   --> 8000 ms
-                Thread.Sleep(1000 * ((3 ^ retryCount) - 1));
-
                 var requestClient =
                     CreateRequestClient<FindArchiveRecordRequest>(bus, BusConstants.IndexManagerFindArchiveRecordMessageQueue);
                 var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
@@ -261,8 +253,6 @@ namespace CMI.Engine.MailTemplate
                         }
                     };
                 }
-
-                retryCount++;
             }
             
             return retVal;
