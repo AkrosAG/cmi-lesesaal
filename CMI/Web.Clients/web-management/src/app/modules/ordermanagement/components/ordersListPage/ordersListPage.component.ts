@@ -254,7 +254,18 @@ export class OrdersListPageComponent implements OnInit {
 		const checkedItemids = this.ordersList.checkedRowsIds;
 		this._ord.getAushebungsAuftragHtml(checkedItemids).subscribe(html => {
 			this._ui.showHtmlInNewTab(html, this._txt.get('aushebungsauftrag', 'Aushebungsauftrag'));
-		});
+			},
+			error => {
+				switch (error.status) {
+					case 409:
+						this._ui.showWarning('Die Verzeichnungseinheit ist nicht mehr im System verfügbar.');
+						break;
+					default:
+						this._ui.showError(error.message);
+						break;
+				}
+			}
+		);
 	}
 
 	public showVersandkontrolle() {
@@ -462,7 +473,7 @@ export class OrdersListPageComponent implements OnInit {
 				i.orderingType !== ShippingType.Digitalisierungsauftrag);
 
 			if (filtered.length > 0) {
-				this._ui.showError(`Mindestens ein markierter Auftrag ist nicht vom Typ «Digitalisierungsauftrag». 
+				this._ui.showError(`Mindestens ein markierter Auftrag ist nicht vom Typ «Digitalisierungsauftrag».
 				Der erste fehlerhafte Auftrag hat die ID ${filtered[0].itemId}`,
 					'Digitalisierung nicht erlaubt');
 				return false;
