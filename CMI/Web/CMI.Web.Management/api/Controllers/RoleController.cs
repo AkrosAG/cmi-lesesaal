@@ -190,6 +190,13 @@ namespace CMI.Web.Management.api.Controllers
                 throw new ForbiddenException("Sie haben keine 'APPO' Rechte");
             }
 
+            if (!access.ApplicationFeatures.Contains(ApplicationFeature.BenutzerUndRollenBenutzerverwaltungBereichBenutzerdatenBearbeiten))
+            {
+                throw new InvalidOperationException(
+                    "Sie haben keine 'Benutzer und Rollen bearbeiten' Rechte");
+            }
+
+
             var userToEdit = userDataAccess.GetUser(userId);
             if (string.IsNullOrEmpty(userToEdit.EiamRoles))
             {
@@ -215,11 +222,9 @@ namespace CMI.Web.Management.api.Controllers
                 tran.Complete();
             }
 
-
-            result = new JObject {{"success", true}};
-
-
+            result = new JObject { { "success", true } };
             response.Content = new JsonContent(result);
+
             return response;
         }
 

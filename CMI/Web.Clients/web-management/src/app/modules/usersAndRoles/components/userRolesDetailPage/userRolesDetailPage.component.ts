@@ -122,7 +122,6 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 
 	public async saveRoles(): Promise<void> {
 		this.loading = true;
-
 		const roleIds = [];
 		for (let i = 0; i < this.detail.item.roles.length; i += 1) {
 			roleIds.push(this.detail.item.roles[i].id);
@@ -139,7 +138,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			},
 			err => {
 				this.loading = false;
-				this._ui.showError(this._txt.get('userAndRoles.userroleCouldNotBeSaved', 'Benutzerrollen konnte nicht gespeichert werden'), err.message);
+				this._ui.showError(this._txt.get('userAndRoles.userroleCouldNotBeSaved', 'Benutzerrollen konnte nicht gespeichert werden'), err.error?.message);
 			}
 		);
 	}
@@ -223,7 +222,8 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public canManageManagementClientRole(eiamRoles: string): boolean {
-		return this._authorization.hasRole(this._authorization.roles.APPO) && eiamRoles &&
+		const hasRoles = this._authorization.hasRole(this._authorization.roles.APPO) && this.allowBereichBenutzerdatenBearbeiten;
+		return hasRoles && eiamRoles &&
 			(eiamRoles.indexOf(this._authorization.roles.APPO) >= 0 || eiamRoles.indexOf(this._authorization.roles.ALLOW) >= 0 );
 	}
 
