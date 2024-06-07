@@ -8,6 +8,7 @@ using CMI.Contract.Messaging;
 using CMI.Contract.Order;
 using MassTransit;
 using Serilog;
+using Serilog.Filters;
 
 namespace CMI.Engine.MailTemplate
 {
@@ -196,65 +197,43 @@ namespace CMI.Engine.MailTemplate
                 var task = requestClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId });
                 task.Wait();
 
-                retVal = task.Result.Message.ElasticArchiveRecord ?? new ElasticArchiveRecord
-                {
-                    ArchiveRecordId = archiveRecordId,
-                    Title = "Record not found in Elastic",
-                    CreationPeriod = new ElasticTimePeriod
-                    {
-                        StartDate = DateTime.MaxValue,
-                        EndDate = DateTime.MaxValue,
-                        Text = DateTime.MaxValue.ToShortDateString(),
-                        StartDateText = DateTime.MaxValue.ToShortDateString(),
-                        EndDateText = DateTime.MaxValue.ToShortDateString(),
-                        Years = new List<int> { 9999 }
-                    }
-                };
-                if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
-                {
-                    retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
-                    {
-                        new()
-                        {
-                            ArchiveRecordId = "999999999",
-                            Level = "Dossier"
-                        }
-                    };
-                }
+                retVal = task.Result.Message.ElasticArchiveRecord ?? CreateDummyRecord(archiveRecordId, "Record not found in Elastic");
             }
             catch (Exception e)
             {
                 Log.Error(e,
                     "Es gab ein Problem beim Zusammenbauen von einem Record mit der id {archiveRecordId},es wird ein default Record zurückgegeben. Fehler: {message}",
                     archiveRecordId, e.Message);
-                retVal = new ElasticArchiveRecord
-                {
-                    ArchiveRecordId = archiveRecordId,
-                    Title = "Error while fetching record from Elastic",
-                    CreationPeriod = new ElasticTimePeriod
-                    {
-                        StartDate = DateTime.MaxValue,
-                        EndDate = DateTime.MaxValue,
-                        Text = DateTime.MaxValue.ToShortDateString(),
-                        StartDateText = DateTime.MaxValue.ToShortDateString(),
-                        EndDateText = DateTime.MaxValue.ToShortDateString(),
-                        Years = new List<int> { 9999 }
-                    }
-                };
-                if (retVal.ArchiveplanContext == null || retVal.ArchiveplanContext.Count == 0)
-                {
-                    retVal.ArchiveplanContext = new List<ElasticArchiveplanContextItem>
-                    {
-                        new()
-                        {
-                            ArchiveRecordId = "999999999",
-                            Level = "Dossier"
-                        }
-                    };
-                }
+                retVal = CreateDummyRecord(archiveRecordId, "Error while fetching record from Elastic");
             }
             
             return retVal;
+        }
+
+        private static ElasticArchiveRecord CreateDummyRecord(string archiveRecordId, string title)
+        {
+            return new ElasticArchiveRecord
+            {
+                ArchiveRecordId = archiveRecordId,
+                Title = title,
+                CreationPeriod = new ElasticTimePeriod
+                {
+                    StartDate = DateTime.MaxValue,
+                    EndDate = DateTime.MaxValue,
+                    Text = DateTime.MaxValue.ToShortDateString(),
+                    StartDateText = DateTime.MaxValue.ToShortDateString(),
+                    EndDateText = DateTime.MaxValue.ToShortDateString(),
+                    Years = new List<int> { 9999 }
+                },
+                ArchiveplanContext = new List<ElasticArchiveplanContextItem>
+                {
+                    new()
+                    {
+                        ArchiveRecordId = "999999999",
+                        Level = "Dossier"
+                    }
+                }
+            };
         }
 
 
