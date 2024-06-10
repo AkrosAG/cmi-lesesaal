@@ -19,6 +19,7 @@ namespace CMI.Manager.Harvest.Consumers
     {
         private readonly ICachedHarvesterSetting cachedSettings;
         private readonly IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient;
+        private readonly IRequestClient<ConvertArchiveRecordRequest> convertArchiveRecordClient;
         private readonly IHarvestManager harvestManager;
 
 
@@ -26,12 +27,13 @@ namespace CMI.Manager.Harvest.Consumers
         ///     Initializes a new instance of the <see cref="SyncArchiveRecordConsumer" /> class.
         /// </summary>
         /// <param name="harvestManager">The harvest manager responsible for sync management.</param>
-        public SyncArchiveRecordConsumer(IHarvestManager harvestManager,
-            IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient, ICachedHarvesterSetting cachedSettings)
+        public SyncArchiveRecordConsumer(IHarvestManager harvestManager, IRequestClient<FindArchiveRecordRequest> findArchiveRecordClient,
+            IRequestClient<ConvertArchiveRecordRequest> convertArchiveRecordClient, ICachedHarvesterSetting cachedSettings)
         {
             this.harvestManager = harvestManager;
             this.findArchiveRecordClient = findArchiveRecordClient;
             this.cachedSettings = cachedSettings;
+            this.convertArchiveRecordClient = convertArchiveRecordClient;
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 // As the export of the DIR does rely on metadata that is fetched from elastic,
                                 // we are going to update/insert the archive record in Elastic (but without the extracted OCR first)
                                 // The update in the index should be done quickly, so when the data is needed from the DIR it will be available
-                                await UpdateArchiveRecord(context, message, archiveRecord, true);
+                                await UpdateArchiveRecord(context, message, archiveRecord, false);
 
                                 // Now start getting the metadata info of the DIR package
                                 var ep = await context.GetSendEndpoint(new Uri(context.SourceAddress,
@@ -131,7 +133,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 {
                                     message.MutationId,
                                     ArchiveRecord = archiveRecord,
-                                    ElasticRecord = await GetElasticArchiveRecord(archiveRecord.ArchiveRecordId)
+                                    ElasticRecord = await ConvertArchiveRecord(archiveRecord)
                                 });
                                 Log.Information("Put {CommandName} message on repository queue queue with mutation ID: {MutationId}",
                                     nameof(IScheduleForPackageSync), context.Message.MutationId);
@@ -173,6 +175,14 @@ namespace CMI.Manager.Harvest.Consumers
             });
             Log.Information("Put {CommandName} message on index queue with mutation ID: {MutationId}", nameof(IUpdateArchiveRecord),
                 context.Message.MutationId);
+        }
+
+
+        private async Task<ElasticArchiveRecord> ConvertArchiveRecord(ArchiveRecord archiveRecord)
+        {
+            var result = await convertArchiveRecordClient.GetResponse<ConvertArchiveRecordResponse>(new ConvertArchiveRecordRequest
+                { ArchiveRecord = archiveRecord  });
+            return result.Message.ElasticArchiveRecord;
         }
 
         private async Task<ElasticArchiveRecord> GetElasticArchiveRecord(string archiveRecordId)

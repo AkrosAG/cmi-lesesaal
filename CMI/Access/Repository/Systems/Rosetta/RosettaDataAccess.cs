@@ -25,6 +25,12 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     public async Task<bool> ExportIntellectualEntity(string defaultTempStoragePath, string entityId)
     {
+        var copyPath = Path.Combine(defaultTempStoragePath, entityId);
+        if (Directory.Exists(copyPath))
+        {
+            // after the snyc, the asset manager deletes the temp directory. It is then here the call from GetPackage after GetMetadata if the directory is already there
+            return true;
+        }
         var success = await rosettaConnector.StartExportAsync(entityId);
         if (success)
         {
@@ -37,15 +43,15 @@ public class RosettaDataAccess : IRosettaDataAccess
                 catch (Exception e)
                 {
                     success = false;
-                    Log.Error(e, $"An error occurred when copying the Intellectual Entity {entityId}");
+                    Log.Error(e, "An error occurred when copying the Intellectual Entity {entityId}", entityId);
                 }
             }
 
-            Log.Information($"Intellectual Entity {entityId} exported successfully to {Path.Combine(defaultTempStoragePath, entityId)}");
+            Log.Information("Intellectual Entity {entityId} exported successfully", entityId);
         }
         else
         {
-            Log.Error( $"Rosetta export failed with Intellectual Entity {entityId}");
+            Log.Error( "Rosetta export failed with Intellectual Entity {entityId}", entityId);
         }
 
         return success;
@@ -53,11 +59,22 @@ public class RosettaDataAccess : IRosettaDataAccess
 
     private void CopyNecessaryExtractIntellectualEntityFiles(string defaultTempStoragePath, string entityId)
     {
-        var directoryEntity = Directory.GetDirectories(repositoryDirectory).First(f => f.EndsWith(entityId));
         var copyPath = Path.Combine(defaultTempStoragePath, entityId);
-        if (Directory.Exists(copyPath))
+        // ReSharper disable once RedundantAssignment
+        var directoryEntity = string.Empty;
+        if (Directory.GetDirectories(repositoryDirectory).Any(f => f.EndsWith(entityId)))
         {
-            Directory.Delete(copyPath, true);
+            directoryEntity = Directory.GetDirectories(repositoryDirectory).First(f => f.EndsWith(entityId));
+
+            if (Directory.Exists(copyPath))
+            {
+                Directory.Delete(copyPath, true);
+            }
+        }
+        else
+        {
+            Log.Error("The exported directory does not exist occurred when copying the Intellectual Entity {entityId} from {repositoryDirectory}", entityId, repositoryDirectory);
+            throw new ArgumentException("The exported directory does not exist");
         }
 
         var files =  Directory.GetFiles(directoryEntity, "*.tar", SearchOption.AllDirectories);
