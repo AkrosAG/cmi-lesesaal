@@ -96,6 +96,8 @@ namespace CMI.Manager.Harvest
             });
 
             containerBuilder.Register(CreateFindArchiveRecordRequestClient);
+            containerBuilder.Register(CreateConvertArchiveRecordRequestClient);
+
             var container = containerBuilder.Build();
 
             bus = container.Resolve<IBusControl>();
@@ -109,6 +111,13 @@ namespace CMI.Manager.Harvest
             var requestTimeout = TimeSpan.FromMinutes(1);
             return bus.CreateRequestClient<FindArchiveRecordRequest>(
                 new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerFindArchiveRecordMessageQueue), requestTimeout);
+        }
+
+        private IRequestClient<ConvertArchiveRecordRequest> CreateConvertArchiveRecordRequestClient(IComponentContext context)
+        {
+            var requestTimeout = TimeSpan.FromMinutes(1);
+            return bus.CreateRequestClient<ConvertArchiveRecordRequest>(
+                new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerConvertArchiveRecordMessageQueue), requestTimeout);
         }
 
         /// <summary>

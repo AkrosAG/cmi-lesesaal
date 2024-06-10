@@ -98,7 +98,7 @@ namespace CMI.Manager.Index
         }
 
 
-        private ElasticArchiveRecord ConvertArchiveRecord(ArchiveRecord archiveRecord)
+        public ElasticArchiveRecord ConvertArchiveRecord(ArchiveRecord archiveRecord)
         {
             // ReSharper disable once UseObjectOrCollectionInitializer
             // Helps in case of an exception. Line number point to exact location
