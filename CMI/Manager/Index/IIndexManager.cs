@@ -35,5 +35,7 @@ namespace CMI.Manager.Index
 
         void UpdateTokens(string id, string[] primaryDataDownloadAccessTokens, string[] primaryDataFulltextAccessTokens,
             string[] metadataAccessTokens);
+
+        ElasticArchiveRecord ConvertArchiveRecord(ArchiveRecord archiveRecord);
     }
 }

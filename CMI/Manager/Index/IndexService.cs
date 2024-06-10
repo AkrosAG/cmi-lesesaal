@@ -60,6 +60,10 @@ namespace CMI.Manager.Index
                 });
                 cfg.ReceiveEndpoint(BusConstants.IndexManagerFindArchiveRecordMessageQueue,
                     ec => { ec.Consumer(ctx.Resolve<FindArchiveRecordConsumer>); });
+
+                cfg.ReceiveEndpoint(BusConstants.IndexManagerConvertArchiveRecordMessageQueue,
+                    ec => { ec.Consumer(ctx.Resolve<ConvertArchiveRecordConsumer>); });
+
                 cfg.ReceiveEndpoint(string.Format(BusConstants.IndexManagagerRequestBase, nameof(GetArchiveRecordsForPackageRequest)),
                     ec =>
                     {
