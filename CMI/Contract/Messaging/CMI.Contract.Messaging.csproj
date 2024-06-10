@@ -52,7 +52,7 @@
     <Compile Include="CacheConnectionInfoResponse.cs" />
     <Compile Include="CollectionRequestsAndResponses.cs" />
     <Compile Include="ConvertArchiveRecordRequest.cs" />
-    <Compile Include="ConvertArchiveRecordRespnse.cs" />
+    <Compile Include="ConvertArchiveRecordResponse.cs" />
     <Compile Include="CreateOrderFromBasketResponse.cs" />
     <Compile Include="DownloadAssetRequest.cs" />
     <Compile Include="DownloadPackage.cs" />
