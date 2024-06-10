@@ -87,7 +87,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
         {
             Log.Information("Read Package Metadata {PrimaryDataLink} for archiveRecord {archiveRecordId}", elasticArchiveRecord.PrimaryDataLink, elasticArchiveRecord.ArchiveRecordId);
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
-            if (success)
+            if(success)
             {
                 var package = await BuildRepositoryPackageAsync(elasticArchiveRecord);
                 return new RepositoryPackageInfoResult
