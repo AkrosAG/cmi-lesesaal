@@ -20,8 +20,8 @@ namespace CMI.Manager.Harvest.Tests
     public class SyncArchiveRecordConsumerTests
     {
         private readonly Mock<ICachedHarvesterSetting> cachedHarvesterSetting = new Mock<ICachedHarvesterSetting>();
-        private readonly Mock<IRequestClient<FindArchiveRecordRequest>> findArchiveRecordClient =
-            new Mock<IRequestClient<FindArchiveRecordRequest>>();
+        private readonly Mock<IRequestClient<FindArchiveRecordRequest>> findArchiveRecordClient = new Mock<IRequestClient<FindArchiveRecordRequest>>();
+        private readonly Mock<IRequestClient<ConvertArchiveRecordRequest>> convertArchiveRecordClient = new Mock<IRequestClient<ConvertArchiveRecordRequest>>();
         private readonly Mock<IHarvestManager> harvestManager = new Mock<IHarvestManager>();
         private readonly Mock<IConsumer<ISyncArchiveRecord>> syncArchiveRecordConsumer = new Mock<IConsumer<ISyncArchiveRecord>>();
 
@@ -43,7 +43,7 @@ namespace CMI.Manager.Harvest.Tests
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -106,7 +106,7 @@ namespace CMI.Manager.Harvest.Tests
                 .Returns(Task.FromResult(response.Object));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -165,7 +165,7 @@ namespace CMI.Manager.Harvest.Tests
                 .Returns(Task.FromResult(response.Object));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -210,20 +210,31 @@ namespace CMI.Manager.Harvest.Tests
                 ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = "Aip@DossierId" },
                 Security = new ArchiveRecordSecurity { MetadataAccessToken = new List<string> { "Ö1" } }
             };
+            var elasticRecord = new ElasticArchiveRecord { ArchiveRecordId = archvieRecordId, PrimaryDataLink = "DifferentAip@DossierId" };
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
             var findResult = new FindArchiveRecordResponse
             {
                 ArchiveRecordId = archvieRecordId,
-                ElasticArchiveRecord = new ElasticArchiveRecord { ArchiveRecordId = archvieRecordId, PrimaryDataLink = "DifferentAip@DossierId" }
+                ElasticArchiveRecord = elasticRecord
             };
             var response = new Mock<Response<FindArchiveRecordResponse>>();
             response.Setup(r => r.Message).Returns(findResult);
 
+
+            var responseConvert = new Mock<Response<ConvertArchiveRecordResponse>>();
+            var convertResult = new ConvertArchiveRecordResponse
+            {
+                ElasticArchiveRecord = elasticRecord
+            };
+            responseConvert.Setup(r => r.Message).Returns(convertResult);
+
             findArchiveRecordClient.Setup(e => e.GetResponse<FindArchiveRecordResponse>(It.IsAny<FindArchiveRecordRequest>(), It.IsAny<CancellationToken>(), It.IsAny<RequestTimeout>()))
                 .Returns(Task.FromResult(response.Object));
 
+            convertArchiveRecordClient.Setup(e => e.GetResponse<ConvertArchiveRecordResponse>(It.IsAny<ConvertArchiveRecordRequest>(), It.IsAny<CancellationToken>(), It.IsAny<RequestTimeout>()))
+                .Returns(Task.FromResult(responseConvert.Object));
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -287,7 +298,7 @@ namespace CMI.Manager.Harvest.Tests
                 .Returns(Task.FromResult(response.Object));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -354,7 +365,7 @@ namespace CMI.Manager.Harvest.Tests
                 .Returns(Task.FromResult(response.Object));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -402,7 +413,7 @@ namespace CMI.Manager.Harvest.Tests
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
 
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -455,7 +466,7 @@ namespace CMI.Manager.Harvest.Tests
 
             // Act
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -518,7 +529,7 @@ namespace CMI.Manager.Harvest.Tests
 
             var harness = new InMemoryTestHarness();
             var consumer = harness.Consumer(() =>
-                new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+                new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
@@ -563,7 +574,7 @@ namespace CMI.Manager.Harvest.Tests
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(() => Task.FromResult<ArchiveRecord>(null));
             harvestManager.Setup(e => e.UpdateMutationStatus(It.IsAny<MutationStatusInfo>())).Verifiable();
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             var response = new Mock<Response<FindArchiveRecordResponse>>();
             response.Setup(r => r.Message).Returns(new FindArchiveRecordResponse
@@ -614,7 +625,7 @@ namespace CMI.Manager.Harvest.Tests
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(() => Task.FromResult(archiveRecord));
             harvestManager.Setup(e => e.UpdateMutationStatus(It.IsAny<MutationStatusInfo>())).Verifiable();
             var harness = new InMemoryTestHarness();
-            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+            var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             var response = new Mock<Response<FindArchiveRecordResponse>>();
             response.Setup(r => r.Message).Returns(new FindArchiveRecordResponse
@@ -666,7 +677,7 @@ namespace CMI.Manager.Harvest.Tests
 
             var harness = new InMemoryTestHarness();
             var consumer = harness.Consumer(() =>
-                new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, cachedHarvesterSetting.Object));
+                new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));
 
             await harness.Start();
             try
