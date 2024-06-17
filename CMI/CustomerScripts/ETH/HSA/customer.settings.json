@@ -52,13 +52,13 @@
       },
       {
         "type": "Text",
-        "key": "Contains",
+        "key": "contains",
         "displayName": "Form und Inhalt",
         "translatorType": "StandardTranslator"
       },
       {
         "type": "Text",
-        "key": "Sprache",
+        "key": "Sprachen",
         "displayName": "Sprachen",
         "translatorType": "DetailDataTranslator"
       },
