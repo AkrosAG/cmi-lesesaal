@@ -52,7 +52,7 @@
       },
       {
         "type": "Text",
-        "key": "Contains",
+        "key": "contains",
         "displayName": "Form und Inhalt",
         "translatorType": "StandardTranslator"
       },
