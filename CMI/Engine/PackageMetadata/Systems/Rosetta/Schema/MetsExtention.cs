@@ -23,7 +23,21 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
 
         public static DivType GetTableOfContent(this Mets mets)
         {
-            return mets.GetMasterNode().Div.First();
+            DivType divType = null;
+            var structMapTypes = mets.StructMap;
+            Predicate<StructMapType> modifiedMaster = (StructMapType m) =>
+            {
+                return Regex.IsMatch(m.Div.LABEL.ToUpper(), "MODIFIED[\\s-_]+MASTER");
+            };
+            Predicate<StructMapType> preservationMaster = (StructMapType m) =>
+            {
+                return Regex.IsMatch(m.Div.LABEL.ToUpper(), "PRESERVATION[\\s-_]+MASTER");
+            };
+            if (structMapTypes != null && structMapTypes.Any())
+            {
+                divType = structMapTypes.Find(modifiedMaster)?.Div ?? structMapTypes.Find(preservationMaster)?.Div;
+            }
+            return divType;
         }
 
         public static DivType GetMasterNode(this Mets mets)
@@ -68,11 +82,54 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta.Schema
             return master ?? throw new KeyNotFoundException("Master node could not be found");
         }
 
+
+
+        public static StructMapType GetFolderNode(List<StructMapType> structMapTypes)
+        {
+            // --------------------------------------------------------------------------------------------------
+            // Für jede Repräsentation gibt es eine Struct Map. 
+            // Repräsentationen können z.B. sein
+            // - Preservation Master
+            // - Modified Master
+            // - Derivative Copy
+            // Und für jede Repräsentation kann es eine Logische und eine Physische Struct Map geben.
+            // Uns interessiert die Struktur und Dateien des Modified Masters. Ist dieser nicht vorhanden,
+            // dann verwenden wir den Preservation Master, der immer vorhanden ist.
+            // Ebenso suchen wir zuerst nach den "LOGICAL" StructMaps und erst danach nach den "LOGICAL"
+            // --------------------------------------------------------------------------------------------------
+            Predicate<StructMapType> modifiedMaster = (StructMapType m) =>
+            {
+                return Regex.IsMatch(m.Div.LABEL.ToUpper(), "MODIFIED[\\s-_]+MASTER");
+            };
+            Predicate<StructMapType> preservationMaster = (StructMapType m) =>
+            {
+                return Regex.IsMatch(m.Div.LABEL.ToUpper(), "PRESERVATION[\\s-_]+MASTER");
+            };
+            // Gibt es logische Struct Maps?
+            var entryStruct = structMapTypes.Where(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+
+            // Gibt es keine logische Struct Maps (müsste es neu immer geben), kehren wir zur physischen zurück
+            StructMapType folderNode = null;
+            if (entryStruct != null && entryStruct.Any())
+            {
+               // Beim Folder bisher kam bisher nie vor
+                folderNode = entryStruct.Find(modifiedMaster) ?? entryStruct.Find(preservationMaster);
+            }
+            else
+            {
+                entryStruct = structMapTypes.Where(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase)).ToList();
+                // Beim Folder 'PHYSICAL' den PRESERVATION Master 
+                folderNode = entryStruct.Find(modifiedMaster) ?? entryStruct.Find(preservationMaster);
+            }
+
+            return folderNode;
+        }
+
         public static string GetImportFolderName(this Mets mets)
         {
+           var structMap = GetFolderNode(mets.StructMap);
+            
             var pattern = @"^[^-]+";
-            var structMap = mets.StructMap.FirstOrDefault(s => s.TYPE.Equals("LOGICAL", StringComparison.InvariantCultureIgnoreCase)) ??
-                            mets.StructMap.FirstOrDefault(s => s.TYPE.Equals("PHYSICAL", StringComparison.InvariantCultureIgnoreCase));
             
             var regex = new Regex(pattern);
             var match = regex.Match(structMap.ID);
