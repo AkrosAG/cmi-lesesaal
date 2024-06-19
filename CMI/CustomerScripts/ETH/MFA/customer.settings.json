@@ -22,18 +22,6 @@
       },
       {
         "type": "Text",
-        "key": "allMetaData",
-        "displayName": "Metadaten",
-        "translatorType": "AllMetaDataTranslator"
-      },
-      {
-        "type": "Text",
-        "key": "allPrimaryData",
-        "displayName": "Volltext (Primärdaten)",
-        "translatorType": "AllPrimaryDataTranslator"
-      },
-      {
-        "type": "Text",
         "key": "referenceCode",
         "displayName": "Signatur",
         "translatorType": "KeywordTranslator"
