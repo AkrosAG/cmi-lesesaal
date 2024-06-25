@@ -52,7 +52,7 @@
       },
       {
         "type": "Text",
-        "key": "Sprachen",
+        "key": "Sprache",
         "displayName": "Sprachen",
         "translatorType": "DetailDataTranslator"
       },

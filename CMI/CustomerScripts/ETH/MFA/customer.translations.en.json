@@ -132,7 +132,11 @@
       "Verwaltungssignatur": "Administrative File Number",
       "Archivalienart": "Type of Material",
       "Sprache": "Language of Material",
-      "Ueberlieferungsform": "Form of Item at Acquisition"
+      "Ueberlieferungsform": "Form of Item at Acquisition",
+      "Ortsregister": "Location register",
+      "Sachregister": "Subject index",
+      "Koerperschaftsregister": "Register of Corporate Bodies",
+      "Werkregister": "Register of works"
     },
     "sortFields": {
       "creationPeriod": {
