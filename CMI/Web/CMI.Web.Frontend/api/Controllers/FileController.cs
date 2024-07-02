@@ -377,11 +377,11 @@ namespace CMI.Web.Frontend.api.Controllers
 
             var access = GetUserAccessFunc(null);
             var ear = GetRecord(archiveRecordId, access);
-            var zeitraum = ear.CreationPeriod.Text;
-            var signatur = ear?.ReferenceCode ?? "unbekannt";
-            var titel = ear?.Title ?? "unbekannt";
+            var zeitraum = ear?.CreationPeriod.Text;
+            var signatur = string.IsNullOrWhiteSpace(ear?.ReferenceCode) ? "unbekannt" : ear.ReferenceCode;
+            var titel = string.IsNullOrWhiteSpace(ear?.Title) ? "unbekannt" : ear.Title;
             var schutzfrist = ear?.ProtectionEndDate?.Date;
-            var userId = access?.UserId ?? "Viewer";
+            var userId = string.IsNullOrWhiteSpace(access?.UserId) ? "Viewer" : access.UserId;
             var userTokens = access?.CombinedTokens == null ? string.Empty : string.Join(", ", access.CombinedTokens);
             downloadLogDataAccess.LogViewerClick(token, userId, userTokens,
                 signatur, titel, schutzfrist?.ToString("dd.MM.yyyy") ?? "unbekannt", zeitraum);
