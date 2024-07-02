@@ -89,13 +89,6 @@
     "zumBestellkorb": "Navigate to shopping cart with {0} items",
     "favoritesCount": "Favourites ({0})"
   },
-  "headerContent": {
-    "component": {
-      "aktiv": "Active",
-      "toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
-      "toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the Federal Archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
-    }
-  },
   "metadata": {
     "boolean": {
       "ja": "Yes",

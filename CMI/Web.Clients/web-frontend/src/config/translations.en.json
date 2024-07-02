@@ -534,6 +534,13 @@
     "second": "Second",
     "seconds": "Seconds"
   },
+	"headerContent": {
+		"component": {
+			"aktiv": "Active",
+			"toolTippLoggedIn": "For more information about your user status consult the page “Registration & identification” and the menu “Information”.",
+			"toolTippLoggedInAsRegisteredUser": "As a registered user you have access to publicly accessible data in the archives. If you wish to consult data within a closure period you must identify yourself first (see \"My user account\")."
+		}
+	},
   "hitbar": {
     "export": "Download XLS file",
     "copyPermalink": "Copy permalink to this search to the clipboard",

@@ -90,13 +90,6 @@
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
     "favoritesCount": "Favoriten ({0})"
   },
-  "headerContent": {
-    "component": {
-      "aktiv": "Aktiv",
-      "toolTippLoggedIn": "Weitere Informationen zu Ihrem Benutzerstatus finden Sie auf der Seite «Registrieren & Identifizieren» und unter dem Menü «Informationen»",
-      "toolTippLoggedInAsRegisteredUser": "Als registrierte/r Benutzer/in haben Sie Zugriff auf die öffentlich zugänglichen Daten im Bundesarchiv. Wenn Sie Daten innerhalb einer Schutzfrist einsehen wollen, müssen Sie sich vorgängig identifizieren (siehe \"Mein Benutzerkonto\")."
-    }
-  },
   "metadata": {
     "boolean": {
       "ja": "Ja",
