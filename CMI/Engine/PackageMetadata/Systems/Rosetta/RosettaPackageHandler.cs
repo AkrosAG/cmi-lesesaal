@@ -186,6 +186,12 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
                 }
             };
 
+            if (archiveRecord?.CreationPeriod != null)
+            {
+                dossier.zusatzDaten.Add(
+                    new() { Name = "Entstehungszeitraum Anzeigetext", Value = archiveRecord.CreationPeriod.Text });
+            }
+
             return dossier;
         }
 
