@@ -1,6 +1,7 @@
 ﻿using System;
 using CMI.Access.Repository.Systems.Rosetta;
 using CMI.Contract.Monitoring;
+using CMI.Manager.Repository.Properties;
 
 namespace CMI.Manager.Repository.Systems.Rosetta
 {
@@ -15,7 +16,14 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
         public RepositoryCheckResponse GetRepositoryResponse()
         {
-            throw new NotImplementedException();
+           var result = rosettaDataAccess.PingRosetta().Result;
+           var response = new RepositoryCheckResponse
+           {
+               Ok = result.Key,
+               RepositoryName = result.Value,
+               ProductName = Settings.Default.RepositoryManager
+           };
+           return response;
         }
     }
 }

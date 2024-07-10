@@ -2,6 +2,7 @@
 using CMI.Access.Repository.Systems.Rosetta.Helper;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -55,6 +56,11 @@ public class RosettaDataAccess : IRosettaDataAccess
         }
 
         return success;
+    }
+
+    public async Task<KeyValuePair<bool, string>> PingRosetta()
+    {
+        return await rosettaConnector.PingRosetta();
     }
 
     private void CopyNecessaryExtractIntellectualEntityFiles(string defaultTempStoragePath, string entityId)
