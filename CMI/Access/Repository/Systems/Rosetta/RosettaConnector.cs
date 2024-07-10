@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -86,6 +87,24 @@ namespace CMI.Access.Repository.Systems.Rosetta
                
                 await Task.Delay(maxCommandTimeout, stopToken);
             }
+        }
+
+        public async Task<KeyValuePair<bool, string>> PingRosetta()
+        {
+            var httpClient = GetHttpClient();
+
+            var hostUrl  = $"{Settings.Default.RepositoryServiceUrl}/rest/v0/conf/general";
+               
+            var request = new HttpRequestMessage
+            {
+                RequestUri = new Uri(hostUrl),
+                Method = HttpMethod.Get
+            };
+            var httpResult = await httpClient.SendAsync(request);
+            var repositoryName = Settings.Default.RepositoryServiceUrl.Contains(".")
+                ? Settings.Default.RepositoryServiceUrl.Split('.')[1]
+                : Settings.Default.RepositoryServiceUrl;
+            return new KeyValuePair<bool, string>(httpResult.IsSuccessStatusCode, repositoryName);
         }
 
         private async Task<string> PostAsync(string url, HttpContent content)

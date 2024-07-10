@@ -147,7 +147,7 @@ namespace CMI.Access.Harvest.CMIAIS
         
         public Task<string> GetDbVersion()
         {
-            throw new NotImplementedException();
+            return Task.FromResult($"Letzte Seq Nummer: {ReadLastSequenceNr()}");
         }
 
         public Task<HarvestLogInfoResult> GetHarvestLogInfo(HarvestLogInfoRequest request)
