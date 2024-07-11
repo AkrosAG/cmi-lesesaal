@@ -147,7 +147,15 @@ namespace CMI.Access.Harvest.CMIAIS
         
         public Task<string> GetDbVersion()
         {
-            return Task.FromResult($"Letzte Seq Nummer: {ReadLastSequenceNr()}");
+            var response = cdwsRequestClient.GetAsync($"{indexName}/getChanges?seq=0&m={1}").Result;
+           
+          
+            if (response.IsSuccessStatusCode)
+            {
+                return Task.FromResult($"{response.Version} IndexName: {indexName}, letzte Seq Nummer: {ReadLastSequenceNr()}");
+            }
+
+            throw new InvalidOperationException($"AIS not work. StatusCode: {response.StatusCode}");
         }
 
         public Task<HarvestLogInfoResult> GetHarvestLogInfo(HarvestLogInfoRequest request)
