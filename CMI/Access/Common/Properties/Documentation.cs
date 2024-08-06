@@ -8,6 +8,7 @@ namespace CMI.Access.Common.Properties
         {
             AddDescription<Settings>(x => x.ElasticSearchUrl, "URL zum Elastic Search");
             AddDescription<Settings>(x => x.ElasticIndexName, "Name Elastic Index");
+            AddDescription<Settings>(x => x.LogstashName, "Name Logstash Name");
         }
     }
 }

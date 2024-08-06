@@ -19,11 +19,11 @@ namespace CMI.Access.Common
         private readonly string indexName;
 
 
-        public LogDataAccess() : this(Settings.Default.ElasticSearchUrl)
+        public LogDataAccess() : this(Settings.Default.ElasticSearchUrl, Settings.Default.LogstashName)
         {
         }
 
-        public LogDataAccess(string elasticUri, string indexName = "logstash-*")
+        public LogDataAccess(string elasticUri, string indexName)
         {
             var pool = new SingleNodeConnectionPool(new Uri(elasticUri));
             var settings = new ConnectionSettings(pool, (serializer, values) => new JsonNetSerializer(
