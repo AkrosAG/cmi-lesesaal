@@ -8,5 +8,8 @@
     <Setting Name="ElasticIndexName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">@@CMI.Web.Frontend.AppData_Template.ConfigJson.ElasticIndex@@</Value>
     </Setting>
+    <Setting Name="LogstashName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">@@CMI.Web.Frontend.AppData_Template.ConfigJson.LogstashName@@</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
