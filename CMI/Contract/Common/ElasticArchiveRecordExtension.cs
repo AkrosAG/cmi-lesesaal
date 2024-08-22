@@ -19,7 +19,15 @@ namespace CMI.Contract.Common
 
         public static string GetAuszuhebendeArchiveRecordId(this ElasticArchiveRecord elasticArchiveRecord)
         {
-            return elasticArchiveRecord.ArchiveplanContext.FirstOrDefault(apc => apc.Level == "Dossier")?.ArchiveRecordId;
+            // Original standard way Find dossier
+            // return elasticArchiveRecord.ArchiveplanContext.FirstOrDefault(apc => apc.Level == "Dossier")?.ArchiveRecordId;
+
+            // not all 'Einzelstücke' have a dossier
+            // var dossierId = elasticArchiveRecord.ArchiveplanContext.FirstOrDefault(apc => apc.Level == "Dossier")?.ArchiveRecordId;
+            // return string.IsNullOrEmpty(dossierId) ? elasticArchiveRecord.ArchiveRecordId : dossierId;
+
+            // ETH wish
+            return elasticArchiveRecord.ArchiveRecordId;
         }
         
         /// <summary>

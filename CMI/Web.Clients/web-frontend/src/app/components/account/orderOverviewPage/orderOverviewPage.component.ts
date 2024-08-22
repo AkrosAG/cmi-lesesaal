@@ -209,7 +209,7 @@ export class OrderOverviewPage implements OnInit {
 	}
 
 	public exportExcel() {
-		this.flexGrid.exportToExcel('orders_recherche.bar.ch.xlsx').subscribe(() => {
+		this.flexGrid.exportToExcel('orders_recherche.eth.xlsx').subscribe(() => {
 			// nothing
 		}, (err) => {
 			this._ui.showError(err);
