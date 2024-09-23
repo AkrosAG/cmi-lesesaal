@@ -46,7 +46,7 @@ jobs:
         npm run build
 
     - name: Save Dist
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v2
       with:
         name: web-core
         path: ${{ env.WORKING_DIR }}/dist/@cmi/lesesaal-web-core/**
@@ -79,7 +79,7 @@ jobs:
         npm i
 
     - name: Restore Core from artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v2
       with:
         path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
@@ -121,7 +121,7 @@ jobs:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
     - name: Restore Core from artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v2
       with:
         path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
