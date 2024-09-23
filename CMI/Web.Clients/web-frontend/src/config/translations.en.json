@@ -169,7 +169,7 @@
   },
   "behoerdenZugriff": {
     "detail": {
-			"accesstoken": "Search for a user"
+      "accesstoken": "On behalf of"
     }
   },
   "bestellkorb": {
