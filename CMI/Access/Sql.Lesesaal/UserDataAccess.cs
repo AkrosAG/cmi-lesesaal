@@ -944,7 +944,7 @@ FROM ApplicationUser ";
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p1", Value = access.UserId, SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p2", Value = DateTime.Now, SqlDbType = SqlDbType.DateTime});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p3", Value = reasonId, SqlDbType = SqlDbType.Int});
-                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p4", Value = ToDb(record.ArchiveRecordId), SqlDbType = SqlDbType.Int});
+                    cmd.Parameters.Add(new SqlParameter {ParameterName = "p4", Value = ToDb(record.ArchiveRecordId), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p5", Value = ToDb(record.ReferenceCode), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p6", Value = ToDb(record.Title), SqlDbType = SqlDbType.NVarChar});
                     cmd.Parameters.Add(new SqlParameter {ParameterName = "p7", Value = ToDb("record.Aktenzeichen()"), SqlDbType = SqlDbType.NVarChar});

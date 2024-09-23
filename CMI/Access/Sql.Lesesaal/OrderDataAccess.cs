@@ -1536,7 +1536,7 @@ namespace CMI.Access.Sql.Lesesaal
                         {
                             ParameterName = "pVeId",
                             Value = veId,
-                            SqlDbType = SqlDbType.Int
+                            SqlDbType = SqlDbType.NVarChar
                         }
                     );
 
