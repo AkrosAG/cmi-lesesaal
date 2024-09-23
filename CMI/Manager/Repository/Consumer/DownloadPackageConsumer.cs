@@ -47,8 +47,7 @@ namespace CMI.Manager.Repository.Consumer
                 var success = result.Success && result.Valid;
                 var repositoryPackage = result.PackageDetails;
                 var errorMessage = result.ErrorMessage;
-
-               
+                
                 // Do we have a valid package?
                 if (success)
                 {
@@ -66,8 +65,7 @@ namespace CMI.Manager.Repository.Consumer
                         PrimaerdatenAuftragId = context.Message.PrimaerdatenAuftragId,
                         RepositoryPackage = repositoryPackage
                     });
-
-                   
+                    
                     // also publish the event, that the package is downloaded
                     await context.Publish<IPackageDownloaded>(
                         new
