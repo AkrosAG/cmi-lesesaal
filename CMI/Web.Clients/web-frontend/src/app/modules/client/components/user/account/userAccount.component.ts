@@ -223,7 +223,7 @@ export class UserAccountComponent implements OnInit {
 
 	get hasEmailInfoText(): boolean {
 		const text = this._txt.get('account.contact.changeLoginData', null);
-		if (text.trim()) {
+		if (text && text.trim()) {
 			return true;
 		}
 		return false;
@@ -231,7 +231,7 @@ export class UserAccountComponent implements OnInit {
 
 	get hasEmailInfoLink(): boolean {
 		const text = this._txt.get('account.contact.changeLoginDataLink', null);
-		if (text.trim()) {
+		if (text && text.trim()) {
 			return true;
 		}
 		return false;
