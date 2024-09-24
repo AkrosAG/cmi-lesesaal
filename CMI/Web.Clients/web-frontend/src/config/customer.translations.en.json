@@ -470,5 +470,11 @@
 		"accessibility": "Accessibility under ArchA",
 		"fileName": "search-result",
 		"favourites": "favourites"
+	},
+	"account": {
+		"contact": {
+			"changeLoginData": " ",
+			"changeLoginDataLink":  " "
+		}
 	}
 }
