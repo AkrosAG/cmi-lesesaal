@@ -88,6 +88,9 @@ describe('UserAccount', () => {
 				return text;
 			},
 			get(key: string, defaultValue?: string, ...args): string {
+				if (key === 'account.contact.changeLoginData') {
+					return 'Mobiltelefon-Nummer und E-Mail-Adresse dienen zur Kontaktaufnahme.';
+				}
 				return defaultValue;
 			},
 			get supportedLanguages(): Language[] {
