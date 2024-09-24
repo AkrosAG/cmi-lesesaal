@@ -54,10 +54,7 @@ export class TranslationService {
 	}
 
 	private _setup(forced = false): void {
-		console.log('we init setup', forced);
-
 		if (!forced && !_util.isEmpty(this._texts) && this._language === this._context.language) {
-			console.log('we return here');
 			return;
 		}
 
@@ -68,17 +65,10 @@ export class TranslationService {
 		}
 		let selected: Translations = this._preloadService.translationsByLanguage[language];
 		let selected2: Translations = this._preloadService.translationsCustomerByLanguage[language];
-		console.log('we are in setup', selected, selected.translations);
 		this._language = language;
 
-		const trans = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
-		const transCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
-
-		if (transCustomer) {
-			this._textsCustomer = transCustomer;
-		}
-
-		this._texts = trans;
+		this._texts = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
+		this._textsCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
 	}
 
 	public update(): void {
@@ -144,7 +134,6 @@ export class TranslationService {
 		let t = this._findText(key);
 
 		if (!t) {
-			console.log(t, defaultValue, key);
 			t = defaultValue || key;
 			if (this._showMissingInfo && (this._language !== this._context.defaultLanguage)) {
 				t = this.getMissingInfo(this._context.language, t);
