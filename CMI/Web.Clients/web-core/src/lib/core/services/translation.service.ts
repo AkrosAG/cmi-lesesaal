@@ -10,6 +10,7 @@ export class TranslationService {
 
 	private _language: string;
 	private _texts: { [key: string]: any };
+	private _textsCustomer: { [key: string]: any };
 
 	private _commonKey: string = '_';
 	private _showMissingInfo: boolean = false;
@@ -20,7 +21,7 @@ export class TranslationService {
 		supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
 		supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
 		this._supportedLanguages = supported;
-		
+
 		this._preloadService.translationsLoaded.subscribe(translations => {
 			if (translations && translations.language === this._language) {
 				this._setup(true);
@@ -62,18 +63,12 @@ export class TranslationService {
 		if (!supported) {
 			language = this._context.defaultLanguage;
 		}
-
 		let selected: Translations = this._preloadService.translationsByLanguage[language];
 		let selected2: Translations = this._preloadService.translationsCustomerByLanguage[language];
 		this._language = language;
-		const trans = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
-		const transCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
 
-		if (transCustomer) {
-			this._texts = _util.mergeKeys(trans, transCustomer);
-		} else {
-			this._texts = trans;
-		}
+		this._texts = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
+		this._textsCustomer = selected2 && selected2.translations ? _util.cloneWithLowerCasedKeys(selected2.translations) :  undefined;
 	}
 
 	public update(): void {
@@ -81,7 +76,23 @@ export class TranslationService {
 	}
 
 	private _findText(key: string): any {
-		let ts = this._texts,
+		if (this._textsCustomer) {
+			const customText = this._findTextInternal(key, this._textsCustomer);
+			if (customText) {
+				return customText;
+			}
+		}
+
+		const text = this._findTextInternal(key, this._texts);
+		if (!text && this._isLocalhost) {
+			console.warn('missing translation: didnt find value for key ', key, this._texts);
+		}
+
+		return text;
+	}
+
+	private _findTextInternal(key: string, texts: { [key: string]: any }): any {
+		let ts = texts,
 			t = null,
 			ks = [],
 			k = '',
@@ -112,9 +123,6 @@ export class TranslationService {
 			}
 		}
 
-		if (!t && this._isLocalhost) {
-			console.warn('missing translation: didnt find value for key ', key);
-		}
 		return t;
 	}
 
@@ -126,7 +134,6 @@ export class TranslationService {
 		let t = this._findText(key);
 
 		if (!t) {
-
 			t = defaultValue || key;
 			if (this._showMissingInfo && (this._language !== this._context.defaultLanguage)) {
 				t = this.getMissingInfo(this._context.language, t);

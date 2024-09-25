@@ -467,5 +467,11 @@
     "accessibility": "Benutzbarkeit",
     "fileName": "suchresultat",
     "favourites": "favoriten"
+  },
+  "account": {
+    "contact": {
+      "changeLoginData": " ",
+      "changeLoginDataLink": " "
+    }
   }
 }

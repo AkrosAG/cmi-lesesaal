@@ -221,6 +221,22 @@ export class UserAccountComponent implements OnInit {
 		return false;
 	}
 
+	get hasEmailInfoText(): boolean {
+		const text = this._txt.get('account.contact.changeLoginData', null);
+		if (text && text.trim()) {
+			return true;
+		}
+		return false;
+	}
+
+	get hasEmailInfoLink(): boolean {
+		const text = this._txt.get('account.contact.changeLoginDataLink', null);
+		if (text && text.trim()) {
+			return true;
+		}
+		return false;
+	}
+
 	private _loadCountries(language: string) {
 		let countries = this._countriesService.getCountries(language);
 		this._languageDependantCountries = this._countriesService.sortCountriesByName(countries);
