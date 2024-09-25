@@ -23,10 +23,10 @@
 								   value="{{getLanguageDependantCountryNameFromUserSetting(row)}}">
 							<input *ngIf="row.isLanguage" readonly class="form-control"
 								   value="{{getLanguageFromUserSetting(row)}}">
-							<span *ngIf="row.isEmail && !row.isReadOnly" class="help-block email-hint">
+							<span *ngIf="row.isEmail && !row.isReadOnly && hasEmailInfoText"  class="help-block email-hint">
 								{{'Mobiltelefon-Nummer und E-Mail-Adresse dienen zur Kontaktaufnahme. Falls Sie Ihre Daten für das Login ändern möchten, klicken Sie bitte hier:' |
 								translate: 'account.contact.changeLoginData'}}
-								<a [href]="eIAMLink">{{'Logindaten editieren.' | translate: 'account.contact.changeLoginDataLink'}}</a>
+								<a *ngIf="hasEmailInfoLink" [href]="eIAMLink">{{'Logindaten editieren.' | translate: 'account.contact.changeLoginDataLink'}}</a>
 							</span>
                         </span>
 						<span *ngIf="(!row.isReadOnly) && allowEditingUserSettings">
@@ -41,10 +41,10 @@
                                 <span *ngIf="row.isInvalid && saveClicked" class="help-block" role="alert">
                                     {{row.errorMessage }}
                                 </span>
-								<span *ngIf="row.isEmail && !row.isReadOnly" class="help-block email-hint">
+								<span *ngIf="row.isEmail && !row.isReadOnly && hasEmailInfoText" class="help-block email-hint">
 									{{'Mobiltelefon-Nummer und E-Mail-Adresse dienen zur Kontaktaufnahme. Falls Sie Ihre Daten für das Login ändern möchten, klicken Sie bitte hier:' |
 									translate: 'account.contact.changeLoginData'}}
-									<a [href]="eIAMLink">{{'Logindaten editieren.' | translate: 'account.contact.changeLoginDataLink'}}</a>
+									<a *ngIf="hasEmailInfoLink" [href]="eIAMLink">{{'Logindaten editieren.' | translate: 'account.contact.changeLoginDataLink'}}</a>
 								</span>
                             </span>
 
