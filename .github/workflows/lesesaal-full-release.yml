@@ -81,7 +81,7 @@ jobs:
         npm i
 
     - name: Restore Core from artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
@@ -128,7 +128,7 @@ jobs:
         npm i
 
     - name: Restore Core from artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         path: ${{ env.WORKING_DIR}}/node_modules/@cmi/lesesaal-web-core
         name: web-core
@@ -196,13 +196,13 @@ jobs:
           retention-days: 10
         
       - name: Restore Frontend from artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: ./frontendartefacts/client
           name: frontend-client
                 
       - name: Restore Management from artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: ./managementartefacts/client
           name: management-client
@@ -246,7 +246,7 @@ jobs:
           Compress-Archive -Path ${{ github.workspace }}/CMI/CustomerScripts/ETH/* -DestinationPath ${{ github.workspace }}\CustomerScripts.zip
 
       - name: Restore Build artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: ./complete
           name: lesesaal.complete.${{ needs.build-services.outputs.version }}
