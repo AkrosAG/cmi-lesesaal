@@ -40,6 +40,7 @@ public class RosettaDataAccess : IRosettaDataAccess
                 try
                 {
                     CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
+                    Log.Information("Intellectual Entity {entityId} exported successfully", entityId);
                 }
                 catch (Exception e)
                 {
@@ -47,8 +48,6 @@ public class RosettaDataAccess : IRosettaDataAccess
                     Log.Error(e, "An error occurred when copying the Intellectual Entity {entityId}", entityId);
                 }
             }
-
-            Log.Information("Intellectual Entity {entityId} exported successfully", entityId);
         }
         else
         {
