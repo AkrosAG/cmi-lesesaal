@@ -39,6 +39,21 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("uniqueID", "4043690@ethz.ch"),
                     }
                 },
+                {
+                    "Rafael",
+                    new ShibbolethAttributeValueCollection
+                    {
+                        new ShibbolethAttributeValue("givenName", "Rafael"),
+                        new ShibbolethAttributeValue("persistent-id", "https://aai-logon.ethz.ch/idp/shibboleth!https://recherche.library.ethz.ch/shibboleth!XpsCjWeL4TVehzLeqTOo/vhfluA="),
+                        new ShibbolethAttributeValue("affiliation", "student;member"),
+                        new ShibbolethAttributeValue("mail", "rafael.kaiser@uzh.ch"),
+                        new ShibbolethAttributeValue("homeOrganization", "uzh.ch"),
+                        new ShibbolethAttributeValue("homeOrganizationType", "university"),
+                        new ShibbolethAttributeValue("scoped-affiliation", "student@uzh.ch"),
+                        new ShibbolethAttributeValue("surname", "Kaiser"),
+                        new ShibbolethAttributeValue("uniqueID", "553130393936323202@uzh.ch"),
+                    }
+                },
 
                 {
                     "Interner Benutzer",
@@ -73,7 +88,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
             };
 
             // Hier anpassen, welcher Benutzer zurückgeliefert werden soll
-            return retVal["Ö2 Benutzer"];
+            return retVal["Rafael"];
         }
     }
 }
