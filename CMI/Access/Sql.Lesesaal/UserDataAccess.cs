@@ -277,7 +277,7 @@ FROM ApplicationUser ";
                     cmd.AddParameter("PhoneNumber", SqlDbType.NVarChar, user.PhoneNumber);
                     cmd.AddParameter("Claims", SqlDbType.NVarChar, JsonConvert.SerializeObject(user.Claims, Formatting.Indented));
                     cmd.AddParameter("IsInternalUser", SqlDbType.Bit, user.IsInternalUser);
-                    cmd.AddParameter("RolePublicClient", SqlDbType.NVarChar, user.IsInternalUser ? AccessRoles.RoleEMA : AccessRoles.RoleOe2);
+                    cmd.AddParameter("RolePublicClient", SqlDbType.NVarChar, string.IsNullOrEmpty(user.RolePublicClient) ? user.IsInternalUser ? AccessRoles.RoleEMA : AccessRoles.RoleOe2 : user.RolePublicClient);
                     cmd.AddParameter("EiamRoles", SqlDbType.NVarChar, user.EiamRoles);
                     cmd.AddParameter("MobileNumber", SqlDbType.NVarChar, user.MobileNumber);
                     cmd.AddParameter("Language", SqlDbType.NVarChar, string.IsNullOrEmpty(user.Language) ? "de" : user.Language);

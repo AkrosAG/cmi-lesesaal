@@ -86,6 +86,7 @@ namespace CMI.Web.Frontend.api.Controllers
             user.UserExtId = ControllerHelper.GetFromClaim("/identity/claims/e-id/userExtId");
             user.Claims = new JObject {{"claims", JArray.FromObject(claims)}};
             user.EiamRoles = ControllerHelper.GetManagementRoleFromClaim();
+            user.RolePublicClient = ControllerHelper.GetInitialTokenFromClaims();
             user.IsInternalUser = ControllerHelper.IsInternalUser();
 
             if (user.IsInternalUser)

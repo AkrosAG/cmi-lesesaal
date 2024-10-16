@@ -9,28 +9,23 @@ $target = $target.ToUpper();
 $arr=@{}
 
 $arr["MFA"] = @{}
-$arr["MFA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\css";
-$arr["MFA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\MFA\Management\client\config";
-$arr["MFA"]["logo.svg"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\img";
-$arr["MFA"]["logo.png"] = "D:\localapps\LesesaalWeb\MFA\Management\client\assets\img";
+$arr["MFA"]["loading-site.css"] = "D:\localapps\MFA\LesesaalWeb\Management\client\assets\css";
+$arr["MFA"]["loading-texts.js"] = "D:\localapps\MFA\LesesaalWeb\Management\client\config";
+$arr["MFA"]["logo.svg"] = "D:\localapps\MFA\LesesaalWeb\Management\client\assets\img";
+$arr["MFA"]["logo.png"] = "D:\localapps\MFA\LesesaalWeb\Management\client\assets\img";
 
 $arr["HSA"] = @{}
-$arr["HSA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\HSA\Management\client\assets\css";
-$arr["HSA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\HSA\Management\client\config";
-$arr["HSA"]["logo.svg"] = "D:\localapps\LesesaalWeb\HSA\Management\client\assets\img";
-$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\HSA\Management\client\assets\img";
+$arr["HSA"]["loading-site.css"] = "D:\localapps\HSA\LesesaalWeb\Management\client\assets\css";
+$arr["HSA"]["loading-texts.js"] = "D:\localapps\HSA\LesesaalWeb\Management\client\config";
+$arr["HSA"]["logo.svg"] = "D:\localapps\HSA\LesesaalWeb\Management\client\assets\img";
+$arr["HSA"]["logo.png"] = "D:\localapps\HSA\LesesaalWeb\Management\client\assets\img";
 
 $arr["TMA"] = @{}
-$arr["TMA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\css";
-$arr["TMA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\TMA\Management\client\config";
-$arr["TMA"]["logo.svg"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\img";
-$arr["TMA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Management\client\assets\img";
+$arr["TMA"]["loading-site.css"] = "D:\localapps\TMA\LesesaalWeb\Management\client\assets\css";
+$arr["TMA"]["loading-texts.js"] = "D:\localapps\TMA\LesesaalWeb\Management\client\config";
+$arr["TMA"]["logo.svg"] = "D:\localapps\TMA\LesesaalWeb\Management\client\assets\img";
+$arr["TMA"]["logo.png"] = "D:\localapps\TMA\LesesaalWeb\Management\client\assets\img";
 
-$arr["DEV"] = @{}
-$arr["DEV"]["loading-site.css"] = "D:\localapps\LesesaalWeb\DEV\Management\client\assets\css";
-$arr["DEV"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\DEV\Management\client\config";
-$arr["DEV"]["logo.svg"] = "D:\localapps\LesesaalWeb\DEV\Management\client\assets\img";
-$arr["DEV"]["logo.png"] = "D:\localapps\LesesaalWeb\DEV\Management\client\assets\img";
 
 
 

@@ -48,6 +48,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 			shippingType: [null, Validators.required]
 		});
 
+
 		this.liefertypAmtText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeCommission', 'ins <strong>Amt</strong> bestellen (Lieferfrist: ein bis zwei Arbeitstage)');
 
 		this.liefertypDigitalText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeDigital',

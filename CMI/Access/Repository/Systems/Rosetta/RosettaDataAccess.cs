@@ -40,6 +40,7 @@ public class RosettaDataAccess : IRosettaDataAccess
                 try
                 {
                     CopyNecessaryExtractIntellectualEntityFiles(defaultTempStoragePath, entityId);
+                    Log.Information("Intellectual Entity {entityId} exported successfully", entityId);
                 }
                 catch (Exception e)
                 {
@@ -47,12 +48,10 @@ public class RosettaDataAccess : IRosettaDataAccess
                     Log.Error(e, "An error occurred when copying the Intellectual Entity {entityId}", entityId);
                 }
             }
-
-            Log.Information("Intellectual Entity {entityId} exported successfully", entityId);
         }
         else
         {
-            Log.Error( "Rosetta export failed with Intellectual Entity {entityId}", entityId);
+            Log.Error("Rosetta export failed with Intellectual Entity {entityId}", entityId);
         }
 
         return success;
@@ -80,7 +79,7 @@ public class RosettaDataAccess : IRosettaDataAccess
         else
         {
             Log.Error("The exported directory does not exist occurred when copying the Intellectual Entity {entityId} from {repositoryDirectory}", entityId, repositoryDirectory);
-            throw new ArgumentException("The exported directory does not exist");
+            throw new ArgumentException($"The exported directory does not exist. Intellectual Entity: {entityId}");
         }
 
         var files =  Directory.GetFiles(directoryEntity, "*.tar", SearchOption.AllDirectories);
