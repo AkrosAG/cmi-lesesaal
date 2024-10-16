@@ -9,19 +9,19 @@ $target = $target.ToUpper();
 $arr=@{}
 
 $arr["HSA"] = @{}
-$arr["HSA"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config";
-$arr["HSA"]["customer.translations.de.json"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config";
-$arr["HSA"]["customer.translations.en.json"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config";
+$arr["HSA"]["customer.settings.json"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config";
+$arr["HSA"]["customer.translations.de.json"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config";
+$arr["HSA"]["customer.translations.en.json"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config";
 $arr["HSA"]["Facetten.json"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["HarvestCustomScript.cs"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["IndexCustomScript.cs"] = "D:\localdata\HSA\CustomScripts";
-$arr["HSA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\HSA\Frontend\client\config\css"
-$arr["HSA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\config\js";
-$arr["HSA"]["logo.svg"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
-$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
+$arr["HSA"]["loading-site.css"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config\css"
+$arr["HSA"]["loading-texts.js"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config\js";
+$arr["HSA"]["logo.svg"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\assets\img";
+$arr["HSA"]["logo.png"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\assets\img";
 $arr["HSA"]["templates.json"] = "D:\localdata\HSA\CustomScripts";
-$arr["HSA"]["custom.css"] = "D:\localapps\LesesaalWeb\HSA\Frontend\client\config\css";
-$arr["HSA"]["logo.png"] = "D:\localapps\LesesaalWeb\hsa\Frontend\client\assets\img";
+$arr["HSA"]["custom.css"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\config\css";
+$arr["HSA"]["logo.png"] = "D:\localapps\HSA\LesesaalWeb\Frontend\client\assets\img";
 $arr["HSA"]["templates.json"] = "D:\localdata\HSA\CustomScripts";
 $arr["HSA"]["gebrauchskopieCustomer.css"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\css";
 $arr["HSA"]["gebrauchskopie.xsl"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\Xslt";
@@ -29,48 +29,34 @@ $arr["HSA"]["en.js"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i
 $arr["HSA"]["de.js"] = "D:\localapps\LesesaalServices\HSA\Asset\Html\design\js\i18n";
 
 
-$arr["DEV"] = @{}
-$arr["DEV"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config";
-$arr["DEV"]["customer.translations.de.json"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config";
-$arr["DEV"]["customer.translations.en.json"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config";
-$arr["DEV"]["Facetten.json"] = "D:\localdata\dev\CustomScripts";
-$arr["DEV"]["HarvestCustomScript.cs"] = "D:\localdata\dev\CustomScripts";
-$arr["DEV"]["IndexCustomScript.cs"] = "D:\localdata\dev\CustomScripts";
-$arr["DEV"]["loading-site.css"] = "D:\localapps\LesesaalWeb\DEV\Frontend\client\config\css";
-$arr["DEV"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\config\js";
-$arr["DEV"]["logo.svg"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\assets\img";
-$arr["DEV"]["logo.png"] = "D:\localapps\LesesaalWeb\dev\Frontend\client\assets\img";
-$arr["DEV"]["templates.json"] = "D:\localdata\dev\CustomScripts";
-$arr["DEV"]["custom.css"] = "D:\localapps\LesesaalWeb\DEV\Frontend\client\config\css";
-
 $arr["TMA"] = @{}
-$arr["TMA"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config";
-$arr["TMA"]["customer.translations.de.json"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config";
-$arr["TMA"]["customer.translations.en.json"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config";
+$arr["TMA"]["customer.settings.json"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config";
+$arr["TMA"]["customer.translations.de.json"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config";
+$arr["TMA"]["customer.translations.en.json"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config";
 $arr["TMA"]["Facetten.json"] = "D:\localdata\TMA\CustomScripts";
 $arr["TMA"]["HarvestCustomScript.cs"] = "D:\localdata\TMA\CustomScripts";
 $arr["TMA"]["IndexCustomScript.cs"] = "D:\localdata\TMA\CustomScripts";
-$arr["TMA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\css";
-$arr["TMA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\js";
-$arr["TMA"]["logo.svg"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
-$arr["TMA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
+$arr["TMA"]["loading-site.css"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config\css";
+$arr["TMA"]["loading-texts.js"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config\js";
+$arr["TMA"]["logo.svg"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\assets\img";
+$arr["TMA"]["logo.png"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\assets\img";
 $arr["TMA"]["templates.json"] = "D:\localdata\TMA\CustomScripts";
-$arr["TMA"]["custom.css"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\config\css";
+$arr["TMA"]["custom.css"] = "D:\localapps\TMA\LesesaalWeb\Frontend\client\config\css";
 
 
 $arr["MFA"] = @{}
-$arr["MFA"]["customer.settings.json"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config";
-$arr["MFA"]["customer.translations.de.json"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config";
-$arr["MFA"]["customer.translations.en.json"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config";
+$arr["MFA"]["customer.settings.json"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config";
+$arr["MFA"]["customer.translations.de.json"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config";
+$arr["MFA"]["customer.translations.en.json"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config";
 $arr["MFA"]["Facetten.json"] = "D:\localdata\MFA\CustomScripts";
 $arr["MFA"]["HarvestCustomScript.cs"] = "D:\localdata\MFA\CustomScripts";
 $arr["MFA"]["IndexCustomScript.cs"] = "D:\localdata\MFA\CustomScripts";
-$arr["MFA"]["loading-site.css"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\css";
-$arr["MFA"]["loading-texts.js"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\js";
-$arr["MFA"]["logo.svg"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\assets\img";
-$arr["MFA"]["logo.png"] = "D:\localapps\LesesaalWeb\TMA\Frontend\client\assets\img";
+$arr["MFA"]["loading-site.css"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config\css";
+$arr["MFA"]["loading-texts.js"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config\js";
+$arr["MFA"]["logo.svg"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\assets\img";
+$arr["MFA"]["logo.png"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\assets\img";
 $arr["MFA"]["templates.json"] = "D:\localdata\MFA\CustomScripts";
-$arr["MFA"]["custom.css"] = "D:\localapps\LesesaalWeb\MFA\Frontend\client\config\css";
+$arr["MFA"]["custom.css"] = "D:\localapps\MFA\LesesaalWeb\Frontend\client\config\css";
 
 ## Source
 switch($target) {
