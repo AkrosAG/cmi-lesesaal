@@ -113,6 +113,7 @@ namespace CMI.Contract.Common.Compiler
             var publikation = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "publikation");
             if (string.IsNullOrEmpty(publikation))
             {
+                // Im Harvest-Manager werden VE ohne MetadataAccessTokens frühzeitig abgebrochen
                 archiveRecord.Security.MetadataAccessToken = new List<string>();
                 return;
             }
@@ -120,8 +121,8 @@ namespace CMI.Contract.Common.Compiler
             switch (publikation.ToLower())
             {
                 // Regel 1
-                case "keine publikation":
                 case "nicht definiert":
+                    // Im Harvest-Manager werden VE ohne MetadataAccessTokens frühzeitig abgebrochen
                     archiveRecord.Security.MetadataAccessToken = new List<string>();
                     break;
                 
