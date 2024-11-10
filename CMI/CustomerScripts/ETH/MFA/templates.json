@@ -241,7 +241,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -802,7 +802,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -1366,7 +1366,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -1930,7 +1930,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"

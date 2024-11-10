@@ -138,7 +138,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Alte Signatur",
-                "en": "Old Reference Code",
+                "en": "Old Reference Code"
               }
             },
             {
@@ -225,7 +225,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -643,7 +643,7 @@
         }
       ]
     },
-	{
+    {
       "FormId": "Dossier_Extern",
       "Sections": [
         {
@@ -756,7 +756,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -1230,7 +1230,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
@@ -1592,7 +1592,7 @@
         }
       ]
     },
-   {
+    {
       "FormId": "Serie_Extern",
       "Sections": [
         {
@@ -1705,7 +1705,7 @@
               "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
