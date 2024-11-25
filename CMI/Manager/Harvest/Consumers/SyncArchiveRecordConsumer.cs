@@ -71,6 +71,22 @@ namespace CMI.Manager.Harvest.Consumers
                             return;
                         }
 
+                        // If there was an error in building the record, the error message is returned in the error property.
+                        // In that case, we will fail the error which will result in an additional try later, up to the 
+                        // configured value. 
+                        // This error can be raised commonly if the archive tectonic cannot be built.
+                        if (archiveRecord.HasArchiveRecordBuildError)
+                        {
+                            await harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                            {
+                                MutationId = context.Message.MutationId,
+                                NewStatus = ActionStatus.SyncFailed,
+                                ChangeFromStatus = ActionStatus.SyncInProgress,
+                                ErrorMessage = archiveRecord.ArchiveRecordBuildErrorMessage
+                            });
+                            return;
+                        }
+
                         // Security Check
                         // If no Metadata Access Token is present, then we end the sync process here,
                         // as this record MUST not be synced to Lesesaal
