@@ -35,7 +35,7 @@ namespace CMI.Access.Harvest.Tests.CMIAis
                 Titel = "Test"
             };
 
-            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord(It.IsAny<string>()).Result).Returns(cmiRecord); 
+            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord(It.IsAny<string>(), false).Result).Returns(cmiRecord); 
             var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings, mockArchiveRecordProcessHandler.Object);
 
             var record = await sut.Build("123");
@@ -128,8 +128,8 @@ namespace CMI.Access.Harvest.Tests.CMIAis
 
             aisSpecificRecordAccess.Setup(m => m.GetAisTectonicRecord("402").Result).Returns(cmiRecordTektonik ); 
             aisSpecificRecordAccess.Setup(m => m.GetAisTectonicRecord("300").Result).Returns(parentTektonik ); 
-            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord("402").Result).Returns(cmiRecord); 
-            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord("300").Result).Returns(parent);
+            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord("402", false).Result).Returns(cmiRecord); 
+            aisSpecificRecordAccess.Setup(m => m.GetAisDataRecord("300", false).Result).Returns(parent);
 
             var sut = new CMIAISArchiveRecordBuilder(aisSpecificRecordAccess.Object, languageSettings,mockArchiveRecordProcessHandler.Object);
 

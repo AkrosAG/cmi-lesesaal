@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CMI.Access.Harvest.CMIAIS.Mapping;
 using CMI.Access.Harvest.Properties;
 using CMI.Contract.Common;
+using CMI.Contract.Common.Exceptions;
 using Serilog;
 
 namespace CMI.Access.Harvest.CMIAIS
@@ -31,15 +32,15 @@ namespace CMI.Access.Harvest.CMIAIS
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 var cmiRecord = await aisSpecificRecordAccess.GetAisDataRecord(archiveRecordId);
-                var cmiRecordTectonic = await aisSpecificRecordAccess.GetAisTectonicRecord(archiveRecordId); 
+                var cmiRecordTectonic = await aisSpecificRecordAccess.GetAisTectonicRecord(archiveRecordId);
                 Log.Verbose($"Took {stopwatch.ElapsedMilliseconds} ms to fetch detail record from CDWS with id {archiveRecordId}");
 
                 var archiveRecordBuilder = new ArchiveRecordMapperBuilder(cmiRecord, cmiRecordTectonic, languageSettings, aisSpecificRecordAccess);
 
                 var metaDataBuilder = await archiveRecordBuilder
-                        .AddMedataData()
-                        .WithUsageInfos()
-                        .WithNodeInfos();
+                    .AddMedataData()
+                    .WithUsageInfos()
+                    .WithNodeInfos();
 
                 AddDetailData(metaDataBuilder);
                 Log.Debug($"CDWS Root is {Settings.Default.CdwsRoot}");
@@ -47,17 +48,27 @@ namespace CMI.Access.Harvest.CMIAIS
                 var archiveRecord = archiveRecordBuilder.Build();
                 archiveRecord.AddFileInformation(cmiRecord);
                 archiveRecord.Display = await GetDisplaySection(cmiRecord, cmiRecordTectonic, archiveRecord);
-                
+
                 await processHandler.PostProcessArchiveRecord(archiveRecord);
                 Log.Information($"Took {stopwatch.ElapsedMilliseconds} ms to build the record with id {archiveRecordId}");
                 stopwatch.Stop();
 
                 return archiveRecord;
             }
+            catch (AisRecordNotFoundException)
+            {
+                return null;
+            }
+            catch (AisParentRecordNotFoundException ex)
+            {
+                var msg = "Could not build archive tectonic for the archive record with {0} because the record with id {1} could not be found.";
+                Log.Error(msg, archiveRecordId, ex.ParentRecordId);
+                return new ArchiveRecord { HasArchiveRecordBuildError = true, ArchiveRecordBuildErrorMessage = string.Format(msg, archiveRecordId, ex.ParentRecordId) };
+            }
             catch (Exception ex)
             {
                 Log.Error(ex, "Unexpected error while building the record for id {id}", archiveRecordId);
-                return null;
+                return new ArchiveRecord { HasArchiveRecordBuildError = true, ArchiveRecordBuildErrorMessage = ex.Message };
             }
         }
 
@@ -242,7 +253,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     continue;
                 }
                 
-                var ancestorRecord = await aisSpecificRecordAccess.GetAisDataRecord(ancestor.OBJ_GUID);
+                var ancestorRecord = await aisSpecificRecordAccess.GetAisDataRecord(ancestor.OBJ_GUID, true);
                 ArchiveplanContextItem contextItem;
 
                 if (ancestorRecord != null)

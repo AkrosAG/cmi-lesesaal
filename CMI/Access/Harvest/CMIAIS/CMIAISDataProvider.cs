@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common.Exceptions;
 
 
 namespace CMI.Access.Harvest.CMIAIS
@@ -107,11 +108,11 @@ namespace CMI.Access.Harvest.CMIAIS
             {
                 Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {indexTectonicName} {guid}. Fehler ist {Message}",
                     indexTectonicName, id, ex.Message);
-                throw;
+                throw new AisTectonicRecordNotFoundException() {ArchiveRecordId = id};
             }
         }
 
-        public async Task<Verzeichnungseinheit> GetAisDataRecord(string id)
+        public async Task<Verzeichnungseinheit> GetAisDataRecord(string id, bool fetchArchivPlanContextRecord = false)
         {
 
             var cachedItem = cache.Get(id);
@@ -141,7 +142,12 @@ namespace CMI.Access.Harvest.CMIAIS
             catch (Exception ex)
             {
                 Log.Error("Fehler beim Abholen des ArchiveRecords von CMI AIS {indexName} {guid}. Fehler ist {Message}", indexName, id, ex.Message);
-                throw;
+                if (fetchArchivPlanContextRecord)
+                {
+                    throw new AisParentRecordNotFoundException {ParentRecordId = id};
+                }
+
+                throw new AisRecordNotFoundException {ArchiveRecordId = id};
             }
         }
         

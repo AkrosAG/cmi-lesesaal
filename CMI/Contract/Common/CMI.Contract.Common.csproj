@@ -83,6 +83,9 @@
     <Compile Include="Entities\CollectionItemResult.cs" />
     <Compile Include="Entities\ImageInfo.cs" />
     <Compile Include="Entities\Lesesaal.DTOs.cs" />
+    <Compile Include="Exceptions\AisParentRecordNotFoundException.cs" />
+    <Compile Include="Exceptions\AisRecordNotFoundException.cs" />
+    <Compile Include="Exceptions\AisTectonicRecordNotFoundException.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GetElasticLogRecordsResult.cs" />
     <Compile Include="ICollectionManager.cs" />
@@ -180,6 +183,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
