@@ -132,6 +132,8 @@ namespace CMI.Manager.Harvest.Consumers
                             {
                                 // Add the primary data from the existing record to the new ais data
                                 archiveRecord.ElasticPrimaryData = elasticRecord.PrimaryData;
+                                // Also add the manifest link, or we loose it
+                                archiveRecord.Metadata.ManifestLink = elasticRecord.ManifestLink;
                                 await UpdateArchiveRecord(context, message, archiveRecord, false);
                             }
                             else
@@ -140,6 +142,8 @@ namespace CMI.Manager.Harvest.Consumers
                                 // As the export of the DIR does rely on metadata that is fetched from elastic,
                                 // we are going to update/insert the archive record in Elastic (but without the extracted OCR first)
                                 // The update in the index should be done quickly, so when the data is needed from the DIR it will be available
+                                // First also copy an eventually existing manifest link, so the current data is still available to the user
+                                archiveRecord.Metadata.ManifestLink = elasticRecord?.ManifestLink;
                                 await UpdateArchiveRecord(context, message, archiveRecord, false);
 
                                 // Now start getting the metadata info of the DIR package
