@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 
 namespace CMI.Access.Harvest
 {
-    public interface IAISDataProvider
+    public interface IAISDataProvider : IDisposable
     {
         Task<List<MutationRecord>> GetPendingMutations();
         Task<NodeContext> LoadNodeContext(string recordId);

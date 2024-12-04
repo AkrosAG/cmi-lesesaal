@@ -1111,6 +1111,12 @@ namespace CMI.Access.Harvest.ScopeArchiv
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+           // Do nothing
+        }
+
         #endregion
+
     }
 }

@@ -13,7 +13,7 @@ using Serilog;
 
 namespace CMI.Access.Harvest.ScopeArchiv
 {
-    public class DigitizationOrderBuilder
+    public class DigitizationOrderBuilder : IDisposable
     {
         public const string NoDataAvailable = "keine Angabe";
         private const string dossierLevelIdentifier = "Dossier";
@@ -401,6 +401,11 @@ namespace CMI.Access.Harvest.ScopeArchiv
             }
 
             return NoDataAvailable;
+        }
+
+        public void Dispose()
+        {
+            dataProvider?.Dispose();
         }
     }
 }

@@ -6,7 +6,7 @@ using Serilog;
 
 namespace CMI.Access.Harvest
 {
-    public class CachedLookupData
+    public class CachedLookupData : IDisposable
     {
         private readonly IAISDataProvider dataProvider;
 
@@ -53,6 +53,14 @@ namespace CMI.Access.Harvest
         private bool ShouldReloadData()
         {
             return fondsOverview == null || DateTime.Now - timeStamp > TimeSpan.FromHours(2);
+        }
+
+        public void Dispose()
+        {
+            dataProvider?.Dispose();
+            semaphore?.Dispose();
+            // Suppress finalization.
+            GC.SuppressFinalize(this);
         }
     }
 }
