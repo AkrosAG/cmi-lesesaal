@@ -56,17 +56,17 @@ namespace CMI.Web.Common.Helpers
 
         public static bool ShowThematicOverview => GetBooleanSetting("showThematicOverview", false);
 
-        public static string PublicClientUrl => GetStringSetting("publicClientUrl", "https://www.recherche.bar.admin.ch/recherche");
+        public static string PublicClientUrl => GetStringSetting("publicClientUrl", "");
 
-        public static string SwaggerBaseUrl => GetStringSetting("swaggerBaseUrl", "https://www.recherche.bar.admin.ch/recherche");
+        public static string SwaggerBaseUrl => GetStringSetting("swaggerBaseUrl", "");
 
         public static string ManagementAuthReturnUrl => GetStringSetting("managementAuthReturnUrl", "http://localhost/management/#/auth/success");
 
         public static string ManagementLogoutReturnUrl => GetStringSetting("managementLogoutReturnUrl", "http://localhost/management");
 
-        public static string FrontendAuthReturnUrl => GetStringSetting("frontendAuthReturnUrl", "https://www.recherche.bar.admin.ch/recherche/#/auth/success");
+        public static string FrontendAuthReturnUrl => GetStringSetting("frontendAuthReturnUrl", "");
 
-        public static string FrontendLogoutReturnUrl => GetStringSetting("frontendLogoutReturnUrl", "https://www.recherche.bar.admin.ch/recherche");
+        public static string FrontendLogoutReturnUrl => GetStringSetting("frontendLogoutReturnUrl", "");
 
         public static string MatomoUrl => GetStringSetting("matomo-url", "");
         public static int MatomoSiteId => GetIntSetting("matomo-siteId");

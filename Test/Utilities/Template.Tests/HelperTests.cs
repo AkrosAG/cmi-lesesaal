@@ -45,14 +45,14 @@ namespace CMI.Utilities.Template.Tests
                 {To = "{{InteractiveUser.EMail}}", Body = "Hello {{ InteractiveUser.Name }}\r\nDein Auftrag kann abgeholt werden."};
 
             var data = new Dictionary<string, object>();
-            data["InteractiveUser"] = new Person {Name = "Peter", EMail = "meier@cmiag.ch"};
+            data["InteractiveUser"] = new Person {Name = "Peter", EMail = ""};
 
             var serializeObject = JsonConvert.SerializeObject(mt);
             var result = mailHelper.TransformToHtml(serializeObject, data);
 
             var email = JsonConvert.DeserializeObject<MailTemplate>(result);
             email.Body.Should().Be("Hello Peter\r\nDein Auftrag kann abgeholt werden.");
-            email.To.Should().Be("meier@cmiag.ch");
+            email.To.Should().Be("");
         }
 
 

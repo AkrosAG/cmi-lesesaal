@@ -703,7 +703,7 @@ namespace CMI.Web.Common.Tests.Helpers
                 RolePublicClient = AccessRoles.RoleOe2,
                 FamilyName = "Meier",
                 FirstName = "Bruno",
-                EmailAddress = "bruno.meier@cmiag.ch"
+                EmailAddress = ""
             };
 
             var mockUserDataAccess = new Mock<IUserDataAccess>();
@@ -739,7 +739,7 @@ namespace CMI.Web.Common.Tests.Helpers
             {
                 FamilyName = "Meier",
                 FirstName = "Bruno",
-                EmailAddress = "bruno.meier@cmiag.ch"
+                EmailAddress = ""
             });
 
             var controllerHelperMock = new Mock<IControllerHelper>();
