@@ -139,7 +139,7 @@ namespace CMI.Web.Common.Auth
 
         private string GetLoginMandantErstellenUrl()
         {
-            var url = WebHelper.GetStringSetting("loginMandantErstellenUrl", "https://www.recherche.bar.admin.ch/recherche/private");
+            var url = WebHelper.GetStringSetting("loginMandantErstellenUrl", "");
             return url;
         }
     }
