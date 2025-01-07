@@ -152,7 +152,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IHttpActionResult> GetMetadataFile(string id, string name, bool download = false)
+        public async Task<IHttpActionResult> GetMetadataFile(string id, string fileId, string name, bool download = false)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     return NotFound();
                 }
 
-                var file = record.Files.FirstOrDefault(f => f.Filename == name);
+                var file = record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
                 if (file is not null)
                 {
                     if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
