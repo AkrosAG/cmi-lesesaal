@@ -1,37 +1,37 @@
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/searchDetailResponse" targetNamespace="http://www.cmiag.ch/cdws/searchDetailResponse" elementFormDefault="qualified">
-    <xsd:element name="SearchDetailResponse" type="SearchDetailResponseType" />
-    <xsd:complexType name="SearchDetailResponseType">
-        <xsd:sequence>
-            <xsd:element name="Hit" type="HitTypeDetail" minOccurs="0" maxOccurs="unbounded" />
-        </xsd:sequence>
-        <xsd:attribute name="IDXSEQ" type="xsd:unsignedInt" use="required" />
-        <xsd:attribute name="q" type="xsd:string" use="required" />
-        <xsd:attribute name="l" type="xsd:language" use="required" />
-        <xsd:attribute name="s" type="xsd:unsignedInt" use="required" />
-        <xsd:attribute name="m" type="xsd:unsignedInt" use="required" />
-        <xsd:attribute name="numHits" type="xsd:unsignedInt" use="required" />
-        <xsd:attribute name="indexName" type="xsd:string" use="required" />
-    </xsd:complexType>
-    <xsd:complexType name="HitTypeDetail">
-        <xsd:sequence>
-            <xsd:element name="Snippet" type="xsd:string" />
-            <xsd:any processContents="skip" minOccurs="1" maxOccurs="1" />
-        </xsd:sequence>
-        <xsd:attribute name="Guid" use="required">
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                    <xsd:pattern value="[a-f0-9]{32}" />
-                </xsd:restriction>
-            </xsd:simpleType>
-        </xsd:attribute>
-        <xsd:attribute name="SEQ" type="xsd:unsignedInt" use="required" />
-        <xsd:attribute name="Relevance" use="required">
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:decimal">
-                    <xsd:minInclusive value="0" />
-                    <xsd:maxInclusive value="100" />
-                </xsd:restriction>
-            </xsd:simpleType>
-        </xsd:attribute>
-    </xsd:complexType>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cmiag.ch/cdws/searchDetailResponse" targetNamespace="http://www.cmiag.ch/cdws/searchDetailResponse" elementFormDefault="qualified" >
+  <xsd:element name="SearchDetailResponse" type="SearchDetailResponseType"/>
+	<xsd:complexType name="SearchDetailResponseType">
+		<xsd:sequence>
+			<xsd:element name="Hit" type="HitTypeDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="IDXSEQ" type="xsd:long" use="required"/>
+		<xsd:attribute name="q" type="xsd:string" use="required"/>
+		<xsd:attribute name="l" type="xsd:language" use="required"/>
+		<xsd:attribute name="s" type="xsd:long" use="required"/>
+		<xsd:attribute name="m" type="xsd:long" use="required"/>
+		<xsd:attribute name="numHits" type="xsd:long" use="required"/>
+		<xsd:attribute name="indexName" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="HitTypeDetail">
+		<xsd:sequence>
+			<xsd:element name="Snippet" type="xsd:string"/>
+			<xsd:any processContents="skip" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+    <xsd:attribute name="Guid" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="[a-f0-9]{32}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+		<xsd:attribute name="SEQ" type="xsd:long" use="required"/>
+    <xsd:attribute name="Relevance" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:decimal">
+          <xsd:minInclusive value="0"/>
+          <xsd:maxInclusive value="100"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+	</xsd:complexType>
 </xsd:schema>
