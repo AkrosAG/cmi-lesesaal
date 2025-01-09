@@ -739,14 +739,14 @@ namespace CMI.Web.Common.Tests.Helpers
             {
                 FamilyName = "Meier",
                 FirstName = "Bruno",
-                EmailAddress = ""
+                EmailAddress = "bruno.meier@example.com"
             });
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/surname")).Returns("Meier");
             controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/givenname")).Returns("THOMAS");
-            controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/emailaddress")).Returns("bruno.meier@cmiag.ch");
+            controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/emailaddress")).Returns("bruno.meier@example.com");
 
             var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
 
@@ -766,14 +766,14 @@ namespace CMI.Web.Common.Tests.Helpers
             {
                 FamilyName = "Meier",
                 FirstName = "Bruno",
-                EmailAddress = "bruno.meier@cmiag.ch"
+                EmailAddress = "bruno.meier@example.com"
             });
 
             var controllerHelperMock = new Mock<IControllerHelper>();
             controllerHelperMock.Setup(m => m.IsInternalUser()).Returns(true);
             controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/surname")).Returns("Meier");
             controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/givenname")).Returns("Bruno");
-            controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/emailaddress")).Returns("bruno.meier@BAR.ADMIN.ch");
+            controllerHelperMock.Setup(m => m.GetFromClaim("/identity/claims/emailaddress")).Returns("bruno.meier@example.com");
 
             var sut = new AuthControllerHelper(null, mockUserDataAccess.Object, controllerHelperMock.Object, null, null);
 

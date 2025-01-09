@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Aspose.Pdf;
 using CMI.Contract.Asset;
@@ -20,8 +21,19 @@ namespace CMI.Engine.Asset.PreProcess
 
             try
             {
+                // Retrieve the license content from application settings
+                string licenseContent = Properties.Settings.Default.AsposeLicense;
                 var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
+                if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
+                {
+                    throw new Exception("License content is missing or placeholder is still present in application settings.");
+                }
+
+                // Convert the license content to a stream
+                using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
+                {
+                   licensePdf.SetLicense(licenseStream);
+                }
             }
             catch (Exception ex)
             {
