@@ -276,7 +276,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="Aspose.Total.NET.lic" />
     <None Include="Html\design\css\images\ssp_sprite.psd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

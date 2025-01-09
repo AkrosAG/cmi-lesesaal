@@ -22,6 +22,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
     {
         protected override ShibbolethAttributeValueCollection GetAttributesFromRequest(HttpRequest request, ShibbolethSessionType sessionType)
         {
+            //Replace with actual data
             var retVal = new Dictionary<string, ShibbolethAttributeValueCollection>
             {
                 {
@@ -31,7 +32,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("givenName", "Jörg"),
                         new ShibbolethAttributeValue("persistent-id", "https://aai-logon.ethz.ch/idp/shibboleth!https://recherche.library.ethz.ch/shibboleth!XpsCjWeL4TVehzLeqTOo/vhfluA="),
                         new ShibbolethAttributeValue("affiliation", "member"),
-                        new ShibbolethAttributeValue("mail", ""),
+                        new ShibbolethAttributeValue("mail", "userJoerg@example.com"),
                         new ShibbolethAttributeValue("homeOrganization", "ethz.ch"),
                         new ShibbolethAttributeValue("homeOrganizationType", "university"),
                         new ShibbolethAttributeValue("scoped-affiliation", "member@ethz.ch"),
@@ -46,7 +47,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("givenName", "Rafael"),
                         new ShibbolethAttributeValue("persistent-id", "https://aai-logon.ethz.ch/idp/shibboleth!https://recherche.library.ethz.ch/shibboleth!XpsCjWeL4TVehzLeqTOo/vhfluA="),
                         new ShibbolethAttributeValue("affiliation", "student;member"),
-                        new ShibbolethAttributeValue("mail", ""),
+                        new ShibbolethAttributeValue("mail", "user@example.com"),
                         new ShibbolethAttributeValue("homeOrganization", "uzh.ch"),
                         new ShibbolethAttributeValue("homeOrganizationType", "university"),
                         new ShibbolethAttributeValue("scoped-affiliation", "student@uzh.ch"),
@@ -62,7 +63,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("givenName", "Alec"),
                         new ShibbolethAttributeValue("persistent-id", "https://aai-logon.ethz.ch/idp/shibboleth!https://recherche.library.ethz.ch/shibboleth!XpsCjWeL4TVehzLeqTOo/vhfluA="),
                         new ShibbolethAttributeValue("affiliation", "staff"),
-                        new ShibbolethAttributeValue("mail", ""),
+                        new ShibbolethAttributeValue("mail", "userAlec@example.com"),
                         new ShibbolethAttributeValue("homeOrganization", "ethz.ch"),
                         new ShibbolethAttributeValue("homeOrganizationType", "university"),
                         new ShibbolethAttributeValue("scoped-affiliation", "staff@ethz.ch"),
@@ -77,7 +78,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("givenName", "Ulrich"),
                         new ShibbolethAttributeValue("persistent-id", "https://aai-logon.ethz.ch/idp/shibboleth!https://recherche.library.ethz.ch/shibboleth!XpsCjWeL4TVehzLeqTOo/vhfluA="),
                         new ShibbolethAttributeValue("affiliation", "member"),
-                        new ShibbolethAttributeValue("mail", ""),
+                        new ShibbolethAttributeValue("mail", "userUlrich@example.com"),
                         new ShibbolethAttributeValue("homeOrganization", "eduid.ch"),
                         new ShibbolethAttributeValue("homeOrganizationType", "eduid"),
                         new ShibbolethAttributeValue("scoped-affiliation", "office@ensocon.net"),
