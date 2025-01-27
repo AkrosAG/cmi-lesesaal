@@ -1,21 +1,21 @@
-# cmi-viaduc-web-core
-- [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc)
-   - **[cmi-viaduc-web-core](https://github.com/SwissFederalArchives/cmi-viaduc-web-core)** :triangular_flag_on_post:
-   - [cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)
-   - [cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)
-   - [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)
+# cmi-lesesaal-web-core
+- [cmi-lesesaal](https://github.com/AkrosAG/cmi-lesesaal)
+   - **[cmi-lesesaal-web-core](../web-core)** :triangular_flag_on_post:
+   - [cmi-lesesaal-web-frontend](../frontend)
+   - [cmi-lesesaal-web-management](../web-management)
+   - [cmi-lesesaal-backend](../../)
 
 # Context
 
-The [Lesesaal](https://github.com/SwissFederalArchives/cmi-viaduc) project includes 4 code repositories. The present repository `cmi-viaduc-web-core` is an Angular library. This library is used in the other two applications _public access_ ([cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)) and _internal management_ ([cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)) as a common code base and component library. The frontend applications are hosted in an `ASP.NET` container (see _backend_ repository [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)) and communicate with the system via web API.
+The [Lesesaal](https://github.com/AkrosAG/cmi-lesesaal) project includes 4 code Modules. The present module `cmi-lesesaal-web-core` is an Angular library. This library is used in the other two applications _public access_ ([cmi-lesesaal-web-frontend](https://github.com/AkrosAG/cmi-lesesaal-web-frontend)) and _internal management_ ([cmi-lesesaal-web-management](https://github.com/AkrosAG/cmi-lesesaal-web-management)) as a common code base and component library. The frontend applications are hosted in an `ASP.NET` container (see _backend_ repository [cmi-lesesaal-backend](https://github.com/AkrosAG/cmi-lesesaal-backend)) and communicate with the system via web API.
 
-![The Big-Picture](docs/imgs/context.svg)
+![The Big-Picture](../../../docs/imgs/context.svg)
 
-> Note: A general description of the repositories can be found in the repository [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc).
+> Note: A general description of the repositories can be found in the repository [cmi-lesesaal](https://github.com/AkrosAG/cmi-lesesaal).
 
 # Architecture and components
 
-This is an Angular CLI library published in an internal package feed and included in the [cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend) and [cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management) projects.
+This is an Angular CLI library published in an internal package feed and included in the [cmi-lesesaal-web-frontend](../web-frontend) and [cmi-lesesaal-web-management](../web-management) projects.
 It contains components, services and model classes that are needed in both projects.
 
 ## Modules
@@ -61,28 +61,27 @@ It contains components, services and model classes that are needed in both proje
 
 ## Embedding the library
 
-The library `cmi-viaduc-web-core` must be delivered as part of an application.
+The library `cmi-lesesaal-web-core` must be delivered as part of an application.
 
-- Either this is done via the internal MyGet feed using `npm i` in the application (e.g.: `cmi-viaduc-web-frontend`)
+- Either this is done via the internal MyGet feed using `npm i` in the application (e.g.: `cmi-lesesaal-web-frontend`)
 - Or the library can be included locally. For this, the following steps are required:
-  - Make sure that `cmi-viaduc-web-core`, `cmi-viaduc-web-management` and `cmi-viaduc-web-frontend` are in the same root in the filesystem (e.g. `C:\Lesesaal`).
-  - Build the library `cmi-viaduc-web-core` with `npm run build`.
-  - In the target application (e.g. `cmi-viaduc-web-frontend`) link the library using `npm run link`.
+  - Make sure that `cmi-lesesaal-web-core`, `cmi-lesesaal-web-management` and `cmi-lesesaal-web-frontend` are in the same root in the filesystem (e.g. `C:\Lesesaal`).
+  - Build the library `cmi-lesesaal-web-core` with `npm run build`.
+  - In the target application (e.g. `cmi-lesesaal-web-frontend`) link the library using `npm run link`.
 
 # Authors
 
 - [CM Informatik AG](https://cmiag.ch)
 - [Evelix GmbH](https://evelix.ch)
-
+- [Akros AG](https://www.akros.ch)
 # License
 
 GNU Affero General Public License (AGPLv3), see [LICENSE](LICENSE.TXT).
 
 # Contribute
 
-This repository is a copy which is updated regularly - therefore contributions via pull requests are not possible. However, independent copies (forks) are possible under consideration of the AGPLV3 license.
+Pull requests and merge on these repositories is restricted. However, independent copies (forks) are possible under consideration of the AGPLV3 license.
 
 # Contact
 
-- For general questions (and technical support), please contact the Swiss Federal Archives by e-mail at bundesarchiv@bar.admin.ch.
 - Technical questions or problems concerning the source code can be posted here on GitHub via the "Issues" interface.
