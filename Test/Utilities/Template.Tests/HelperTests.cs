@@ -52,7 +52,7 @@ namespace CMI.Utilities.Template.Tests
 
             var email = JsonConvert.DeserializeObject<MailTemplate>(result);
             email.Body.Should().Be("Hello Peter\r\nDein Auftrag kann abgeholt werden.");
-            email.To.Should().Be("");
+            email.To.Should().Be("user@example.com");
         }
 
 
