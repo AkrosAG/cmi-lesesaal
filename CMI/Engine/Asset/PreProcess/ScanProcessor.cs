@@ -22,28 +22,32 @@ namespace CMI.Engine.Asset.PreProcess
         private string rootFolder;
         private readonly ImageHelper imageHelper;
 
-        public ScanProcessor(ImageHelper imageHelper, ScansZusammenfassenSettings settings)
+        public ScanProcessor(ImageHelper imageHelper, ScansZusammenfassenSettings settings, bool skipLicenseSetup = false)
         {
-            try
-            { 
-                // Retrieve the license content from application settings
-                string licenseContent = Properties.Settings.Default.AsposeLicense;
-                var licensePdf = new License();
-                if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
-                {
-                    throw new Exception("License content is missing or placeholder is still present in application settings.");
-                }
-
-                // Convert the license content to a stream
-                using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
-                {
-                    licensePdf.SetLicense(licenseStream);
-                }
-            }
-            catch (Exception ex)
+            if (!skipLicenseSetup)
             {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
+
+                try
+                {
+                    // Retrieve the license content from application settings
+                    string licenseContent = Properties.Settings.Default.AsposeLicense;
+                    var licensePdf = new License();
+                    if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
+                    {
+                        throw new Exception("License content is missing or placeholder is still present in application settings.");
+                    }
+
+                    // Convert the license content to a stream
+                    using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
+                    {
+                        licensePdf.SetLicense(licenseStream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Unexpected error while setting Aspose license.");
+                    throw;
+                }
             }
 
             this.imageHelper = imageHelper;
