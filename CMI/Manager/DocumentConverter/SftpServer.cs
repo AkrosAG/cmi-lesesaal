@@ -14,7 +14,7 @@ namespace CMI.Manager.DocumentConverter
 {
     public class SftpServer
     {
-        private const string password = @"";
+        private const string password = @"changeMePlease";
 
         private static readonly ConcurrentDictionary<string, JobInfoDetails> jobStorage = new ConcurrentDictionary<string, JobInfoDetails>();
         private string baseAddress;
