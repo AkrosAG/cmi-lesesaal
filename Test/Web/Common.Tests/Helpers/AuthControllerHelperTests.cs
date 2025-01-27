@@ -703,7 +703,7 @@ namespace CMI.Web.Common.Tests.Helpers
                 RolePublicClient = AccessRoles.RoleOe2,
                 FamilyName = "Meier",
                 FirstName = "Bruno",
-                EmailAddress = ""
+                EmailAddress = "user@example.com"
             };
 
             var mockUserDataAccess = new Mock<IUserDataAccess>();
