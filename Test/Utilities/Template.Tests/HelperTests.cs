@@ -45,7 +45,7 @@ namespace CMI.Utilities.Template.Tests
                 {To = "{{InteractiveUser.EMail}}", Body = "Hello {{ InteractiveUser.Name }}\r\nDein Auftrag kann abgeholt werden."};
 
             var data = new Dictionary<string, object>();
-            data["InteractiveUser"] = new Person {Name = "Peter", EMail = ""};
+            data["InteractiveUser"] = new Person {Name = "Peter", EMail = "user@example.com" };
 
             var serializeObject = JsonConvert.SerializeObject(mt);
             var result = mailHelper.TransformToHtml(serializeObject, data);
