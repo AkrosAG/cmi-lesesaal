@@ -157,7 +157,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     
                     subFiles.Add(new RepositoryFile
                     {
-                        PhysicalName = fileInfo.FullName,
+                        PhysicalName = fileInfo.Name,
                         Exported = true,
                         MimeType = fileInfo.Extension,
                         Id = id
@@ -213,6 +213,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
 
             ZipFile.CreateFromDirectory(zipBaseDir, targetFile);
             Log.Information("Created zip file {0}. ArchiveRecord Id: {1}", targetFile, archiveRecordId);
+            Directory.Delete(Path.Combine(Settings.Default.TempStoragePath, primaryDataLink), true);
             Directory.Delete(zipBaseDir, true);
         }
         
