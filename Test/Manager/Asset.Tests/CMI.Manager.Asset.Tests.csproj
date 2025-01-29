@@ -468,6 +468,9 @@
   </Target>
   <Import Project="..\..\..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Import Project="..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT '%25ON_BUILDSERVER%25'=='True' "$(SolutionDir)CMI\Tools\UrbanCode\bin\$(ConfigurationName)\CMI.Tools.UrbanCode.exe" e "$(TargetDir) " "$(SolutionDir)..\$(SolutionName)-secrets.json"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
