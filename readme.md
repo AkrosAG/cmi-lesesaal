@@ -3,7 +3,7 @@
 - [cmi-lesesaal](https://github.com/AkrosAG/cmi-lesesaal)
   - [cmi-lesesaal-web-core](/CMI/Web.Clients/web-core)
   - [cmi-lesesaal-web-frontend](/CMI/Web.Clients/web-frontend)
-  - [cmi-lesesaal-web-management]/CMI/Web.Clients/web-management)
+  - [cmi-lesesaal-web-management](/CMI/Web.Clients/web-management)
   - **[cmi-lesesaal-backend](https://github.com/AkrosAG/cmi-lesesaal)** :triangular_flag_on_post:
 
 # Context
