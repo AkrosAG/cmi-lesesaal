@@ -6,10 +6,10 @@
 			</span>
 		</div>
 		<div class="col col-xs-11">
-			<strong><a href={{getFileUrl(file.filename,false)}} target="_blank" ><span>{{file.filename}}</span></a></strong>
+			<strong><a [href]="getFileUrl(file.filename, file.downloadUrl, false)" target="_blank" ><span>{{file.filename}}</span></a></strong>
 			<span>({{file.sizeInBytes | measure:'FileSize'}})</span>
 			<span style="font-size: 16px;">
-				<a href={{getFileUrl(file.filename,true)}} download><i class="fa-solid fa-file-arrow-down fa-sm"></i></a>
+				<a [href]="getFileUrl(file.filename, file.downloadUrl, true)" download><i class="fa-solid fa-file-arrow-down fa-sm"></i></a>
 			</span>
 			<br/><span *ngIf="file.art">Art: &nbsp;{{file.art}}</span>
 			<br/><span *ngIf="file.description">{{file.description}}</span>
