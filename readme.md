@@ -9,7 +9,7 @@
 # Context
 
 The [lesesaal](https://github.com/AkrosAG/cmi-lesesaal) project includes 1 code repositories with 4 different Projects. This current project `cmi-lesesaal-backend` is the backend for order management, consultation requests, administrative access and other settings. It was developed using C#. It includes several services and two API's.
-The other projects include the applications _public access_ ([cmi-lesesaal-web-frontend](https://github.com/AkrosAG/cmi-lesesaal/tree/develop/CMI/Web/CMI.Web.Frontend)) and the _internal management_ ([cmi-lesesaal-web-management](https://github.com/AkrosAG/cmi-lesesaal/tree/develop/CMI/Web/CMI.Web.Management));  both are Angular applications that access basic services of another Angular library called [cmi-lesesaal-web-core](https://github.com/AkrosAG/cmi-lesesaal-web-core).
+The other projects include the applications _public access_ ([cmi-lesesaal-web-frontend](/CMI/Web/CMI.Web.Frontend)) and the _internal management_ ([cmi-lesesaal-web-management](/CMI/Web.Clients/web-management));  both are Angular applications that access basic services of another Angular library called ([cmi-lesesaal-web-core](/CMI/Web.Clients/web-core)).
 
 ![The Big-Picture](docs/imgs/context.svg)
 
