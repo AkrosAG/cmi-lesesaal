@@ -26,7 +26,8 @@ namespace CMI.Engine.PackageMetadata.Systems.Rosetta
         public async Task CreateMetadataXml(string folderName, RepositoryPackage package, List<RepositoryFile> filesToIgnore)
         {
             var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = package.ArchiveRecordId }).Result.Message.ElasticArchiveRecord;
-            var pickupDirectory = Path.Combine(folderName, package.ArchiveRecordId);
+            // Remove .zip from Filename
+            var pickupDirectory = Path.Combine(folderName, package.PackageFileName.Substring(0, package.PackageFileName.Length - 4));
             if (!Directory.Exists(pickupDirectory))
             {
                 Directory.CreateDirectory(pickupDirectory);

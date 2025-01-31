@@ -63,7 +63,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
                 var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId }).Result.Message.ElasticArchiveRecord;
-                var repositoryPackage = await BuildRepositoryPackageAsync(archiveRecord);
+                var zipFileName = Path.GetRandomFileName();
+                var repositoryPackage = await BuildRepositoryPackageAsync(archiveRecord, zipFileName);
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
                 {
@@ -75,7 +76,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 repositoryPackageResult.PackageDetails = repositoryPackage;
                 repositoryPackageResult.Valid = true;
 
-                BuildZipFile(archiveRecordId, packageId);
+                BuildZipFile(archiveRecordId, packageId, zipFileName);
                 currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             }
@@ -89,7 +90,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink);
             if(success)
             {
-                var package = await BuildRepositoryPackageAsync(elasticArchiveRecord);
+                // Zip file name not important here, because we are not creating a zip file
+                var package = await BuildRepositoryPackageAsync(elasticArchiveRecord, string.Empty);
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,
@@ -106,7 +108,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             
         }
         
-        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord)
+        public async Task<RepositoryPackage> BuildRepositoryPackageAsync(ElasticArchiveRecord archiveRecord, string zipFileName)
         {
             var files = new List<RepositoryFile>();
             var rootFolder = new List<RepositoryFolder>();
@@ -124,7 +126,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var preZip = DateTime.Now;
             var result = new RepositoryPackage
             {
-                PackageFileName = archiveRecord.ArchiveRecordId + ".zip",
+                PackageFileName = zipFileName + ".zip",
                 PackageId = archiveRecord.PrimaryDataLink,
                 ArchiveRecordId = archiveRecord.ArchiveRecordId,
                 SizeInBytes = totalFileSize,
@@ -189,7 +191,7 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             }
         }
        
-        private void BuildZipFile(string archiveRecordId, string primaryDataLink)
+        private void BuildZipFile(string archiveRecordId, string primaryDataLink, string zipFilename)
         {
             var fileUrl = $@"{Path.Combine(Settings.Default.TempStoragePath, primaryDataLink)}\ie.xml";
             var mets = Mets.LoadFromFile(fileUrl);
@@ -197,8 +199,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             var folder = mets.GetImportFolderName();
 
             var sourcePath = Path.Combine(Path.GetDirectoryName(fileUrl), folder);
-            var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, archiveRecordId + ".zip");
-            var zipBaseDir = Path.Combine(Settings.Default.TempStoragePath, archiveRecordId);
+            var targetFile = Path.Combine(Settings.Default.FileCopyDestinationPath, zipFilename + ".zip");
+            var zipBaseDir = Path.Combine(Settings.Default.TempStoragePath, zipFilename);
 
             var contentDir = Path.Combine(zipBaseDir, "content");
             var headerDir = Path.Combine(zipBaseDir, "header");
