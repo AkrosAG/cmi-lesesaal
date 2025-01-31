@@ -144,7 +144,7 @@ namespace CMI.Manager.Harvest.Consumers
                                 // The update in the index should be done quickly, so when the data is needed from the DIR it will be available
                                 // First also copy an eventually existing manifest link, so the current data is still available to the user
                                 archiveRecord.Metadata.ManifestLink = elasticRecord?.ManifestLink;
-                                await UpdateArchiveRecord(context, message, archiveRecord, false);
+                                await UpdateArchiveRecord(context, message, archiveRecord, true);
 
                                 // Now start getting the metadata info of the DIR package
                                 var ep = await context.GetSendEndpoint(new Uri(context.SourceAddress,
