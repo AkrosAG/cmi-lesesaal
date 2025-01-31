@@ -88,7 +88,7 @@ namespace CMI.Web.Common.Auth.Sibboleth
             };
 
             // Hier anpassen, welcher Benutzer zurückgeliefert werden soll
-            return retVal["Rafael"];
+            return retVal["Interner Benutzer"];
         }
     }
 }
