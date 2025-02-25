@@ -1,6 +1,4 @@
 export * from './account/userUiSettings';
-export * from './collection/collections';
-export * from './collection/collectionListItem';
 export * from './entity/entity';
 export * from './entity/entityContext';
 export * from './entity/entityImage';
@@ -36,3 +34,4 @@ export * from './searchState';
 export * from './searchBrowseState';
 export * from './clientVersion';
 export * from './component-can-deactivate';
+export * from './can-deactivate-data.component';

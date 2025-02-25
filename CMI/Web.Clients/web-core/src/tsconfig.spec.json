@@ -6,6 +6,8 @@
 		"baseUrl": "./",
 		"module": "es2020",
 		"target": "es2020",
+		"esModuleInterop":  true,
+		"allowSyntheticDefaultImports": true,
 		"types": [
 			"jasmine",
 			"node"
