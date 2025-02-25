@@ -75,16 +75,13 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.lib.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "**/**/*.spec.ts"
-            ]
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"eslintConfig": ".eslintrc.js",
+						"lintFilePatterns": [
+							"**/*.ts",
+							"**/*.d.ts"
+						]
           }
         }
       }
@@ -99,5 +96,10 @@
     "@schematics/angular:directive": {
       "prefix": "cmi"
     }
-  }
+  },
+	"cli": {
+		"schematicCollections": [
+			"@angular-eslint/schematics"
+		]
+	}
 }
