@@ -17,7 +17,7 @@ export class ModalService {
 		this.viewContainerRef = vcRef;
 	}
 
-	public open<T>(component: Type<T>, parameters?: Object): Observable<ComponentRef<T>> {
+	public open<T>(component: Type<T>, parameters?: unknown): Observable<ComponentRef<T>> {
 		const componentRef$ = new ReplaySubject();
 		const factory = this.resolver.resolveComponentFactory(component);
 		const componentRef = factory.create(this.injector);
@@ -43,10 +43,10 @@ export class ModalService {
 			this.activeInstances$.next(this.activeInstances);
 			componentRef.destroy();
 
-		this.modalRef.push(componentRef);
-		componentRef$.next(componentRef);
-		componentRef$.complete();
-		return <Observable<ComponentRef<T>>>componentRef$.asObservable();
+			this.modalRef.push(componentRef);
+			componentRef$.next(componentRef);
+			componentRef$.complete();
+			return <Observable<ComponentRef<T>>>componentRef$.asObservable();
 		};
 	}
 }

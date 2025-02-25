@@ -66,7 +66,8 @@
             "karmaConfig": "karma.conf.js",
             "scripts": [],
             "styles": [
-              "src/styles.less"
+							"src/styles.less",
+							"node_modules/flatpickr/dist/flatpickr.css"
             ],
             "assets": [
               "src/assets",

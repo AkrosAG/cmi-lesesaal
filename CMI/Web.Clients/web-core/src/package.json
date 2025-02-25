@@ -23,8 +23,9 @@
 		"@angular/router": "13.4.0",
     "rxjs": "6.6.7",
     "moment": "^2.29.4",
-    "ngx-toastr": "14.0.0",
-    "pikaday": "1.8.2",
+    "ngx-toastr": "14.3.0",
+    "angularx-flatpickr": "^7.0.0",
+    "flatpickr": "^4.6.13",
     "@grapecity/wijmo.angular2.all": "^5.20211.792",
     "file-saver": "2.0.5",
     "jszip": "3.7.1"
