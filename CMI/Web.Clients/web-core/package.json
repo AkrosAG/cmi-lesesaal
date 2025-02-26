@@ -59,7 +59,7 @@
     "karma-teamcity-reporter": "^1.1.0",
     "moment": "^2.29.4",
     "nerdbank-gitversioning": "3.4.255",
-    "ng-packagr": "^14.3.0",
+    "ng-packagr": "^15.2.2",
     "ngx-toastr": "^15.2.2",
     "protractor": "~7.0.0",
     "puppeteer": "19.0.0",
