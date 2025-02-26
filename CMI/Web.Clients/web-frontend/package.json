@@ -27,7 +27,7 @@
 		"ngx-matomo": "^1.1.0",
     "rxjs": "6.6.7",
     "tslib": "^2.2.0",
-    "typescript": "^4.8.4",
+    "typescript": "4.8.4",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.11.4"
   },
