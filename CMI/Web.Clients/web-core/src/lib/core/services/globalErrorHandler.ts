@@ -35,7 +35,7 @@ export class GlobalErrorHandler extends ErrorHandler {
 		}
 
 		const unknownErrorMessage = this._txt.get('error.unknownErrorMessage',
-		'Es ist ein unerwartender Fehler aufgetreten. Klicken Sie hier, um die Seite neu zu laden oder versuchen Sie es später erneut');
+			'Es ist ein unerwartender Fehler aufgetreten. Klicken Sie hier, um die Seite neu zu laden oder versuchen Sie es später erneut');
 
 		if (e) {
 			this._logJSError(e); /* just log unhandled javascript errors here and show it as unpexected error later */
@@ -80,7 +80,7 @@ export class GlobalErrorHandler extends ErrorHandler {
 
 		if (e instanceof TypeError) {
 			this._logError(msg, 'TYPE ERROR');
-		} else if (e instanceof DOMError) {
+		} else if (e instanceof DOMException) {
 			this._logError(msg, 'DOM ERROR');
 		} else if (e instanceof EvalError) {
 			this._logError(msg, 'EVAL ERROR');

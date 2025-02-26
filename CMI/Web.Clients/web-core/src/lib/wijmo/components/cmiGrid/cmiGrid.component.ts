@@ -647,12 +647,15 @@ export class CmiGridComponent extends WjFlexGrid {
 				cb.checked = cnt > 0;
 				cb.indeterminate = cnt > 0 && cnt < flex.rows.length;
 
+				/* eslint-disable @typescript-eslint/no-this-alias */
+				const flexGrid = this;
+				/* eslint-enable @typescript-eslint/no-this-alias */
 				// apply checkbox value to cells
 				cb.addEventListener('click', function (e) {
 					flex.beginUpdate();
 					for (let i = 0; i < flex.rows.length; i++) {
 						const item = flex.rows[i].dataItem;
-						this.addOrRemoveItemFromSelection(item, cb.checked ? 'add' : 'remove');
+						flexGrid.addOrRemoveItemFromSelection(item, cb.checked ? 'add' : 'remove');
 					}
 					flex.endUpdate();
 				});
