@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
 import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
 	selector: 'cmi-viaduc-einsicht-order-details-step',
@@ -10,9 +10,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class EisichtCheckoutOrderDetailsStepComponent implements OnInit {
 	public artDerArbeiten: ArtDerArbeit[] = [];
-	public isAsUser: boolean = false;
-	public form: FormGroup;
-	public nextClicked: boolean = false;
+	public isAsUser = false;
+	public form: UntypedFormGroup;
+	public nextClicked = false;
 	public identifizierungsText: string;
 
 	@Output()
@@ -20,7 +20,7 @@ export class EisichtCheckoutOrderDetailsStepComponent implements OnInit {
 
 	constructor(private _scs: ShoppingCartService,
 				private _stm: StammdatenService,
-				private _formBuilder: FormBuilder,
+				private _formBuilder: UntypedFormBuilder,
 				private _txt: TranslationService,
 				private _url: UrlService,
 				private _author: AuthorizationService) {
@@ -37,7 +37,7 @@ export class EisichtCheckoutOrderDetailsStepComponent implements OnInit {
 			hasEigenePersonendaten: [null, Validators.required]
 		});
 
-		let activeOrder = this._scs.getActiveOrder();
+		const activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
 			this.form.patchValue({
 				artDerArbeit: activeOrder.artDerArbeit,

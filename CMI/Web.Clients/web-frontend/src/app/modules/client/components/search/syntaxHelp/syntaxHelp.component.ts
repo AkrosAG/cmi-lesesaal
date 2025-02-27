@@ -1,12 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
 	selector: 'cmi-viaduc-syntax-help',
 	templateUrl: 'syntaxHelp.component.html'
 })
-export class SyntaxHelpComponent implements OnInit {
+export class SyntaxHelpComponent {
 
-	public ngOnInit(): void {
-
-	}
 }

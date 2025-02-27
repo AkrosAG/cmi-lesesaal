@@ -99,7 +99,7 @@ export class DetailPageComponent implements OnInit {
 
 		try {
 			const id = this._url.getDetailIdFromReference(idOrReference);
-			let entity = this.entity = await this._entityService.get(id);
+			const entity = this.entity = await this._entityService.get(id);
 			this.hasFiles = (this.entity.files && this.entity.files.length > 0) || this.entity.hasProtectedFiles;
 
 			if (!_util.isEmpty(entity)) {
@@ -122,7 +122,7 @@ export class DetailPageComponent implements OnInit {
 				}
 
 				if (entity._metadata) {
-					for (let key in entity._metadata) {
+					for (const key in entity._metadata) {
 						if (entity._metadata.hasOwnProperty(key)) {
 							const sec = this._renderService.renderSection(this.entity, key);
 							if (sec) {

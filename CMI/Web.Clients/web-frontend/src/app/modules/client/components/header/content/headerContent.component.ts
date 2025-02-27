@@ -27,9 +27,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 		this._elem = this._elemRef.nativeElement;
 	}
 
-	public ngOnInit(): void {
-	}
-
 	public ngAfterViewInit(): void {
 		_util.initJQForElement(this._elem);
 	}
@@ -56,15 +53,15 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	}
 
 	private refresh(): void {
-		let ls = this._languages = (this._languages || []);
+		const ls = this._languages = (this._languages || []);
 		if (_util.isEmpty(ls)) {
 			for (let i = 0; i < this._txt.supportedLanguages.length; i += 1) {
-				let l = {...this._txt.supportedLanguages[i]};
+				const l = {...this._txt.supportedLanguages[i]};
 				ls.push(l);
 			}
 		}
 		for (let i = 0; i < this._languages.length; i += 1) {
-			let l = this._languages[i];
+			const l = this._languages[i];
 			l.active = (l.key === this._context.language);
 			l.label = l.name;
 		}

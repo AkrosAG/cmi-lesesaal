@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
 import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
 import * as moment from 'moment';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
 	selector: 'cmi-viaduc-order-details-step',
@@ -11,28 +11,28 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CheckoutOrderDetailsStepComponent implements OnInit {
 
-	public isAsUser: boolean = false;
+	public isAsUser = false;
 	public artDerArbeiten: ArtDerArbeit[] = [];
 	public openingDays: string[];
-	public invalidDateError: boolean = false;
-	public form: FormGroup;
+	public invalidDateError = false;
+	public form: UntypedFormGroup;
 
 	@Output()
 	public onGoBackClicked: EventEmitter<void> = new EventEmitter<void>();
 	@Output()
 	public onNextClicked: EventEmitter<void> = new EventEmitter<void>();
-	public nextClicked: boolean = false;
+	public nextClicked = false;
 
 	constructor(private _scs: ShoppingCartService,
 				private _stm: StammdatenService,
 				private _author: AuthorizationService,
-				private _formBuilder: FormBuilder,
+				private _formBuilder: UntypedFormBuilder,
 				private _url: UrlService,
 				private _txt: TranslationService) {
 	}
 
 	public ngOnInit(): void {
-		let ordering = this._scs.getActiveOrder() || <Ordering>{};
+		const ordering = this._scs.getActiveOrder() || <Ordering>{};
 		this.isAsUser = this._author.isAsUser();
 
 		this.form = this._formBuilder.group({
@@ -56,7 +56,7 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 	}
 
 	private _getLesesaalDate(): Date {
-		let lesesaalCtrl = this.form.controls.konsultierungsDatum;
+		const lesesaalCtrl = this.form.controls.konsultierungsDatum;
 		if (!lesesaalCtrl || !lesesaalCtrl.value || lesesaalCtrl.value.length < 6) {
 			return null;
 		}
@@ -71,7 +71,7 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 	}
 
 	private _saveActiveOrder() {
-		let order = this._scs.getActiveOrder();
+		const order = this._scs.getActiveOrder();
 		order.lesesaalDate = this._getLesesaalDate();
 		order.artDerArbeit = (this.form.controls.artDerArbeitDropdown || <any>{}).value;
 		order.comment = this.form.controls.bemerkungBestellung.value;
