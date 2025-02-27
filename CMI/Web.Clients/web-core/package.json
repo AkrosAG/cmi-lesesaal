@@ -69,7 +69,7 @@
     "zone.js": "^0.13.3"
   },
   "peerDependencies": {
-    "@grapecity/wijmo.angular2.all": "^5.20221.842",
+		"@grapecity/wijmo.angular2.all": "^5.20221.857",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "moment": "^2.30.1",

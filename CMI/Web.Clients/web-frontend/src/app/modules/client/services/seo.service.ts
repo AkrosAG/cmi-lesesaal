@@ -60,7 +60,7 @@ export class SeoService {
 			console.error(ex);
 		}
 	}
-
+	// eslint-disable-next-line
 	public updatePageInfo(url: string): void {
 		this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
 		const description = this._txt.get('page.description', 'recherche.admin.ch');

@@ -40,7 +40,7 @@ export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 					this.loadedHtml = html;
 					subscription.unsubscribe();
 				},
-				error => {
+				() => {
 					this.loadedHtml = null;
 					subscription.unsubscribe();
 				}

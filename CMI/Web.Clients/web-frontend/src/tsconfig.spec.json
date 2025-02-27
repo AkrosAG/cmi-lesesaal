@@ -1,20 +1,22 @@
 {
 	"extends": "../tsconfig.json",
-  "compilerOptions": {
-    "experimentalDecorators": true,
+	"compilerOptions": {
+		"experimentalDecorators": true,
 		"outDir": "../out-tsc/spec",
 		"baseUrl": "./",
-		"target": "es2020",
-		"module": "es2020",
+		"module": "es2022",
+
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
 		"types": [
 			"jasmine",
 			"node"
 		],
 	},
 	"files": [
-		"test.ts",
-	  "polyfills.ts"
-  ],
+		"test.ts"
+
+	],
 	"include": [
 		"**/*.spec.ts",
 		"**/*.d.ts"

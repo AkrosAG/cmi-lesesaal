@@ -36,7 +36,7 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 				this._scs.orderEinsichtsgesuch(order).subscribe(() => {
 					this._setText(order);
 					this.loading = false;
-				}, (error) => {
+				}, () => {
 					this.showError = true;
 					this.loading = false;
 				});
@@ -44,7 +44,7 @@ export class CheckoutSubmittedStepComponent implements OnInit {
 				this._scs.order(order).subscribe(() => {
 					this._setText(order);
 					this.loading = false;
-				}, (error) => {
+				}, () => {
 					this.showError = true;
 					this.loading = false;
 				});

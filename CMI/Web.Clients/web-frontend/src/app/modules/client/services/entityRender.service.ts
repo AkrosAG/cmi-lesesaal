@@ -182,7 +182,7 @@ export class EntityRenderService {
 
 	private _renderArray(row: SectionRow, path: string, arr: any[], fn: (row: SectionRow, path: string, val: any) => string): string {
 		let s = '';
-		arr.forEach((val, i) => {
+		arr.forEach((val) => {
 			s = _util.addToString(s, '<br/>', fn(row, path, val));
 		});
 		return s;
