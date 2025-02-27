@@ -12,12 +12,12 @@ export class ArchivplanPageComponent implements OnInit {
 
 	public crumbs: any[] = [];
 	public nodesToOpen: string[] = [];
-	public loading: boolean = true;
-	public init: boolean = true;
-	public error: boolean = false;
+	public loading = true;
+	public init = true;
+	public error = false;
 	public param: string;
 
-	private _crumbsLoaded: boolean = false;
+	private _crumbsLoaded = false;
 
 	public get crumbsLoaded(): boolean {
 		return this._crumbsLoaded === true || !this.param;
@@ -37,7 +37,7 @@ export class ArchivplanPageComponent implements OnInit {
 		this.param = id;
 		if (id) {
 			try {
-				let entity = await this._entityService.get(id);
+				const entity = await this._entityService.get(id);
 				if (entity) {
 					this.nodesToOpen = this._getNodesToOpen(entity);
 				} else {
@@ -56,7 +56,7 @@ export class ArchivplanPageComponent implements OnInit {
 	}
 
 	private _getNodesToOpen(e: Entity): string[] {
-		let ids: string[] = [];
+		const ids: string[] = [];
 		if (e._context && e._context.ancestors) {
 			e._context.ancestors.forEach(function (i) {
 				ids.push(i.archiveRecordId);
@@ -67,7 +67,7 @@ export class ArchivplanPageComponent implements OnInit {
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
+		const crumbs: any[] = this.crumbs = [];
 		crumbs.push({
 			iconClasses: 'glyphicon glyphicon-home',
 			url: this._url.getHomeUrl(),
@@ -136,11 +136,12 @@ export class ArchivplanPageComponent implements OnInit {
 	}
 
 	public getErrorMessage(): string {
-		let details1 = this._txt.get('detail.notFoundMessage',
+		const details1 = this._txt.get('detail.notFoundMessage',
 				'Womöglich verfügen Sie nicht über die nötige Berechtigung, um die Seite aufzurufen (siehe <a href="#{0}">Anmelden und Identifizieren</a>).</br></br>',
 				this._url.getRegisterAndIdentifyInfo());
 
-		let details2 = this._txt.get('detail.notFoundMessage2',
+		const details2 = this._txt.get('detail.notFoundMessage2',
+			// eslint-disable-next-line
 			'Bei Fragen zur Zugänglichkeit der Unterlagen im Lesesaal wenden Sie sich bitte an die Beratung oder per E-Mail an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.');
 
 		return details1 + details2;

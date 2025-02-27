@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DigitalOnboardingAssistantComponent implements OnInit, AfterViewInit {
 	public currentStep: number;
-	public hasPhoneWithSms: boolean = false;
-	public hasSmartphoneOrPc: boolean = false;
+	public hasPhoneWithSms = false;
+	public hasSmartphoneOrPc = false;
 	public userCanOnboard: boolean;
 	public swisscomLink: string;
 	public passportCountries: Countries;

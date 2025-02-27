@@ -13,6 +13,7 @@ export class StatusInfoUserComponent {
 
 	public getInfoMessage(): string {
 		return this._txt.get('account.digitalOnboarding.statusInfo',
+			// eslint-disable-next-line
 			'Sofern Sie noch nicht den Status Identifiziert haben, schauen Sie bitte unter <a href=\"#/de/informationen/registrieren-und-identifizieren\">Registrieren und Identifizieren</a>.');
 	}
 }

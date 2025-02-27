@@ -59,7 +59,7 @@ export class FavoriteListComponent implements OnInit {
 	}
 
 	public async addToCart(item: VeFavorite) {
-		let ve = <Entity> {
+		const ve = <Entity> {
 			archiveRecordId: item.veId,
 			title: item.title,
 		};

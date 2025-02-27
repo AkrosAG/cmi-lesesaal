@@ -22,8 +22,8 @@ export const toastrOptions = {
 };
 
 export function preloadServiceFactory(preloadService: PreloadService, ctx: ContextService) {
-	let context = ctx.context.getValue();
-	let language = context.loadingLanguage || context.language;
+	const context = ctx.context.getValue();
+	const language = context.loadingLanguage || context.language;
 	return () => preloadService.preload(language);
 }
 

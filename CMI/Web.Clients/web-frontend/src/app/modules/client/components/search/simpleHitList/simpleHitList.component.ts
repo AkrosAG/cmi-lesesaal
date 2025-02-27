@@ -12,9 +12,9 @@ export class SimpleHitListComponent {
 	@Input()
 	public entityResult: Entity[];
 	@Input()
-	public loading: boolean = false;
+	public loading = false;
 	@Input()
-	public enableExplanations: boolean = false;
+	public enableExplanations = false;
 
 	private _userSettings: UserUiSettings;
 

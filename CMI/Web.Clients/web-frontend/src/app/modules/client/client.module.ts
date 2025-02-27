@@ -42,9 +42,6 @@ import {CoreModule, WijmoModule} from '@cmi/lesesaal-web-core';
 
 export class ClientModule {
 
-	constructor() {
-	}
-
 	public static forRoot(): ModuleWithProviders<ClientModule> {
 		return {
 			ngModule: ClientModule,

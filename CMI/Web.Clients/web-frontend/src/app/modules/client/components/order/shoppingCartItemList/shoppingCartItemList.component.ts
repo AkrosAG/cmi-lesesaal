@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ElementRef, EventEmitter, Output} from '@angular/core';
+import {Component, Input, ElementRef, EventEmitter, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services';
 import {OrderItem, Utilities as _util} from '@cmi/lesesaal-web-core';
 
@@ -7,32 +7,30 @@ import {OrderItem, Utilities as _util} from '@cmi/lesesaal-web-core';
 	templateUrl: 'shoppingCartItemList.component.html',
 	styleUrls: ['./shoppingCartItemList.component.less']
 })
-export class ShoppingCartItemList implements OnInit {
+export class ShoppingCartItemList {
 
 	@Input()
 	public items: OrderItem[] = [];
 
 	@Input()
-	public einsichtsGesuche: boolean = false;
+	public einsichtsGesuche = false;
 
 	@Output()
 	public refreshRequested: EventEmitter<void> = new EventEmitter<void>();
 
-	public bewilligungModalOpen: boolean = false;
+	public bewilligungModalOpen = false;
 	public chosenBewilligungsItem: OrderItem = null;
-	public invalidDateError: boolean = false;
-	public updateError: boolean = false;
+	public invalidDateError = false;
+	public updateError = false;
 
 	private _elem: ElementRef;
 	constructor(private _scs: ShoppingCartService, elemRef: ElementRef) {
 		this._elem = elemRef.nativeElement;
 	}
 
-	public ngOnInit(): void {
-	}
-
 	public updateComment(item: OrderItem) {
 		this._scs.setComment(item).subscribe(() => {
+			return;
 		});
 	}
 
@@ -79,7 +77,7 @@ export class ShoppingCartItemList implements OnInit {
 	}
 
 	private removeItem(item: any) {
-		let index = this.items.indexOf(item, 0);
+		const index = this.items.indexOf(item, 0);
 		if (index > -1) {
 			this.items.splice(index, 1);
 		}

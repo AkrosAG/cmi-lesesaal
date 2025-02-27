@@ -22,7 +22,7 @@ export class RegisterPageInfoComponent implements OnInit {
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
+		const crumbs: any[] = this.crumbs = [];
 		crumbs.push({iconClasses: 'glyphicon glyphicon-home', url: this._url.getHomeUrl()});
 		crumbs.push({label: this._txt.get('breadcrumb.registerInfo', 'Infos zur Kontoeröffnung')});
 	}
@@ -33,6 +33,7 @@ export class RegisterPageInfoComponent implements OnInit {
 	}
 
 	public getTextFragen(): string {
+		// eslint-disable-next-line
 		return this._txt.translate('Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.', 'registerInfo.questionText');
 	}
 

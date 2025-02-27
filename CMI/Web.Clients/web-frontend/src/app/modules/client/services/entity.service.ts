@@ -38,7 +38,7 @@ export class EntityService {
 
 	public getChildHtml(id: string): Promise<string> {
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/Data';
-		let queryString = `?id=${id}`;
+		const queryString = `?id=${id}`;
 
 		const url = `${apiDataUrl}/GetArchivplanChildrenHtml${queryString}`;
 		return this._http.get<string>(url, this._http.noCaching).toPromise();
@@ -46,7 +46,7 @@ export class EntityService {
 
 	public getArchivplanHtml(id: string): Promise<string> {
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/Data';
-		let queryString = `?id=${id}`;
+		const queryString = `?id=${id}`;
 
 		const url = `${apiDataUrl}/GetArchivplanHtml${queryString}`;
 		return this._http.get<string>(url, this._http.noCaching).toPromise();
@@ -61,12 +61,10 @@ export class EntityService {
 }
 
 export class MockEntityService {
-	constructor() {
-	}
 
 	public get(id: string): Promise<Entity> {
 		return new Promise<Entity>((resolve, reject) => {
-			let mockResponse = <Entity>{
+			const mockResponse = <Entity>{
 				archiveRecordId: id,
 				title: 'Item ' + id
 			};

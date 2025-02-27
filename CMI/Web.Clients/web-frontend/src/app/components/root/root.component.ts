@@ -20,8 +20,8 @@ export class RootComponent implements OnInit, AfterViewInit {
 	@ViewChild(ToastContainerDirective)
 	public toastContainer: ToastContainerDirective;
 
-	public preloading: boolean = false;
-	public showEngagement: boolean = false;
+	public preloading = false;
+	public showEngagement = false;
 
 	constructor(private _context: ClientContext,
 		private _contextService: ContextService,
@@ -71,7 +71,7 @@ export class RootComponent implements OnInit, AfterViewInit {
 			}, 50);
 		});
 
-		let version = this._config.getSetting('service.version');
+		const version = this._config.getSetting('service.version');
 		this._context.client.setVersion(version);
 
 		this._authentication.tryActivateExistingSession().then((success) => {

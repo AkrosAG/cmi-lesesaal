@@ -14,11 +14,11 @@ import {ToastrService} from 'ngx-toastr';
 export class RegisterPageComponent extends ComponentCanDeactivate implements OnInit  {
 
 	public crumbs: any[] = [];
-	public show:boolean = false;
+	public show = false;
 	public user:User;
-
-	public emailRegexPattern: string = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
-	public phonenumberRegexPattern: string = '^([s()+]*([0-9][s( )-]*){6,20})$';
+// eslint-disable-next-line
+	public emailRegexPattern = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
+	public phonenumberRegexPattern = '^([s()+]*([0-9][s( )-]*){6,20})$';
 	public countries: any;
 	public languages: any;
 
@@ -88,6 +88,7 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 
 		return this._txt.get('user.legelAgreementConsentText',
 			'Ich bin einverstanden, dass meine Personendaten wie in ' +
+			// eslint-disable-next-line
 			'der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen ' +
 			'im Rahmen seines Online-Zugangs verwenden darf.',
 			url);

@@ -22,7 +22,7 @@ export class SeoService {
 
 	public setTitle(title: string) {
 		this._siteTitle = this._txt.translate(' ', 'header.title');
-		let seoTitle = title + ((title && title.length > 0) ? ' - ' : '') + this._siteTitle;
+		const seoTitle = title + ((title && title.length > 0) ? ' - ' : '') + this._siteTitle;
 		this._title.setTitle(seoTitle);
 	}
 
@@ -63,7 +63,7 @@ export class SeoService {
 
 	public updatePageInfo(url: string): void {
 		this._siteTitle = this._txt.get('header.title', 'Hochschularchiv der ETH Zürich');
-		let description = this._txt.get('page.description', 'recherche.admin.ch');
+		const description = this._txt.get('page.description', 'recherche.admin.ch');
 
 		try {
 			this.setTitle('');

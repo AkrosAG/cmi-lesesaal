@@ -14,7 +14,7 @@ export class FileSectionComponent implements OnInit {
 	@Input()
 	public entity: Entity;
 	public files: any[];
-	public showHasProtectedFiles: boolean = false;
+	public showHasProtectedFiles = false;
 
 	constructor(private _options: CoreOptions,
 		private _context: ClientContext,
