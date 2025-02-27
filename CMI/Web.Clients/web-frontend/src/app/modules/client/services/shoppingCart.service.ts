@@ -120,7 +120,7 @@ export class ShoppingCartService {
 
 	public order(order: Ordering): Observable<void> {
 		const url = `${this._apiUrl}/Order`;
-
+		// eslint-disable-next-line
 		return this._http.post(url, order).pipe(mergeMap((data) => {
 			return this.getTotalItemsInCartFromServer().pipe(map(nr => {
 				this._totalItemsInCart = nr;
@@ -131,6 +131,7 @@ export class ShoppingCartService {
 
 	public orderEinsichtsgesuch(order: Ordering): Observable<void> {
 		const url = `${this._apiUrl}/OrderEinsichtsgesuch`;
+		// eslint-disable-next-line
 		return this._http.post(url, order).pipe(mergeMap((data) => {
 			return this.getTotalItemsInCartFromServer().pipe(map(nr => {
 				this._totalItemsInCart = nr;

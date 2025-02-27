@@ -6,7 +6,7 @@ import {ErrorInfo, TranslationService} from '@cmi/lesesaal-web-core';
 export class NotFoundResolver implements Resolve<ErrorInfo> {
 	constructor(private _txt: TranslationService) {
 	}
-
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): ErrorInfo {
 		return <ErrorInfo>{
 			title: this._txt.get('errors.pageNotFoundTitle', 'Die Seite wurde nicht gefunden')

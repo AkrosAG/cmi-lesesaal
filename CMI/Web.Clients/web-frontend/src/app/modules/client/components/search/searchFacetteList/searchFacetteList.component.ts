@@ -72,7 +72,7 @@ export class SearchFacetteListComponent implements OnInit, OnChanges {
 		}
 		this.facettsPreparation();
 	}
-
+	// eslint-disable-next-line
 	public ngOnChanges(changes: SimpleChanges): void {
 		this.RemoveOutdatedFacetts();
 		this.facettsPreparation();
@@ -163,7 +163,7 @@ export class SearchFacetteListComponent implements OnInit, OnChanges {
 	}
 	public deleteFacetteFilter(ff: FacetteFilter, filterstring: string) {
 		// remove filter string from facetgroup
-		const index: number = this.activeFacets.filter((value2) => value2.facet === ff.facet)[0].filters.findIndex((value, i, obj) => value === filterstring);
+		const index: number = this.activeFacets.filter((value2) => value2.facet === ff.facet)[0].filters.findIndex((value) => value === filterstring);
 		if (index !== -1) {
 			this.activeFacets.filter((value) => value.facet === ff.facet)[0].filters.splice(index, 1);
 		}

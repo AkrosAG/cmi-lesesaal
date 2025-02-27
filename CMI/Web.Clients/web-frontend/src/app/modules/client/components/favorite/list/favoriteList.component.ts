@@ -76,7 +76,7 @@ export class FavoriteListComponent implements OnInit {
 			this.error = e;
 		});
 	}
-
+	// eslint-disable-next-line
 	public exportItem(item: Favorite) {
 		this.error = undefined;
 

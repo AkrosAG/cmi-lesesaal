@@ -150,11 +150,11 @@ export class DateRangeFieldComponent implements ControlValueAccessor {
 			this.selectedField.value = obj.value;
 		}
 	}
-
+	// eslint-disable-next-line
 	public registerOnChange(fn: any): void {
 		return;
 	}
-
+	// eslint-disable-next-line
 	public registerOnTouched(fn: any): void {
 		return;
 	}

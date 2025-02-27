@@ -78,7 +78,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		this.showDigitizationWarning = this._scs.getShowDigitizationWarningSetting();
 		this.orderDigitalWarningText = this._scs.getOrderDigitalText();
 
-		this.form.controls.shippingType.valueChanges.subscribe(async val => {
+		this.form.controls.shippingType.valueChanges.subscribe(async () => {
 			await this._resetActiveOrder();
 		});
 	}

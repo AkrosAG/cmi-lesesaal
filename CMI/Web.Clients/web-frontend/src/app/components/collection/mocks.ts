@@ -1,7 +1,9 @@
 import {Injectable, NgModule} from '@angular/core';
 import {IndividualConfig, ToastPackage, ToastRef, ToastrModule, ToastrService} from 'ngx-toastr';
 import {ParamMap} from '@angular/router';
+
 @Injectable()
+	/* eslint-disable */
 class Mocks extends ToastPackage {
 	constructor() {
 		const toastConfig = { toastClass: 'custom-toast' };

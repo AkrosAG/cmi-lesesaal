@@ -73,7 +73,7 @@ export class AdvancedSearchFieldComponent implements OnInit, AfterViewInit {
 	public onDateRangeFieldValidate(valid: boolean) {
 		this.selectedField.containsValidationErrors = !valid;
 	}
-
+	// eslint-disable-next-line
 	public onKeydownSearch (event: any) {
 		this.searchSynonymeIconComponent.setSynonymSearchTimer();
 	}

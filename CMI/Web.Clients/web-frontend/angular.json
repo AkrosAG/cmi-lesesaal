@@ -11,16 +11,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
-            "deployUrl": "client/",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "preserveSymlinks": true,
-            "polyfills": "src/polyfills.ts",
+          	"outputPath": "dist",
+          	"deployUrl": "client/",
+          	"index": "src/index.html",
+          	"main": "src/main.ts",
+          	"tsConfig": "src/tsconfig.app.json",
+          	"preserveSymlinks": true,
+          	"polyfills": [
+          		"zone.js",
+          		"zone.js/testing"
+          	],
 						"stylePreprocessorOptions": {
 							"includePaths": [
-                 "node_modules/@cmi/lesesaal-web-core/styles"
+								"node_modules/@cmi/lesesaal-web-core/styles"
 							]
 						},
             "assets": [
@@ -81,14 +84,7 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": true
-              },
+              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -125,9 +121,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               "src/assets/js/vendors.min.js",
@@ -186,7 +184,6 @@
       }
     }
   },
-  "defaultProject": "cmi-viaduc-web-frontend",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "cmi",
@@ -195,5 +192,8 @@
     "@schematics/angular:directive": {
       "prefix": "cmi"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
