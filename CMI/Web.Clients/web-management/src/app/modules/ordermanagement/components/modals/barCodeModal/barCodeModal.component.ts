@@ -40,7 +40,7 @@ export class BarCodeModalComponent {
 	}
 
 	private _distinctSplit (barcodes: string): string[] {
-		let list: string[] = [];
+		const list: string[] = [];
 
 		barcodes.split('\n').forEach(b => {
 			const barcode = b.trim();

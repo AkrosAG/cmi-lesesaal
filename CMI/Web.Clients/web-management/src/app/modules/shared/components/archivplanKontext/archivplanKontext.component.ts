@@ -10,7 +10,7 @@ export class ArchivplanKontextComponent {
 	@Input()
 	public items: Entity[];
 
-	public inset: number = 1;
+	public inset = 1;
 
 	constructor() {
 	}

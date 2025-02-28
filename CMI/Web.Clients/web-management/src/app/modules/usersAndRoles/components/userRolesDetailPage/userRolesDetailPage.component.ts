@@ -47,7 +47,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public ablieferndeStelleAllList: AblieferndeStelle[];
 	private stillSelectedAblieferndeStelleList: any;
 	private initialeAblieferndeStelleList: any;
-	private rolesIsDirty: Boolean;
+	private rolesIsDirty: boolean;
 
 	constructor(private _context: ClientContext, public _authorization: AuthorizationService, private _roleService: RoleService, private _txt: TranslationService,
 				private _url: UrlService,
@@ -75,7 +75,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			},
 			() => this.loading = false);
 
-		let countries = this._countriesService.getCountries(this._context.language);
+		const countries = this._countriesService.getCountries(this._context.language);
 		this.countries = this._countriesService.sortCountriesByName(countries);
 	}
 
@@ -149,7 +149,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		const ablieferndeStelleIds = this.detail.item.ablieferndeStelleList != null ? this.detail.item.ablieferndeStelleList.map(as => as.ablieferndeStelleId) : [];
 		this._userService.cleanAndAddAblieferndeStelle(this.detail.item.id, ablieferndeStelleIds).subscribe(
 			async res => {
-			let access = this.detail.item.access || {};
+			const access = this.detail.item.access || {};
 				this.detail.item.tokens = access.asTokens || [];
 				this._ui.showSuccess(this._txt.get('userAndRoles.assignedAblieferndeStellenSuccessfullySaved', 'Zuständige Stellen erfolgreich gespeichert'));
 				this.rememberSelectedRoles();
@@ -270,7 +270,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			return;
 		}
 		const formData = new FormData();
-		for (let file of event.target.files) {
+		for (const file of event.target.files) {
 			formData.append(file.name, file);
 		}
 		this.selectedIdentifizierungsmittel = formData;
@@ -278,13 +278,13 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 
 	public downloadIdentifierungsmittel() {
 		this.loading = true;
-		let url = this._userService.getIdentifizierungsmittelPdfUrl(this.detail.item.id);
+		const url = this._userService.getIdentifizierungsmittelPdfUrl(this.detail.item.id);
 		this._http.download(url).subscribe(
 			event => {
 				if (event.type === HttpEventType.Response) {
 					try {
 						this.loading = false;
-						let blob = event.body;
+						const blob = event.body;
 						fileSaver.saveAs(blob, this.detail.item.id + '.pdf', { autoBom: false });
 					} catch (ex) {
 						console.error(ex);
@@ -395,7 +395,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public dateRangeValidator(control: FormControl): any | null {
-		let dateString = control.value;
+		const dateString = control.value;
 		if (!dateString) {
 			return null;
 		}
@@ -532,7 +532,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			this.allRoles  = this.detail['roles'];
 			this.distributeAssignedRoles(this.detail.item.roles, this.initialeRoles);
 		}
-		let access = result.item.access || {};
+		const access = result.item.access || {};
 		result.item.tokens = access.asTokens || [];
 		if (this.stillSelectedAblieferndeStelleList) {
 			this.detail.item.ablieferndeStelleList = [];
@@ -546,9 +546,9 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			});
 		}
 		this.detail.item.birthday = result.item.birthday ? moment(new Date(result.item.birthday)).format('DD.MM.YYYY') : null;
-		let dateTime = moment(new Date()).add(-1, 'days').toDate();
+		const dateTime = moment(new Date()).add(-1, 'days').toDate();
 		if (result.item.downloadLimitDisabledUntil) {
-			let compareDownloadLimitDisabledUntil = moment(new Date(result.item.downloadLimitDisabledUntil));
+			const compareDownloadLimitDisabledUntil = moment(new Date(result.item.downloadLimitDisabledUntil));
 			if (compareDownloadLimitDisabledUntil.diff(dateTime) > 0) {
 				this.detail.item.downloadLimitDisabledUntil = moment(new Date(this.detail.item.downloadLimitDisabledUntil)).format('DD.MM.YYYY');
 			} else {
@@ -556,7 +556,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			}
 		}
 		if (result.item.digitalisierungsbeschraenkungAufgehobenBis) {
-			let compareDigitalisierungsbeschraenkungAufgehobenBis = moment(new Date(result.item.digitalisierungsbeschraenkungAufgehobenBis));
+			const compareDigitalisierungsbeschraenkungAufgehobenBis = moment(new Date(result.item.digitalisierungsbeschraenkungAufgehobenBis));
 			if (compareDigitalisierungsbeschraenkungAufgehobenBis.diff(dateTime) > 0) {
 				this.detail.item.digitalisierungsbeschraenkungAufgehobenBis = moment(new Date(this.detail.item.digitalisierungsbeschraenkungAufgehobenBis)).format('DD.MM.YYYY');
 			} else {
@@ -646,7 +646,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	private reassembleDatatype() {
-		let detailItem = this.myForm.getRawValue();
+		const detailItem = this.myForm.getRawValue();
 
 		this.detail.item.familyName = detailItem.familyName;
 		this.detail.item.firstName = detailItem.firstName;
@@ -692,7 +692,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	private async _load(id: string): Promise<void> {
 		this.loading = true;
 		try {
-			let res = await this._roleService.getUserInfo(id);
+			const res = await this._roleService.getUserInfo(id);
 			this._prepareResult(res);
 		} catch (err) {
 			this._ui.showError(err);
@@ -711,7 +711,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public get getNextThirtyDays(): string[] {
-		let days = [];
+		const days = [];
 		for (let i = 0; i <= moment().daysInMonth(); i++) {
 			days.push(moment().add(i, 'days').format('DD.MM.YYYY'));
 		}
@@ -762,7 +762,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 
 		const ablieferndeStelleIds = this.detail.item.ablieferndeStelleList != null ? this.detail.item.ablieferndeStelleList.map(as => as.ablieferndeStelleId) : [];
 		if (this.initialeAblieferndeStelleList.length === this.detail.item.ablieferndeStelleList.length) {
-			let length = this.initialeAblieferndeStelleList.length;
+			const length = this.initialeAblieferndeStelleList.length;
 			for (let i = 0; i < length; i++) {
 				if (ablieferndeStelleIds.indexOf(this.initialeAblieferndeStelleList[i].ablieferndeStelleId) < 0) {
 					return true;

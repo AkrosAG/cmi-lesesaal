@@ -333,7 +333,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannEntscheidFreigabeHinterlegen)) {
 			return;
 		}
-		let strings: string[] = [];
+		const strings: string[] = [];
 		strings[0] = this.detailRecord.userId;
 		this._userService.getUsers(strings).then((users) => {
 			if (users) {
@@ -468,13 +468,13 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 
 	public erwartetesRueckgabeDatumChange(): void {
 		if (this.canFieldAusleihdauerChange()) {
-			let rueckgabe = moment(this?.detailRecord?.erwartetesRueckgabeDatum);
+			const rueckgabe = moment(this?.detailRecord?.erwartetesRueckgabeDatum);
 			const ausgabe = moment(this?.detailRecord?.ausgabedatum);
 			// it has already deducted one day more
 			// if the order was after 0 o'clock
 			rueckgabe.add(ausgabe.hours(), 'hours');
 			rueckgabe.add(ausgabe.minute() + 1, 'minutes');
-			let ausgabeDays = rueckgabe.diff(ausgabe, 'days');
+			const ausgabeDays = rueckgabe.diff(ausgabe, 'days');
 
 			this.detailRecord.ausleihdauer = ausgabeDays;
 			if (ausgabeDays > 0) {
