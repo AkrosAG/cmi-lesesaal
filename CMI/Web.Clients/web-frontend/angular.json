@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cmi-viaduc-web-frontend": {
+    "cmi-lesesaal-web-frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
