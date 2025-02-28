@@ -9,6 +9,7 @@ export class DefaultAuthenticatedGuard  {
 				private _authentication: AuthenticationService) {
 	}
 
+	// eslint-disable-next-line
 	public canActivate(route: ActivatedRouteSnapshot): boolean {
 		if (!this._context || this._context.authenticated !== true) {
 			this._authentication.login();
@@ -17,5 +18,4 @@ export class DefaultAuthenticatedGuard  {
 
 		return true;
 	}
-
 }

@@ -10,6 +10,7 @@ export class AuthenticatedResolver  {
 	constructor(private _context: ClientContext, private _authService: AuthenticationService) {
 	}
 
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | Observable<boolean> {
 		if (this._context.authenticated) {
 			return of(true);

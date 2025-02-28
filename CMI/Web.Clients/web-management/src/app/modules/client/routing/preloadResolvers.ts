@@ -9,11 +9,12 @@ export class PreloadedResolver  {
 	constructor(private _preloadService: PreloadService) {
 	}
 
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 		if (this._preloadService.isPreloaded) {
 			return true;
 		} else {
-			return this._preloadService.preloaded.pipe(take(1)).pipe(map(res => {
+			return this._preloadService.preloaded.pipe(take(1)).pipe(map(() => {
 				return true;
 			}));
 		}

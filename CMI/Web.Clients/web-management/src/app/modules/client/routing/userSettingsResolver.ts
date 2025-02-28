@@ -9,6 +9,7 @@ import { UserService } from '../../shared/services';
 export class UserSettingsResolver  {
 	constructor(private _usrService: UserService, private _preloadService: PreloadService) {
 	}
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 		if (this._usrService.hasUserSettingsLoaded) {
 			return true;

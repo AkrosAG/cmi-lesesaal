@@ -3,7 +3,7 @@ import {CollectionView} from '@grapecity/wijmo';
 import {
 	ApplicationFeatureEnum,
 	CmiGridComponent,
-	Collection, CollectionListItem,
+	CollectionDto, CollectionListItemDto,
 	ConfigService,
 	TranslationService
 } from '@cmi/lesesaal-web-core';
@@ -79,7 +79,7 @@ export class CollectionListPageComponent implements OnInit {
 		this.hiddenColumns = this.getHiddenColumns();
 	}
 
-	public editCollection(item: Collection): void {
+	public editCollection(item: CollectionDto): void {
 		const id = item ? item.collectionId : 'new';
 		this._router.navigate([this._url.getNormalizedUrl('/collection/collection') + '/' + id]);
 	}
@@ -222,7 +222,7 @@ export class CollectionListPageComponent implements OnInit {
 		this.refreshHiddenVisibleColumns();
 	}
 
-	private prepareResult(result: CollectionListItem[]) {
+	private prepareResult(result: CollectionListItemDto[]) {
 		this.loading = false;
 		this.collections = new CollectionView(result);
 		this.collections.pageSize = 10;

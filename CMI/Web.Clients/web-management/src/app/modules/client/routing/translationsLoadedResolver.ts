@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class TranslationsLoadedResolver  {
 	constructor(private _context: ClientContext, private _preloadService: PreloadService) {
 	}
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 		const language = this._context.loadingLanguage || this._context.language;
 		if (this._preloadService.hasTranslationsFor(language)) {
