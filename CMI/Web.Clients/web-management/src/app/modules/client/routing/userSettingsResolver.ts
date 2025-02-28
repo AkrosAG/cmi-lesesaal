@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { PreloadService } from '@cmi/lesesaal-web-core';
 import { map, take } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../shared/services';
 
 @Injectable()
-export class UserSettingsResolver implements Resolve<boolean> {
+export class UserSettingsResolver  {
 	constructor(private _usrService: UserService, private _preloadService: PreloadService) {
 	}
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
