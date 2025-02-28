@@ -193,9 +193,9 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	}
 
 	private buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
-		let collectionMenu = 'collection';
-		let collection = 'collection';
+		const crumbs: any[] = this.crumbs = [];
+		const collectionMenu = 'collection';
+		const collection = 'collection';
 
 		crumbs.push({iconClasses: 'glyphicon glyphicon-home', url: this._url.getHomeUrl()});
 		crumbs.push({
@@ -250,8 +250,8 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 
 	private checkValidRange(until: boolean) {
 		if (this.myForm && this.myForm.controls['validTo'] && this.myForm.controls['validFrom']) {
-			let value1 = this.myForm.controls['validFrom'].value;
-			let value2 = this.myForm.controls['validTo'].value;
+			const value1 = this.myForm.controls['validFrom'].value;
+			const value2 = this.myForm.controls['validTo'].value;
 			if (moment(value2).isAfter(moment(value1))) {
 				if (!this.myForm.controls['validFrom'].valid && until) {
 					this.myForm.controls['validFrom'].updateValueAndValidity();

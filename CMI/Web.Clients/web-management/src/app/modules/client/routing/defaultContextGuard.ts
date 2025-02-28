@@ -7,7 +7,7 @@ import {ClientContext, Utilities as _util} from '@cmi/lesesaal-web-core';
 @Injectable()
 export class DefaultContextGuard implements CanActivate {
 
-	private _languageTester: RegExp = /^(de|fr|it|en)$/;
+	private _languageTester = /^(de|fr|it|en)$/;
 
 	constructor(protected context: ClientContext, protected contextService: ContextService) {
 	}

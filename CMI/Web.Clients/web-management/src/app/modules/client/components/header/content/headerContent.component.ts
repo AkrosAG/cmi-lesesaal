@@ -25,22 +25,22 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 	}
 
 	private refresh(): void {
-		let ls = this._languages = (this._languages || []);
+		const ls = this._languages = (this._languages || []);
 		if (_util.isEmpty(ls)) {
 			for (let i = 0; i < this._txt.supportedLanguages.length; i += 1) {
-				let l = {...this._txt.supportedLanguages[i]};
+				const l = {...this._txt.supportedLanguages[i]};
 				ls.push(l);
 			}
 		}
 		for (let i = 0; i < this._languages.length; i += 1) {
-			let l = this._languages[i];
+			const l = this._languages[i];
 			l.active = (l.key === this._context.language);
 			l.label = l.active === true ? this._txt.get('languages.' + l.key + '.labelActive', l.key) : l.name;
 		}
 	}
 
 	public get versionInfo(): string {
-		let v = this._context.client.version;
+		const v = this._context.client.version;
 		return v ? `${v.major}.${v.minor}.${v.revision}.${v.build}` : void 0;
 	}
 
