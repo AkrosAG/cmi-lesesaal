@@ -196,7 +196,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		this._ord.auftragUpdateOrderingDetail(this.detailRecord as OrderingFlatItem).subscribe(() => {
 			this.reset();
 			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Erfolgreich gespeichert'));
-		}, (e) => {
+		}, () => {
 			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Speichern'));
 		});
 	}
@@ -435,6 +435,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	}
 
 	@HostListener('window:scroll', ['$event'])
+	// eslint-disable-next-line
 	public onScroll(event) {
 		const verticalOffset = window.pageYOffset
 			|| document.documentElement.scrollTop

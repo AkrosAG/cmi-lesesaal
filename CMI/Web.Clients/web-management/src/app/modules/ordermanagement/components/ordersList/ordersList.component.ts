@@ -192,7 +192,7 @@ export class OrdersListComponent implements OnInit {
 				return maps;
 			});
 	}
-
+	// eslint-disable-next-line
 	public onFilterApplied(ev) {
 		if (!_util.isEmpty(this.baseFilterString)) {
 			const filterBefore = this.orderFlatItems.filterDefinition.toString();

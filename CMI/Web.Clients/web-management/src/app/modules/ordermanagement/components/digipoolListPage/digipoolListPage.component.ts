@@ -128,11 +128,11 @@ export class DigipoolListPageComponent implements OnInit {
 
 		this.showPriorisierungOverview = true;
 	}
-
+	// eslint-disable-next-line
 	public onCancelPriorisierungOverviewClick(event): void {
 		this.showPriorisierungOverview = false;
 	}
-
+	// eslint-disable-next-line
 	public onSavePriorisierungOverviewClick(event): void {
 		const selectedDigipoolItemsIds = this.flexGrid.checkedItems.map(i => i.orderItemId);
 
@@ -164,11 +164,11 @@ export class DigipoolListPageComponent implements OnInit {
 	public showAufbereitungsfehlerZuruecksetzenClick(): void {
 		this.showAufbereitungsfehlerZuruecksetzen = true;
 	}
-
+	// eslint-disable-next-line
 	public onCancelAufbereitungsfehlerZuruecksetzenClick(event): void {
 		this.showAufbereitungsfehlerZuruecksetzen = false;
 	}
-
+	// eslint-disable-next-line
 	public onYesAufbereitungsfehlerZuruecksetzenClick(event): void {
 		const selectedDigipoolItemsIds = this.flexGrid.checkedItems.map(i => i.orderItemId);
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Collection, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {CollectionDto, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
+import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {combineLatest, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
@@ -18,7 +18,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class CollectionDetailPageComponent extends ComponentCanDeactivate implements OnInit {
 	public errors: { [key: string]: string } = {};
-	public detailItem: Collection;
+	public detailItem: CollectionDto;
 	public myForm: FormGroup;
 	public crumbs: any;
 	public collectionTypes: Array<any> = [{collectionTypeId: 0, name: 'Sammlung'}, {collectionTypeId: 1, name: 'Themenblock'}];
@@ -46,7 +46,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 			this.allowedParents = this._collectionService.getAllowedParents(this.id === 'new' ? 0 : +this.id);
 			if (this.id === 'new') {
 				this.isNew = true;
-				return of(Collection.fromJS({
+				return of(CollectionDto.fromJS({
 					collectionId: -1,
 					validFrom: moment().startOf('day').toISOString(),
 					validTo: moment().startOf('day').add(30, 'days').toDate().toISOString(),
@@ -102,7 +102,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	public save() {
 		let result: Observable<any>;
 		const rawValue = this.myForm.getRawValue();
-		const collection = Collection.fromJS(rawValue);
+		const collection = CollectionDto.fromJS(rawValue);
 		if (this.isNew) {
 			result = this._collectionService.create(collection);
 		} else {
@@ -152,7 +152,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 		return 'type not found';
 	}
 
-	private reloadData(detailItem: Collection): void {
+	private reloadData(detailItem: CollectionDto): void {
 		// fetch latest data
 		this._collectionService.get(detailItem.collectionId).subscribe(r => {
 			this.detailItem = r;
@@ -237,13 +237,13 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	}
 
 	private validFromDateValueValidator(): ValidatorFn {
-		return (control: AbstractControl): ValidationErrors | null => {
+		return (): ValidationErrors | null => {
 			return this.checkValidRange(false);
 		};
 	}
 
 	private validToDateValueValidator(): ValidatorFn {
-		return (control: AbstractControl): ValidationErrors | null => {
+		return (): ValidationErrors | null => {
 			return this.checkValidRange(true);
 		};
 	}

@@ -106,7 +106,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.loading = true;
 		this.reassembleDatatype();
 		this._userService.updateAllUserData(this.detail.item).subscribe(
-			async res => {
+			async () => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.userSuccessfullySaved', 'Benutzerdaten erfolgreich gespeichert'));
 				await this._reload();
 			},
@@ -128,7 +128,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		}
 
 		this._roleService.setUserRoles(this.detail.item.id, roleIds).then(
-			async res => {
+			async ()  => {
 				this.loading = false;
 				this._ui.showSuccess(this._txt.get('userAndRoles.userroleSuccessfullySaved', 'Benutzerrollen erfolgreich gespeichert'));
 				this.stillSelectedRoles = null;
@@ -148,7 +148,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.stillSelectedAblieferndeStelleList = null;
 		const ablieferndeStelleIds = this.detail.item.ablieferndeStelleList != null ? this.detail.item.ablieferndeStelleList.map(as => as.ablieferndeStelleId) : [];
 		this._userService.cleanAndAddAblieferndeStelle(this.detail.item.id, ablieferndeStelleIds).subscribe(
-			async res => {
+			async () => {
 			const access = this.detail.item.access || {};
 				this.detail.item.tokens = access.asTokens || [];
 				this._ui.showSuccess(this._txt.get('userAndRoles.assignedAblieferndeStellenSuccessfullySaved', 'Zuständige Stellen erfolgreich gespeichert'));
@@ -303,7 +303,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public uploadIdentifierungsmittel() {
 		this.loading = true;
 		this._userService.setIdentifizierungsmittelPdf(this.detail.item.id, this._authorization.roles.Oe3, this.selectedIdentifizierungsmittel).subscribe(
-			res => {
+			() => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.uploadsuccess', 'Identifizierungsmittel erfolgreich gespeichert'));
 			},
 			err => {
@@ -325,7 +325,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public downgradToOe2() {
 		this.loading = true;
 		this._userService.setIdentifizierungsmittelPdf(this.detail.item.id, this._authorization.roles.Oe2, null).subscribe(
-			res => {
+			() => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.downgradsuccess', 'Identifizierungsmittel erfolgreich gelöscht'));
 				this.detail.item.hasIdentifizierungsmittel = null;
 			},
@@ -342,6 +342,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		);
 	}
 
+	// eslint-disable-next-line
 	public onCancelClick(event): void {
 		this.showModal = false;
 	}
@@ -361,6 +362,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.showModal = true;
 	}
 
+	// eslint-disable-next-line
 	public onOkClick(event): void {
 		this.showModal = false;
 
