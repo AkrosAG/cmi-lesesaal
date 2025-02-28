@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {DownloadAssetResult, AssetDownloadStatus} from '../../../model';
-import * as moment from 'moment';
+import moment from 'moment';
 import {
 	ClientContext,
 	CoreOptions,

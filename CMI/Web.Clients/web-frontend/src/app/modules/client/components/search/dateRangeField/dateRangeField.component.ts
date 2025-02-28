@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { AdvancedSearchField, SearchField, Utilities as _util } from '@cmi/lesesaal-web-core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const DATE_RANGE_FIELD_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,

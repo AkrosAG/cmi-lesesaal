@@ -105,12 +105,12 @@ export class FavoriteService {
 			const url = `${this._apiUrl}/AddVeFavorite?listId=${listId}`;
 			return this._http.post<VeFavorite>(url,  <VeFavorite>favorite, this._http.noCaching)
 				.pipe(tap(() => { this._totalFavorites++; }))
-				.toPromise<VeFavorite>();
+				.toPromise();
 		} else {
 			const url = `${this._apiUrl}/AddSearchFavorite?listId=${listId}`;
 			return this._http.post<SearchFavorite>(url,  <SearchFavorite> favorite, this._http.noCaching)
 				.pipe(tap(() => { this._totalFavorites++; }))
-				.toPromise<SearchFavorite>();
+				.toPromise();
 		}
 	}
 

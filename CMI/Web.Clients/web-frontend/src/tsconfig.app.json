@@ -8,12 +8,14 @@
 		"paths": {
 			"jszip": [
 				"../node_modules/jszip/dist/jszip.min.js"
+			],
+			"@angular/*": [
+				"./node_modules/@angular/*"
 			]
 		}
 	},
 	"files": [
-		"main.ts",
-		"polyfills.ts"
+		"main.ts"
 	],
 	"include": [
 		"**/*.d.ts"

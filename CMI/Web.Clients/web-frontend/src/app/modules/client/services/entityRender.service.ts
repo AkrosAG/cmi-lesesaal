@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Entity, EntityImage, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {SectionRow} from '../model/detail/sectionRow';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Injectable()
 export class EntityRenderService {

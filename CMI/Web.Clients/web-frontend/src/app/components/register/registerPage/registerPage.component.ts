@@ -3,7 +3,7 @@ import {AuthorizationService, UrlService, UserService, SeoService} from '../../.
 import {User} from '../../../modules/client/model';
 import {ClientContext, CountriesService, TranslationService, ComponentCanDeactivate} from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

@@ -10,7 +10,7 @@ import {
 } from '@cmi/lesesaal-web-core';
 import { User, UserSetting, UserSettingType } from '../../../model';
 import { AuthorizationService, UrlService, UserService } from '../../../services';
-import * as moment from 'moment';
+import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
