@@ -13,20 +13,17 @@ export class BarCodeModalComponent {
 	@Output()
 	public openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+	private _open: boolean;
+	public get open(): boolean {
+		return this._open;
+	}
 	@Input()
 	public set open(val: boolean) {
 		this._open = val;
 		this.openChange.emit(val);
 	}
-	private _open: boolean;
-	public get open(): boolean {
-		return this._open;
-	}
+
 	public barcodes: string;
-
-	constructor() {
-
-	}
 
 	public expandTextarea(event: any) {
 		if (event && event.target) {

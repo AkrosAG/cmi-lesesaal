@@ -11,7 +11,4 @@ export class ArchivplanKontextComponent {
 	public items: Entity[];
 
 	public inset = 1;
-
-	constructor() {
-	}
 }

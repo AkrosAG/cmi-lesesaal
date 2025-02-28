@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {AuthenticationService} from '../../../services';
 import {ClientContext, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 
@@ -6,7 +6,7 @@ import {ClientContext, TranslationService, Utilities as _util} from '@cmi/lesesa
 	selector: 'cmi-viaduc-header-content',
 	templateUrl: 'headerContent.component.html'
 })
-export class HeaderContentComponent implements OnInit, AfterViewInit {
+export class HeaderContentComponent implements AfterViewInit {
 	private _elem: any;
 	private _languages: any[];
 
@@ -15,9 +15,6 @@ export class HeaderContentComponent implements OnInit, AfterViewInit {
 				private _elemRef: ElementRef,
 				private _authentication: AuthenticationService) {
 		this._elem = this._elemRef.nativeElement;
-	}
-
-	public ngOnInit(): void {
 	}
 
 	public ngAfterViewInit(): void {

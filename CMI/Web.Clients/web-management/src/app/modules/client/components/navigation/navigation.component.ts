@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 	public ngOnInit(): void {
 		this._contextSubscription = this._contextService.context.subscribe((ctx) => {
 			if (ctx.language !== this._language) {
+				// eslint-disable-next-line
 				const _component = this;
 				this._language = ctx.language;
 				this.reload = true;
