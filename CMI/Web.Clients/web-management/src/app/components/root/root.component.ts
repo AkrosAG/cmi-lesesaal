@@ -20,8 +20,10 @@ export class RootComponent implements OnInit, AfterViewInit {
 
 	public ngOnInit(): void {
 		this._contextService.context.subscribe((ctx) => {
+			return;
 		});
 		this._preloadService.preloaded.subscribe((state) => {
+			return;
 		});
 
 		this._preloadService.preload(this._context.language, false).then(res => {

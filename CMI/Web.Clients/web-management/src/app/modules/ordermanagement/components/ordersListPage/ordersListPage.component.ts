@@ -48,9 +48,7 @@ export class OrdersListPageComponent implements OnInit {
 	public showDigitalisierungAbschliessen = false;
 	public showBarCode = false;
 	public hasRight = false;
-
-	// @ts-ignore
-	private barcodeSet: boolean;
+	public barcodeSet: boolean;
 	private _previousPreFilter: SelectionPreFilter = null;
 	private _isInitializing = true;
 

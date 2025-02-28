@@ -7,9 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class RecordInfoComponent {
 
-	constructor() {
-	}
-
 	@Input() public modifiedBy: string;
 	@Input() public modifiedOn: string;
 	@Input() public createdBy: string;
