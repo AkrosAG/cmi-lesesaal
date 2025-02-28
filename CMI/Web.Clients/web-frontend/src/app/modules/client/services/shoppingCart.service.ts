@@ -1,4 +1,3 @@
-
 import {of as observableOf, from as observableFrom, Observable} from 'rxjs';
 import { AuthorizationService } from './authorization.service';
 import {Injectable} from '@angular/core';
@@ -20,7 +19,7 @@ import {
 } from '@cmi/lesesaal-web-core';
 import {Router} from '@angular/router';
 import {UrlService} from './url.service';
-import * as moment from 'moment';
+import moment from 'moment';
 import {Moment} from 'moment';
 import {HttpErrorResponse} from '@angular/common/http';
 import { SearchService } from './search.service';
@@ -55,7 +54,7 @@ export class ShoppingCartService {
 	}
 
 	public downloadPossible(ve:Entity): boolean {
-		return !!ve.primaryDataLink && ve.primaryDataLink.length > 0;
+		return ve.primaryDataLink !== undefined && ve.primaryDataLink !== null && ve.primaryDataLink.length > 0;
 	}
 
 	public getKontingent(forUserId = ''): Observable<KontingentResult> {
@@ -120,8 +119,8 @@ export class ShoppingCartService {
 
 	public order(order: Ordering): Observable<void> {
 		const url = `${this._apiUrl}/Order`;
-		// eslint-disable-next-line
-		return this._http.post(url, order).pipe(mergeMap((data) => {
+
+		return this._http.post(url, order).pipe(mergeMap(() => {
 			return this.getTotalItemsInCartFromServer().pipe(map(nr => {
 				this._totalItemsInCart = nr;
 				this.activeOrder = null;
@@ -131,8 +130,7 @@ export class ShoppingCartService {
 
 	public orderEinsichtsgesuch(order: Ordering): Observable<void> {
 		const url = `${this._apiUrl}/OrderEinsichtsgesuch`;
-		// eslint-disable-next-line
-		return this._http.post(url, order).pipe(mergeMap((data) => {
+		return this._http.post(url, order).pipe(mergeMap(() => {
 			return this.getTotalItemsInCartFromServer().pipe(map(nr => {
 				this._totalItemsInCart = nr;
 				this.activeOrder = null;
@@ -145,12 +143,13 @@ export class ShoppingCartService {
 			this._showNotLoggedInToast();
 			return;
 		}
+
 		const url = `${this._apiUrl}/AddToBasket`;
 		let newItem: OrderItem = null;
 		await this._http.post<OrderItem>(url, selfMadeItem).toPromise().then((data => {
 			newItem = data;
 			this._totalItemsInCart++;
-			this._showSuccessfullyAddedToast(selfMadeItem.title);
+			this._showSuccessfullyAddedToast(newItem.title);
 		}), (error) => {
 			this._showErrorWhenAddingToBasket(error);
 		});
@@ -165,7 +164,7 @@ export class ShoppingCartService {
 		if (this.canDownload(ve)) {
 			this._showDigitalAvailableToast(ve);
 			return observableOf(null);
-		} else if (ve.canBeOrdered === false) {
+		} else if (ve.canBeOrdered === false && (!ve.primaryDataLink || ve.primaryDataLink.length === 0))  {
 			this._showLevelValidationError();
 			return observableOf(null);
 		}
@@ -212,9 +211,7 @@ export class ShoppingCartService {
 
 	private _addIndexItemToBasket(items: Observable<OrderItem[]>, ve: Entity): Observable<OrderItem> {
 		const url = `${this._apiUrl}/AddToBasket?veId=${ve.archiveRecordId}`;
-
 		return this._http.post<OrderItem>(url, null).pipe(map(newItem => {
-
 			if (parseInt(newItem.id, 10) === 0) {
 				this._showAlreadyInCartToast(ve.title);
 				return null;
@@ -289,7 +286,8 @@ export class ShoppingCartService {
 	}
 
 	public updateBewilligungsDatum(orderItem: OrderItem): Observable<any> {
-		const url = `${this._apiUrl}/UpdateBewilligungsDatum?orderItemId=${orderItem.id}&bewilligung=${orderItem.bewilligungsDatum}`;
+		const isoDateString = orderItem.bewilligungsDatum.toISOString();
+		const url = `${this._apiUrl}/UpdateBewilligungsDatum?orderItemId=${orderItem.id}&bewilligung=${isoDateString}`;
 		return this._http.post(url, null);
 	}
 

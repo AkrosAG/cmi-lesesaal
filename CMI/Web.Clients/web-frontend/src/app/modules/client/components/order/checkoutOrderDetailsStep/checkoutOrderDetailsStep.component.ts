@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
 import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
-import * as moment from 'moment';
+import moment from 'moment';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({

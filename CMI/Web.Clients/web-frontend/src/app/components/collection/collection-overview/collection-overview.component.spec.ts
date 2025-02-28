@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../../modules/client/services/collection.service';
 import {LocalizeLinkPipe, UrlService} from '../../../modules/client';
 import {Observable, of} from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 import {By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ToastrTestingModule} from '../mocks';

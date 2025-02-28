@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UrlService} from '../../../services/url.service';
 import {Favorite, FavoriteKind, SearchFavorite, VeFavorite} from '../../../model/favorite/favorite';
-import * as moment from 'moment';
+import moment from 'moment';
 import {FavoriteService} from '../../../services/favorite.service';
 import {FavoriteList} from '../../../model/favorite/favoriteList';
 import {ConfigService, Entity, Utilities as _util} from '@cmi/lesesaal-web-core';

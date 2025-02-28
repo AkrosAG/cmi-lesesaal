@@ -33,5 +33,6 @@ export * from './search/highlight';
 export * from './searchState';
 export * from './searchBrowseState';
 export * from './clientVersion';
+export * from './entityFramework-models';
 export * from './component-can-deactivate';
 export * from './can-deactivate-data.component';
