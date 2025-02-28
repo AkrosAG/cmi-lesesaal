@@ -1,11 +1,11 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ClientContext, PreloadService } from '@cmi/lesesaal-web-core';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class TranslationsLoadedResolver implements Resolve<boolean> {
+export class TranslationsLoadedResolver  {
 	constructor(private _context: ClientContext, private _preloadService: PreloadService) {
 	}
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {

@@ -1,4 +1,4 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {Injectable} from '@angular/core';
 import {AuthenticationService} from '../services';
 import {ClientContext} from '@cmi/lesesaal-web-core';
@@ -6,7 +6,7 @@ import {skip, map} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 
 @Injectable()
-export class AuthenticatedResolver implements Resolve<boolean> {
+export class AuthenticatedResolver  {
 	constructor(private _context: ClientContext, private _authService: AuthenticationService) {
 	}
 
