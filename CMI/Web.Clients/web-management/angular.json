@@ -104,19 +104,19 @@
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "cmi-lesesaal-web-management:build"
+          "options": {
+            "buildTarget": "cmi-lesesaal-web-management:build"
 					},
 					"configurations": {
-						"production": {
-							"browserTarget": "cmi-lesesaal-web-management:build:production"
+            "production": {
+              "buildTarget": "cmi-lesesaal-web-management:build:production"
 						}
 					}
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "cmi-lesesaal-web-management:build"
+          "options": {
+            "buildTarget": "cmi-lesesaal-web-management:build"
 					}
 				},
 				"test": {
