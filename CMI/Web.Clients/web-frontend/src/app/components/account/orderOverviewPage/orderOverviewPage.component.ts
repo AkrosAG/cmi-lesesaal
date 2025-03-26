@@ -10,11 +10,11 @@ import {
 	StammdatenService,
 	TranslationService, UiService, WijmoService,
 } from '@cmi/lesesaal-web-core';
-import {DataMap} from '@grapecity/wijmo.grid';
+import {DataMap} from '@mescius/wijmo.grid';
 import {SeoService, ShoppingCartService, UrlService} from '../../../modules/client/services';
 import moment from 'moment';
 import {forkJoin} from 'rxjs';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {map} from 'rxjs/operators';
 
 @Component({
