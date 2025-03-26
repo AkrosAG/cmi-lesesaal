@@ -28,7 +28,7 @@ It contains components, services and model classes that are needed in both proje
   - Tooltip component
 - `wijmo`
   - Custom implementation of the Wijmo grid with extended functionality (e.g. save sort states, filters, etc.)
-  - Note: For productive use of this component a Wijmo license is required. It can be ordered at `https://www.grapecity.com/wijmo/licensing`.
+  - Note: For productive use of this component a Wijmo license is required. It can be ordered at `https://www.mescius.com/wijmo/licensing`.
 
 # Installation
 

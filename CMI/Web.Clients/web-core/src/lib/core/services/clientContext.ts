@@ -3,7 +3,7 @@ import {ClientModel} from './clientModel';
 import {Injectable} from '@angular/core';
 import moment from 'moment';
 import {Session} from '../model/session';
-import * as wjCore from '@grapecity/wijmo';
+import * as wjCore from '@mescius/wijmo';
 import {SearchState} from '../model/searchState';
 
 

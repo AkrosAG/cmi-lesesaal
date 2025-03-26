@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {DataMap, FlexGrid} from '@grapecity/wijmo.grid';
-import {FilterType, FlexGridFilter} from '@grapecity/wijmo.grid.filter';
+import {DataMap, FlexGrid} from '@mescius/wijmo.grid';
+import {FilterType, FlexGridFilter} from '@mescius/wijmo.grid.filter';
 
 @Injectable()
 export class WijmoService {
