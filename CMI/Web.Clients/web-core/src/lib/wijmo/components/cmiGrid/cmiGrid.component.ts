@@ -9,13 +9,13 @@ import {
 	SkipSelf,
 	ViewChild
 } from '@angular/core';
-import {WjFlexGrid, wjFlexGridMeta} from '@grapecity/wijmo.angular2.grid';
-import {CollectionView, DataType, escapeHtml, Rect, SortDescription, Tooltip} from '@grapecity/wijmo';
-import {CellRange, CellRangeEventArgs, CellType, Column, DataMap} from '@grapecity/wijmo.grid';
+import {WjFlexGrid, wjFlexGridMeta} from '@mescius/wijmo.angular2.grid';
+import {CollectionView, DataType, escapeHtml, Rect, SortDescription, Tooltip} from '@mescius/wijmo';
+import {CellRange, CellRangeEventArgs, CellType, Column, DataMap} from '@mescius/wijmo.grid';
 import {WijmoService} from '../../services/wijmo.service';
-import {FilterType, FlexGridFilter, Operator} from '@grapecity/wijmo.grid.filter';
-import {ODataCollectionView} from '@grapecity/wijmo.odata';
-import {FlexGridXlsxConverter} from '@grapecity/wijmo.grid.xlsx';
+import {FilterType, FlexGridFilter, Operator} from '@mescius/wijmo.grid.filter';
+import {ODataCollectionView} from '@mescius/wijmo.odata';
+import {FlexGridXlsxConverter} from '@mescius/wijmo.grid.xlsx';
 import {Observable} from 'rxjs';
 
 @Component ({
