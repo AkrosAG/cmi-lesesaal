@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core'
 import {ShoppingCartService, UserService} from '../../../services';
 import {ClientContext, ShippingType, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {User} from '../../../model';
-import {WjAutoComplete} from '@grapecity/wijmo.angular2.input';
+import {WjAutoComplete} from '@mescius/wijmo.angular2.input';
 import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({

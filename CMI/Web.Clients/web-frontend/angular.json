@@ -50,22 +50,22 @@
               "node_modules/marked/marked.min.js",
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.de-CH.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.de-CH.js",
                 "bundleName": "wijmo.culture.de-CH"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.fr.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.fr.js",
                 "bundleName": "wijmo.culture.fr"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.it.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.it.js",
                 "bundleName": "wijmo.culture.it"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.en.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.en.js",
                 "bundleName": "wijmo.culture.en"
               }
             ],
@@ -104,18 +104,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cmi-lesesaal-web-frontend:build"
+            "buildTarget": "cmi-lesesaal-web-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cmi-lesesaal-web-frontend:build:production"
+              "buildTarget": "cmi-lesesaal-web-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cmi-lesesaal-web-frontend:build"
+            "buildTarget": "cmi-lesesaal-web-frontend:build"
           }
         },
         "test": {
@@ -135,22 +135,22 @@
               "node_modules/marked/marked.min.js",
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.de-CH.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.de-CH.js",
                 "bundleName": "wijmo.culture.de-CH"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.fr.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.fr.js",
                 "bundleName": "wijmo.culture.fr"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.it.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.it.js",
                 "bundleName": "wijmo.culture.it"
               },
               {
                 "inject": false,
-                "input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.en.js",
+                "input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.en.js",
                 "bundleName": "wijmo.culture.en"
               }
             ],
