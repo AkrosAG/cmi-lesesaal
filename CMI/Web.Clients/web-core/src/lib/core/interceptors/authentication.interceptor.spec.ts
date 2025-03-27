@@ -1,5 +1,5 @@
-import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import {inject, TestBed} from '@angular/core/testing';
 import {AuthenticationInterceptor} from './authentication.interceptor';
 import {Session} from '../model/session';
@@ -13,14 +13,14 @@ describe('AuthenticationInterceptor', () => {
 		clientContext.currentSession = <Session>{ authenticated: true };
 
 		TestBed.configureTestingModule({
-			imports: [
-				HttpClientTestingModule,
-			],
-			providers: [
-				{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
-				{ provide: ClientContext, useFactory: () => clientContext }
-			],
-		});
+    imports: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+        { provide: ClientContext, useFactory: () => clientContext },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
 	});
 
 	describe('intercept', () => {

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEventType} from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import * as fileSaver from 'file-saver';
 
 @Injectable()

@@ -62,6 +62,7 @@ export class CanDeactivateGuard  {
 		const canDeactivateData = new CanDeactivateData() ;
 		canDeactivateData.title = this.txt.get('canDeactivateGuard.Title', 'Warnung');
 		canDeactivateData.content = message;
+		// eslint-disable-next-line
 		canDeactivateData.closeButtonText = this.txt.get('canDeactivateGuard.close', 'Schliessen'),
 		canDeactivateData.result.subscribe((result: boolean) => {
 			this.dialogResult = result; // is always false

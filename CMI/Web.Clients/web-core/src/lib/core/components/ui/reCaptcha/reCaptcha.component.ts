@@ -100,15 +100,15 @@ export class ReCaptchaComponent implements OnInit, OnDestroy, ControlValueAccess
 		// noinspection TypeScriptUnresolvedVariable
 		return (<any>window).grecaptcha.getResponse(this.widgetId);
 	}
-
+	// eslint-disable-next-line
 	public writeValue(newValue: any): void {
 		/* ignore it */
 	}
-
+	// eslint-disable-next-line
 	public registerOnChange(fn: any): void {
 		/* ignore it */
 	}
-
+	// eslint-disable-next-line
 	public registerOnTouched(fn: any): void {
 		/* ignore it */
 	}

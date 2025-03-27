@@ -7,7 +7,7 @@ import {TranslationService} from '../services/translation.service';
 export class MeasurePipe implements PipeTransform {
 	constructor(private _txt: TranslationService) {
 	}
-
+	// eslint-disable-next-line
 	public transform(value: number, measure: string, ...args: any[]): any {
 		let result: any = value;
 		switch (measure) {

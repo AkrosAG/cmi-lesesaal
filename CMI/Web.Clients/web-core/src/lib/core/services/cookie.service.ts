@@ -97,6 +97,7 @@ export class CookieService implements ICookieService {
 	private _safeDecodeURIComponent(str: string) {
 		try {
 			return decodeURIComponent(str);
+			// eslint-disable-next-line
 		} catch (e) {
 			return str;
 		}
