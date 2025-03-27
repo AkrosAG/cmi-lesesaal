@@ -1,7 +1,8 @@
-import {CollectionDto} from '@cmi/lesesaal-web-core';
+import { Collection } from "@cmi/lesesaal-web-core";
+
 
 export class CollectionItemResult implements ICollectionItemResult {
-	public item?: CollectionDto | undefined;
+	public item?: Collection | undefined;
 	public breadcrumb?: { [key: string]: string; } | undefined;
 
 	constructor(data?: ICollectionItemResult) {
@@ -16,7 +17,7 @@ export class CollectionItemResult implements ICollectionItemResult {
 
 	public init(_data?: any) {
 		if (_data) {
-			this.item = _data['item'] ? CollectionDto.fromJS(_data['item']) : <any>undefined;
+			this.item = _data['item'] ? Collection.fromJS(_data['item']) : <any>undefined;
 			if (_data['breadcrumb']) {
 				this.breadcrumb = {} as any;
 				for (const key in _data['breadcrumb']) {
@@ -51,6 +52,6 @@ export class CollectionItemResult implements ICollectionItemResult {
 }
 
 export interface ICollectionItemResult {
-	item?: CollectionDto | undefined;
+	item?: Collection | undefined;
 	breadcrumb?: { [key: string]: string; } | undefined;
 }

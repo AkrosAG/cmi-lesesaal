@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CollectionService} from '../../../modules/client/services/collection.service';
-import {CollectionListItemDto, ICollectionListItemDto, UiService} from '@cmi/lesesaal-web-core';
+import { ICollectionListItem, UiService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-collection-overview',
@@ -21,7 +21,7 @@ export class CollectionOverviewComponent implements OnInit {
 	public headerText: string;
 	@Input()
 	public centerContent = false;
-	public collections: CollectionListItemDto[];
+	public collections: ICollectionListItem[];
 	public url: string;
 	public isOnMainPage: boolean;
 
@@ -44,7 +44,7 @@ export class CollectionOverviewComponent implements OnInit {
 		}
 	}
 
-	private prepareResult(result: ICollectionListItemDto[]) {
+	private prepareResult(result: ICollectionListItem[]) {
 		this.collections = result;
 	}
 

@@ -1,15 +1,13 @@
 {
 	"compileOnSave": false,
-	"compilerOptions": {
-		"downlevelIteration": true,
-		"importHelpers": true,
+  "compilerOptions": {
+    "importHelpers": true,
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,
 		"declaration": false,
 		"moduleResolution": "node",
 		"experimentalDecorators": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
 		"target": "ES2022",
 		"types": [
 			"file-saver"

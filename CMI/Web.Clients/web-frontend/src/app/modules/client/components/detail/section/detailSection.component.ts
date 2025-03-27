@@ -29,6 +29,7 @@ export class DetailSectionComponent implements OnInit {
 					if (row && (row.markup || row.html || row.text)) {
 						rows.push(row);
 					}
+					// eslint-disable-next-line
 				} catch (e) {
 					rows.push({label: key, text: 'Unexpected error while rendering data'});
 				}

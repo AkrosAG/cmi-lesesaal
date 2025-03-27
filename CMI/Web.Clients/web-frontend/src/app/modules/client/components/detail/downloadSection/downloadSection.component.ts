@@ -14,7 +14,7 @@ import {
 import {UrlService, AuthenticationService, AuthorizationService, ShoppingCartService} from '../../../services';
 import {DownloadTokenService} from '../../../services/downloadToken.service';
 import {ActivatedRoute} from '@angular/router';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 
 declare const jQuery: any;

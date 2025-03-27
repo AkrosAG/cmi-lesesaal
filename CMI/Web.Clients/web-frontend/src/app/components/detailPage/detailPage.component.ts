@@ -141,6 +141,7 @@ export class DetailPageComponent implements OnInit {
 				this._error = this.createErrorMessage();
 			}
 
+			// eslint-disable-next-line
 		} catch (err) {
 			this._error = this.createErrorMessage();
 		} finally {

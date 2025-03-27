@@ -21,7 +21,7 @@ import {Router} from '@angular/router';
 import {UrlService} from './url.service';
 import moment from 'moment';
 import {Moment} from 'moment';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { SearchService } from './search.service';
 import {KontingentResult} from '../model';
 

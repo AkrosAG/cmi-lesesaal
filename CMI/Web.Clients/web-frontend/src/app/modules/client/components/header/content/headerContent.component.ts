@@ -1,4 +1,4 @@
-import {Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientContext, TranslationService, Utilities as _util, CookieService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, FavoriteService, ShoppingCartService} from '../../../services';
@@ -10,7 +10,7 @@ import {AuthenticationService} from '../../../services';
 	templateUrl: 'headerContent.component.html',
 	styleUrls: ['./headerContent.component.less'],
 })
-export class HeaderContentComponent implements OnInit, AfterViewInit {
+export class HeaderContentComponent implements AfterViewInit {
 	private _elem: any;
 	private _languages: any[];
 

@@ -104,6 +104,7 @@ export class SearchBrowserComponent implements OnInit {
 				this._context.search.request = request;
 				this._context.search.result = <EntityResult>response['entities'];
 			}
+			// eslint-disable-next-line
 		} catch (err) {
 			this.loading = false;
 		} finally {
