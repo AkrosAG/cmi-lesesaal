@@ -9,7 +9,7 @@ import {ClientContext} from '../services/clientContext';
 export class CountriesResolver  {
 	constructor(private _context: ClientContext, private _countriesService: CountriesService) {
 	}
-
+	// eslint-disable-next-line
 	public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): PromiseLike<Countries> | Countries {
 		if (!_util.isEmpty(this._context.loadingLanguage)) {
 			return this._getOrAssertCountry(this._context.loadingLanguage);

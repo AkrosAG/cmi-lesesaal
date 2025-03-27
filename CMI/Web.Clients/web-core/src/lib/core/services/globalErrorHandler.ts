@@ -1,5 +1,5 @@
 import {ApplicationRef, ErrorHandler, Injectable, Injector} from '@angular/core';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {ActiveToast, ToastrService} from 'ngx-toastr';
 import moment from 'moment';
 import {TranslationService} from './translation.service';

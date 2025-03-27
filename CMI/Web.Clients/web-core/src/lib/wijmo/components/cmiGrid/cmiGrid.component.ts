@@ -531,7 +531,7 @@ export class CmiGridComponent extends WjFlexGrid {
 
 			}
 		});
-
+		// eslint-disable-next-line
 		flexGrid.hostElement.addEventListener('mouseout', function (e) {
 			tooltip.hide();
 		});
@@ -542,7 +542,7 @@ export class CmiGridComponent extends WjFlexGrid {
 		this.selectionMode = 3;
 		this.autoGenerateColumns = false;
 	}
-
+	// eslint-disable-next-line
 	public canEditCell(r: number, c: number): boolean {
 		return !this.disableInput;
 	}
@@ -651,7 +651,7 @@ export class CmiGridComponent extends WjFlexGrid {
 				const flexGrid = this;
 				/* eslint-enable @typescript-eslint/no-this-alias */
 				// apply checkbox value to cells
-				cb.addEventListener('click', function (e) {
+				cb.addEventListener('click', function () {
 					flex.beginUpdate();
 					for (let i = 0; i < flex.rows.length; i++) {
 						const item = flex.rows[i].dataItem;

@@ -38,7 +38,7 @@ export class Routing {
 				route.path = this.assertPath(route.path);
 			}
 			if (!_util.isEmpty(route['redirectTo'])) {
-				route.redirectTo = this.assertPath(route.redirectTo);
+				route.redirectTo = this.assertPath(route.redirectTo.toString());
 			}
 			if (_util.isArray(route['children'])) {
 				this.assertRoutes(route.children, options, depth + 1);
@@ -138,7 +138,7 @@ export class Routing {
 				local.path = this.localizePath(language, route.path);
 			}
 			if (!_util.isEmpty(route['redirectTo'])) {
-				local.redirectTo = this.localizePath(language, route.redirectTo);
+				local.redirectTo = this.localizePath(language, route.redirectTo.toString());
 			}
 			if (_util.isArray(route['children'])) {
 				local.children = this.localizeRoutes(language, route.children, depth + 1);
