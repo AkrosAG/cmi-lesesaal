@@ -7,7 +7,7 @@ import {ROUTES, initRoutes} from './routes';
 import {CoreModule, OrdersModule, PreloadService, ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService, ClientModule, ContextService} from './modules/client';
 import {MarkdownModule} from 'ngx-markdown';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthInterceptor} from './modules/client/routing/authInterceptor';
 import {ToastrModule} from 'ngx-toastr';
 import { FlatpickrModule} from 'angularx-flatpickr';

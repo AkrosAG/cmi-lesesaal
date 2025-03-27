@@ -45,6 +45,7 @@ export class ArchivplanPageComponent implements OnInit {
 					this.loading = false;
 					return;
 				}
+				// eslint-disable-next-line
 			} catch (err) {
 				this.error = true;
 				this.loading = false;
