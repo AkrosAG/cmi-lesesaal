@@ -8,7 +8,7 @@
     "build": "ng lint && ng build",
     "build-prod": "ng build --configuration production",
     "test": "ng test",
-    "test-github": "ng test --karmaConfig=karma.github.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage",
+    "test-github": "ng test --karma-Config=karma.github.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage",
     "test-teamcity": "ng test --karmaConfig=karma.teamcity.conf.js --watch=false --code-coverage",
     "lint": "ng lint",
     "link": "npm link ../web-core/dist/@cmi/lesesaal-web-core  --legacy-peer-deps"
