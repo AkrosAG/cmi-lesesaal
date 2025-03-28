@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
-import {AblieferndeStelleService, UrlService, UiService} from '../../../shared/services';
+import {AblieferndeStelleService, UrlService, UiServiceMC} from '../../../shared/services';
 import {AblieferndeStelle} from '../../../shared/model/ablieferndeStelle';
 import {TokenService} from '../../services';
 import {AsToken} from '../../model/asToken';
@@ -55,7 +55,7 @@ export class AblieferndeStelleDetailPageComponent extends ComponentCanDeactivate
 				private _tokenService: TokenService,
 				private _txt: TranslationService,
 				private _url: UrlService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _route: ActivatedRoute,
 				private _router: Router) {
 		super();

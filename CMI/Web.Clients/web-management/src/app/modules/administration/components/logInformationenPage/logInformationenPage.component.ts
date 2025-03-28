@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslationService } from '@cmi/lesesaal-web-core';
-import { UrlService, UiService } from '../../../shared/services';
+import { UrlService, UiServiceMC } from '../../../shared/services';
 import { LogService } from '../../services';
 import moment from 'moment';
 import * as fileSaver from 'file-saver';
@@ -20,7 +20,7 @@ export class LogInformationenPageComponent implements OnInit {
 	constructor(private _logService: LogService,
 		private _txt: TranslationService,
 		private _url: UrlService,
-		private _ui: UiService) {
+		private _ui: UiServiceMC) {
 		this.endDate = moment.utc(new Date()).toDate();
 		this.startDate = moment.utc(new Date()).add(-24, 'h').toDate();
 	}

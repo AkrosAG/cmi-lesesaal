@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CmiGridComponent, ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
-import {UrlService, AuthorizationService, ErrorService, UiService} from '../../../shared/services';
+import {UrlService, AuthorizationService, ErrorService, UiServiceMC} from '../../../shared/services';
 import {PagedResult} from '../../../shared/model/apiModels';
 import {RoleService} from '../../services/role.service';
 import {FlexGridFilter} from '@mescius//wijmo.grid.filter';
@@ -32,7 +32,7 @@ export class RoleFeaturesPageComponent extends ComponentCanDeactivate implements
 				private _err: ErrorService,
 				private _router: Router,
 				private _route: ActivatedRoute,
-				private _ui: UiService) {
+				private _ui: UiServiceMC) {
 		super();
 	}
 

@@ -7,7 +7,7 @@ import {
 	ConfigService,
 	TranslationService
 } from '@cmi/lesesaal-web-core';
-import {AuthorizationService, CollectionSettings, ErrorService, ManagementUserSettings, UiService,  UrlService, UserService} from '../../../shared';
+import {AuthorizationService, CollectionSettings, ErrorService, ManagementUserSettings, UiServiceMC,  UrlService, UserService} from '../../../shared';
 import {Router} from '@angular/router';
 import {CollectionService} from '../../services';
 import {Observable} from 'rxjs';
@@ -39,7 +39,7 @@ export class CollectionListPageComponent implements OnInit {
 				private _err: ErrorService,
 				private _cfg: ConfigService,
 				private _usr: UserService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _router: Router,
 				private _authorization: AuthorizationService) {
 	}

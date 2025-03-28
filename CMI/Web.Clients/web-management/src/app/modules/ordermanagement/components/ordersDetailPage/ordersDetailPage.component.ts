@@ -14,7 +14,7 @@ import {
 	StammdatenService,
 	TranslationService
 } from '@cmi/lesesaal-web-core';
-import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadService, UiService, UrlService, UserService} from '../../../shared/services';
+import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadService, UiServiceMC, UrlService, UserService} from '../../../shared/services';
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';
 import {ActivatedRoute} from '@angular/router';
@@ -77,7 +77,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 				private _dps: DetailPagingService,
 				private _stm: StammdatenService,
 				private _toastr: ToastrService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _err: ErrorService,
 				private _txt: TranslationService,
 				private _route: ActivatedRoute) {

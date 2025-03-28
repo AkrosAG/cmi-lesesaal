@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UiService, UrlService} from '../../../shared/index';
+import {UiServiceMC, UrlService} from '../../../shared/index';
 import moment from 'moment';
 import {TranslationService} from '@cmi/lesesaal-web-core';
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class StatisticsReportsComponent implements OnInit {
 	constructor(private  statisticService: StatisticReportService,
 				private _txt: TranslationService,
 				private _url: UrlService,
-				private _ui: UiService) {
+				private _ui: UiServiceMC) {
 		this.endDate = moment.utc(new Date()).toDate();
 		this.startDate = moment.utc(new Date()).add(-24, 'h').toDate();
 	}

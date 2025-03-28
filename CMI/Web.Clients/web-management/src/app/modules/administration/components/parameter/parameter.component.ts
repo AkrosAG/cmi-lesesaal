@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ParameterService} from '../../services';
 import {Parameter} from '../../model/parameter';
-import {AuthorizationService, UiService} from '../../../shared/services';
+import {AuthorizationService, UiServiceMC} from '../../../shared/services';
 import {ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -25,7 +25,7 @@ export class ParameterComponent implements OnInit {
 		return this.parameter.name.split('.').pop();
 	}
 
-	constructor (private _paramService: ParameterService, private _uiService: UiService, private _aut: AuthorizationService, private _formBuilder: FormBuilder) {
+	constructor (private _paramService: ParameterService, private _uiService: UiServiceMC, private _aut: AuthorizationService, private _formBuilder: FormBuilder) {
 	}
 
 	public ngOnInit() {
