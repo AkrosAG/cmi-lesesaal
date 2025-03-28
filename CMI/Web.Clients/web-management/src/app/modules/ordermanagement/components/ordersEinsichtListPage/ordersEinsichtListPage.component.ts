@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@a
 import {ApplicationFeatureEnum, ConfigService, TranslationService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, UrlService, UserService} from '../../../shared/services';
 import {OrderingFlatItem, SelectionPreFilter} from '../../model';
-import {WjMenu} from '@grapecity/wijmo.angular2.input';
+import {WjMenu} from '@mescius/wijmo.angular2.input';
 import {EinsichtsgesuchUserSettings, ManagementUserSettings} from '../../../shared/model/managementUserSettings';
 import {OrdersListComponent} from '../ordersList/ordersList.component';
 import {ToastrService} from 'ngx-toastr';

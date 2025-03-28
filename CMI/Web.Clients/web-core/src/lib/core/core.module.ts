@@ -2,7 +2,7 @@ import {NgModule, ModuleWithProviders, ErrorHandler} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ALL_COMPONENTS} from './components/_all';
 import {ALL_DIRECTIVES} from './directives/_all';
 import {ALL_PIPES} from './pipes/_all';
@@ -35,12 +35,17 @@ window['JSZip'] = JSZip;
         FormsModule,
         WijmoModule,
         TooltipModule
-    ], imports: [CommonModule,
-        FormsModule,
-        RouterModule,
-        WijmoModule,
-        TooltipModule,
-        FlatpickrModule.forRoot()], providers: [provideHttpClient(withInterceptorsFromDi())] })
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		RouterModule,
+		WijmoModule,
+		HttpClientModule,
+		TooltipModule,
+		FlatpickrModule.forRoot()
+	]
+})
 export class CoreModule {
 
 	public static forRoot(): ModuleWithProviders<CoreModule> {

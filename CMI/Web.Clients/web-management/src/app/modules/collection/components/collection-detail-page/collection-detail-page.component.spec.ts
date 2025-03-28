@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {CollectionDetailPageComponent} from './CollectionDto-detail-page.component';
+import {CollectionDetailPageComponent} from './Collection-detail-page.component';
 import {CollectionService} from '../../services';
-import {ApplicationFeatureEnum, ClientContext, CollectionDto, CollectionListItemDto, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
+import {ApplicationFeatureEnum, ClientContext, Collection, CollectionListItem, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, SharedModule, UrlService} from '../../../shared';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -9,7 +9,7 @@ import {FormBuilder} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 // import {By} from '@angular/platform-browser';
 import {MockUserSettingsParamMap} from './mocks';
-import * as moment from 'moment';
+import moment from 'moment';
 import {By} from '@angular/platform-browser';
 
 describe('CollectionDetail', () => {
@@ -20,8 +20,8 @@ describe('CollectionDetail', () => {
 	let sut: CollectionDetailPageComponent;
 	let collectionService = <CollectionService>{
 		getAllowedParents(currentItemId: number): Observable<any[] | null> {
-			let collectionList: CollectionListItemDto[] = new Array(CollectionListItemDto[1]);
-			collectionList[0] = CollectionListItemDto.fromJS(
+			let collectionList: CollectionListItem[] = new Array(CollectionListItem[1]);
+			collectionList[0] = CollectionListItem.fromJS(
 				{
 					collectionId: 1,
 					validFrom:'21.11.2021',
@@ -32,9 +32,9 @@ describe('CollectionDetail', () => {
 				});
 			return  of(collectionList);
 		},
-		get(id: number): Observable<CollectionDto | null> {
+		get(id: number): Observable<Collection | null> {
 
-			let child = CollectionDto.fromJS({
+			let child = Collection.fromJS({
 				title: 'Test Sammlung',
 				collectionId:3,
 				validFrom: moment(Date.now()).toDate(),
@@ -49,7 +49,7 @@ describe('CollectionDetail', () => {
 				imageAltText: ''
 			});
 
-			let CollectionDto = CollectionDto.fromJS({
+			let Collection = Collection.fromJS({
 				title: 'Weitere Sammlung',
 				collectionId: 1,
 				validFrom: moment(Date.now()).toDate(),
@@ -64,7 +64,7 @@ describe('CollectionDetail', () => {
 				imageMimeType: '',
 				imageAltText: ''
 			});
-			return of(CollectionDto);
+			return of(Collection);
 		}
 	};
 	let translationService = <TranslationService>{

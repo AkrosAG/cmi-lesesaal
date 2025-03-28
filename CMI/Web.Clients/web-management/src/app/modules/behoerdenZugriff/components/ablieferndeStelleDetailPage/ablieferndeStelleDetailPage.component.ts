@@ -6,7 +6,7 @@ import {AblieferndeStelle} from '../../../shared/model/ablieferndeStelle';
 import {TokenService} from '../../services';
 import {AsToken} from '../../model/asToken';
 import {AblieferndeStelleToken} from '../../../shared/model/ablieferndeStelleToken';
-import {WjListBox} from '@grapecity/wijmo.angular2.input';
+import {WjListBox} from '@mescius/wijmo.angular2.input';
 import {FormControl, NgForm, NgModel} from '@angular/forms';
 
 @Component({

@@ -3,7 +3,7 @@ import {EntityDecoratorService, EntscheidGesuchStatus} from '@cmi/lesesaal-web-c
 import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';
-import * as moment from 'moment';
+import moment from 'moment';
 import {OrderingFlatItem} from '../../../model';
 import {forkJoin, Observable} from 'rxjs';
 

@@ -4,7 +4,7 @@ import {CmiGridComponent, ComponentCanDeactivate, TranslationService, Utilities 
 import {UrlService, AuthorizationService, ErrorService, UiService} from '../../../shared/services';
 import {PagedResult} from '../../../shared/model/apiModels';
 import {RoleService} from '../../services/role.service';
-import {FlexGridFilter} from '@grapecity//wijmo.grid.filter';
+import {FlexGridFilter} from '@mescius//wijmo.grid.filter';
 
 @Component({
 	selector: 'cmi-viaduc-roles-features-page',

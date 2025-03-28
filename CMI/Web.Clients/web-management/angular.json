@@ -9,12 +9,11 @@
 			"projectType": "application",
 			"architect": {
 				"build": {
-					"builder": "@angular-devkit/build-angular:application",
+					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": {
-              "base": "dist"
-            },
-            "index": "src/index.html",
+						"outputPath": "dist",
+						"index": "src/index.html",
+						"main": "src/main.ts",
 						"deployUrl": "client/",
 						"tsConfig": "src/tsconfig.app.json",
 						"preserveSymlinks": true,
@@ -52,30 +51,31 @@
 							"node_modules/marked/marked.min.js",
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.de-CH.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.de-CH.js",
 								"bundleName": "wijmo.culture.de-CH"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.fr.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.fr.js",
 								"bundleName": "wijmo.culture.fr"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.it.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.it.js",
 								"bundleName": "wijmo.culture.it"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.en.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.en.js",
 								"bundleName": "wijmo.culture.en"
 							}
-            ],
-            "extractLicenses": false,
+						],
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"buildOptimizer": false,
 						"sourceMap": true,
 						"optimization": false,
-            "namedChunks": true,
-            "browser": "src/main.ts"
+						"namedChunks": true
 					},
 					"configurations": {
 						"production": {
@@ -89,7 +89,9 @@
 							"outputHashing": "all",
 							"sourceMap": false,
 							"namedChunks": false,
-              "extractLicenses": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -102,19 +104,19 @@
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "cmi-lesesaal-web-management:build"
+					"options": {
+						"buildTarget": "cmi-lesesaal-web-management:build"
 					},
 					"configurations": {
-            "production": {
-              "buildTarget": "cmi-lesesaal-web-management:build:production"
+						"production": {
+							"buildTarget": "cmi-lesesaal-web-management:build:production"
 						}
 					}
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "cmi-lesesaal-web-management:build"
+					"options": {
+						"buildTarget": "cmi-lesesaal-web-management:build"
 					}
 				},
 				"test": {
@@ -134,22 +136,22 @@
 							"node_modules/marked/marked.min.js",
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.de-CH.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.de-CH.js",
 								"bundleName": "wijmo.culture.de-CH"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.fr.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.fr.js",
 								"bundleName": "wijmo.culture.fr"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.it.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.it.js",
 								"bundleName": "wijmo.culture.it"
 							},
 							{
 								"inject": false,
-								"input": "node_modules/@grapecity/wijmo.cultures/wijmo.culture.en.js",
+								"input": "node_modules/@mescius/wijmo.cultures/wijmo.culture.en.js",
 								"bundleName": "wijmo.culture.en"
 							}
 						],

@@ -6,12 +6,12 @@ import {
 	WijmoService, TranslationService, Utilities as _util, Abbruchgrund, EntscheidGesuchStatus, StammdatenService,
 	ZugaenglichkeitGemaessBga, Eingangsart, DigitalisierungsKategorie, CmiGridComponent, GebrauchskopieStatus
 } from '@cmi/lesesaal-web-core';
-import {Column, DataMap} from '@grapecity//wijmo.grid';
+import {Column, DataMap} from '@mescius//wijmo.grid';
 import {DetailPagingService, ErrorService, UrlService} from '../../../shared/services';
-import {ODataCollectionView} from '@grapecity/wijmo.odata';
-import {DataType, SortDescription} from '@grapecity/wijmo';
+import {ODataCollectionView} from '@mescius/wijmo.odata';
+import {DataType, SortDescription} from '@mescius/wijmo';
 import {OrderingFlatItem} from '../../model';
-import {WjMenu} from '@grapecity/wijmo.angular2.input';
+import {WjMenu} from '@mescius/wijmo.angular2.input';
 import {Router} from '@angular/router';
 import {forkJoin} from 'rxjs';
 import {map} from 'rxjs/operators';

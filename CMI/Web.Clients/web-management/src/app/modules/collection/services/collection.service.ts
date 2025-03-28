@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CollectionDto, CollectionListItemDto, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
+import {Collection, CollectionListItem, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -11,10 +11,10 @@ export class CollectionService {
 		this._createBaseUrl = this._options.serverUrl + this._options.publicPort + '/api/Collections/';
 	}
 
-	public getAll(): Observable<CollectionListItemDto[] | null> {
+	public getAll(): Observable<CollectionListItem[] | null> {
 		const url = this._createBaseUrl + 'GetAll';
 
-		return this.http.get<CollectionListItemDto[]>(url, this.http.noCaching).pipe(map(arr =>  arr.map(item => CollectionListItemDto.fromJS(item))));
+		return this.http.get<CollectionListItem[]>(url, this.http.noCaching).pipe(map(arr =>  arr.map(item => CollectionListItem.fromJS(item))));
 	}
 
 	public getAllowedParents(currentItemId: number): Observable<any[] | null> {
@@ -23,23 +23,23 @@ export class CollectionService {
 		return this.http.get<any[]>(url, this.http.noCaching);
 	}
 
-	public get(id: number): Observable<CollectionDto | null> {
+	public get(id: number): Observable<Collection | null> {
 		let url = this._createBaseUrl + 'Get/{id}';
 		if (id === undefined || id === null) {
 			throw new Error('The parameter ' + id + ' must be defined.');
 		}
 		url = url.replace('{id}', '' + id);
-		return this.http.get(url, this.http.noCaching).pipe(map(r => CollectionDto.fromJS(r)));
+		return this.http.get(url, this.http.noCaching).pipe(map(r => Collection.fromJS(r)));
 	}
 
-	public create(value: CollectionDto | null): Observable<any> {
+	public create(value: Collection | null): Observable<any> {
 		const url = this._createBaseUrl + 'Create';
 
 		const content = value.toJSON();
 		return this.http.post(url, content, this.http.noCaching);
 	}
 
-	public update(id: number, value: CollectionDto | null): Observable<any> {
+	public update(id: number, value: Collection | null): Observable<any> {
 		let url = this._createBaseUrl + 'Update/{id}';
 		if (id === undefined || id === null) {
 			throw new Error('The parameter ' + id + ' must be defined.');

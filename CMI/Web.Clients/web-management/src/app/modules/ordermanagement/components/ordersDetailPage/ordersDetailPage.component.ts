@@ -18,9 +18,13 @@ import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadSer
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';
 import {ActivatedRoute} from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
+
 
 @Component({
 	selector: 'cmi-viaduc-orders-list-page',
@@ -95,6 +99,9 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			{ 'id': GebrauchskopieStatus.Fehlgeschlagen, 'name': this._txt.get('enums.gebrauchskopieStatus.fehlgeschlagen', 'Fehlgeschlagen') },
 			{ 'id': GebrauchskopieStatus.Versendet, 'name': this._txt.get('enums.gebrauchskopieStatus.versendet', 'Versendet') }
 		];
+
+
+		flatpickr.localize(German);
 	}
 
 	private _init(): void {
@@ -486,11 +493,26 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		}
 	}
 
-	public rueckgabeDatumValidChanged(isValid: boolean) {
-		this.isValidRueckgabeDatum = isValid;
+
+
+	public dataPickerValueUpdate($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailRecord.erwartetesRueckgabeDatum = null;
+			this.isValidRueckgabeNumber = false;
+		} else {
+			this.isValidRueckgabeNumber = true;
+			this.detailRecord.erwartetesRueckgabeDatum = $event.selectedDates[0];
+			this.detailRecord.erwartetesRueckgabeDatum.setDate(this.detailRecord.erwartetesRueckgabeDatum.getDate() + 1);
+		}
 	}
 
-	public orderingLesesaalDatumValidChanged(isValid: boolean) {
-		this.isValidOrderingLesesaalDatum = isValid;
+	public dataPickerValueUpdateGeplanteAusgabe($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailRecord.orderingLesesaalDate= null;
+		}
+		else {
+			this.detailRecord.orderingLesesaalDate = $event.selectedDates[0];
+			this.detailRecord.orderingLesesaalDate.setDate(this.detailRecord.orderingLesesaalDate.getDate() + 1);
+		}
 	}
 }

@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 
 @Injectable()
 export class DetailPagingService {

@@ -4,11 +4,11 @@ import {
 	ClientContext, ConfigService, CoreOptions, TranslationService, CountriesService, CmiGridComponent
 } from '@cmi/lesesaal-web-core';
 import {ErrorService, UrlService, UserService} from '../../../shared/services/index';
-import {DataType, SortDescription} from '@grapecity/wijmo';
+import {DataType, SortDescription} from '@mescius/wijmo';
 import {UserListUserSettings} from '../../../shared/model';
 import {ManagementUserSettings} from '../../../shared/model/managementUserSettings';
-import {Column, DataMap} from '@grapecity/wijmo.grid';
-import {ODataCollectionView} from '@grapecity//wijmo.odata';
+import {Column, DataMap} from '@mescius/wijmo.grid';
+import {ODataCollectionView} from '@mescius//wijmo.odata';
 import {DetailPagingService} from '../../../shared/services';
 
 @Component({
