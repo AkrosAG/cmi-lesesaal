@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {CollectionDto, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
+import {Collection, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
 import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {combineLatest, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {CollectionService} from '../../services';
-import * as moment from 'moment';
+import moment from 'moment';
 import {formatDate} from '@angular/common';
 import {ErrorService, UrlService} from '../../../shared';
 import {CollectionDetailPageErrorMessages} from './collection-detail-page-error-messages';
@@ -18,7 +18,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class CollectionDetailPageComponent extends ComponentCanDeactivate implements OnInit {
 	public errors: { [key: string]: string } = {};
-	public detailItem: CollectionDto;
+	public detailItem: Collection;
 	public myForm: FormGroup;
 	public crumbs: any;
 	public collectionTypes: Array<any> = [{collectionTypeId: 0, name: 'Sammlung'}, {collectionTypeId: 1, name: 'Themenblock'}];
@@ -46,7 +46,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 			this.allowedParents = this._collectionService.getAllowedParents(this.id === 'new' ? 0 : +this.id);
 			if (this.id === 'new') {
 				this.isNew = true;
-				return of(CollectionDto.fromJS({
+				return of(Collection.fromJS({
 					collectionId: -1,
 					validFrom: moment().startOf('day').toISOString(),
 					validTo: moment().startOf('day').add(30, 'days').toDate().toISOString(),
@@ -102,7 +102,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	public save() {
 		let result: Observable<any>;
 		const rawValue = this.myForm.getRawValue();
-		const collection = CollectionDto.fromJS(rawValue);
+		const collection = Collection.fromJS(rawValue);
 		if (this.isNew) {
 			result = this._collectionService.create(collection);
 		} else {
@@ -152,7 +152,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 		return 'type not found';
 	}
 
-	private reloadData(detailItem: CollectionDto): void {
+	private reloadData(detailItem: Collection): void {
 		// fetch latest data
 		this._collectionService.get(detailItem.collectionId).subscribe(r => {
 			this.detailItem = r;

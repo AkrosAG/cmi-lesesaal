@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {ALL_COMPONENTS} from './components/_all';
 import {ALL_DIRECTIVES} from './directives/_all';
 import {ALL_SERVICES} from './services/_all';
@@ -23,8 +23,11 @@ export function AdminModelFactory() {
         ...ALL_DIRECTIVES,
         RouterModule,
         BrowserAnimationsModule
-    ], imports: [SharedModule,
-        RouterModule,
+	],
+	imports: [
+		SharedModule,
+		RouterModule,
+		HttpClientModule,
         BrowserAnimationsModule,
         /* eslint-disable */
         FlatpickrModule.forRoot({

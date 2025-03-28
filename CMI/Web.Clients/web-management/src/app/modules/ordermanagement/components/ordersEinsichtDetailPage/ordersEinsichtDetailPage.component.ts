@@ -10,7 +10,7 @@ import {AuthorizationService, DetailPagingService, ErrorService, UrlService} fro
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';
 import {ActivatedRoute} from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 

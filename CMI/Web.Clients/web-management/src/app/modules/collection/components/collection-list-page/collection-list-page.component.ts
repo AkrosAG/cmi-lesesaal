@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {
 	ApplicationFeatureEnum,
 	CmiGridComponent,
-	CollectionDto, CollectionListItemDto,
+	Collection, CollectionListItem,
 	ConfigService,
 	TranslationService
 } from '@cmi/lesesaal-web-core';
@@ -11,7 +11,7 @@ import {AuthorizationService, CollectionSettings, ErrorService, ManagementUserSe
 import {Router} from '@angular/router';
 import {CollectionService} from '../../services';
 import {Observable} from 'rxjs';
-import {DataMap, Column} from '@grapecity/wijmo.grid';
+import {DataMap, Column} from '@mescius/wijmo.grid';
 
 @Component({
 	selector: 'cmi-collection-list-page',
@@ -79,7 +79,7 @@ export class CollectionListPageComponent implements OnInit {
 		this.hiddenColumns = this.getHiddenColumns();
 	}
 
-	public editCollection(item: CollectionDto): void {
+	public editCollection(item: Collection): void {
 		const id = item ? item.collectionId : 'new';
 		this._router.navigate([this._url.getNormalizedUrl('/collection/collection') + '/' + id]);
 	}
@@ -222,7 +222,7 @@ export class CollectionListPageComponent implements OnInit {
 		this.refreshHiddenVisibleColumns();
 	}
 
-	private prepareResult(result: CollectionListItemDto[]) {
+	private prepareResult(result: CollectionListItem[]) {
 		this.loading = false;
 		this.collections = new CollectionView(result);
 		this.collections.pageSize = 10;

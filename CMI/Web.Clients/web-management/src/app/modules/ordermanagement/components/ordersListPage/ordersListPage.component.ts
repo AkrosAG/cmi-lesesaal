@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ApplicationFeatureEnum, ConfigService, InternalStatus, ShippingType, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, UiService, UrlService, UserService} from '../../../shared/services';
 import {OrderingFlatItem, SelectionPreFilter} from '../../model';
-import {WjMenu} from '@grapecity/wijmo.angular2.input';
+import {WjMenu} from '@mescius/wijmo.angular2.input';
 import {ManagementUserSettings, OrderUserSettings, User} from '../../../shared/model';
 import {OrderService} from '../../services';
 import {OrdersListComponent} from '../ordersList/ordersList.component';
-import * as moment from 'moment';
+import moment from 'moment';
 import {SessionStorageService} from '../../../client/services';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {WjListBox} from '@grapecity//wijmo.angular2.input';
+import {WjListBox} from '@mescius//wijmo.angular2.input';
 import {ApplicationFeatureEnum, ClientContext, ComponentCanDeactivate, CountriesService, HttpService, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiService, UrlService,
@@ -10,10 +10,13 @@ import {AblieferndeStelle, DetailResult} from '../../../shared/model';
 import {RoleService} from '../../services';
 import * as fileSaver from 'file-saver';
 import { HttpEventType } from '@angular/common/http';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserRolesDetailPageErrorMessages} from './userRolesDetailPageErrorMessages';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
 
 @Component({
 	selector: 'cmi-viaduc-user-roles-detail-page',
@@ -49,6 +52,9 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	private initialeAblieferndeStelleList: any;
 	private rolesIsDirty: boolean;
 
+	public today = new Date();
+	public maxDate = new Date();
+
 	constructor(private _context: ClientContext, public _authorization: AuthorizationService, private _roleService: RoleService, private _txt: TranslationService,
 				private _url: UrlService,
 				private _route: ActivatedRoute,
@@ -62,9 +68,13 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				private _changeDetectionRef: ChangeDetectorRef,
 				private formbuilder: FormBuilder) {
 		super();
+		flatpickr.localize(German);
 	}
 
 	public ngOnInit(): void {
+		this.today.setHours(0, 0, 0, 0);
+		this.maxDate.setDate( this.today.getDate() + 30 );
+		this.maxDate.setHours(23, 59, 59, 99);
 		this._route.params.subscribe(params => this._load(params['id']));
 		this.loading = true;
 		this._ablieferndeStelleService.getAllAblieferndeStellen().subscribe(
@@ -781,6 +791,12 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			this.myForm.controls['researcherGroup'].disable();
 		} else if (this.editUserHasOe3Role) {
 			this.myForm.controls['researcherGroup'].enable();
+		}
+	}
+
+	public dataPickerValueUpdate($event: FlatPickrOutputOptions, controlName: string) {
+		if ($event.dateString === '') {
+			this.myForm.controls[controlName].setValue(null);
 		}
 	}
 }

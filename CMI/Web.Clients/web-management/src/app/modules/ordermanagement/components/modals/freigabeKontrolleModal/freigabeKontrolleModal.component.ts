@@ -3,7 +3,7 @@ import {ApproveStatus, EntityDecoratorService} from '@cmi/lesesaal-web-core';
 import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
 	selector: 'cmi-viaduc-freigabekontrolle-modal',

@@ -4,13 +4,13 @@ import {
 	ConfigService, TranslationService, WijmoService, ApplicationFeatureEnum, DigitalisierungsKategorie,
 	EntityDecoratorService, CmiGridComponent
 } from '@cmi/lesesaal-web-core';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {DigipoolEntry} from '../../model';
 import {OrderService} from '../../services';
 import {AuthorizationService, UrlService, UiService, UserService, ErrorService} from '../../../shared/services';
-import {Column, DataMap} from '@grapecity/wijmo.grid';
+import {Column, DataMap} from '@mescius/wijmo.grid';
 import {DigipoolUserSettings, ManagementUserSettings} from '../../../shared/model/managementUserSettings';
-import {FlexGridFilter} from '@grapecity/wijmo.grid.filter';
+import {FlexGridFilter} from '@mescius/wijmo.grid.filter';
 
 @Component({
 	selector: 'cmi-viaduc-digipoollist-page',

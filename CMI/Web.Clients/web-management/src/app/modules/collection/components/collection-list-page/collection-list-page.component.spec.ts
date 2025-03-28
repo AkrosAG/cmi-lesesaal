@@ -6,7 +6,7 @@ import {CollectionService} from '../../services';
 import {Router} from '@angular/router';
 import {MockUserSettings, ToastrTestingModule} from './mocks';
 import {Observable} from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 
 describe('CollectionListPageComponent', () => {
 	let sut: CollectionListPageComponent;

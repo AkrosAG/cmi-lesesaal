@@ -4,7 +4,7 @@ import {ApplicationFeatureEnum, CmiGridComponent, TranslationService} from '@cmi
 import {News, NewsForEditor} from '../../../modules/client/model';
 import {NewsService} from '../../../modules/client/services';
 import {AuthorizationService, ErrorService, UrlService} from '../../../modules/shared/services';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

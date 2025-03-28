@@ -15,10 +15,10 @@ import {
 } from '../../../shared/services';
 import {AblieferndeStelle} from '../../../shared/model/ablieferndeStelle';
 import {Router} from '@angular/router';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {AblieferndeStelleSettings, ManagementUserSettings} from '../../../shared/model';
-import {Column} from '@grapecity/wijmo.grid';
-import * as moment from 'moment';
+import {Column} from '@mescius/wijmo.grid';
+import moment from 'moment';
 
 @Component({
 	selector: 'cmi-viaduc-ablieferndestelle-page',

@@ -5,7 +5,7 @@ import {UrlService, ErrorService, AuthorizationService} from '../../../shared/se
 import {AsToken} from '../../model/asToken';
 import {AblieferndeStelleToken} from '../../../shared/model/ablieferndeStelleToken';
 import {Router} from '@angular/router';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 
 @Component({
 	selector: 'cmi-viaduc-token-page',
