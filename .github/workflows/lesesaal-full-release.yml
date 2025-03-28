@@ -35,7 +35,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps
 
     - name: Replace licenses
       working-directory: ${{ env.WORKING_DIR }}/src/lib/wijmo 
@@ -78,7 +78,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps
 
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v4
@@ -125,7 +125,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps
 
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v4
