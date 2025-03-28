@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {CollectionDetailPageComponent} from './collection-detail-page.component';
 import {CollectionService} from '../../services';
-import {ApplicationFeatureEnum, ClientContext,  Collection as CollectionDto, CollectionListItem as  CollectionListItemDto, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
+import {ApplicationFeatureEnum, ClientContext, Collection as CollectionDto, CollectionListItem as  CollectionListItemDto, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, SharedModule, UrlService} from '../../../shared';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';

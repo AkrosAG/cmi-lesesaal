@@ -140,7 +140,7 @@ describe('FreigabeKontrolleModalPage', () => {
 
 		it('test if the date is converted correctly'
 			,() => {
-				expect(sut.datumBewilligung).toEqual(new Date('2025-08-26').toDateString('yyyy-mm-dd'));
+				expect(sut.datumBewilligung).toEqual(new Date('2025-08-26'));
 			});
 
 		it('when user is Ö3 and ApproveStatus is FreigegebenInSchutzfris ' +
