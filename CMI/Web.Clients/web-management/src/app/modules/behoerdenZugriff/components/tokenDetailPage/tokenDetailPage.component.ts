@@ -5,7 +5,7 @@ import {UrlService, UiService} from '../../../shared/services';
 import {TokenService} from '../../services';
 import {AblieferndeStelleToken} from '../../../shared/model/ablieferndeStelleToken';
 import {AsToken} from '../../model/asToken';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 
 @Component({

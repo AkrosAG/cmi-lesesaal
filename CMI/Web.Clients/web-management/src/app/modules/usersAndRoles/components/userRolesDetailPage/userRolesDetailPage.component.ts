@@ -9,7 +9,7 @@ import {
 import {AblieferndeStelle, DetailResult} from '../../../shared/model';
 import {RoleService} from '../../services';
 import * as fileSaver from 'file-saver';
-import {HttpEventType} from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import * as moment from 'moment';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';

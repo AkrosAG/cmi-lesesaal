@@ -14,14 +14,14 @@
     "link": "npm link ../cmi-lesesaal-web-core/dist/@cmi/lesesaal-web-core"
   },
   "dependencies": {
-    "@angular/animations": "17.3.12",
-    "@angular/common": "17.3.12",
-    "@angular/compiler": "17.3.12",
-    "@angular/core": "17.3.12",
-    "@angular/forms": "17.3.12",
-    "@angular/platform-browser": "17.3.12",
-    "@angular/platform-browser-dynamic": "17.3.12",
-    "@angular/router": "17.3.12",
+    "@angular/animations": "18.2.13",
+    "@angular/common": "18.2.13",
+    "@angular/compiler": "18.2.13",
+    "@angular/core": "18.2.13",
+    "@angular/forms": "18.2.13",
+    "@angular/platform-browser": "18.2.13",
+    "@angular/platform-browser-dynamic": "18.2.13",
+    "@angular/router": "18.2.13",
     "angularx-flatpickr": "^7.3.0",
     "audit": "^0.0.6",
     "core-js": "^3.35.0",
@@ -33,13 +33,13 @@
     "rxjs": "^7.8.1",
     "web-animations-js": "^2.3.2",
     "webpack": "^5.89.0",
-    "zone.js": "~0.13.3"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
-		"@angular-devkit/build-angular": "^18.2.14",
+    "@angular-devkit/build-angular": "^18.2.14",
     "@angular-eslint/builder": "16.3.1",
-    "@angular/cli": "^17.3.14",
-    "@angular/compiler-cli": "17.3.12",
+    "@angular/cli": "^18.2.16",
+    "@angular/compiler-cli": "18.2.13",
     "@grapecity/wijmo.angular2.all": "^5.20232.939",
     "@types/file-saver": "^2.0.7",
     "@types/jasmine": "^5.1.4",
@@ -66,7 +66,7 @@
     "protractor": "^7.0.0",
     "puppeteer": "^23.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "~5.1.6",
+    "typescript": "~5.5.4",
     "webpack-dev-server": "^5.0.4"
   }
 }
