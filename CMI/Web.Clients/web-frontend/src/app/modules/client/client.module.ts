@@ -11,7 +11,6 @@ import {ALL_GUARDS} from './routing/_all';
 import {ALL_RESOLVERS} from './routing/_all';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule, WijmoModule} from '@cmi/lesesaal-web-core';
-
 import {FlatpickrModule} from 'angularx-flatpickr';
 
 @NgModule({
@@ -46,7 +45,6 @@ import {FlatpickrModule} from 'angularx-flatpickr';
 			nextArrow: "<svg version='1.1\' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z'></path></svg>"
 		})
 	]
-
 })
 
 export class ClientModule {
