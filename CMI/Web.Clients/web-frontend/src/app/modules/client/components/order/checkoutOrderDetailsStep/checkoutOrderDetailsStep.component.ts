@@ -1,8 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthorizationService, ShoppingCartService, UrlService} from '../../../services';
-import {ArtDerArbeit, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
+import {ArtDerArbeit, ClientContext, Ordering, ShippingType, StammdatenService, TranslationService} from '@cmi/lesesaal-web-core';
 import moment from 'moment';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {German} from 'flatpickr/dist/l10n/de';
+import flatpickr from 'flatpickr';
+import { FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
 
 @Component({
 	selector: 'cmi-viaduc-order-details-step',
@@ -10,12 +13,11 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 	styleUrls: ['./checkoutOrderDetailsStep.component.less']
 })
 export class CheckoutOrderDetailsStepComponent implements OnInit {
-
 	public isAsUser = false;
 	public artDerArbeiten: ArtDerArbeit[] = [];
 	public openingDays: string[];
-	public invalidDateError = false;
-	public form: UntypedFormGroup;
+	public form: FormGroup;
+	public minimumDate = new Date();
 
 	@Output()
 	public onGoBackClicked: EventEmitter<void> = new EventEmitter<void>();
@@ -23,27 +25,32 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 	public onNextClicked: EventEmitter<void> = new EventEmitter<void>();
 	public nextClicked = false;
 
-	constructor(private _scs: ShoppingCartService,
+	constructor(private _context: ClientContext,
+				private _scs: ShoppingCartService,
 				private _stm: StammdatenService,
 				private _author: AuthorizationService,
-				private _formBuilder: UntypedFormBuilder,
+				private _formBuilder: FormBuilder,
 				private _url: UrlService,
 				private _txt: TranslationService) {
+		const lang = this._context.language;
+		switch (lang) {
+			case 'de' :
+				flatpickr.localize(German);
+				break;
+		}
 	}
 
 	public ngOnInit(): void {
 		const ordering = this._scs.getActiveOrder() || <Ordering>{};
 		this.isAsUser = this._author.isAsUser();
-
 		this.form = this._formBuilder.group({
 			artDerArbeitDropdown: [ordering.artDerArbeit || undefined, this.isAsUser ? null : Validators.required],
-			konsultierungsDatum: [ordering.lesesaalDate ? moment(ordering.lesesaalDate).format('DD.MM.YYYY') : null,
-				ordering.type === ShippingType.Lesesaalausleihen ? Validators.required : null],
+			konsultierungsDatum:  new FormControl (null,
+				ordering.type === ShippingType.Lesesaalausleihen ?
+					[Validators.required, this.dateValueValidator.bind(this)] : null),
 			bemerkungBestellung: [ordering.comment, null],
 			termsofUse: [ordering.termsAccepted, Validators.requiredTrue]
 		});
-
-		this.openingDays = this._scs.getOpeningDays();
 
 		this._stm.getArtDerArbeiten().subscribe(ada => {
 			this.artDerArbeiten = ada;
@@ -60,15 +67,10 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 		if (!lesesaalCtrl || !lesesaalCtrl.value || lesesaalCtrl.value.length < 6) {
 			return null;
 		}
-
 		const m = moment(lesesaalCtrl.value, 'DD.MM.YYYY');
 		return m.isValid() ? m.toDate() : null;
 	}
 
-	public validateDate(e: any) {
-		const hasValue = e && e.target && e.target.value;
-		this.invalidDateError = hasValue && !this._scs.isValidLesesaalDate(e.target.value);
-	}
 
 	private _saveActiveOrder() {
 		const order = this._scs.getActiveOrder();
@@ -81,7 +83,8 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 
 	public validateFields() {
 		this.nextClicked = true;
-		if (this.form.invalid || this.invalidDateError) {
+		// the dates written in by hand cannot be valid
+		if (this.form.invalid) {
 			Object.keys(this.form.controls).forEach(field => {
 				const control = this.form.controls[field];
 				control.markAsTouched({ onlySelf: true });
@@ -93,6 +96,15 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 		this.onNextClicked.emit();
 	}
 
+	public dateValueValidator(control: FormControl): any | null {
+		if (this._scs.isValidLesesaalDate(control.value)){
+			return null;
+		}
+
+		// return error object
+		return {'invalidDateValue': {'value': control.value}};
+	}
+
 	public goBack() {
 		this._saveActiveOrder();
 		this.onGoBackClicked.emit();
@@ -102,5 +114,11 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 		return this._txt.translate('Ich habe die <a href="#/{0}" target="_blank" rel="noopener">Nutzungsbestimmungen</a> gelesen und erkläre mich damit einverstanden',
 			'file.termsofUse',
 			this._url.getNutzungsbestimmungenUrl());
+	}
+
+	public dataPickerValueUpdate($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.form.controls.konsultierungsDatum.setValue(null);
+		}
 	}
 }
