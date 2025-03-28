@@ -5,6 +5,8 @@ import {ClientContext, CountriesService, TranslationService, ComponentCanDeactiv
 import {Router} from '@angular/router';
 import moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
 
 @Component({
 	selector: 'cmi-viaduc-register-page',
@@ -16,8 +18,10 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 	public crumbs: any[] = [];
 	public show = false;
 	public user:User;
-// eslint-disable-next-line
+
+	/* eslint-disable  no-useless-escape */
 	public emailRegexPattern = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
+	/* eslint-enable  no-useless-escape */
 	public phonenumberRegexPattern = '^([s()+]*([0-9][s( )-]*){6,20})$';
 	public countries: any;
 	public languages: any;
@@ -26,6 +30,7 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 	public canDeactivateFlag = false;
 	public isInternalUser: boolean;
 	public minimumDate = moment('01.01.1850', 'DD.MM.YYYY', true).toDate();
+	public maxDate = new Date();
 
 	constructor(private _usr: UserService,
 				private _auth: AuthorizationService,
@@ -37,6 +42,12 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 				private _seoService: SeoService,
 				private _toastr: ToastrService) {
 		super();
+		const lang = this._context.language;
+		switch (lang) {
+			case 'de' :
+				flatpickr.localize(German);
+				break;
+		}
 	}
 
 	public async ngOnInit(): Promise<void> {
@@ -50,7 +61,7 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 		this._seoService.setTitle(this._txt.translate('Eingabe Benutzerdaten', 'user.pageTitle'));
 		this._buildCrumbs();
 		this.languages = [{ name: this._txt.get('languages.de', 'Deutsch'), code: 'de' },
-							{ name: this._txt.get('languages.en', 'Englisch'), code: 'en' }];
+			{ name: this._txt.get('languages.en', 'Englisch'), code: 'en' }];
 
 		await this._countriesService.loadCountries(this._context.language).then(countries => {
 			this.countries = this._countriesService.sortCountriesByName(countries);
@@ -77,22 +88,23 @@ export class RegisterPageComponent extends ComponentCanDeactivate implements OnI
 		this._usr.insertUser(this.user).then(() => {
 			this.canDeactivateFlag = true;
 			this._usr.initUserSettings().then(() => {
-					this._toastr.success(this._txt.get('user.savesuccess', 'Erfolgreich gespeichert.'));
-					this._router.navigate([this._url.getSimpleSearchUrl()]);
-				});
+				this._toastr.success(this._txt.get('user.savesuccess', 'Erfolgreich gespeichert.'));
+				this._router.navigate([this._url.getSimpleSearchUrl()]);
+			});
 		});
 	}
 
 	public get legalAgreementConsentText(): string {
 		const url: string = this._url.getNutzungsbestimmungenUrl();
 
+		/* eslint-disable  no-useless-escape */
 		return this._txt.get('user.legelAgreementConsentText',
 			'Ich bin einverstanden, dass meine Personendaten wie in ' +
 			// eslint-disable-next-line
 			'der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen ' +
 			'im Rahmen seines Online-Zugangs verwenden darf.',
 			url);
-
+		/* eslint-enable  no-useless-escape */
 	}
 
 	public canDeactivate(): boolean {

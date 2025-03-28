@@ -17,6 +17,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {RegisterPageComponent} from './registerPage.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('RegisterPage', () => {
 	let sut: RegisterPageComponent;
@@ -75,7 +76,6 @@ describe('RegisterPage', () => {
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
 				EMA: 'EMA',
-				AS: 'AS',
 				AMA: 'AMA'
 			}
 		};
@@ -127,7 +127,8 @@ describe('RegisterPage', () => {
 			],
 			declarations: [
 				RegisterPageComponent
-			]
+			],
+			schemas: [NO_ERRORS_SCHEMA]
 		});
 	});
 
@@ -156,13 +157,13 @@ describe('RegisterPage', () => {
 		}));
 
 		it('should be possible to edit the email', () => {
-			const emailInput = fixture.debugElement.query(By.css('input[name="emailAddress"]')).nativeElement as HTMLElement;
-			expect(emailInput.hasAttribute('disabled')).toBeFalsy();
+			const emailInput = document.getElementsByName("emailAddress");
+			expect(emailInput.item(0).hasAttribute('disabled')).toBeFalsy();
 		});
 
 		it('should not have a required organization field', () => {
 			fixture.detectChanges();
-			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement as HTMLElement;
+			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement;
 			expect(organizationField.hasAttribute('required')).toBeFalsy();
 		});
 	});
@@ -181,14 +182,14 @@ describe('RegisterPage', () => {
 
 		it('should NOT be possible to edit the email', () => {
 			fixture.detectChanges();
-			const emailInput = fixture.debugElement.query(By.css('input[name="emailAddress"]')).nativeElement as HTMLElement;
+			const emailInput = fixture.debugElement.query(By.css('input[name="emailAddress"]')).nativeElement;
 			expect(emailInput.hasAttribute('disabled')).toBeTruthy();
 		});
 
-		it('should not have a required organization field', () => {
+		it('should have a required organization field', () => {
 			fixture.detectChanges();
-			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement as HTMLElement;
-			expect(organizationField.hasAttribute('required')).toBeFalsy();
+			const organizationField = fixture.debugElement.query(By.css('input[name="organization"')).nativeElement;
+			expect(organizationField.hasAttribute('required')).toBeTruthy();
 		});
 	});
 });
