@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {CollectionDetailPageComponent} from './Collection-detail-page.component';
+import {CollectionDetailPageComponent} from './collection-detail-page.component';
 import {CollectionService} from '../../services';
-import {ApplicationFeatureEnum, ClientContext, Collection, CollectionListItem, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
+import {ApplicationFeatureEnum, ClientContext, Collection as CollectionDto, CollectionListItem, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
 import {AuthorizationService, ErrorService, SharedModule, UrlService} from '../../../shared';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -32,9 +32,9 @@ describe('CollectionDetail', () => {
 				});
 			return  of(collectionList);
 		},
-		get(id: number): Observable<Collection | null> {
+		get(id: number): Observable<CollectionDto | null> {
 
-			let child = Collection.fromJS({
+			let child = CollectionDto.fromJS({
 				title: 'Test Sammlung',
 				collectionId:3,
 				validFrom: moment(Date.now()).toDate(),
@@ -49,7 +49,7 @@ describe('CollectionDetail', () => {
 				imageAltText: ''
 			});
 
-			let Collection = Collection.fromJS({
+			let Collection = CollectionDto.fromJS({
 				title: 'Weitere Sammlung',
 				collectionId: 1,
 				validFrom: moment(Date.now()).toDate(),
