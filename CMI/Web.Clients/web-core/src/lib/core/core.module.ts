@@ -33,7 +33,7 @@ window['JSZip'] = JSZip;
         CommonModule,
         RouterModule,
         FormsModule,
-        WijmoModule,
+		WijmoModule,
         TooltipModule
 	],
 	imports: [
