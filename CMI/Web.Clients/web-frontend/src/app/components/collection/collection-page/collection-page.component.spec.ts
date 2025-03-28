@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {Collection, CoreModule, TranslationService} from '@cmi/lesesaal-web-core';
+import {Collection as CollectionDto, CoreModule, TranslationService, UiService} from '@cmi/lesesaal-web-core';
 import {ActivatedRoute, ParamMap,  Router} from '@angular/router';
 import {CollectionPageComponent} from './collection-page.component';
 import {CollectionService} from '../../../modules/client/services/collection.service';
@@ -9,7 +9,9 @@ import {CollectionItemResult} from '../../../modules/client/model/collection/col
 import moment from 'moment';
 import {By, Title} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
-import {ToastrTestingModule, MockUserSettingsParamMap} from '../mocks';
+import {ToastrTestingModule, MockUserSettingsParamMap, Mocks} from '../mocks';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {ToastPackage, ToastrService} from "ngx-toastr";
 
 describe('auto generate CollectionPageComponent', () => {
 	beforeEach(waitForAsync(async() => {
@@ -22,14 +24,18 @@ describe('auto generate CollectionPageComponent', () => {
 			providers: [
 				{provide: Router, useValue: router},
 				{provide: UrlService, useValue: urlService},
+				{provide: UiService, useValue: uiService},
 				{provide: CollectionService, useValue: collectionService},
 				{provide: TranslationService, useValue: _txt},
 				{provide: ActivatedRoute, useValue: activatedRoute},
 				{provide: SeoService, useValue: _seoService},
+				{ provide: ToastPackage, useClass: Mocks },
+				{ provide: ToastrService, useClass: ToastrService }
 			],
 			declarations: [
 				CollectionPageComponent
-			]
+			],
+			schemas: [NO_ERRORS_SCHEMA]
 		});
 
 		fixture = TestBed.createComponent(CollectionPageComponent);
@@ -38,6 +44,8 @@ describe('auto generate CollectionPageComponent', () => {
 		fixture.detectChanges();
 		await fixture.whenRenderingDone();
 	}));
+
+	let uiService: UiService;
 	let fixture:  ComponentFixture<CollectionPageComponent>;
 	let sut: CollectionPageComponent;
 	let activatedRoute = <ActivatedRoute>{
@@ -67,9 +75,13 @@ describe('auto generate CollectionPageComponent', () => {
 			this.testTitle = newTitle;
 		}
 	};
+	let toastrService = <ToastrService>{
+	};
+	uiService = new UiService(toastrService);
+
 	let _seoService = new SeoService(_title, _txt);
 	let collectionItemResult = CollectionItemResult.fromJS({
-		item:  Collection.fromJS({
+		item:  CollectionDto.fromJS({
 			collectionId:3,
 			title: 'Test Titel',
 			validFrom: moment(Date.now()).toDate(),
@@ -109,7 +121,7 @@ describe('auto generate CollectionPageComponent', () => {
 	it('should the title was completed with the collection name', () => {
 		expect(sut).toBeTruthy();
 		let title = _seoService.getTitle();
-		expect(title === collectionItemResult.item.title + ' - ' + _txt.translate(' ', 'header.title') ).toBeTruthy();
+		expect(title === collectionItemResult.item.title + ' - ' + _txt.get('header.title', 'Online-Zugang zum Bundesarchiv')  ).toBeTruthy();
 	});
 
 	it('should the imageminetype was set image appears', () => {
