@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {News} from '../../../modules/client/model';
 import {NewsService} from '../../../modules/client/services';
 import {UrlService} from '../../../modules/shared/services';

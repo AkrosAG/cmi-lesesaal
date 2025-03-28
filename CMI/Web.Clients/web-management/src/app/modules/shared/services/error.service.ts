@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {AuthorizationService} from './authorization.service';
 import {ApplicationFeatureEnum} from '@cmi/lesesaal-web-core';
 
