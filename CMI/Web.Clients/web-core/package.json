@@ -39,7 +39,7 @@
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
     "@mescius/wijmo.angular2.all": "^5.20242.30",
-    "@mescius/wijmo.styles": "^5.20242.30",
+		"@mescius/wijmo.styles": "^5.20251.34",
     "@types/jasmine": "^5.1.7",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^18.19.84",
