@@ -1,4 +1,4 @@
-<div *ngIf="show" class="page col-sm-12">
+<div *ngIf="show" class="user-account page col-sm-12">
 	<div class="page-breadcrumb">
 		<cmi-viaduc-breadcrumb [items]="crumbs"></cmi-viaduc-breadcrumb>
 	</div>
@@ -9,8 +9,8 @@
 		<p>
 			{{ 'Bitte erfassen Sie Ihre Benutzerdaten, damit wir Sie bei Bedarf erreichen können. Sie können diese Daten jederzeit aktualisieren.' | translate:'user.infoText' }}
 			<br />
-			 {{ 'Mit einem * gekennzeichnete Felder müssen ausgefüllt werden. Sie können diese Daten jederzeit aktualisieren.' | translate:'user.requiredFieldsInfo' }}
-			</p>
+			{{ 'Mit einem * gekennzeichnete Felder müssen ausgefüllt werden. Sie können diese Daten jederzeit aktualisieren.' | translate:'user.requiredFieldsInfo' }}
+		</p>
 
 	</div>
 	<form #formUserDetail="ngForm" *ngIf="user">
@@ -61,24 +61,28 @@
 					</label>
 					<div class="col-md-9 col-xs-9">
 						<input class="form-control"
-							   type="text"
-							   datePicker
-							   [minDateToday]="false"
+							   type="date"
+							   autocomplete="off"
+							   mwlFlatpickr
 							   [minDate]="minimumDate"
+							   [maxDate]="maxDate"
 							   [(ngModel)]="user.birthday"
-							   aria-labelledby="Date DD.MM.YYYY"
+							   [allowInput]="true"
+							   dateFormat="d.m.Y"
 							   placeholder="{{'Geburtsdatum (tt.mm.jjjj)' | translate: 'user.placeholder.birthday'}}"
 							   name="birthday">
 					</div>
 				</div>
-				<div [ngClass]="{'has-warning': organization.errors && isInternalUser && saveClicked}" class="row">
+				<div [ngClass]="{'has-warning': organization.errors && organization.errors.required && isInternalUser && saveClicked}" class="row">
 					<label class="col-md-3 col-xs-3 control-label">
 						{{'Organisation' | translate:'user.organization'}}
+						<span *ngIf="isInternalUser">*</span>
 					</label>
 					<div class="col-md-9 col-xs-9">
 						<input class="form-control"
 							   [(ngModel)]="user.organization"
 							   placeholder="{{'Organisation' | translate: 'user.placeholder.organization'}}"
+							   [required]="isInternalUser"
 							   name="organization" #organization="ngModel">
 						<span *ngIf="organization.errors && organization.errors.required && isInternalUser && saveClicked" class="help-block" role="alert">
 							{{'Dieses Feld muss ausgefüllt werden.' | translate:'main.errorMandatoryField'}}
@@ -146,7 +150,7 @@
 								required
 								name="countryCode" #countryCode="ngModel">
 							<option *ngFor="let c of countries" value="{{c.code}}"
-								 tooltip="{{c.name}}">{{c.name}}
+									tooltip="{{c.name}}">{{c.name}}
 							</option>
 						</select>
 						<span *ngIf="countryCode.errors && countryCode.errors.required && saveClicked" class="help-block" role="alert">
@@ -210,10 +214,10 @@
 								required
 								name="language" #language="ngModel">
 							<option *ngFor="let l of languages" value="{{l.code}}"
-								 tooltip="{{l.name}}">{{l.name}}
+									tooltip="{{l.name}}">{{l.name}}
 							</option>
 						</select>
-						<span class="help-block">{{'Bitte geben Sie an, in welcher Sprache Sie kommunizieren möchten.' | translate:'user.preferredLanguageHelpText'}}</span>
+						<span class="help-block">{{'Bitte geben Sie an, in welcher Sprache Sie mit dem Bundesarchiv kommunizieren möchten.' | translate:'user.preferredLanguageHelpText'}}</span>
 						<span *ngIf="language.errors && language.errors.required && saveClicked" class="help-block" role="alert">
 							{{'Dieses Feld muss ausgefüllt werden.' | translate:'main.errorMandatoryField'}}
 						</span>
@@ -222,25 +226,25 @@
 			</div>
 		</div>
 		<div class="col-md-12 col-xs-12">
-				<div [ngClass]="{'has-warning': legalAgreementConsent.errors && legalAgreementConsent.errors.required && saveClicked}" class="row">
-						<label class="col-md-2 col-xs-3 control-label">
-							{{'Datenschutzerklärung' | translate:'user.legalAgreementConsentTitle'}}*
-						</label>
-						<div class="col-md-8 col-xs-9">
-							<label for="legalAgreementConsent">
-								<input required
-									type="checkbox"
-									id = "legalAgreementConsent"
-									[(ngModel)]="user.legalAgreementConsent"
-									#legalAgreementConsent="ngModel"
-									name="legalAgreementConsent" />
-									&nbsp;<span [innerHtml]="legalAgreementConsentText"></span>
-							</label>
-							<span *ngIf="legalAgreementConsent.errors && saveClicked" class="help-block" role="alert">
+			<div [ngClass]="{'has-warning': legalAgreementConsent.errors && legalAgreementConsent.errors.required && saveClicked}" class="row">
+				<label class="col-md-2 col-xs-3 control-label">
+					{{'Datenschutzerklärung' | translate:'user.legalAgreementConsentTitle'}}*
+				</label>
+				<div class="col-md-8 col-xs-9">
+					<label for="legalAgreementConsent">
+						<input required
+							   type="checkbox"
+							   id = "legalAgreementConsent"
+							   [(ngModel)]="user.legalAgreementConsent"
+							   #legalAgreementConsent="ngModel"
+							   name="legalAgreementConsent" />
+						&nbsp;<span [innerHtml]="legalAgreementConsentText"></span>
+					</label>
+					<span *ngIf="legalAgreementConsent.errors && saveClicked" class="help-block" role="alert">
 								{{'Bitte lesen und akzeptieren Sie die Datenschutzerklärung.' | translate:'user.errorLegalAgreementConsent'}}
 							</span>
-						</div>
-					</div>
+				</div>
+			</div>
 
 		</div>
 		<div class="col-md-12 col-xs-12">

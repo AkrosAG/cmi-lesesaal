@@ -12,6 +12,8 @@ import { User, UserSetting, UserSettingType } from '../../../model';
 import { AuthorizationService, UrlService, UserService } from '../../../services';
 import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
 
 @Component({
 	selector: 'cmi-viaduc-user-account',
@@ -88,23 +90,32 @@ export class UserAccountComponent implements OnInit {
 	private _captionMobileNumber: string;
 	private _captionPreferredLanguage: string;
 	private _dateRegex = /(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.(?:18|19|20)[0-9]{2}/;
-	// eslint-disable-next-line
+	/* eslint-disable  no-useless-escape */
 	private _emailRegexPattern = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
+	/* eslint-enable  no-useless-escape */
 	private _allowEditingUserSettings = false;
 	private _languageDependantCountries: Countries = <Countries>{};
-	private _languages: any = [];
+	private _languages: any;
+	public newDate = new Date();
 
 	constructor(private _context: ClientContext,
-		private _authorization: AuthorizationService,
-		private _userService: UserService,
-		private _countriesService: CountriesService,
-		private _txt: TranslationService,
-		private _cfg: ConfigService,
-		private _cdr: ChangeDetectorRef,
-		private _url: UrlService,
-		private _toastr: ToastrService) {
-		this.isExternalUser = this._authorization.isExternalUser();
+				private _authorization: AuthorizationService,
+				private _userService: UserService,
+				private _countriesService: CountriesService,
+				private _txt: TranslationService,
+				private _cfg: ConfigService,
+				private _cdr: ChangeDetectorRef,
+				private _url: UrlService,
+				private _toastr: ToastrService) {
+		this.isExternalUser = this._authorization.isExternalUser()
+		const lang = this._context.language;
+		switch (lang) {
+			case 'de' :
+				flatpickr.localize(German);
+				break;
+		}
 	}
+
 
 	public ngOnInit() {
 		this._captionFamilyName = this._txt.get('account.familyName', 'Name');
@@ -123,9 +134,8 @@ export class UserAccountComponent implements OnInit {
 		this._errorMandatoryField = this._txt.get('account.mandatoryFieldError', 'Dieses Feld muss ausgefüllt werden.');
 		this._errorWrongFormat = this._txt.get('account.wrongFormat', 'Das Format entspricht keiner Telefonnummer');
 		this._errorDateFieldFormat = this._txt.get('account.dateFieldFormat', 'Das Format entspricht keinem gültigen Datum (tt.mm.jjjj).');
-		this._txt.supportedLanguages.forEach(l => {
-			this.languages.push({ name: this._txt.get('languages.' + l.key, l.name), code: l.key });
-		});
+		this._languages = [{ name: this._txt.get('languages.de', 'Deutsch'), code: 'de' },
+			{ name: this._txt.get('languages.en', 'Englisch'), code: 'en' }];
 		this._callLoadOrReload();
 	}
 
@@ -222,22 +232,6 @@ export class UserAccountComponent implements OnInit {
 		return false;
 	}
 
-	get hasEmailInfoText(): boolean {
-		const text = this._txt.get('account.contact.changeLoginData', null);
-		if (text && text.trim()) {
-			return true;
-		}
-		return false;
-	}
-
-	get hasEmailInfoLink(): boolean {
-		const text = this._txt.get('account.contact.changeLoginDataLink', null);
-		if (text && text.trim()) {
-			return true;
-		}
-		return false;
-	}
-
 	private _loadCountries(language: string) {
 		const countries = this._countriesService.getCountries(language);
 		this._languageDependantCountries = this._countriesService.sortCountriesByName(countries);
@@ -266,7 +260,6 @@ export class UserAccountComponent implements OnInit {
 
 		await this._loadUser();
 		this._loadCountries(this._context.language);
-
 		this._userSettings = [];
 		this._userSettings.push(new UserSetting(UserSettingType.FamilyName, this._captionFamilyName, this.user.familyName,
 			this._authorization.hasMoreThenOe2Rights(), true, null, this._errorMandatoryField, null));
@@ -275,7 +268,8 @@ export class UserAccountComponent implements OnInit {
 		// Only Ö3 User is not allowed to change birthday
 		this._userSettings.push(new UserSetting(UserSettingType.Birthday, this._captionBirthday, this._formatDateToDayMonthYearFormat(this.user.birthday),
 			this._authorization.hasRole(this._authorization.roles.Oe3), false, this._dateRegex.source, this._errorDateFieldFormat));
-		this._userSettings.push(new UserSetting(UserSettingType.Organization, this._captionOrganization, this.user.organization, false));
+		this._userSettings.push(new UserSetting(UserSettingType.Organization, this._captionOrganization, this.user.organization, false, !this.isExternalUser, null,
+			this.isExternalUser ? null : this._errorMandatoryField));
 		this._userSettings.push(new UserSetting(UserSettingType.Street, this._captionStreet, this.user.street, false,
 			true, null, this._errorMandatoryField, null));
 		this._userSettings.push(new UserSetting(UserSettingType.StreetAttachment, this._captionStreetAttachment, this.user.streetAttachment, false));
@@ -296,7 +290,6 @@ export class UserAccountComponent implements OnInit {
 
 		this.loading = false;
 	}
-
 	private _formatDateToDayMonthYearFormat(date: string): string {
 		if (_util.isEmpty(date)) {
 			return '';
@@ -372,8 +365,9 @@ export class UserAccountComponent implements OnInit {
 					}
 					break;
 				case UserSettingType.Birthday:
-					if (!(this.user.birthday === userSetting.value)) {
-						this.user.birthday = userSetting.hasValue ? moment(userSetting.value, 'DD.MM.YYYY', true).utcOffset(0, true).toISOString() : '';
+					if (this.user.birthday !== userSetting.value) {
+						this.user.birthday =  moment(userSetting.value, 'DD.MM.YYYY', true).utcOffset(0, true).toISOString();
+						// was set manually
 						hasChanged = true;
 					}
 					break;
@@ -399,15 +393,15 @@ export class UserAccountComponent implements OnInit {
 		}
 
 		this._userService.updateUser(this.user).subscribe(() => {
-			this._allowEditingUserSettings = !this._allowEditingUserSettings;
-			this._toastr.success(this._txt.get('userAccount.saveSuccess', 'Ihre Benutzerdaten wurden erfolgreich gespeichert'),
-				this._txt.get('userAccount.saveSuccessTitle', 'Erfolgreich Gespeichert'));
-			this._callLoadOrReload();	// Required to update any server generated data like modified date
-		}, () => {
-			this._toastr.error(this._txt.get('userAccount.saveError', 'Ihre Benutzerdaten wurden nicht gespeichert'),
-				this._txt.get('userAccount.saveErrorTitle', 'Problem beim Speichern'));
-			this._callLoadOrReload();
-		}
+				this._allowEditingUserSettings = !this._allowEditingUserSettings;
+				this._toastr.success(this._txt.get('userAccount.saveSuccess', 'Ihre Benutzerdaten wurden erfolgreich gespeichert'),
+					this._txt.get('userAccount.saveSuccessTitle', 'Erfolgreich Gespeichert'));
+				this._callLoadOrReload();	// Required to update any server generated data like modified date
+			}, () => {
+				this._toastr.error(this._txt.get('userAccount.saveError', 'Ihre Benutzerdaten wurden nicht gespeichert'),
+					this._txt.get('userAccount.saveErrorTitle', 'Problem beim Speichern'));
+				this._callLoadOrReload();
+			}
 		);
 	}
 
