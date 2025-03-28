@@ -1,21 +1,28 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {CollectionListPageComponent} from './collection-list-page.component';
-import {ClientContext, ClientModel, CollectionListItem, ConfigService, CoreModule, TranslationService, UserUiSettings} from '@cmi/lesesaal-web-core';
-import {AuthorizationService, ErrorService, SharedModule, UiService, UrlService, User, UserService} from '../../../shared';
+import {ClientContext, ClientModel, CollectionListItem as CollectionListItemDto, ConfigService, CoreModule,
+	TranslationService, UiService, UserUiSettings} from '@cmi/lesesaal-web-core';
+import {
+	AuthorizationService, ErrorService, SharedModule, UiServiceMC, UrlService, User,
+	UserService
+} from '../../../shared';
 import {CollectionService} from '../../services';
 import {Router} from '@angular/router';
-import {MockUserSettings, ToastrTestingModule} from './mocks';
+import {MockUserSettings} from './mocks';
 import {Observable} from 'rxjs';
 import moment from 'moment';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import { IndividualConfig, provideToastr, ToastrModule, ToastrService} from "ngx-toastr";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 describe('CollectionListPageComponent', () => {
 	let sut: CollectionListPageComponent;
 	let fixture: ComponentFixture<CollectionListPageComponent>;
 	let collectionService = <CollectionService> {
-		getAll(): Observable<CollectionListItem[] | null> {
-			let result:  Observable<CollectionListItem[]>;
-			let collectionList: CollectionListItem[] = new Array(CollectionListItem[3]);
-			collectionList[0] = CollectionListItem.fromJS(
+		getAll(): Observable<CollectionListItemDto[] | null> {
+			let result:  Observable<CollectionListItemDto[]>;
+			let collectionList: CollectionListItemDto[] = new Array(CollectionListItemDto[3]);
+			collectionList[0] = CollectionListItemDto.fromJS(
 				{
 					collectionId: 6,
 					validFrom: moment().startOf('day').toDate(),
@@ -24,7 +31,7 @@ describe('CollectionListPageComponent', () => {
 					modifiedOn: moment().startOf('day').toDate(),
 					collectionTypeId: 0
 				});
-			collectionList[1] = CollectionListItem.fromJS({
+			collectionList[1] = CollectionListItemDto.fromJS({
 				collectionId:1,
 				validFrom: moment(Date.now()).toDate(),
 				validTo:  moment(Date.now()).toDate(),
@@ -34,7 +41,7 @@ describe('CollectionListPageComponent', () => {
 				descriptionShort: 'Short short',
 				description: 'Test kind'	});
 
-			collectionList[2] = CollectionListItem.fromJS({
+			collectionList[2] = CollectionListItemDto.fromJS({
 				collectionId: 4,
 				validFrom: moment(Date.now()).toDate(),
 				validTo: moment(Date.now()).toDate(),
@@ -80,6 +87,8 @@ describe('CollectionListPageComponent', () => {
 		let defaultLanguage = 'en';
 		let clientModel = <ClientModel>{};
 		let clientContext = <ClientContext>{defaultLanguage: defaultLanguage, language: 'de'};
+
+		let uiService: UiService;
 		let txt =  <TranslationService>{
 			get(key: string, defaultValue?: string, ...args): string {
 				return key;
@@ -99,31 +108,44 @@ describe('CollectionListPageComponent', () => {
 			}
 		};
 		let authorizationService = <AuthorizationService>{};
+		let toastrService = <ToastrService>{
+			info<ConfigPayload = any>(message?: string, title?: string, override?: Partial<IndividualConfig<ConfigPayload>>) {
+			}
+		};
+		uiService = new UiService(toastrService);
+		let uiServiceMC = new UiServiceMC(toastrService);
 		let errorService = <ErrorService>{};
 		let url = <UrlService>{
 			getHomeUrl(): string {
 				return 'www.google.de';
 			}
 		};
-		let userService = <UserService> {
+		let userService = <UserService>{
 			getUser(): Promise<User> {
-				return Promise.resolve(<User> { id: '123', emailAddress: 'darth.vader@cmiag.ch' });
+				return Promise.resolve(<User>{id: '123', emailAddress: 'darth.vader@cmiag.ch'});
 			},
 			updateUserSettings(settings: any) {
-
+			},
+			getUserSettings(): Promise<any> {
+				return Promise.resolve( new MockUserSettings());
 			}
 		};
 		let router = <Router>{};
 
 		await TestBed.configureTestingModule({
-			imports:[SharedModule.forRoot(), CoreModule.forRoot(), ToastrTestingModule],
+			imports:[SharedModule.forRoot(),ToastrModule.forRoot(), CoreModule.forRoot()],
 			declarations: [CollectionListPageComponent],
+			schemas: [NO_ERRORS_SCHEMA],
 			providers: [
+				provideAnimations(), // required animations providers
+				provideToastr(), // Toastr providers
 				{provide: CollectionService, useValue: collectionService },
 				{provide: TranslationService, useValue: txt },
 				{provide: UrlService, useValue: url},
-				{provide: UiService},
 				{provide: ErrorService, useValue: errorService},
+				{provide: ToastrService, useValue: toastrService },
+				{provide: UiServiceMC, useValue: uiServiceMC },
+				{provide: UiService, useValue: uiService },
 				{provide: ConfigService, useValue: configService},
 				{provide: UserService, useValue: userService},
 				{provide: Router, useValue: router},
@@ -143,7 +165,7 @@ describe('CollectionListPageComponent', () => {
 	}));
 
 	it('should create a new  instance', (() => {
-			expect(sut).toBeTruthy();
+		expect(sut).toBeTruthy();
 	}));
 
 	it('should get data ', (() => {

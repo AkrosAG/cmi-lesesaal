@@ -4,7 +4,7 @@ import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class UiService {
-	constructor(private _toastr: ToastrService) {
+	constructor(protected _toastr: ToastrService) {
 	}
 
 	public detectInsideClick(event: any, element: any): boolean {

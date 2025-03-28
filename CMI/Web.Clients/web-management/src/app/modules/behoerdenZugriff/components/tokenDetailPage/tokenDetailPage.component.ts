@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ComponentCanDeactivate, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
-import {UrlService, UiService} from '../../../shared/services';
+import {UrlService, UiServiceMC} from '../../../shared/services';
 import {TokenService} from '../../services';
 import {AblieferndeStelleToken} from '../../../shared/model/ablieferndeStelleToken';
 import {AsToken} from '../../model/asToken';
@@ -28,7 +28,7 @@ export class TokenDetailPageComponent extends ComponentCanDeactivate implements 
 	private _allTokens: string[];
 	private _mode: Mode;
 
-	constructor(private tokenService: TokenService, private _txt: TranslationService, private _url: UrlService, private _ui: UiService, private _route: ActivatedRoute, private _router: Router) {
+	constructor(private tokenService: TokenService, private _txt: TranslationService, private _url: UrlService, private _ui: UiServiceMC, private _route: ActivatedRoute, private _router: Router) {
 		super();
 	}
 

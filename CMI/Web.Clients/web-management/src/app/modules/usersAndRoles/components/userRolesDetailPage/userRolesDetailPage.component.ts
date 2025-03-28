@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WjListBox} from '@mescius//wijmo.angular2.input';
 import {ApplicationFeatureEnum, ClientContext, ComponentCanDeactivate, CountriesService, HttpService, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
-	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiService, UrlService,
+	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiServiceMC, UrlService,
 	UserService
 } from '../../../shared/services';
 import {AblieferndeStelle, DetailResult} from '../../../shared/model';
@@ -59,7 +59,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				private _url: UrlService,
 				private _route: ActivatedRoute,
 				private _router: Router,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _ablieferndeStelleService: AblieferndeStelleService,
 				private _userService: UserService, private _countriesService: CountriesService,
 				private _http: HttpService,

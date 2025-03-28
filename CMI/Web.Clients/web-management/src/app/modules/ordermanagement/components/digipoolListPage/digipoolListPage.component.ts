@@ -7,7 +7,7 @@ import {
 import {CollectionView} from '@mescius/wijmo';
 import {DigipoolEntry} from '../../model';
 import {OrderService} from '../../services';
-import {AuthorizationService, UrlService, UiService, UserService, ErrorService} from '../../../shared/services';
+import {AuthorizationService, UrlService, UiServiceMC, UserService, ErrorService} from '../../../shared/services';
 import {Column, DataMap} from '@mescius/wijmo.grid';
 import {DigipoolUserSettings, ManagementUserSettings} from '../../../shared/model/managementUserSettings';
 import {FlexGridFilter} from '@mescius/wijmo.grid.filter';
@@ -43,7 +43,7 @@ export class DigipoolListPageComponent implements OnInit {
 	constructor(private _orderService: OrderService,
 				private _txt: TranslationService,
 				private _url: UrlService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _aut: AuthorizationService,
 				private _wjs: WijmoService,
 				private _usr: UserService,
