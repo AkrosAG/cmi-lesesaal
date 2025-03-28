@@ -1,6 +1,9 @@
 import {Component, Input, ElementRef, EventEmitter, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services';
-import {OrderItem, Utilities as _util} from '@cmi/lesesaal-web-core';
+import {ClientContext, OrderItem, Utilities as _util} from '@cmi/lesesaal-web-core';
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
 
 @Component({
 	selector: 'cmi-viaduc-shoppingcart-list',
@@ -24,13 +27,18 @@ export class ShoppingCartItemList {
 	public updateError = false;
 
 	private _elem: ElementRef;
-	constructor(private _scs: ShoppingCartService, elemRef: ElementRef) {
+	constructor(private _scs: ShoppingCartService, private _context: ClientContext, elemRef: ElementRef) {
 		this._elem = elemRef.nativeElement;
+		const lang = this._context.language;
+		switch (lang) {
+			case 'de' :
+				flatpickr.localize(German);
+				break;
+		}
 	}
 
 	public updateComment(item: OrderItem) {
-		this._scs.setComment(item).subscribe(() => {
-			return;
+		this._scs.setComment(item).subscribe(() => { return
 		});
 	}
 
@@ -69,11 +77,12 @@ export class ShoppingCartItemList {
 		});
 	}
 
-	public checkDate(isValid: boolean) {
-		this.invalidDateError = !isValid;
-		if (_util.isEmpty(this.chosenBewilligungsItem.bewilligungsDatum)) {
-			return;
+	public checkDate($event: FlatPickrOutputOptions) {
+		const isValid = $event.dateString !== '';
+		if (isValid) {
+			this.chosenBewilligungsItem.bewilligungsDatum = $event.selectedDates[0];
 		}
+		this.invalidDateError = !isValid;
 	}
 
 	private removeItem(item: any) {
