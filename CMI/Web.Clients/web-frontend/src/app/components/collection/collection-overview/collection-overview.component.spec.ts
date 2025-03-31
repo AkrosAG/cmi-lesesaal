@@ -1,15 +1,15 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {CollectionListItem, CoreModule} from '@cmi/lesesaal-web-core';
+import {CollectionListItem as CollectionListItemDto, CoreModule, UiService} from '@cmi/lesesaal-web-core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../../modules/client/services/collection.service';
 import {LocalizeLinkPipe, UrlService} from '../../../modules/client';
 import {Observable, of} from 'rxjs';
+import {RouterTestingModule} from '@angular/router/testing';
+import {CollectionOverviewComponent} from './collection-overview.component';
 import moment from 'moment';
 import {By} from '@angular/platform-browser';
-import {RouterTestingModule} from '@angular/router/testing';
-import {ToastrTestingModule} from '../mocks';
-import {CollectionOverviewComponent} from './collection-overview.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {ToastrService} from "ngx-toastr";
 
 describe('auto generate CollectionOverviewComponent', () => {
 	beforeEach(waitForAsync(async() => {
@@ -18,11 +18,12 @@ describe('auto generate CollectionOverviewComponent', () => {
 				CoreModule.forRoot(),
 				RouterTestingModule.withRoutes(
 					[{path: 'getHomeUrl', component: UrlService}, {path: 'simple', component: ActivatedRoute}])
-				, ToastrTestingModule],
+			],
 			providers: [
 				{provide: CollectionService, useValue: collectionService},
 				{provide: Router, useValue: router},
 				{provide: UrlService, useValue: urlService},
+				{provide: UiService, useValue: uiService},
 				{provide: LocalizeLinkPipe, useValue: localizeLinkPipe},
 
 			],
@@ -42,7 +43,11 @@ describe('auto generate CollectionOverviewComponent', () => {
 
 	let fixture:  ComponentFixture<CollectionOverviewComponent>;
 	let sut: CollectionOverviewComponent;
-	let collectionItems: CollectionListItem[] = [CollectionListItem.fromJS({
+	let toastrService = <ToastrService>{
+	};
+	let uiService = new UiService(toastrService);
+
+	let collectionItems: CollectionListItemDto[] = [CollectionListItemDto.fromJS({
 		collectionId:3,
 		title: 'Test Titel',
 		validFrom: moment(Date.now()).toDate(),
@@ -55,7 +60,7 @@ describe('auto generate CollectionOverviewComponent', () => {
 		imageMimeType: 'png',
 		link: 'www.google.de'
 	}),
-		CollectionListItem.fromJS({
+		CollectionListItemDto.fromJS({
 			collectionId:32,
 			title: ' Titel Blau',
 			validFrom: moment(Date.now()).toDate(),
@@ -65,9 +70,10 @@ describe('auto generate CollectionOverviewComponent', () => {
 			collectionTypeId: 0,
 			descriptionShort: 'Short kurz',
 			description: 'Test Lang',
+			imageMimeType: 'png',
 			link: 'www.yahoo.de'
 		}),
-		CollectionListItem.fromJS({
+		CollectionListItemDto.fromJS({
 			collectionId:13,
 			title: '3 Titel',
 			validFrom: moment(Date.now()).toDate(),
@@ -81,7 +87,7 @@ describe('auto generate CollectionOverviewComponent', () => {
 			link: 'www.bing.de'
 		})];
 	let collectionService = <CollectionService>{
-		getActiveCollections(parentId: number | null): Observable<CollectionListItem[] | null>  {
+		getActiveCollections(parentId: number | null): Observable<CollectionListItemDto[] | null>  {
 
 			return of(collectionItems);
 		},
@@ -116,8 +122,8 @@ describe('auto generate CollectionOverviewComponent', () => {
 		expect(sut.collections.length).toBe(3);
 	});
 
-	it('should the imageminetype was set image appears', () => {
-		fixture.whenStable().then(
+	it('should the imageminetype was set image appears', async () => {
+		await fixture.whenStable().then(
 			() => {
 				fixture.detectChanges();
 				let elementArray = fixture.debugElement.queryAll(By.css('.card-img-top'));
@@ -127,3 +133,4 @@ describe('auto generate CollectionOverviewComponent', () => {
 	});
 
 });
+
