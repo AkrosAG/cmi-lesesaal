@@ -69,10 +69,9 @@ describe('auto generate CollectionPageComponent', () => {
 	};
 	let _title = <Title>{
 		getTitle(): string {
-			return this.testTitle;
+			return 'Test Titel';
 		},
 		setTitle(newTitle: string): void {
-			this.testTitle = newTitle;
 		}
 	};
 	let toastrService = <ToastrService>{
