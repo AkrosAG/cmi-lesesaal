@@ -1,6 +1,6 @@
 import {of} from 'rxjs';
 import {HttpService} from './http.service';
-import {HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 
 describe('HttpService', () => {
 	let sut: HttpService;

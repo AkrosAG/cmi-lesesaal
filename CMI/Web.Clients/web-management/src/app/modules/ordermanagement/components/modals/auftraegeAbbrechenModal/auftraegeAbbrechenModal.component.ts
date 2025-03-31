@@ -40,7 +40,7 @@ export class AuftraegeAbbrechenModalComponent {
 
 	public bemerkungDossier: string;
 	public interneBemerkung: string;
-	public loading: boolean = false;
+	public loading = false;
 	public gruende = [];
 	public isLoading = false;
 
@@ -76,7 +76,7 @@ export class AuftraegeAbbrechenModalComponent {
 		}
 
 		this.isLoading = true;
-		this._ord.abbrechen(this.ids, this.selectedAbbruchgrund, this.bemerkungDossier, this.interneBemerkung).subscribe(r => {
+		this._ord.abbrechen(this.ids, this.selectedAbbruchgrund, this.bemerkungDossier, this.interneBemerkung).subscribe(() => {
 			this._toastr.success('Statusänderung erfolgreich durchgeführt', 'Erfolgreich');
 			this.open = false;
 			this.onSubmitted.emit(true);

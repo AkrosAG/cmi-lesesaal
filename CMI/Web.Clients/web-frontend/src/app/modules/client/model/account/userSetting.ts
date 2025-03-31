@@ -38,7 +38,7 @@ export class UserSetting {
 			return;
 		}
 
-		let regexp = new RegExp(this._regExPattern);
+		const regexp = new RegExp(this._regExPattern);
 
 		this.regexIsInvalid = !regexp.test(this.value);
 	}
@@ -47,7 +47,7 @@ export class UserSetting {
 		return _util.isEmpty(value);
 	}
 
-	public regexIsInvalid: boolean = false;
+	public regexIsInvalid = false;
 
 	get caption(): string {
 		return this._caption;

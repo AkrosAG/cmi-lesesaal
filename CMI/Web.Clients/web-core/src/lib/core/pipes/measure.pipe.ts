@@ -7,7 +7,7 @@ import {TranslationService} from '../services/translation.service';
 export class MeasurePipe implements PipeTransform {
 	constructor(private _txt: TranslationService) {
 	}
-
+	// eslint-disable-next-line
 	public transform(value: number, measure: string, ...args: any[]): any {
 		let result: any = value;
 		switch (measure) {
@@ -20,11 +20,11 @@ export class MeasurePipe implements PipeTransform {
 	}
 
 	private _humanFileSize(bytes: number, si = true): string {
-		let thresh = si ? 1000 : 1024;
+		const thresh = si ? 1000 : 1024;
 		if (Math.abs(bytes) < thresh) {
 			return bytes + ' B';
 		}
-		let units = si
+		const units = si
 			? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 			: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
 		let u = -1;

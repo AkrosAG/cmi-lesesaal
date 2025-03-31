@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Language, Translations} from '../model/translations';
 import {ClientContext} from './clientContext';
 import {PreloadService} from './preload.service';
-import {Utilities as _util} from '../includes/utilities';
+import {Utilities, Utilities as _util} from '../includes/utilities';
 
 @Injectable()
 export class TranslationService {
@@ -12,12 +12,12 @@ export class TranslationService {
 	private _texts: { [key: string]: any };
 	private _textsCustomer: { [key: string]: any };
 
-	private _commonKey: string = '_';
-	private _showMissingInfo: boolean = false;
-	private _isLocalhost: boolean = false;
+	private _commonKey: '_';
+	private _showMissingInfo = false;
+	private _isLocalhost = false;
 
 	constructor(private _context: ClientContext, private _preloadService: PreloadService) {
-		let supported: any[] = [];
+		const supported: any[] = [];
 		supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
 		supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
 		this._supportedLanguages = supported;
@@ -42,7 +42,9 @@ export class TranslationService {
 	}
 
 	public getMissingInfo(language: string, text: string): string {
+		/* eslint-disable  no-useless-escape */
 		if (_util.isString(text) && /^(http|https|file|mail)\:\/\//.test(text)) {
+			/* eslint-enable  no-useless-escape */
 			return text + '?(!' + language + ')';
 		} else {
 			return '(!' + language + ')' + text;
@@ -59,12 +61,12 @@ export class TranslationService {
 		}
 
 		let language = this._context.language;
-		let supported = this._supportedLanguages.filter(t => t.key === language).pop();
+		const supported = this._supportedLanguages.filter(t => t.key === language).pop();
 		if (!supported) {
 			language = this._context.defaultLanguage;
 		}
-		let selected: Translations = this._preloadService.translationsByLanguage[language];
-		let selected2: Translations = this._preloadService.translationsCustomerByLanguage[language];
+		const selected: Translations = this._preloadService.translationsByLanguage[language];
+		const selected2: Translations = this._preloadService.translationsCustomerByLanguage[language];
 		this._language = language;
 
 		this._texts = selected && selected.translations ? _util.cloneWithLowerCasedKeys(selected.translations) : undefined;
@@ -92,8 +94,8 @@ export class TranslationService {
 	}
 
 	private _findTextInternal(key: string, texts: { [key: string]: any }): any {
-		let ts = texts,
-			t = null,
+		const ts = texts;
+		let	t = null,
 			ks = [],
 			k = '',
 			tt = ts;
@@ -147,15 +149,15 @@ export class TranslationService {
 				ar = ar[0];
 			}
 			ps = ps.concat(ar);
-			t = _util.format.apply(_util, ps);
+			t = _util.format.apply(Utilities, ps);
 		}
 
 		return t;
 	}
 
 	private _find(container: any, key: string): any {
-		let vs = container,
-			v,
+		const vs = container;
+		let v,
 			ks = [],
 			k = '',
 			vt = vs;
@@ -179,8 +181,8 @@ export class TranslationService {
 	}
 
 	public pick(obj: any, key: string, language: string, allowDefault: boolean): string {
-		let t = null,
-			o = this._find(obj, key),
+		let t = null;
+		const o = this._find(obj, key),
 			defLang = this._context.defaultLanguage;
 
 		if (_util.isObject(o)) {

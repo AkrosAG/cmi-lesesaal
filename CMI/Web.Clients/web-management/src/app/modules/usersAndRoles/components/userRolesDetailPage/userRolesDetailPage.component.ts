@@ -1,19 +1,22 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {WjListBox} from '@grapecity//wijmo.angular2.input';
+import {WjListBox} from '@mescius//wijmo.angular2.input';
 import {ApplicationFeatureEnum, ClientContext, ComponentCanDeactivate, CountriesService, HttpService, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
-	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiService, UrlService,
+	AblieferndeStelleService, AuthorizationService, DetailPagingService, ErrorService, UiServiceMC, UrlService,
 	UserService
 } from '../../../shared/services';
 import {AblieferndeStelle, DetailResult} from '../../../shared/model';
 import {RoleService} from '../../services';
 import * as fileSaver from 'file-saver';
-import {HttpEventType} from '@angular/common/http';
-import * as moment from 'moment';
+import { HttpEventType } from '@angular/common/http';
+import moment from 'moment';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserRolesDetailPageErrorMessages} from './userRolesDetailPageErrorMessages';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
 
 @Component({
 	selector: 'cmi-viaduc-user-roles-detail-page',
@@ -47,13 +50,16 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public ablieferndeStelleAllList: AblieferndeStelle[];
 	private stillSelectedAblieferndeStelleList: any;
 	private initialeAblieferndeStelleList: any;
-	private rolesIsDirty: Boolean;
+	private rolesIsDirty: boolean;
+
+	public today = new Date();
+	public maxDate = new Date();
 
 	constructor(private _context: ClientContext, public _authorization: AuthorizationService, private _roleService: RoleService, private _txt: TranslationService,
 				private _url: UrlService,
 				private _route: ActivatedRoute,
 				private _router: Router,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _ablieferndeStelleService: AblieferndeStelleService,
 				private _userService: UserService, private _countriesService: CountriesService,
 				private _http: HttpService,
@@ -62,9 +68,13 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				private _changeDetectionRef: ChangeDetectorRef,
 				private formbuilder: FormBuilder) {
 		super();
+		flatpickr.localize(German);
 	}
 
 	public ngOnInit(): void {
+		this.today.setHours(0, 0, 0, 0);
+		this.maxDate.setDate( this.today.getDate() + 30 );
+		this.maxDate.setHours(23, 59, 59, 99);
 		this._route.params.subscribe(params => this._load(params['id']));
 		this.loading = true;
 		this._ablieferndeStelleService.getAllAblieferndeStellen().subscribe(
@@ -75,7 +85,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			},
 			() => this.loading = false);
 
-		let countries = this._countriesService.getCountries(this._context.language);
+		const countries = this._countriesService.getCountries(this._context.language);
 		this.countries = this._countriesService.sortCountriesByName(countries);
 	}
 
@@ -106,7 +116,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.loading = true;
 		this.reassembleDatatype();
 		this._userService.updateAllUserData(this.detail.item).subscribe(
-			async res => {
+			async () => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.userSuccessfullySaved', 'Benutzerdaten erfolgreich gespeichert'));
 				await this._reload();
 			},
@@ -128,7 +138,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		}
 
 		this._roleService.setUserRoles(this.detail.item.id, roleIds).then(
-			async res => {
+			async ()  => {
 				this.loading = false;
 				this._ui.showSuccess(this._txt.get('userAndRoles.userroleSuccessfullySaved', 'Benutzerrollen erfolgreich gespeichert'));
 				this.stillSelectedRoles = null;
@@ -148,8 +158,8 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.stillSelectedAblieferndeStelleList = null;
 		const ablieferndeStelleIds = this.detail.item.ablieferndeStelleList != null ? this.detail.item.ablieferndeStelleList.map(as => as.ablieferndeStelleId) : [];
 		this._userService.cleanAndAddAblieferndeStelle(this.detail.item.id, ablieferndeStelleIds).subscribe(
-			async res => {
-			let access = this.detail.item.access || {};
+			async () => {
+			const access = this.detail.item.access || {};
 				this.detail.item.tokens = access.asTokens || [];
 				this._ui.showSuccess(this._txt.get('userAndRoles.assignedAblieferndeStellenSuccessfullySaved', 'Zuständige Stellen erfolgreich gespeichert'));
 				this.rememberSelectedRoles();
@@ -270,7 +280,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			return;
 		}
 		const formData = new FormData();
-		for (let file of event.target.files) {
+		for (const file of event.target.files) {
 			formData.append(file.name, file);
 		}
 		this.selectedIdentifizierungsmittel = formData;
@@ -278,13 +288,13 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 
 	public downloadIdentifierungsmittel() {
 		this.loading = true;
-		let url = this._userService.getIdentifizierungsmittelPdfUrl(this.detail.item.id);
+		const url = this._userService.getIdentifizierungsmittelPdfUrl(this.detail.item.id);
 		this._http.download(url).subscribe(
 			event => {
 				if (event.type === HttpEventType.Response) {
 					try {
 						this.loading = false;
-						let blob = event.body;
+						const blob = event.body;
 						fileSaver.saveAs(blob, this.detail.item.id + '.pdf', { autoBom: false });
 					} catch (ex) {
 						console.error(ex);
@@ -303,7 +313,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public uploadIdentifierungsmittel() {
 		this.loading = true;
 		this._userService.setIdentifizierungsmittelPdf(this.detail.item.id, this._authorization.roles.Oe3, this.selectedIdentifizierungsmittel).subscribe(
-			res => {
+			() => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.uploadsuccess', 'Identifizierungsmittel erfolgreich gespeichert'));
 			},
 			err => {
@@ -325,7 +335,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	public downgradToOe2() {
 		this.loading = true;
 		this._userService.setIdentifizierungsmittelPdf(this.detail.item.id, this._authorization.roles.Oe2, null).subscribe(
-			res => {
+			() => {
 				this._ui.showSuccess(this._txt.get('userAndRoles.downgradsuccess', 'Identifizierungsmittel erfolgreich gelöscht'));
 				this.detail.item.hasIdentifizierungsmittel = null;
 			},
@@ -342,6 +352,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		);
 	}
 
+	// eslint-disable-next-line
 	public onCancelClick(event): void {
 		this.showModal = false;
 	}
@@ -361,6 +372,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 		this.showModal = true;
 	}
 
+	// eslint-disable-next-line
 	public onOkClick(event): void {
 		this.showModal = false;
 
@@ -395,7 +407,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public dateRangeValidator(control: FormControl): any | null {
-		let dateString = control.value;
+		const dateString = control.value;
 		if (!dateString) {
 			return null;
 		}
@@ -532,7 +544,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			this.allRoles  = this.detail['roles'];
 			this.distributeAssignedRoles(this.detail.item.roles, this.initialeRoles);
 		}
-		let access = result.item.access || {};
+		const access = result.item.access || {};
 		result.item.tokens = access.asTokens || [];
 		if (this.stillSelectedAblieferndeStelleList) {
 			this.detail.item.ablieferndeStelleList = [];
@@ -546,9 +558,9 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			});
 		}
 		this.detail.item.birthday = result.item.birthday ? moment(new Date(result.item.birthday)).format('DD.MM.YYYY') : null;
-		let dateTime = moment(new Date()).add(-1, 'days').toDate();
+		const dateTime = moment(new Date()).add(-1, 'days').toDate();
 		if (result.item.downloadLimitDisabledUntil) {
-			let compareDownloadLimitDisabledUntil = moment(new Date(result.item.downloadLimitDisabledUntil));
+			const compareDownloadLimitDisabledUntil = moment(new Date(result.item.downloadLimitDisabledUntil));
 			if (compareDownloadLimitDisabledUntil.diff(dateTime) > 0) {
 				this.detail.item.downloadLimitDisabledUntil = moment(new Date(this.detail.item.downloadLimitDisabledUntil)).format('DD.MM.YYYY');
 			} else {
@@ -556,7 +568,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			}
 		}
 		if (result.item.digitalisierungsbeschraenkungAufgehobenBis) {
-			let compareDigitalisierungsbeschraenkungAufgehobenBis = moment(new Date(result.item.digitalisierungsbeschraenkungAufgehobenBis));
+			const compareDigitalisierungsbeschraenkungAufgehobenBis = moment(new Date(result.item.digitalisierungsbeschraenkungAufgehobenBis));
 			if (compareDigitalisierungsbeschraenkungAufgehobenBis.diff(dateTime) > 0) {
 				this.detail.item.digitalisierungsbeschraenkungAufgehobenBis = moment(new Date(this.detail.item.digitalisierungsbeschraenkungAufgehobenBis)).format('DD.MM.YYYY');
 			} else {
@@ -646,7 +658,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	private reassembleDatatype() {
-		let detailItem = this.myForm.getRawValue();
+		const detailItem = this.myForm.getRawValue();
 
 		this.detail.item.familyName = detailItem.familyName;
 		this.detail.item.firstName = detailItem.firstName;
@@ -692,7 +704,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	private async _load(id: string): Promise<void> {
 		this.loading = true;
 		try {
-			let res = await this._roleService.getUserInfo(id);
+			const res = await this._roleService.getUserInfo(id);
 			this._prepareResult(res);
 		} catch (err) {
 			this._ui.showError(err);
@@ -711,7 +723,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 	}
 
 	public get getNextThirtyDays(): string[] {
-		let days = [];
+		const days = [];
 		for (let i = 0; i <= moment().daysInMonth(); i++) {
 			days.push(moment().add(i, 'days').format('DD.MM.YYYY'));
 		}
@@ -762,7 +774,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 
 		const ablieferndeStelleIds = this.detail.item.ablieferndeStelleList != null ? this.detail.item.ablieferndeStelleList.map(as => as.ablieferndeStelleId) : [];
 		if (this.initialeAblieferndeStelleList.length === this.detail.item.ablieferndeStelleList.length) {
-			let length = this.initialeAblieferndeStelleList.length;
+			const length = this.initialeAblieferndeStelleList.length;
 			for (let i = 0; i < length; i++) {
 				if (ablieferndeStelleIds.indexOf(this.initialeAblieferndeStelleList[i].ablieferndeStelleId) < 0) {
 					return true;
@@ -779,6 +791,12 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			this.myForm.controls['researcherGroup'].disable();
 		} else if (this.editUserHasOe3Role) {
 			this.myForm.controls['researcherGroup'].enable();
+		}
+	}
+
+	public dataPickerValueUpdate($event: FlatPickrOutputOptions, controlName: string) {
+		if ($event.dateString === '') {
+			this.myForm.controls[controlName].setValue(null);
 		}
 	}
 }

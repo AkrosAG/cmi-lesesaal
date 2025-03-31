@@ -72,9 +72,9 @@ export class EntityDecoratorService {
 		if (!response) {
 			return response;
 		}
-		for (let key in response) {
+		for (const key in response) {
 			if (response.hasOwnProperty(key)) {
-				let result = <EntityResult>response[key];
+				const result = <EntityResult>response[key];
 				this.decorateEntities(result.items, options);
 			}
 		}

@@ -13,10 +13,10 @@ export class AccountPageComponent implements OnInit {
 	public crumbs: any[] = [];
 	private submitIdRequestUrl = '';
 
-	public isRegistered: boolean = true;
-	public isIdentified: boolean = false;
-	public showOnboarding: boolean = false;
-	public activeColumn: string = '1';
+	public isRegistered = true;
+	public isIdentified = false;
+	public showOnboarding = false;
+	public activeColumn = '1';
 	public tableSite: string;
 
 	constructor(private _txt: TranslationService,

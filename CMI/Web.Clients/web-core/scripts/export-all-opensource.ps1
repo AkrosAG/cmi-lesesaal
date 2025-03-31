@@ -26,7 +26,7 @@ Function Export-All-OpenSource {
     Export-OpenSource "cmi-viaduc-web-management"
 
     $ToExclude = @(
-                   'RemoveBindingRedirect.ps1', 
+                   'RemoveBindingRedirect.ps1',
                    'Update Binding Redirects - readme.txt',
                    'Change Script Art. 12.3.sql',
                    'Change Script PVW-426 .sql',
@@ -62,7 +62,7 @@ Function Export-OpenSource([string] $ProjectName, [string[]] $FilesOrDirsToExclu
         Remove-Item $ZipResultPath
     }
 
-    
+
     Get-ChildItem $ClonePath -Recurse | Where-Object { $_.Name -in $ToExclude} | Remove-Item -Force -Verbose
 
     Compress-Directory -DirectoryToZip "$ClonePath" -ZipResultFullPath $ZipResultPath
@@ -70,7 +70,7 @@ Function Export-OpenSource([string] $ProjectName, [string[]] $FilesOrDirsToExclu
 
 # Replacements definieren
 Function Write-Core-Replacements {
-    Write-Replacement -FilePath "$WorkingDirectory\$ProjectName\src\lib\wijmo\wijmo.licensekey.ts" -Replacement "export const WIJMO_LICENSEKEY = 'dummy_license'; // to obtain your own licensekey, see https://www.grapecity.com/wijmo/licensing"
+    Write-Replacement -FilePath "$WorkingDirectory\$ProjectName\src\lib\wijmo\wijmo.licensekey.ts" -Replacement "export const WIJMO_LICENSEKEY = 'dummy_license'; // to obtain your own licensekey, see https://www.mescius.com/wijmo/licensing"
     Write-PartReplacement -FilePath "$WorkingDirectory\$ProjectName\src\package.json" -SearchForRegex '"registry": ".*",' -Replacement '"registry": "enter-a-url-to-package-repository",'
     Remove-File -FilePath  "$WorkingDirectory\$ProjectName\.npmrc"
     Remove-Item "$WorkingDirectory\$ProjectName\.github" -Force -Recurse  -ErrorAction Ignore
@@ -117,25 +117,25 @@ Function Write-CsProj  {
         [string]$Reference
     )
 
-    $files = Get-ChildItem $Path -Recurse -Filter *.csproj 
+    $files = Get-ChildItem $Path -Recurse -Filter *.csproj
     ForEach ($f in $files)
     {
-        $xPath = [string]::Format("//a:EmbeddedResource[contains(@Include, '{0}')]", $Reference)      
+        $xPath = [string]::Format("//a:EmbeddedResource[contains(@Include, '{0}')]", $Reference)
         $proj = [xml](Get-Content $f.FullName)
 
         [System.Xml.XmlNamespaceManager] $nsmgr = $proj.NameTable
         $nsmgr.AddNamespace('a','http://schemas.microsoft.com/developer/msbuild/2003')
         $node = $proj.SelectSingleNode($xPath, $nsmgr)
-    
+
         if (!$node)
-        { 
+        {
             continue
         }
-    
+
         Write-Host "Removing $Reference in project $($f.FullName)";
         $node.ParentNode.RemoveChild($node);
         $proj.Save($f.FullName)
-    }    
+    }
 }
 
 Function Write-Readme {
@@ -251,49 +251,49 @@ Function Get-SqlReplacement {
         internal class SqlStatements
         {
             public const string SqlDataElementsSelect = "";
-    
+
             public const string SqlArchiveRecordSelect = "";
-    
+
             public const string SqlNodeContext = "";
-    
+
             public const string SqlArchiveRecordContainers = "";
-    
+
             public const string SqlArchiveRecordDescriptors = "";
-            
+
             // We order the mutation records according to the archive plan.
             // Thus parenting nodes are inserted before their children
             // and population starts in a "top down" manner
             public const string SqlMutationsRecords = "";
-    
+
             public const string SqlArchiveRecordReferences = "";
-    
+
             public const string SqlArchiveRecordNodeInfo= "";
-    
+
             public const string SqlArchivePlanInfo = "";
-    
+
             public const string SqlUpdateMutationActionLog = "";
-    
+
             public const string ResetFailedOrLostOperations = "";
             public const string GetArchiveRecordSecurityInfo = "";
             public const string GetArchiveRecordPrimaryDataSecurityInfo = "";
-    
+
             public const string InitiateFullResync = "";
-    
+
             public const string HarvestStatusInfo = "";
-    
+
             public const string HarvestLogInfo = "";
-    
+
             public const string HarvestLogInfoDetail = "";
             public const string FondsOverviewList = "";
-    
+
             public const string GetAccession = "";
             public const string GetDetailDataForDataElement = "";
-    
+
             public const string SqlArchiveRecordForContainer = "";
             public const string OrderDetailDataSelect = "";
             public const string OrderDetailDataSelectForContainer = "";
             public const string OrderDetailDataSelectForChildRecords = "";
-    
+
         }
     }
 '@

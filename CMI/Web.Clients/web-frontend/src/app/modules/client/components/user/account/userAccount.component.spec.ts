@@ -5,8 +5,7 @@ import {
 	CoreModule,
 	TranslationService,
 	ConfigService,
-	ClientContext,
-	Language
+	ClientContext
 } from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
@@ -17,7 +16,6 @@ import {ToastrService} from 'ngx-toastr';
 import {User} from '../../../model';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {ChangeDetectorRef} from '@angular/core';
 
 describe('UserAccount', () => {
 	let sut: UserAccountComponent;
@@ -69,7 +67,6 @@ describe('UserAccount', () => {
 				Oe2: 'Ö2',
 				Oe3: 'Ö3',
 				EMA: 'EMA',
-				AS: 'AS',
 				AMA: 'AMA'
 			}
 		};
@@ -88,16 +85,7 @@ describe('UserAccount', () => {
 				return text;
 			},
 			get(key: string, defaultValue?: string, ...args): string {
-				if (key === 'account.contact.changeLoginData') {
-					return 'Mobiltelefon-Nummer und E-Mail-Adresse dienen zur Kontaktaufnahme.';
-				}
 				return defaultValue;
-			},
-			get supportedLanguages(): Language[] {
-				let supported: Language[] = [];
-				supported.push(<Language>{key: 'de', short: 'DE', name: 'Deutsch'});
-				supported.push(<Language>{key: 'en', short: 'EN', name: 'English'});
-				return supported;
 			}
 		};
 
@@ -113,8 +101,7 @@ describe('UserAccount', () => {
 				{ provide: CountriesService, useValue: countriesService },
 				{ provide: AuthorizationService, useValue: authorizationService },
 				{ provide: UrlService, useValue: url },
-				{ provide: ClientContext, useValue: context },
-				{ provide: ChangeDetectorRef, useValue: {}}
+				{ provide: ClientContext, useValue: context }
 			],
 			declarations: [
 				UserAccountComponent

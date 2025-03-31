@@ -48,7 +48,7 @@ export class PreloadService {
 		this._apiDataUrl = _util.addToString(this._options.serverUrl + this._options.publicPort, '/', 'api/Public');
 	}
 
-	public preload(lang: string, loadModelData: boolean = true): Promise<any> {
+	public preload(lang: string, loadModelData = true): Promise<any> {
 		this._isPreloading = true;
 		return Promise.all([
 			this._loadCustomerTranslations(lang),
@@ -83,6 +83,7 @@ export class PreloadService {
 		if (inlined && inlined.innerHTML) {
 			try {
 				const translations = JSON.parse(inlined.innerHTML);
+				// eslint-disable-next-line
 				promise = new Promise((resolve, reject) => {
 					resolve(translations);
 				});
@@ -132,6 +133,7 @@ export class PreloadService {
 		if (inlined && inlined.innerHTML) {
 			try {
 				const settings = JSON.parse(inlined.innerHTML);
+				// eslint-disable-next-line
 				promise = new Promise((resolve, reject) => {
 					resolve(settings);
 				});
@@ -159,6 +161,7 @@ export class PreloadService {
 		if (inlined && inlined.innerHTML) {
 			try {
 				const settings = JSON.parse(inlined.innerHTML);
+				// eslint-disable-next-line
 				promise = new Promise((resolve, reject) => {
 					resolve(settings);
 				});
@@ -185,6 +188,7 @@ export class PreloadService {
 		if (inlined && inlined.innerHTML) {
 			try {
 				const modelData = JSON.parse(inlined.innerHTML);
+				// eslint-disable-next-line
 				promise = new Promise((resolve, reject) => {
 					resolve(modelData);
 				});

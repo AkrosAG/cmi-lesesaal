@@ -32,6 +32,7 @@ export class AutoSizeDirective implements AfterViewInit {
 	}
 
 	@HostListener('window:resize', ['$event.target'])
+	// eslint-disable-next-line
 	public onResize(textArea: HTMLTextAreaElement): void {
 		// Only apply adjustment if element width had changed.
 		if (this.el.clientWidth === this._clientWidth) {
@@ -43,6 +44,7 @@ export class AutoSizeDirective implements AfterViewInit {
 	}
 
 	@HostListener('input', ['$event.target'])
+	// eslint-disable-next-line
 	public onInput(textArea: HTMLTextAreaElement): void {
 		this.adjust();
 	}

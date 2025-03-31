@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UrlService} from '../../../services/url.service';
 import {Favorite, FavoriteKind, SearchFavorite, VeFavorite} from '../../../model/favorite/favorite';
-import * as moment from 'moment';
+import moment from 'moment';
 import {FavoriteService} from '../../../services/favorite.service';
 import {FavoriteList} from '../../../model/favorite/favoriteList';
 import {ConfigService, Entity, Utilities as _util} from '@cmi/lesesaal-web-core';
@@ -59,7 +59,7 @@ export class FavoriteListComponent implements OnInit {
 	}
 
 	public async addToCart(item: VeFavorite) {
-		let ve = <Entity> {
+		const ve = <Entity> {
 			archiveRecordId: item.veId,
 			title: item.title,
 		};
@@ -76,7 +76,7 @@ export class FavoriteListComponent implements OnInit {
 			this.error = e;
 		});
 	}
-
+	// eslint-disable-next-line
 	public exportItem(item: Favorite) {
 		this.error = undefined;
 

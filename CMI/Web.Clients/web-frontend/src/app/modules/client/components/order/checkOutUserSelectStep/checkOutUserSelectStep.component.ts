@@ -2,8 +2,8 @@ import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core'
 import {ShoppingCartService, UserService} from '../../../services';
 import {ClientContext, ShippingType, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {User} from '../../../model';
-import {WjAutoComplete} from '@grapecity/wijmo.angular2.input';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {WjAutoComplete} from '@mescius/wijmo.angular2.input';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
 	selector: 'cmi-viaduc-user-select-step',
@@ -14,38 +14,38 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 	@ViewChild('autoComplete', { static: false})
 	public autoComplete: WjAutoComplete;
 	public userList: User[];
-	public form: FormGroup;
+	public form: UntypedFormGroup;
 
 	@Output()
 	public onGoBackClicked: EventEmitter<void> = new EventEmitter<void>();
 	@Output()
 	public onNextClicked: EventEmitter<void> = new EventEmitter<void>();
-	public nextClicked: boolean = false;
-	public loading: boolean = false;
-	public checkingKontingent: boolean = false;
-	public willexceedKontingent: boolean = false;
-	public isDroppedDown: boolean = false;
+	public nextClicked = false;
+	public loading = false;
+	public checkingKontingent = false;
+	public willexceedKontingent = false;
+	public isDroppedDown = false;
 
 	constructor(private _scs: ShoppingCartService,
 				private _userService: UserService,
-				private _formBuilder: FormBuilder,
+				private _formBuilder: UntypedFormBuilder,
 				private _ctx: ClientContext) {
 	}
 
 	public async ngOnInit(): Promise<void> {
 		this.loading = true;
 		this.form = this._formBuilder.group({
-			orderIsForMe: new FormControl(null, [Validators.required]),
-			userId: new FormControl(null)
+			orderIsForMe: new UntypedFormControl(null, [Validators.required]),
+			userId: new UntypedFormControl(null)
 		});
 
 		this.form.controls['orderIsForMe'].valueChanges.subscribe(val => {
 			this.onOrderIsForMeChanged(val);
 		});
 
-		let order = this._scs.getActiveOrder();
-		let currentUserId = (this._ctx.currentSession || <any>{}).userid;
-		let orderIsForMe = !(order.userId && currentUserId !== order.userId);
+		const order = this._scs.getActiveOrder();
+		const currentUserId = (this._ctx.currentSession || <any>{}).userid;
+		const orderIsForMe = !(order.userId && currentUserId !== order.userId);
 
 		this.form.patchValue({
 			orderIsForMe: orderIsForMe,
@@ -69,7 +69,7 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 		const list: User[] = [];
 		list.push(new User());
 		// Alphabetisch sortieren nach Nachnamen
-		let sortedUserList = userList.sort((a, b) => {
+		const sortedUserList = userList.sort((a, b) => {
 			if (a && a.familyName && b && b.familyName) {
 				if (a.familyName < b.familyName) {
 					return -1;
@@ -79,7 +79,7 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 			}
 			return 1;
 		});
-		for (let user of sortedUserList ) {
+		for (const user of sortedUserList ) {
 			if (!_util.isEmpty(user.familyName) || !_util.isEmpty(user.firstName)) {
 				user.displayName = (user.familyName + ' ' + user.firstName + ' (' + user.userExtId + ')').trim();
 				list.push(user);
@@ -108,7 +108,7 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 						this._scs.getOrderableItems().subscribe(ordableItems => {
 								this.willexceedKontingent = res.bestellkontingent - ordableItems.length < 0;
 							},
-							() => {},
+							() => {return},
 							() => {
 								this.checkingKontingent = false;
 							});
@@ -119,7 +119,7 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 				},
 
 				() => { this.checkingKontingent = false; },
-				() => {});
+				() => {return});
 		}
 	}
 
@@ -136,7 +136,7 @@ export class CheckoutUserSelectStepComponent implements OnInit {
 	}
 
 	private _saveActiveOrder() {
-		let order = this._scs.getActiveOrder();
+		const order = this._scs.getActiveOrder();
 
 		let userId = this.form.controls['userId'].value;
 		if (this._orderIsForMe) {

@@ -12,28 +12,29 @@ import {ALL_RESOLVERS} from './routing/_all';
 import {WijmoModule} from '../wijmo/index';
 import JSZip from 'jszip';
 import {TooltipModule} from '../tooltip/tooltip.module';
+import { ArchiveModel } from './services/archiveModel';
 import { ClientModel } from './services/clientModel';
 import { CoreOptions } from './services/coreOptions';
 import {ClientContext} from './services/clientContext';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import {FlatpickrModule} from 'angularx-flatpickr';
 
 window['JSZip'] = JSZip;
 
-@NgModule({
-	declarations: [
-		...ALL_COMPONENTS,
-		...ALL_DIRECTIVES,
-		...ALL_PIPES,
-	],
-	exports: [
-		...ALL_COMPONENTS,
-		...ALL_DIRECTIVES,
-		...ALL_PIPES,
-		CommonModule,
-		RouterModule,
-		FormsModule,
+@NgModule({ declarations: [
+        ...ALL_COMPONENTS,
+        ...ALL_DIRECTIVES,
+        ...ALL_PIPES,
+    ],
+    exports: [
+        ...ALL_COMPONENTS,
+        ...ALL_DIRECTIVES,
+        ...ALL_PIPES,
+        CommonModule,
+        RouterModule,
+        FormsModule,
 		WijmoModule,
-		TooltipModule
+        TooltipModule
 	],
 	imports: [
 		CommonModule,
@@ -41,18 +42,17 @@ window['JSZip'] = JSZip;
 		RouterModule,
 		WijmoModule,
 		HttpClientModule,
-		TooltipModule
+		TooltipModule,
+		FlatpickrModule.forRoot()
 	]
 })
 export class CoreModule {
-
-	constructor() {
-	}
 
 	public static forRoot(): ModuleWithProviders<CoreModule> {
 		return {
 			ngModule: CoreModule,
 			providers: [
+				{ provide: ArchiveModel, useClass: ArchiveModel },
 				{ provide: ClientModel, useClass: ClientModel },
 				{ provide: CoreOptions, useClass: CoreOptions },
 				{ provide: ClientContext, useClass: ClientContext, deps: [ClientModel] },

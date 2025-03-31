@@ -1,15 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {Collection, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {Collection as CollectionDto, ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
+import {FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {combineLatest, Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {CollectionService} from '../../services';
-import * as moment from 'moment';
+import moment from 'moment';
 import {formatDate} from '@angular/common';
 import {ErrorService, UrlService} from '../../../shared';
 import {CollectionDetailPageErrorMessages} from './collection-detail-page-error-messages';
 import {ToastrService} from 'ngx-toastr';
+import flatpickr from 'flatpickr';
+
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
+import {German} from 'flatpickr/dist/l10n/de';
 
 @Component({
 	selector: 'cmi-collection-detail-page',
@@ -18,7 +22,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class CollectionDetailPageComponent extends ComponentCanDeactivate implements OnInit {
 	public errors: { [key: string]: string } = {};
-	public detailItem: Collection;
+	public detailItem: CollectionDto;
 	public myForm: FormGroup;
 	public crumbs: any;
 	public collectionTypes: Array<any> = [{collectionTypeId: 0, name: 'Sammlung'}, {collectionTypeId: 1, name: 'Themenblock'}];
@@ -38,6 +42,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 				private _toastr: ToastrService,
 				private _txt: TranslationService) {
 		super();
+		flatpickr.localize(German);
 	}
 
 	public ngOnInit(): void {
@@ -46,7 +51,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 			this.allowedParents = this._collectionService.getAllowedParents(this.id === 'new' ? 0 : +this.id);
 			if (this.id === 'new') {
 				this.isNew = true;
-				return of(Collection.fromJS({
+				return of(CollectionDto.fromJS({
 					collectionId: -1,
 					validFrom: moment().startOf('day').toISOString(),
 					validTo: moment().startOf('day').add(30, 'days').toDate().toISOString(),
@@ -102,7 +107,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	public save() {
 		let result: Observable<any>;
 		const rawValue = this.myForm.getRawValue();
-		const collection = Collection.fromJS(rawValue);
+		const collection = CollectionDto.fromJS(rawValue);
 		if (this.isNew) {
 			result = this._collectionService.create(collection);
 		} else {
@@ -152,7 +157,7 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 		return 'type not found';
 	}
 
-	private reloadData(detailItem: Collection): void {
+	private reloadData(detailItem: CollectionDto): void {
 		// fetch latest data
 		this._collectionService.get(detailItem.collectionId).subscribe(r => {
 			this.detailItem = r;
@@ -171,8 +176,8 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 			language: [this.detailItem.language, Validators.required],
 			title: [this.detailItem.title, [Validators.required, Validators.maxLength(255)]],
 			collectionTypeId: [{value: this.detailItem.collectionTypeId, disabled: this.detailItem.childCollections?.length > 0}, [Validators.required, Validators.min(0), Validators.max(1)]],
-			validFrom: [formatDate(this.detailItem.validFrom, 'yyyy-MM-ddTHH:mm', 'en'), [Validators.required, this.validFromDateValueValidator()]],
-			validTo: [formatDate(this.detailItem.validTo, 'yyyy-MM-ddTHH:mm', 'en'), [Validators.required, this.validToDateValueValidator()]],
+			validFrom: [this.detailItem.validFrom, Validators.required],
+			validTo: [this.detailItem.validTo, Validators.required],
 			createdOn: [formatDate(this.detailItem.createdOn, 'yyyy-MM-ddTHH:mm', 'en')],
 			createdBy: [this.detailItem.createdBy],
 			modifiedOn: [formatDate(this.detailItem.modifiedOn ? this.detailItem.modifiedOn : new Date(), 'yyyy-MM-ddTHH:mm', 'en')],
@@ -193,9 +198,9 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 	}
 
 	private buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
-		let collectionMenu = 'collection';
-		let collection = 'collection';
+		const crumbs: any[] = this.crumbs = [];
+		const collectionMenu = 'collection';
+		const collection = 'collection';
 
 		crumbs.push({iconClasses: 'glyphicon glyphicon-home', url: this._url.getHomeUrl()});
 		crumbs.push({
@@ -236,41 +241,27 @@ export class CollectionDetailPageComponent extends ComponentCanDeactivate implem
 		}
 	}
 
-	private validFromDateValueValidator(): ValidatorFn {
-		return (control: AbstractControl): ValidationErrors | null => {
-			return this.checkValidRange(false);
-		};
-	}
-
-	private validToDateValueValidator(): ValidatorFn {
-		return (control: AbstractControl): ValidationErrors | null => {
-			return this.checkValidRange(true);
-		};
-	}
-
-	private checkValidRange(until: boolean) {
-		if (this.myForm && this.myForm.controls['validTo'] && this.myForm.controls['validFrom']) {
-			let value1 = this.myForm.controls['validFrom'].value;
-			let value2 = this.myForm.controls['validTo'].value;
-			if (moment(value2).isAfter(moment(value1))) {
-				if (!this.myForm.controls['validFrom'].valid && until) {
-					this.myForm.controls['validFrom'].updateValueAndValidity();
-				} else if (!this.myForm.controls['validTo'].valid && !until) {
-					this.myForm.controls['validTo'].updateValueAndValidity();
-				}
-				return null;
-			} else if (until) {
-				return {validToDateValueValidator: true};
-			}
-			return {validFromDateValueValidator: true};
-		} else {
-			return null;
-		}
-	}
-
 	private setValidator(controlName: string, newValidator: ValidatorFn | ValidatorFn[] | null) {
 		this.myForm.controls[controlName].clearValidators();
 		this.myForm.controls[controlName].setValidators(newValidator);
 		this.myForm.controls[controlName].updateValueAndValidity();
+	}
+
+
+	public dataPickerValueUpdateVon($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailItem.validFrom = null;
+		} else {
+			this.detailItem.validFrom = $event.selectedDates[0];
+		}
+	}
+
+
+	public dataPickerValueUpdateBis($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailItem.validTo = null;
+		} else {
+			this.detailItem.validTo = $event.selectedDates[0];
+		}
 	}
 }

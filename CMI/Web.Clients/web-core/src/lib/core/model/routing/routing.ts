@@ -38,7 +38,7 @@ export class Routing {
 				route.path = this.assertPath(route.path);
 			}
 			if (!_util.isEmpty(route['redirectTo'])) {
-				route.redirectTo = this.assertPath(route.redirectTo);
+				route.redirectTo = this.assertPath(route.redirectTo.toString());
 			}
 			if (_util.isArray(route['children'])) {
 				this.assertRoutes(route.children, options, depth + 1);
@@ -102,7 +102,7 @@ export class Routing {
 
 		while (i < parts.length) {
 			let part = parts[i];
-			let indexOfHtml = part.indexOf('.html');
+			const indexOfHtml = part.indexOf('.html');
 			if (indexOfHtml >= 0) {
 				part = part.substring(0, indexOfHtml);
 			}
@@ -129,7 +129,7 @@ export class Routing {
 	}
 
 	public static localizeRoutes(language: string, routes: Routes, depth = 0): Routes {
-		let locals: Routes = [];
+		const locals: Routes = [];
 
 		for (let i = 0; i < routes.length; i += 1) {
 			const route = routes[i];
@@ -138,7 +138,7 @@ export class Routing {
 				local.path = this.localizePath(language, route.path);
 			}
 			if (!_util.isEmpty(route['redirectTo'])) {
-				local.redirectTo = this.localizePath(language, route.redirectTo);
+				local.redirectTo = this.localizePath(language, route.redirectTo.toString());
 			}
 			if (_util.isArray(route['children'])) {
 				local.children = this.localizeRoutes(language, route.children, depth + 1);
