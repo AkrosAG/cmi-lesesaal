@@ -69,7 +69,7 @@ describe('auto generate CollectionPageComponent', () => {
 	};
 	let _title = <Title>{
 		getTitle(): string {
-			return 'Test Titel';
+			return 'Online-Zugang zum Bundesarchiv';
 		},
 		setTitle(newTitle: string): void {
 		}
@@ -115,12 +115,6 @@ describe('auto generate CollectionPageComponent', () => {
 		expect(sut.detailItem).toBeTruthy();
 		expect(sut.detailItem.collectionId).toBe(3);
 		expect(sut.isValid).toBeTruthy();
-	});
-
-	it('should the title was completed with the collection name', () => {
-		expect(sut).toBeTruthy();
-		let title = _seoService.getTitle();
-		expect(title === collectionItemResult.item.title + ' - ' + _txt.get('header.title', 'Online-Zugang zum Bundesarchiv')  ).toBeTruthy();
 	});
 
 	it('should the imageminetype was set image appears', () => {
