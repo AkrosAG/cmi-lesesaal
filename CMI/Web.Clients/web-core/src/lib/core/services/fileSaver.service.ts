@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEventType} from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import * as fileSaver from 'file-saver';
 
 @Injectable()
@@ -13,11 +13,11 @@ export class FileSaverService {
 		if (event.type === HttpEventType.Response) {
 			let filename: string;
 			let filenameStar: string;
-			let blob = event.body;
+			const blob = event.body;
 
 			try {
 
-				let parts = event.headers.get('content-disposition').split(';');
+				const parts = event.headers.get('content-disposition').split(';');
 				parts.forEach(name => {
 					if (name.indexOf('filename=') > -1) {
 						filename =  name.substring(('filename=').length + 1);

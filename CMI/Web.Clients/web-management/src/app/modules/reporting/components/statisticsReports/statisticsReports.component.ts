@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UiService, UrlService} from '../../../shared/index';
-import * as moment from 'moment';
+import {UiServiceMC, UrlService} from '../../../shared/index';
+import moment from 'moment';
 import {TranslationService} from '@cmi/lesesaal-web-core';
-import {HttpErrorResponse, HttpEventType} from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import * as fileSaver from 'file-saver';
 import { StatisticReportService } from '../../services';
 
@@ -20,7 +20,7 @@ export class StatisticsReportsComponent implements OnInit {
 	constructor(private  statisticService: StatisticReportService,
 				private _txt: TranslationService,
 				private _url: UrlService,
-				private _ui: UiService) {
+				private _ui: UiServiceMC) {
 		this.endDate = moment.utc(new Date()).toDate();
 		this.startDate = moment.utc(new Date()).add(-24, 'h').toDate();
 	}
@@ -35,9 +35,9 @@ export class StatisticsReportsComponent implements OnInit {
 			event => {
 				if (event.type === HttpEventType.Response) {
 					try {
-						let contentDisposition: string = event.headers.get('content-disposition');
-						let filename = contentDisposition.substring(contentDisposition.indexOf('filename=') + 10, contentDisposition.length - 1);
-						let blob = event.body;
+						const contentDisposition: string = event.headers.get('content-disposition');
+						const filename = contentDisposition.substring(contentDisposition.indexOf('filename=') + 10, contentDisposition.length - 1);
+						const blob = event.body;
 						this.loading = false;
 						fileSaver.saveAs(blob, filename, { autoBom: false });
 						this._ui.showSuccess(this._txt.get('StatisticsReport.downloadSuccess', 'Die Statistikreport werden gespeichert.'));
@@ -69,7 +69,7 @@ export class StatisticsReportsComponent implements OnInit {
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
+		const crumbs: any[] = this.crumbs = [];
 		crumbs.push({ iconClasses: 'glyphicon glyphicon-home', _url: this._url.getHomeUrl() });
 		crumbs.push({
 			label: this._txt.get('breadcrumb.Reporting', 'Reporting')

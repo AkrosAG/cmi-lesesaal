@@ -22,7 +22,7 @@ export class CollectionListItem implements ICollectionListItem {
 
 	constructor(data?: ICollectionListItem) {
 		if (data) {
-			for (let property in data) {
+			for (const property in data) {
 				if (data.hasOwnProperty(property)) {
 					(<any>this)[property] = (<any>data)[property];
 				}
@@ -57,7 +57,7 @@ export class CollectionListItem implements ICollectionListItem {
 
 	public static fromJS(data: any): CollectionListItem {
 		data = typeof data === 'object' ? data : {};
-		let result = new CollectionListItem();
+		const result = new CollectionListItem();
 		result.init(data);
 		return result;
 	}

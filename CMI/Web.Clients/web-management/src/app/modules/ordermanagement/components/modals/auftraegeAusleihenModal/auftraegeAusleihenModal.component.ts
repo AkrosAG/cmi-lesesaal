@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';
@@ -8,7 +8,7 @@ import {ErrorService} from '../../../../shared/services';
 	templateUrl: 'auftraegeAusleihenModal.component.html',
 	styleUrls: ['./auftraegeAusleihenModal.component.less']
 })
-export class AuftraegeAusleihenModalComponent implements OnInit {
+export class AuftraegeAusleihenModalComponent {
 
 	@Input()
 	public ids: number[] = [];
@@ -35,16 +35,13 @@ export class AuftraegeAusleihenModalComponent implements OnInit {
 				private _toastr: ToastrService) {
 	}
 
-	public ngOnInit(): void {
-	}
-
 	public cancel() {
 		this.open = false;
 	}
 
 	public ok() {
 		this.isLoading = true;
-		this._ord.auftraegeAusleihen(this.ids).subscribe(r => {
+		this._ord.auftraegeAusleihen(this.ids).subscribe(() => {
 			this._toastr.success('Statusänderung erfolgreich durchgeführt', 'Erfolgreich');
 			this.open = false;
 			this.onSubmitted.emit(true);

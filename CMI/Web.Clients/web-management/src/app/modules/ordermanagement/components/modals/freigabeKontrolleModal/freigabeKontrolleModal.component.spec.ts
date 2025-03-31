@@ -1,11 +1,12 @@
 import {FreigabeKontrolleModalComponent} from './freigabeKontrolleModal.component';
 import { ComponentFixture, TestBed,  waitForAsync } from '@angular/core/testing';
-import {ApproveStatus, EntityDecoratorService, TranslationService, CoreModule, UiService} from '@cmi/lesesaal-web-core';
+import {ApproveStatus, EntityDecoratorService, ConfigService, TranslationService, CoreModule, UiService, UserUiSettings} from '@cmi/lesesaal-web-core';
 import {OrderService} from '../../../services';
 import {ErrorService, SharedModule} from '../../../../shared';
-import {By} from '@angular/platform-browser';
-import {ConfigService} from '@cmi/lesesaal-web-core';
 import {ToastrService} from 'ngx-toastr';
+import {By} from '@angular/platform-browser';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {MockUserSettings} from '../../../../collection/components/collection-list-page/mocks';
 
 describe('FreigabeKontrolleModalPage', () => {
 	let fixture: ComponentFixture<FreigabeKontrolleModalComponent>;
@@ -16,7 +17,6 @@ describe('FreigabeKontrolleModalPage', () => {
 	let errorService: ErrorService;
 	let entityDecoratorService: EntityDecoratorService;
 	let uiService: UiService;
-	let configService: ConfigService;
 
 	txt = <TranslationService>{
 		translate(text: string, key?: string, ...args): string {
@@ -26,11 +26,14 @@ describe('FreigabeKontrolleModalPage', () => {
 			return text;
 		}
 	};
-
-	configService = <ConfigService>{
-
+	let configService = <ConfigService>{
+		getUserSettings(): UserUiSettings {
+			return new MockUserSettings();
+		},
+		getSetting(key: string, defaultValue?: any): any {
+			return key;
+		}
 	};
-
 	entityDecoratorService  = new EntityDecoratorService(txt, configService);
 
 	orderService = <OrderService>{
@@ -51,6 +54,7 @@ describe('FreigabeKontrolleModalPage', () => {
 		TestBed.configureTestingModule({
 			imports:[CoreModule, SharedModule],
 			declarations: [FreigabeKontrolleModalComponent],
+			schemas: [NO_ERRORS_SCHEMA],
 			providers: [
 				{provide: EntityDecoratorService, useValue: entityDecoratorService},
 				{provide: OrderService, useValue: orderService},
@@ -98,16 +102,16 @@ describe('FreigabeKontrolleModalPage', () => {
 
 		it('when user is Ö2 and ApproveStatus is FreigegebenInSchutzfrist and User has warn text confirmed',
 			() => {
-			const chkConfirmOe2userInput = fixture.debugElement.query(By.css('input[name="chkConfirmOe2user"]')).nativeElement as HTMLElement;
-			chkConfirmOe2userInput['checked'] = 'true';
-			fixture.detectChanges();
-			const datumBewilligungInput = fixture.debugElement.query(By.css('input[name="datumBewilligung"]')).nativeElement as HTMLElement;
+				const chkConfirmOe2userInput = fixture.debugElement.query(By.css('input[name="chkConfirmOe2user"]')).nativeElement as HTMLElement;
+				chkConfirmOe2userInput['checked'] = 'true';
+				fixture.detectChanges();
+				const datumBewilligungInput = fixture.debugElement.query(By.css('input[name="datumBewilligung"]')).nativeElement as HTMLElement;
 
-			expect(datumBewilligungInput.hasAttribute('disabled')).toBeFalse();
-			expect(sut.haveToEnterBewilligungsDatum).toBeTrue();
-			expect(chkConfirmOe2userInput.hasAttribute('disabled')).toBeFalse();
-			expect(sut.isOe2UserConfirmed = true).toBeTrue();
-		});
+				expect(datumBewilligungInput.hasAttribute('disabled')).toBeFalse();
+				expect(sut.haveToEnterBewilligungsDatum).toBeTrue();
+				expect(chkConfirmOe2userInput.hasAttribute('disabled')).toBeFalse();
+				expect(sut.isOe2UserConfirmed = true).toBeTrue();
+			});
 
 		it('when user is Ö2 and ApproveStatus is FreigegebenInSchutzfris and change ApproveStatus' +
 			'warn text not registered user should hide', () => {
@@ -127,11 +131,17 @@ describe('FreigabeKontrolleModalPage', () => {
 			sut = fixture.componentInstance;
 			await sut.ngOnInit();
 			sut.currentRolePublicClient = 'Ö3';
+			sut.datumBewilligung = new Date('2025-08-26');
 			sut.selectedEntscheid = ApproveStatus.FreigegebenInSchutzfrist;
 			fixture.detectChanges();
 			await fixture.whenStable();
 
 		}));
+
+		it('test if the date is converted correctly'
+			,() => {
+				expect(sut.datumBewilligung).toEqual(new Date('2025-08-26'));
+			});
 
 		it('when user is Ö3 and ApproveStatus is FreigegebenInSchutzfris ' +
 			'field haveToEnterBewilligungsDatum appear and warn text not registered user should hide', () => {

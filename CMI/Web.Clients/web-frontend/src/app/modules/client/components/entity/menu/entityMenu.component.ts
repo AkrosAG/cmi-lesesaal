@@ -34,9 +34,4 @@ export class EntityMenuComponent {
 	@Input()
 	public entity: Entity;
 
-	constructor() {
-	}
-
-	public animationDone(event: any): void {
-	}
 }

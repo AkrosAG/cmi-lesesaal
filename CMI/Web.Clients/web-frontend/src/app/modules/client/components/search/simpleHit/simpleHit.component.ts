@@ -16,13 +16,13 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 	@Input()
 	public entity: Entity;
 	@Input()
-	public enableExplanations: boolean = false;
+	public enableExplanations = false;
 
 	public htmlForTitle: string;
 	public htmlForText: string;
-	public displayArchivplanContext: boolean = false;
+	public displayArchivplanContext = false;
 
-	public displayExplanation: boolean = false;
+	public displayExplanation = false;
 	public score: string;
 
 	private _elem: any;
@@ -88,7 +88,7 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 	}
 
 	private _goToArchivplan() {
-		let url = '/suche/archivplan/' + this.entity.archiveRecordId;
+		const url = '/suche/archivplan/' + this.entity.archiveRecordId;
 		this._router.navigate([this._url.localizeUrl(this._context.language, url)]);
 	}
 
@@ -101,6 +101,7 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 
 			if (this.entity.highlight) {
 				this.htmlForTitle = this.entity.highlight.title[0]
+					// eslint-disable-next-line
 					.replace(new RegExp('<h1l1ght>', 'g'), '<span class=\"highlight\">')
 					.replace(new RegExp('</h1l1ght>', 'g'), '</span>');
 			} else if (this.entity.title) {
@@ -110,6 +111,7 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 			if (this.entity.highlight &&  this.entity.highlight.mostRelevantVektor) {
 				this.htmlForText = this.entity.highlight.mostRelevantVektor.join('&#13;');
 				this.htmlForText = this.htmlForText
+					// eslint-disable-next-line
 					.replace(new RegExp('<h1l1ght>', 'g'), '<span class=\"highlight\">')
 					.replace(new RegExp('</h1l1ght>', 'g'), '</span>');
 			}

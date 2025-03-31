@@ -20,7 +20,7 @@ describe('AuthenticationInterceptor', () => {
 				{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
 				{ provide: ClientContext, useFactory: () => clientContext }
 			],
-		});
+});
 	});
 
 	describe('intercept', () => {

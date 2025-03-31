@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
+import {UiService} from '@cmi/lesesaal-web-core';
 
 @Injectable()
-export class UiService {
-	constructor(private _toastr: ToastrService) {
+export class UiServiceMC extends UiService{
+	constructor(protected _toastr: ToastrService) {
+		super(_toastr);
 	}
 
 	public detectInsideClick(event: any, element: any): boolean {
@@ -22,8 +24,8 @@ export class UiService {
 		this._toastr.success(message, title);
 	}
 
-	public showWarning(message: string, title: string = null) {
-		this._toastr.warning(message, title);
+	public showWarning(message: string, title: string = null, options?: any) {
+		this._toastr.warning(message, title, options);
 	}
 
 	public showInfo(message: string, title: string = null) {
@@ -36,7 +38,7 @@ export class UiService {
 
 	public showHtmlInNewTab(html: string, title: string) {
 		try {
-			let wnd = window.open(`about:blank`, '_blank');
+			const wnd = window.open(`about:blank`, '_blank');
 			if (!wnd || wnd.closed || typeof wnd.closed === 'undefined') {
 				this._toastr.warning('Ihr Browser hat das neu geöffnete Fenster blockiert. Bitte erlauben Sie das Öffnen von Popups in Ihrem Browser (für diese Applikation) und versuchen Sie es erneut.', title, {
 					disableTimeOut: true

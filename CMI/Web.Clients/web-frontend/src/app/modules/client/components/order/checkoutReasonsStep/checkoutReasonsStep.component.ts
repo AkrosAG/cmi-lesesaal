@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {OrderItem, Reason, StammdatenService} from '@cmi/lesesaal-web-core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ReasonValidator} from '../../../model/reasonValidator';
 
 @Component({
@@ -15,24 +15,24 @@ export class CheckoutReasonsStepComponent implements OnInit {
 	@Input()
 	public inputItems: OrderItem[] = [];
 
-	public everyItemContainsPersonData: boolean = true;
+	public everyItemContainsPersonData = true;
 	public reasons: Reason[] = [];
-	public form: FormGroup;
+	public form: UntypedFormGroup;
 
 	@Output()
 	public onGoBackClicked: EventEmitter<void> = new EventEmitter<void>();
 	@Output()
 	public onNextClicked: EventEmitter<void> = new EventEmitter<void>();
-	public nextClicked: boolean = false;
+	public nextClicked = false;
 
 	constructor(private _scs: ShoppingCartService,
 				private _stm: StammdatenService,
 				private _toastr: ToastrService,
-				private _formBuilder: FormBuilder) {
+				private _formBuilder: UntypedFormBuilder) {
 	}
 
 	public ngOnInit(): void {
-		let order = this._scs.getActiveOrder();
+		const order = this._scs.getActiveOrder();
 		if (order.begruendungAngegebenFallsNoeting) {
 			this.inputItems = order.items || this.inputItems;
 		}
@@ -55,13 +55,13 @@ export class CheckoutReasonsStepComponent implements OnInit {
 	}
 
 	private _buildFormGroup(item: OrderItem) {
-		let group = new FormGroup({
-			id: new FormControl(item.id),
-			hasPersonendaten: new FormControl(item.hasPersonendaten),
-			reason: new FormControl({value: item.reason, disabled: !item.hasPersonendaten}),
-			referenceCode: new FormControl(item.referenceCode),
-			title: new FormControl(item.title),
-			period: new FormControl(item.period)
+		const group = new UntypedFormGroup({
+			id: new UntypedFormControl(item.id),
+			hasPersonendaten: new UntypedFormControl(item.hasPersonendaten),
+			reason: new UntypedFormControl({value: item.reason, disabled: !item.hasPersonendaten}),
+			referenceCode: new UntypedFormControl(item.referenceCode),
+			title: new UntypedFormControl(item.title),
+			period: new UntypedFormControl(item.period)
 		}, [ReasonValidator.missingFlag, ReasonValidator.missingReason]);
 
 		group.get('hasPersonendaten').valueChanges.subscribe((val) => {
@@ -79,7 +79,7 @@ export class CheckoutReasonsStepComponent implements OnInit {
 
 	public setFlagForAllItems(val: boolean) {
 		this.everyItemContainsPersonData = val;
-		let items = (this.form.get('items') as FormArray);
+		const items = (this.form.get('items') as UntypedFormArray);
 
 		for (let i = 0; i < items.controls.length; i++) {
 			items.at(i).get('hasPersonendaten').setValue(val);
@@ -101,7 +101,7 @@ export class CheckoutReasonsStepComponent implements OnInit {
 	}
 
 	private async saveReasons(): Promise<void> {
-		for (let item of this.formItems) {
+		for (const item of this.formItems) {
 			if (item.hasPersonendaten) {
 				await this._scs.setReason(item, item.reason).toPromise();
 			} else {
@@ -111,7 +111,7 @@ export class CheckoutReasonsStepComponent implements OnInit {
 	}
 
 	private async _saveActiveOrder(saveReasons = true): Promise<void> {
-		let order = this._scs.getActiveOrder();
+		const order = this._scs.getActiveOrder();
 
 		if (saveReasons) {
 			await this.saveReasons();
@@ -133,12 +133,12 @@ export class CheckoutReasonsStepComponent implements OnInit {
 		this.onNextClicked.emit();
 	}
 
-	private _validateAllFields(formGroup: FormGroup) {
+	private _validateAllFields(formGroup: UntypedFormGroup) {
 		Object.keys(formGroup.controls).forEach(field => {
 			const control = formGroup.get(field);
-			if (control instanceof FormControl) {
+			if (control instanceof UntypedFormControl) {
 				control.markAsTouched({onlySelf: true});
-			} else if (control instanceof FormGroup) {
+			} else if (control instanceof UntypedFormGroup) {
 				this._validateAllFields(control);
 			}
 		});
@@ -150,7 +150,7 @@ export class CheckoutReasonsStepComponent implements OnInit {
 	}
 
 	private doesEveryItemContainPersonData() {
-		let items = (this.form.get('items') as FormArray);
+		const items = (this.form.get('items') as UntypedFormArray);
 		let found = false;
 		for (let i = 0; i < items.length; i++) {
 			if (!items.at(i).get('hasPersonendaten').value) {

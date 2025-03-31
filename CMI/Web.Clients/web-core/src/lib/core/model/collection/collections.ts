@@ -50,7 +50,7 @@ export class Collection implements ICollection {
 
 	constructor(data?: ICollection) {
 		if (data) {
-			for (let property in data) {
+			for (const property in data) {
 				if (data.hasOwnProperty(property)) {
 					(<any>this)[property] = (<any>data)[property];
 				}
@@ -82,7 +82,7 @@ export class Collection implements ICollection {
 			this.modifiedBy = _data['modifiedBy'];
 			if (Array.isArray(_data['childCollections'])) {
 				this.childCollections = [] as any;
-				for (let item of _data['childCollections']) {
+				for (const item of _data['childCollections']) {
 					this.childCollections!.push(Collection.fromJS(item));
 				}
 			}
@@ -92,7 +92,7 @@ export class Collection implements ICollection {
 
 	public static fromJS(data: any): Collection {
 		data = typeof data === 'object' ? data : {};
-		let result = new Collection();
+		const result = new Collection();
 		result.init(data);
 		return result;
 	}
@@ -121,7 +121,7 @@ export class Collection implements ICollection {
 		data['modifiedBy'] = this.modifiedBy;
 		if (Array.isArray(this.childCollections)) {
 			data['childCollections'] = [];
-			for (let item of this.childCollections) {
+			for (const item of this.childCollections) {
 				data['childCollections'].push(item.toJSON());
 			}
 		}

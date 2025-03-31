@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApplicationFeatureEnum, ClientContext, CoreOptions} from '@cmi/lesesaal-web-core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthorizationService} from './authorization.service';
 import {StaticRouteInfo} from '../model/static/staticRouteInfo';

@@ -6,12 +6,11 @@ import {ALL_COMPONENTS} from './components/_all';
 import {ROUTES, initRoutes} from './routes';
 import {CoreModule, OrdersModule, PreloadService, ClientContext} from '@cmi/lesesaal-web-core';
 import {AuthenticationService, ClientModule, ContextService} from './modules/client';
-import {ToastrModule} from 'ngx-toastr';
-import { DeviceDetectorModule } from 'ngx-device-detector';
-import { MatomoModule } from 'ngx-matomo';
 import {MarkdownModule} from 'ngx-markdown';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthInterceptor} from './modules/client/routing/authInterceptor';
+import {ToastrModule} from 'ngx-toastr';
+import { FlatpickrModule} from 'angularx-flatpickr';
 
 initRoutes(ROUTES);
 
@@ -22,22 +21,26 @@ export const toastrOptions = {
 };
 
 export function preloadServiceFactory(preloadService: PreloadService, ctx: ContextService) {
-	let context = ctx.context.getValue();
-	let language = context.loadingLanguage || context.language;
+	const context = ctx.context.getValue();
+	const language = context.loadingLanguage || context.language;
 	return () => preloadService.preload(language);
 }
 
 @NgModule({
+
 	imports: [
 		BrowserModule,
 		CoreModule.forRoot(),
 		OrdersModule,
-		DeviceDetectorModule.forRoot(),
 		ClientModule.forRoot(),
-		RouterModule.forRoot(ROUTES, { useHash: true, relativeLinkResolution: 'legacy' }),
+		RouterModule.forRoot(ROUTES, { useHash: true }),
 		ToastrModule.forRoot(toastrOptions),
-		MatomoModule,
-		MarkdownModule.forRoot()
+		MarkdownModule.forRoot(),
+		/* eslint-disable */
+		FlatpickrModule.forRoot({
+			prevArrow: "<svg version='1.1\' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z'></path></svg>",
+			nextArrow: "<svg version='1.1\' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z'></path></svg>"
+		})
 	],
 	bootstrap: [RootComponent],
 	declarations: [

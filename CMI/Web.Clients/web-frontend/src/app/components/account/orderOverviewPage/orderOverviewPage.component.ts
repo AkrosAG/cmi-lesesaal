@@ -10,11 +10,11 @@ import {
 	StammdatenService,
 	TranslationService, UiService, WijmoService,
 } from '@cmi/lesesaal-web-core';
-import {DataMap} from '@grapecity/wijmo.grid';
+import {DataMap} from '@mescius/wijmo.grid';
 import {SeoService, ShoppingCartService, UrlService} from '../../../modules/client/services';
-import * as moment from 'moment';
+import moment from 'moment';
 import {forkJoin} from 'rxjs';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -64,7 +64,7 @@ export class OrderOverviewPage implements OnInit {
 	}
 
 	public translateColumns() {
-		for (let col of this.columns) {
+		for (const col of this.columns) {
 			col.defaultLabel = this._txt.translate(col.defaultLabel, 'orderOverviewPage.columnItems.' + col.key);
 		}
 	}
@@ -89,7 +89,7 @@ export class OrderOverviewPage implements OnInit {
 				this.rowCount = this._getRowCount();
 				this.originalRowCount = this.rowCount;
 				this.isEmptyResult = this.rowCount === 0;
-			}, () => {
+			}, () => { return
 			}, () => {
 				this.loading = false;
 			});
@@ -115,16 +115,16 @@ export class OrderOverviewPage implements OnInit {
 	}
 
 	private _createFilterMaps(): Promise<any> {
-		let obs = forkJoin([
+		const obs = forkJoin([
 			this._stamm.getReasons().pipe(map((r: Reason[]) => {
-				let pairs = [];
+				const pairs = [];
 				for (const item of r) {
 					pairs.push({name: item.name});
 				}
 				return new DataMap(pairs, 'name', 'name');
 			})),
 			this._stamm.getArtDerArbeiten().pipe(map((a: ArtDerArbeit[]) => {
-				let pairs = [];
+				const pairs = [];
 				for (const item of a) {
 					pairs.push({name: item.name});
 				}
@@ -135,7 +135,7 @@ export class OrderOverviewPage implements OnInit {
 			const reasonList = res[0] as DataMap;
 			const artDerArbeitList = res[1] as DataMap;
 
-			let maps: { [id: string]: DataMap; } = {};
+			const maps: { [id: string]: DataMap; } = {};
 			maps['orderingTypeDisplay'] = this._wjs.getDataMap(ShippingType, this._dec.translateOrderingType.bind(this));
 			maps['statusDisplay'] =  this._wjs.getDataMap(ExternalStatus, this._dec.translateExternalStatus.bind(this));
 			maps['abbruchgrundDisplay'] =  this._wjs.getDataMap(Abbruchgrund, this._dec.translateAbbruchgrund.bind(this));
@@ -175,12 +175,12 @@ export class OrderOverviewPage implements OnInit {
 	}
 
 	public postProcessOrdering(orderings: Ordering[]): OrderListDisplayItem[] {
-		let items: OrderListDisplayItem[] = [];
+		const items: OrderListDisplayItem[] = [];
 
-		for (let ordering of orderings) {
-			let orderItems = ordering.items;
-			for (let item of orderItems) {
-				let newItem = <OrderListDisplayItem> item;
+		for (const ordering of orderings) {
+			const orderItems = ordering.items;
+			for (const item of orderItems) {
+				const newItem = <OrderListDisplayItem> item;
 				newItem.artDerArbeitDisplay = this.artDerArbeit.filter(a => a.id + '' === ordering.artDerArbeit + '').map(a => a.name)[0];
 				newItem.orderingId = ordering.id;
 				newItem.orderingComment = ordering.comment;

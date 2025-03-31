@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ComponentCanDeactivate, TranslationService} from '@cmi/lesesaal-web-core';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import {News} from '../../../modules/client/model';
 import {NewsService} from '../../../modules/client/services';
 import {UrlService} from '../../../modules/shared/services';
@@ -49,9 +49,9 @@ export class NewsManagementDetailsPageComponent extends ComponentCanDeactivate i
 			return;
 		}
 		this.errors = [];
-		let promise: Promise<any> = this._newsService.insertOrUpdateNews(this.news);
+		const promise: Promise<any> = this._newsService.insertOrUpdateNews(this.news);
 
-		promise.then((data) => {
+		promise.then(() => {
 				this._goToNews();
 			},
 			(error: HttpErrorResponse) => {
@@ -154,9 +154,9 @@ export class NewsManagementDetailsPageComponent extends ComponentCanDeactivate i
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
-		let communication = 'kommunikation';
-		let news = 'news';
+		const crumbs: any[] = this.crumbs = [];
+		const communication = 'kommunikation';
+		const news = 'news';
 
 		crumbs.push({iconClasses: 'glyphicon glyphicon-home', url: this._url.getHomeUrl()});
 		crumbs.push({
@@ -196,7 +196,7 @@ export class NewsManagementDetailsPageComponent extends ComponentCanDeactivate i
 
 		this.pageHeader = this._txt.get('communication.editNews', 'News bearbeiten');
 
-		let promise: Promise<any> = this._newsService.getSingleNews(this.id);
+		const promise: Promise<any> = this._newsService.getSingleNews(this.id);
 		promise.then((data) => {
 				this.news = data;
 				this._newsHasBeenChanged = false;
@@ -207,9 +207,9 @@ export class NewsManagementDetailsPageComponent extends ComponentCanDeactivate i
 	}
 
 	private _timeFormatCorrect(): boolean {
-		let regex = new RegExp('(([0-2][0-9]|30|31).(01|03|05|07|08|10|12)|([0-2][0-9]|30).(04|06|09|11)|(([0-2][0-9]).02)).[0-9]{4} ([0-1][0-9]|20|21|22|23):[0-5][0-9]');
-		let matchFrom = regex.exec(this.news.fromDate);
-		let matchTo = regex.exec(this.news.toDate);
+		const regex = new RegExp('(([0-2][0-9]|30|31).(01|03|05|07|08|10|12)|([0-2][0-9]|30).(04|06|09|11)|(([0-2][0-9]).02)).[0-9]{4} ([0-1][0-9]|20|21|22|23):[0-5][0-9]');
+		const matchFrom = regex.exec(this.news.fromDate);
+		const matchTo = regex.exec(this.news.toDate);
 		return matchFrom !== null && matchTo !== null;
 	}
 }

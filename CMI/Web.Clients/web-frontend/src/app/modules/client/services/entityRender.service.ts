@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Entity, EntityImage, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {SectionRow} from '../model/detail/sectionRow';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Injectable()
 export class EntityRenderService {
@@ -30,12 +30,12 @@ export class EntityRenderService {
 			return null;
 		}
 
-		let row: SectionRow = new SectionRow();
+		const row: SectionRow = new SectionRow();
 		row.visibility = val.visibility;
 		row.label = (val && _util.isString(val.label)) ? val.label : this._txt.get('metadata.label.' + key, key);
 		row.entity = entity;
 
-		let s = this._renderValue(row, key, val);
+		const s = this._renderValue(row, key, val);
 		if (s) {
 			if (_util.isAngularMarkup(s)) {
 				row.markup = s;
@@ -159,7 +159,7 @@ export class EntityRenderService {
 			if (path.toLowerCase().indexOf('!!!!bildvorschau') >= 0) {
 				const lrg = '' ; // ToDo row.entity.customFields['bildAnsicht'] || {};
 				row.data = (row.data || {});
-				let images = row.data.images = (row.data.images || []);
+				const images = row.data.images = (row.data.images || []);
 				images.push(<EntityImage>{
 					smallImageAsBase64: this._getImageSrc(val['mimeType'], val['value']),
 					largeImageAsBase64: this._getImageSrc(lrg['mimeType'], lrg['value']),
@@ -182,7 +182,7 @@ export class EntityRenderService {
 
 	private _renderArray(row: SectionRow, path: string, arr: any[], fn: (row: SectionRow, path: string, val: any) => string): string {
 		let s = '';
-		arr.forEach((val, i) => {
+		arr.forEach((val) => {
 			s = _util.addToString(s, '<br/>', fn(row, path, val));
 		});
 		return s;

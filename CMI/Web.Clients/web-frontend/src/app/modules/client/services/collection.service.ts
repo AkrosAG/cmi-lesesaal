@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClientContext, CollectionListItem, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
+import {ClientContext,  CollectionListItem, CoreOptions, HttpService} from '@cmi/lesesaal-web-core';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {CollectionItemResult} from '../model/collection/collectionItemResult';
@@ -20,9 +20,9 @@ export class CollectionService {
 		this.getBaseUrl = this._options.serverUrl + this._options.publicPort;
 	}
 
-	public getActiveCollections(parentId: number | null): Observable<CollectionListItem[] | null> {
-		let url = this._createBaseUrl + `GetActiveCollections?parentId=${parentId}&language=${this._context.language}`;
-		return this.http.get<CollectionListItem[]>(url).pipe(map(arr =>  arr.map(item => CollectionListItem.fromJS(item))));
+	public getActiveCollections(parentId: number | null): Observable< CollectionListItem[] | null> {
+		const url = this._createBaseUrl + `GetActiveCollections?parentId=${parentId}&language=${this._context.language}`;
+		return this.http.get< CollectionListItem[]>(url).pipe(map(arr =>  arr.map(item =>  CollectionListItem.fromJS(item))));
 	}
 
 	public get(id: number): Observable<CollectionItemResult | null> {
@@ -54,7 +54,7 @@ export class CollectionService {
 	}
 
 	public getCollectionHeader():Observable<string> {
-		let url = this._createBaseUrl + 'GetCollectionsHeader?language=' + this._context.language;
+		const url = this._createBaseUrl + 'GetCollectionsHeader?language=' + this._context.language;
 		return this.http.get<string>(url).pipe(map(r => r));
 	}
 

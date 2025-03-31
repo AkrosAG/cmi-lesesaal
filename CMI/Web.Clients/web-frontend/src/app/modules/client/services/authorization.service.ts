@@ -16,7 +16,7 @@ export class AuthorizationService {
 	};
 
 	private _getApplicationFeatures(): { [key: string]: string; } {
-		let dict: { [key: string]: string; } = { };
+		const dict: { [key: string]: string; } = { };
 		const keys = Object.keys(ApplicationFeatureEnum).map((e) => {
 			if (typeof ApplicationFeatureEnum[e] === 'string') {
 				return ApplicationFeatureEnum[e];
@@ -103,7 +103,7 @@ export class AuthorizationService {
 	}
 
 	public hasApplicationFeature(identifier: ApplicationFeatureEnum): boolean {
-		let key: string = ApplicationFeatureEnum[identifier];
+		const key: string = ApplicationFeatureEnum[identifier];
 		const session = this._context.currentSession || <Session>{};
 		return _util.isObject(session.applicationFeatures) && (session.applicationFeatures[key] === true);
 	}

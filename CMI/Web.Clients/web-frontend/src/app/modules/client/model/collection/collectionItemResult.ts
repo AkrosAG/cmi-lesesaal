@@ -1,4 +1,5 @@
-import {Collection} from '@cmi/lesesaal-web-core';
+import { Collection } from "@cmi/lesesaal-web-core";
+
 
 export class CollectionItemResult implements ICollectionItemResult {
 	public item?: Collection | undefined;
@@ -6,7 +7,7 @@ export class CollectionItemResult implements ICollectionItemResult {
 
 	constructor(data?: ICollectionItemResult) {
 		if (data) {
-			for (let property in data) {
+			for (const property in data) {
 				if (data.hasOwnProperty(property)) {
 					(<any>this)[property] = (<any>data)[property];
 				}
@@ -19,7 +20,7 @@ export class CollectionItemResult implements ICollectionItemResult {
 			this.item = _data['item'] ? Collection.fromJS(_data['item']) : <any>undefined;
 			if (_data['breadcrumb']) {
 				this.breadcrumb = {} as any;
-				for (let key in _data['breadcrumb']) {
+				for (const key in _data['breadcrumb']) {
 					if (_data['breadcrumb'].hasOwnProperty(key)) {
 						(<any>this.breadcrumb)![key] = _data['breadcrumb'][key];
 					}
@@ -30,7 +31,7 @@ export class CollectionItemResult implements ICollectionItemResult {
 
 	public static fromJS(data: any): CollectionItemResult {
 		data = typeof data === 'object' ? data : {};
-		let result = new CollectionItemResult();
+		const result = new CollectionItemResult();
 		result.init(data);
 		return result;
 	}
@@ -40,7 +41,7 @@ export class CollectionItemResult implements ICollectionItemResult {
 		data['item'] = this.item ? this.item.toJSON() : <any>undefined;
 		if (this.breadcrumb) {
 			data['breadcrumb'] = {};
-			for (let key in this.breadcrumb) {
+			for (const key in this.breadcrumb) {
 				if (this.breadcrumb.hasOwnProperty(key)) {
 					(<any>data['breadcrumb'])[key] = this.breadcrumb[key];
 				}

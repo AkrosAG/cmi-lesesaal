@@ -4,7 +4,7 @@ import {ApplicationFeatureEnum, CmiGridComponent, TranslationService} from '@cmi
 import {News, NewsForEditor} from '../../../modules/client/model';
 import {NewsService} from '../../../modules/client/services';
 import {AuthorizationService, ErrorService, UrlService} from '../../../modules/shared/services';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -35,8 +35,8 @@ export class NewsManagementPageComponent implements OnInit {
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
-		let communication = 'kommunikation';
+		const crumbs: any[] = this.crumbs = [];
+		const communication = 'kommunikation';
 		crumbs.push({ iconClasses: 'glyphicon glyphicon-home', url: this._url.getHomeUrl() });
 		crumbs.push({ url: this._url.getNormalizedUrl(`/${communication}`), label: this._txt.get('breadcrumb.communication', 'Kommunikation') });
 		crumbs.push({ url: this._url.getNormalizedUrl(`/${communication}/news`), label: this._txt.get('breadcrumb.news', 'News') });
@@ -55,7 +55,7 @@ export class NewsManagementPageComponent implements OnInit {
 	}
 
 	public get deleteButtonDisabledText(): string {
-		let disabled = 'disabled';
+		const disabled = 'disabled';
 
 		if (!this.flexGrid) {
 			return disabled;
@@ -69,12 +69,12 @@ export class NewsManagementPageComponent implements OnInit {
 			return;
 		}
 
-		let toDelete: string[] = this.flexGrid.checkedItems.map(n => n.id);
+		const toDelete: string[] = this.flexGrid.checkedItems.map(n => n.id);
 		if (toDelete.length === 0) {
 			return;
 		}
 
-		this._newsService.deleteNews(toDelete).then((data) => {
+		this._newsService.deleteNews(toDelete).then(() => {
 			this._getAndStoreNews();
 			this._toastr.success('Erfolgreich gelöscht');
 		},
@@ -85,8 +85,8 @@ export class NewsManagementPageComponent implements OnInit {
 
 	private _getAndStoreNews(): void {
 		this._newsService.getAllNewsForManagementClient().then((data: News[]) => {
-				let news = [];
-				for (let n of data) {
+				const news = [];
+				for (const n of data) {
 					news.push(new NewsForEditor(n));
 				}
 				this.newsForEditor = new CollectionView(news);
