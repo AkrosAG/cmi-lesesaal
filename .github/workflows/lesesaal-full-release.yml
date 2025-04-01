@@ -94,7 +94,7 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run build-prod
       
-      - name: Save Dist
+    - name: Save Dist
       uses: actions/upload-artifact@v2
       with:
         name: frontend-client
