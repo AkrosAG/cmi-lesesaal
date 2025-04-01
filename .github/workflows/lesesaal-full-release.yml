@@ -89,7 +89,7 @@ jobs:
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run test-github
-      
+
     - name: Build
       working-directory: ${{ env.WORKING_DIR }}
       run: npm run build-prod
