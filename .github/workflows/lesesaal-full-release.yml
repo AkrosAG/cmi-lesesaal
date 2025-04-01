@@ -48,7 +48,7 @@ jobs:
         npm run build
 
     - name: Save Dist
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: web-core
         path: ${{ env.WORKING_DIR }}/dist/@cmi/lesesaal-web-core/**
@@ -95,7 +95,7 @@ jobs:
       run: npm run build-prod
       
     - name: Save Dist
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: frontend-client
         path: ${{ env.WORKING_DIR }}/dist/**
@@ -142,7 +142,7 @@ jobs:
       run: npm run build-prod
       
     - name: Save Dist
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: management-client
         path: ${{ env.WORKING_DIR }}/dist/**
@@ -189,7 +189,7 @@ jobs:
           .\dotcover\dotCover.exe cover /TargetExecutable="packages\NUnit.ConsoleRunner.3.16.0\tools\nunit3-console.exe" /TargetArguments="$assemblies" /Filters=+:CMI.* /Output="./coverage/services_coverage.html" /ReportType="HTML"
       
       - name: Save Coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lesesaal-services-coverage
           path: ./coverage/**
@@ -226,7 +226,7 @@ jobs:
           .\BuildServices\createZipFile.ps1 -BuildConfiguration "Release" -DogFoodPath "${{ github.workspace }}\BuildResult" -SolutionDir "${{ github.workspace }}" -BuildNumber ${{ env.GitBuildVersion }}
           
       - name: Save Dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lesesaal.complete.${{ env.GitBuildVersion }}
           path: ${{ github.workspace }}\BuildResult\Complete\lesesaal.complete.${{ env.GitBuildVersion }}.zip
