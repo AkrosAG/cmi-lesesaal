@@ -5,7 +5,7 @@ using Aspose.Pdf;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 using Serilog;
-
+using CMI.Utilities.Common.Helpers;
 namespace CMI.Engine.Asset.PreProcess
 {
     public class AssetPreparationEngine : IAssetPreparationEngine
@@ -19,27 +19,7 @@ namespace CMI.Engine.Asset.PreProcess
             this.analyzerDetectAndFlagLargeDimensions = analyzerDetectAndFlagLargeDimensions;
             this.analyzerOptimizePdf = analyzerOptimizePdf;
 
-            try
-            {
-                // Retrieve the license content from application settings
-                string licenseContent = Properties.Settings.Default.AsposeLicense;
-                var licensePdf = new License();
-                if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
-                {
-                    throw new Exception("License content is missing or placeholder is still present in application settings.");
-                }
-
-                // Convert the license content to a stream
-                using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
-                {
-                   licensePdf.SetLicense(licenseStream);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
-            }
+            LicenseHelper.SetAsposeLicense();          
 
         }
 
