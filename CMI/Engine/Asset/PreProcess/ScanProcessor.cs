@@ -9,6 +9,7 @@ using Aspose.Pdf.Operators;
 using Aspose.Pdf.Optimization;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Engine.Asset.ParameterSettings;
+using CMI.Utilities.Common.Helpers;
 using Serilog;
 using Matrix = Aspose.Pdf.Matrix;
 using Rectangle = Aspose.Pdf.Rectangle;
@@ -26,28 +27,7 @@ namespace CMI.Engine.Asset.PreProcess
         {
             if (!skipLicenseSetup)
             {
-
-                try
-                {
-                    // Retrieve the license content from application settings
-                    string licenseContent = Properties.Settings.Default.AsposeLicense;
-                    var licensePdf = new License();
-                    if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
-                    {
-                        throw new Exception("License content is missing or placeholder is still present in application settings.");
-                    }
-
-                    // Convert the license content to a stream
-                    using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
-                    {
-                        licensePdf.SetLicense(licenseStream);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, "Unexpected error while setting Aspose license.");
-                    throw;
-                }
+                LicenseHelper.SetAsposeLicense(); // Use centralized license handling
             }
 
             this.imageHelper = imageHelper;
