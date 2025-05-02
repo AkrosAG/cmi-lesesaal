@@ -259,10 +259,6 @@
       <Project>{f5ca4600-3bb0-452c-9fe8-d70e9ffa3681}</Project>
       <Name>CMI.Contract.Parameter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Engine\Asset\CMI.Engine.Asset.csproj">
-      <Project>{C45C6CC0-D67C-448B-9322-7AE04AFE9CA3}</Project>
-      <Name>CMI.Engine.Asset</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Engine\MailTemplate\CMI.Engine.MailTemplate.csproj">
       <Project>{4d85737d-2f6c-4640-9b85-c169f5ff2b41}</Project>
       <Name>CMI.Engine.MailTemplate</Name>
