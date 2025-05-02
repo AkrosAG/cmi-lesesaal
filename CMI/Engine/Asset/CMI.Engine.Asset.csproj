@@ -189,11 +189,6 @@
     <Compile Include="ITextEngine.cs" />
     <Compile Include="ITransformEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="RenderEngine.cs" />
     <Compile Include="PreProcess\ScanProcessor.cs" />
     <Compile Include="Solr\SolrRecord.cs" />
@@ -373,10 +368,6 @@
     </Content>
     <None Include="Html\Xslt\Viaduc Gebrauchskopie.xpr" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Access\Sql.Lesesaal\CMI.Access.Sql.Lesesaal.csproj">
@@ -402,6 +393,10 @@
     <ProjectReference Include="..\..\Contract\Parameter\CMI.Contract.Parameter.csproj">
       <Project>{F5CA4600-3BB0-452C-9FE8-D70E9FFA3681}</Project>
       <Name>CMI.Contract.Parameter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Common\CMI.Utilities.Common.csproj">
+      <Project>{1dcf43e7-a0ff-4506-9472-4dfd2b504a97}</Project>
+      <Name>CMI.Utilities.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
