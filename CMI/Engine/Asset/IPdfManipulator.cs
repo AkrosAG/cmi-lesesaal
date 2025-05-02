@@ -7,9 +7,10 @@ using Aspose.Pdf;
 using Aspose.Pdf.Optimization;
 using Aspose.Pdf.Text;
 using CMI.Contract.Common;
-using CMI.Engine.Asset.Properties;
+using CMI.Utilities.Common.Helpers;
 using Serilog;
 using License = Aspose.Pdf.License;
+using CMI.Utilities.Common;
 
 namespace CMI.Engine.Asset
 {
@@ -88,29 +89,9 @@ namespace CMI.Engine.Asset
 
         public PdfManipulator()
         {
-            try
-            {
-                var licensePdf = new License();
+               
+                LicenseHelper.SetAsposeLicense();
 
-                // Retrieve the license content from application settings
-                string licenseContent = Settings.Default.AsposeLicense;
-                if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
-                {
-                    throw new Exception("License content is missing or placeholder is still present in application settings.");
-                }
-
-                // Convert the license content to a stream
-                using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
-                {
-
-                    licensePdf.SetLicense(licenseStream);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
-            }
         }
 
         public List<AssetExtractionFile> ConvertToTextExtractionFiles(List<RepositoryFile> repositoryFiles, string path)

@@ -54,10 +54,6 @@
       <Project>{045835A1-50C3-4D61-947A-7398A9D70706}</Project>
       <Name>CMI.Contract.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\CMI\Engine\Asset\CMI.Engine.Asset.csproj">
-      <Project>{C45C6CC0-D67C-448B-9322-7AE04AFE9CA3}</Project>
-      <Name>CMI.Engine.Asset</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\CMI\Manager\Asset\CMI.Manager.Asset.csproj">
       <Project>{8AAD5524-766A-407E-93FB-60F10600150D}</Project>
       <Name>CMI.Manager.Asset</Name>
