@@ -39,7 +39,7 @@
       <Value Profile="(Default)">@@CMI.Manager.DocumentConverter.Properties.DocumentConverterSettings.AbbyySerialNumber@@</Value>
     </Setting>
     <Setting Name="AsposeLicense" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">@@CMI.Aspose.License@@</Value>
+      <Value Profile="(Default)">@@CMI.Utilities.Common.AsposeLicense@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -189,14 +189,6 @@
     <Compile Include="ITextEngine.cs" />
     <Compile Include="ITransformEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-=======
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
->>>>>>> Changes in Readme and corrections
     <Compile Include="RenderEngine.cs" />
     <Compile Include="PreProcess\ScanProcessor.cs" />
     <Compile Include="Solr\SolrRecord.cs" />
