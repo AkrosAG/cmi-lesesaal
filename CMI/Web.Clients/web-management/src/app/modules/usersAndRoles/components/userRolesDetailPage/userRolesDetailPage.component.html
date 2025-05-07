@@ -23,6 +23,7 @@
 					</div>
 				</div>
 			</div>
+
 			<form class="row" [formGroup]="myForm" *ngIf="myForm">
 				<div class="col-md-12">
 					<div class="with-border">
@@ -168,7 +169,7 @@
 											   formControlName="emailAddress"
 											   placeholder="{{'E-Mail' | translate: 'user.placeholder.emailAddress'}}"
 											   [disabled]="!allowBereichBenutzerdatenBearbeiten"
-											   (change)="emailChanged()"
+											   (change)="recalculateResearcherGroup()"
 											   name="emailAddress">
 										<div *ngIf="errors.emailAddress" class="help-block">
 											{{ errors.emailAddress }}
@@ -260,8 +261,8 @@
 												<label>
 													<fieldset [disabled]="oeDreiDisabled()">
 														<input type="radio" id="chkRolePublicOe3Radio"
-														   formControlName="rolePublicClient"
-														   value="Ö3">
+															   formControlName="rolePublicClient"
+															   value="Ö3">
 													</fieldset>
 
 													<span>{{'Ö3' |translate:'user.userrolepublic.oe3'}}</span>
@@ -269,13 +270,13 @@
 											</a>
 										</div>
 										<div *ngIf="detail.item.isInternalUser" class="radio radio--left">
-											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.EMA, allowBenutzerrollePublicClientBearbeiten)">
+											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.BVW, allowBenutzerrollePublicClientBearbeiten)">
 												<label>
-													<input type="radio" id="chkRolePublicEmaRadio"
+													<input type="radio" id="chkRolePublicBvwRadio"
 														   formControlName="rolePublicClient"
-														   value="EMA"
+														   value="BVW"
 														   [disabled]="!allowBenutzerrollePublicClientBearbeiten">
-													<span>{{'EMA' |translate:'user.userrolepublic.ema'}}</span>
+													<span>{{'BVW' |translate:'user.userrolepublic.bvw'}}</span>
 												</label>
 											</a>
 										</div>
@@ -291,13 +292,13 @@
 											</a>
 										</div>
 										<div *ngIf="detail.item.isInternalUser" class="radio radio--left">
-											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.AMA, allowBenutzerrollePublicClientBearbeiten)">
+											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.BAR, allowBenutzerrollePublicClientBearbeiten)">
 												<label>
-													<input type="radio" id="chkRolePublicAmaRadio"
-															formControlName="rolePublicClient"
-															value="AMA"
+													<input type="radio" id="chkRolePublicBarRadio"
+														   formControlName="rolePublicClient"
+														   value="BAR"
 														   [disabled]="!allowBenutzerrollePublicClientBearbeiten">
-													<span>{{'AMA' |translate:'user.userrolepublic.ama'}}</span>
+													<span>{{'BAR' |translate:'user.userrolepublic.bar'}}</span>
 												</label>
 											</a>
 										</div>
@@ -370,12 +371,12 @@
 									<cmi-viaduc-verify-modal (onSubmitted)="researcherGroupDdsModalAnswer($event)" [(open)]="showVerifyModal"></cmi-viaduc-verify-modal>
 								</div>
 								<div class="row" *ngIf="detail.item.isInternalUser">
-									<label tooltip="{{'AMA-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}"
-										   class="col-md-4 control-label">{{'AMA-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}</label>
+									<label tooltip="{{'BAR-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}"
+										   class="col-md-4 control-label">{{'BAR-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}</label>
 									<div class="col-md-8">
 										<input class="checkbox" type="checkbox"
-											   formControlName="internalConsultation"
-											   >
+											   formControlName="barInternalConsultation"
+										>
 									</div>
 								</div>
 								<div class="row" *ngIf="(allowUploadAusfuehren || allowHerunterladenAusfuehren) && !detail.item.isInternalUser">
@@ -433,7 +434,7 @@
 								<button id="buttonSaveUser" *ngIf="allowBereichBenutzerdatenBearbeiten || allowDownloadbeschraenkungBearbeiten || allowBenutzerrollePublicClientBearbeiten ||
 									(detail.item.isInternalUser && allowBarInterneKonsultationBearbeiten) || (!detail.item.isInternalUser && allowForschungsgruppeDdsBearbeiten)"
 										type="button" class="btn btn-primary"
-										(click)="saveUser()" name="buttonSaveUser" [disabled]="allowBereichBenutzerdatenBearbeiten && (!myForm.valid)">
+										(click)="saveUser()" name="buttonSaveUser" [disabled]="allowBereichBenutzerdatenBearbeiten && (!myForm.valid || myForm.pristine)">
 									{{'Speichern' |translate:'save' }}
 								</button>
 								<button *ngIf="allowBereichBenutzerdatenBearbeiten || allowDownloadbeschraenkungBearbeiten || allowBenutzerrollePublicClientBearbeiten ||
@@ -518,13 +519,13 @@
 							<div class="col-md-12 col-xs-12">
 								<button id="buttonSaveRoles" *ngIf="canManageManagementClientRole(detail.item.eiamRoles)" type="button" class="btn btn-primary"
 										(click)="saveRoles()">{{
-									'Speichern' |
-										translate:'save' }}
+										'Speichern' |
+											translate:'save' }}
 								</button>
 								<button *ngIf="canManageManagementClientRole(detail.item.eiamRoles)" type="button" class="btn btn-default"
 										(click)="resetRoleManagement()">{{
-									'Zurücksetzen' |
-										translate:'reset' }}
+										'Zurücksetzen' |
+											translate:'reset' }}
 								</button>
 								<button class="btn btn-secondary" (click)="goToBenutzerList()">{{'Abbrechen' |
 									translate:'cancel'}}
@@ -584,13 +585,13 @@
 							<div class="col-md-12">
 								<button id="buttonSaveAblieferndeStellen" *ngIf="allowZustaendigeStelleBearbeiten" [disabled]="asTokenManageDisabled()" type="button" class="btn btn-primary"
 										(click)="saveAblieferndeStellen()">{{
-									'Speichern' |
-										translate:'save' }}
+										'Speichern' |
+											translate:'save' }}
 								</button>
 								<button *ngIf="allowZustaendigeStelleBearbeiten" [disabled]="asTokenManageDisabled()" type="button" class="btn btn-default"
 										(click)="resetAccessTokens()">{{
-									'Zurücksetzen' |
-										translate:'reset' }}
+										'Zurücksetzen' |
+											translate:'reset' }}
 								</button>
 								<button class="btn btn-secondary" (click)="goToBenutzerList()">{{'Abbrechen' |
 									translate:'cancel'}}
