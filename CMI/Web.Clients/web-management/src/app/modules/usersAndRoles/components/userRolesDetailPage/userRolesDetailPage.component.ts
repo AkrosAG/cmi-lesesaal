@@ -534,7 +534,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 				this.initialeAblieferndeStelleList.push(ablieferndeStelleList);
 			});
 		}
-		this.detail.item.birthday = result.item.birthday ? result.item.birthday : null;
+		this.detail.item.birthday = result.item.birthday ? new Date(result.item.birthday) : null;
 		this.detail.item.downloadLimitDisabledUntil = result.item.downloadLimitDisabledUntil && this.isInDateRange(new Date(this.detail.item.downloadLimitDisabledUntil))
 			? new Date(this.detail.item.downloadLimitDisabledUntil)	: null;
 		this.detail.item.digitalisierungsbeschraenkungAufgehobenBis  = result.item.digitalisierungsbeschraenkungAufgehobenBis  &&
