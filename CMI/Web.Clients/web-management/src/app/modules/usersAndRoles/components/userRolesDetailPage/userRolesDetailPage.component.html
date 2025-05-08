@@ -291,6 +291,7 @@
 												</label>
 											</a>
 										</div>
+										<div *ngIf="detail.item.isInternalUser" class="radio radio--left">
 											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.AMA, allowBenutzerrollePublicClientBearbeiten)">
 												<label>
 													<input type="radio" id="chkRolePublicAmaRadio"
