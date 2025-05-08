@@ -270,13 +270,13 @@
 											</a>
 										</div>
 										<div *ngIf="detail.item.isInternalUser" class="radio radio--left">
-											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.BVW, allowBenutzerrollePublicClientBearbeiten)">
+											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.EMA, allowBenutzerrollePublicClientBearbeiten)">
 												<label>
-													<input type="radio" id="chkRolePublicBvwRadio"
+													<input type="radio" id="chkRolePublicEmaRadio"
 														   formControlName="rolePublicClient"
-														   value="BVW"
+														   value="EMA"
 														   [disabled]="!allowBenutzerrollePublicClientBearbeiten">
-													<span>{{'BVW' |translate:'user.userrolepublic.bvw'}}</span>
+													<span>{{'EMA' |translate:'user.userrolepublic.ema'}}</span>
 												</label>
 											</a>
 										</div>
@@ -291,14 +291,13 @@
 												</label>
 											</a>
 										</div>
-										<div *ngIf="detail.item.isInternalUser" class="radio radio--left">
-											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.BAR, allowBenutzerrollePublicClientBearbeiten)">
+											<a href="javascript:void(0)" role="menuitem" (click)="onOpenModalClick($event, _authorization.roles.AMA, allowBenutzerrollePublicClientBearbeiten)">
 												<label>
-													<input type="radio" id="chkRolePublicBarRadio"
+													<input type="radio" id="chkRolePublicAmaRadio"
 														   formControlName="rolePublicClient"
-														   value="BAR"
+														   value="AMA"
 														   [disabled]="!allowBenutzerrollePublicClientBearbeiten">
-													<span>{{'BAR' |translate:'user.userrolepublic.bar'}}</span>
+													<span>{{'AMA' |translate:'user.userrolepublic.ama'}}</span>
 												</label>
 											</a>
 										</div>
@@ -371,11 +370,11 @@
 									<cmi-viaduc-verify-modal (onSubmitted)="researcherGroupDdsModalAnswer($event)" [(open)]="showVerifyModal"></cmi-viaduc-verify-modal>
 								</div>
 								<div class="row" *ngIf="detail.item.isInternalUser">
-									<label tooltip="{{'BAR-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}"
-										   class="col-md-4 control-label">{{'BAR-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}</label>
+									<label tooltip="{{'AMA-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}"
+										   class="col-md-4 control-label">{{'AMA-interne Konsultation' | translate:'user.detail.item.isInternalUser'}}</label>
 									<div class="col-md-8">
 										<input class="checkbox" type="checkbox"
-											   formControlName="barInternalConsultation"
+											   formControlName="internalConsultation"
 										>
 									</div>
 								</div>
