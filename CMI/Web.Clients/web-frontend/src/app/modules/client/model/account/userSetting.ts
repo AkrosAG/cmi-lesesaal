@@ -108,6 +108,10 @@ export class UserSetting {
 		return this._userSettingType === UserSettingType.Language;
 	}
 
+	get isBirthday(): boolean {
+		return this._userSettingType === UserSettingType.Birthday;
+	}
+
 	get isEmail(): boolean {
 		return this._userSettingType === UserSettingType.Email;
 	}
