@@ -86,9 +86,11 @@
 </div>
 
 <div class="clearfix">
-	<a href="#/{{language}}" class="brand hidden-xs">
+	<a href="{{'https://ethz.ch/de.html' | translate:'header.logoLink'}}" class="brand brand-left hidden-xs">
 		<img src="./assets/img/logo.svg" onerror="this.onerror = null; this.src = './assets/img/logo.png'"
 			 alt="{{ 'Logo vom Hochschularchiv der ETH Zürich – zur Startseite' | translate:'header.altText' }}"/>
+		</a>
+	<a href="#/{{language}}" class="brand brand-right hidden-xs">
 		<h1 [innerHtml]="getHeaderClaim()">{{ 'Logo vom Hochschularchiv der ETH Zürich' | translate:'header.claim' }}</h1>
 	</a>
 </div>
