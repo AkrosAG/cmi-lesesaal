@@ -198,3 +198,20 @@ Benutzerberechtigungstabelle
     border-bottom: 2px solid #B7352D !important;
 }
 
+.brand-left {
+    width: 200px !important;
+}
+
+.brand-right {
+    width: 370px !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .brand-left {
+        width: 160px !important;
+    }
+
+    .brand-right {
+        width: 310px !important;
+    }
+}
