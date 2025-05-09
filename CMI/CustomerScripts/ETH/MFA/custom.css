@@ -199,3 +199,21 @@ Benutzerberechtigungstabelle
     border-right: 2px solid #215caf !important;
     border-bottom: 2px solid #215caf !important;
 }
+
+.brand-left {
+    width: 252px !important;
+}
+
+.brand-right {
+    width: 318px !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .brand-left {
+        width: 200px !important;
+    }
+
+    .brand-right {
+        width: 270px !important;
+    }
+}
