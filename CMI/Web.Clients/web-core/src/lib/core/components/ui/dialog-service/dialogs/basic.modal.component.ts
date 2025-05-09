@@ -5,14 +5,14 @@ import {CanDeactivateData} from '../../../../model';
 @Component({
 	selector: 'cmi-viaduc-basic-modal',
 	template: `
-    <cmi-viaduc-modal [modalTitle]="title" (closeClicked)="onClose()" opened="true">
+    <cmi-viaduc-modal [modalTitle]="title" (closeClicked)="onClose()" [opened]="true">
 		<cmi-viaduc-modal-body>
 			<div [innerHTML]="content"></div>
 		</cmi-viaduc-modal-body>
 		<cmi-viaduc-modal-footer>
 			<div class="row">
 				<div class="col-xs-12">
-					<button type="button" autoFocus class="btn btn-primary" (click)="onClose()">
+					<button type="button" [autoFocus]="true" class="btn btn-primary" (click)="onClose()">
 						{{closeButtonText}}
 					</button>
 				</div>
