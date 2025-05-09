@@ -88,7 +88,8 @@
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
     "title": "Max Frisch-Archiv | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-    "favoritesCount": "Favoriten ({0})"
+    "favoritesCount": "Favoriten ({0})",
+    "logoLink": "https://mfa.ethz.ch"
   },
   "metadata": {
     "boolean": {
