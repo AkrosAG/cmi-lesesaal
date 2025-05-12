@@ -7,8 +7,10 @@ using Aspose.Pdf;
 using Aspose.Pdf.Optimization;
 using Aspose.Pdf.Text;
 using CMI.Contract.Common;
+using CMI.Utilities.Common.Helpers;
 using Serilog;
 using License = Aspose.Pdf.License;
+using CMI.Utilities.Common;
 
 namespace CMI.Engine.Asset
 {
@@ -87,16 +89,9 @@ namespace CMI.Engine.Asset
 
         public PdfManipulator()
         {
-            try
-            {
-                var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
-            }
+               
+                LicenseHelper.SetAsposeLicense();
+
         }
 
         public List<AssetExtractionFile> ConvertToTextExtractionFiles(List<RepositoryFile> repositoryFiles, string path)

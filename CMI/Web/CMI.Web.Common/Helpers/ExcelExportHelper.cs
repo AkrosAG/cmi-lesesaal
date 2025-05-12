@@ -16,7 +16,20 @@ namespace CMI.Web.Common.Helpers
             try
             {
                 var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
+                var Settings = new CmiSettings();
+
+                var licenseContent = Settings["AsposeLicense"] ?? "";
+                if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
+                {
+                    throw new Exception("License content is missing or placeholder is still present in application settings.");
+                }
+
+                // Convert the license content to a stream
+                using (var licenseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(licenseContent)))
+                {
+                    licensePdf.SetLicense(licenseStream);
+                }
+               
             }
             catch (Exception ex)
             {
@@ -24,7 +37,7 @@ namespace CMI.Web.Common.Helpers
                 throw;
             }
         }
-
+       
         /// <summary>Exports any data list to a XLSX Excel stream.</summary>
         /// <typeparam name="T">Type of the data in the list</typeparam>
         /// <param name="data">The data to export</param>
