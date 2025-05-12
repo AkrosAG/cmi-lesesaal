@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Aspose.Pdf;
 using Aspose.Pdf.Text;
 using CMI.Contract.DocumentConverter;
 using CMI.Manager.DocumentConverter.Extraction.Interfaces;
-using CMI.Manager.DocumentConverter.Properties;
 using CMI.Utilities.Common.Helpers;
 using Serilog;
 using License = Aspose.Pdf.License;

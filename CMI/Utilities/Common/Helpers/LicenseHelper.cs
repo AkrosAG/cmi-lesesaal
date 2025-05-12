@@ -20,7 +20,7 @@ namespace CMI.Utilities.Common.Helpers
 
             try
             {
-                string licenseContent = Settings.Default.AsposeLicense;
+                var licenseContent = Settings.Default.AsposeLicense;
 
                 if (string.IsNullOrEmpty(licenseContent) || licenseContent.Contains("@@"))
                 {

@@ -134,14 +134,5 @@ namespace CMI.Manager.DocumentConverter.Properties {
                 return ((string)(this["AbbyySerialNumber"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Utilities.Common.AsposeLicense@@")]
-        public string AsposeLicense {
-            get {
-                return ((string)(this["AsposeLicense"]));
-            }
-        }
     }
 }
