@@ -16,6 +16,7 @@ export class NavigationContentComponent implements AfterViewInit {
 	public mobileMainNavOpen = false;
 	public mobileUserNavOpen = false;
 	private showThematicoverview  = false;
+	private _useShortPetitionsLink = false;
 	private hasChatbot: boolean;
 
 	constructor(private _context: ClientContext,
@@ -31,6 +32,7 @@ export class NavigationContentComponent implements AfterViewInit {
 		this._elem = this._elemRef.nativeElement;
 		this.hasChatbot = this._cfg.getSetting('chatbot.urlForChatBot')?.length > 0;
 		this.showThematicoverview = this._cfg.getSetting('showThematicOverview').showThematicOverview;
+		this._useShortPetitionsLink = this._cfg.getSetting('useShortPetitionsLink').useShortPetitionsLink;
 
 		this._router.events.subscribe(event => {
 			if (event instanceof NavigationStart) {
@@ -118,6 +120,9 @@ export class NavigationContentComponent implements AfterViewInit {
 	}
 	public get authenticated(): boolean {
 		return this._context.authenticated;
+	}
+	public get useShortPetitionsLink(): boolean {
+		return this._useShortPetitionsLink;
 	}
 
 	public login(): void {

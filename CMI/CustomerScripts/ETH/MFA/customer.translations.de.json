@@ -458,5 +458,11 @@
       "changeLoginData": " ",
       "changeLoginDataLink": " "
     }
+  },
+  "navigation": {
+    "information": {
+      "protectionAndPetitions": "Einsichtsgesuche",
+      "protectionAndPetitionsTeaserText": "Informationen zu Unterlagen, die unter Schutzfrist stehen, sowie den nötigen Einsichtsgesuchen."
+    }
   }
 }
