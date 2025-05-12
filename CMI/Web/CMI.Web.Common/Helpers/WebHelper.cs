@@ -55,6 +55,7 @@ namespace CMI.Web.Common.Helpers
         public static string UrlForChatBot => GetStringSetting("urlForChatBot", "");
 
         public static bool ShowThematicOverview => GetBooleanSetting("showThematicOverview", false);
+        public static bool UseShortPetitionsLink => GetBooleanSetting("useShortPetitionsLink", false);
 
         public static string PublicClientUrl => GetStringSetting("publicClientUrl", "");
 

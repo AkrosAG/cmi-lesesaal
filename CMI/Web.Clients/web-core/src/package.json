@@ -5,7 +5,7 @@
   "main": "public_api.ts",
   "scripts": {
     "build:echo:warning": "echo \"\\033[33mPost-Removing Ivy-Publish-Blocker-Scripts\"",
-    "build:remove:ivy-publishblock": "node ../../../scripts/removePrepublishScript.ts",
+		"build:remove:ivy-publishblock": "node ../../../scripts/removePrepublishScript.ts",
     "prepare": "npm run build:remove:ivy-publishblock"
   },
 	"peerDependencies": {
@@ -23,7 +23,7 @@
 		"ngx-toastr": "^19.0.0",
 		"angularx-flatpickr": "^8.1.0",
 		"flatpickr": "^4.6.13",
-		"@mescius/wijmo.angular2.all": "^5.20242.30",
+		"@mescius/wijmo.angular2.all": "^5.20251.34",
 		"file-saver": "^2.0.5",
 		"jszip": "^3.10.1"
 	}
