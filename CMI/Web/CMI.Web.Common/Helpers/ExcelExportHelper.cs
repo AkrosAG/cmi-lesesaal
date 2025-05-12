@@ -16,9 +16,9 @@ namespace CMI.Web.Common.Helpers
             try
             {
                 var licensePdf = new License();
-                CmiSettings Settings = new CmiSettings();
+                var Settings = new CmiSettings();
 
-                string licenseContent = Settings["AsposeLicense"] ?? "";
+                var licenseContent = Settings["AsposeLicense"] ?? "";
                 if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
                 {
                     throw new Exception("License content is missing or placeholder is still present in application settings.");
