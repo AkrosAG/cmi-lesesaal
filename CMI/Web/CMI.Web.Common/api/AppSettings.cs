@@ -158,6 +158,7 @@ namespace CMI.Web.Common.api
                 SettingsHelper.InjectInfo(settingsObj, "viewer", "url", WebHelper.ViewerUrl);
 
                 SettingsHelper.InjectInfo(settingsObj, "showThematicOverview", "showThematicOverview", WebHelper.ShowThematicOverview);
+                SettingsHelper.InjectInfo(settingsObj, "useShortPetitionsLink", "useShortPetitionsLink", WebHelper.UseShortPetitionsLink);
             }
         }
 
