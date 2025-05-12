@@ -214,7 +214,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
-    <EmbeddedResource Include="Extraction\Aspose.Total.NET.lic" />
     <None Include="packages.config" />
     <None Include="Properties\DocumentConverterSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

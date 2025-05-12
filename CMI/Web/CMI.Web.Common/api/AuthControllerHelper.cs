@@ -349,7 +349,7 @@ namespace CMI.Web.Common.api
         private string GetOeDreiKeineMobilenummerErfasst()
         {
             return webCmiConfigProvider.GetStringSetting("oeDreiKeineMobilenummerErfasst",
-                "www.recherche.bar.admin.ch/_pep/myaccount?returnURI=/my-appl/private/welcome.html&op=reg-mobile");
+                "");
         }
 
         private string GetErrorPermissionUrl()
