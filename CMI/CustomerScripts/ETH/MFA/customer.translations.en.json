@@ -462,5 +462,11 @@
       "changeLoginData": " ",
       "changeLoginDataLink": " "
     }
+  },
+  "navigation": {
+    "information": {
+      "protectionAndPetitions": "Requests to consult records",
+      "protectionAndPetitionsTeaserText": "Information about documents that are subject to a closure period, and the consultation requests required."
+    }
   }
 }
