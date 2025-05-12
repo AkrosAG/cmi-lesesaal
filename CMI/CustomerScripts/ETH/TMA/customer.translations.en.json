@@ -52,7 +52,7 @@
   },
   "header": {
     "abmelden": "Log out",
-    "altText": "ETH Zurich University Archives logo – to homepage",
+    "altText": "Thomas-Mann-Archives | ETH Zurich logo – to homepage",
     "anmelden": "Log in",
     "barAbbr": "SFA",
     "homeOrganisationName": "ETH Zurich",
@@ -87,7 +87,8 @@
     "srBreadcrumbOrientation": "Navigating the website",
     "title": "Thomas Mann Archive | ETH Zurich",
     "zumBestellkorb": "Navigate to shopping cart with {0} items",
-    "favoritesCount": "Favourites ({0})"
+    "favoritesCount": "Favourites ({0})",
+    "logoLink": "https://tma.ethz.ch/en/"
   },
   "metadata": {
     "boolean": {
