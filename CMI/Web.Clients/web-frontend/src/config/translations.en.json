@@ -245,7 +245,7 @@
     "pageTitle": "User data"
   },
   "dateRangeField": {
-    "format": "Specify time period (e.g 1848–1914 or 01.07.1995–24.12.2001)",
+    "format": "e.g. 1848–1914 or 01.07.1995–24.12.2001",
     "invalidFormat": "The format you have supplied is invalid. Please enter a time period in either \"YYYY-YYYY\" or \"DD.MM.YYYY-DD.MM.YYYY\" format."
   },
   "detail": {
