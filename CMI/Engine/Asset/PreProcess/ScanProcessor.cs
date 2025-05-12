@@ -9,6 +9,7 @@ using Aspose.Pdf.Operators;
 using Aspose.Pdf.Optimization;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Engine.Asset.ParameterSettings;
+using CMI.Utilities.Common.Helpers;
 using Serilog;
 using Matrix = Aspose.Pdf.Matrix;
 using Rectangle = Aspose.Pdf.Rectangle;
@@ -22,17 +23,11 @@ namespace CMI.Engine.Asset.PreProcess
         private string rootFolder;
         private readonly ImageHelper imageHelper;
 
-        public ScanProcessor(ImageHelper imageHelper, ScansZusammenfassenSettings settings)
+        public ScanProcessor(ImageHelper imageHelper, ScansZusammenfassenSettings settings, bool skipLicenseSetup = false)
         {
-            try
+            if (!skipLicenseSetup)
             {
-                var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
+                LicenseHelper.SetAsposeLicense(); // Use centralized license handling
             }
 
             this.imageHelper = imageHelper;

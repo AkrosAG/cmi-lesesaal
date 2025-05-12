@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Page-1" id="zM73Wfu0DJTZopq4VyQ9">
+    <mxGraphModel dx="3088" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <object label="&lt;font style=&quot;&quot;&gt;&lt;b&gt;Digitaler Lesesaal&lt;/b&gt;&lt;br style=&quot;font-size: 10px&quot;&gt;[Repository Overview]&lt;/font&gt;" placeholders="1" name="Software System Name" id="M9Su6BSULy3wpyNqqi5l-7">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fontColor=#000000;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+            <mxGeometry x="-1340" y="710" width="1330" height="740" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;font style=&quot;&quot;&gt;&lt;b&gt;cmi-lesesaal&lt;/b&gt;&lt;br style=&quot;font-size: 10px&quot;&gt;[Repository]&lt;/font&gt;" placeholders="1" name="Software System Name" id="d98rQYSV3Mxhwe1GuDlH-1">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fontColor=#000000;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+            <mxGeometry x="-1270" y="750" width="1200" height="410" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;b&gt;cmi-lesesaal-backend (C#, .NET)&lt;/b&gt;&lt;br&gt;&lt;/font&gt;" placeholders="1" name="Container Name" id="d98rQYSV3Mxhwe1GuDlH-2">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#b85450;fillColor=none;fontColor=#000000;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;container=0;" parent="1" vertex="1">
+            <mxGeometry x="-600" y="790" width="480" height="340" as="geometry">
+              <mxRectangle x="560" y="40" width="110" height="30" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Lesesaal Services&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;.NET Microservices&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-3">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;fontColor=#000000;strokeColor=#b85450;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-323" y="880" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;b&gt;cmi-lesessal-frontend (Angular)&lt;/b&gt;&lt;/font&gt;" placeholders="1" name="Container Name" id="d98rQYSV3Mxhwe1GuDlH-6">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;container=0;fillColor=none;" parent="1" vertex="1">
+            <mxGeometry x="-1220" y="785" width="540" height="340" as="geometry">
+              <mxRectangle x="560" y="40" width="110" height="30" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;web-core&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;Angular Library&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-7">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0067BA;strokeColor=#005DA8;resizable=0;fontColor=#FFFFFF;" parent="1" vertex="1">
+            <mxGeometry x="-1200" y="880" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;web-frontend&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;Angular App&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-9">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0067BA;fontColor=#FFFFFF;strokeColor=#005DA8;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-930" y="820" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;web-management&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;Angular App&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-11">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0067BA;fontColor=#FFFFFF;strokeColor=#005DA8;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-930" y="970" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Lesesaal Public Client API&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;ASP.NET&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-12">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;fontColor=#000000;strokeColor=#b85450;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-550" y="820" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Lesesaal Management Client API&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;ASP.NET&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="d98rQYSV3Mxhwe1GuDlH-13">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;fontColor=#000000;strokeColor=#b85450;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-550" y="970" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;b&gt;cmi-iiif-frontend (React)&lt;/b&gt;&lt;br style=&quot;font-size: 10px&quot;&gt;[Repository]&lt;/font&gt;" placeholders="1" name="Container Name" id="M9Su6BSULy3wpyNqqi5l-3">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fillColor=none;fontColor=#000000;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;container=0;" parent="1" vertex="1">
+            <mxGeometry x="-560" y="1200" width="220" height="220" as="geometry">
+              <mxRectangle x="560" y="40" width="110" height="30" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;cmi-iiif-frontend&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;React App&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="M9Su6BSULy3wpyNqqi5l-4">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0067BA;fontColor=#FFFFFF;strokeColor=#005DA8;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-530" y="1240" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="&lt;font style=&quot;font-size: 10px&quot;&gt;&lt;b&gt;cmi-iiif-backend (NodeJs)&lt;/b&gt;&lt;br style=&quot;font-size: 10px&quot;&gt;[Repository]&lt;/font&gt;" placeholders="1" name="Container Name" id="M9Su6BSULy3wpyNqqi5l-5">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fillColor=none;fontColor=#000000;align=left;labelPosition=center;verticalLabelPosition=middle;verticalAlign=bottom;dashed=1;strokeWidth=1;perimeterSpacing=0;spacing=2;spacingTop=0;fontSize=10;dashPattern=8 8;container=0;" parent="1" vertex="1">
+            <mxGeometry x="-310" y="1200" width="220" height="220" as="geometry">
+              <mxRectangle x="560" y="40" width="110" height="30" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object label="&lt;div&gt;&lt;span style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;cmi-iiif-backend&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;[Software System]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 8px&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;1&quot;&gt;Node.js App&lt;/font&gt;&lt;/div&gt;" placeholders="1" name="Software System Name" description="Description" id="M9Su6BSULy3wpyNqqi5l-6">
+          <mxCell style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0067BA;fontColor=#FFFFFF;strokeColor=#005DA8;resizable=0;" parent="1" vertex="1">
+            <mxGeometry x="-290" y="1240" width="180" height="120" as="geometry" />
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

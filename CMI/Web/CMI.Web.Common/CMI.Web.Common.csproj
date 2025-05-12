@@ -306,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Aspose.Total.NET.lic" />
     <Compile Include="Helpers\IDownloadLogHelper.cs" />
     <None Include="packages.config" />
   </ItemGroup>

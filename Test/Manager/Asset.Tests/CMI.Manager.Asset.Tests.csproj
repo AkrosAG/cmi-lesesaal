@@ -348,10 +348,10 @@
       <Project>{F5CA4600-3BB0-452C-9FE8-D70E9FFA3681}</Project>
       <Name>CMI.Contract.Parameter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\CMI\Engine\Asset\CMI.Engine.Asset.csproj">
-      <Project>{C45C6CC0-D67C-448B-9322-7AE04AFE9CA3}</Project>
+	<ProjectReference Include="..\..\..\CMI\Engine\Asset\CMI.Engine.Asset.csproj">
+	  <Project>{C45C6CC0-D67C-448B-9322-7AE04AFE9CA3}</Project>
       <Name>CMI.Engine.Asset</Name>
-    </ProjectReference>
+	</ProjectReference>    
     <ProjectReference Include="..\..\..\CMI\Engine\MailTemplate\CMI.Engine.MailTemplate.csproj">
       <Project>{4D85737D-2F6C-4640-9B85-C169F5FF2B41}</Project>
       <Name>CMI.Engine.MailTemplate</Name>
@@ -468,6 +468,10 @@
   </Target>
   <Import Project="..\..\..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Import Project="..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
