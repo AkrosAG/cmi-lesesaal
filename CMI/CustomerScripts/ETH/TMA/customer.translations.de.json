@@ -53,7 +53,7 @@
   },
   "header": {
     "abmelden": "Abmelden",
-    "altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
+    "altText": "Logo vom Thomas-Mann-Archiv | ETH Zürich – zur Startseite",
     "anmelden": "Anmelden",
     "barAbbr": "BAR",
     "homeOrganisationName": "ETH Zürich",
@@ -88,7 +88,8 @@
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
     "title": "Thomas-Mann-Archiv | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-    "favoritesCount": "Favoriten ({0})"
+    "favoritesCount": "Favoriten ({0})",
+    "logoLink": "https://tma.ethz.ch"
   },
   "metadata": {
     "boolean": {
