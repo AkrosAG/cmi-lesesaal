@@ -392,7 +392,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETH", "ETH", "{2E869907-687
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9F-42F8-8640-F5BD77F21326}"
 	ProjectSection(SolutionItems) = preProject
-		CMI\CustomerScripts\ETH\HSA\Viewer\design\css\admin.css = CMI\CustomerScripts\ETH\HSA\Viewer\design\css\admin.css
 		CMI\CustomerScripts\ETH\HSA\HTMLSite\konto\benutzerTabelle.html = CMI\CustomerScripts\ETH\HSA\HTMLSite\konto\benutzerTabelle.html
 		CMI\CustomerScripts\ETH\HSA\custom.css = CMI\CustomerScripts\ETH\HSA\custom.css
 		CMI\CustomerScripts\ETH\HSA\customer.settings.json = CMI\CustomerScripts\ETH\HSA\customer.settings.json

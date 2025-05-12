@@ -117,8 +117,11 @@
 											</a>
 										</li>
 										<li role="presentation">
-											<a href="#{{ '/de/informationen/schutzfristen-und-einsichtsgesuche' | localizeLink }}">
+											<a *ngif="!useShortPetitionsLink" href="#{{ '/de/informationen/schutzfristen-und-einsichtsgesuche' | localizeLink }}">
 												{{ 'Schutzfristen & Einsichtsgesuche' | translate:'navigation.information.protectionAndPetitions' }}
+											</a>
+											<a *ngif="useShortPetitionsLink" href="#{{ '/de/einsichtsgesuche' | localizeLink }}">
+												{{ 'Einsichtsgesuche' | translate:'navigation.information.protectionAndPetitions' }}
 											</a>
 										</li>
 										<li role="presentation">
@@ -440,8 +443,11 @@
 						<div class="yamm-content container-fluid">
 							<i class="glyphicon glyphicon-scale-classic" aria-hidden="true"></i>
 							<h4>
-								<a href="#{{ '/de/informationen/schutzfristen-und-einsichtsgesuche' | localizeLink }}">
+								<a *ngIf="!useShortPetitionsLink" href="#{{ '/de/informationen/schutzfristen-und-einsichtsgesuche' | localizeLink }}">
 									{{'Schutzfristen & Einsichtsgesuche' | translate:'navigation.information.protectionAndPetitions' }}
+								</a>
+								<a *ngIf="useShortPetitionsLink" href="#{{ '/de/informationen/einsichtsgesuche' | localizeLink }}">
+									{{'Einsichtsgesuche' | translate:'navigation.information.protectionAndPetitions' }}
 								</a>
 							</h4>
 							<p>

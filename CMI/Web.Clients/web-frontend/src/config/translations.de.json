@@ -242,7 +242,7 @@
     "pageTitle": "Benutzerdaten"
   },
   "dateRangeField": {
-    "format": "Zeitraum eingrenzen (z. B. 1848-1914 oder 01.07.1995-24.12.2001)",
+    "format": "z. B. 1848-1914 oder 01.07.1995-24.12.2001",
     "invalidFormat": "Das angegebene Format ist ungültig. Geben Sie einen Zeitraum bitte entweder im Format \"JJJJ-JJJJ\" oder \"TT.MM.JJJJ-TT.MM.JJJJ\" an."
   },
   "detail": {

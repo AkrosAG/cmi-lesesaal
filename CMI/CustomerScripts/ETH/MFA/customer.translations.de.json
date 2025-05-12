@@ -88,7 +88,8 @@
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
     "title": "Max Frisch-Archiv | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-    "favoritesCount": "Favoriten ({0})"
+    "favoritesCount": "Favoriten ({0})",
+    "logoLink": "https://mfa.ethz.ch"
   },
   "metadata": {
     "boolean": {
@@ -381,15 +382,15 @@
     "zeitraumDossier": "Zeitraum des Dossiers"
   },
   "syntaxHelp": {
-    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Worten mit dem Fuzzy-Operator.",
-    "fuzzyExample": "Bsp.,um «Universität», «Université», «University» etc. zu finden: Universität~",
+    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Wörtern mit dem Fuzzy-Operator.",
+    "fuzzyExample": "Bsp.: um «Universität», «Université», «University» etc. zu finden: Universität~",
     "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
-    "gewichtungExample": "Bsp.: um «Frisch» doppelt so hoch zu gewichten, wie «Max»: Max Frisch^2",
+    "gewichtungExample": "Bsp.: um «Frisch» doppelt so hoch zu gewichten wie «Max»: Max Frisch^2",
     "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
     "groupExample": "Bsp.: (Max OR Lina) AND Frisch",
     "hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
     "hochkommasExample": "Bsp.: \"Der Mensch erscheint im Holozän\"",
-    "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste aus zu schliessen.",
+    "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste auszuschliessen.",
     "minusExample": "Bsp.: -Frisch",
     "not": "Benutzen Sie NOT, um einzelne Begriffe auszuschliessen.",
     "notExample": "Bsp.: NOT Lina",
@@ -456,6 +457,12 @@
     "contact": {
       "changeLoginData": " ",
       "changeLoginDataLink": " "
+    }
+  },
+  "navigation": {
+    "information": {
+      "protectionAndPetitions": "Einsichtsgesuche",
+      "protectionAndPetitionsTeaserText": "Informationen zu Unterlagen, die unter Schutzfrist stehen, sowie den nötigen Einsichtsgesuchen."
     }
   }
 }
