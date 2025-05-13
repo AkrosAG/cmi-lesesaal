@@ -89,9 +89,7 @@ namespace CMI.Engine.Asset
 
         public PdfManipulator()
         {
-               
-                LicenseHelper.SetAsposeLicense();
-
+            LicenseHelper.SetAsposeLicense();
         }
 
         public List<AssetExtractionFile> ConvertToTextExtractionFiles(List<RepositoryFile> repositoryFiles, string path)
