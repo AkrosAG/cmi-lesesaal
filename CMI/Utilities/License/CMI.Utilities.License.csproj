@@ -37,8 +37,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.PDF">
-      <HintPath>..\..\..\..\..\..\Viaduc\packages\Aspose.PDF.22.1.0\lib\net4.0\Aspose.PDF.dll</HintPath>
+    <Reference Include="Aspose.PDF, Version=22.1.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Aspose.PDF.22.1.0\lib\net4.0\Aspose.PDF.dll</HintPath>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
