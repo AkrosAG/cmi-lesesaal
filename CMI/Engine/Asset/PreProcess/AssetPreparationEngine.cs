@@ -1,11 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Aspose.Pdf;
-using CMI.Contract.Asset;
+﻿using CMI.Contract.Asset;
 using CMI.Contract.Common;
+using CMI.Utilities.License;
 using Serilog;
-using CMI.Utilities.Common.Helpers;
+using System;
+using System.Threading.Tasks;
+
 namespace CMI.Engine.Asset.PreProcess
 {
     public class AssetPreparationEngine : IAssetPreparationEngine
