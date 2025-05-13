@@ -1,11 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.Configuration;
+﻿using CMI.Utilities.Common.Properties;
+using Serilog;
+using System;
 using System.IO;
 using System.Text;
-using Aspose.Pdf;
-using Serilog;
-using CMI.Utilities.Common.Properties;
 
 namespace CMI.Utilities.Common.Helpers
 {
