@@ -9,7 +9,7 @@ using Aspose.Pdf.Operators;
 using Aspose.Pdf.Optimization;
 using CMI.Contract.Common.Gebrauchskopie;
 using CMI.Engine.Asset.ParameterSettings;
-using CMI.Utilities.Common.Helpers;
+using CMI.Utilities.License;
 using Serilog;
 using Matrix = Aspose.Pdf.Matrix;
 using Rectangle = Aspose.Pdf.Rectangle;

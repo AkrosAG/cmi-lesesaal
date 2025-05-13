@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Aspose.Pdf;
+using Aspose.Pdf.Optimization;
+using Aspose.Pdf.Text;
+using CMI.Contract.Common;
+using CMI.Utilities.License;
+using Serilog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Aspose.Pdf;
-using Aspose.Pdf.Optimization;
-using Aspose.Pdf.Text;
-using CMI.Contract.Common;
-using CMI.Utilities.Common.Helpers;
-using Serilog;
-using License = Aspose.Pdf.License;
-using CMI.Utilities.Common;
 
 namespace CMI.Engine.Asset
 {

@@ -454,6 +454,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gebrauchskopie", "Gebrauchs
 		CMI\CustomerScripts\ETH\HSA\Gebrauchskopie\gebrauchskopieCustomer.css = CMI\CustomerScripts\ETH\HSA\Gebrauchskopie\gebrauchskopieCustomer.css
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMI.Utilities.License", "CMI\Utilities\License\CMI.Utilities.License\CMI.Utilities.License.csproj", "{E76A71ED-0866-41E5-BFCA-AC478094D75D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -846,6 +850,10 @@ Global
 		{8A43FC2B-B28B-402D-83B9-701E63B23D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A43FC2B-B28B-402D-83B9-701E63B23D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A43FC2B-B28B-402D-83B9-701E63B23D8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76A71ED-0866-41E5-BFCA-AC478094D75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76A71ED-0866-41E5-BFCA-AC478094D75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76A71ED-0866-41E5-BFCA-AC478094D75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76A71ED-0866-41E5-BFCA-AC478094D75D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -964,6 +972,8 @@ Global
 		{6DD2ED61-62B4-4A36-85DE-76BBAA9B7E52} = {2E869907-6876-49CD-97D5-C07C1021DA42}
 		{8A43FC2B-B28B-402D-83B9-701E63B23D8F} = {1928E5E9-5D05-4172-92F3-D5F822FF78E1}
 		{12E51CC1-7ABD-4468-A1FE-AB5A5F464E08} = {5F9AD745-4B9F-42F8-8640-F5BD77F21326}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {FAA1D80D-9047-4775-A2BC-979F0ABB5414}
+		{E76A71ED-0866-41E5-BFCA-AC478094D75D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94FF0BA7-507D-45AD-A448-D34E2C5341FE}
