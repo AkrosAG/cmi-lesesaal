@@ -38,7 +38,7 @@ describe('UserAccount', () => {
 		};
 		usrService = <UserService>{
 			getUser(): Promise<User> {
-				return Promise.resolve(<User> { id: '123', emailAddress: 'darth.vader@cmiag.ch' });
+				return Promise.resolve(<User>{ id: '123', emailAddress: 'darth.vader@example.com' });
 			}
 		};
 		countriesService = <CountriesService>{
