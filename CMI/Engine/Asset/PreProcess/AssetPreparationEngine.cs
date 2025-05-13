@@ -1,9 +1,9 @@
 ﻿using CMI.Contract.Asset;
 using CMI.Contract.Common;
-using CMI.Utilities.License;
 using Serilog;
 using System;
 using System.Threading.Tasks;
+using CMI.Utilities.License;
 
 namespace CMI.Engine.Asset.PreProcess
 {

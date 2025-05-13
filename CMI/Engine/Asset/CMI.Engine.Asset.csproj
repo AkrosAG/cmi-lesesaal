@@ -394,11 +394,7 @@
       <Project>{F5CA4600-3BB0-452C-9FE8-D70E9FFA3681}</Project>
       <Name>CMI.Contract.Parameter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utilities\Common\CMI.Utilities.Common.csproj">
-      <Project>{1dcf43e7-a0ff-4506-9472-4dfd2b504a97}</Project>
-      <Name>CMI.Utilities.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Utilities\License\CMI.Utilities.License\CMI.Utilities.License.csproj">
+    <ProjectReference Include="..\..\Utilities\License\CMI.Utilities.License.csproj">
       <Project>{E76A71ED-0866-41E5-BFCA-AC478094D75D}</Project>
       <Name>CMI.Utilities.License</Name>
     </ProjectReference>
