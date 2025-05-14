@@ -25,7 +25,7 @@ namespace CMI.Utilities.License.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Utilities.Common.AsposeLicense@@")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@@CMI.Utilities.License.Properties.Settings.AsposeLicense@@")]
         public string AsposeLicense {
             get {
                 return ((string)(this["AsposeLicense"]));
