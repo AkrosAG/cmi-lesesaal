@@ -1,4 +1,6 @@
-﻿namespace CMI.Utilities.Common.Properties
+﻿using CMI.Utilities.Common;
+        
+namespace CMI.Utilities.License.Properties
 {
     public class Documentation : AbstractDocumentation
     {
