@@ -382,6 +382,7 @@
     <Content Include="content\de\informationen\api.html" />
     <Content Include="content\de\informationen\benutzerTabelle.html" />
     <Content Include="content\de\informationen\bestellen-und-konsultieren.html" />
+    <Content Include="content\de\informationen\einsichtsgesuche.html" />
     <Content Include="content\de\konto\kontoeroeffnung.html" />
     <Content Include="content\de\suche\bestaendeuebersicht.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -389,6 +390,7 @@
     <Content Include="content\en\500.html" />
     <Content Include="content\en\account\opening-an-account.html" />
     <Content Include="content\en\information\api.html" />
+    <Content Include="content\en\information\requests-to-consult-records.html" />
     <Content Include="content\en\information\userTable.html" />
     <Content Include="content\en\search\thematic-overview.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -403,7 +405,6 @@
     <Content Include="content\it\500.html" />
     <Content Include="content\it\informazioni\api.html" />
     <Content Include="content\de\informationen\registrieren-und-identifizieren.html" />
-    <Content Include="content\de\informationen\schutzfristen-und-einsichtsgesuche.html" />
     <Content Include="content\de\informationen\zitieren-und-publizieren.html" />
     <Content Include="content\en\information\searching.html" />
     <Content Include="content\de\ueber\ueber.html" />
@@ -413,7 +414,6 @@
     <Content Include="content\en\404.html" />
     <Content Include="content\en\contact.html" />
     <Content Include="content\en\information\ordering-and-consulting.html" />
-    <Content Include="content\en\information\closure-periods-and-requests-to-consult-records.html" />
     <Content Include="content\en\information\citing-and-publishing.html" />
     <Content Include="content\de\informationen\suchen.html" />
     <Content Include="content\en\information\login-and-identification.html" />
