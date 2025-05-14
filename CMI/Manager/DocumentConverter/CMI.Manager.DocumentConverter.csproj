@@ -245,6 +245,10 @@
       <Project>{1dcf43e7-a0ff-4506-9472-4dfd2b504a97}</Project>
       <Name>CMI.Utilities.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\License\CMI.Utilities.License.csproj">
+      <Project>{E76A71ED-0866-41E5-BFCA-AC478094D75D}</Project>
+      <Name>CMI.Utilities.License</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilities\Logging\Configurator\CMI.Utilities.Logging.Configurator.csproj">
       <Project>{39326685-B5AB-40DC-8FA3-09A9502E7BE0}</Project>
       <Name>CMI.Utilities.Logging.Configurator</Name>

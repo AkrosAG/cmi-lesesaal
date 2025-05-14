@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Configuration;
 using System.IO;
 using System.Text;
-using Aspose.Pdf;
+using CMI.Utilities.License.Properties;
 using Serilog;
-using CMI.Utilities.Common.Properties;
 
-namespace CMI.Utilities.Common.Helpers
+namespace CMI.Utilities.License
 {
     public static class LicenseHelper
     {
