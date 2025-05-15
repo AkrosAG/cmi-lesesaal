@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using CMI.Contract.Common.JsonConverters;
 
@@ -231,6 +232,7 @@ namespace CMI.Contract.Common
         public int SortingNumber { get; set; }
         public ElasticDateWithYear DateOfBirth { get; set; }
         public ElasticDateWithYear DateOfDeath { get; set; }
+        public string GndNumber { get; set; }
     }
 
     public class ElasticDateWithYear

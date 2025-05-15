@@ -1,0 +1,43 @@
+PUT /_ingest/pipeline/SetGndNumberInDescriptors
+{
+  "description": """"
+	DLS-475 10: Erweiterte Suche
+    
+    Procedure
+    Start/compile pipeline
+    Execute prepared search
+    Delete pipeline
+    <a href="http://d-nb.info/gnd/4742746-2" target="_blank">Gemeinsame Normdatei (GND)</a>
+    Hints:
+    the search is async and you get back a task with which the status can be checked e.g. GET /_tasks/lk3AiZV9R5Wc3wiPFmaD6w:14445773
+  """, 
+  "processors" : [{
+     "script" : {
+        "lang" : "painless",
+        "source" : """
+          def descriptors  = ctx.get('descriptors');
+          for (int i = descriptors.length-1; i>=0; i--) {
+            def descriptor = descriptors[i];
+      			if (descriptor.source != null) { 
+      			  def match =  /\"http:\/\/d-nb.info\/gnd\/(.*)\" /.matcher(descriptor.source); 
+      			   
+      			  if (match.find()) { 
+      				  descriptor.gndNumber = match.group(1);
+      			  }
+      			}
+          }
+          """
+      }
+  }]
+}
+
+
+POST /archive-mfa/_update_by_query?pipeline=GndNumberDescriptors&conflicts=proceed&wait_for_completion=false
+{
+ 
+  "query": {
+    "exists": {
+      "field": "descriptors"
+    }
+  }
+}
