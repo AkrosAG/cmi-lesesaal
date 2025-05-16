@@ -1,11 +1,8 @@
+using CMI.Contract.Common.JsonConverters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Serialization;
-using CMI.Contract.Common.JsonConverters;
-
-using Newtonsoft.Json;
 
 namespace CMI.Contract.Common
 {
