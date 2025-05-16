@@ -44,7 +44,8 @@
     "Ortsregister": "Location register",
     "Personenregister": "Register of persons",
     "Sachregister": "Subject index",
-    "Werkregister": "Register of works"
+    "Werkregister": "Register of works",
+    "DatenDigitalVorhanden": "Documents available in digital form"
   },
   "footer": {
     "footerTitle": "Footer",

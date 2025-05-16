@@ -54,6 +54,22 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
+            var digitalvorhanden = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("LinkAufDigitalesOriginal"));
+            if (digitalvorhanden != null)
+            {
+                elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
+                foreach (var sprache in sprachen.TextValues)
+                {
+                    elasticArchiveRecord.Facetten.Boolean01.Add(true);
+                    break;
+                }
+            }
+            else
+            {
+                elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
+                elasticArchiveRecord.Facetten.Boolean01.Add(false);
+            }
+
             if (elasticArchiveRecord.Descriptors.Count > 0)
             {
                 if (elasticArchiveRecord.Descriptors.Any(d => d.Thesaurus == "Körperschaftsregister" || d.Thesaurus == "Koerperschaftsregister"))
