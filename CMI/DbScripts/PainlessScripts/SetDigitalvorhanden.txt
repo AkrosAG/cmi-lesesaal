@@ -1,0 +1,83 @@
+PUT /_ingest/pipeline/SetDigitaleDatenvorhandenHSA
+{
+  "description": """"
+    DLS-480 26: Digitale Daten vorhanden 
+	HSA Script
+    
+    Procedure
+    Start/compile pipeline
+    Execute prepared search
+    Delete pipeline
+   
+    Hints:
+    the search is async and you get back a task with which the status can be checked e.g. GET /_tasks/lk3AiZV9R5Wc3wiPFmaD6w:14445773
+  """, 
+  "processors" : [{
+     "script" : {
+        "lang" : "painless",
+        "source" : """
+          def detailData = ctx.get('detailData');
+          ctx.facetten.boolean01 = new ArrayList();
+          ctx.facetten.boolean01.add(false); 
+          for (int i = detailData.length-1; i>=0; i--) {
+            def ded = detailData[i];
+      			if (ded.elementName == 'LinkAufDigitalesOriginal') { 
+      			  ctx.facetten.boolean01[0] = true; 
+      			  break;
+      			}
+          }
+          """
+      }
+  }]
+}
+
+PUT /_ingest/pipeline/SetDigitaleDatenvorhandenTMAMFA
+{
+  "description": """"
+     DLS-480 26: Digitale Daten vorhanden 
+	TMAMFA Script
+    
+    Procedure
+    Start/compile pipeline
+    Execute prepared search
+    Delete pipeline
+    <a href="http://d-nb.info/gnd/4742746-2" target="_blank">Gemeinsame Normdatei (GND)</a>
+    Hints:
+    the search is async and you get back a task with which the status can be checked e.g. GET /_tasks/lk3AiZV9R5Wc3wiPFmaD6w:14445773
+  """, 
+  "processors" : [{
+     "script" : {
+        "lang" : "painless",
+        "source" : """
+          ctx.facetten.boolean01 = new ArrayList();
+          ctx.facetten.boolean01.add(false); 
+         	if (ctx.files != null && ctx.files.length > 0) { 
+    			  ctx.facetten.boolean01[0] = true; 
+    			}
+          """
+      }
+  }]
+}
+
+
+
+POST archive-hsa/_update_by_query?pipeline=SetDigitaleDatenvorhandenHSA&conflicts=proceed&wait_for_completion=false
+{
+   "query": {
+    "match_all": {}
+  }
+}
+
+POST archive-mfa/_update_by_query?pipeline=SetDigitaleDatenvorhandenTMAMFA&conflicts=proceed&wait_for_completion=false
+{
+   "query": {
+    "match_all": {}
+  }
+}
+
+POST archive-tma/_update_by_query?pipeline=SetDigitaleDatenvorhandenTMAMFA&conflicts=proceed&wait_for_completion=false
+{
+   "query": {
+    "match_all": {}
+  }
+}
