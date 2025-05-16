@@ -58,6 +58,9 @@
         "term_vector": "with_positions_offsets"
       },
       "archiveRecordId": {
+        "copy_to": [
+          "all_Metadata_Keyword"
+        ],
         "type": "keyword"
       },
       "referenceCode": {
@@ -464,6 +467,12 @@
             "type": "keyword"
           },
           "source": {
+            "type": "keyword"
+          },
+          "gndNumber": {
+            "copy_to": [
+              "all_Metadata_Keyword"
+            ],
             "type": "keyword"
           },
           "thesaurus": {
