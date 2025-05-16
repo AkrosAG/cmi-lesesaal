@@ -170,7 +170,7 @@ namespace CMI.Manager.Index
                     Role = s.Role
                 })
                 .ToList();
-            var pattern = "\\\"http(?s):\\/\\/d-nb.info\\/gnd\\/(.*)\" ";
+            var pattern = "\\\"https?:\\/\\/d-nb.info\\/gnd\\/(.*)\" ";
             var regex = new Regex(pattern, RegexOptions.IgnoreCase);
             elasticArchiveRecord.Descriptors = archiveRecord.Metadata.Descriptors.Select(s => new ElasticDescriptor
                 {
