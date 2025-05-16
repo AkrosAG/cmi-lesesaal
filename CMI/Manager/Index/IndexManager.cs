@@ -10,7 +10,6 @@ using CMI.Manager.Index.Config;
 using CMI.Manager.Index.ValueExtractors;
 using MassTransit;
 using Serilog;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CMI.Manager.Index
 {
