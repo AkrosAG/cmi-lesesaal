@@ -19,7 +19,7 @@ PUT /_ingest/pipeline/SetGndNumberInDescriptors
           for (int i = descriptors.length-1; i>=0; i--) {
             def descriptor = descriptors[i];
       			if (descriptor.source != null) { 
-      			  def match =  /\"http(?s):\/\/d-nb.info\/gnd\/(.*)\" /.matcher(descriptor.source); 
+      			  def match =  /\"https?:\/\/d-nb.info\/gnd\/(.*)\" /.matcher(descriptor.source); 
       			   
       			  if (match.find()) { 
       				  descriptor.gndNumber = match.group(1);
