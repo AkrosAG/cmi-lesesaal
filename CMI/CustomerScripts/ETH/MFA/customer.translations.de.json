@@ -226,6 +226,24 @@
           "freiZugaenglich": "Frei einsehbar",
           "inSchutzfrist": "Gesuchspflichtig",
           "teileinSchutzfrist": "Teile davon gesuchspflichtig"
+        },
+        "ueberlieferungsform": {
+          "analog": "Analog",
+          "digital": "digital"
+        },
+        "archivalienart": {
+          "artikel": "Artikel",
+          "bild": "Bild",
+          "dokument": "Dokument",
+          "film": "Film/Video",
+          "graue": "Graue",
+          "literatur": "Literatur",
+          "korrespondenz": "Korrespondenz",
+          "manuskript": "Manuskript",
+          "objekt": "Objekt",
+          "plakat": "Plakat",
+          "plan": "Plan",
+          "tondokument": "Tondokument"
         }
       },
       "group": {
