@@ -170,7 +170,8 @@ namespace CMI.Manager.Index
                     Role = s.Role
                 })
                 .ToList();
-
+            var pattern = "\\\"https?:\\/\\/d-nb.info\\/gnd\\/(.*)\" ";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
             elasticArchiveRecord.Descriptors = archiveRecord.Metadata.Descriptors.Select(s => new ElasticDescriptor
                 {
                     Description = s.Description,
@@ -182,6 +183,7 @@ namespace CMI.Manager.Index
                     Source = s.Source,
                     Thesaurus = s.Thesaurus,
                     SortingNumber = -1,
+                    GndNumber = regex.IsMatch(s.Source) ? regex.Match(s.Source).Groups[1].Value : string.Empty,
                     DateOfBirth = s.DateOfBirth.HasValue
                         ? new ElasticDateWithYear
                         {
@@ -199,7 +201,7 @@ namespace CMI.Manager.Index
 
                 })
                 .ToList();
-           
+            
 
             TransferDataFromPropertyBag(elasticArchiveRecord, archiveRecord.Metadata.DetailData);
             GenerateStandortInfo(elasticArchiveRecord, archiveRecord.Metadata.Containers.Container);
