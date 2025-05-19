@@ -55,18 +55,14 @@ namespace CMI.Contract.Common.Compiler
             }
 
             var digitalvorhanden = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("LinkAufDigitalesOriginal"));
-            if (digitalvorhanden != null)
+            var linkZuDigitalisat = elasticArchiveRecord.DetailData.FirstOrDefault(d => d.ElementName.Equals("LinkZuDigitalisat"));
+            elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
+            if (digitalvorhanden != null || linkZuDigitalisat != null)
             {
-                elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
-                foreach (var sprache in sprachen.TextValues)
-                {
-                    elasticArchiveRecord.Facetten.Boolean01.Add(true);
-                    break;
-                }
+                elasticArchiveRecord.Facetten.Boolean01.Add(true);
             }
             else
             {
-                elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
                 elasticArchiveRecord.Facetten.Boolean01.Add(false);
             }
 
