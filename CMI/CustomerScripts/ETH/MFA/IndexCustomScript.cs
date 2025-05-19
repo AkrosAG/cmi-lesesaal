@@ -54,6 +54,16 @@ namespace CMI.Contract.Common.Compiler
                 }
             }
 
+            elasticArchiveRecord.Facetten.Boolean01 = new List<bool>();
+            if (elasticArchiveRecord.Files != null && elasticArchiveRecord.Files.Count > 0)
+            {
+                elasticArchiveRecord.Facetten.Boolean01.Add(true);
+            }
+            else
+            {
+                elasticArchiveRecord.Facetten.Boolean01.Add(false);
+            }
+
             if (elasticArchiveRecord.Descriptors.Count > 0)
             {
                 if (elasticArchiveRecord.Descriptors.Any(d => d.Thesaurus == "Körperschaftsregister" || d.Thesaurus == "Koerperschaftsregister"))

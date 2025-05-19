@@ -310,6 +310,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PainlessScripts", "PainlessScripts", "{AD20D956-1A5B-47DA-B16C-C4006242D407}"
 	ProjectSection(SolutionItems) = preProject
 		CMI\DbScripts\PainlessScripts\CreationPeriodCalculator.txt = CMI\DbScripts\PainlessScripts\CreationPeriodCalculator.txt
+		CMI\DbScripts\PainlessScripts\SetDigitalvorhanden.txt = CMI\DbScripts\PainlessScripts\SetDigitalvorhanden.txt
 		CMI\DbScripts\PainlessScripts\SetGndNumberInDescriptors.txt = CMI\DbScripts\PainlessScripts\SetGndNumberInDescriptors.txt
 		CMI\DbScripts\PainlessScripts\UpdateFieldHasPrimaryData.txt = CMI\DbScripts\PainlessScripts\UpdateFieldHasPrimaryData.txt
 	EndProjectSection
