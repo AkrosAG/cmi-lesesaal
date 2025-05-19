@@ -9,6 +9,15 @@
     "Index": "1"
   },
   {
+    "Field": "facetten.boolean01",
+    "Size": 25,
+    "Sort": "_term",
+    "Title": "DatenDigitalVorhanden",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "2"
+  },
+  {
     "Field": "facetten.text01",
     "Size": 10,
     "Sort": "_term",
