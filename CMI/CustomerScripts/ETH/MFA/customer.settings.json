@@ -64,7 +64,7 @@
       },
       {
         "type": "Text",
-        "key": "Sprache",
+        "key": "Sprachen",
         "displayName": "Sprachen",
         "translatorType": "DetailDataTranslator"
       },
