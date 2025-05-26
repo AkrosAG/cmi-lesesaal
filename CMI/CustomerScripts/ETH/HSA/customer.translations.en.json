@@ -126,7 +126,7 @@
       "permission": "Access",
       "Verwaltungssignatur": "Administrative File Number",
       "Archivalienart": "Type of Material",
-      "Sprache": "Language of Material",
+      "Sprachen": "Language of Material",
       "Ueberlieferungsform": "Form of Item at Acquisition"
     },
     "sortFields": {
