@@ -12,7 +12,7 @@
   "checkoutSubmittedStep": {
     "cartText": "Sie haben noch offene Bestellungen im <a href=\"#/{0}\">Bestellkorb</a>.",
     "checkStatusText": "Den Status Ihrer Bestellung können Sie in Ihrem <a href=\"#/{0}\">Benutzerkonto</a> verfolgen.",
-    "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Bundesarchiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
+    "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Archiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
     "thxTextDigi": "Vielen Dank für den Auftrag. Sie erhalten per E-Mail eine Offerte zugestellt.",
     "thxTextEischtisgesuch": "Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "Falls Ihr Gesuch bewilligt wird, müssen Sie sich identifizieren, um die Unterlagen zu konsultieren (siehe <a href=\"{0}\">Anmelden und Identifizieren</a>).",
@@ -44,7 +44,8 @@
     "Ortsregister": "Ortsregister",
     "Personenregister": "Personenregister",
     "Sachregister": "Sachregister",
-    "Werkregister": "Werkregister"
+    "Werkregister": "Werkregister",
+    "DatenDigitalVorhanden": "Daten digital vorhanden"
 
   },
   "footer": {
@@ -88,7 +89,8 @@
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
     "title": "Hochschularchiv der ETH Zürich | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-    "favoritesCount": "Favoriten ({0})"
+    "favoritesCount": "Favoriten ({0})",
+    "logoLink": "https://ethz.ch/de.html"
   },
   "metadata": {
     "boolean": {
@@ -117,7 +119,7 @@
       "allPrimaryData": "Volltext (Primärdaten)",
       "creationPeriod": "Entstehungszeitraum",
       "ueberlieferungsform": "Überlieferungsform",
-      "Sprache": "Sprachen ",
+      "Sprachen": "Sprachen",
       "archivalienart": "Archivalienart",
       "permission": "Benutzbarkeit",
       "Personenregister": "Personenregister",
@@ -397,15 +399,15 @@
     "zeitraumDossier": "Zeitraum des Dossiers"
   },
   "syntaxHelp": {
-    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Worten mit dem Fuzzy-Operator.",
-    "fuzzyExample": "Bsp.,um «Universität», «Université», «University» etc. zu finden: Universität~",
+    "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Wörtern mit dem Fuzzy-Operator.",
+    "fuzzyExample": "Bsp.: um «Universität», «Université», «University» etc. zu finden: Universität~",
     "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
-    "gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten, wie «Universität»: Universität ETH^2",
+    "gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten wie «Universität»: Universität ETH^2",
     "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
     "groupExample": "Bsp.: (ETH OR Zürich) AND Hochschule",
     "hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
     "hochkommasExample": "Bsp.: \"Schweizerischer Schulrat\"",
-    "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste aus zu schliessen.",
+    "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste auszuschliessen.",
     "minusExample": "Bsp.: -Einstein",
     "not": "Benutzen Sie NOT, um einzelne Begriffe auszuschliessen.",
     "notExample": "Bsp.: NOT Hochschule",

@@ -203,9 +203,9 @@
 												<div class="col-md-9 col-xs-9" [tooltip]="detailRecord.signatur" [tooltipDisabled]="!detailRecord.signatur">
 													<div class="input-group">
 														<a class="input-group-addon" target="_blank"
-															*ngIf="detailRecord.signatur && detailRecord.veId && detailRecord.veId !==0"
-															href="{{_url.getPublicClientBaseURL() + _url.getNormalizedUrl('/archiv/einheit/') + detailRecord.veId}}"
-															title="Öffnet die Detailansicht der Signatur in einem neuen Register">
+														   *ngIf="detailRecord.signatur && detailRecord.veId && detailRecord.veId !==0"
+														   href="{{_url.getPublicClientBaseURL() + _url.getNormalizedUrl('/archiv/einheit/') + detailRecord.veId}}"
+														   title="Öffnet die Detailansicht der Signatur in einem neuen Register">
 															<i class="glyphicon glyphicon-new-window"></i>
 														</a>
 														<input class="form-control"
@@ -506,10 +506,7 @@
 													<input class="form-control"
 														   name="datumDesEntscheids"
 														   id="datumDesEntscheids"
-														   [ngModel]="getDateAsString(detailRecord.datumDesEntscheids)"
-														   (ngModelChange)="setStringAsDate($event, detailRecord.datumDesEntscheids)"
-														   datePicker
-														   [minDateToday]="false"
+														   [ngModel]="getFormattedDateWithoutTime(detailRecord.datumDesEntscheids)"
 														   [disabled]="true">
 												</div>
 											</div>
@@ -557,12 +554,8 @@
 													<input class="form-control"
 														   name="abschlussdatum"
 														   id="abschlussdatum"
-														   [ngModel]="getDateTimeAsString(detailRecord.abschlussdatum)"
-														   (ngModelChange)="setStringAsDateTime($event, 'abschlussdatum')"
-														   datePicker
-														   [minDateToday]="false"
 														   [disabled]="true"
-														   required>
+														   [ngModel]="getFormattedDate(detailRecord.abschlussdatum)">
 												</div>
 											</div>
 										</div>
@@ -747,9 +740,9 @@
 							</cmi-viaduc-in-vorlage-exportieren-modal>
 
 							<cmi-viaduc-digitalisierung-ausloesen-modal *ngIf="showDigitalisierungAusloesen"
-																  [ids]="[detailRecord.itemId]"
-																  [(open)]="showDigitalisierungAusloesen"
-																  (onSubmitted)="init()">
+																		[ids]="[detailRecord.itemId]"
+																		[(open)]="showDigitalisierungAusloesen"
+																		(onSubmitted)="init()">
 							</cmi-viaduc-digitalisierung-ausloesen-modal>
 
 							<cmi-viaduc-auftraege-abbrechen-modal *ngIf="showEinsichtsgesucheAbbrechen"

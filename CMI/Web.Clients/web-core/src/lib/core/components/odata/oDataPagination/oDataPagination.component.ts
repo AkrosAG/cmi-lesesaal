@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ODataCollectionView} from '@grapecity/wijmo.odata';
+import {ODataCollectionView} from '@mescius/wijmo.odata';
 import {Utilities as _util} from '../../../includes';
-import {CollectionView} from '@grapecity/wijmo';
+import {CollectionView} from '@mescius/wijmo';
 
 @Component({
 	selector: 'cmi-viaduc-odata-pagination',

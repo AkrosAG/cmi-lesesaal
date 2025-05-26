@@ -14,9 +14,9 @@ export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 	public loadedHtml: string;
 	private _navigationSubscription: any = null;
 
-	private  activeHeader:string = 'id="header_${0}" class="col-header text-center"';
-	private  activeRow:string =  'id="column_${0}_row_\\d" class="text-center';
-	private  activeLastRow:string =  'id="column_${0}_row_last" class="text-center';
+	private  activeHeader = 'id="header_${0}" class="col-header text-center"';
+	private  activeRow =  'id="column_${0}_row_\\d" class="text-center';
+	private  activeLastRow =  'id="column_${0}_row_last" class="text-center';
 
 	constructor(private _static: StaticContentService) {
 	}
@@ -40,7 +40,7 @@ export class StaticPageBenutzertableComponent implements OnInit, OnDestroy {
 					this.loadedHtml = html;
 					subscription.unsubscribe();
 				},
-				error => {
+				() => {
 					this.loadedHtml = null;
 					subscription.unsubscribe();
 				}

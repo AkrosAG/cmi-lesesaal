@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Utilities as _util} from '../includes/utilities';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class HttpService {
 	}
 
 	public download(url: string): Observable<HttpEvent<any>> {
-		let request = new HttpRequest('GET', url, {responseType: 'blob', reportProgress: true });
+		const request = new HttpRequest('GET', url, {responseType: 'blob', reportProgress: true });
 		return this._http.request(request);
 	}
 

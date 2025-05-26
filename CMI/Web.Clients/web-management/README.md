@@ -1,19 +1,19 @@
-# cmi-viaduc-web-management
+# cmi-lesesaal-web-management
 
-- [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc)
-  - [cmi-viaduc-web-core](https://github.com/SwissFederalArchives/cmi-viaduc-web-core)
-  - [cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)
-  - **[cmi-viaduc-web-management](https://github.com/SwissFederalArchives/cmi-viaduc-web-management)** :triangular_flag_on_post:
-  - [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)
+- [cmi-lesesaal](https://github.com/AkrosAG/cmi-lesesaal)
+  - [cmi-lesesaal-web-core](../web-core)
+  - [cmi-lesesaal-web-frontend](../web-frontend)
+  - **[cmi-lesesaal-web-management](../web-management)** :triangular_flag_on_post:
+  - [cmi-lesesaal-backend](../../../CMI)
 
 # Context
 
-The [Lesesaal](https://github.com/SwissFederalArchives/cmi-viaduc) project includes 4 code repositories. The present repository `cmi-viaduc-web-management` is an Angular application designed for internal management.
-Together with the _public access_ application ([cmi-viaduc-web-frontend](https://github.com/SwissFederalArchives/cmi-viaduc-web-frontend)) it uses a common code library ([cmi-viaduc-web-core](https://github.com/SwissFederalArchives/cmi-viaduc-web-core)). The frontend applications are hosted in an `ASP.NET` container (see backend repository [cmi-viaduc-backend](https://github.com/SwissFederalArchives/cmi-viaduc-backend)) and communicate with the system via a web API.
+The [Lesesaal](https://github.com/AkrosAG/cmi-lesesaal)  includes 4 code modules. The present repository `cmi-lesesaal-web-management` is an Angular application designed for internal management.
+Together with the _public access_ application ([cmi-lesesaal-web-frontend](../web-frontend/) it uses a common code library ([cmi-lesesaal-web-core](../web-core)). The frontend applications are hosted in an `ASP.NET` container (see backend repository [cmi-lesesaal-backend](../../../)) and communicate with the system via a web API.
 
 ![The Big-Picture](docs/imgs/context.svg)
 
-> Note: A general description of the repositories can be found in the repository [cmi-viaduc](https://github.com/SwissFederalArchives/cmi-viaduc).
+> Note: A general description of the repositories can be found in the repository [cmi-lesesaal](https://github.com/AkrosAG/cmi-lesesaal).
 
 # Architecture and components
 
@@ -50,18 +50,16 @@ The application contains the management GUI for Lesesaal.
   - `npm cache clean --force`
 - Install Angular CLI
   - `npm install -g @angular/cli`
-- Clone repository [cmi-viaduc-web-core](https://github.com/SwissFederalArchives/cmi-viaduc-web-core) to a directory (e.g. C:\Lesesaal)
-- Clone repository `cmi-viaduc-web-management` into the same root directory (e.g. C:\Lesesaal)
-- Change to the `cmi-viaduc-web-core` directory with a command line
+- Change to the `web-core` directory with a command line
   - Execute: `npm i` to install the dependencies
   - Run: `npm run build` to build the library
 
 ## Install
 
-- Change to the directory `cmi-viaduc-web-management` with a command line tool
-  - Run: `npm run link` to link `cmi-viaduc-web-core` as component
+- Change to the directory `web-management` with a command line tool
+  - Run: `npm run link` to link `cmi-lesesaal-web-core` as component
   - Run: `npm i` to install the dependencies
-  - Run: `npm run build` build the project into a `dist` folder inside `cmi-viaduc-web-management`.
+  - Run: `npm run build` build the project into a `dist` folder inside `cmi-lesesaal-web-management`.
 
 # Customization
 
@@ -86,6 +84,7 @@ The application contains the management GUI for Lesesaal.
 
 - [CM Informatik AG](https://cmiag.ch)
 - [Evelix GmbH](https://evelix.ch)
+- [Akros AG](https://www.akros.ch)
 
 # License
 
@@ -93,9 +92,8 @@ GNU Affero General Public License (AGPLv3), see [LICENSE](LICENSE.TXT)
 
 # Contribute
 
-This repository is a copy which is updated regularly - therefore contributions via pull requests are not possible. However, independent copies (forks) are possible under consideration of the AGPLV3 license.
+Pull requests and merge on these repositories is restricted. . However, independent copies (forks) are possible under consideration of the AGPLV3 license.
 
 # Contact
 
-- For general questions (and technical support), please contact the Swiss Federal Archives by e-mail at bundesarchiv@bar.admin.ch.
 - Technical questions or problems concerning the source code can be posted here on GitHub via the "Issues" interface.

@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ApplicationFeatureEnum, ConfigService, InternalStatus, ShippingType, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
-import {AuthorizationService, ErrorService, UiService, UrlService, UserService} from '../../../shared/services';
+import {AuthorizationService, ErrorService, UiServiceMC, UrlService, UserService} from '../../../shared/services';
 import {OrderingFlatItem, SelectionPreFilter} from '../../model';
-import {WjMenu} from '@grapecity/wijmo.angular2.input';
+import {WjMenu} from '@mescius/wijmo.angular2.input';
 import {ManagementUserSettings, OrderUserSettings, User} from '../../../shared/model';
 import {OrderService} from '../../services';
 import {OrdersListComponent} from '../ordersList/ordersList.component';
-import * as moment from 'moment';
+import moment from 'moment';
 import {SessionStorageService} from '../../../client/services';
 
 @Component({
@@ -48,9 +48,7 @@ export class OrdersListPageComponent implements OnInit {
 	public showDigitalisierungAbschliessen = false;
 	public showBarCode = false;
 	public hasRight = false;
-
-	// @ts-ignore
-	private barcodeSet: boolean;
+	public barcodeSet: boolean;
 	private _previousPreFilter: SelectionPreFilter = null;
 	private _isInitializing = true;
 
@@ -58,7 +56,7 @@ export class OrdersListPageComponent implements OnInit {
 				private _url: UrlService,
 				private _usr: UserService,
 				private _ord: OrderService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _storage: SessionStorageService,
 				private _err: ErrorService,
 				private _aut: AuthorizationService,
@@ -79,7 +77,7 @@ export class OrdersListPageComponent implements OnInit {
 	}
 
 	private _loadColumns(): void {
-		let userSettings = this._cfg.getSetting('user.settings') as ManagementUserSettings;
+		const userSettings = this._cfg.getSetting('user.settings') as ManagementUserSettings;
 		if (userSettings.orderSettings && userSettings.orderSettings.columns) {
 			this.columns = userSettings.orderSettings.columns;
 		} else {
@@ -94,7 +92,7 @@ export class OrdersListPageComponent implements OnInit {
 
 	private _restorePreFilterButtonState() {
 		setTimeout(() => {
-			let filter = this._storage.getItem('AL_PreFilterButton') as SelectionPreFilter;
+			const filter = this._storage.getItem('AL_PreFilterButton') as SelectionPreFilter;
 			if (filter !== null && filter !== undefined) {
 				if (filter === SelectionPreFilter.Barcode) {
 					this.barcodeSet = true;
@@ -131,7 +129,7 @@ export class OrdersListPageComponent implements OnInit {
 	}
 
 	public listMenuItemClicked(menu: WjMenu) {
-		let cmd = menu.selectedIndex;
+		const cmd = menu.selectedIndex;
 		switch (cmd) {
 			case 0:
 				this.saveColumns();
@@ -216,7 +214,7 @@ export class OrdersListPageComponent implements OnInit {
 	}
 
 	private _saveColumnsAsUserSettings(cols) {
-		let existingSettings = this._cfg.getUserSettings() as ManagementUserSettings;
+		const existingSettings = this._cfg.getUserSettings() as ManagementUserSettings;
 		existingSettings.orderSettings = <OrderUserSettings> {
 			columns: cols
 		};
@@ -299,7 +297,7 @@ export class OrdersListPageComponent implements OnInit {
 			if (bewilligungDates && bewilligungDates.length > 0) {
 
 				if (bewilligungDates.length > 1) {
-					for (let d of bewilligungDates) {
+					for (const d of bewilligungDates) {
 						if (!bewilligungDates[0] && d) {
 							this._ui.showError('Ausgewählte Aufträge haben unterschiedliche Bewilligungsdaten', 'Freigabekontrolle');
 							return;
@@ -322,7 +320,7 @@ export class OrdersListPageComponent implements OnInit {
 			const internalComments = checkedItems.map((i: OrderingFlatItem) => i.internalComment);
 			if (internalComments && internalComments.length > 0) {
 				if (internalComments.length > 1) {
-					for (let c of internalComments) {
+					for (const c of internalComments) {
 						if (c !== internalComments[0]) {
 							this._ui.showError('Ausgewählte Aufträge haben unterschiedliche interne Bemerkungen', 'Freigabekontrolle');
 							return;

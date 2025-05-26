@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ShoppingCartService} from '../../../services/shoppingCart.service';
 import {AuthorizationService} from '../../../services/authorization.service';
 import {Ordering, OrderItem, ShippingType, ConfigService} from '@cmi/lesesaal-web-core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {KontingentResult, OrderCreationRequest} from '../../../model';
 
 @Component({
@@ -16,20 +16,20 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 	public liefertypDigitalText: string;
 	public liefertypLesesaalText: string;
 	public orderDigitalWarningText: string;
-	public cartCount: number = 0;
+	public cartCount = 0;
 	public ShippingType = ShippingType;
-	public isAsOrBvwUser: boolean = false;
-	public isDigitalUser: boolean = false;
+	public isAsOrBvwUser = false;
+	public isDigitalUser = false;
 	public showDigitizationWarning: boolean;
 	public digitalisatBestellungMoeglich = false;
 	public showDigitalisationNichtMoeglichHint = false;
 	public willExceedKontingent = false;
 	public loading = true;
-	public showLoading: boolean = false;
+	public showLoading = false;
 
 	public items: OrderItem[] = [];
-	public form: FormGroup;
-	public nextClicked: boolean = false;
+	public form: UntypedFormGroup;
+	public nextClicked = false;
 	public kontingentResult: KontingentResult;
 	public digitalisationItemsToOrder: OrderItem[] = [];
 
@@ -38,7 +38,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 
 	constructor(private _scs: ShoppingCartService,
 				private _cfg: ConfigService,
-				private _formBuilder: FormBuilder,
+				private _formBuilder: UntypedFormBuilder,
 				private _author: AuthorizationService) {
 	}
 
@@ -48,11 +48,11 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 			shippingType: [null, Validators.required]
 		});
 
-
 		this.liefertypAmtText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeCommission', 'ins <strong>Amt</strong> bestellen (Lieferfrist: ein bis zwei Arbeitstage)');
 
 		this.liefertypDigitalText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeDigital',
 		'<strong>digital</strong> erhalten. Sie erhalten das digitalisierte Dossier in rund 30 Tagen. Alles Weitere zur Digitalisierung finden Sie unter ' +
+			// eslint-disable-next-line
 		'<a href=\"https://www.recherche.bar.admin.ch/recherche/#/de/informationen/bestellen-und-konsultieren\" target=\"_blank\" rel=\"noopener noreferrer\">Bestellen und Konsultieren</a>.');
 
 		this.liefertypLesesaalText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeReadingRoom',
@@ -61,10 +61,10 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 
 		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
 
-		let tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers', '').split(';');
+		const tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers', '').split(';');
 		this.isDigitalUser =  this._author.hasAnyAccessToken(tokens);
 
-		let activeOrder = this._scs.getActiveOrder();
+		const activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
 			this.form.patchValue({
 				shippingType: activeOrder.type
@@ -78,7 +78,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		this.showDigitizationWarning = this._scs.getShowDigitizationWarningSetting();
 		this.orderDigitalWarningText = this._scs.getOrderDigitalText();
 
-		this.form.controls.shippingType.valueChanges.subscribe(async val => {
+		this.form.controls.shippingType.valueChanges.subscribe(async () => {
 			await this._resetActiveOrder();
 		});
 	}
@@ -123,14 +123,14 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 				this.showDigitalisationNichtMoeglichHint = true;
 				this.willExceedKontingent = false;
 			}
-		}, () => {
+		}, () => { return
 		}, () => {
 			this.loading = false;
 		});
 	}
 
 	public get isNextButtonDisabled(): boolean {
-		let isDigitalisierungsAuftrag = (this.form
+		const isDigitalisierungsAuftrag = (this.form
 			&& this.form.controls.shippingType
 			&& this.form.controls.shippingType.value === ShippingType.Digitalisierungsauftrag);
 
@@ -143,7 +143,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		}
 
 		// Benutzer darf nicht alle abwählen
-		let excludedAll = this.digitalisationItemsToOrder.length === 0;
+		const excludedAll = this.digitalisationItemsToOrder.length === 0;
 		return isDigitalisierungsAuftrag && (!this.digitalisatBestellungMoeglich || (this.exceedsKontingent()) || this.willExceedKontingent && excludedAll);
 	}
 
@@ -151,7 +151,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		setTimeout(() => {
 			if (this.loading) {
 				this.showLoading = true;
-				let interval = setInterval(() => {
+				const interval = setInterval(() => {
 					if (!this.loading) {
 						this.showLoading = false;
 						clearInterval(interval);
@@ -201,7 +201,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 	}
 
 	public updateDigitalisationSelection(event: Event, item: OrderItem) {
-		let index = this.digitalisationItemsToOrder.indexOf(item);
+		const index = this.digitalisationItemsToOrder.indexOf(item);
 		if (index >= 0) {
 			this.digitalisationItemsToOrder.splice(index, 1);
 		} else {

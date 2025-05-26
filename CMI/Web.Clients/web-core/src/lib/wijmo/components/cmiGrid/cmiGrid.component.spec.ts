@@ -1,13 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {WjInputModule} from '@grapecity/wijmo.angular2.input';
-import {WjGridModule} from '@grapecity/wijmo.angular2.grid';
+import {WjInputModule} from '@mescius/wijmo.angular2.input';
+import {WjGridModule} from '@mescius/wijmo.angular2.grid';
 import {CmiGridComponent} from './cmiGrid.component';
-import {WjGridFilterModule} from '@grapecity/wijmo.angular2.grid.filter';
+import {WjGridFilterModule} from '@mescius/wijmo.angular2.grid.filter';
 import {WijmoService} from '../../services';
-import {CollectionView} from '@grapecity/wijmo';
-import {FilterType, Operator} from '@grapecity/wijmo.grid.filter';
-import {DataMap} from '@grapecity/wijmo.grid';
+import {CollectionView} from '@mescius/wijmo';
+import {FilterType, Operator} from '@mescius/wijmo.grid.filter';
+import {DataMap} from '@mescius/wijmo.grid';
 
 describe('CmiGridComponent', () => {
 	let fixture: ComponentFixture<CmiGridComponent>;

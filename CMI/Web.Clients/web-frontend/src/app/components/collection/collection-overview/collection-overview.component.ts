@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CollectionService} from '../../../modules/client/services/collection.service';
-import {CollectionListItem, UiService} from '@cmi/lesesaal-web-core';
-import {ICollectionListItem} from '@cmi/lesesaal-web-core/lib/core/model/collection/collectionListItem';
+import { ICollectionListItem, UiService} from '@cmi/lesesaal-web-core';
 
 @Component({
 	selector: 'cmi-collection-overview',
@@ -45,7 +44,7 @@ export class CollectionOverviewComponent implements OnInit {
 		}
 	}
 
-	private prepareResult(result: CollectionListItem[]) {
+	private prepareResult(result: ICollectionListItem[]) {
 		this.collections = result;
 	}
 

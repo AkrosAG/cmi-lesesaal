@@ -12,7 +12,7 @@
   "checkoutSubmittedStep": {
     "cartText": "You still have open orders in your <a href=\"#/{0}\">shopping cart</a>.",
     "checkStatusText": "You can monitor the status of your order in your <a href=\"#/{0}\">user account</a>.",
-    "disclaimerText": "The video call will be recorded but the recording will be deleted once identification is complete. The Federal Archives will store only a copy of the identification document, the photograph and the user information in tabular form. You may request information about your stored data at any time (Art. 8 FADP).",
+    "disclaimerText": "The video call will be recorded but the recording will be deleted once identification is complete. The archives will store only a copy of the identification document, the photograph and the user information in tabular form. You may request information about your stored data at any time (Art. 8 FADP).",
     "thxTextDigi": "Thank you for your order. You will receive an offer by e-mail.",
     "thxTextEischtisgesuch": "We will forward your request to the office responsible. The processing of requests for access can take up to 4 weeks.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "If your request is approved, you will need to identify yourself in order to consult the documents (see <a href=\"{0}\">Registration and identification</a>).",
@@ -44,7 +44,8 @@
     "Ortsregister": "Location register",
     "Personenregister": "Register of persons",
     "Sachregister": "Subject index",
-    "Werkregister": "Register of works"
+    "Werkregister": "Register of works",
+    "DatenDigitalVorhanden": "Documents available in digital form"
   },
   "footer": {
     "footerTitle": "Footer",
@@ -87,7 +88,8 @@
     "srBreadcrumbOrientation": "Navigating the website",
     "title": "ETH Zurich University Archives | ETH Zurich",
     "zumBestellkorb": "Navigate to shopping cart with {0} items",
-    "favoritesCount": "Favourites ({0})"
+    "favoritesCount": "Favourites ({0})",
+    "logoLink": "https://ethz.ch/en.html"
   },
   "metadata": {
     "boolean": {
@@ -124,7 +126,7 @@
       "permission": "Access",
       "Verwaltungssignatur": "Administrative File Number",
       "Archivalienart": "Type of Material",
-      "Sprache": "Language of Material",
+      "Sprachen": "Language of Material",
       "Ueberlieferungsform": "Form of Item at Acquisition"
     },
     "sortFields": {

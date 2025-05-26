@@ -1,17 +1,21 @@
-# Connection to the Digital Information Repository (DIR).
+# Connection to the Rosetta
 
-The commercial system Preservica is used in the Swiss Federal Archive. This system is custom tailored for the Federal Archives.
-Large parts of the given codebase are trimmed to this system/configuration and cannot be used directly. 
+The commercial system **Rosetta** is used at **ETH Zürich** for long-term preservation and management of digital information. This system is custom-tailored to meet ETH Zürich's institutional needs.  
+Large parts of the provided codebase are specifically designed for Rosetta’s configuration and cannot be directly reused with other repositories.
 
-It is mandatory to make adjustments in the following projects.
-* CMI.Access.Repository
-* CMI.Engine.PackageMetadata
-* CMI.Manager.Repository
+### Mandatory Adjustments
+The following projects must be adapted for integration with Rosetta:
+- `CMI.Access.Repository`
+- `CMI.Engine.PackageMetadata`
+- `CMI.Manager.Repository`
 
+---
 
-Access to the repository is made through a [CMIS interface](https://en.wikipedia.org/wiki/Content_Management_Interoperability_Services). 
-For local development, the open-source CMS system [Alfresco](https://www.alfresco.com/) can be used. Not all use cases can be implemented with this, but it can at least be used to get started.
+### Repository Access
 
-If the repository you use also provides a CMIS interface, then it is sufficient to adapt the existing code in the necessary places. The biggest changes should be in the project `CMI.Engine.PackageMetadata` where the metadata is read and prepared according to the Arelda standard.
+Access to the repository is achieved through the **Rosetta API interface**.  
 
-If the repository used does not offer a CMIS interface, the present projects can serve as examples. The same actions must be reprogrammed analogously. It is important to keep in mind that the same messages must be sent via the bus at the end.
+If the repository you are using provides an API interface similar to Rosetta, the existing code can be adapted with changes in specific areas. The most significant modifications will likely be required in the `CMI.Engine.PackageMetadata` project, where metadata is read and processed according to the **Arelda standard**.Rosetta provides **METS Standard** which was altered to **Arelda standard**  for internal use.
+
+If the repository used does not provide an API compatible with Rosetta, the existing projects can be used as examples. Similar actions must be implemented in your codebase to replicate the required functionality.  
+**Important**: Ensure that the same messages are sent via the message bus at the end of the process to maintain system compatibility.

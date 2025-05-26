@@ -14,13 +14,17 @@ import {
 	StammdatenService,
 	TranslationService
 } from '@cmi/lesesaal-web-core';
-import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadService, UiService, UrlService, UserService} from '../../../shared/services';
+import {AuthorizationService, DetailPagingService, ErrorService, FileDownloadService, UiServiceMC, UrlService, UserService} from '../../../shared/services';
 import {Bestellhistorie, OrderingFlatDetailItem, OrderingFlatItem, StatusHistory} from '../../model';
 import {OrderService} from '../../services';
 import {ActivatedRoute} from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import flatpickr from 'flatpickr';
+import {German} from 'flatpickr/dist/l10n/de';
+import {FlatPickrOutputOptions} from 'angularx-flatpickr/lib/flatpickr.directive';
+
 
 @Component({
 	selector: 'cmi-viaduc-orders-list-page',
@@ -73,7 +77,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 				private _dps: DetailPagingService,
 				private _stm: StammdatenService,
 				private _toastr: ToastrService,
-				private _ui: UiService,
+				private _ui: UiServiceMC,
 				private _err: ErrorService,
 				private _txt: TranslationService,
 				private _route: ActivatedRoute) {
@@ -95,6 +99,9 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 			{ 'id': GebrauchskopieStatus.Fehlgeschlagen, 'name': this._txt.get('enums.gebrauchskopieStatus.fehlgeschlagen', 'Fehlgeschlagen') },
 			{ 'id': GebrauchskopieStatus.Versendet, 'name': this._txt.get('enums.gebrauchskopieStatus.versendet', 'Versendet') }
 		];
+
+
+		flatpickr.localize(German);
 	}
 
 	private _init(): void {
@@ -196,7 +203,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		this._ord.auftragUpdateOrderingDetail(this.detailRecord as OrderingFlatItem).subscribe(() => {
 			this.reset();
 			this._toastr.success(this._txt.get('ordersDetailPage.updateSuccess', 'Erfolgreich gespeichert'));
-		}, (e) => {
+		}, () => {
 			this._toastr.error(this._txt.get('ordersDetailPage.updateError', 'Fehler beim Speichern'));
 		});
 	}
@@ -333,7 +340,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		if (!this._err.verifyApplicationFeatureOrShowError(ApplicationFeatureEnum.AuftragsuebersichtAuftraegeKannEntscheidFreigabeHinterlegen)) {
 			return;
 		}
-		let strings: string[] = [];
+		const strings: string[] = [];
 		strings[0] = this.detailRecord.userId;
 		this._userService.getUsers(strings).then((users) => {
 			if (users) {
@@ -435,6 +442,7 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	}
 
 	@HostListener('window:scroll', ['$event'])
+	// eslint-disable-next-line
 	public onScroll(event) {
 		const verticalOffset = window.pageYOffset
 			|| document.documentElement.scrollTop
@@ -468,13 +476,13 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 
 	public erwartetesRueckgabeDatumChange(): void {
 		if (this.canFieldAusleihdauerChange()) {
-			let rueckgabe = moment(this?.detailRecord?.erwartetesRueckgabeDatum);
+			const rueckgabe = moment(this?.detailRecord?.erwartetesRueckgabeDatum);
 			const ausgabe = moment(this?.detailRecord?.ausgabedatum);
 			// it has already deducted one day more
 			// if the order was after 0 o'clock
 			rueckgabe.add(ausgabe.hours(), 'hours');
 			rueckgabe.add(ausgabe.minute() + 1, 'minutes');
-			let ausgabeDays = rueckgabe.diff(ausgabe, 'days');
+			const ausgabeDays = rueckgabe.diff(ausgabe, 'days');
 
 			this.detailRecord.ausleihdauer = ausgabeDays;
 			if (ausgabeDays > 0) {
@@ -485,11 +493,26 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		}
 	}
 
-	public rueckgabeDatumValidChanged(isValid: boolean) {
-		this.isValidRueckgabeDatum = isValid;
+
+
+	public dataPickerValueUpdate($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailRecord.erwartetesRueckgabeDatum = null;
+			this.isValidRueckgabeNumber = false;
+		} else {
+			this.isValidRueckgabeNumber = true;
+			this.detailRecord.erwartetesRueckgabeDatum = $event.selectedDates[0];
+			this.detailRecord.erwartetesRueckgabeDatum.setDate(this.detailRecord.erwartetesRueckgabeDatum.getDate() + 1);
+		}
 	}
 
-	public orderingLesesaalDatumValidChanged(isValid: boolean) {
-		this.isValidOrderingLesesaalDatum = isValid;
+	public dataPickerValueUpdateGeplanteAusgabe($event: FlatPickrOutputOptions) {
+		if ($event.dateString === ''){
+			this.detailRecord.orderingLesesaalDate= null;
+		}
+		else {
+			this.detailRecord.orderingLesesaalDate = $event.selectedDates[0];
+			this.detailRecord.orderingLesesaalDate.setDate(this.detailRecord.orderingLesesaalDate.getDate() + 1);
+		}
 	}
 }

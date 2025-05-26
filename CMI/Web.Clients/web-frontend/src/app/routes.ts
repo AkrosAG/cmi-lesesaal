@@ -103,6 +103,15 @@ export const defaultRouteChildren: any = [
 				component: StaticPageComponent
 			},
 			{
+				path: 'einsichtsgesuche',
+				_localize: {
+					'fr': 'demandes-de-consultation',
+					'it': 'domande-di-consultazione',
+					'en': 'requests-to-consult-records'
+				},
+				component: StaticPageComponent
+			},
+			{
 				path: 'zitieren-und-publizieren',
 				_localize: {
 					'fr': 'citer-et-publier',

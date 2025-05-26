@@ -14,7 +14,7 @@ export class FileSectionComponent implements OnInit {
 	@Input()
 	public entity: Entity;
 	public files: any[];
-	public showHasProtectedFiles: boolean = false;
+	public showHasProtectedFiles = false;
 
 	constructor(private _options: CoreOptions,
 		private _context: ClientContext,
@@ -47,9 +47,15 @@ export class FileSectionComponent implements OnInit {
 		return cssClass;
 	}
 
-	public getFileUrl(name: string, download: boolean)	{
+	public getFileUrl(name: string, downloadUrl: string, download: boolean)	{
+		// extract file id from url
+		// this is a workaround. Better would be to store the file id directly in Elastic
+		const regex = /.*?cdws\/files\/(?<id>.*?)-\d*\/.*/gm;
+		const subst = `$<id>`;
+		const id = downloadUrl.replace(regex, subst);
+
 		const apiDataUrl = this._options.serverUrl + this._options.publicPort + '/api/File';
-		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&name=${name}&download=${download}`;
+		const url = `${apiDataUrl}/GetMetadataFile?id=${this.entity.archiveRecordId}&fileId=${id}&name=${name}&download=${download}`;
 		return url;
 	}
 

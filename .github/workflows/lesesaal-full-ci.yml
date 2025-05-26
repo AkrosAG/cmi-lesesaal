@@ -15,15 +15,15 @@ jobs:
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-core
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
-    - name: Setup Node 12.x
-      uses: actions/setup-node@v1
+    - name: Setup Node 22.x
+      uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '22.x'
         
     - name: Cache node modules
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -33,7 +33,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps      
     
     - name: Replace licenses
       working-directory: ${{ env.WORKING_DIR }}/src/lib/wijmo 
@@ -58,15 +58,15 @@ jobs:
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-frontend
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
-    - name: Setup Node 12.x
-      uses: actions/setup-node@v1
+    - name: Setup Node 22.x
+      uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '22.x'
         
     - name: Cache node modules
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -76,7 +76,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps   
 
     - name: Restore Core from artifacts
       uses: actions/download-artifact@v4
@@ -98,15 +98,15 @@ jobs:
     env:
       WORKING_DIR: ./CMI/Web.Clients/web-management
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
-    - name: Setup Node 12.x
-      uses: actions/setup-node@v1
+    - name: Setup Node 22.x
+      uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '22.x'
         
     - name: Cache node modules
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -116,7 +116,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ${{ env.WORKING_DIR }}
       run: |
-        npm i
+        npm i --legacy-peer-deps   
       env:
         NPM_AUTH_TOKEN: ${{ secrets.MYGET_PUSH_APIKEY }}
 
@@ -143,7 +143,7 @@ jobs:
       version: ${{ env.GitBuildVersion }}
       tagExists: ${{ steps.checkTag.outputs.exist }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           
@@ -157,7 +157,7 @@ jobs:
         run: nuget restore ${{ env.SOLUTION }}
         
       - name: Build Services
-        run: msbuild ${{ env.SOLUTION }} /t:Rebuild /p:Configuration=Debug 
+        run: msbuild ${{ env.SOLUTION }} /t:Rebuild /p:Configuration=Release 
         
       - name: Test and Cover
         shell: pwsh

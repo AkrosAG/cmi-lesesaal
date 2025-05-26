@@ -21,14 +21,15 @@ export class DetailSectionComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		let rows = this.rows = [];
-		for (let key in this.data) {
+		const rows = this.rows = [];
+		for (const key in this.data) {
 			if (this.data.hasOwnProperty(key)) {
 				try {
-					let row: SectionRow = this._renderService.renderSectionRow(this.entity, key, this.data[key]);
+					const row: SectionRow = this._renderService.renderSectionRow(this.entity, key, this.data[key]);
 					if (row && (row.markup || row.html || row.text)) {
 						rows.push(row);
 					}
+					// eslint-disable-next-line
 				} catch (e) {
 					rows.push({label: key, text: 'Unexpected error while rendering data'});
 				}

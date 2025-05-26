@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { ModalBase } from '../modal/modal.base';
+import {CanDeactivateData} from '../../../../model';
 
 @Component({
 	selector: 'cmi-viaduc-confirmation-modal',
 	template: `
 		<cmi-viaduc-modal-service>
-			<cmi-viaduc-modal [modalTitle]="title" (closeClicked)="onCancelInternal()" opened="true">
+			<cmi-viaduc-modal [modalTitle]="title" (closeClicked)="onCancelInternal()" [opened]="true">
 				<cmi-viaduc-modal-body>
 					<div [innerHTML]="content"></div>
 				</cmi-viaduc-modal-body>
 				<cmi-viaduc-modal-footer>
 					<div class="row">
 						<div class="col-xs-12">
-							<button type="button" autoFocus class="btn btn-secondary" (click)="onCancelInternal()">
+							<button type="button" [autoFocus]="true" class="btn btn-secondary" (click)="onCancelInternal()">
 								{{noButtonText}}
 							</button>
 							<button type="button" class="btn btn-primary" (click)="onOkInternal()">
@@ -30,16 +31,15 @@ export class ConfirmationModalComponent extends ModalBase {
 	public content: string;
 	public yesButtonText: string;
 	public noButtonText: string;
-	public onCancel = () => { };
-	public onOk = () => { };
+	public candeactive: CanDeactivateData
 
 	public onCancelInternal(): void {
-		this.onCancel();
+		this.candeactive.result.emit(false);
 		this.closeModal();
 	}
 
 	public onOkInternal(): void {
-		this.onOk();
+		this.candeactive.result.emit(true);
 		this.closeModal();
 	}
 }

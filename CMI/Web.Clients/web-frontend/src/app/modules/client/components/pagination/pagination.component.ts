@@ -34,7 +34,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 		this._elasticHitLimit = this._searchService.elasticHitLimit;
 		this._refresh();
 	}
-
+	// eslint-disable-next-line
 	public ngOnChanges(changes: any) {
 		this._refresh();
 	}

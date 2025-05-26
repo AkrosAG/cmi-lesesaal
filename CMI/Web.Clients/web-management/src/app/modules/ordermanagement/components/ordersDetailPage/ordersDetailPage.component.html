@@ -643,17 +643,17 @@
 											</label>
 											<div class="col-md-9 col-xs-9">
 												<input class="form-control"
+													   type="date"
 													   name="lesesaalDate"
 													   id="lesesaalDate"
 													   [ngModel]="getDateAsString(detailRecord.orderingLesesaalDate)"
-													   (ngModelChange)="setStringAsDate($event, 'orderingLesesaalDate')"
-													   datePicker
-													   (isValidChanged)="orderingLesesaalDatumValidChanged($event)"
-													   [minDateToday]="false"
-													   [disabled]="isFieldReadonly('orderingLesesaalDate')"/>
-												<span *ngIf="!isValidOrderingLesesaalDatum" class="help-block" role="alert">
-													<span *ngIf="!isValidOrderingLesesaalDatum">{{'Bitte wählen Sie ein gültiges Datum aus (im Format tt.mm.jjjj)' | translate:'main.errorWrongDate'}}</span>
-												</span>
+													   autocomplete="off"
+													   [disabled]="isFieldReadonly('orderingLesesaalDate')"
+													   [allowInput]="true"
+													   mwlFlatpickr
+													   (flatpickrValueUpdate)="dataPickerValueUpdateGeplanteAusgabe($event)"
+													   [convertModelValue]="true"
+													   dateFormat="d.m.Y"/>
 											</div>
 										</div>
 									</div>
@@ -665,20 +665,19 @@
 											</label>
 											<div class="col-md-9 col-xs-9">
 												<input class="form-control"
-													   type="text"
+													   type="date"
 													   name="erwartetesRueckgabeDatum"
 													   id="erwartetesRueckgabeDatum"
 													   [ngModel]="getDateAsString(detailRecord.erwartetesRueckgabeDatum)"
-													   (ngModelChange)="setStringAsDate($event, 'erwartetesRueckgabeDatum')"
+													   autocomplete="off"
 													   (change)="erwartetesRueckgabeDatumChange()"
 													   [disabled]="!canFieldAusleihdauerChange()"
-													   datePicker
-													   (isValidChanged)="rueckgabeDatumValidChanged($event)"
-													   [minDateToday]="false"
-													   [minDate]=detailRecord.ausgabedatum />
-												<span *ngIf="!isValidRueckgabeDatum" class="help-block" role="alert">
-													<span *ngIf="!isValidRueckgabeDatum">{{'Bitte wählen Sie ein gültiges Datum aus (im Format tt.mm.jjjj)' | translate:'main.errorWrongDate'}}</span>
-												</span>
+													   [allowInput]="true"
+													   mwlFlatpickr
+													   (flatpickrValueUpdate)="dataPickerValueUpdate($event)"
+													   [convertModelValue]="true"
+													   dateFormat="d.m.Y"
+													   [minDate]="detailRecord.ausgabedatum" />
 											</div>
 										</div>
 									</div>
@@ -911,7 +910,7 @@
 									</div>
 								</div>
 								<div class="row">
-									
+
 									<div class="col-xs-12 col-md-4">
 										<div class="row">
 											<label class="col-md-3 col-xs-3 control-label" tooltip="Temporärer Standort" for="tempStandort">
@@ -928,7 +927,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="col-xs-12 col-md-4">
 										<div class="row">
 											<label class="col-md-3 col-xs-3 control-label" tooltip="Gebrauchskopie" for="gebrauchskopieStatus">
@@ -945,7 +944,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="col-xs-12 col-md-4">
 										<div class="row">
 										</div>

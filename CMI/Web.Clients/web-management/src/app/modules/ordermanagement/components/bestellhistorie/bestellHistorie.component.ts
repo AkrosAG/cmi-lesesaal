@@ -4,7 +4,7 @@ import {
 	EntityDecoratorService, EntscheidGesuchStatus, ShippingType,
 } from '@cmi/lesesaal-web-core';
 import {Bestellhistorie, StatusHistory} from '../../model';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
 	selector: 'cmi-viaduc-bestell-historie',

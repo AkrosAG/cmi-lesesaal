@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Aspose.Pdf;
+﻿using Aspose.Pdf;
 using Aspose.Pdf.Text;
 using CMI.Contract.DocumentConverter;
 using CMI.Manager.DocumentConverter.Extraction.Interfaces;
-using Serilog;
-using License = Aspose.Pdf.License;
+using CMI.Utilities.License;
+using System.Collections.Generic;
 
 namespace CMI.Manager.DocumentConverter.Extraction
 {
@@ -16,16 +14,7 @@ namespace CMI.Manager.DocumentConverter.Extraction
 
         static AsposePdfTextExtractor()
         {
-            try
-            {
-                var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
-            }
+            LicenseHelper.SetAsposeLicense();
         }
 
         public override IEnumerable<string> AllowedExtensions => extensions;

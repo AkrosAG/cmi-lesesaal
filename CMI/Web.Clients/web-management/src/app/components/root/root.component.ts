@@ -9,7 +9,7 @@ import {ContextService} from '../../modules/client/services/context.service';
 })
 export class RootComponent implements OnInit, AfterViewInit {
 
-	public preloading: boolean = true;
+	public preloading = true;
 
 	constructor(private _context: ClientContext,
 				private _contextService: ContextService,
@@ -19,13 +19,15 @@ export class RootComponent implements OnInit, AfterViewInit {
 	}
 
 	public ngOnInit(): void {
-		this._contextService.context.subscribe((ctx) => {
+		this._contextService.context.subscribe(() => {
+			return;
 		});
-		this._preloadService.preloaded.subscribe((state) => {
+		this._preloadService.preloaded.subscribe(() => {
+			return;
 		});
 
-		this._preloadService.preload(this._context.language, false).then(res => {
-			let version = this._config.getSetting('service.version');
+		this._preloadService.preload(this._context.language, false).then(() => {
+			const version = this._config.getSetting('service.version');
 			this._context.client.setVersion(version);
 			this.preloading = false;
 		});

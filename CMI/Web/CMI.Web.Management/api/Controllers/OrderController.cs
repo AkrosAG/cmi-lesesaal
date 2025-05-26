@@ -60,11 +60,14 @@ namespace CMI.Web.Management.api.Controllers
             var orderItems = await orderManagerClient.FindOrderItems(orderItemIds);
             foreach (var item in orderItems)
             {
-                var elasticItem = await GetElasticArchiveRecord(item.VeId);
-                if (elasticItem == null || !elasticItem.CanBeOrdered)
+                if (!String.IsNullOrEmpty(item.VeId))
                 {
-                    // $"Auftrag {item.OrderId} hat keinen ElasticItem {item.VeId}
-                    return Conflict();
+                    var elasticItem = await GetElasticArchiveRecord(item.VeId);
+                    if (elasticItem == null || !elasticItem.CanBeOrdered)
+                    {
+                        // $"Auftrag {item.OrderId} hat keinen ElasticItem {item.VeId}
+                        return Conflict();
+                    }
                 }
             }
 

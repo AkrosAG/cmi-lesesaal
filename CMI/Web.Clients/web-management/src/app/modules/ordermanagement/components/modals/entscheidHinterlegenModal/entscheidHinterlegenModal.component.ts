@@ -3,7 +3,7 @@ import {EntityDecoratorService, EntscheidGesuchStatus} from '@cmi/lesesaal-web-c
 import {OrderService} from '../../../services';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorService} from '../../../../shared/services';
-import * as moment from 'moment';
+import moment from 'moment';
 import {OrderingFlatItem} from '../../../model';
 import {forkJoin, Observable} from 'rxjs';
 
@@ -50,7 +50,7 @@ export class EntscheidHinterlegenModalComponent implements OnInit {
 	public stepNr = 1;
 	public hint: string;
 	public filteredItems: OrderingFlatItem[] = [];
-	public showUnHideDataButton: boolean = true;
+	public showUnHideDataButton = true;
 	private _open = true;
 
 	private _selectedEntscheid: EntscheidGesuchStatus = null;
@@ -96,9 +96,9 @@ export class EntscheidHinterlegenModalComponent implements OnInit {
 		this.hint = 'Daten werden geladen...';
 		this.isLoading = true;
 
-		let observables:Observable<OrderingFlatItem>[] = [];
-		for (let order of this.filteredItems) {
-			let obs = this._ord.getUnHiddenOrderingDetail(order.itemId);
+		const observables:Observable<OrderingFlatItem>[] = [];
+		for (const order of this.filteredItems) {
+			const obs = this._ord.getUnHiddenOrderingDetail(order.itemId);
 			observables.push(obs);
 		}
 
@@ -120,7 +120,7 @@ export class EntscheidHinterlegenModalComponent implements OnInit {
 		}
 		this.hint = 'Statusänderung wird durchgeführt...';
 		this.isLoading = true;
-		this._ord.einsichtsgesucheEntscheidFuerGesucheHinterlegen(this.items.map(i => i.itemId), this.selectedEntscheid, bewilligungsDatum, this.interneBemerkung).subscribe(r => {
+		this._ord.einsichtsgesucheEntscheidFuerGesucheHinterlegen(this.items.map(i => i.itemId), this.selectedEntscheid, bewilligungsDatum, this.interneBemerkung).subscribe(() => {
 			this._toastr.success('Statusänderung erfolgreich durchgeführt', 'Erfolgreich');
 			this.open = false;
 			this.onSubmitted.emit(true);

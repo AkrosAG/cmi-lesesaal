@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Aspose.Pdf;
-using CMI.Contract.Asset;
+﻿using CMI.Contract.Asset;
 using CMI.Contract.Common;
 using Serilog;
+using System;
+using System.Threading.Tasks;
+using CMI.Utilities.License;
 
 namespace CMI.Engine.Asset.PreProcess
 {
@@ -18,16 +18,7 @@ namespace CMI.Engine.Asset.PreProcess
             this.analyzerDetectAndFlagLargeDimensions = analyzerDetectAndFlagLargeDimensions;
             this.analyzerOptimizePdf = analyzerOptimizePdf;
 
-            try
-            {
-                var licensePdf = new License();
-                licensePdf.SetLicense("Aspose.Total.NET.lic");
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unexpected error while setting Aspose license.");
-                throw;
-            }
+            LicenseHelper.SetAsposeLicense();          
 
         }
 

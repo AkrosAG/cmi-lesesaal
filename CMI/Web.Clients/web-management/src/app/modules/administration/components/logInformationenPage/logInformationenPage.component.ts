@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslationService } from '@cmi/lesesaal-web-core';
-import { UrlService, UiService } from '../../../shared/services';
+import { UrlService, UiServiceMC } from '../../../shared/services';
 import { LogService } from '../../services';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as fileSaver from 'file-saver';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 
@@ -20,7 +20,7 @@ export class LogInformationenPageComponent implements OnInit {
 	constructor(private _logService: LogService,
 		private _txt: TranslationService,
 		private _url: UrlService,
-		private _ui: UiService) {
+		private _ui: UiServiceMC) {
 		this.endDate = moment.utc(new Date()).toDate();
 		this.startDate = moment.utc(new Date()).add(-24, 'h').toDate();
 	}
@@ -35,9 +35,9 @@ export class LogInformationenPageComponent implements OnInit {
 			event => {
 				if (event.type === HttpEventType.Response) {
 					try {
-						let contentDisposition: string = event.headers.get('content-disposition');
-						let filename = contentDisposition.substring(contentDisposition.indexOf('filename=') + 10, contentDisposition.length - 1);
-						let blob = event.body;
+						const contentDisposition: string = event.headers.get('content-disposition');
+						const filename = contentDisposition.substring(contentDisposition.indexOf('filename=') + 10, contentDisposition.length - 1);
+						const blob = event.body;
 						this.loading = false;
 						fileSaver.saveAs(blob, filename, { autoBom: false });
 						this._ui.showSuccess(this._txt.get('logInformationen.downloadSuccess', 'Die Loginformationen werden gespeichert.'));
@@ -69,7 +69,7 @@ export class LogInformationenPageComponent implements OnInit {
 	}
 
 	private _buildCrumbs(): void {
-		let crumbs: any[] = this.crumbs = [];
+		const crumbs: any[] = this.crumbs = [];
 		crumbs.push({ iconClasses: 'glyphicon glyphicon-home', _url: this._url.getHomeUrl() });
 		crumbs.push({
 			label: this._txt.get('breadcrumb.Administration', 'Administration')
