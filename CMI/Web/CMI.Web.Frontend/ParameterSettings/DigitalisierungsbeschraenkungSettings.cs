@@ -7,27 +7,27 @@ namespace CMI.Web.Frontend.ParameterSettings
     public class DigitalisierungsbeschraenkungSettings : ISetting
     {
         [Description("Gibt an, wieviele aktive Aufträge ein Ö2 Benutzer gleichzeitig haben darf.")]
-        [DefaultValue(3)]
+        [DefaultValue(100)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungOe2 { get; set; }
 
         [Description("Gibt an, wieviele aktive Aufträge ein Ö3 Benutzer gleichzeitig haben darf.")]
-        [DefaultValue(3)]
+        [DefaultValue(100)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungOe3 { get; set; }
 
         [Description("Gibt an, wieviele aktive Aufträge ein EMA Benutzer gleichzeitig haben darf.")]
-        [DefaultValue(3)]
+        [DefaultValue(100)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungEma { get; set; }
 
         [Description("Gibt an, wieviele aktive Aufträge ein AS Benutzer gleichzeitig haben darf.")]
-        [DefaultValue(3)]
+        [DefaultValue(100)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungAs { get; set; }
 
         [Description("Gibt an, wieviele aktive Aufträge ein AMA Benutzer gleichzeitig haben darf.")]
-        [DefaultValue(3)]
+        [DefaultValue(100)]
         [Validation(@"^(?![0]$)\d{1,}$", "Geben Sie eine Zahl > 0 ein")]
         public int DigitalisierungsbeschraenkungAma { get; set; }
     }
