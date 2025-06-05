@@ -198,7 +198,7 @@ namespace CMI.Contract.Common.Compiler
                     string yearOfDeath = descriptor.DateOfDeath != null ? descriptor.DateOfDeath.Year.ToString() : "?";
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0} ({1}-{2}), {3}", descriptor.Name,
                         descriptor.DateOfBirth.Year.ToString(), yearOfDeath, descriptor.Function) : string.Format("{0} ({1}-{2})", descriptor.Name,
-                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath); 
+                        descriptor.DateOfBirth.Year.ToString(), yearOfDeath);
                 }
                 else
                 {

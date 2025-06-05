@@ -1,6 +1,6 @@
 {
-	"search": {
-		"defaultSearchFieldLines": 3,
+  "search": {
+    "defaultSearchFieldLines": 3,
     "advancedSearchFields": [
       {
         "type": "Fulltext",
@@ -186,42 +186,49 @@
         "translatorType": "ThesaurusTranslator"
       }
     ],
-		"simpleSearchSortingFields": [{
-			"displayName": "Relevanz",
-			"orderBy": "relevanz",
-			"sortOrder": ""
-		}, {
-			"displayName": "Datum aufsteigend",
-			"orderBy": "creationPeriod.startDate",
-			"sortOrder": "ascending"
-		}, {
-			"displayName": "Datum absteigend",
-			"orderBy": "creationPeriod.startDate",
-			"sortOrder": "descending"
-		}, {
-			"displayName": "Titel aufsteigend",
-			"orderBy": "title.sort",
-			"sortOrder": "ascending"
-		}, {
-			"displayName": "Titel absteigend",
-			"orderBy": "title.sort",
-			"sortOrder": "descending"
-		}, {
-			"displayName": "Signatur aufsteigend",
-			"orderBy": "referenceCode.sort",
-			"sortOrder": "ascending"
-		}, {
-			"displayName": "Signatur absteigend",
-			"orderBy": "referenceCode.sort",
-			"sortOrder": "descending"
-		}
-		],
-		"possiblePagingSizes": [
-			10,
-			25,
-			50,
-			100
-		],
-		"defaultPagingSize": 50
-	}
+    "simpleSearchSortingFields": [
+      {
+        "displayName": "Relevanz",
+        "orderBy": "relevanz",
+        "sortOrder": ""
+      },
+      {
+        "displayName": "Datum aufsteigend",
+        "orderBy": "creationPeriod.startDate",
+        "sortOrder": "ascending"
+      },
+      {
+        "displayName": "Datum absteigend",
+        "orderBy": "creationPeriod.startDate",
+        "sortOrder": "descending"
+      },
+      {
+        "displayName": "Titel aufsteigend",
+        "orderBy": "title.sort",
+        "sortOrder": "ascending"
+      },
+      {
+        "displayName": "Titel absteigend",
+        "orderBy": "title.sort",
+        "sortOrder": "descending"
+      },
+      {
+        "displayName": "Signatur aufsteigend",
+        "orderBy": "referenceCode.sort",
+        "sortOrder": "ascending"
+      },
+      {
+        "displayName": "Signatur absteigend",
+        "orderBy": "referenceCode.sort",
+        "sortOrder": "descending"
+      }
+    ],
+    "possiblePagingSizes": [
+      10,
+      25,
+      50,
+      100
+    ],
+    "defaultPagingSize": 50
+  }
 }

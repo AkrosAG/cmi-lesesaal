@@ -372,7 +372,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data_Template\web.sustainsys.config" />
-    <None Include="App_Data\web.additional-appSettings.config" />
     <None Include="Properties\PublishProfiles\Publish local.pubxml">
       <SubType>Designer</SubType>
     </None>

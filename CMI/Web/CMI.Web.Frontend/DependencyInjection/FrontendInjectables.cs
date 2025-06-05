@@ -31,6 +31,7 @@ namespace CMI.Web.Frontend.DependencyInjection
             var connectionString = FrontendSettings.Instance.SqlConnectionString;
             var sftpLicenseKey = WebHelper.Settings["sftpLicenseKey"];
 
+            builder.RegisterType<CmiSettings>().As<ICmiSettings>();
             builder.RegisterType<ExcelExportHelper>().AsSelf();
             builder.RegisterType<VeExportRecordHelper>().AsSelf();
             builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
@@ -49,7 +50,6 @@ namespace CMI.Web.Frontend.DependencyInjection
             builder.RegisterType<PhysicalFileSystem>().As<IFileSystem>().SingleInstance();
 
             builder.RegisterType<ModelData>().As<IModelData>();
-            builder.RegisterType<CmiSettings>().As<ICmiSettings>();
             builder.RegisterType<WebCmiConfigProvider>().As<IWebCmiConfigProvider>();
             builder.RegisterType<KontrollstellenInformer>().As<IKontrollstellenInformer>();
 

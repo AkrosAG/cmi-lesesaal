@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AsposeLicense" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">@@CMI.Utilities.License.Properties.Settings.AsposeLicense@@</Value>
+      <Value Profile="(Default)">@@CMI.Aspose.License@@</Value>
     </Setting>
   </Settings>
 </SettingsFile>
