@@ -53,6 +53,14 @@ cmi-viaduc-advanced-search-group .btn.btn-link:hover, fieldset .btn.btn-link:hov
   Navigation
 --------------------------------------------------------*/
 
+.dropdown > a {
+	color: #454545 !important;
+}
+
+.dropdown > a:hover {
+	color: #dc0018 !important;
+}
+
 cmi-viaduc-nav-content a:hover,
 cmi-viaduc-nav-content a:focus
 .nav-main.yamm .nav > .open > a {
@@ -200,3 +208,27 @@ Benutzerberechtigungstabelle
 	border-bottom: 2px solid #B7352D !important;
 }
 
+
+/*------------------------------------------------------
+ Header center only HSA
+--------------------------------------------------------*/
+.brand h1 {
+	padding-top: 1.25em;
+}
+
+@media only screen and (max-width: 991px) {
+	.brand-left {
+		width: 165px!important;
+	}
+	.brand-right {
+		width: 305px !important;
+	}
+}
+
+.brand-left {
+	width: 215px !important;
+}
+
+.brand-right {
+	width: 355px !important;
+}
