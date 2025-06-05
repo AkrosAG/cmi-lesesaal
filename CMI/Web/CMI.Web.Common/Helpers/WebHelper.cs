@@ -79,7 +79,7 @@ namespace CMI.Web.Common.Helpers
 
         public static string ViewerUrl => GetStringSetting("viewer-url", "");
 
-        public static string AsposeLicense => GetStringSetting("asposeLicense", "@@CMI.Aspose.License@@");
+        public static string AsposeLicense => GetStringSetting("asposeLicense", "@@CMI.Utilities.License.Properties.Settings.AsposeLicense@@");
 
         #region CMI / App Settings
 
