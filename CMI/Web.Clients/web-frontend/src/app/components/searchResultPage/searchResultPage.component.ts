@@ -292,6 +292,7 @@ export class SearchResultPageComponent implements OnInit {
 			this._captchaToken = undefined;
 		}
 
+
 		const response: SearchResponse | SearchError = await this._searchService.search(request);
 		if (this._isErrorResponse(response)) {
 			this._setSearchError(response);

@@ -11,14 +11,13 @@ namespace CMI.Web.Common.Helpers
 {
     public class ExcelExportHelper
     {
-        static ExcelExportHelper()
+        public ExcelExportHelper()
         {
             try
             {
                 var licensePdf = new License();
-                var Settings = new CmiSettings();
 
-                var licenseContent = Settings["AsposeLicense"] ?? "";
+                var licenseContent = WebHelper.AsposeLicense ?? "";
                 if (string.IsNullOrWhiteSpace(licenseContent) || licenseContent.Contains("@@"))
                 {
                     throw new Exception("License content is missing or placeholder is still present in application settings.");
