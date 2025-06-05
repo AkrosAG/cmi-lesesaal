@@ -9,13 +9,22 @@
     "Index": "1"
   },
   {
+    "Field": "facetten.boolean01",
+    "Size": 25,
+    "Sort": "_term",
+    "Title": "DatenDigitalVorhanden",
+    "Type": "Term",
+    "Missing": "",
+    "Index": "2"
+  },
+  {
     "Field": "permission.keyword",
     "Size": 25,
     "Sort": "_term",
     "Title": "permission",
     "Type": "Term",
     "Missing": "",
-    "Index": "2"
+    "Index": "3"
   },
   {
     "Field": "facetten.text01",
@@ -24,7 +33,7 @@
     "Title": "Personenregister",
     "Type": "Term",
     "Missing": "",
-    "Index": "3"
+    "Index": "4"
   },
   {
     "Field": "facetten.text02",
@@ -33,7 +42,7 @@
     "Title": "Sprachen",
     "Type": "Term",
     "Missing": "",
-    "Index": "5"
+    "Index": "6"
   },
   {
     "Field": "facetten.text03",
@@ -42,7 +51,7 @@
     "Title": "Archivalienart",
     "Type": "Term",
     "Missing": "",
-    "Index": "6"
+    "Index": "7"
   },
   {
     "Field": "facetten.text04",
@@ -51,7 +60,7 @@
     "Title": "Körperschaftsregister",
     "Type": "Term",
     "Missing": "",
-    "Index": "4"
+    "Index": "5"
   },
   {
     "Field": "facetten.creationPeriodYears001",

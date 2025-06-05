@@ -12,7 +12,7 @@
   "checkoutSubmittedStep": {
     "cartText": "Sie haben noch offene Bestellungen im <a href=\"#/{0}\">Bestellkorb</a>.",
     "checkStatusText": "Den Status Ihrer Bestellung können Sie in Ihrem <a href=\"#/{0}\">Benutzerkonto</a> verfolgen.",
-    "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Bundesarchiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
+    "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Archiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
     "thxTextDigi": " Vielen Dank für den Auftrag. Sie erhalten per E-Mail eine Offerte zugestellt.",
     "thxTextEischtisgesuch": "Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "Falls Ihr Gesuch bewilligt wird, müssen Sie sich identifizieren, um die Unterlagen zu konsultieren (siehe <a href=\"{0}\">Anmelden und Identifizieren</a>).",
@@ -44,8 +44,8 @@
     "Ortsregister": "Ortsregister",
     "Personenregister": "Personenregister",
     "Sachregister": "Sachregister",
-    "Werkregister": "Werkregister"
-
+    "Werkregister": "Werkregister",
+    "DatenDigitalVorhanden": "Daten digital vorhanden"
   },
   "footer": {
     "footerTitle": "Fusszeile",
@@ -118,7 +118,7 @@
       "allPrimaryData": "Volltext (Primärdaten)",
       "creationPeriod": "Entstehungszeitraum",
       "ueberlieferungsform": "Überlieferungsform",
-      "Sprache": "Sprachen ",
+      "Sprachen": "Sprachen",
       "archivalienart": "Archivalienart",
       "permission": "Benutzbarkeit",
       "Personenregister": "Personenregister",
