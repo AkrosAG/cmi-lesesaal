@@ -146,7 +146,7 @@ export class ShoppingCartPageComponent implements OnInit {
 
 		const selfmadeItem = <SelfMadeOrderItem> {
 			period: this._decodeHtml(this._sanitizer.sanitize(SecurityContext.HTML, this.timeSpanField.value)),
-			title: this._decodeHtml(this._sanitizer.sanitize(SecurityContext.NONE, this.dossierTitel)),
+			title: this._decodeHtml(this._sanitizer.sanitize(SecurityContext.HTML, this.dossierTitel)),
 			ablieferung: this._decodeHtml(this._sanitizer.sanitize(SecurityContext.HTML, this.ablieferung)),
 			bestand: this._decodeHtml(this._sanitizer.sanitize(SecurityContext.HTML, this.teilBestand))
 		};
