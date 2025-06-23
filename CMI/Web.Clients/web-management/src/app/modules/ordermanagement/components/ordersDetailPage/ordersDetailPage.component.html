@@ -77,7 +77,7 @@
 								<button (click)="reset()" class="btn btn-link">
 									<span><span class="glyphicon glyphicon-undo"></span>&nbsp;{{ 'Änderungen verwerfen' | translate:'role.cancel' }}</span>
 								</button>
-								<button (click)="updateOrderDetail()" [disabled]="!isValidRueckgabeDatum || !isValidRueckgabeNumber"  class="btn btn-link">
+								<button (click)="updateOrderDetail()" [disabled]="!isValidRueckgabeNumber"  class="btn btn-link">
 									<span><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;{{ 'Speichern' | translate:'role.save' }}</span>
 								</button>
 								<button (click)="downloadGebrauchskopie()" class="btn btn-link">
@@ -608,8 +608,6 @@
 													   name="ausgabeDatum"
 													   id="ausgabeDatum"
 													   [ngModel]="getDateTimeAsString(detailRecord.ausgabedatum)"
-													   (ngModelChange)="setStringAsDateTime($event, 'ausgabedatum')"
-													   datePicker
 													   [minDateToday]="false"
 													   [disabled]="true"
 													   required>
@@ -626,10 +624,8 @@
 													   name="abschlussdatum"
 													   id="abschlussdatum"
 													   [ngModel]="getDateTimeAsString(detailRecord.abschlussdatum)"
-													   (ngModelChange)="setStringAsDateTime($event, 'abschlussdatum')"
-													   datePicker
 													   [minDateToday]="false"
-													   [disabled]="isFieldReadonly('abschlussdatum')"
+													   [disabled]="true"
 													   required>
 											</div>
 										</div>
@@ -637,7 +633,7 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12 col-md-4">
-										<div class="row" [ngClass]="{'has-warning': !isValidOrderingLesesaalDatum}">
+										<div class="row">
 											<label class="col-md-3 col-xs-3 control-label" tooltip="Geplante Ausgabe im Lesesaal" for="lesesaalDate">
 												{{'Geplante Ausgabe im Lesesaal' | translate:''}}
 											</label>
@@ -658,7 +654,7 @@
 										</div>
 									</div>
 									<div class="col-xs-12 col-md-4">
-										<div class="row" [ngClass]="{'has-warning': !isValidRueckgabeDatum}">
+										<div class="row">
 											<label class="col-md-3 col-xs-3 control-label" tooltip="Erwartetes Rückgabedatum"
 												   for="erwartetesRueckgabeDatum">
 												{{'Erwartetes Rückgabedatum' | translate:''}}

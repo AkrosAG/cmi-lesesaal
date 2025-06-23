@@ -615,7 +615,7 @@ export class UserRolesDetailPageComponent extends ComponentCanDeactivate impleme
 			birthday:[{value: this.detail.item.birthday,  disabled: (!this.allowBereichBenutzerdatenBearbeiten || this.detail.item.rolePublicClient === this._authorization.roles.Oe3 )}],
 			researcherGroup: new FormControl({value: this.detail.item.researcherGroup,
 				disabled: (this.detail.item.rolePublicClient !== this._authorization.roles.Oe3 || !this.detail.item.emailAddress.endsWith('@dodis.ch') || !this.allowForschungsgruppeDdsBearbeiten) }),
-			barInternalConsultation: new FormControl({value: this.detail.item.barInternalConsultation,
+			internalConsultation: new FormControl({value: this.detail.item.internalConsultation,
 				disabled: !this.allowBarInterneKonsultationBearbeiten})
 		});
 		if (this.detail.item.isInternalUser) {
