@@ -64,7 +64,6 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 	@ViewChild('formOrderDetail', {static: false})
 	public formOrderDetail: NgForm;
 	public currentUserRole: string;
-	public isValidRueckgabeDatum: boolean;
 	public isValidRueckgabeNumber = true;
 	public isValidOrderingLesesaalDatum: boolean;
 
@@ -478,10 +477,6 @@ export class OrdersDetailPageComponent extends ComponentCanDeactivate {
 		if (this.canFieldAusleihdauerChange()) {
 			const rueckgabe = moment(this?.detailRecord?.erwartetesRueckgabeDatum);
 			const ausgabe = moment(this?.detailRecord?.ausgabedatum);
-			// it has already deducted one day more
-			// if the order was after 0 o'clock
-			rueckgabe.add(ausgabe.hours(), 'hours');
-			rueckgabe.add(ausgabe.minute() + 1, 'minutes');
 			const ausgabeDays = rueckgabe.diff(ausgabe, 'days');
 
 			this.detailRecord.ausleihdauer = ausgabeDays;

@@ -32,7 +32,6 @@ export class DigitalisierungExternModalComponent {
 	constructor(private _ord: OrderService,
 				private _err: ErrorService,
 				private _toastr: ToastrService) {
-					console.log('ctor');
 	}
 
 	public cancel() {

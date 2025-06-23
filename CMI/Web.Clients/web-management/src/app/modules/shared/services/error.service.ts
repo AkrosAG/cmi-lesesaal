@@ -28,7 +28,6 @@ export class ErrorService {
 			this._toastr.error(e.message || e, title, { disableTimeOut: true, closeButton: true});
 			return;
 		}
-console.log(httpError);
 		this._toastr.error('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut', 'Fehler', { disableTimeOut: true, closeButton: true});
 	}
 
