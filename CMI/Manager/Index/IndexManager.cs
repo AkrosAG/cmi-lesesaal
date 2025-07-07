@@ -183,7 +183,7 @@ namespace CMI.Manager.Index
                     Source = s.Source,
                     Thesaurus = s.Thesaurus,
                     SortingNumber = -1,
-                    GndNumber = regex.IsMatch(s.Source) ? regex.Match(s.Source).Groups[1].Value : string.Empty,
+                    GndNumber =  !string.IsNullOrWhiteSpace(s.Source) && regex.IsMatch(s.Source) ? regex.Match(s.Source).Groups[1].Value : string.Empty,
                     DateOfBirth = s.DateOfBirth.HasValue
                         ? new ElasticDateWithYear
                         {
