@@ -95,14 +95,9 @@
             "translationKey": "search.advanced.field.archivalienart.film"
           },
           {
-            "searchKey": "Graue",
-            "defaultLabel": "Graue",
-            "translationKey": "search.advanced.field.archivalienart.graue"
-          },
-          {
-            "searchKey": "Literatur",
-            "defaultLabel": "Literatur",
-            "translationKey": "search.advanced.field.archivalienart.literatur"
+            "searchKey": "'Graue Literatur u. Publikationen",
+            "defaultLabel": "Text mit Unikatcharakter",
+            "translationKey": "search.advanced.field.archivalienart.graueLiteratur"
           },
           {
             "searchKey": "Korrespondenz",
