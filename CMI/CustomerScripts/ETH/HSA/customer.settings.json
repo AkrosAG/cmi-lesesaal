@@ -68,7 +68,7 @@
           },
           {
             "searchKey": "'Graue Literatur u. Publikationen",
-            "defaultLabel": "Text mit Unikatcharakter",
+            "defaultLabel": "Graue Literatur u. Publikationen",
             "translationKey": "search.advanced.field.archivalienart.graueLiteratur"
           },
           {

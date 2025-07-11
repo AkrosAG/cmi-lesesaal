@@ -95,8 +95,8 @@
             "translationKey": "search.advanced.field.archivalienart.film"
           },
           {
-            "searchKey": "'Graue Literatur u. Publikationen",
-            "defaultLabel": "Text mit Unikatcharakter",
+            "searchKey": "'Graue Literatur'",
+            "defaultLabel": "Graue Literatur",
             "translationKey": "search.advanced.field.archivalienart.graueLiteratur"
           },
           {
