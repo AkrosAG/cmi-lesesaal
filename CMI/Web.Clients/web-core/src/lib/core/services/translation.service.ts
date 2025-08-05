@@ -12,7 +12,7 @@ export class TranslationService {
 	private _texts: { [key: string]: any };
 	private _textsCustomer: { [key: string]: any };
 
-	private _commonKey: '_';
+	private _commonKey = '_';
 	private _showMissingInfo = false;
 	private _isLocalhost = false;
 
