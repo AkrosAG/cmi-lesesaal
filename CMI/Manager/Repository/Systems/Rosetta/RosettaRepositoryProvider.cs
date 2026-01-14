@@ -80,7 +80,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             }
-            
+
+            // Make sure that the temporary folder is deleted
+            DeleteTemporaryDirectory(packageId);
+
             return repositoryPackageResult;
         }
 
@@ -234,6 +237,22 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     Status = status,
                     ErrorText = errorText
                 });
+            }
+        }
+
+        private static void DeleteTemporaryDirectory(string packageId)
+        {
+            var tempDir = Path.Combine(Settings.Default.TempStoragePath, packageId);
+            if (Directory.Exists(tempDir))
+            {
+                try
+                {
+                    Directory.Delete(tempDir, true);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Unexpected error while deleting directory {tempDir}", tempDir);
+                }
             }
         }
 
