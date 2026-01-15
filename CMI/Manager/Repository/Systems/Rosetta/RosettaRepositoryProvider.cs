@@ -57,13 +57,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
             
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, packageId);
-           
+            var zipFileName = Path.GetRandomFileName();
             if (success)
             {
                 currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
                 var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId }).Result.Message.ElasticArchiveRecord;
-                var zipFileName = Path.GetRandomFileName();
+               
                 var repositoryPackage = await BuildRepositoryPackageAsync(archiveRecord, zipFileName);
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
@@ -82,7 +82,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             }
 
             // Make sure that the temporary folder is deleted
-            DeleteTemporaryDirectory(packageId);
+
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, packageId));
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, zipFileName));
 
             return repositoryPackageResult;
         }
@@ -240,9 +242,8 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             }
         }
 
-        private static void DeleteTemporaryDirectory(string packageId)
+        private static void DeleteTemporaryDirectory(string tempDir)
         {
-            var tempDir = Path.Combine(Settings.Default.TempStoragePath, packageId);
             if (Directory.Exists(tempDir))
             {
                 try
