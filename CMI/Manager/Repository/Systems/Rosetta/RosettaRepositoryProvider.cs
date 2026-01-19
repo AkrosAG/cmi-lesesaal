@@ -82,7 +82,6 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             }
 
             // Make sure that the temporary folder is deleted
-
             DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, packageId));
             DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, zipFileName));
 
@@ -97,6 +96,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             {
                 // Zip file name not important here, because we are not creating a zip file
                 var package = await BuildRepositoryPackageAsync(elasticArchiveRecord, string.Empty);
+
+                // Make sure that the temporary folder is deleted
+                DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink));
+
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,
@@ -104,6 +107,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     Valid = true
                 };
             }
+
+            // Make sure that the temporary folder is deleted
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink));
 
             return new RepositoryPackageInfoResult
             {
