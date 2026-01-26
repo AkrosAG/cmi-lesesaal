@@ -56,6 +56,7 @@ namespace CMI.Manager.Harvest
                     // 00:05:00
                     ec.UseRetry(retryPolicy =>
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                    BusConfigurator.SetPrefetchCountForEndpoint(ec);
                 });
                 cfg.ReceiveEndpoint(BusConstants.HarvestManagerArchiveRecordUpdatedEventQueue, ec =>
                 {
