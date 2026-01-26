@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net.Http;
+using System.Web.Mvc;
 using Autofac;
 using CMI.Access.Sql.Lesesaal;
 using CMI.Access.Sql.Lesesaal.File;
@@ -74,6 +75,9 @@ namespace CMI.Web.Frontend.DependencyInjection
             builder.Register(c => BusConfig.RegisterDownloadAssetCallback()).As<IRequestClient<DownloadAssetRequest>>();
             builder.Register(c => BusConfig.RegisterGetAssetStatusCallback()).As<IRequestClient<GetAssetStatusRequest>>();
             builder.Register(c => BusConfig.RegisterPrepareAssetCallback()).As<IRequestClient<PrepareAssetRequest>>();
+            builder.Register(c => new HttpClient())
+                .As<HttpClient>()
+                .SingleInstance();
         }
 
         private static DownloadUsageSettings GetUsageSettings()
