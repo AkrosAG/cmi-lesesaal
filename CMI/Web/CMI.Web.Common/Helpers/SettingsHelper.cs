@@ -94,7 +94,7 @@ namespace CMI.Web.Common.Helpers
             JToken leftProperty = null;
             try
             {
-                leftProperty = left.SelectToken(right.Name);
+                leftProperty = left.SelectToken($"['{right.Name}']");
             }
             catch (Exception ex)
             {
