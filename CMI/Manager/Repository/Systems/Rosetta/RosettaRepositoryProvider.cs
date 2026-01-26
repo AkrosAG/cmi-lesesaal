@@ -57,13 +57,13 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             };
             
             var success = await rosettaDataAccess.ExportIntellectualEntity(Settings.Default.TempStoragePath, packageId);
-           
+            var zipFileName = Path.GetRandomFileName();
             if (success)
             {
                 currentStatus = AufbereitungsStatusEnum.PrimaerdatenExtrahiert;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
                 var archiveRecord = indexClient.GetResponse<FindArchiveRecordResponse>(new FindArchiveRecordRequest { ArchiveRecordId = archiveRecordId }).Result.Message.ElasticArchiveRecord;
-                var zipFileName = Path.GetRandomFileName();
+               
                 var repositoryPackage = await BuildRepositoryPackageAsync(archiveRecord, zipFileName);
                 // ToDo: fileTypesToIgnore
                 if (createMetadataXml)
@@ -80,7 +80,11 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                 currentStatus = AufbereitungsStatusEnum.ZipDateiErzeugt;
                 await UpdatePrimaerdatenAuftragStatus(primaerdatenAuftragId, currentStatus);
             }
-            
+
+            // Make sure that the temporary folder is deleted
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, packageId));
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, zipFileName));
+
             return repositoryPackageResult;
         }
 
@@ -92,6 +96,10 @@ namespace CMI.Manager.Repository.Systems.Rosetta
             {
                 // Zip file name not important here, because we are not creating a zip file
                 var package = await BuildRepositoryPackageAsync(elasticArchiveRecord, string.Empty);
+
+                // Make sure that the temporary folder is deleted
+                DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink));
+
                 return new RepositoryPackageInfoResult
                 {
                     Success = true,
@@ -99,6 +107,9 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     Valid = true
                 };
             }
+
+            // Make sure that the temporary folder is deleted
+            DeleteTemporaryDirectory(Path.Combine(Settings.Default.TempStoragePath, elasticArchiveRecord.PrimaryDataLink));
 
             return new RepositoryPackageInfoResult
             {
@@ -234,6 +245,21 @@ namespace CMI.Manager.Repository.Systems.Rosetta
                     Status = status,
                     ErrorText = errorText
                 });
+            }
+        }
+
+        private static void DeleteTemporaryDirectory(string tempDir)
+        {
+            if (Directory.Exists(tempDir))
+            {
+                try
+                {
+                    Directory.Delete(tempDir, true);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Unexpected error while deleting directory {tempDir}", tempDir);
+                }
             }
         }
 
