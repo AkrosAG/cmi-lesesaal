@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using Autofac;
 using CMI.Contract.Parameter;
 using CMI.Contract.Repository;
@@ -47,6 +48,9 @@ namespace CMI.Manager.Repository.Infrastructure
                     builder.RegisterType<RosettaConnector>();
                     builder.RegisterType<RosettaRepositoryProvider>().As<IRepositoryProvider>();
                     builder.RegisterType<RosettaRepositoryCheck>().As<IRepositoryCheck>();
+                    builder.Register(c => new HttpClient())
+                        .As<HttpClient>()
+                        .SingleInstance();
                     break;
                 case "dir":
                     builder.RegisterType<DirRepositoryProvider>().As<IRepositoryProvider>();

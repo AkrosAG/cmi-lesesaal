@@ -14,12 +14,20 @@ namespace CMI.Access.Repository.Systems.Rosetta
 {
     public class RosettaConnector
     {
+        private readonly HttpClient httpClient;
         private readonly int maxCommandExecutionTime = Settings.Default.RepositoryTimeout;
         private readonly int maxCommandTimeout = Settings.Default.RepositoryCommandTimeout;
         private readonly string password = Settings.Default.RepositoryPassword;
         private readonly string username = Settings.Default.RepositoryUser;
         private readonly string exportIeUrl = Settings.Default.RepositoryExportIEUrl;
 
+        public RosettaConnector(HttpClient httpClient)
+        {
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            this.httpClient = httpClient;
+        }
+        
         public async Task<bool> StartExportAsync(string entityId)
         {
             Log.Information("Start Export entity: {entityId}", entityId);
@@ -60,7 +68,6 @@ namespace CMI.Access.Repository.Systems.Rosetta
             processUrl = $"{Settings.Default.RepositoryServiceUrl}/{processUrl}";
             Log.Information("Getting status for export process {processUrl}", processUrl);
 
-            using var httpClient = GetHttpClient();
             while (true)
             {   
                 stopToken.ThrowIfCancellationRequested();
@@ -91,8 +98,6 @@ namespace CMI.Access.Repository.Systems.Rosetta
 
         public async Task<KeyValuePair<bool, string>> PingRosetta()
         {
-            var httpClient = GetHttpClient();
-
             var hostUrl  = $"{Settings.Default.RepositoryServiceUrl}/rest/v0/conf/general";
                
             var request = new HttpRequestMessage
@@ -109,7 +114,6 @@ namespace CMI.Access.Repository.Systems.Rosetta
 
         private async Task<string> PostAsync(string url, HttpContent content)
         {
-            using var httpClient = GetHttpClient();
             try
             {
                 var response = await httpClient.PostAsync(url, content);
@@ -124,16 +128,6 @@ namespace CMI.Access.Repository.Systems.Rosetta
             }
 
             return null;
-        }
-
-        private HttpClient GetHttpClient()
-        {
-            var httpClient = new HttpClient();
-
-            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-
-            return httpClient;
         }
     }
 }

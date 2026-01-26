@@ -35,6 +35,7 @@ namespace CMI.Web.Frontend.api.Controllers
         private readonly IDownloadTokenDataAccess downloadTokenDataAccess;
         private readonly IElasticService elasticService;
         private readonly IKontrollstellenInformer kontrollstellenInformer;
+        private readonly HttpClient httpClient;
         private readonly IOrderDataAccess orderDataAccess;
         private readonly IRequestClient<PrepareAssetRequest> prepareClient;
         private readonly IRequestClient<GetAssetStatusRequest> statusClient;
@@ -55,7 +56,8 @@ namespace CMI.Web.Frontend.api.Controllers
             IUserDataAccess userDataAccess,
             IOrderDataAccess orderDataAccess,
             IDownloadLogHelper logLogHelper,
-            IKontrollstellenInformer kontrollstellenInformer)
+            IKontrollstellenInformer kontrollstellenInformer,
+            HttpClient httpClient)
         {
             this.usageAnalyzer = usageAnalyzer;
             this.translator = translator;
@@ -70,6 +72,7 @@ namespace CMI.Web.Frontend.api.Controllers
             this.orderDataAccess = orderDataAccess;
             this.logLogHelper = logLogHelper;
             this.kontrollstellenInformer = kontrollstellenInformer;
+            this.httpClient = httpClient;
 
             // Workaround für Unit-Test
             GetUserAccessFunc = userId =>
@@ -434,7 +437,6 @@ namespace CMI.Web.Frontend.api.Controllers
 
         private async Task<byte[]> GetFileContentFromUrlAsync(string url)
         {
-            using var httpClient = new HttpClient();
             try
             {
                 var response = await httpClient.GetAsync(url);

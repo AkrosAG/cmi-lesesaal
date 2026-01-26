@@ -44,7 +44,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
 
             var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, userDataAccessMock, null, null,
-                null);
+                null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -83,7 +83,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
 
             var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, userDataAccessMock, null, null,
-                null);
+                null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "Ö2", null, null, false);
 
             // act
@@ -138,7 +138,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 s.GetTranslation(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()) == "translated text");
 
             var sut = new FileController(null, null, null, null, null, elasticServiceMock, mockUsageAnalizer.Object, null, mockTranslator, null,
-                userDataAccessMock, null, null, null);
+                userDataAccessMock, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "Ö2", null, null, false);
 
             // act
@@ -187,7 +187,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 s.GetTranslation(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()) == "translated text");
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock, downloadLogDataAccessMock.Object, elasticServiceMock,
-                mockUsageAnalizer.Object, null, mockTranslator, null, userDataAccessMock, null, downloadHelperMock, null);
+                mockUsageAnalizer.Object, null, mockTranslator, null, userDataAccessMock, null, downloadHelperMock, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "Ö2", null, null, false);
 
             // act
@@ -213,7 +213,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                     Data = new EntityResult<ElasticArchiveRecord> { Items = new List<Entity<ElasticArchiveRecord>>() }
                 });
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -249,7 +249,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 });
 
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -294,7 +294,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 });
 
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "Ö1", null, null, false);
 
             // act
@@ -350,7 +350,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .ReturnsAsync(response.Object);
 
             var sut = new FileController(null, statusClientMock.Object, null, null, null, elasticServiceMock, null, null, null, cacheHelperMock, null,
-                null, null, null);
+                null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
@@ -401,7 +401,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .Throws(new Exception("Error in StatusClient"));
 
             var sut = new FileController(null, statusClientMock.Object, null, null, null, elasticServiceMock, null, null, null, cacheHelperMock, null,
-                null, null, null);
+                null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
@@ -422,7 +422,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                     Data = new EntityResult<ElasticArchiveRecord> { Items = new List<Entity<ElasticArchiveRecord>>() }
                 });
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -458,7 +458,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 });
 
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -503,7 +503,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 });
 
 
-            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, elasticServiceMock, null, null, null, null, null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "Ö1", null, null, false);
 
             // act
@@ -561,7 +561,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .ReturnsAsync(response.Object);
 
             var sut = new FileController(null, null, prepareClientMock.Object, null, null, elasticServiceMock, null, null, null, cacheHelperMock,
-                null, null, null, null);
+                null, null, null, null, new HttpClient());
 
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
@@ -611,7 +611,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .Throws(new Exception("Error in PrepareClient"));
 
             var sut = new FileController(null, null, prepareClientMock.Object, null, null, elasticServiceMock, null, null, null, cacheHelperMock,
-                null, null, null, null);
+                null, null, null, null, new HttpClient());
             sut.GetUserAccessFunc = userId => new UserAccess(userId, "AMA", null, null, false);
 
             // act
@@ -629,7 +629,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
         public async Task DownloadFile_Without_Token_Should_Return_Forbidden(string token)
         {
             // arrange
-            var sut = new FileController(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            var sut = new FileController(null, null, null, null, null, null, null, null, null, null, null, null, null, null, new HttpClient());
 
             // act
             var result = await sut.DownloadFile("1", token);
@@ -650,7 +650,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .Returns(false);
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock.Object, null, null, null, null, null, null, null, null,
-                downloadHelperMock, null);
+                downloadHelperMock, null, new HttpClient());
 
             // act
             var result = await sut.DownloadFile("1", "invalid or old token");
@@ -679,7 +679,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
                 .Returns(userId);
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock.Object, null, null, null, null, null, null, null, null,
-                downloadHelperMock, null);
+                downloadHelperMock, null, new HttpClient());
 
             // act
             var result = await sut.DownloadFile("1", "valid token");
@@ -714,7 +714,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var userDataAccessMock = Mock.Of<IUserDataAccess>();
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock.Object, null, elasticServiceMock, null, null, null, null,
-                userDataAccessMock, null, downloadHelperMock, null);
+                userDataAccessMock, null, downloadHelperMock, null, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -764,7 +764,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var userDataAccessMock = Mock.Of<IUserDataAccess>();
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock.Object, null, elasticServiceMock, null, null, null, null,
-                userDataAccessMock, null, downloadHelperMock, null);
+                userDataAccessMock, null, downloadHelperMock, null, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, null, null, null, false);
 
             // act
@@ -822,7 +822,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
             var userDataAccessMock = Mock.Of<IUserDataAccess>();
 
             var sut = new FileController(null, null, null, downloadTokenDataAccessMock.Object, null, elasticServiceMock, null, null, null, null,
-                userDataAccessMock, null, downloadHelperMock, null);
+                userDataAccessMock, null, downloadHelperMock, null, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, "Ö2", null, null, false);
 
             // act
@@ -892,7 +892,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(downloadClientMock, null, null, downloadTokenDataAccessMock.Object, downloadLogDataAccess.Object,
                 elasticServiceMock, null, null, null, cacheHelperMock, userDataAccessMock.Object, null, downloadHelperMock,
-                kontrollstellenInformer.Object);
+                kontrollstellenInformer.Object, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, "AMA", null, null, false);
 
             // act
@@ -972,7 +972,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(downloadClientMock, null, null, downloadTokenDataAccessMock.Object, downloadLogDataAccess.Object,
                 elasticServiceMock, null, null, null, cacheHelperMock, userDataAccessMock.Object, null, downloadHelperMock,
-                kontrollstellenInformer.Object);
+                kontrollstellenInformer.Object, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, "AMA", null, null, false);
 
             // act
@@ -1038,7 +1038,7 @@ namespace CMI.Web.Frontend.API.Tests.Controller
 
             var sut = new FileController(downloadClientMock.Object, null, null, downloadTokenDataAccessMock.Object, downloadLogDataAccess.Object,
                 elasticServiceMock, null, null, null, cacheHelperMock, userDataAccessMock.Object, null, downloadHelperMock,
-                kontrollstellenInformerMock.Object);
+                kontrollstellenInformerMock.Object, new HttpClient());
             sut.GetUserAccessFunc = uid => new UserAccess(userId, "AMA", null, null, false);
 
             // act
