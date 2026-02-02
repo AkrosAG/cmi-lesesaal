@@ -263,9 +263,28 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
 
-        public Task<int> ResetFailedSyncOperations(int maxRetries)
+        public async Task<int> ResetFailedSyncOperations(int maxRetries)
         {
-            return Task.FromResult(0);
+
+            var recordsToReset = dbContext.SyncActions.Where(s => s.ActionStatus == (int)ActionStatus.SyncFailed &&
+                                                                  s.NumberOfTries < maxRetries);
+
+            foreach (var syncAction in recordsToReset)
+            {
+                syncAction.ActionStatus = 0;
+                // Add the log entry
+                var logEntry = new SyncActionLog
+                {
+                    SyncActionId = syncAction.SyncActionId,
+                    ActionStatusHistory = nameof(ActionStatus.WaitingForSync),
+                    LogDate = DateTime.Now
+                };
+                syncAction.ModifiedOn = DateTime.Now;
+                syncAction.SyncActionLogs.Add(logEntry);
+            }
+
+            return await dbContext.SaveChangesAsync();
+
         }
 
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)
