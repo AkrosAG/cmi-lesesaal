@@ -265,7 +265,6 @@ namespace CMI.Access.Harvest.CMIAIS
 
         public async Task<int> ResetFailedSyncOperations(int maxRetries)
         {
-
             var recordsToReset = dbContext.SyncActions.Where(s => s.ActionStatus == (int)ActionStatus.SyncFailed &&
                                                                   s.NumberOfTries < maxRetries);
 
@@ -284,7 +283,6 @@ namespace CMI.Access.Harvest.CMIAIS
             }
 
             return await dbContext.SaveChangesAsync();
-
         }
 
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)
