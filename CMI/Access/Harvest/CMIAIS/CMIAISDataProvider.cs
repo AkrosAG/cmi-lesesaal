@@ -42,6 +42,18 @@ namespace CMI.Access.Harvest.CMIAIS
                 throw new ArgumentException("All elements in the list must have the same NewStatus value.");
             }
 
+            var mutationIds = infos.Select(i => i.MutationId).ToList();
+
+            var existingActions = dbContext.SyncActions
+                .Where(s => mutationIds.Contains(s.SyncActionId))
+                .ToList();
+
+            foreach (var action in existingActions)
+            {
+                dbContext.SyncActions.DeleteObject(action);
+            }
+
+
             foreach (var info in infos)
             {
                 var newAction = new SyncAction
@@ -53,6 +65,7 @@ namespace CMI.Access.Harvest.CMIAIS
                     NumberOfTries = 0,
                     CreatedOn = DateTime.Now
                 };
+
                 dbContext.SyncActions.AddObject(newAction);
                 await dbContext.SaveChangesAsync();
             }
@@ -179,6 +192,7 @@ namespace CMI.Access.Harvest.CMIAIS
             var maxHits = 1000;
             var pendingMutations = new List<MutationRecord>();
 
+
             try
             {
                 var lastSequenceNr = ReadLastSequenceNr();
@@ -218,6 +232,25 @@ namespace CMI.Access.Harvest.CMIAIS
                     Log.Warning("Cdws returned {finalSequenceNr} but we found {lastSequenceNr}", finalSequenceNr, lastSequenceNr);
                 }
                 SaveLastSequenceNr(lastSequenceNr);
+
+
+                // Action 0 Waiting for Sync
+                // We are taking a max of 20'000 to prevent message size overflow error in RabbitMq
+                // At the current rate of getting the pending mutation once every hour this is sufficient
+                // as the system cannot process more than 20'000 syncs in an hour.
+                // Or if this shouldn't be enough, then we can reduce the time for the getPendingMutations job.
+                Log.Information("Fetching records from DataTable SyncActions where ActionStatus 0");
+                var result = dbContext.SyncActions.Where(x => x.ActionStatus == 0).Take(20000);
+                Log.Information("Fetching {Count} records from DataTable SyncActions where ActionStatus 0", result.Count());
+                foreach (var syncAction in result)
+                {
+                    pendingMutations.Add(new MutationRecord
+                    {
+                        Action = syncAction.ActionType,
+                        ArchiveRecordId = syncAction.ArchiveRecordId,
+                        MutationId = syncAction.SyncActionId
+                    });
+                }
 
                 return pendingMutations;
             }
