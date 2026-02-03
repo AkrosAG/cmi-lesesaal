@@ -44,33 +44,56 @@ namespace CMI.Access.Harvest.CMIAIS
 
             var mutationIds = infos.Select(i => i.MutationId).ToList();
 
-            var existingActions = dbContext.SyncActions
-                .Where(s => mutationIds.Contains(s.SyncActionId))
-                .ToList();
-
-            foreach (var action in existingActions)
-            {
-                dbContext.SyncActions.DeleteObject(action);
-            }
-
-
             foreach (var info in infos)
             {
-                var newAction = new SyncAction
+                if (info.MutationId <= 0)
                 {
-                    SyncActionId = info.MutationId,
-                    ActionStatus = (int) info.NewStatus,
-                    ActionType = info.MutationType,
-                    ArchiveRecordId = info.ArchiveRecordId,
-                    NumberOfTries = 0,
-                    CreatedOn = DateTime.Now
-                };
+                    var newAction = new SyncAction
+                    {
+                        ActionStatus = (int)info.NewStatus,
+                        ActionType = info.MutationType,
+                        ArchiveRecordId = info.ArchiveRecordId,
+                        NumberOfTries = 0,
+                        CreatedOn = DateTime.Now
+                    };
 
-                dbContext.SyncActions.AddObject(newAction);
-                await dbContext.SaveChangesAsync();
+                    var logEntry = new SyncActionLog
+                    {
+                        ActionStatusHistory = info.NewStatus.ToString(),
+                        LogDate = DateTime.Now
+                    };
+                    newAction.SyncActionLogs.Add(logEntry);
+                    dbContext.SyncActions.AddObject(newAction);
+                }
+                else
+                {
+                    var existingAction = dbContext.SyncActions.FirstOrDefault(s => s.SyncActionId == info.MutationId);
+                    if (existingAction == null)
+                    {
+                        // This should not happen
+                        throw new InvalidOperationException($"Didn't find existing syncAction with id {info.MutationId}");
+                    }
+
+                    existingAction.ActionStatus = (int)info.NewStatus;
+                    existingAction.ModifiedOn = DateTime.Now;
+
+                    // Add the log entry
+                    var error = string.IsNullOrEmpty(info.ErrorMessage)
+                        ? null
+                        : info.ErrorMessage + Environment.NewLine + Environment.NewLine + info.StackTrace;
+                    var logEntry = new SyncActionLog
+                    {
+                        SyncActionId = info.MutationId,
+                        ActionStatusHistory = info.NewStatus.ToString(),
+                        LogDate = DateTime.Now,
+                        ErrorReason = error
+                    };
+                    existingAction.SyncActionLogs.Add(logEntry);
+                }
             }
 
-            return await Task.FromResult(infos.Count);
+            await dbContext.SaveChangesAsync();
+            return infos.Count;
         }
 
         public Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
