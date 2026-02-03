@@ -254,7 +254,7 @@ namespace CMI.Access.Harvest.CMIAIS
                 // At the current rate of getting the pending mutation once every hour this is sufficient
                 // as the system cannot process more than 20'000 syncs in an hour.
                 // Or if this shouldn't be enough, then we can reduce the time for the getPendingMutations job.
-                Log.Information("Fetching records from DataTable SyncActions where ActionStatus 0");
+                // No more than 20,000 per hour will fail, and the process is slightly different from Viaduc.
                 var result = dbContext.SyncActions.Where(x => x.ActionStatus == 0).Take(20000);
                 Log.Information("Fetching {Count} records from DataTable SyncActions where ActionStatus 0", result.Count());
                 foreach (var syncAction in result)
