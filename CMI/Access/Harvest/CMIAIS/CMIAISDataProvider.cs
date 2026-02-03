@@ -42,11 +42,10 @@ namespace CMI.Access.Harvest.CMIAIS
                 throw new ArgumentException("All elements in the list must have the same NewStatus value.");
             }
 
-            var mutationIds = infos.Select(i => i.MutationId).ToList();
-
             foreach (var info in infos)
             {
-                if (info.MutationId <= 0)
+                var existingAction = dbContext.SyncActions.FirstOrDefault(s => s.SyncActionId == info.MutationId);
+                if (existingAction == null)
                 {
                     var newAction = new SyncAction
                     {
@@ -67,13 +66,6 @@ namespace CMI.Access.Harvest.CMIAIS
                 }
                 else
                 {
-                    var existingAction = dbContext.SyncActions.FirstOrDefault(s => s.SyncActionId == info.MutationId);
-                    if (existingAction == null)
-                    {
-                        // This should not happen
-                        throw new InvalidOperationException($"Didn't find existing syncAction with id {info.MutationId}");
-                    }
-
                     existingAction.ActionStatus = (int)info.NewStatus;
                     existingAction.ModifiedOn = DateTime.Now;
 
