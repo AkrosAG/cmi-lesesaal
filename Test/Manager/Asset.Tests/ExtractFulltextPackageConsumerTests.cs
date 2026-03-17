@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Contract.Common;
 using CMI.Contract.Messaging;
@@ -61,7 +62,7 @@ namespace CMI.Manager.Asset.Tests
         public async Task If_fulltext_extraction_is_fail_then_sync_is_failed()
         {
             // Arrange
-            var ar = new ArchiveRecord {ArchiveRecordId = "2"};
+            var ar = new ArchiveRecord {ArchiveRecordId = "2", PrimaryData = [new() { PackageFileName = "Test" }] };
             assetManager.Setup(e => e.ExtractFulltext(1234, It.IsAny<ArchiveRecord>(), It.IsAny<int>())).ReturnsAsync(false);
 
             // Act
@@ -84,7 +85,7 @@ namespace CMI.Manager.Asset.Tests
         public async Task If_fulltext_extraction_is_success_update_index_message_is_sent()
         {
             // Arrange
-            var ar = new ArchiveRecord {ArchiveRecordId = "1"};
+            var ar = new ArchiveRecord { ArchiveRecordId = "1", PrimaryData = [new() { PackageFileName = "Test Neu" }] };
             assetManager.Setup(e => e.ExtractFulltext(123, It.IsAny<ArchiveRecord>(), It.IsAny<int>())).ReturnsAsync(true);
             assetManager.Setup(e => e.UpdatePrimaerdatenAuftragStatus(It.IsAny<IUpdatePrimaerdatenAuftragStatus>()));
 
