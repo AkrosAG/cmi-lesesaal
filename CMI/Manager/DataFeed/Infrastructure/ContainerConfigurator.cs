@@ -37,7 +37,7 @@ namespace CMI.Manager.DataFeed.Infrastructure
             builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
             builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
             builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
             builder.Register(ctx =>
             {
                 return new EmptyScriptLocator();
