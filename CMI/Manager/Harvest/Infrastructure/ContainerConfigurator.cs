@@ -42,7 +42,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
             builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
             builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>();
+            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
             builder.Register(ctx =>
             {
                var path = Settings.Default.CustomScriptPath;
