@@ -21,13 +21,13 @@ namespace CMI.Access.Harvest.CMIAIS
         private readonly string indexName;
         private readonly string indexTectonicName;
 
-        public CMIAISDataProvider(LesesaalDb dbContext, MemoryCache cache)
+        public CMIAISDataProvider(LesesaalDb dbContext, MemoryCache cache, HttpClient cdwsRequestClient)
         {
             this.dbContext = dbContext;
             this.cache = cache;
             var uri = new Uri(Properties.Settings.Default.CdwsEndpoint);
-            cdwsRequestClient = new HttpClient();
-            cdwsRequestClient.BaseAddress = uri;
+            this.cdwsRequestClient = cdwsRequestClient;
+            this.cdwsRequestClient.BaseAddress = uri;
 
             indexName = Properties.Settings.Default.CdwsIndexName;
             indexTectonicName = Properties.Settings.Default.CdwsTectonicIndexName;

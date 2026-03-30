@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
 using CMI.Contract.Parameter;
@@ -10,7 +8,10 @@ using CMI.Utilities.Bus.Configuration;
 using CMI.Utilities.Logging.Configurator;
 using GreenPipes;
 using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System;
+using System.Reflection;
 
 namespace CMI.Manager.Harvest
 {
@@ -19,13 +20,13 @@ namespace CMI.Manager.Harvest
     /// </summary>
     public class HarvestService
     {
-        private readonly ContainerBuilder containerBuilder;
+        private readonly IServiceCollection services;
         private IBusControl bus;
 
         public HarvestService()
         {
             // Configure IoC Container
-            containerBuilder = ContainerConfigurator.Configure();
+            services = ContainerConfigurator.Configure();
             LogConfigurator.ConfigureForService();
         }
 
@@ -38,88 +39,84 @@ namespace CMI.Manager.Harvest
             Log.Information("Harvest service is starting");
 
             // Configure Bus
-            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.HarvestService, (cfg, ctx) =>
+            BusConfigurator.ConfigureBusModern(services, MonitoredServices.HarvestService, AddConsumersAndRequestClients,  (context, cfg) =>
             {
-                cfg.ReceiveEndpoint(BusConstants.HarvestManagerSyncArchiveRecordMessageQueue, ec =>
-                {
-                    ec.Consumer(ctx.Resolve<SyncArchiveRecordConsumer>);
-                    // Retry for a maximum of 10 times with the following intervals
-                    // 00:00:6      minInterval + 1 * intervalDelta
-                    // 00:00:11     minInterval + 2 * intervalDelta
-                    // 00:00:21     minInterval + 4 * intervalDelta
-                    // 00:00:41     minInterval + 8 * intervalDelta
-                    // 00:01:21     minInterval + 16 * intervalDelta
-                    // 00:02:41     minInterval + 32 * intervalDelta
-                    // 00:05:00     maxInterval
-                    // 00:05:00
-                    // 00:05:00
-                    // 00:05:00
-                    ec.UseRetry(retryPolicy =>
-                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
-                    BusConfigurator.SetPrefetchCountForEndpoint(ec);
-                });
+                cfg.ReceiveEndpoint(BusConstants.HarvestManagerSyncArchiveRecordMessageQueue,
+                    ec =>
+                    {
+                        ec.ConfigureConsumer<SyncArchiveRecordConsumer>(context);
+                        // Retry for a maximum of 10 times with the following intervals
+                        // 00:00:6      minInterval + 1 * intervalDelta
+                        // 00:00:11     minInterval + 2 * intervalDelta
+                        // 00:00:21     minInterval + 4 * intervalDelta
+                        // 00:00:41     minInterval + 8 * intervalDelta
+                        // 00:01:21     minInterval + 16 * intervalDelta
+                        // 00:02:41     minInterval + 32 * intervalDelta
+                        // 00:05:00     maxInterval
+                        // 00:05:00
+                        // 00:05:00
+                        // 00:05:00
+                        ec.UseRetry(retryPolicy =>
+                            retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                        BusConfigurator.SetPrefetchCountForEndpoint(ec);
+                    });
+
                 cfg.ReceiveEndpoint(BusConstants.HarvestManagerArchiveRecordUpdatedEventQueue, ec =>
                 {
-                    ec.Consumer(ctx.Resolve<ArchiveRecordUpdatedConsumer>);
+                    ec.ConfigureConsumer<ArchiveRecordUpdatedConsumer>(context);
                     ec.UseRetry(retryPolicy =>
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
                 cfg.ReceiveEndpoint(BusConstants.HarvestManagerArchiveRecordRemovedEventQueue, ec =>
                 {
-                    ec.Consumer(ctx.Resolve<ArchiveRecordRemovedConsumer>);
+                    ec.ConfigureConsumer<ArchiveRecordRemovedConsumer>(context);
                     ec.UseRetry(retryPolicy =>
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
                 cfg.ReceiveEndpoint(BusConstants.HarvestManagerResyncArchiveDatabaseMessageQueue, ec =>
                 {
-                    ec.Consumer(ctx.Resolve<ArchiveDatabaseResyncConsumer>);
-                    ec.UseRetry(retryPolicy =>
-                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
-                });
-                cfg.ReceiveEndpoint(BusConstants.ManagementApiGetHarvestStatusInfoRequestQueue, ec =>
-                {
-                    ec.Consumer(ctx.Resolve<HarvestStatusInfoConsumer>);
-                    ec.UseRetry(retryPolicy =>
-                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
-                });
-                cfg.ReceiveEndpoint(BusConstants.ManagementApiGetHarvestLogInfoRequestQueue, ec =>
-                {
-                    ec.Consumer(ctx.Resolve<HarvestLogInfoConsumer>);
+                    ec.ConfigureConsumer<ArchiveDatabaseResyncConsumer>(context);
                     ec.UseRetry(retryPolicy =>
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
 
-                cfg.ReceiveEndpoint(BusConstants.MonitoringAisDbCheckQueue, ec => { ec.Consumer(ctx.Resolve<CheckAisDbConsumer>); });
+                cfg.ReceiveEndpoint(BusConstants.MonitoringAisDbCheckQueue, ec =>
+                {
+                    ec.ConfigureConsumer<CheckAisDbConsumer>(context);
+                });
+                cfg.ReceiveEndpoint(BusConstants.ManagementApiGetHarvestLogInfoRequestQueue, ec =>
+                {
+                    ec.ConfigureConsumer<HarvestLogInfoConsumer>(context);
+                    ec.UseRetry(retryPolicy =>
+                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                });
 
                 // Wire up the parameter manager
                 var helper = new ParameterBusHelper();
                 helper.SubscribeAllSettingsInAssembly(Assembly.GetExecutingAssembly(), cfg);
             });
 
-            containerBuilder.Register(CreateFindArchiveRecordRequestClient);
-            containerBuilder.Register(CreateConvertArchiveRecordRequestClient);
-
-            var container = containerBuilder.Build();
-
-            bus = container.Resolve<IBusControl>();
+            var provider = services.BuildServiceProvider();
+            bus = provider.GetRequiredService<IBusControl>();
             bus.Start();
 
             Log.Information("Harvest service started");
         }
 
-        private IRequestClient<FindArchiveRecordRequest> CreateFindArchiveRecordRequestClient(IComponentContext context)
+        private void AddConsumersAndRequestClients(IBusRegistrationConfigurator x)
         {
-            var requestTimeout = TimeSpan.FromMinutes(1);
-            return bus.CreateRequestClient<FindArchiveRecordRequest>(
-                new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerFindArchiveRecordMessageQueue), requestTimeout);
+            // registers all IConsumer implementations in this assembly
+            x.AddConsumers(Assembly.GetExecutingAssembly());
+            x.AddRequestClient<FindArchiveRecordRequest>(new Uri(
+                new Uri(BusConfigurator.Uri),
+                BusConstants.IndexManagerFindArchiveRecordMessageQueue));
+
+            x.AddRequestClient<ConvertArchiveRecordRequest>(new Uri(
+                new Uri(BusConfigurator.Uri),
+                BusConstants.IndexManagerConvertArchiveRecordMessageQueue));
+
         }
 
-        private IRequestClient<ConvertArchiveRecordRequest> CreateConvertArchiveRecordRequestClient(IComponentContext context)
-        {
-            var requestTimeout = TimeSpan.FromMinutes(1);
-            return bus.CreateRequestClient<ConvertArchiveRecordRequest>(
-                new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerConvertArchiveRecordMessageQueue), requestTimeout);
-        }
 
         /// <summary>
         ///     Stops the Harvest Service.

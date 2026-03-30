@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CMI.Access.Sql.Lesesaal.EF;
+using System;
+using System.Net.Http;
 using System.Runtime.Caching;
-using CMI.Access.Sql.Lesesaal.EF;
 
 namespace CMI.Access.Harvest
 {
@@ -8,9 +9,11 @@ namespace CMI.Access.Harvest
     {
         private readonly LesesaalDb dbContext;
         private readonly MemoryCache cache;
+        private readonly HttpClient cdwsRequestClient;
 
-        public AISDataProviderFactory(LesesaalDb dbContext, MemoryCache cache)
+        public AISDataProviderFactory(LesesaalDb dbContext, MemoryCache cache, HttpClient cdwsRequestClient)
         {
+            this.cdwsRequestClient = cdwsRequestClient;
             this.dbContext = dbContext;
             this.cache = cache;
         }
@@ -21,7 +24,7 @@ namespace CMI.Access.Harvest
             switch (Properties.Settings.Default.AisProvider.ToLowerInvariant())
             {
                 case "cmiais":
-                    dataProvider = new CMIAIS.CMIAISDataProvider(dbContext, cache);
+                    dataProvider = new CMIAIS.CMIAISDataProvider(dbContext, cache, cdwsRequestClient);
                     break;
                 case "scopeais":
                     dataProvider = new ScopeArchiv.ScopeAISDataProvider();

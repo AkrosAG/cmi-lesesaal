@@ -1,69 +1,55 @@
-﻿using System.Configuration;
-using System.Reflection;
-using System.Runtime.Caching;
-using Autofac;
-using CMI.Access.Harvest;
+﻿using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
 using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Manager.DataFeed.Properties;
-using MassTransit;
 using Microsoft.CSharp;
+using Microsoft.Extensions.DependencyInjection;
+using Quartz;
+using System.Configuration;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Caching;
 
 namespace CMI.Manager.DataFeed.Infrastructure
 {
     internal class ContainerConfigurator
     {
-        public static ContainerBuilder Configure()
+        public static IServiceCollection Configure()
         {
-            var builder = new ContainerBuilder();
+            var services = new ServiceCollection();
 
-            // register the different consumers and classes
-            builder.RegisterType<LanguageSettings>().AsSelf();
-            builder.RegisterType<ApplicationSettings>().AsSelf();
-            builder.RegisterType<CachedLookupData>().AsSelf();
-            builder.RegisterType<SipDateBuilder>().AsSelf();
-            builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterInstance<MemoryCache>(MemoryCache.Default).SingleInstance();
-
-            builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
-            builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
-            builder.RegisterType<CheckMutationQueueJob>().AsSelf();
-            builder.RegisterType<RequeueMutationJob>().AsSelf();
+            services.AddScoped<LanguageSettings>();
+            services.AddScoped<ApplicationSettings>();
+            services.AddScoped<CachedLookupData>();
+            services.AddScoped<SipDateBuilder>();
+            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddSingleton<MemoryCache>(MemoryCache.Default);
+            
+            services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
+            services.AddSingleton<CheckMutationQueueJob>();
+            services.AddSingleton<RequeueMutationJob>();
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
-            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
-            builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
-            builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
-            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
-            builder.Register(ctx =>
+            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
+            services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+            services.AddSingleton<CSharpCodeProvider>(); services.AddScoped<IDynamicScriptProvider, DynamicScriptProvider>();
+            services.AddSingleton<IDynamicScriptLocator>(sp =>
             {
                 return new EmptyScriptLocator();
-            })
-            .AsImplementedInterfaces()
-            .SingleInstance();
-
-            builder.Register(ctx =>
-            {
-                var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
-                return dataProviderFactory.Create();
-            }).AsImplementedInterfaces().AsSelf();
-
-            builder.Register(ctx =>
-            {
-                var builderFactory = ctx.Resolve<IArchiveRecordBuilderFactory>();
-                return builderFactory.Create();
-            }).As<IArchiveRecordBuilder>().AsSelf();
-
-            builder.RegisterType<JobCancelToken>().As<ICancelToken>().SingleInstance().ExternallyOwned();
-
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<IConsumer>()
-                .AsSelf();
-
-            return builder;
+            });
+            
+            services.AddHttpClient("default");
+            services.AddScoped<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+            services.AddScoped<IArchiveRecordBuilder, CMIAISArchiveRecordBuilder>();
+            services.AddSingleton<CMIAISDataProvider>();
+            services.AddSingleton<IAISDataProvider>(sp => sp.GetRequiredService<CMIAISDataProvider>());
+            services.AddSingleton<IAISSpecificRecordAccess>(sp => sp.GetRequiredService<CMIAISDataProvider>());
+            services.AddScoped<ICancelToken, JobCancelToken>();
+           
+            return services;
         }
     }
 }
