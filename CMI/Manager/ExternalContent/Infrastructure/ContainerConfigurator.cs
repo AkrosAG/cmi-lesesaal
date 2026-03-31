@@ -1,9 +1,11 @@
-﻿using System.Reflection;
-using Autofac;
-using CMI.Access.Harvest;
+﻿using CMI.Access.Harvest;
+using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
-using MassTransit;
+using Microsoft.CSharp;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace CMI.Manager.ExternalContent.Infrastructure
 {
     /// <summary>
@@ -11,40 +13,52 @@ namespace CMI.Manager.ExternalContent.Infrastructure
     /// </summary>
     internal class ContainerConfigurator
     {
-        public static ContainerBuilder Configure()
+        public static IServiceCollection Configure()
         {
-            var builder = new ContainerBuilder();
+            var services = new ServiceCollection();
 
-            // register the different consumers and classes
-            builder.RegisterType<ExternalContentManager>().As<IExternalContentManager>();
-            builder.RegisterType<LanguageSettings>().AsSelf();
-            builder.RegisterType<ApplicationSettings>().AsSelf();
-            builder.RegisterType<CachedLookupData>().AsSelf(); 
-            builder.RegisterType<SipDateBuilder>().AsSelf();
-            builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterType<AISDataAccess>().As<IDbExternalContentAccess>();
+            // Settings (unveränderliche Konfiguration) als Singleton
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
+            services.AddSingleton<CachedLookupData>();
 
-            builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
-            builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
+            // Builder als Scoped (werden pro Request verwendet)
+            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddScoped<SipDateBuilder>();
 
-            builder.Register(ctx =>
+            // Dynamic Script Services
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
+            services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
+            services.AddTransient<CSharpCodeProvider>(); // WICHTIG: Transient statt Singleton!
+
+            services.AddHttpClient("default");
+
+            // Manager und Handler als Scoped
+            services.AddScoped<IExternalContentManager, ExternalContentManager>();
+            services.AddScoped<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+
+            // AISDataAccess: Entweder separate Instanzen...
+            services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
+            services.AddScoped<IDbExternalContentAccess, AISDataAccess>();
+
+            // Factories als Singleton (zustandslos)
+            services.AddSingleton<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddSingleton<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+
+            // Provider und Builder aus Factories als Transient
+            services.AddTransient<IAISDataProvider>(sp =>
             {
-                var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
-                return dataProviderFactory.Create();
-            }).AsImplementedInterfaces().AsSelf();
+                var factory = sp.GetRequiredService<IAISDataProviderFactory>();
+                return factory.Create();
+            });
 
-            builder.Register(ctx =>
+            services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
-                var builderFactory = ctx.Resolve<IArchiveRecordBuilderFactory>();
-                return builderFactory.Create();
-            }).As<IArchiveRecordBuilder>().AsSelf();
+                var factory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
+                return factory.Create();
+            });
 
-            // register all the consumers
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<IConsumer>()
-                .AsSelf();
-
-            return builder;
+            return services;
         }
     }
 }

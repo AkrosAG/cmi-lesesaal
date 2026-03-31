@@ -1,9 +1,4 @@
-﻿using System.Configuration;
-using System.Reflection;
-using System.Runtime.Caching;
-using Autofac;
-
-using CMI.Access.Harvest;
+﻿using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Access.Sql.Lesesaal.EF;
@@ -11,69 +6,69 @@ using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
 using CMI.Manager.Harvest.Properties;
-using MassTransit;
 using Microsoft.CSharp;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
+using System.Runtime.Caching;
+
 
 namespace CMI.Manager.Harvest.Infrastructure
 {
+
     /// <summary>
     ///     Helper class for configuring the IoC container.
     /// </summary>
     internal class ContainerConfigurator
     {
-        public static ContainerBuilder Configure()
+        public static IServiceCollection Configure()
         {
-            var builder = new ContainerBuilder();
+            var services = new ServiceCollection();
+            services.AddTransient<IHarvestManager, HarvestManager>();
+            services.AddTransient<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+            services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+            services.AddTransient<CSharpCodeProvider>();
 
-
-            // register the different consumers and classes
-            builder.RegisterType<LanguageSettings>().AsSelf();
-            builder.RegisterType<ApplicationSettings>().AsSelf();
-            builder.RegisterType<CachedLookupData>().AsSelf();
-            
-            builder.RegisterType<SipDateBuilder>().AsSelf();
-            builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterInstance<MemoryCache>(MemoryCache.Default).SingleInstance();
-            
-            builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
-            builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
-            builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
-            builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
+            services.AddScoped<SipDateBuilder>();
+            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddScoped<AISDataAccess>();
+            services.AddScoped<IDbMutationQueueAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbMetadataAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbResyncAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbStatusAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbTestAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
-            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
-            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
-            builder.Register(ctx =>
-            {
-               var path = Settings.Default.CustomScriptPath;
-               return new CustomScriptLocator(path);
-            })
-            .AsImplementedInterfaces()
-            .SingleInstance();
+            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
 
-            builder.Register(ctx =>
+
+            services.AddSingleton<ICachedHarvesterSetting, CachedHarvesterSetting>();
+            services.AddSingleton<IParameterHelper, ParameterHelper>();
+            services.AddSingleton<MemoryCache>(MemoryCache.Default);
+            services.AddSingleton<CachedLookupData>();
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
+
+            services.AddHttpClient("default");
+            services.AddSingleton<IDynamicScriptLocator>(sp =>
             {
-                var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
+                var path = Settings.Default.CustomScriptPath;
+                return new CustomScriptLocator(path);
+            });
+
+            services.AddTransient<IAISDataProvider>(sp =>   
+            {
+                var dataProviderFactory = sp.GetRequiredService<IAISDataProviderFactory>();
                 return dataProviderFactory.Create();
-            }).AsImplementedInterfaces().AsSelf();
-
-            builder.Register(ctx =>
+            });                
+            services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
-                var builderFactory = ctx.Resolve<IArchiveRecordBuilderFactory>();
+                var builderFactory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
                 return builderFactory.Create();
-            }).As<IArchiveRecordBuilder>().AsSelf();
 
-            builder.RegisterType<HarvestManager>().As<IHarvestManager>();
-            builder.RegisterType<AISDataAccess>().AsImplementedInterfaces();
-            builder.RegisterType<ParameterHelper>().As<IParameterHelper>();
-            builder.RegisterType<CachedHarvesterSetting>().As<ICachedHarvesterSetting>().SingleInstance();
-            
-            // register all the consumers
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<IConsumer>()
-                .AsSelf();
+            });
+            return services;
 
-            return builder;
         }
     }
 }

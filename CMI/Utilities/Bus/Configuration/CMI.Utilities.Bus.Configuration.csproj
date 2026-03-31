@@ -52,6 +52,9 @@
     <Reference Include="MassTransit.AutofacIntegration, Version=7.3.1.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\MassTransit.Autofac.7.3.1\lib\netstandard2.0\MassTransit.AutofacIntegration.dll</HintPath>
     </Reference>
+    <Reference Include="MassTransit.ExtensionsDependencyInjectionIntegration, Version=7.3.1.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\MassTransit.Extensions.DependencyInjection.7.3.1\lib\netstandard2.0\MassTransit.ExtensionsDependencyInjectionIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="MassTransit.RabbitMqTransport, Version=7.3.1.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\MassTransit.RabbitMQ.7.3.1\lib\netstandard2.0\MassTransit.RabbitMqTransport.dll</HintPath>
     </Reference>

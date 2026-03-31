@@ -1,69 +1,96 @@
-﻿using System.Configuration;
-using System.Reflection;
+﻿using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common.Compiler;
+using CMI.Contract.Harvest;
+using Microsoft.CSharp;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 using System.Runtime.Caching;
-using Autofac;
 using CMI.Access.Harvest;
 using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
-using CMI.Access.Sql.Lesesaal.EF;
-using CMI.Contract.Common.Compiler;
-using CMI.Contract.Harvest;
-using CMI.Manager.DataFeed.Properties;
-using MassTransit;
-using Microsoft.CSharp;
 
 namespace CMI.Manager.DataFeed.Infrastructure
 {
     internal class ContainerConfigurator
     {
-        public static ContainerBuilder Configure()
+        public static IServiceCollection Configure()
         {
-            var builder = new ContainerBuilder();
+            var services = new ServiceCollection();
 
-            // register the different consumers and classes
-            builder.RegisterType<LanguageSettings>().AsSelf();
-            builder.RegisterType<ApplicationSettings>().AsSelf();
-            builder.RegisterType<CachedLookupData>().AsSelf();
-            builder.RegisterType<SipDateBuilder>().AsSelf();
-            builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterInstance<MemoryCache>(MemoryCache.Default).SingleInstance();
+            // -------------------------
+            // Application Settings (Singleton - statische Konfiguration)
+            // -------------------------
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
+            services.AddSingleton<CachedLookupData>(); // WICHTIG: Singleton!
+            services.AddSingleton<MemoryCache>(MemoryCache.Default);
 
-            builder.RegisterType<CMIAISArchiveRecordProcessHandler>().As<IArchiveRecordProcessHandler>();
-            builder.RegisterType<AISDataAccess>().As<IDbMutationQueueAccess>();
-            builder.RegisterType<CheckMutationQueueJob>().AsSelf();
-            builder.RegisterType<RequeueMutationJob>().AsSelf();
+            // -------------------------
+            // Builders (Scoped - pro Request/Job)
+            // -------------------------
+            services.AddScoped<SipDateBuilder>();
+            services.AddScoped<DigitizationOrderBuilder>();
+
+            // -------------------------
+            // Database / Data Access (Scoped - DbContext!)
+            // -------------------------
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
-            builder.RegisterType<LesesaalDb>().AsSelf().WithParameter(nameof(connectionString), connectionString);
-            builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
-            builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
-            builder.RegisterType<CSharpCodeProvider>().AsSelf().SingleInstance();
-            builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
-            builder.Register(ctx =>
+            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString)); 
+            services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
+
+            // -------------------------
+            // Factories (Singleton - zustandslos)
+            // -------------------------
+            services.AddSingleton<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddSingleton<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+
+            // -------------------------
+            // Provider & Builder aus Factories (Scoped wegen DbContext!)
+            // -------------------------
+            services.AddScoped<IAISDataProvider>(sp =>
             {
-                return new EmptyScriptLocator();
-            })
-            .AsImplementedInterfaces()
-            .SingleInstance();
+                var factory = sp.GetRequiredService<IAISDataProviderFactory>();
+                return factory.Create();
+            });
 
-            builder.Register(ctx =>
+            services.AddScoped<IArchiveRecordBuilder>(sp =>
             {
-                var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
-                return dataProviderFactory.Create();
-            }).AsImplementedInterfaces().AsSelf();
+                var factory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
+                return factory.Create();
+            });
 
-            builder.Register(ctx =>
-            {
-                var builderFactory = ctx.Resolve<IArchiveRecordBuilderFactory>();
-                return builderFactory.Create();
-            }).As<IArchiveRecordBuilder>().AsSelf();
+            // WICHTIG: CMIAISDataProvider NICHT als Singleton!
+            // Wird über Factory erstellt und ist Scoped wegen LesesaalDb
 
-            builder.RegisterType<JobCancelToken>().As<ICancelToken>().SingleInstance().ExternallyOwned();
+            // -------------------------
+            // Dynamic Script Services
+            // -------------------------
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
+            services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
+            services.AddTransient<CSharpCodeProvider>(); // WICHTIG: Transient!
 
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<IConsumer>()
-                .AsSelf();
+            // -------------------------
+            // Process Handler (Singleton - zustandslos)
+            // -------------------------
+            services.AddSingleton<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
 
-            return builder;
+            // -------------------------
+            // Cancel Token (Singleton - shared state)
+            // -------------------------
+            services.AddSingleton<ICancelToken, JobCancelToken>();
+
+            // -------------------------
+            // Quartz Jobs (Scoped - wegen IDbMutationQueueAccess)
+            // -------------------------
+            services.AddScoped<CheckMutationQueueJob>();
+            services.AddScoped<RequeueMutationJob>();
+
+            // -------------------------
+            // HttpClient
+            // -------------------------
+            services.AddHttpClient("default");
+
+            return services;
         }
     }
 }
