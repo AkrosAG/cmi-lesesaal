@@ -18,57 +18,72 @@ namespace CMI.Manager.DataFeed.Infrastructure
             var services = new ServiceCollection();
 
             // -------------------------
-            // Application Settings
+            // Application Settings (Singleton - statische Konfiguration)
             // -------------------------
-            services.AddScoped<LanguageSettings>();
-            services.AddScoped<ApplicationSettings>();
-            services.AddScoped<CachedLookupData>();
-            services.AddScoped<SipDateBuilder>();
-            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
+            services.AddSingleton<CachedLookupData>(); // WICHTIG: Singleton!
             services.AddSingleton<MemoryCache>(MemoryCache.Default);
 
             // -------------------------
-            // Database / Data Access
+            // Builders (Scoped - pro Request/Job)
             // -------------------------
+            services.AddScoped<SipDateBuilder>();
+            services.AddScoped<DigitizationOrderBuilder>();
+
+            // -------------------------
+            // Database / Data Access (Scoped - DbContext!)
+            // -------------------------
+            var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
+            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString)); 
             services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
 
-            var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
-            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
+            // -------------------------
+            // Factories (Singleton - zustandslos)
+            // -------------------------
+            services.AddSingleton<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddSingleton<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
 
             // -------------------------
-            // Factories & Builders
+            // Provider & Builder aus Factories (Scoped wegen DbContext!)
             // -------------------------
-            services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
-            services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+            services.AddScoped<IAISDataProvider>(sp =>
+            {
+                var factory = sp.GetRequiredService<IAISDataProviderFactory>();
+                return factory.Create();
+            });
 
-            services.AddTransient<IArchiveRecordBuilder>(sp =>
+            services.AddScoped<IArchiveRecordBuilder>(sp =>
             {
                 var factory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
                 return factory.Create();
             });
 
+            // WICHTIG: CMIAISDataProvider NICHT als Singleton!
+            // Wird über Factory erstellt und ist Scoped wegen LesesaalDb
+
             // -------------------------
             // Dynamic Script Services
             // -------------------------
-            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>(); // Singleton für Quartz Jobs
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
             services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
-            services.AddSingleton<CSharpCodeProvider>();
+            services.AddTransient<CSharpCodeProvider>(); // WICHTIG: Transient!
 
             // -------------------------
-            // AIS Data Provider
-            // -------------------------
-            services.AddSingleton<CMIAISDataProvider>();
-            services.AddSingleton<IAISDataProvider>(sp => sp.GetRequiredService<CMIAISDataProvider>());
-            services.AddSingleton<IAISSpecificRecordAccess>(sp => sp.GetRequiredService<CMIAISDataProvider>());
-
-            // -------------------------
-            // Quartz Jobs / Handlers
+            // Process Handler (Singleton - zustandslos)
             // -------------------------
             services.AddSingleton<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+
+            // -------------------------
+            // Cancel Token (Singleton - shared state)
+            // -------------------------
             services.AddSingleton<ICancelToken, JobCancelToken>();
 
-            services.AddSingleton<CheckMutationQueueJob>();
-            services.AddSingleton<RequeueMutationJob>();
+            // -------------------------
+            // Quartz Jobs (Scoped - wegen IDbMutationQueueAccess)
+            // -------------------------
+            services.AddScoped<CheckMutationQueueJob>();
+            services.AddScoped<RequeueMutationJob>();
 
             // -------------------------
             // HttpClient

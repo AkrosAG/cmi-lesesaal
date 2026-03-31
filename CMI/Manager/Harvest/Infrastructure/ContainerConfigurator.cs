@@ -8,6 +8,7 @@ using CMI.Contract.Parameter;
 using CMI.Manager.Harvest.Properties;
 using Microsoft.CSharp;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 using System.Runtime.Caching;
 
 
@@ -22,28 +23,29 @@ namespace CMI.Manager.Harvest.Infrastructure
         public static IServiceCollection Configure()
         {
             var services = new ServiceCollection();
-
-
-            services.AddTransient<LanguageSettings>();
-            services.AddTransient<ApplicationSettings>();
-            services.AddTransient<SipDateBuilder>();
-            services.AddTransient<DigitizationOrderBuilder>();
             services.AddTransient<IHarvestManager, HarvestManager>();
-            services.AddTransient<IParameterHelper, ParameterHelper>();
-            services.AddTransient<IDbMutationQueueAccess, AISDataAccess>();
-            services.AddTransient<IDbMetadataAccess, AISDataAccess>();
-            services.AddTransient<IDbResyncAccess, AISDataAccess>();
-            services.AddTransient<IDbStatusAccess, AISDataAccess>();
             services.AddTransient<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
             services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
             services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+            services.AddTransient<CSharpCodeProvider>();
 
+            services.AddScoped<SipDateBuilder>();
+            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddScoped<AISDataAccess>();
+            services.AddScoped<IDbMutationQueueAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbMetadataAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbResyncAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbStatusAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
-            services.AddTransient<LesesaalDb>(sp => new LesesaalDb(connectionString));
+            services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
+
+
             services.AddSingleton<ICachedHarvesterSetting, CachedHarvesterSetting>();
+            services.AddSingleton<IParameterHelper, ParameterHelper>();
             services.AddSingleton<MemoryCache>(MemoryCache.Default);
             services.AddSingleton<CachedLookupData>();
-            services.AddSingleton<CSharpCodeProvider>();
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
             services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
 
             services.AddHttpClient("default");
@@ -53,19 +55,11 @@ namespace CMI.Manager.Harvest.Infrastructure
                 return new CustomScriptLocator(path);
             });
 
-            services.AddTransient(sp =>
+            services.AddTransient<IAISDataProvider>(sp =>   
             {
                 var dataProviderFactory = sp.GetRequiredService<IAISDataProviderFactory>();
                 return dataProviderFactory.Create();
-
-            });
-
-            services.AddTransient<CMIAISDataProvider>(sp =>
-            {
-                var dataProviderFactory = sp.GetRequiredService<IAISDataProviderFactory>();
-                return dataProviderFactory.Create() as CMIAISDataProvider;
-            });
-            
+            });                
             services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
                 var builderFactory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();

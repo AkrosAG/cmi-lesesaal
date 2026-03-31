@@ -17,43 +17,45 @@ namespace CMI.Manager.ExternalContent.Infrastructure
         {
             var services = new ServiceCollection();
 
-            // register the different consumers and classes
-           
-            services.AddScoped<LanguageSettings>();
-            services.AddScoped<ApplicationSettings>();
+            // Settings (unveränderliche Konfiguration) als Singleton
+            services.AddSingleton<LanguageSettings>();
+            services.AddSingleton<ApplicationSettings>();
             services.AddSingleton<CachedLookupData>();
+
+            // Builder als Scoped (werden pro Request verwendet)
             services.AddScoped<DigitizationOrderBuilder>();
             services.AddScoped<SipDateBuilder>();
-            // -------------------------
+
             // Dynamic Script Services
-            // -------------------------
-            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>(); 
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>();
             services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
-            services.AddSingleton<CSharpCodeProvider>();
+            services.AddTransient<CSharpCodeProvider>(); // WICHTIG: Transient statt Singleton!
 
             services.AddHttpClient("default");
+
+            // Manager und Handler als Scoped
             services.AddScoped<IExternalContentManager, ExternalContentManager>();
             services.AddScoped<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+
+            // AISDataAccess: Entweder separate Instanzen...
             services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
-            services.AddScoped<IAISDataProviderFactory, AISDataProviderFactory>();
-            services.AddScoped<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
             services.AddScoped<IDbExternalContentAccess, AISDataAccess>();
-            // Für den CMIAISDataProvider wird unter anderem LesesaalDb benötigt
-            services.AddScoped<IAISDataProvider, ScopeAISDataProvider>();
 
-            
+            // Factories als Singleton (zustandslos)
+            services.AddSingleton<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddSingleton<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
 
-            services.AddTransient<CMIAISDataProvider>(sp =>
+            // Provider und Builder aus Factories als Transient
+            services.AddTransient<IAISDataProvider>(sp =>
             {
-                var dataProviderFactory = sp.GetRequiredService<IAISDataProviderFactory>();
-                return dataProviderFactory.Create() as CMIAISDataProvider;
+                var factory = sp.GetRequiredService<IAISDataProviderFactory>();
+                return factory.Create();
             });
 
             services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
-                var builderFactory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
-                return builderFactory.Create();
-
+                var factory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
+                return factory.Create();
             });
 
             return services;
