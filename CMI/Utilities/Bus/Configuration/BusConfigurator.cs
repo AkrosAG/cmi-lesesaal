@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
 using CMI.Utilities.Bus.Configuration.Properties;
@@ -9,9 +6,14 @@ using GreenPipes;
 using GreenPipes.Configurators;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
 using Serilog.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using MassTransit.Context;
 
 namespace CMI.Utilities.Bus.Configuration
 {
@@ -53,6 +55,40 @@ namespace CMI.Utilities.Bus.Configuration
             .As<IBus>()
             .ExternallyOwned();
         }
+
+
+        public static void ConfigureBusModern(IServiceCollection services, MonitoredServices monitoringName = MonitoredServices.NotMonitored,
+            Action<IBusRegistrationConfigurator> consumerAddAction = null,
+            Action<IBusRegistrationContext, IRabbitMqBusFactoryConfigurator> registrationAction = null)
+        {
+            Log.Information("Configuring Bus uri={uri} user={user}", Settings.Default.RabbitMqUri, Settings.Default.RabbitMqUserName);
+
+            // Configure Logging for Masstransit using Serilog 
+            LogContext.ConfigureCurrentLogContext(new SerilogLoggerFactory(Log.Logger));
+
+            services.AddMassTransit(x =>
+            {
+                consumerAddAction?.Invoke(x);
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(new Uri(Settings.Default.RabbitMqUri), hst =>
+                    {
+                        hst.Username(Settings.Default.RabbitMqUserName);
+                        hst.Password(Settings.Default.RabbitMqPassword);
+                    });
+
+                    if (monitoringName != MonitoredServices.NotMonitored)
+                    {
+                        cfg.ReceiveEndpoint(string.Format(BusConstants.MonitoringServiceHeartbeatRequestQueue, monitoringName.ToString()),
+                            ec => { ec.Consumer(() => new HeartbeatConsumer(monitoringName.ToString())); });
+                    }
+
+                    registrationAction?.Invoke(context, cfg);
+                });
+            });
+        }
+
 
         public static void ConfigureDefaultRetryPolicy(IRetryConfigurator retryPolicy)
         {

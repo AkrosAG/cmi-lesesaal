@@ -45,17 +45,6 @@ namespace CMI.Manager.Harvest
                     ec =>
                     {
                         ec.ConfigureConsumer<SyncArchiveRecordConsumer>(context);
-                        // Retry for a maximum of 10 times with the following intervals
-                        // 00:00:6      minInterval + 1 * intervalDelta
-                        // 00:00:11     minInterval + 2 * intervalDelta
-                        // 00:00:21     minInterval + 4 * intervalDelta
-                        // 00:00:41     minInterval + 8 * intervalDelta
-                        // 00:01:21     minInterval + 16 * intervalDelta
-                        // 00:02:41     minInterval + 32 * intervalDelta
-                        // 00:05:00     maxInterval
-                        // 00:05:00
-                        // 00:05:00
-                        // 00:05:00
                         ec.UseRetry(retryPolicy =>
                             retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                         BusConfigurator.SetPrefetchCountForEndpoint(ec);
@@ -107,14 +96,23 @@ namespace CMI.Manager.Harvest
         {
             // registers all IConsumer implementations in this assembly
             x.AddConsumers(Assembly.GetExecutingAssembly());
-            x.AddRequestClient<FindArchiveRecordRequest>(new Uri(
-                new Uri(BusConfigurator.Uri),
-                BusConstants.IndexManagerFindArchiveRecordMessageQueue));
 
-            x.AddRequestClient<ConvertArchiveRecordRequest>(new Uri(
-                new Uri(BusConfigurator.Uri),
-                BusConstants.IndexManagerConvertArchiveRecordMessageQueue));
+            //// **Jeden Consumer explizit registrieren**
+            //x.AddConsumer<SyncArchiveRecordConsumer>();
+            //x.AddConsumer<ArchiveRecordUpdatedConsumer>();
+            //x.AddConsumer<ArchiveRecordRemovedConsumer>();
+            //x.AddConsumer<ArchiveDatabaseResyncConsumer>();
+            //x.AddConsumer<CheckAisDbConsumer>();
+            //x.AddConsumer<HarvestLogInfoConsumer>();
 
+            // RequestClients registrieren
+            x.AddRequestClient<FindArchiveRecordRequest>(
+                new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerFindArchiveRecordMessageQueue),
+                TimeSpan.FromMinutes(1));
+
+            x.AddRequestClient<ConvertArchiveRecordRequest>(
+                new Uri(new Uri(BusConfigurator.Uri), BusConstants.IndexManagerConvertArchiveRecordMessageQueue),
+                TimeSpan.FromMinutes(1));
         }
 
 

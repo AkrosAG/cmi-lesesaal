@@ -1,4 +1,6 @@
-﻿namespace CMI.Contract.Messaging
+﻿using System;
+
+namespace CMI.Contract.Messaging
 {
     public interface ISyncArchiveRecord
     {

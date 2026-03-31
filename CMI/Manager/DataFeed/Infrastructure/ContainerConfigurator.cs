@@ -8,9 +8,8 @@ using CMI.Manager.DataFeed.Properties;
 using Microsoft.CSharp;
 using Microsoft.Extensions.DependencyInjection;
 using Quartz;
+using System;
 using System.Configuration;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.Caching;
 
 namespace CMI.Manager.DataFeed.Infrastructure
@@ -21,34 +20,64 @@ namespace CMI.Manager.DataFeed.Infrastructure
         {
             var services = new ServiceCollection();
 
+            // -------------------------
+            // Application Settings
+            // -------------------------
             services.AddScoped<LanguageSettings>();
             services.AddScoped<ApplicationSettings>();
             services.AddScoped<CachedLookupData>();
             services.AddScoped<SipDateBuilder>();
             services.AddScoped<DigitizationOrderBuilder>();
             services.AddSingleton<MemoryCache>(MemoryCache.Default);
-            
+
+            // -------------------------
+            // Database / Data Access
+            // -------------------------
             services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
-            services.AddSingleton<CheckMutationQueueJob>();
-            services.AddSingleton<RequeueMutationJob>();
+
             var connectionString = ConfigurationManager.ConnectionStrings[nameof(LesesaalDb)].ConnectionString;
             services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
+
+            // -------------------------
+            // Factories & Builders
+            // -------------------------
             services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
             services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
-            services.AddSingleton<CSharpCodeProvider>(); services.AddScoped<IDynamicScriptProvider, DynamicScriptProvider>();
-            services.AddSingleton<IDynamicScriptLocator>(sp =>
+
+            services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
-                return new EmptyScriptLocator();
+                var factory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
+                return factory.Create();
             });
-            
-            services.AddHttpClient("default");
-            services.AddScoped<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
-            services.AddScoped<IArchiveRecordBuilder, CMIAISArchiveRecordBuilder>();
+
+            // -------------------------
+            // Dynamic Script Services
+            // -------------------------
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>(); // Singleton für Quartz Jobs
+            services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
+            services.AddSingleton<CSharpCodeProvider>();
+
+            // -------------------------
+            // AIS Data Provider
+            // -------------------------
             services.AddSingleton<CMIAISDataProvider>();
             services.AddSingleton<IAISDataProvider>(sp => sp.GetRequiredService<CMIAISDataProvider>());
             services.AddSingleton<IAISSpecificRecordAccess>(sp => sp.GetRequiredService<CMIAISDataProvider>());
-            services.AddScoped<ICancelToken, JobCancelToken>();
-           
+
+            // -------------------------
+            // Quartz Jobs / Handlers
+            // -------------------------
+            services.AddSingleton<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+            services.AddSingleton<ICancelToken, JobCancelToken>();
+
+            services.AddSingleton<CheckMutationQueueJob>();
+            services.AddSingleton<RequeueMutationJob>();
+
+            // -------------------------
+            // HttpClient
+            // -------------------------
+            services.AddHttpClient("default");
+
             return services;
         }
     }
