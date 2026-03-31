@@ -36,6 +36,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             services.AddScoped<IDbMetadataAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             services.AddScoped<IDbResyncAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             services.AddScoped<IDbStatusAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+            services.AddScoped<IDbTestAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
             services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
 
