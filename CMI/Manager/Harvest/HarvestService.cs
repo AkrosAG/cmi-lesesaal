@@ -56,7 +56,7 @@ namespace CMI.Manager.Harvest
                     ec.UseRetry(retryPolicy =>
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
-                cfg.ReceiveEndpoint("e.harvest.manager.archiveRecordRemoved", ec =>
+                cfg.ReceiveEndpoint(BusConstants.HarvestManagerArchiveRecordRemovedEventQueue, ec =>
                 {
                     ec.ConfigureConsumer<ArchiveRecordRemovedConsumer>(context);
                     ec.UseRetry(retryPolicy =>

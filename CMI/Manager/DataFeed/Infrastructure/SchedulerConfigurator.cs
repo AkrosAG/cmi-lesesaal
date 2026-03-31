@@ -1,6 +1,4 @@
-﻿using Autofac;
-using CMI.Manager.DataFeed.Properties;
-using Microsoft.Extensions.DependencyInjection;
+﻿using CMI.Manager.DataFeed.Properties;
 using Quartz;
 using Quartz.Impl;
 using Serilog;
