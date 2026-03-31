@@ -1,9 +1,11 @@
-﻿using System.Reflection;
-using Autofac;
-using CMI.Access.Harvest;
+﻿using CMI.Access.Harvest;
+using CMI.Access.Harvest.CMIAIS;
 using CMI.Access.Harvest.ScopeArchiv;
+using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
-using MassTransit;
+using Microsoft.CSharp;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace CMI.Manager.ExternalContent.Infrastructure
 {
     /// <summary>
@@ -11,40 +13,50 @@ namespace CMI.Manager.ExternalContent.Infrastructure
     /// </summary>
     internal class ContainerConfigurator
     {
-        public static ContainerBuilder Configure()
+        public static IServiceCollection Configure()
         {
-            var builder = new ContainerBuilder();
+            var services = new ServiceCollection();
 
             // register the different consumers and classes
-            builder.RegisterType<ExternalContentManager>().As<IExternalContentManager>();
-            builder.RegisterType<LanguageSettings>().AsSelf();
-            builder.RegisterType<ApplicationSettings>().AsSelf();
-            builder.RegisterType<CachedLookupData>().AsSelf(); 
-            builder.RegisterType<SipDateBuilder>().AsSelf();
-            builder.RegisterType<DigitizationOrderBuilder>().AsSelf();
-            builder.RegisterType<AISDataAccess>().As<IDbExternalContentAccess>();
+           
+            services.AddScoped<LanguageSettings>();
+            services.AddScoped<ApplicationSettings>();
+            services.AddSingleton<CachedLookupData>();
+            services.AddScoped<DigitizationOrderBuilder>();
+            services.AddScoped<SipDateBuilder>();
+            // -------------------------
+            // Dynamic Script Services
+            // -------------------------
+            services.AddSingleton<IDynamicScriptProvider, DynamicScriptProvider>(); 
+            services.AddSingleton<IDynamicScriptLocator, EmptyScriptLocator>();
+            services.AddSingleton<CSharpCodeProvider>();
 
-            builder.RegisterType<AISDataProviderFactory>().As<IAISDataProviderFactory>();
-            builder.RegisterType<ArchiveRecordBuilderFactory>().As<IArchiveRecordBuilderFactory>();
+            services.AddHttpClient("default");
+            services.AddScoped<IExternalContentManager, ExternalContentManager>();
+            services.AddScoped<IArchiveRecordProcessHandler, CMIAISArchiveRecordProcessHandler>();
+            services.AddScoped<IDbMutationQueueAccess, AISDataAccess>();
+            services.AddScoped<IAISDataProviderFactory, AISDataProviderFactory>();
+            services.AddScoped<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
+            services.AddScoped<IDbExternalContentAccess, AISDataAccess>();
+            // Für den CMIAISDataProvider wird unter anderem LesesaalDb benötigt
+            services.AddScoped<IAISDataProvider, ScopeAISDataProvider>();
 
-            builder.Register(ctx =>
+            
+
+            services.AddTransient<CMIAISDataProvider>(sp =>
             {
-                var dataProviderFactory = ctx.Resolve<IAISDataProviderFactory>();
-                return dataProviderFactory.Create();
-            }).AsImplementedInterfaces().AsSelf();
+                var dataProviderFactory = sp.GetRequiredService<IAISDataProviderFactory>();
+                return dataProviderFactory.Create() as CMIAISDataProvider;
+            });
 
-            builder.Register(ctx =>
+            services.AddTransient<IArchiveRecordBuilder>(sp =>
             {
-                var builderFactory = ctx.Resolve<IArchiveRecordBuilderFactory>();
+                var builderFactory = sp.GetRequiredService<IArchiveRecordBuilderFactory>();
                 return builderFactory.Create();
-            }).As<IArchiveRecordBuilder>().AsSelf();
 
-            // register all the consumers
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AssignableTo<IConsumer>()
-                .AsSelf();
+            });
 
-            return builder;
+            return services;
         }
     }
 }

@@ -1,21 +1,22 @@
-﻿using System.Threading.Tasks;
-using Autofac;
-using CMI.Contract.Monitoring;
+﻿using CMI.Contract.Monitoring;
 using CMI.Manager.DataFeed.Infrastructure;
 using CMI.Utilities.Bus.Configuration;
 using CMI.Utilities.Logging.Configurator;
 using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using Quartz;
 using Serilog;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.DataFeed
 {
     public class DataFeedService
     {
-        private IContainer container;
-        private ContainerBuilder containerBuilder;
+        private readonly IServiceCollection services;
         private IBusControl bus;
         private IScheduler scheduler;
+        private ServiceProvider provider;
 
         /// <summary>
         ///     The data feed service uses a timer to poll the mutation queue for any pending changes.
@@ -24,7 +25,7 @@ namespace CMI.Manager.DataFeed
         public DataFeedService()
         {
             // Configure IoC Container
-            containerBuilder = ContainerConfigurator.Configure();
+            services = ContainerConfigurator.Configure();
             LogConfigurator.ConfigureForService();
         }
 
@@ -37,19 +38,17 @@ namespace CMI.Manager.DataFeed
             Log.Information("DataFeed service is starting");
 
             // Configure Bus
-            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.DataFeedService, (cfg, ctx) => { });
-            container = containerBuilder.Build();
-            bus = container.Resolve<IBusControl>();
-            bus.Start();
 
-            // Start the timer
-            scheduler = await SchedulerConfigurator.Configure(container);
+            BusConfigurator.ConfigureBusModern(services, MonitoredServices.DataFeedService, AddConsumers, (context, cfg) => { });
 
             Log.Verbose("Starting scheduler");
+            // Start the timer
+            provider = services.BuildServiceProvider();
+            scheduler = await SchedulerConfigurator.Configure(provider);
             await scheduler.Start();
-
-
+            bus = provider.GetRequiredService<IBusControl>();
             Log.Information("DataFeed service started");
+            bus.Start();
         }
 
         /// <summary>
@@ -61,7 +60,9 @@ namespace CMI.Manager.DataFeed
             Log.Information("DataFeed service is stopping");
 
             // Get the singleton JobCancelToken and cancel any running job
-            var token = container.Resolve<ICancelToken>();
+            var token = provider.GetRequiredService<ICancelToken>();
+
+            // Job abbrechen
             token.Cancel();
 
             // Stop the scheduler and wait until any running jobs have completed
@@ -71,6 +72,12 @@ namespace CMI.Manager.DataFeed
 
             Log.Information("DataFeed service stopped");
             Log.CloseAndFlush();
+        }
+
+        private void AddConsumers(IBusRegistrationConfigurator x)
+        {
+            // registers all IConsumer implementations in this assembly
+            x.AddConsumers(Assembly.GetExecutingAssembly());
         }
     }
 }

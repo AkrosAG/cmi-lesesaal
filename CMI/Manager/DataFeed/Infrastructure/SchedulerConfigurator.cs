@@ -1,19 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using CMI.Manager.DataFeed.Properties;
+using Microsoft.Extensions.DependencyInjection;
 using Quartz;
 using Quartz.Impl;
 using Serilog;
+using System;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.DataFeed.Infrastructure
 {
     internal static class SchedulerConfigurator
     {
-        public static async Task<IScheduler> Configure(IContainer container)
+        public static async Task<IScheduler> Configure(IServiceProvider provider)
         {
             var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
-            scheduler.JobFactory = new JobFactory(container);
+            scheduler.JobFactory = new JobFactory(provider);
 
             // Define the standard job to get the pending records
             // --------------------------------------------------
