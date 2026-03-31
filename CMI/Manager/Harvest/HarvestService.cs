@@ -43,8 +43,18 @@ namespace CMI.Manager.Harvest
                 cfg.ReceiveEndpoint(BusConstants.HarvestManagerSyncArchiveRecordMessageQueue,
                     ec =>
                     {
+                        // Retry for a maximum of 10 times with the following intervals
+                        // 00:00:6      minInterval + 1 * intervalDelta
+                        // 00:00:11     minInterval + 2 * intervalDelta
+                        // 00:00:21     minInterval + 4 * intervalDelta
+                        // 00:00:41     minInterval + 8 * intervalDelta
+                        // 00:01:21     minInterval + 16 * intervalDelta
+                        // 00:02:41     minInterval + 32 * intervalDelta
+                        // 00:05:00     maxInterval
+                        // 00:05:00
+                        // 00:05:00
+                        // 00:05:00
                         ec.ConfigureConsumer<SyncArchiveRecordConsumer>(context);
-
                         ec.UseRetry(retryPolicy =>
                             retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                         BusConfigurator.SetPrefetchCountForEndpoint(ec);
