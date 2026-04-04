@@ -44,20 +44,47 @@ namespace CMI.Access.Harvest.CMIAIS
 
             foreach (var info in infos)
             {
-                var newAction = new SyncAction
+                var existingAction = dbContext.SyncActions.FirstOrDefault(s => s.SyncActionId == info.MutationId);
+                if (existingAction == null)
                 {
-                    SyncActionId = info.MutationId,
-                    ActionStatus = (int) info.NewStatus,
-                    ActionType = info.MutationType,
-                    ArchiveRecordId = info.ArchiveRecordId,
-                    NumberOfTries = 0,
-                    CreatedOn = DateTime.Now
-                };
-                dbContext.SyncActions.AddObject(newAction);
-                await dbContext.SaveChangesAsync();
+                    var newAction = new SyncAction
+                    {
+                        ActionStatus = (int)info.NewStatus,
+                        ActionType = info.MutationType,
+                        ArchiveRecordId = info.ArchiveRecordId,
+                        NumberOfTries = 0,
+                        CreatedOn = DateTime.Now
+                    };
+
+                    var logEntry = new SyncActionLog
+                    {
+                        ActionStatusHistory = info.NewStatus.ToString(),
+                        LogDate = DateTime.Now
+                    };
+                    newAction.SyncActionLogs.Add(logEntry);
+                    dbContext.SyncActions.AddObject(newAction);
+                }
+                else
+                {
+                    existingAction.ActionStatus = (int)info.NewStatus;
+                    existingAction.ModifiedOn = DateTime.Now;
+
+                    // Add the log entry
+                    var error = string.IsNullOrEmpty(info.ErrorMessage)
+                        ? null
+                        : info.ErrorMessage + Environment.NewLine + Environment.NewLine + info.StackTrace;
+                    var logEntry = new SyncActionLog
+                    {
+                        ActionStatusHistory = info.NewStatus.ToString(),
+                        LogDate = DateTime.Now,
+                        ErrorReason = error
+                    };
+                    existingAction.SyncActionLogs.Add(logEntry);
+                }
             }
 
-            return await Task.FromResult(infos.Count);
+            await dbContext.SaveChangesAsync();
+            return infos.Count;
         }
 
         public Task<LinkedAccessionInfo> GetLinkedAccessionToArchiveRecord(string recordId)
@@ -179,6 +206,7 @@ namespace CMI.Access.Harvest.CMIAIS
             var maxHits = 1000;
             var pendingMutations = new List<MutationRecord>();
 
+
             try
             {
                 var lastSequenceNr = ReadLastSequenceNr();
@@ -218,6 +246,25 @@ namespace CMI.Access.Harvest.CMIAIS
                     Log.Warning("Cdws returned {finalSequenceNr} but we found {lastSequenceNr}", finalSequenceNr, lastSequenceNr);
                 }
                 SaveLastSequenceNr(lastSequenceNr);
+
+
+                // Action 0 Waiting for Sync
+                // We are taking a max of 20'000 to prevent message size overflow error in RabbitMq
+                // At the current rate of getting the pending mutation once every hour this is sufficient
+                // as the system cannot process more than 20'000 syncs in an hour.
+                // Or if this shouldn't be enough, then we can reduce the time for the getPendingMutations job.
+                // No more than 20,000 per hour will fail, and the process is slightly different from Viaduc.
+                var result = dbContext.SyncActions.Where(x => x.ActionStatus == 0).Take(20000);
+                Log.Information("Fetching {Count} records from DataTable SyncActions where ActionStatus 0", result.Count());
+                foreach (var syncAction in result)
+                {
+                    pendingMutations.Add(new MutationRecord
+                    {
+                        Action = syncAction.ActionType,
+                        ArchiveRecordId = syncAction.ArchiveRecordId,
+                        MutationId = syncAction.SyncActionId
+                    });
+                }
 
                 return pendingMutations;
             }
@@ -263,9 +310,26 @@ namespace CMI.Access.Harvest.CMIAIS
             throw new NotImplementedException();
         }
 
-        public Task<int> ResetFailedSyncOperations(int maxRetries)
+        public async Task<int> ResetFailedSyncOperations(int maxRetries)
         {
-            return Task.FromResult(0);
+            var recordsToReset = dbContext.SyncActions.Where(s => s.ActionStatus == (int)ActionStatus.SyncFailed &&
+                                                                  s.NumberOfTries < maxRetries);
+
+            foreach (var syncAction in recordsToReset)
+            {
+                syncAction.ActionStatus = 0;
+                // Add the log entry
+                var logEntry = new SyncActionLog
+                {
+                    SyncActionId = syncAction.SyncActionId,
+                    ActionStatusHistory = nameof(ActionStatus.WaitingForSync),
+                    LogDate = DateTime.Now
+                };
+                syncAction.ModifiedOn = DateTime.Now;
+                syncAction.SyncActionLogs.Add(logEntry);
+            }
+
+            return await dbContext.SaveChangesAsync();
         }
 
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)

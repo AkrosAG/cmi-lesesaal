@@ -78,7 +78,6 @@
     <Compile Include="CMIAIS\MetaDataExtension.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordBuilder.cs" />
     <Compile Include="CMIAIS\CMIAISArchiveRecordProcessHandler.cs" />
-    <Compile Include="CMIAIS\CMIAISDataAccess.cs" />
     <Compile Include="CMIAIS\CMIAISDataProvider.cs" />
     <Compile Include="CMIAIS\Mapping\ElementMappings\NumericMapping.cs" />
     <Compile Include="CMIAIS\Schemas\ChangesResponse.Designer.cs" />
