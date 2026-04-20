@@ -309,6 +309,13 @@ namespace CMI.Access.Harvest.CMIAIS
             return 0;
         }
 
+        public void Dispose()
+        {
+            // Dispose of unmanaged resources.
+            Dispose(true);
+            // Suppress finalization.
+            GC.SuppressFinalize(this);
+        }
 
         private void SaveLastSequenceNr(long sequenceNr)
         {
@@ -342,6 +349,14 @@ namespace CMI.Access.Harvest.CMIAIS
             var stringContent = await response.Content.ReadAsStringAsync();
             var searchResponse = ChangesResponseType.Deserialize(stringContent);
             return searchResponse;
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                cdwsRequestClient.Dispose();
+            }
         }
     }
 }

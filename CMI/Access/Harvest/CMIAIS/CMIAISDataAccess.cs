@@ -8,7 +8,7 @@ using CMI.Contract.Harvest;
 
 namespace CMI.Access.Harvest.CMIAIS
 {
-    public class CMIAISDataAccess: IDbMutationQueueAccess
+    public class CMIAISDataAccess: IDbMutationQueueAccess, IDisposable
     {
         private readonly IAISDataProvider dataProvider;
 
@@ -36,6 +36,11 @@ namespace CMI.Access.Harvest.CMIAIS
         {
             // Nothing to do with CMI
             return Task.FromResult(0);
+        }
+
+        public void Dispose()
+        {
+            dataProvider?.Dispose();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CMI.Access.Harvest.ScopeArchiv;
 using CMI.Contract.Common;
@@ -12,7 +13,7 @@ namespace CMI.Access.Harvest
     ///     Implemented as partial class where some interfaces are declared in the respective partial file, to make it
     ///     more obvious which parts belong to which interface.
     /// </summary>
-    public partial class AISDataAccess : IDbMutationQueueAccess, IDbMetadataAccess
+    public partial class AISDataAccess : IDbMutationQueueAccess, IDbMetadataAccess,  IDisposable
     {
         private readonly IAISDataProvider dataProvider;
         private readonly IArchiveRecordBuilder recordBuilder;
@@ -72,6 +73,14 @@ namespace CMI.Access.Harvest
         public async Task<int> ResetFailedSyncOperations(int maxRetries)
         {
             return await dataProvider.ResetFailedSyncOperations(maxRetries);
+        }
+
+        public void Dispose()
+        {
+            dataProvider?.Dispose();
+            digitizationOrderBuilder?.Dispose();
+            // Suppress finalization.
+            GC.SuppressFinalize(this);
         }
     }
 }
