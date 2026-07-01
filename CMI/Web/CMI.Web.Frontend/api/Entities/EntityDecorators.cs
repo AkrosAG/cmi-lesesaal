@@ -149,8 +149,6 @@ namespace CMI.Web.Frontend.api.Entities
                     {
                         JsonHelper.AddOrSet(context, childrenPagingKey, JObject.FromObject(result.Paging), true);
                     }
-
-                   
                 }
             }
 
@@ -201,7 +199,6 @@ namespace CMI.Web.Frontend.api.Entities
             var queryResult = elasticService.RunQuery<T>(query, access);
             if (queryResult.Entries != null)
             {
-               
                 result.Items = entityProvider.GetResultAsEntities(access, queryResult, new EntityMetaOptions
                 {
                     SetDepth = setDepth
