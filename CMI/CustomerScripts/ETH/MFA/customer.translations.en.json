@@ -328,6 +328,7 @@
       "or": "At least one term"
     },
     "filterTitle": "Filters",
+    "furtherEntriesAvailable": "Further entries available",
     "genericTryAgain": "Try your search again later.",
     "groupoperator": {
       "capitalAnd": "AND",

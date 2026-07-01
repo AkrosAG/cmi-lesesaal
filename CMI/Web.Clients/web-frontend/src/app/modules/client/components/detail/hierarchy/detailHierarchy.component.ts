@@ -19,6 +19,12 @@ export class DetailHierarchyComponent {
 	}
 
 	public open(item: Entity): void {
-		this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
+		if (item.level === 'WeitereErgebnisseVorhanden'){
+			this._router.navigate([this._url.getArchivplanUrl(item.archiveRecordId)]);
+		} else  {
+			this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
+		}
+
+
 	}
 }
