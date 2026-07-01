@@ -79,6 +79,16 @@ export class SimpleHitComponent implements AfterViewInit, OnInit {
 			if (!this.entity._context) {
 				this.entity = await this._entityService.get(this.entity.archiveRecordId);
 			}
+			if (this.entity.childCount > 0 && this.entity._context.ancestors) {
+				const lastAncestor = this.entity._context.ancestors.at(-1);
+				const newAncestor = {
+					depth: lastAncestor.depth + 1,
+					archiveRecordId: this.entity.archiveRecordId,
+					level: "WeitereErgebnisseVorhanden"
+				};
+
+				this.entity._context.ancestors.push(newAncestor);
+			}
 			this.displayArchivplanContext = true;
 		}
 	}
