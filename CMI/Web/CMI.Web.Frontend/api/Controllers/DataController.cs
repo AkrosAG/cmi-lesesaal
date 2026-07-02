@@ -118,8 +118,15 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             if (entity.Data.HasProtectedFiles)
+        
             {
                 entity.Data.Files = new List<ElasticArchiveRecordFile>();
+            }
+
+            if ( !access.HasAnyTokenFor(new[] { "Ö2", "Ö3", "EMA", "AMA" }))
+            {
+                // Alle Dateien sind für nicht angemeldete Benutzer Protected
+                entity.Data.HasProtectedFiles = true;
             }
 
             return entity;
