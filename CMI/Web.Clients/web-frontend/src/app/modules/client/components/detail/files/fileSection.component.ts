@@ -25,6 +25,7 @@ export class FileSectionComponent implements OnInit {
 	public ngOnInit(): void {
 		this.files = this.entity.files;
 		this.showHasProtectedFiles = this.entity.hasProtectedFiles;
+		console.log(this._context.authenticated);
 	}
 
 	public getSymbolClass(extension: string): string {
