@@ -136,7 +136,7 @@ namespace CMI.Web.Frontend.api.Entities
                 }
                 if (result.Items.Count < result.Paging.Total)
                 {
-                    JsonHelper.AddOrSet(context, moreEntriesAvailableKey, entity.Data.ArchiveRecordId, true);
+                    JsonHelper.AddOrSet(context, moreEntriesAvailableKey, true, true);
                 }
             }
 

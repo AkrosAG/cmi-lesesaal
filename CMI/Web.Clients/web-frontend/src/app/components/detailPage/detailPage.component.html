@@ -53,7 +53,8 @@
 						<h4>{{'Archivplan' | translate:'metadata.title.archivplan'}}</h4>
 					</div>
 					<div class="section-content">
-						<cmi-viaduc-detail-hierarchy  [items]="items" [moreEntriesAvailable]="entity._context.moreEntriesAvailable">
+						<cmi-viaduc-detail-hierarchy  [items]="items" [moreEntriesAvailable]="entity._context.moreEntriesAvailable"
+						[archivePlanParentId]="entity.archiveRecordId">
 						</cmi-viaduc-detail-hierarchy>
 					</div>
 				</div>

@@ -12,7 +12,7 @@
             <span>{{item.title}}</span>
 		</span>
     </span>
-	<a tabindex="1" *ngIf="moreEntriesAvailable" (click)="openMoreEntries(moreEntriesAvailable)" >
+	<a tabindex="1" *ngIf="moreEntriesAvailable" (click)="openMoreEntries()" >
 	<span  tooltip="{{ 'Weitere Einträge vorhanden' | translate:'search.moreEntriesAvailable' }}"
 	      [ngStyle]="{ 'padding-left.em': (inset*(items[items.length -1].depth)) }">...</span>
 	</a>

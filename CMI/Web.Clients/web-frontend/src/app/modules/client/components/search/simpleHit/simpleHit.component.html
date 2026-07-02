@@ -20,7 +20,7 @@
 				<span id="archivePlanTitle{{entity.archiveRecordId}}" tabindex="-1"></span>
 				<div class="detail-hierarchy" *ngIf="displayArchivplanContext && entity._context?.ancestors">
 					<h4>{{'Archivplankontext' | translate:'simpleHit.archivplankontext'}}</h4>
-					<cmi-viaduc-detail-hierarchy [moreEntriesAvailable]="entity._context.moreEntriesAvailable" [items]="entity._context.ancestors"></cmi-viaduc-detail-hierarchy>
+					<cmi-viaduc-detail-hierarchy [items]="entity._context.ancestors"></cmi-viaduc-detail-hierarchy>
 				</div>
 				<div *ngIf="enableExplanations">
 					<label>{{'Relevanz' | translate: 'simpleHit.relevance'}}&nbsp;</label>

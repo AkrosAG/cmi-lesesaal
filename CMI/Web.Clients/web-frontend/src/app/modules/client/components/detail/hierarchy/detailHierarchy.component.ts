@@ -13,7 +13,11 @@ export class DetailHierarchyComponent {
 	public items: Entity[];
 
 	@Input()
-	public moreEntriesAvailable: any;
+	public moreEntriesAvailable: boolean;
+
+	@Input()
+	public archivePlanParentId: string;
+
 
 	public inset = 1;
 
@@ -25,7 +29,7 @@ export class DetailHierarchyComponent {
 		this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
 	}
 
-	protected openMoreEntries(archiveRecordId: string) {
-		this._router.navigate([this._url.getArchiveTreeUrl(), archiveRecordId]);
+	protected openMoreEntries() {
+		this._router.navigate([this._url.getArchiveTreeUrl(), this.archivePlanParentId]);
 	}
 }
