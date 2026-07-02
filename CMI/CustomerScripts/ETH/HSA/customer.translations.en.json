@@ -326,7 +326,6 @@
       "or": "At least one term"
     },
     "filterTitle": "Filters",
-    "furtherEntriesAvailable": "Further entries available",
     "genericTryAgain": "Try your search again later.",
     "groupoperator": {
       "capitalAnd": "AND",
@@ -339,6 +338,7 @@
     "lastExecutedQuery": "Your search query: {0}",
     "lastSearchResult": "Last search result",
     "lastSearchResultTeaserText": "Call up your last search result.",
+    "moreEntriesAvailable": "More entries available",
     "placeHolder": "Search in over 3,500,000 archive records",
     "rangeFrom": "Time period from",
     "rangeTo": "Time period to",

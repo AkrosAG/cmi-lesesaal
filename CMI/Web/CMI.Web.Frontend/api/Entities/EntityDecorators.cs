@@ -23,6 +23,7 @@ namespace CMI.Web.Frontend.api.Entities
         private const string ancestorsKey = "ancestors";
         private const string childrenKey = "children";
         private const string childrenPagingKey = "childrenPaging";
+        private const string moreEntriesAvailableKey = "moreEntriesAvailable";
 
         // detailData fields
         private const string detailDataKey = "detailData";
@@ -123,23 +124,6 @@ namespace CMI.Web.Frontend.api.Entities
             if (options.FetchChildren)
             {
                 var result = GetChildren(entity.Data, depth, access, options?.ChildrenPaging);
-                if (result.Items.Count < result.Paging.Total)
-                {
-                    result.Items.Add(new Entity<T>
-                    {
-                        Data = new T
-                        {
-                            ArchiveRecordId = entity.Data.ArchiveRecordId,
-                            ChildCount = 0,
-                            Title = "...",
-                            IsLeaf = true,
-                            Level = "WeitereErgebnisseVorhanden"
-                        },
-                        Depth = depth,
-                        
-                    });
-
-                }
 
                 if (result.Items.Count > 0)
                 {
@@ -149,6 +133,10 @@ namespace CMI.Web.Frontend.api.Entities
                     {
                         JsonHelper.AddOrSet(context, childrenPagingKey, JObject.FromObject(result.Paging), true);
                     }
+                }
+                if (result.Items.Count < result.Paging.Total)
+                {
+                    JsonHelper.AddOrSet(context, moreEntriesAvailableKey, entity.Data.ArchiveRecordId, true);
                 }
             }
 

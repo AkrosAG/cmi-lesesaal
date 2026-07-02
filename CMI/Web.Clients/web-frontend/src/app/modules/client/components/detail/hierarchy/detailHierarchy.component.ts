@@ -12,6 +12,9 @@ export class DetailHierarchyComponent {
 	@Input()
 	public items: Entity[];
 
+	@Input()
+	public moreEntriesAvailable: any;
+
 	public inset = 1;
 
 	constructor(private _url: UrlService,
@@ -19,12 +22,10 @@ export class DetailHierarchyComponent {
 	}
 
 	public open(item: Entity): void {
-		if (item.level === 'WeitereErgebnisseVorhanden'){
-			this._router.navigate([this._url.getArchivplanUrl(item.archiveRecordId)]);
-		} else  {
-			this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
-		}
+		this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
+	}
 
-
+	protected openMoreEntries(archiveRecordId: string) {
+		this._router.navigate([this._url.getArchiveTreeUrl(), archiveRecordId]);
 	}
 }

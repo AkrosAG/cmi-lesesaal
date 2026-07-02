@@ -3,13 +3,17 @@
 		  [ngStyle]="{ 'padding-left.em': (inset*(item.depth)) }">
 		<a tabindex="0" (keyup.enter)="open(item)" (click)="open(item)" *ngIf="item.itemClasses !== 'selected'">
             <span *ngIf="item.referenceCode">{{item.referenceCode}}&nbsp;</span>
-
-            <span *ngIf="item.level !== 'WeitereErgebnisseVorhanden'">{{item.title}}</span>
-            <span *ngIf="item.level === 'WeitereErgebnisseVorhanden'" tooltip="{{ 'Weitere Einträge vorhanden' | translate:'search.furtherEntriesAvailable' }}">...</span>
+            <span >{{item.title}}</span>
         </a>
+
+
 		<span *ngIf="item.itemClasses === 'selected'" tabindex="0" [attr.aria-describedby]="'Aktuell angezeigte Verzeichnungseinheit' | translate:'detailHierarchy.activePosition'">
 			<span *ngIf="item.referenceCode">{{item.referenceCode}}&nbsp;</span>
             <span>{{item.title}}</span>
 		</span>
     </span>
+	<a tabindex="1" *ngIf="moreEntriesAvailable" (click)="openMoreEntries(moreEntriesAvailable)" >
+	<span  tooltip="{{ 'Weitere Einträge vorhanden' | translate:'search.furtherEntriesAvailable' }}"
+	      [ngStyle]="{ 'padding-left.em': (inset*(items[items.length -1].depth)) }">...</span>
+	</a>
 </div>
