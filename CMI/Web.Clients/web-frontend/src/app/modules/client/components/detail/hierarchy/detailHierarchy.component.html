@@ -1,13 +1,21 @@
 <div class="detail-hierarchy" *ngIf="items">
     <span *ngFor="let item of items; let i = index;" [ngClass]="item.itemClasses"
-		  [ngStyle]="{ 'padding-left.em': (inset*(item.depth)) }">
+          [ngStyle]="{ 'padding-left.em': (inset*(item.depth)) }">
 		<a tabindex="0" (keyup.enter)="open(item)" (click)="open(item)" *ngIf="item.itemClasses !== 'selected'">
-            <span *ngIf="item.referenceCode">{{item.referenceCode}}&nbsp;</span>
-            <span>{{item.title}}</span>
+            <span *ngIf="item.referenceCode">{{ item.referenceCode }}&nbsp;</span>
+            <span>{{ item.title }}</span>
         </a>
+
+
 		<span *ngIf="item.itemClasses === 'selected'" tabindex="0" [attr.aria-describedby]="'Aktuell angezeigte Verzeichnungseinheit' | translate:'detailHierarchy.activePosition'">
-			<span *ngIf="item.referenceCode">{{item.referenceCode}}&nbsp;</span>
-            <span>{{item.title}}</span>
+			<span *ngIf="item.referenceCode">{{ item.referenceCode }}&nbsp;</span>
+            <span>{{ item.title }}</span>
 		</span>
     </span>
+	<span [ngStyle]="{ 'padding-left.em': (inset*(items[items.length -1].depth)) }">
+		<a tabindex="1" *ngIf="moreEntriesAvailable" (click)="openMoreEntries()">
+		<span tooltip="{{ 'Weitere Einträge vorhanden' | translate:'search.moreEntriesAvailable' }}"
+	      [ngStyle]="{ 'font-weight': 'bold' }">&#8230;</span>
+	</a>
+		</span>
 </div>

@@ -12,6 +12,13 @@ export class DetailHierarchyComponent {
 	@Input()
 	public items: Entity[];
 
+	@Input()
+	public moreEntriesAvailable: boolean;
+
+	@Input()
+	public archivePlanParentId: string;
+
+
 	public inset = 1;
 
 	constructor(private _url: UrlService,
@@ -20,5 +27,9 @@ export class DetailHierarchyComponent {
 
 	public open(item: Entity): void {
 		this._router.navigate([this._url.getDetailUrl(item.archiveRecordId, item.title)]);
+	}
+
+	protected openMoreEntries() {
+		this._router.navigate([this._url.getArchiveTreeUrl(), this.archivePlanParentId]);
 	}
 }

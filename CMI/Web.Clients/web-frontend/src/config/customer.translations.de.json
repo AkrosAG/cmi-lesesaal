@@ -44,7 +44,8 @@
 		"Ortsregister": "Ortsregister",
 		"Personenregister": "Personenregister",
 		"Sachregister": "Sachregister",
-		"Werkregister": "Werkregister"
+		"Werkregister": "Werkregister",
+		"DatenDigitalVorhanden": "Daten digital vorhanden"
 
 	},
 	"footer": {
@@ -88,7 +89,8 @@
 		"srBreadcrumbOrientation": "Orientierung auf der Webseite",
 		"title": "Hochschularchiv der ETH Zürich | ETH Zürich",
 		"zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
-		"favoritesCount": "Favoriten ({0})"
+		"favoritesCount": "Favoriten ({0})",
+		"logoLink": "https://ethz.ch/de.html"
 	},
 	"metadata": {
 		"boolean": {
@@ -117,7 +119,7 @@
 			"allPrimaryData": "Volltext (Primärdaten)",
 			"creationPeriod": "Entstehungszeitraum",
 			"ueberlieferungsform": "Überlieferungsform",
-			"Sprache": "Sprachen ",
+			"Sprachen": "Sprachen",
 			"archivalienart": "Archivalienart",
 			"permission": "Benutzbarkeit",
 			"Personenregister": "Personenregister",
@@ -333,6 +335,7 @@
 		"lastExecutedQuery": "Ihre Suchanfrage: {0}",
 		"lastSearchResult": "Letztes Suchresultat",
 		"lastSearchResultTeaserText": "Rufen Sie Ihr letztes Suchresultat auf.",
+		"moreEntriesAvailable": "Weitere Einträge vorhanden",
 		"placeHolder": "Suchen Sie in über 3´500´000 Archivalien",
 		"rangeFrom": "Zeitraum von",
 		"rangeTo": "Zeitraum bis",
@@ -471,7 +474,7 @@
 	"account": {
 		"contact": {
 			"changeLoginData": " ",
-			"changeLoginDataLink":  " "
+			"changeLoginDataLink": " "
 		}
 	}
 }

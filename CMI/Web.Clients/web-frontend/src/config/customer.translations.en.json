@@ -44,7 +44,8 @@
 		"Ortsregister": "Location register",
 		"Personenregister": "Register of persons",
 		"Sachregister": "Subject index",
-		"Werkregister": "Register of works"
+		"Werkregister": "Register of works",
+		"DatenDigitalVorhanden": "Documents available in digital form"
 	},
 	"footer": {
 		"footerTitle": "Footer",
@@ -87,7 +88,8 @@
 		"srBreadcrumbOrientation": "Navigating the website",
 		"title": "ETH Zurich University Archives | ETH Zurich",
 		"zumBestellkorb": "Navigate to shopping cart with {0} items",
-		"favoritesCount": "Favourites ({0})"
+		"favoritesCount": "Favourites ({0})",
+		"logoLink": "https://ethz.ch/en.html"
 	},
 	"metadata": {
 		"boolean": {
@@ -124,7 +126,7 @@
 			"permission": "Access",
 			"Verwaltungssignatur": "Administrative File Number",
 			"Archivalienart": "Type of Material",
-			"Sprache": "Language of Material",
+			"Sprachen": "Language of Material",
 			"Ueberlieferungsform": "Form of Item at Acquisition"
 		},
 		"sortFields": {
@@ -336,6 +338,7 @@
 		"lastExecutedQuery": "Your search query: {0}",
 		"lastSearchResult": "Last search result",
 		"lastSearchResultTeaserText": "Call up your last search result.",
+		"moreEntriesAvailable": "More entries available",
 		"placeHolder": "Search in over 3,500,000 archive records",
 		"rangeFrom": "Time period from",
 		"rangeTo": "Time period to",
@@ -474,7 +477,7 @@
 	"account": {
 		"contact": {
 			"changeLoginData": " ",
-			"changeLoginDataLink":  " "
+			"changeLoginDataLink": " "
 		}
 	}
 }
