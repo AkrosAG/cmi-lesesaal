@@ -38,6 +38,9 @@ describe('CheckoutShippingTypeStep', () => {
 			},
 			getOrderableItems(): Observable<OrderItem[]> {
 				return of([]);
+			},
+			getOpeningVorlaufDays(): number {
+				return 2;
 			}
 		};
 
@@ -58,6 +61,9 @@ describe('CheckoutShippingTypeStep', () => {
 				return true;
 			},
 			isAsUser(): boolean {
+				return false;
+			},
+			isAmaUser(): boolean {
 				return false;
 			},
 			hasAnyAccessToken(accessTokens: string[]): boolean {
