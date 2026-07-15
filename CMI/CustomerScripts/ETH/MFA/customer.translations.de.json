@@ -228,8 +228,11 @@
           "teileinSchutzfrist": "Teile davon gesuchspflichtig"
         },
         "ueberlieferungsform": {
-          "analog": "Analog",
-          "digital": "Digital"
+          "original": "Original",
+          "kopie": "Kopie",
+	      "durchschlag": "Durchschlag",
+	      "abschrift": "Abschrift",
+          "digitaleRessource": "Digitale Ressource"
         },
         "archivalienart": {
           "artikel": "Artikel",

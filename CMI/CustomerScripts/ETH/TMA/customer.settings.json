@@ -50,16 +50,31 @@
         "key": "Ueberlieferungsform",
         "displayName": "Überlieferungsform",
         "translatorType": "DetailDataTranslator",
-        "items": [
+         "items": [
           {
-            "searchKey": "Analog",
-            "defaultLabel": "Analog",
-            "translationKey": "search.advanced.field.ueberlieferungsform.analog"
+            "searchKey": "Original",
+            "defaultLabel": "Original",
+            "translationKey": "search.advanced.field.ueberlieferungsform.original"
           },
           {
-            "searchKey": "Digital",
-            "defaultLabel": "Digital",
-            "translationKey": "search.advanced.field.ueberlieferungsform.digital"
+            "searchKey": "Kopie",
+            "defaultLabel": "Kopie",
+            "translationKey": "search.advanced.field.ueberlieferungsform.kopie"
+          },
+		  {
+            "searchKey": "Durchschlag",
+            "defaultLabel": "Durchschlag",
+            "translationKey": "search.advanced.field.ueberlieferungsform.durchschlag"
+          },
+          {
+            "searchKey": "Abschrift",
+            "defaultLabel": "Abschrift",
+            "translationKey": "search.advanced.field.ueberlieferungsform.abschrift"
+          },
+          {
+            "searchKey": "Digitale Ressource",
+            "defaultLabel": "Digitale Ressource",
+            "translationKey": "search.advanced.field.ueberlieferungsform.digitaleRessource"
           }
         ]
       },
