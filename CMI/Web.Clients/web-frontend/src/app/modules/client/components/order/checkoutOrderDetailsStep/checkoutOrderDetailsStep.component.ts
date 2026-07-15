@@ -24,6 +24,7 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 	@Output()
 	public onNextClicked: EventEmitter<void> = new EventEmitter<void>();
 	public nextClicked = false;
+	protected datumLesesaalText: string;
 
 	constructor(private _context: ClientContext,
 				private _scs: ShoppingCartService,
@@ -55,6 +56,16 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 		this._stm.getArtDerArbeiten().subscribe(ada => {
 			this.artDerArbeiten = ada;
 		});
+
+
+		if (this._author.isAmaUser()) {
+			this.datumLesesaalText = this._txt.translate('Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).'
+				, 'checkoutOrderDetailsStep.datumLesesaalText', 1);
+		} else {
+			const vorlauf: number = this._scs.getOpeningVorlaufDays();
+			this.datumLesesaalText = this._txt.translate('Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).'
+			this.minimumDate = this.addWorkdays(new Date(), vorlauf);
+		}
 		this.openingDays = this._scs.getOpeningDays();
 	}
 
@@ -120,5 +131,23 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 		if ($event.dateString === ''){
 			this.form.controls.konsultierungsDatum.setValue(null);
 		}
+	}
+
+	private addWorkdays(date: Date, days: number): Date {
+		const result = new Date(date);
+		let addedDays = 0;
+		// Heute plus die weiteren Tage werden ausgeschlossen
+		days++;
+		while (addedDays < days) {
+			result.setDate(result.getDate() + 1);
+
+			const dayOfWeek = result.getDay();
+
+			// 0 = Sonntag, 6 = Samstag
+			if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+				addedDays++;
+			}
+		}
+		return result;
 	}
 }

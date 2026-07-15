@@ -19,6 +19,7 @@ using CMI.Web.Frontend.api.Search;
 using CMI.Web.Frontend.Helpers;
 using CMI.Web.Frontend.ParameterSettings;
 using Serilog;
+using DateRange = CMI.Contract.Common.DateRange;
 
 namespace CMI.Web.Frontend.api.Controllers
 {
@@ -292,8 +293,15 @@ namespace CMI.Web.Frontend.api.Controllers
                             userAccess, basket, orderItemIdsToExclude);
                         break;
                     case OrderType.Lesesaalausleihen:
+                        var vorlaufzeit = managementClientSettings.Vorlaufzeit;
                         leseSaalDateAsDateTime = orderParams.LesesaalDate.ParseDateTimeSwiss();
                         ValidateLesesaalBestellung(leseSaalDateAsDateTime);
+                        if (DateTime.Today.AddDays(vorlaufzeit) > leseSaalDateAsDateTime.Value)
+                        {
+                            throw new BadRequestException(
+                                $"Das Lesessaaldatum {leseSaalDateAsDateTime} liegt nicht in der Vorbereitungszeit dieser Ausleihe. Bitte Datum nach  {DateTime.Today.AddDays(vorlaufzeit)} buchen.");
+                        }
+
                         break;
                     default:
                         var ex = new BadRequestException(

@@ -3,7 +3,7 @@
 		"artDerArbeit": "Art der Arbeit",
 		"commentTitle": "Bemerkung zur Bestellung",
 		"datumLesesaal": "Datum Lesesaal",
-		"datumLesesaalText": "Bitte wählen Sie ein Datum aus (Bearbeitung mind. 2 Arbeitstage).",
+		"datumLesesaalText": "Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).",
 		"invalidDate": "An diesem Tag hat der Lesesaal nicht geöffnet. Bitte wählen Sie ein gültiges Datum aus.",
 		"mandatoryArtDerArbeit": "Bitte geben Sie die Art der Arbeit an, für die Sie die Unterlagen benötigen.",
 		"mandatoryDate": "Bitte wählen Sie ein Datum für Ihren Besuch im Lesesaal.",

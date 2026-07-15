@@ -24,8 +24,7 @@
 			<legend class="hidden-legend">{{'Datum Lesesaal' | translate:'checkoutOrderDetailsStep.datumLesesaal'}} *</legend>
 			<div class="form-group" [ngClass]="{'has-warning': (form.hasError('required', ['konsultierungsDatum']) || invalidDateError) && nextClicked}">
 				<label for="konsultierungsDatum" class="col-sm-3 control-label" id="date">
-					{{'Ich möchte die Unterlagen im Lesesaal konsultieren am' |
-					translate:'checkoutOrderDetailsStep.datumLesesaalText'}} *
+					{{datumLesesaalText}} *
 				</label>
 				<div class="col-sm-9">
 					<input id="konsultierungsDatum" class="form-control"

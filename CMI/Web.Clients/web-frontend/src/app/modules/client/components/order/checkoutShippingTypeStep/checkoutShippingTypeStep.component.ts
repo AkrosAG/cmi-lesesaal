@@ -56,13 +56,18 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		'<a href=\"https://www.recherche.bar.admin.ch/recherche/#/de/informationen/bestellen-und-konsultieren\" target=\"_blank\" rel=\"noopener noreferrer\">Bestellen und Konsultieren</a>.');
 
 		this.liefertypLesesaalText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeReadingRoom',
-		'zur Konsultation in den <strong>Lesesaal</strong> bestellen. Bestellen Sie 24 Stunden im Voraus, ' +
-		'damit Ihnen die Unterlagen am gewünschten Tag zur Verfügung stehen (Dienstag, Mittwoch und Donnerstag).');
+		'zur Konsultation in den <strong>Lesesaal</strong> bestellen (Bestellungen müssen mindestens {0} Arbeitstage im Voraus erfolgen).');
 
+		if(this._author.isAmaUser()) {
+			this.liefertypLesesaalText = this.liefertypLesesaalText.replace('{0}', '1');
+		} else {
+			const vorlauf: number = this._scs.getOpeningVorlaufDays();
+			this.liefertypLesesaalText = this.liefertypLesesaalText.replace('{0}', vorlauf.toString());
+		}
 		this.isAsOrBvwUser = this._author.isAsUser() || this._author.isEmaUser();
 
 		const tokens = this._cfg.getSetting('managementClientSettings.orderDigitalUsers', '').split(';');
-		this.isDigitalUser =  this._author.hasAnyAccessToken(tokens);
+		this.isDigitalUser = this._author.hasAnyAccessToken(tokens);
 
 		const activeOrder = this._scs.getActiveOrder();
 		if (activeOrder) {
