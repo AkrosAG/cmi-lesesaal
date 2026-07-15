@@ -21,6 +21,5 @@ namespace CMI.Web.Frontend.ParameterSettings
         [Description("Gibt an, wieviel Arbeitstage zwischen Bestellung und Lesesaalausleihe mindestens liegen müssen.")]
         [DefaultValue(10)]
         public int Vorlaufzeit { get; set; }
-        
     }
 }
