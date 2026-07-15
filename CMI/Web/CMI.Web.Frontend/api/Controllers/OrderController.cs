@@ -293,7 +293,7 @@ namespace CMI.Web.Frontend.api.Controllers
                             userAccess, basket, orderItemIdsToExclude);
                         break;
                     case OrderType.Lesesaalausleihen:
-                        var vorlaufzeit = managementClientSettings.Vorlaufzeit;
+                        var vorlaufzeit =  GetCurrentUserAccess().RolePublicClient == AccessRoles.RoleAMA ? 0 : managementClientSettings.Vorlaufzeit;
                         leseSaalDateAsDateTime = orderParams.LesesaalDate.ParseDateTimeSwiss();
                         ValidateLesesaalBestellung(leseSaalDateAsDateTime);
                         if (DateTime.Today.AddDays(vorlaufzeit) > leseSaalDateAsDateTime.Value)
