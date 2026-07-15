@@ -266,6 +266,14 @@ export class ShoppingCartService {
 		return [];
 	}
 
+	public getOpeningVorlaufDays(): number {
+		const days: number = this._cfg.getSetting('managementClientSettings.vorlaufzeit');
+		if (days && Number.isInteger(days)) {
+			return days;
+		}
+		return 0;
+	}
+
 	public getOrderings(): Observable<Ordering[]> {
 		const url = `${this._apiUrl}/GetOrderings`;
 		return this._http.get<Ordering[]>(url);

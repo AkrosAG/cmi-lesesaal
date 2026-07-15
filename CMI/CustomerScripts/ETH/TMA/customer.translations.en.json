@@ -3,7 +3,7 @@
     "artDerArbeit": "Nature of work",
     "commentTitle": "Comment on order",
     "datumLesesaal": "Reading room date",
-    "datumLesesaalText": "Please select a date (processing minimum 2 workdays).",
+    "datumLesesaalText": "Please select a date (processing minimum {0} workdays).",
     "invalidDate": "The reading room is not open on this day. Please select a valid date.",
     "mandatoryArtDerArbeit": "Please indicate the nature of the work for which you require the documents.",
     "mandatoryDate": "Please select a date for your visit to the reading room.",

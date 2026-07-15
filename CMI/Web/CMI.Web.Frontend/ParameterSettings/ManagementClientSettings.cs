@@ -17,5 +17,9 @@ namespace CMI.Web.Frontend.ParameterSettings
         [Description("Angabe der Zugriffsrollen, denen die Option \"Digitalisierungsauftrag\" angezeigt wird. Rollen Semikolon getrennt.")]
         [DefaultValue("")]
         public string OrderDigitalUsers { get; set; }
+
+        [Description("Gibt an, wieviel Arbeitstage zwischen Bestellung und Lesesaalausleihe mindestens liegen müssen.")]
+        [DefaultValue(10)]
+        public int Vorlaufzeit { get; set; }
     }
 }
