@@ -57,13 +57,13 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 			this.artDerArbeiten = ada;
 		});
 
-
 		if (this._author.isAmaUser()) {
 			this.datumLesesaalText = this._txt.translate('Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).'
 				, 'checkoutOrderDetailsStep.datumLesesaalText', 1);
 		} else {
 			const vorlauf: number = this._scs.getOpeningVorlaufDays();
 			this.datumLesesaalText = this._txt.translate('Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).'
+				, 'checkoutOrderDetailsStep.datumLesesaalText', vorlauf);
 			this.minimumDate = this.addWorkdays(new Date(), vorlauf);
 		}
 		this.openingDays = this._scs.getOpeningDays();
