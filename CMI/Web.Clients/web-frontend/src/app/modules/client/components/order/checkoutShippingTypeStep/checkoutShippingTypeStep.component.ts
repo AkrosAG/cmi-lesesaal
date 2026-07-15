@@ -58,7 +58,7 @@ export class CheckoutShippingTypeStepComponent implements OnInit {
 		this.liefertypLesesaalText = this._cfg.getSetting('frontendDynamicTextSettings.deliveryTypeReadingRoom',
 		'zur Konsultation in den <strong>Lesesaal</strong> bestellen (Bestellungen müssen mindestens {0} Arbeitstage im Voraus erfolgen).');
 
-		if(this._author.isAmaUser()) {
+		if (this._author.isAmaUser()) {
 			this.liefertypLesesaalText = this.liefertypLesesaalText.replace('{0}', '1');
 		} else {
 			const vorlauf: number = this._scs.getOpeningVorlaufDays();

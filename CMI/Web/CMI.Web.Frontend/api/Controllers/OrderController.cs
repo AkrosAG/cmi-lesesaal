@@ -299,7 +299,7 @@ namespace CMI.Web.Frontend.api.Controllers
                         if (DateTime.Today.AddDays(vorlaufzeit) > leseSaalDateAsDateTime.Value)
                         {
                             throw new BadRequestException(
-                                $"Das Lesessaaldatum {leseSaalDateAsDateTime} liegt nicht in der Vorbereitungszeit dieser Ausleihe. Bitte Datum nach  {DateTime.Today.AddDays(vorlaufzeit)} buchen.");
+                                $"Das Lesessaaldatum {leseSaalDateAsDateTime.Value.ToShortDateString()} liegt nicht in der Vorbereitungszeit dieser Ausleihe. Bitte Datum nach {DateTime.Today.AddDays(vorlaufzeit).ToShortDateString()} buchen.");
                         }
 
                         break;
