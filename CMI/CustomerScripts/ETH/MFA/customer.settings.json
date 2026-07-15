@@ -66,14 +66,14 @@
             "translationKey": "search.advanced.field.ueberlieferungsform.durchschlag"
           },
           {
+            "searchKey": "Abschrift",
+            "defaultLabel": "Abschrift",
+            "translationKey": "search.advanced.field.ueberlieferungsform.abschrift"
+          },
+          {
             "searchKey": "Digitale Ressource",
             "defaultLabel": "Digitale Ressource",
             "translationKey": "search.advanced.field.ueberlieferungsform.digitaleRessource"
-          },
-          {
-            "searchKey": "Digital",
-            "defaultLabel": "Digital",
-            "translationKey": "search.advanced.field.ueberlieferungsform.digital"
           }
         ]
       },
