@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using CMI.Contract.Common;
-using CMI.Contract.Order;
 using CMI.Web.Common.api;
 using CMI.Web.Common.api.Attributes;
 using CMI.Web.Common.Helpers;

@@ -19,7 +19,6 @@ using CMI.Web.Frontend.api.Search;
 using CMI.Web.Frontend.Helpers;
 using CMI.Web.Frontend.ParameterSettings;
 using Serilog;
-using DateRange = CMI.Contract.Common.DateRange;
 
 namespace CMI.Web.Frontend.api.Controllers
 {
