@@ -51,9 +51,24 @@
         "translatorType": "DetailDataTranslator",
         "items": [
           {
-            "searchKey": "Analog",
-            "defaultLabel": "Analog",
-            "translationKey": "search.advanced.field.ueberlieferungsform.analog"
+            "searchKey": "Original",
+            "defaultLabel": "Original",
+            "translationKey": "search.advanced.field.ueberlieferungsform.original"
+          },
+          {
+            "searchKey": "Kopie",
+            "defaultLabel": "Kopie",
+            "translationKey": "search.advanced.field.ueberlieferungsform.kopie"
+          },
+		  {
+            "searchKey": "Durchschlag",
+            "defaultLabel": "Durchschlag",
+            "translationKey": "search.advanced.field.ueberlieferungsform.durchschlag"
+          },
+          {
+            "searchKey": "Digitale Ressource",
+            "defaultLabel": "Digitale Ressource",
+            "translationKey": "search.advanced.field.ueberlieferungsform.digitaleRessource"
           },
           {
             "searchKey": "Digital",
