@@ -224,6 +224,7 @@
     <Compile Include="Mails\AusleiheZweiteMahnung.cs" />
     <Compile Include="Mails\AusleiheErsteMahnung.cs" />
     <Compile Include="Mails\ErinnerungTerminLesesaal.cs" />
+    <Compile Include="Mails\NeuerAuftrag.cs" />
     <Compile Include="RecalcTermineListener.cs" />
     <Compile Include="Consumers\AssetReadyConsumer.cs" />
     <Compile Include="Consumers\CreateOrderFromBasketRequestConsumer.cs" />
@@ -401,6 +402,7 @@
     <EmbeddedResource Include="Defaults\AusleiheErsteMahnung.Body.mustache" />
     <EmbeddedResource Include="Defaults\AusleiheZweiteMahnung.Body.mustache" />
     <EmbeddedResource Include="Defaults\ErinnerungTerminLesesaal.Body.mustache" />
+    <EmbeddedResource Include="Defaults\NeuerAuftrag.Body.mustache" />
     <None Include="packages.config" />
     <None Include="Properties\DbConnectionSetting.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
