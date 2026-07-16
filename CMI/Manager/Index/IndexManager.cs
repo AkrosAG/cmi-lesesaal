@@ -216,7 +216,7 @@ namespace CMI.Manager.Index
             {
                 var files = archiveRecord.Metadata.Files.Select(f => new ElasticArchiveRecordFile()
                 {
-                    Filename = GetFileNameForDownload(f.FileName, elasticArchiveRecord.ReferenceCode),
+                    Filename = f.Title,
                     Description = f.Description,
                     Extension = f.FileExtension,
                     SizeInBytes = f.FileSize,
