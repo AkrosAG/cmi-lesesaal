@@ -86,10 +86,17 @@ namespace CMI.Web.Common.Auth.Sibboleth
                         new ShibbolethAttributeValue("uniqueID", "2043690@ethz.ch"),
                     }
                 }
+                ,
+                {
+                    "Ö1 Benutzer",
+                    new ShibbolethAttributeValueCollection
+                    {
+                    }
+                }
             };
 
             // Hier anpassen, welcher Benutzer zurückgeliefert werden soll
-            return retVal["Interner Benutzer"];
+            return retVal["Ö2 Benutzer"];
         }
     }
 }

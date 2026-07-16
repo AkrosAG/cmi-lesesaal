@@ -110,16 +110,18 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             var entity = entityProvider.GetEntity<DetailRecord>(id, access, p) ?? throw new KeyNotFoundException($"Entity with the Id {id} could not be found.");
-            if (access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
+            if (entity.Data.Files.Count > 0)
             {
-                // No need to check for protected files if the user has access to the download
-                entity.Data.HasProtectedFiles = false; 
-                return entity;
-            }
-
-            if (entity.Data.HasProtectedFiles)
-            {
-                entity.Data.Files = new List<ElasticArchiveRecordFile>();
+                if (access.HasAnyTokenFor(entity.Data.PrimaryDataDownloadAccessTokens))
+                {
+                    // No need to check for protected files if the user has access to the download
+                    entity.Data.HasProtectedFiles = false;
+                    return entity;
+                }
+                if (entity.Data.HasProtectedFiles || (!access.HasAnyTokenFor(new[] { "Ö2", "Ö3", "EMA", "AMA" })))
+                {
+                    entity.Data.Files = new List<ElasticArchiveRecordFile>();
+                }
             }
 
             return entity;

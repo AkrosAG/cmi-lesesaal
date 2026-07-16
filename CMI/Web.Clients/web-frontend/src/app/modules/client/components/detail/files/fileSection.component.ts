@@ -17,7 +17,7 @@ export class FileSectionComponent implements OnInit {
 	public showHasProtectedFiles = false;
 
 	constructor(private _options: CoreOptions,
-		private _context: ClientContext,
+		protected _context: ClientContext,
 		private _authentication: AuthenticationService,
 		private _scs: ShoppingCartService) {
 	}
