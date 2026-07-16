@@ -257,7 +257,7 @@
     "information": "Information"
   },
   "detailPageComponent": {
-		"filesOnlyLoggedInUser": "Dateien sind nur für angemeldete Benutzer sichtbar.",
+		"filesOnlyLoggedInUser": "Dateien vorhanden. Bitte melden Sie sich an, um die Unterlagen zu einzusehen.",
     "pageTitle": "Detailansicht",
     "gesuchEinreichen": "In den Bestellkorb",
     "hasProtectedFilesText": "Geschützte Dateien vorhanden. Für die Einsichtnahme ist eine Bewilligung erforderlich."
