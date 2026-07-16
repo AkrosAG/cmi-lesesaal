@@ -3,7 +3,7 @@
     "artDerArbeit": "Art der Arbeit",
     "commentTitle": "Bemerkung zur Bestellung",
     "datumLesesaal": "Datum Lesesaal",
-    "datumLesesaalText": "Bitte wählen Sie ein Datum aus (Bearbeitung mind. 2 Arbeitstage).",
+    "datumLesesaalText": "Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).",
     "invalidDate": "An diesem Tag hat der Lesesaal nicht geöffnet. Bitte wählen Sie ein gültiges Datum aus.",
     "mandatoryArtDerArbeit": "Bitte geben Sie die Art der Arbeit an, für die Sie die Unterlagen benötigen.",
     "mandatoryDate": "Bitte wählen Sie ein Datum für Ihren Besuch im Lesesaal.",
@@ -228,8 +228,11 @@
           "teileinSchutzfrist": "Teile davon gesuchspflichtig"
         },
         "ueberlieferungsform": {
-          "analog": "Analog",
-          "digital": "Digital"
+          "original": "Original",
+          "kopie": "Kopie",
+	      "durchschlag": "Durchschlag",
+	      "abschrift": "Abschrift",
+          "digitaleRessource": "Digitale Ressource"
         },
         "archivalienart": {
           "artikel": "Artikel",
@@ -335,6 +338,7 @@
     "lastExecutedQuery": "Ihre Suchanfrage: {0}",
     "lastSearchResult": "Letztes Suchresultat",
     "lastSearchResultTeaserText": "Rufen Sie Ihr letztes Suchresultat auf.",
+    "moreEntriesAvailable": "Weitere Einträge vorhanden",
     "placeHolder": "Suchen Sie in über 3´500´000 Archivalien",
     "rangeFrom": "Zeitraum von",
     "rangeTo": "Zeitraum bis",

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CMI.Access.Sql.Lesesaal;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Utilities.Common.Helpers;
 using CMI.Web.Common.api;
@@ -13,6 +9,11 @@ using CMI.Web.Frontend.api.Search;
 using Nest;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Http.Results;
 
 namespace CMI.Web.Frontend.api.Entities
 {
@@ -22,6 +23,7 @@ namespace CMI.Web.Frontend.api.Entities
         private const string ancestorsKey = "ancestors";
         private const string childrenKey = "children";
         private const string childrenPagingKey = "childrenPaging";
+        private const string moreEntriesAvailableKey = "moreEntriesAvailable";
 
         // detailData fields
         private const string detailDataKey = "detailData";
@@ -122,6 +124,7 @@ namespace CMI.Web.Frontend.api.Entities
             if (options.FetchChildren)
             {
                 var result = GetChildren(entity.Data, depth, access, options?.ChildrenPaging);
+
                 if (result.Items.Count > 0)
                 {
                     hasContext = true;
@@ -130,6 +133,10 @@ namespace CMI.Web.Frontend.api.Entities
                     {
                         JsonHelper.AddOrSet(context, childrenPagingKey, JObject.FromObject(result.Paging), true);
                     }
+                }
+                if (result.Items.Count < result.Paging.Total)
+                {
+                    JsonHelper.AddOrSet(context, moreEntriesAvailableKey, true, true);
                 }
             }
 

@@ -1,8 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using CMI.Access.Sql.Lesesaal;
+﻿using CMI.Access.Sql.Lesesaal;
 using CMI.Contract.Common;
 using CMI.Contract.Order;
+using CMI.Engine.MailTemplate;
+using CMI.Manager.Order.Mails;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.Order.Status
 {
@@ -66,6 +69,7 @@ namespace CMI.Manager.Order.Status
             // Verwaltungsausleihen von AMA-Benutzer müssen immer den Status "Freigabe Prüfen" haben 
             Context.SetNewStatus(AuftragStatusRepo.FreigabePruefen, Users.System);
             Context.SetApproveStatus(ApproveStatus.NichtGeprueft, Users.System);
+            AddOrderItemToNeuerAuftragEMail();
         }
 
         private void AutomatischOderManuellPruefenSetzen(AuftragStatus zielStatusWennAutomatischeFreigabeMoeglich)
@@ -76,7 +80,7 @@ namespace CMI.Manager.Order.Status
             var kannAutomatischFreigeben = KannAutomatischFreigeben(Context.OrderItem, Context.Besteller)
                 .ConfigureAwait(false)
                 .GetAwaiter()
-                .GetResult(); ;
+                .GetResult();
 
             if (kannAutomatischFreigeben)
             {
@@ -87,6 +91,50 @@ namespace CMI.Manager.Order.Status
             {
                 Context.SetNewStatus(AuftragStatusRepo.FreigabePruefen, Users.System);
                 Context.SetApproveStatus(ApproveStatus.NichtGeprueft, Users.System);
+            }
+
+            AddOrderItemToNeuerAuftragEMail();
+        }
+
+        /// <summary>
+        /// Gleiches Verhalten wie bei AddOrderItemToNeueEinsichtsgesucheEMail
+        /// </summary>
+        private void AddOrderItemToNeuerAuftragEMail()
+        {
+            dynamic emailExpando = Context.MailPortfolio.GetUnfinishedMailData<NeuerAuftrag>("NeuerAuftrag");
+
+            if (emailExpando == null)
+            {
+                // Das EMail mit seine Grunddaten erstellen:
+                emailExpando = new DataBuilder(Context.Bus)
+                    .AddUser(Context.Ordering.UserId)
+                    .AddBestellung(Context.Ordering)
+                    .AddVeList(new List<string>())
+                    .AddValue("ArtDerArbeit", null)
+                    .AddValue("Anzahl", 0)
+                    .AddValue("HasOrganization", !string.IsNullOrEmpty(Context.CurrentUser.Organization))
+                    .Create();
+
+                Context.MailPortfolio.BeginUnfinishedMail<NeuerAuftrag>("NeuerAuftrag", emailExpando);
+            }
+
+            int count = emailExpando.Anzahl;
+            emailExpando.Anzahl = count + 1;
+            if (Context.Ordering.ArtDerArbeit != null)
+            {
+                List<int> list = new List<int> { (int)Context.Ordering.ArtDerArbeit };
+                emailExpando.ArtDerArbeit = new Stammdaten(list, "ArtDerArbeit");
+            }
+
+            // die Ve zum EMail hinzufügen:
+            if (Context.OrderItem.VeId == null)
+            {
+                // Was, wenn es sich um eine Formularbestellung handelt?
+            }
+            else
+            {
+                var veRecord = Context.IndexAccess.FindDocument(Context.OrderItem.VeId, false);
+                ((List<InElasticIndexierteVe>)emailExpando.VeList).Add(InElasticIndexierteVe.FromElasticArchiveRecord(veRecord));
             }
         }
 

@@ -15,7 +15,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         #region Lieferart Auswahl 'Digital erhalten'
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: DE")]
-        [DefaultValue("digital erhalten und stelle einen Digitalisierungsantrag.")]
+        [DefaultValue("digital erhalten und stelle einen <strong>Digitalisierungsantrag</strong>.")]
         public string DeliveryTypeDigitalDE { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: FR")]
@@ -27,7 +27,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         public string DeliveryTypeDigitalIT { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'Digital erhalten'. Sprache: EN")]
-        [DefaultValue("receive scans of these documents and submit a digitisation request.")]
+        [DefaultValue("receive scans of these documents and submit a <strong>digitisation request</strong>.")]
         public string DeliveryTypeDigitalEN { get; set; }
 
         [Description("Definiert die Warnmeldung die ausgegeben wird, wenn der Benutzer die Option 'Digitalisierungsauftrag' wählt. Sprache: IT")]
@@ -52,7 +52,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         #region Lieferart Auswahl 'In den Lesesaal bestellen'
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: DE")]
-        [DefaultValue("zur Konsultation in den <strong>Lesesaal</strong> bestellen (Bestellungen müssen mindestens 2 Arbeitstage im Voraus erfolgen).")]
+        [DefaultValue("zur Konsultation in den <strong>Lesesaal</strong> bestellen (Bestellungen müssen mindestens {0} Arbeitstage im Voraus erfolgen).")]
         public string DeliveryTypeReadingRoomDE { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: FR")]
@@ -64,7 +64,7 @@ namespace CMI.Web.Frontend.ParameterSettings
         public string DeliveryTypeReadingRoomIT { get; set; }
 
         [Description("Definiert den Text in der Lieferart Auswahl 'In den Lesesaal bestellen'. Sprache: EN")]
-        [DefaultValue("order these documents for consultation in the <strong>reading room</strong>. (Orders must be placed at least 2 workdays in advance)")]
+        [DefaultValue("order these documents for consultation in the <strong>reading room</strong>. (Orders must be placed at least {0} workdays in advance)")]
         public string DeliveryTypeReadingRoomEN { get; set; }
 
         #endregion
