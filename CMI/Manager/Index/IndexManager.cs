@@ -452,13 +452,6 @@ namespace CMI.Manager.Index
 
             return retVal;
         }
-
-
-        private static string GetFileNameForDownload(string name, string referenceCode)
-        {
-            var filename = $"{referenceCode}_{Regex.Match(name, ".{0,20}$").Value}";
-            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
-        }
         
         private void GenerateStandortInfo(ElasticArchiveRecord elasticArchiveRecord, List<ArchiveRecordMetadataContainersContainer> standortContainer)
         {
