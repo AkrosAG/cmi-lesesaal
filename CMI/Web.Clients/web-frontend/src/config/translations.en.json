@@ -262,6 +262,7 @@
     "activePosition": "Currently displayed unit of description"
   },
   "detailPageComponent": {
+		"filesOnlyLoggedInUser": "Files are only visible to logged-in users.",
     "pageTitle": "Detail view",
     "gesuchEinreichen": "Add to cart",
     "hasProtectedFilesText": "Protected files. Authorisation is required for access."

@@ -118,12 +118,10 @@ namespace CMI.Web.Frontend.api.Controllers
                     entity.Data.HasProtectedFiles = false;
                     return entity;
                 }
-
-                if (entity.Data.HasProtectedFiles)
+                if (entity.Data.HasProtectedFiles || (!access.HasAnyTokenFor(new[] { "Ö2", "Ö3", "EMA", "AMA" })))
                 {
                     entity.Data.Files = new List<ElasticArchiveRecordFile>();
                 }
-
             }
 
             return entity;
