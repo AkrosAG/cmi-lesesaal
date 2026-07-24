@@ -692,4 +692,194 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
     }
 
+    public static partial class VSyncActionConverter
+    {
+
+        public static VSyncActionDto ToDto(this VSyncAction source)
+        {
+            return source.ToDtoWithRelated(0);
+        }
+
+        public static VSyncActionDto ToDtoWithRelated(this VSyncAction source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = new VSyncActionDto();
+
+            // Properties
+            target.SyncActionId = source.SyncActionId;
+            target.ArchiveRecordId = source.ArchiveRecordId;
+            target.ActionType = source.ActionType;
+            target.ActionStatus = source.ActionStatus;
+            target.NumberOfTries = source.NumberOfTries;
+            target.CreatedOn = source.CreatedOn;
+            target.ModifiedOn = source.ModifiedOn;
+            target.SyncActionLogId = source.SyncActionLogId;
+            target.LogDate = source.LogDate;
+            target.ErrorReason = source.ErrorReason;
+            target.ActionStatusHistory = source.ActionStatusHistory;
+
+            // User-defined partial method
+            OnDtoCreating(source, target);
+
+            return target;
+        }
+
+        public static VSyncAction ToEntity(this VSyncActionDto source)
+        {
+            if (source == null)
+              return null;
+
+            var target = new VSyncAction();
+
+            // Properties
+            target.SyncActionId = source.SyncActionId;
+            target.ArchiveRecordId = source.ArchiveRecordId;
+            target.ActionType = source.ActionType;
+            target.ActionStatus = source.ActionStatus;
+            target.NumberOfTries = source.NumberOfTries;
+            target.CreatedOn = source.CreatedOn;
+            target.ModifiedOn = source.ModifiedOn;
+            target.SyncActionLogId = source.SyncActionLogId;
+            target.LogDate = source.LogDate;
+            target.ErrorReason = source.ErrorReason;
+            target.ActionStatusHistory = source.ActionStatusHistory;
+
+            // User-defined partial method
+            OnEntityCreating(source, target);
+
+            return target;
+        }
+
+        public static List<VSyncActionDto> ToDtos(this IEnumerable<VSyncAction> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDto())
+              .ToList();
+
+            return target;
+        }
+
+        public static List<VSyncActionDto> ToDtosWithRelated(this IEnumerable<VSyncAction> source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDtoWithRelated(level))
+              .ToList();
+
+            return target;
+        }
+
+        public static List<VSyncAction> ToEntities(this IEnumerable<VSyncActionDto> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToEntity())
+              .ToList();
+
+            return target;
+        }
+
+        static partial void OnDtoCreating(VSyncAction source, VSyncActionDto target);
+
+        static partial void OnEntityCreating(VSyncActionDto source, VSyncAction target);
+
+    }
+
+    public static partial class VSyncNumberPerHourConverter
+    {
+
+        public static VSyncNumberPerHourDto ToDto(this VSyncNumberPerHour source)
+        {
+            return source.ToDtoWithRelated(0);
+        }
+
+        public static VSyncNumberPerHourDto ToDtoWithRelated(this VSyncNumberPerHour source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = new VSyncNumberPerHourDto();
+
+            // Properties
+            target.LastModified = source.LastModified;
+            target.LastModifiedDay = source.LastModifiedDay;
+            target.RecordCount = source.RecordCount;
+            target.ActionStatus = source.ActionStatus;
+
+            // User-defined partial method
+            OnDtoCreating(source, target);
+
+            return target;
+        }
+
+        public static VSyncNumberPerHour ToEntity(this VSyncNumberPerHourDto source)
+        {
+            if (source == null)
+                return null;
+
+            var target = new VSyncNumberPerHour();
+
+            // Properties
+            target.LastModified = source.LastModified;
+            target.LastModifiedDay = source.LastModifiedDay;
+            target.RecordCount = source.RecordCount;
+            target.ActionStatus = source.ActionStatus;
+
+            // User-defined partial method
+            OnEntityCreating(source, target);
+
+            return target;
+        }
+
+        public static List<VSyncNumberPerHourDto> ToDtos(this IEnumerable<VSyncNumberPerHour> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDto())
+              .ToList();
+
+            return target;
+        }
+
+        public static List<VSyncNumberPerHourDto> ToDtosWithRelated(this IEnumerable<VSyncNumberPerHour> source, int level)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToDtoWithRelated(level))
+              .ToList();
+
+            return target;
+        }
+
+        public static List<VSyncNumberPerHour> ToEntities(this IEnumerable<VSyncNumberPerHourDto> source)
+        {
+            if (source == null)
+              return null;
+
+            var target = source
+              .Select(src => src.ToEntity())
+              .ToList();
+
+            return target;
+        }
+
+        static partial void OnDtoCreating(VSyncNumberPerHour source, VSyncNumberPerHourDto target);
+
+        static partial void OnEntityCreating(VSyncNumberPerHourDto source, VSyncNumberPerHour target);
+
+    }
+
 }

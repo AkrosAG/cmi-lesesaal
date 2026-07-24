@@ -100,12 +100,14 @@
     <Compile Include="HarvestLogInfoResult.cs" />
     <Compile Include="HarvestStatusInfo.cs" />
     <Compile Include="Iiif-Schemas\IiifPresentationV3.cs" />
+    <Compile Include="ISynchronisationManager.cs" />
     <Compile Include="IUpdatePrimaerdatenAuftragStatus.cs" />
     <Compile Include="LogDataFilter.cs" />
     <Compile Include="JsonConverters\LongToTimeSpanConverter.cs" />
     <Compile Include="ModulFunktionsblock.cs" />
     <Compile Include="MutationRecord.cs" />
     <Compile Include="DropDownListItem.cs" />
+    <Compile Include="MutationStatus.cs" />
     <Compile Include="PrimaerdatenAuftrag.cs" />
     <Compile Include="PrimaerdatenAuftragEnums.cs" />
     <Compile Include="PrimaerdatenAuftragLog.cs" />

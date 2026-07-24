@@ -22,7 +22,7 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
-    "angularx-flatpickr": "^7.3.0",
+		"angularx-flatpickr": "^8.1.0",
     "audit": "^0.0.6",
     "core-js": "^3.35.0",
     "fix": "^0.0.6",

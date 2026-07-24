@@ -1,13 +1,16 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using CMI.Access.Sql.Lesesaal.EF;
+using CMI.Contract.Common;
 using CMI.Contract.Messaging;
 using CMI.Contract.Monitoring;
 using CMI.Contract.Parameter;
+using CMI.Manager.Lesesaal.Consumer;
 using CMI.Manager.Lesesaal.Infrastructure;
 using CMI.Utilities.Bus.Configuration;
 using CMI.Utilities.Logging.Configurator;
 using MassTransit;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System.Reflection;
 
 namespace CMI.Manager.Lesesaal
 {
@@ -21,45 +24,86 @@ namespace CMI.Manager.Lesesaal
 
             Log.Information("Lesesaal service is starting");
 
-            var containerBuilder = ContainerConfigurator.Configure();
+            var services = ContainerConfigurator.Configure();
 
-            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.LesesaalService, (cfg, ctx) =>
+            BusConfigurator.ConfigureBusModern(services, MonitoredServices.LesesaalService, AddConsumers, (context, cfg) =>
             {
                 cfg.ReceiveEndpoint(BusConstants.ReadUserInformationQueue,
-                    ec => { ec.Consumer(ctx.Resolve<ReadUserInformationConsumer>); }
-                );
+                    e => { e.ConfigureConsumer<ReadUserInformationConsumer>(context); });
                 cfg.ReceiveEndpoint(BusConstants.ReadStammdatenQueue,
-                    ec => { ec.Consumer(ctx.Resolve<ReadStammdatenConsumer>); }
-                );
+                    e => { e.ConfigureConsumer<ReadStammdatenConsumer>(context); });
+
+
                 // CollectionManager Methods
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetAllCollectionsRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetAllCollectionsRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetAllCollectionsRequest, GetAllCollectionsResponse, ICollectionManager>>(context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetActiveCollectionsRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetActiveCollectionsRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetActiveCollectionsRequest, GetActiveCollectionsResponse, ICollectionManager>>(
+                        context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionsHeaderRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionsHeaderRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetCollectionsHeaderRequest, GetCollectionsHeaderResponse, ICollectionManager>>(
+                        context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetCollectionRequest, GetCollectionResponse, ICollectionManager>>(context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(InsertOrUpdateCollectionRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<InsertOrUpdateCollectionRequest>>); });
+                    e => e
+                        .ConfigureConsumer<SimpleConsumer<InsertOrUpdateCollectionRequest, InsertOrUpdateCollectionResponse, ICollectionManager>>(
+                            context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(DeleteCollectionRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<DeleteCollectionRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<DeleteCollectionRequest, DeleteCollectionResponse, ICollectionManager>>(context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(BatchDeleteCollectionRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<BatchDeleteCollectionRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<BatchDeleteCollectionRequest, BatchDeleteCollectionResponse, ICollectionManager>>(
+                        context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetPossibleParentsRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetPossibleParentsRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetPossibleParentsRequest, GetPossibleParentsResponse, ICollectionManager>>(context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetImageRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetImageRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetImageRequest, GetImageResponse, ICollectionManager>>(context));
                 cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetCollectionItemResultRequest)),
-                    ec => { ec.Consumer(ctx.Resolve<IConsumer<GetCollectionItemResultRequest>>); });
+                    e => e.ConfigureConsumer<SimpleConsumer<GetCollectionItemResultRequest, GetCollectionItemResultResponse, ICollectionManager>>(
+                        context));
+
+                // Synchronisation
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetLogDataRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<GetLogDataRequest, GetLogDataResponse, ISynchronisationManager>>(context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetSyncDataRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<GetSyncDataRequest, GetSyncDataResponse, ISynchronisationManager>>(context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(BatchAddSyncActionsRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<BatchAddSyncActionsRequest, BatchAddSyncActionsResponse, ISynchronisationManager>>(
+                        context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetSyncNumberPerHourRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<GetSyncNumberPerHourRequest, GetSyncNumberPerHourResponse, ISynchronisationManager>>(
+                        context));
+
+                // Sync Action Methods
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(GetPendingMutationsRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<GetPendingMutationsRequest, GetPendingMutationsResponse, ILesesaalDataProvider>>(
+                        context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(UpdateMutationStatusRequest)),
+                    e => e.ConfigureConsumer<SimpleConsumer<UpdateMutationStatusRequest, UpdateMutationStatusResponse, ILesesaalDataProvider>>(
+                        context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(BulkUpdateMutationStatusRequest)),
+                    e => e
+                        .ConfigureConsumer<
+                            SimpleConsumer<BulkUpdateMutationStatusRequest, BulkUpdateMutationStatusResponse, ILesesaalDataProvider>>(context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(ResetFailedSyncOperationsRequest)),
+                    e => e
+                        .ConfigureConsumer<
+                            SimpleConsumer<ResetFailedSyncOperationsRequest, ResetFailedSyncOperationsResponse, ILesesaalDataProvider>>(context));
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(InsertSyncActionRequest)),
+                    e => e.ConfigureConsumer<InsertSyncActionRequestConsumer>(context));
+
+                cfg.ReceiveEndpoint(string.Format(BusConstants.LesesaalManagerRequestBase, nameof(DeleteOldSyncActionRequest)),
+                    e => e.ConfigureConsumer<DeleteOldSyncActionRequestConsumer>(context));
 
                 var helper = new ParameterBusHelper();
                 helper.SubscribeAllSettingsInAssembly(Assembly.GetExecutingAssembly(), cfg);
             });
 
-            var container = containerBuilder.Build();
-            bus = container.Resolve<IBusControl>();
+            var provider = services.BuildServiceProvider();
+            bus = provider.GetRequiredService<IBusControl>();
+
             bus.Start();
+
 
             Log.Information("Lesesaal service started");
         }
@@ -70,6 +114,35 @@ namespace CMI.Manager.Lesesaal
             bus.Stop();
             Log.Information("Lesesaal service has stopped.");
             Log.CloseAndFlush();
+        }
+
+        private void AddConsumers(IBusRegistrationConfigurator x)
+        {
+            // registers all IConsumer implementations in this assembly
+            x.AddConsumers(Assembly.GetExecutingAssembly());
+
+            // register all the generic implementations
+            // CollectionManager
+            x.AddConsumer<SimpleConsumer<GetAllCollectionsRequest, GetAllCollectionsResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetActiveCollectionsRequest, GetActiveCollectionsResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetCollectionsHeaderRequest, GetCollectionsHeaderResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetCollectionRequest, GetCollectionResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<InsertOrUpdateCollectionRequest, InsertOrUpdateCollectionResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<DeleteCollectionRequest, DeleteCollectionResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<BatchDeleteCollectionRequest, BatchDeleteCollectionResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetPossibleParentsRequest, GetPossibleParentsResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetImageRequest, GetImageResponse, ICollectionManager>>();
+            x.AddConsumer<SimpleConsumer<GetCollectionItemResultRequest, GetCollectionItemResultResponse, ICollectionManager>>();
+            
+            // Sync Action
+            x.AddConsumer<SimpleConsumer<GetLogDataRequest, GetLogDataResponse, ISynchronisationManager>>();
+            x.AddConsumer<SimpleConsumer<GetSyncDataRequest, GetSyncDataResponse, ISynchronisationManager>>();
+            x.AddConsumer<SimpleConsumer<BatchAddSyncActionsRequest, BatchAddSyncActionsResponse, ISynchronisationManager>>();
+            x.AddConsumer<SimpleConsumer<GetSyncNumberPerHourRequest, GetSyncNumberPerHourResponse, ISynchronisationManager>>();
+            x.AddConsumer<SimpleConsumer<GetPendingMutationsRequest, GetPendingMutationsResponse, ILesesaalDataProvider>>();
+            x.AddConsumer<SimpleConsumer<UpdateMutationStatusRequest, UpdateMutationStatusResponse, ILesesaalDataProvider>>();
+            x.AddConsumer<SimpleConsumer<BulkUpdateMutationStatusRequest, BulkUpdateMutationStatusResponse, ILesesaalDataProvider>>();
+            x.AddConsumer<SimpleConsumer<ResetFailedSyncOperationsRequest, ResetFailedSyncOperationsResponse, ILesesaalDataProvider>>();
         }
     }
 }

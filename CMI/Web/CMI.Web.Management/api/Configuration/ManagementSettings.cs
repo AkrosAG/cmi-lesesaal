@@ -18,7 +18,7 @@ namespace CMI.Web.Management.api.Configuration
 
         public static ManagementSettings Instance { get; }
         public string SqlConnectionString { get; } = WebHelper.Settings["sqlConnectionString"];
-        public string SqlEFConnectionString { get; } = WebHelper.Settings["sqlefConnectionString"];
+        public string SqlConnectionStringEF { get; } = WebHelper.Settings["sqlConnectionStringEF"];
         public int CookieExpireTimeInMinutes { get; } = WebHelper.GetIntSetting("cookieExpireTimeInMinutes", 60);
     }
 }

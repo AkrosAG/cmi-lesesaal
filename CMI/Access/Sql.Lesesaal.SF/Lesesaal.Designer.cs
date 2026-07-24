@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
@@ -49,7 +50,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// Initialize a new LesesaalDb object.
         /// </summary>
         public LesesaalDb() :
-                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=""", "LesesaalDb")
+                base(@"metadata=res://*/Lesesaal.csdl|res://*/Lesesaal.ssdl|res://*/Lesesaal.msl;provider=System.Data.SqlClient;provider connection string=""Data Source=localhost;Initial Catalog=Lesesaal;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=""", "LesesaalDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -181,6 +182,38 @@ namespace CMI.Access.Sql.Lesesaal.EF
         }
         private ObjectSet<SyncInfo> _SyncInfos;
 
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<VSyncAction> VSyncActions
+        {
+            get
+            {
+                if ((_VSyncActions == null))
+                {
+                    _VSyncActions = base.CreateObjectSet<VSyncAction>("VSyncActions");
+                }
+                return _VSyncActions;
+            }
+        }
+        private ObjectSet<VSyncAction> _VSyncActions;
+
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<VSyncNumberPerHour> VSyncNumberPerHours
+        {
+            get
+            {
+                if ((_VSyncNumberPerHours == null))
+                {
+                    _VSyncNumberPerHours = base.CreateObjectSet<VSyncNumberPerHour>("VSyncNumberPerHours");
+                }
+                return _VSyncNumberPerHours;
+            }
+        }
+        private ObjectSet<VSyncNumberPerHour> _VSyncNumberPerHours;
+
         #endregion
         #region AddTo Methods
 
@@ -230,6 +263,22 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public void AddToSyncInfos(SyncInfo syncInfo)
         {
             base.AddObject("SyncInfos", syncInfo);
+        }
+
+        /// <summary>
+        /// Deprecated Method for adding a new object to the VSyncActions EntitySet.
+        /// </summary>
+        public void AddToVSyncActions(VSyncAction vSyncAction)
+        {
+            base.AddObject("VSyncActions", vSyncAction);
+        }
+
+        /// <summary>
+        /// Deprecated Method for adding a new object to the VSyncNumberPerHours EntitySet.
+        /// </summary>
+        public void AddToVSyncNumberPerHours(VSyncNumberPerHour vSyncNumberPerHour)
+        {
+            base.AddObject("VSyncNumberPerHours", vSyncNumberPerHour);
         }
 
         #endregion
@@ -963,7 +1012,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
     }
 
     /// <summary>
-    /// Enthält Benutzer, die sich an Lesesaal angemeldet haben
+    /// Enthält Benutzer, die sich an Viaduc angemeldet haben
     /// </summary>
     /// <KeyProperties>
     /// ID
@@ -986,8 +1035,8 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// <param name="modifiedOn">Initial value of ModifiedOn.</param>
         /// <param name="isInternalUser">Initial value of IsInternalUser.</param>
         /// <param name="researcherGroup">Initial value of ResearcherGroup.</param>
-        /// <param name="InternalConsultation">Initial value of InternalConsultation.</param>
-        public static ApplicationUser CreateApplicationUser(string iD, global::System.DateTime created, global::System.DateTime updated, string fulltext, string language, global::System.DateTime createdOn, global::System.DateTime modifiedOn, bool isInternalUser, bool researcherGroup, bool InternalConsultation)
+        /// <param name="internalConsultation">Initial value of InternalConsultation.</param>
+        public static ApplicationUser CreateApplicationUser(string iD, global::System.DateTime created, global::System.DateTime updated, string fulltext, string language, global::System.DateTime createdOn, global::System.DateTime modifiedOn, bool isInternalUser, bool researcherGroup, bool internalConsultation)
         {
             ApplicationUser applicationUser = new ApplicationUser();
             applicationUser.ID = iD;
@@ -999,7 +1048,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
             applicationUser.ModifiedOn = modifiedOn;
             applicationUser.IsInternalUser = isInternalUser;
             applicationUser.ResearcherGroup = researcherGroup;
-            applicationUser.InternalConsultation = InternalConsultation;
+            applicationUser.InternalConsultation = internalConsultation;
             return applicationUser;
         }
 
@@ -3362,6 +3411,530 @@ namespace CMI.Access.Sql.Lesesaal.EF
         partial void OnGetLastSequenceNumber(ref long? value);
         partial void OnLastSequenceNumberChanging(ref long? value);
         partial void OnLastSequenceNumberChanged();
+
+        #endregion
+    }
+
+    /// <summary>
+    /// There are no comments for CMI.Access.Sql.Lesesaal.EF.VSyncAction in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// SyncActionId
+    /// </KeyProperties>
+    [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="VSyncAction")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class VSyncAction : EntityObject    {
+        #region Factory Method
+
+        /// <summary>
+        /// Create a new VSyncAction object.
+        /// </summary>
+        /// <param name="syncActionId">Initial value of SyncActionId.</param>
+        public static VSyncAction CreateVSyncAction(long syncActionId)
+        {
+            VSyncAction vSyncAction = new VSyncAction();
+            vSyncAction.SyncActionId = syncActionId;
+            return vSyncAction;
+        }
+
+        #endregion
+
+        #region Properties
+    
+        /// <summary>
+        /// There are no comments for SyncActionId in the schema.
+        /// </summary>
+        [Key]
+        [Required()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public virtual long SyncActionId
+        {
+            get
+            {
+                long value = _SyncActionId;
+                OnGetSyncActionId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_SyncActionId != value)
+                {
+                  OnSyncActionIdChanging(ref value);
+                  ReportPropertyChanging("SyncActionId");
+                  _SyncActionId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("SyncActionId");
+                  OnSyncActionIdChanged();
+              }
+            }
+        }
+        private long _SyncActionId;
+        partial void OnGetSyncActionId(ref long value);
+        partial void OnSyncActionIdChanging(ref long value);
+        partial void OnSyncActionIdChanged();
+    
+        /// <summary>
+        /// There are no comments for ArchiveRecordId in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ArchiveRecordId
+        {
+            get
+            {
+                string value = _ArchiveRecordId;
+                OnGetArchiveRecordId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ArchiveRecordId != value)
+                {
+                  OnArchiveRecordIdChanging(ref value);
+                  ReportPropertyChanging("ArchiveRecordId");
+                  _ArchiveRecordId = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ArchiveRecordId");
+                  OnArchiveRecordIdChanged();
+              }
+            }
+        }
+        private string _ArchiveRecordId;
+        partial void OnGetArchiveRecordId(ref string value);
+        partial void OnArchiveRecordIdChanging(ref string value);
+        partial void OnArchiveRecordIdChanged();
+    
+        /// <summary>
+        /// There are no comments for ActionType in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ActionType
+        {
+            get
+            {
+                string value = _ActionType;
+                OnGetActionType(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ActionType != value)
+                {
+                  OnActionTypeChanging(ref value);
+                  ReportPropertyChanging("ActionType");
+                  _ActionType = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ActionType");
+                  OnActionTypeChanged();
+              }
+            }
+        }
+        private string _ActionType;
+        partial void OnGetActionType(ref string value);
+        partial void OnActionTypeChanging(ref string value);
+        partial void OnActionTypeChanged();
+    
+        /// <summary>
+        /// There are no comments for ActionStatus in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual int? ActionStatus
+        {
+            get
+            {
+                int? value = _ActionStatus;
+                OnGetActionStatus(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ActionStatus != value)
+                {
+                  OnActionStatusChanging(ref value);
+                  ReportPropertyChanging("ActionStatus");
+                  _ActionStatus = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ActionStatus");
+                  OnActionStatusChanged();
+              }
+            }
+        }
+        private int? _ActionStatus;
+        partial void OnGetActionStatus(ref int? value);
+        partial void OnActionStatusChanging(ref int? value);
+        partial void OnActionStatusChanged();
+    
+        /// <summary>
+        /// There are no comments for NumberOfTries in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual int? NumberOfTries
+        {
+            get
+            {
+                int? value = _NumberOfTries;
+                OnGetNumberOfTries(ref value);
+                return value;
+            }
+            set
+            {
+                if (_NumberOfTries != value)
+                {
+                  OnNumberOfTriesChanging(ref value);
+                  ReportPropertyChanging("NumberOfTries");
+                  _NumberOfTries = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("NumberOfTries");
+                  OnNumberOfTriesChanged();
+              }
+            }
+        }
+        private int? _NumberOfTries;
+        partial void OnGetNumberOfTries(ref int? value);
+        partial void OnNumberOfTriesChanging(ref int? value);
+        partial void OnNumberOfTriesChanged();
+    
+        /// <summary>
+        /// There are no comments for CreatedOn in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime? CreatedOn
+        {
+            get
+            {
+                global::System.DateTime? value = _CreatedOn;
+                OnGetCreatedOn(ref value);
+                return value;
+            }
+            set
+            {
+                if (_CreatedOn != value)
+                {
+                  OnCreatedOnChanging(ref value);
+                  ReportPropertyChanging("CreatedOn");
+                  _CreatedOn = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("CreatedOn");
+                  OnCreatedOnChanged();
+              }
+            }
+        }
+        private global::System.DateTime? _CreatedOn;
+        partial void OnGetCreatedOn(ref global::System.DateTime? value);
+        partial void OnCreatedOnChanging(ref global::System.DateTime? value);
+        partial void OnCreatedOnChanged();
+    
+        /// <summary>
+        /// There are no comments for ModifiedOn in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime? ModifiedOn
+        {
+            get
+            {
+                global::System.DateTime? value = _ModifiedOn;
+                OnGetModifiedOn(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ModifiedOn != value)
+                {
+                  OnModifiedOnChanging(ref value);
+                  ReportPropertyChanging("ModifiedOn");
+                  _ModifiedOn = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ModifiedOn");
+                  OnModifiedOnChanged();
+              }
+            }
+        }
+        private global::System.DateTime? _ModifiedOn;
+        partial void OnGetModifiedOn(ref global::System.DateTime? value);
+        partial void OnModifiedOnChanging(ref global::System.DateTime? value);
+        partial void OnModifiedOnChanged();
+    
+        /// <summary>
+        /// There are no comments for SyncActionLogId in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual int? SyncActionLogId
+        {
+            get
+            {
+                int? value = _SyncActionLogId;
+                OnGetSyncActionLogId(ref value);
+                return value;
+            }
+            set
+            {
+                if (_SyncActionLogId != value)
+                {
+                  OnSyncActionLogIdChanging(ref value);
+                  ReportPropertyChanging("SyncActionLogId");
+                  _SyncActionLogId = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("SyncActionLogId");
+                  OnSyncActionLogIdChanged();
+              }
+            }
+        }
+        private int? _SyncActionLogId;
+        partial void OnGetSyncActionLogId(ref int? value);
+        partial void OnSyncActionLogIdChanging(ref int? value);
+        partial void OnSyncActionLogIdChanged();
+    
+        /// <summary>
+        /// There are no comments for LogDate in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime? LogDate
+        {
+            get
+            {
+                global::System.DateTime? value = _LogDate;
+                OnGetLogDate(ref value);
+                return value;
+            }
+            set
+            {
+                if (_LogDate != value)
+                {
+                  OnLogDateChanging(ref value);
+                  ReportPropertyChanging("LogDate");
+                  _LogDate = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("LogDate");
+                  OnLogDateChanged();
+              }
+            }
+        }
+        private global::System.DateTime? _LogDate;
+        partial void OnGetLogDate(ref global::System.DateTime? value);
+        partial void OnLogDateChanging(ref global::System.DateTime? value);
+        partial void OnLogDateChanged();
+    
+        /// <summary>
+        /// There are no comments for ErrorReason in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ErrorReason
+        {
+            get
+            {
+                string value = _ErrorReason;
+                OnGetErrorReason(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ErrorReason != value)
+                {
+                  OnErrorReasonChanging(ref value);
+                  ReportPropertyChanging("ErrorReason");
+                  _ErrorReason = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ErrorReason");
+                  OnErrorReasonChanged();
+              }
+            }
+        }
+        private string _ErrorReason;
+        partial void OnGetErrorReason(ref string value);
+        partial void OnErrorReasonChanging(ref string value);
+        partial void OnErrorReasonChanged();
+    
+        /// <summary>
+        /// There are no comments for ActionStatusHistory in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual string ActionStatusHistory
+        {
+            get
+            {
+                string value = _ActionStatusHistory;
+                OnGetActionStatusHistory(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ActionStatusHistory != value)
+                {
+                  OnActionStatusHistoryChanging(ref value);
+                  ReportPropertyChanging("ActionStatusHistory");
+                  _ActionStatusHistory = StructuralObject.SetValidValue(value, true);
+                  ReportPropertyChanged("ActionStatusHistory");
+                  OnActionStatusHistoryChanged();
+              }
+            }
+        }
+        private string _ActionStatusHistory;
+        partial void OnGetActionStatusHistory(ref string value);
+        partial void OnActionStatusHistoryChanging(ref string value);
+        partial void OnActionStatusHistoryChanged();
+
+        #endregion
+    }
+
+    /// <summary>
+    /// There are no comments for CMI.Access.Sql.Lesesaal.EF.VSyncNumberPerHour in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// LastModified
+    /// ActionStatus
+    /// </KeyProperties>
+    [EdmEntityTypeAttribute(NamespaceName = "CMI.Access.Sql.Lesesaal.EF", Name = "VSyncNumberPerHour")]
+    [Serializable()]
+    [DataContractAttribute(IsReference = true)]
+    public partial class VSyncNumberPerHour : EntityObject
+    {
+        #region Factory Method
+
+        /// <summary>
+        /// Create a new VSyncNumberPerHour object.
+        /// </summary>
+        /// <param name="lastModified">Initial value of LastModified.</param>
+        /// <param name="recordCount">Initial value of RecordCount.</param>
+        /// <param name="actionStatus">Initial value of ActionStatus.</param>
+        public static VSyncNumberPerHour CreateVSyncNumberPerHour(string lastModified, int recordCount, int actionStatus)
+        {
+            VSyncNumberPerHour vSyncNumberPerHour = new VSyncNumberPerHour();
+            vSyncNumberPerHour.LastModified = lastModified;
+            vSyncNumberPerHour.RecordCount = recordCount;
+            vSyncNumberPerHour.ActionStatus = actionStatus;
+            return vSyncNumberPerHour;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// There are no comments for LastModified in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty = true, IsNullable = false)]
+        [DataMemberAttribute()]
+        [Key]
+        [StringLength(4000)]
+        [Required()]
+        public virtual string LastModified
+        {
+            get
+            {
+                string value = _LastModified;
+                OnGetLastModified(ref value);
+                return value;
+            }
+            set
+            {
+                if (_LastModified != value)
+                {
+                    OnLastModifiedChanging(ref value);
+                    ReportPropertyChanging("LastModified");
+                    _LastModified = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("LastModified");
+                    OnLastModifiedChanged();
+                }
+            }
+        }
+        private string _LastModified;
+        partial void OnGetLastModified(ref string value);
+        partial void OnLastModifiedChanging(ref string value);
+        partial void OnLastModifiedChanged();
+
+        /// <summary>
+        /// There are no comments for LastModifiedDay in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute()]
+        [DataMemberAttribute()]
+        public virtual global::System.DateTime? LastModifiedDay
+        {
+            get
+            {
+                global::System.DateTime? value = _LastModifiedDay;
+                OnGetLastModifiedDay(ref value);
+                return value;
+            }
+            set
+            {
+                if (_LastModifiedDay != value)
+                {
+                    OnLastModifiedDayChanging(ref value);
+                    ReportPropertyChanging("LastModifiedDay");
+                    _LastModifiedDay = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("LastModifiedDay");
+                    OnLastModifiedDayChanged();
+                }
+            }
+        }
+        private global::System.DateTime? _LastModifiedDay;
+        partial void OnGetLastModifiedDay(ref global::System.DateTime? value);
+        partial void OnLastModifiedDayChanging(ref global::System.DateTime? value);
+        partial void OnLastModifiedDayChanged();
+
+        /// <summary>
+        /// There are no comments for RecordCount in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(IsNullable = false)]
+        [DataMemberAttribute()]
+        [Required()]
+        public virtual int RecordCount
+        {
+            get
+            {
+                int value = _RecordCount;
+                OnGetRecordCount(ref value);
+                return value;
+            }
+            set
+            {
+                if (_RecordCount != value)
+                {
+                    OnRecordCountChanging(ref value);
+                    ReportPropertyChanging("RecordCount");
+                    _RecordCount = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RecordCount");
+                    OnRecordCountChanged();
+                }
+            }
+        }
+        private int _RecordCount;
+        partial void OnGetRecordCount(ref int value);
+        partial void OnRecordCountChanging(ref int value);
+        partial void OnRecordCountChanged();
+
+        /// <summary>
+        /// There are no comments for ActionStatus in the schema.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty = true, IsNullable = false)]
+        [DataMemberAttribute()]
+        [Key]
+        [Required()]
+        public virtual int ActionStatus
+        {
+            get
+            {
+                int value = _ActionStatus;
+                OnGetActionStatus(ref value);
+                return value;
+            }
+            set
+            {
+                if (_ActionStatus != value)
+                {
+                    OnActionStatusChanging(ref value);
+                    ReportPropertyChanging("ActionStatus");
+                    _ActionStatus = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ActionStatus");
+                    OnActionStatusChanged();
+                }
+            }
+        }
+        private int _ActionStatus;
+        partial void OnGetActionStatus(ref int value);
+        partial void OnActionStatusChanging(ref int value);
+        partial void OnActionStatusChanged();
 
         #endregion
     }

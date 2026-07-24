@@ -7,6 +7,7 @@ import {
 	EinsichtsgesuchUserSettings,
 	ManagementUserSettings,
 	OrderUserSettings,
+	SynchronizationMonitorSettings,
 	UserListUserSettings
 } from '../../../shared';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -43,11 +44,21 @@ export class MockCollectionSettings implements CollectionSettings {
 	}
 }
 
+export class MockSynchronizationSettings implements SynchronizationMonitorSettings {
+	public columns: any;
+
+	constructor() {
+		this.columns = ['Test 2', 'Test1'];
+	}
+}
+
 export class MockUserSettings implements ManagementUserSettings {
 	constructor() {
 		this.collectionSettings = new MockCollectionSettings();
+		this.synchronizationMonitorSettings = new MockSynchronizationSettings();
 	}
 
+	public synchronizationMonitorSettings: SynchronizationMonitorSettings;
 	public ablieferndeStelleSettings: AblieferndeStelleSettings;
 	public collectionSettings: CollectionSettings;
 	public digipoolSettings: DigipoolUserSettings;
