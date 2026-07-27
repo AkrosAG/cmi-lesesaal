@@ -152,5 +152,71 @@
       </Template>
     </Templates>
     <AttributeAssemblies />
+    <UpdateToDatabaseExcludes>
+      <Exclude Name="ID" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FamilyName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FirstName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Organization" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Street" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="StreetAttachment" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ZipCode" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Town" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CountryCode" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="EmailAddress" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="PhoneNumber" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="SkypeName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Setting" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Claims" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Created" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Updated" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Fulltext" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="UserExtId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Language" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CreatedOn" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CreatedBy" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ModifiedOn" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ModifiedBy" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Birthday" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FabasoftDossier" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ReasonForRejection" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="IsInternalUser" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="RolePublicClient" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="EiamRoles" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ResearcherGroup" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="InternalConsultation" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="IdentifierDocument" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="MobileNumber" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ReasonForRejectionDate" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="DownloadLimitDisabledUntil" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="DigitalisierungsbeschraenkungAufgehobenBis" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ActiveAspNetSessionId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="" Table="dbo.ApplicationUser" Type="Constraint" />
+      <Exclude Name="CollectionId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ParentId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Language" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Title" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="DescriptionShort" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Description" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ValidFrom" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ValidTo" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CollectionTypeId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Image" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Thumbnail" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ImageAltText" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ImageMimeType" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Link" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CollectionPath" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="SortOrder" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CreatedOn" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CreatedBy" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ModifiedOn" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ModifiedBy" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="" Table="dbo.Collection" Type="Constraint" />
+      <Exclude Name="Collection_Collection" Table="dbo.Collection" Type="Constraint" />
+      <Exclude Name="Setting" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Claims" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ActiveAspNetSessionId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Description" Table="dbo.Collection" Type="Column" />
+    </UpdateToDatabaseExcludes>
   </ModelSettings>
 </EntityDeveloper>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CMI.Contract.Common.Entities;
 
 namespace CMI.Access.Sql.Lesesaal.EF;
 

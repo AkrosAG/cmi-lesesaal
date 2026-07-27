@@ -1,6 +1,5 @@
-﻿using CMI.Contract.Common.Entities;
+﻿using CMI.Access.Sql.Lesesaal.EF;
 using System.Collections.Generic;
-using CMI.Access.Sql.Lesesaal.EF;
 
 namespace CMI.Contract.Messaging
 {

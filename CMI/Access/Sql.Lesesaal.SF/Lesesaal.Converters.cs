@@ -824,7 +824,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public static VSyncNumberPerHour ToEntity(this VSyncNumberPerHourDto source)
         {
             if (source == null)
-                return null;
+              return null;
 
             var target = new VSyncNumberPerHour();
 

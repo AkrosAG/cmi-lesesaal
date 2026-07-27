@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
+using CMI.Contract.Common.Entities;
 
 namespace CMI.Access.Sql.Lesesaal.EF;
 

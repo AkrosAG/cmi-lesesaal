@@ -2201,7 +2201,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public virtual long SyncActionId
+        [Key]
+        [Required()]
+        public virtual long SyncActionId 
         {
             get
             {
@@ -3445,10 +3447,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// <summary>
         /// There are no comments for SyncActionId in the schema.
         /// </summary>
-        [Key]
-        [Required()]
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+
+        [Key]
+        [Required()]
         public virtual long SyncActionId
         {
             get
@@ -3784,11 +3787,10 @@ namespace CMI.Access.Sql.Lesesaal.EF
     /// LastModified
     /// ActionStatus
     /// </KeyProperties>
-    [EdmEntityTypeAttribute(NamespaceName = "CMI.Access.Sql.Lesesaal.EF", Name = "VSyncNumberPerHour")]
+    [EdmEntityTypeAttribute(NamespaceName="CMI.Access.Sql.Lesesaal.EF", Name="VSyncNumberPerHour")]
     [Serializable()]
-    [DataContractAttribute(IsReference = true)]
-    public partial class VSyncNumberPerHour : EntityObject
-    {
+    [DataContractAttribute(IsReference=true)]
+    public partial class VSyncNumberPerHour : EntityObject    {
         #region Factory Method
 
         /// <summary>
@@ -3809,15 +3811,12 @@ namespace CMI.Access.Sql.Lesesaal.EF
         #endregion
 
         #region Properties
-
+    
         /// <summary>
         /// There are no comments for LastModified in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty = true, IsNullable = false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        [Key]
-        [StringLength(4000)]
-        [Required()]
         public virtual string LastModified
         {
             get
@@ -3830,19 +3829,19 @@ namespace CMI.Access.Sql.Lesesaal.EF
             {
                 if (_LastModified != value)
                 {
-                    OnLastModifiedChanging(ref value);
-                    ReportPropertyChanging("LastModified");
-                    _LastModified = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("LastModified");
-                    OnLastModifiedChanged();
-                }
+                  OnLastModifiedChanging(ref value);
+                  ReportPropertyChanging("LastModified");
+                  _LastModified = StructuralObject.SetValidValue(value, false);
+                  ReportPropertyChanged("LastModified");
+                  OnLastModifiedChanged();
+              }
             }
         }
         private string _LastModified;
         partial void OnGetLastModified(ref string value);
         partial void OnLastModifiedChanging(ref string value);
         partial void OnLastModifiedChanged();
-
+    
         /// <summary>
         /// There are no comments for LastModifiedDay in the schema.
         /// </summary>
@@ -3860,25 +3859,24 @@ namespace CMI.Access.Sql.Lesesaal.EF
             {
                 if (_LastModifiedDay != value)
                 {
-                    OnLastModifiedDayChanging(ref value);
-                    ReportPropertyChanging("LastModifiedDay");
-                    _LastModifiedDay = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("LastModifiedDay");
-                    OnLastModifiedDayChanged();
-                }
+                  OnLastModifiedDayChanging(ref value);
+                  ReportPropertyChanging("LastModifiedDay");
+                  _LastModifiedDay = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("LastModifiedDay");
+                  OnLastModifiedDayChanged();
+              }
             }
         }
         private global::System.DateTime? _LastModifiedDay;
         partial void OnGetLastModifiedDay(ref global::System.DateTime? value);
         partial void OnLastModifiedDayChanging(ref global::System.DateTime? value);
         partial void OnLastModifiedDayChanged();
-
+    
         /// <summary>
         /// There are no comments for RecordCount in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(IsNullable = false)]
+        [EdmScalarPropertyAttribute(IsNullable=false)]
         [DataMemberAttribute()]
-        [Required()]
         public virtual int RecordCount
         {
             get
@@ -3891,26 +3889,24 @@ namespace CMI.Access.Sql.Lesesaal.EF
             {
                 if (_RecordCount != value)
                 {
-                    OnRecordCountChanging(ref value);
-                    ReportPropertyChanging("RecordCount");
-                    _RecordCount = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("RecordCount");
-                    OnRecordCountChanged();
-                }
+                  OnRecordCountChanging(ref value);
+                  ReportPropertyChanging("RecordCount");
+                  _RecordCount = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("RecordCount");
+                  OnRecordCountChanged();
+              }
             }
         }
         private int _RecordCount;
         partial void OnGetRecordCount(ref int value);
         partial void OnRecordCountChanging(ref int value);
         partial void OnRecordCountChanged();
-
+    
         /// <summary>
         /// There are no comments for ActionStatus in the schema.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty = true, IsNullable = false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        [Key]
-        [Required()]
         public virtual int ActionStatus
         {
             get
@@ -3923,12 +3919,12 @@ namespace CMI.Access.Sql.Lesesaal.EF
             {
                 if (_ActionStatus != value)
                 {
-                    OnActionStatusChanging(ref value);
-                    ReportPropertyChanging("ActionStatus");
-                    _ActionStatus = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ActionStatus");
-                    OnActionStatusChanged();
-                }
+                  OnActionStatusChanging(ref value);
+                  ReportPropertyChanging("ActionStatus");
+                  _ActionStatus = StructuralObject.SetValidValue(value);
+                  ReportPropertyChanged("ActionStatus");
+                  OnActionStatusChanged();
+              }
             }
         }
         private int _ActionStatus;
