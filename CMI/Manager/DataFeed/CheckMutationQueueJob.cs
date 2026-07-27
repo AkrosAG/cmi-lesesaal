@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CMI.Contract.Common;
+﻿using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 using CMI.Contract.Messaging;
 using CMI.Manager.DataFeed.Infrastructure;
+using CMI.Manager.DataFeed.SyncLog;
 using MassTransit;
 using Quartz;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CMI.Manager.DataFeed
 {
@@ -21,21 +22,20 @@ namespace CMI.Manager.DataFeed
         private static bool isEnqueing;
         private readonly IBus bus;
         private readonly ICancelToken cancelToken;
-        private readonly IDbMutationQueueAccess dbMutationQueueAccess;
+        private readonly IDbSyncLogAccess dbSyncLogAccess;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="CheckMutationQueueJob" /> class.
         /// </summary>
         /// <param name="bus">A reference to the bus.</param>
-        /// <param name="dbMutationQueueAccess">The db access class.</param>
+        /// <param name="dbSyncLogAccess">The db access class.</param>
         /// <param name="cancelToken">A token for canceling a (long) running check process.</param>
-        public CheckMutationQueueJob(IBus bus, IDbMutationQueueAccess dbMutationQueueAccess, ICancelToken cancelToken)
+        public CheckMutationQueueJob(IBus bus, IDbSyncLogAccess dbSyncLogAccess, ICancelToken cancelToken)
         {
             this.bus = bus;
-            this.dbMutationQueueAccess = dbMutationQueueAccess;
+            this.dbSyncLogAccess = dbSyncLogAccess;
             this.cancelToken = cancelToken;
         }
-
 
         /// <summary>
         ///     Called by the <see cref="T:Quartz.IScheduler" /> when a <see cref="T:Quartz.ITrigger" />
@@ -59,7 +59,7 @@ namespace CMI.Manager.DataFeed
                 try
                 {
                     isEnqueing = true;
-                    var list = await dbMutationQueueAccess.GetPendingMutations();
+                    var list = await dbSyncLogAccess.GetPendingMutations();
                     if (list.Any())
                     {
                         Log.Information("About to push {itemCout} items onto the bus.", list.Count);
@@ -80,7 +80,7 @@ namespace CMI.Manager.DataFeed
                             updateList.Add(new MutationStatusInfo
                             {
                                 MutationId = record.MutationId, NewStatus = ActionStatus.SyncInProgress,
-                                ChangeFromStatus = ActionStatus.WaitingForSync, ArchiveRecordId = record.ArchiveRecordId, MutationType = record.Action
+                                ChangeFromStatus = ActionStatus.WaitingForSync
                             });
                             // We don't await the task. It is a great performance gain, with a little risk that the 
                             // message might not be acknowledged.
@@ -92,10 +92,10 @@ namespace CMI.Manager.DataFeed
                             });
 
                             currentCount++;
-                            if (currentCount % 10000 == 0)
+                            if (currentCount % 5000 == 0)
                             {
                                 Log.Information($"Initiated sync for {currentCount} of {totalCount}");
-                                await dbMutationQueueAccess.BulkUpdateMutationStatus(updateList);
+                                await dbSyncLogAccess.BulkUpdateMutationStatus(updateList);
                                 updateList.Clear();
                             }
 
@@ -103,7 +103,7 @@ namespace CMI.Manager.DataFeed
                         }
 
                         Log.Information($"Initiated sync for {currentCount} of {totalCount}");
-                        await dbMutationQueueAccess.BulkUpdateMutationStatus(updateList);
+                        await dbSyncLogAccess.BulkUpdateMutationStatus(updateList);
                         Log.Information("Finished to put items on queue.");
                     }
                     else
