@@ -56,13 +56,10 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 				private formBuilder: FormBuilder,
 				public _txt: TranslationService) {
 		flatpickr.localize(German);
-
-		console.log('constructor', this._sys);
 	}
 
 	public ngOnInit(): void {
 		this.buildCrumbs();
-		console.log('init')	;
 		this._initTableView();
 	}
 
@@ -135,8 +132,6 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 	}
 
 	private getDefaultView() {
-
-		console.log('this._opt.odataUrl', this._opt.odataUrl);
 		this.synchronisationItems = new ODataCollectionView(this._opt.odataUrl, 'VSynchronisationen', {
 			requestHeaders: {withCredentials: true},
 			dataTypes: {

@@ -28,7 +28,6 @@ export class SynchronizationService {
 
 	public syncNumberPerHour(days:	number): Observable<SyncNumberPerHourDto[] | null> {
 		const url = this._createBaseUrl + 'SyncNumberPerHour/' + days;
-		console.log(url);
 		return this.http.get<SyncNumberPerHourDto[]>(url, this.http.noCaching).pipe(map(arr => arr.map(item => SyncNumberPerHourDto.fromJS(item))));
 	}
 }
