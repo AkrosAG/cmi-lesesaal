@@ -64,18 +64,8 @@
     <Compile Include="ICollectionAccess.cs" />
     <Compile Include="ILesesaalDataProvider.cs" />
     <Compile Include="ISynchronisationAccess.cs" />
-    <Compile Include="Lesesaal.Converters.cs">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </Compile>
+    <Compile Include="Lesesaal.Converters.cs" />
     <Compile Include="Lesesaal.Designer.cs" />
-    <Compile Include="Lesesaal.DTOs.cs">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </Compile>
-    <Compile Include="Lesesaal1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </Compile>
     <Compile Include="LesesaalDataProvider.cs" />
     <Compile Include="MissingDllWorkaround.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,17 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Lesesaal.Diagram1.view">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </None>
-    <None Include="Lesesaal.edps">
-      <DependentUpon>Lesesaal.edml</DependentUpon>
-    </None>
+    <None Include="Lesesaal.Diagram1.view" />
+    <None Include="Lesesaal.edps" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Lesesaal.csdl" />
     <DevartEntityDeploy Include="Lesesaal.edml">
       <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>Lesesaal1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Lesesaal.cs</LastGenOutput>
     </DevartEntityDeploy>
     <EmbeddedResource Include="Lesesaal.msl" />
     <EmbeddedResource Include="Lesesaal.ssdl" />

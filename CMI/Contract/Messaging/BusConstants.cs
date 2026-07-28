@@ -25,6 +25,7 @@
     /// </summary>
     public static class BusConstants
     {
+
         // Messages the Datafeed Manager subscribes to
         public const string DatafeedSchedulerTriggerMessageQueue = "m.datafeed.manager.schedulerTrigger";
         public const string DataFeedManagerSyncRecordMessageQueue = "m.datafeed.manager.initiateSync";
@@ -150,6 +151,8 @@
         public const string MonitoringAbbyyOcrTestQueue = "r.monitoring.abbyyOcrTest";
         public const string MonitoringDirCheckQueue = "r.monitoring.checkDir";
         public const string MonitoringDocumentConverterInfoQueue = "r.monitoring.documentConverterInfo";
+        public const string HarvestManagerCheckMutationQueue = "r.monitoring.checkMutation";
+        
 
         // Events the Order Manager subscribes to
         public const string OrderManagerArchiveRecordUpdatedEventQueue = "e.order.manager.archiveRecordUpdated";

@@ -125,7 +125,7 @@
   </EntityType>
   <EntityType Name="ApplicationUser">
     <Documentation>
-      <Summary>Enthält Benutzer, die sich an Lesesaal angemeldet haben</Summary>
+      <Summary>Enthält Benutzer, die sich an Viaduc angemeldet haben</Summary>
     </Documentation>
     <Key>
       <PropertyRef Name="ID" />
