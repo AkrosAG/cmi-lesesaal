@@ -51,6 +51,13 @@ namespace CMI.Manager.DataFeed
                         retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
                 });
 
+                cfg.ReceiveEndpoint(BusConstants.DataFeedManagerSyncRecordMessageQueue, ec =>
+                {
+                    ec.Consumer(ctx.Resolve<SyncRecordConsumer>);
+                    ec.UseMessageRetry(retryPolicy =>
+                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                });
+
             });
 
             // Start the timer

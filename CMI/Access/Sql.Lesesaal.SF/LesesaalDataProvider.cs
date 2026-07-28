@@ -1,16 +1,15 @@
 ﻿using CMI.Contract.Common;
+using CMI.Contract.Harvest;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using CMI.Contract.Common.Entities;
-using CMI.Contract.Harvest;
 
 namespace CMI.Access.Sql.Lesesaal.EF;
 
-public class LesesaalDataProvider :ILesesaalDataProvider
+public class LesesaalDataProvider : ILesesaalDataProvider
 {
 
     private readonly LesesaalDb dbContext;
@@ -133,7 +132,6 @@ public class LesesaalDataProvider :ILesesaalDataProvider
 
                 existingAction.ActionStatus = (int)info.NewStatus;
                 existingAction.ModifiedOn = DateTime.Now;
-
                 // Add the log entry
                 var error = string.IsNullOrEmpty(info.ErrorMessage)
                     ? null

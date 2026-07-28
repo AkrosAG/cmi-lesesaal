@@ -1100,17 +1100,6 @@ namespace CMI.Access.Harvest.ScopeArchiv
                 }
             }
         }
-
-        Task<List<string>> IAISDataProvider.LoadMetadataSecurityTokens(string recordId)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<PrimaryDataSecurityTokenResult> IAISDataProvider.LoadPrimaryDataSecurityTokens(string recordId)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
     }
 }

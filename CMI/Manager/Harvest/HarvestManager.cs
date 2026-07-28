@@ -2,21 +2,22 @@
 using CMI.Contract.Harvest;
 using Serilog;
 using System.Threading.Tasks;
+using CMI.Manager.Harvest.SyncLog;
 
 namespace CMI.Manager.Harvest
 {
     public class HarvestManager : IHarvestManager
     {
         private readonly IDbMetadataAccess dbAccess;
-        private readonly IDbMutationQueueAccess queueAccess;
+        private readonly IDbSyncLogAccess syncLogAccess;
         private readonly IDbResyncAccess resyncAccess;
         private readonly IDbStatusAccess statusAccess;
 
-        public HarvestManager(IDbMetadataAccess dbAccess, IDbMutationQueueAccess queueAccess, IDbResyncAccess resyncAccess,
+        public HarvestManager(IDbMetadataAccess dbAccess, IDbSyncLogAccess syncLogAccess, IDbResyncAccess resyncAccess,
             IDbStatusAccess statusAccess)
         {
             this.dbAccess = dbAccess;
-            this.queueAccess = queueAccess;
+            this.syncLogAccess = syncLogAccess;
             this.resyncAccess = resyncAccess;
             this.statusAccess = statusAccess;
         }
@@ -40,7 +41,7 @@ namespace CMI.Manager.Harvest
         /// <returns>Task.</returns>
         public async Task<int> UpdateMutationStatus(MutationStatusInfo info)
         {
-            return await queueAccess.UpdateMutationStatus(info);
+            return await syncLogAccess.UpdateMutationStatus(info);
         }
 
         /// <summary>

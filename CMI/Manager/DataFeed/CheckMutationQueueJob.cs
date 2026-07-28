@@ -1,4 +1,5 @@
-﻿using CMI.Contract.Common;
+﻿using CMI.Access.Harvest.CMIAIS;
+using CMI.Contract.Common;
 using CMI.Contract.Harvest;
 using CMI.Contract.Messaging;
 using CMI.Manager.DataFeed.Infrastructure;
@@ -23,6 +24,7 @@ namespace CMI.Manager.DataFeed
         private readonly IBus bus;
         private readonly ICancelToken cancelToken;
         private readonly IDbSyncLogAccess dbSyncLogAccess;
+        private readonly IDbMutationQueueAccess mutationQueueAccess;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="CheckMutationQueueJob" /> class.
@@ -30,9 +32,10 @@ namespace CMI.Manager.DataFeed
         /// <param name="bus">A reference to the bus.</param>
         /// <param name="dbSyncLogAccess">The db access class.</param>
         /// <param name="cancelToken">A token for canceling a (long) running check process.</param>
-        public CheckMutationQueueJob(IBus bus, IDbSyncLogAccess dbSyncLogAccess, ICancelToken cancelToken)
+        public CheckMutationQueueJob(IBus bus, IDbMutationQueueAccess mutationQueueAccess, IDbSyncLogAccess dbSyncLogAccess, ICancelToken cancelToken)
         {
             this.bus = bus;
+            this.mutationQueueAccess = mutationQueueAccess;
             this.dbSyncLogAccess = dbSyncLogAccess;
             this.cancelToken = cancelToken;
         }
@@ -54,11 +57,18 @@ namespace CMI.Manager.DataFeed
         {
             if (!isEnqueing)
             {
-                Log.Information("Checking pending mutations in the AIS");
-
                 try
                 {
                     isEnqueing = true;
+                    Log.Information("Checking pending mutations in the AIS");
+                    // Daten bom CDWS holen und in die Queue schreiben
+                    var getPendingMutations = await mutationQueueAccess.GetPendingMutations();
+                    var initiateSync = await bus.GetSendEndpoint(new Uri(bus.Address, BusConstants.DataFeedManagerSyncRecordMessageQueue));
+                    foreach (var syncRecord in getPendingMutations)
+                    {
+                       await initiateSync.Send(syncRecord);
+                    }
+                    Log.Information("Checking pending mutations in the DB");
                     var list = await dbSyncLogAccess.GetPendingMutations();
                     if (list.Any())
                     {
@@ -75,7 +85,6 @@ namespace CMI.Manager.DataFeed
                             {
                                 break;
                             }
-
                             // Add the info to a list for later update
                             updateList.Add(new MutationStatusInfo
                             {
@@ -98,7 +107,6 @@ namespace CMI.Manager.DataFeed
                                 await dbSyncLogAccess.BulkUpdateMutationStatus(updateList);
                                 updateList.Clear();
                             }
-
                             Log.Verbose("Put mutation record with mutationId {MutationId} on the bus", record.MutationId);
                         }
 
