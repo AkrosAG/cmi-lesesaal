@@ -30,23 +30,41 @@ namespace CMI.Manager.Order.Tests
         private async Task PerformTest(User currentUser, User besteller, Ordering ordering, OrderItem item, ElasticArchiveRecord elasticArchiveRecord,
             Action<IAuftragsAktionen> aktion, IBus bus = null)
         {
-            ordering.Items = new[] {item};
+            InMemoryTestHarness harness = null;
+            if (bus == null)
+            {
+                harness = new InMemoryTestHarness();
+                harness.Consumer(() => new ReadUserInformationConsumerStub(), BusConstants.ReadUserInformationQueue);
+                harness.Consumer(() => new EmailMessageConsumerStub(), BusConstants.NotificationManagerMessageQueue);
+                await harness.Start();
+                bus = harness.Bus;
+            }
 
-            orderDataAccessMock.Setup(foo => foo.GetOrdering(ordering.Id, It.IsAny<bool>())).ReturnsAsync(ordering);
-            orderDataAccessMock.Setup(foo =>
-                    foo.GetLatestDigitalisierungsTermine(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DigitalisierungsKategorie>()))
-                .ReturnsAsync(new List<DigitalisierungsTermin>());
-            orderDataAccessMock.Setup(foo => foo.GetIndividualAccessTokens(It.IsAny<string>(), It.IsAny<int>()))
-                .ReturnsAsync(new IndivTokens(new string [0], new string [0], new string[0]));
+            try
+            {
+                ordering.Items = new[] {item};
 
-            var userDataAccessMock = new Mock<IUserDataAccess>();
-            userDataAccessMock.Setup(foo => foo.GetUser("besteller")).Returns(besteller);
+                orderDataAccessMock.Setup(foo => foo.GetOrdering(ordering.Id, It.IsAny<bool>())).ReturnsAsync(ordering);
+                orderDataAccessMock.Setup(foo =>
+                        foo.GetLatestDigitalisierungsTermine(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DigitalisierungsKategorie>()))
+                    .ReturnsAsync(new List<DigitalisierungsTermin>());
+                orderDataAccessMock.Setup(foo => foo.GetIndividualAccessTokens(It.IsAny<string>(), It.IsAny<int>()))
+                    .ReturnsAsync(new IndivTokens(new string [0], new string [0], new string[0]));
 
-            var idxSearchMock = new Mock<ISearchIndexDataAccess>();
-            idxSearchMock.Setup(foo => foo.FindDocument(item.VeId.ToString(), false)).Returns(elasticArchiveRecord);
+                var userDataAccessMock = new Mock<IUserDataAccess>();
+                userDataAccessMock.Setup(foo => foo.GetUser("besteller")).Returns(besteller);
 
-            var statusWechsler = new StatusWechsler(orderDataAccessMock.Object, userDataAccessMock.Object, idxSearchMock.Object, bus);
-            await statusWechsler.Execute(aktion, new[] {item}, currentUser, new DateTime(2019, 1, 12));
+                var idxSearchMock = new Mock<ISearchIndexDataAccess>();
+                idxSearchMock.Setup(foo => foo.FindDocument(item.VeId.ToString(), false)).Returns(elasticArchiveRecord);
+
+                var statusWechsler = new StatusWechsler(orderDataAccessMock.Object, userDataAccessMock.Object, idxSearchMock.Object, bus);
+                await statusWechsler.Execute(aktion, new[] {item}, currentUser, new DateTime(2019, 1, 12));
+            }
+            finally
+            {
+                if (harness != null)
+                    await harness.Stop();
+            }
         }
 
         [Test]
@@ -62,7 +80,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -82,7 +101,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -114,7 +134,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -135,7 +156,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -156,7 +178,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(new[] {"AMA"}),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -177,7 +200,8 @@ namespace CMI.Manager.Order.Tests
             var ear = new ElasticArchiveRecord
             {
                 PrimaryDataDownloadAccessTokens = new List<string>(),
-                ArchiveRecordId = item.VeId
+                ArchiveRecordId = item.VeId,
+                CreationPeriod = new ElasticTimePeriod()
             };
 
             await PerformTest(currentUser, besteller, ordering, item, ear, p => p.Bestellen());
@@ -259,6 +283,22 @@ namespace CMI.Manager.Order.Tests
             benutzungConsumer.Consumed.Select<IBenutzungskopieAuftragErledigt>().Any().Should().BeFalse();
             benutzungskopieErledigtMock.Verify(e => e.Consume(It.IsAny<ConsumeContext<IBenutzungskopieAuftragErledigt>>()), Times.Never);
             await harness.Stop();
+        }
+
+        private class ReadUserInformationConsumerStub : IConsumer<ReadUserInformationRequest>
+        {
+            public Task Consume(ConsumeContext<ReadUserInformationRequest> context)
+            {
+                return context.RespondAsync(new ReadUserInformationResponse { User = new User() });
+            }
+        }
+
+        private class EmailMessageConsumerStub : IConsumer<IEmailMessage>
+        {
+            public Task Consume(ConsumeContext<IEmailMessage> context)
+            {
+                return Task.CompletedTask;
+            }
         }
     }
 }

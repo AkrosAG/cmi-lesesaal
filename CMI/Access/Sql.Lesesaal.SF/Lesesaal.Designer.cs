@@ -1012,7 +1012,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
     }
 
     /// <summary>
-    /// Enthält Benutzer, die sich an Viaduc angemeldet haben
+    /// Enthält Benutzer, die sich an Lesesaal angemeldet haben
     /// </summary>
     /// <KeyProperties>
     /// ID
