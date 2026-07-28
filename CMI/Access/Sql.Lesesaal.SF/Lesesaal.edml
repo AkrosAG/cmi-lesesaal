@@ -513,7 +513,7 @@
         </EntityType>
         <EntityType Name="ApplicationUser" ed:Guid="a07476e2-aa46-462c-ba6c-723a75221978">
           <Documentation>
-            <Summary>Enthält Benutzer, die sich an Viaduc angemeldet haben</Summary>
+            <Summary>Enthält Benutzer, die sich an Lesesaal angemeldet haben</Summary>
           </Documentation>
           <Key>
             <PropertyRef Name="ID" />

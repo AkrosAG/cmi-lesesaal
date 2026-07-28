@@ -11,7 +11,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
@@ -2201,9 +2200,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        [Key]
-        [Required()]
-        public virtual long SyncActionId 
+        public virtual long SyncActionId
         {
             get
             {
@@ -3449,9 +3446,6 @@ namespace CMI.Access.Sql.Lesesaal.EF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-
-        [Key]
-        [Required()]
         public virtual long SyncActionId
         {
             get
