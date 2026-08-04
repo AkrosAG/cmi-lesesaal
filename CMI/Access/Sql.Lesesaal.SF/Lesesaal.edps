@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<EntityDeveloper Version="7.0.0.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="False" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
-    <Connection ConnectionString="Data Source=localhost;Initial Catalog=eth-lesesaal;Integrated Security=False;Persist Security Info=False;User ID=eth;Password=" Provider="System.Data.SqlClient" />
+<EntityDeveloper Version="7.4.0.0">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="False" SynchronizeNullableReferenceTypes="True" EntityFrameworkVersion="Version6" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
+    <Connection ConnectionString="Data Source=localhost;Initial Catalog=Lesesaal;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=" Provider="System.Data.SqlClient" />
     <Generation>
       <GeneratedFiles>
         <File Name="Lesesaal.DTOs.cs" DestinationFolder="..\..\Contract\Common\Entities" />
@@ -12,10 +12,10 @@
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
       <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" AddConstraintColumnsToNavigationPropertyName="False" RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
-      <Property RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+      <Property RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" RemoveGuid="False" />
     </DatabaseFirstNamingRules>
     <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="dbo" TargetProviderName="System.Data.SqlClient">
-      <TargetServer Server="SQL Server" ServerVersion="2019" />
+      <TargetServer Server="SQL Server" ServerVersion="2022" />
       <ModelFirstNamingRules>
         <Table RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />
         <Column RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
@@ -26,23 +26,23 @@
     </Diagrams>
     <Templates>
       <Template Name="Data Transfer Object" Description="Use this template to generate Data Transfer Object (DTO) classes." Enabled="True" PredefinedTemplateName="Data Transfer Object C#">
-        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <ValidationFramework>None</ValidationFramework>
         </ed:Property>
-        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <ValidationErrorMessages xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
         </ed:Property>
         <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>false</boolean>
         </ed:Property>
-        <ed:Property Name="DtosOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="DtosOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Project />
             <ProjectFolder />
             <DestinationFolder>..\..\Contract\Common\Entities</DestinationFolder>
           </OutputInfo>
         </ed:Property>
-        <ed:Property Name="ConvertersOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ConvertersOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Project />
             <ProjectFolder />
@@ -60,6 +60,9 @@
         </ed:Property>
         <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string>CM Informatik AG</string>
+        </ed:Property>
+        <ed:Property Name="NullableReferenceTypes" Type="EntityDeveloper.ReferenceTypeNullability, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <ReferenceTypeNullability>Default</ReferenceTypeNullability>
         </ed:Property>
         <ed:Property Name="DtoClassNamePrefix" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string d6p1:nil="true" xmlns:d6p1="http://www.w3.org/2001/XMLSchema-instance" />
@@ -82,24 +85,24 @@
         <ed:Property Name="ConverterClassNameSuffix" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string>Converter</string>
         </ed:Property>
-        <ed:Property Name="SerializationLibrary" Type="EntityDeveloper.SerializationLibrary, EntityDeveloper.Orm.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="SerializationLibrary" Type="EntityDeveloper.SerializationLibrary, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <SerializationLibrary>None</SerializationLibrary>
         </ed:Property>
-        <ed:Property Name="SerializeNavigationProperties" Type="EntityDeveloper.NavigationPropertySerializationBehavior, EntityDeveloper.Orm.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="SerializeNavigationProperties" Type="EntityDeveloper.NavigationPropertySerializationBehavior, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <NavigationPropertySerializationBehavior>All</NavigationPropertySerializationBehavior>
         </ed:Property>
         <ed:Property Name="WcfDataContractAttributes" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>false</boolean>
         </ed:Property>
-        <ed:Property Name="WcfDataMemberOnNavigationProperties" Type="EntityDeveloper.WcfDataMemberGenerationBehavior, EntityDeveloper.Orm.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="WcfDataMemberOnNavigationProperties" Type="EntityDeveloper.WcfDataMemberGenerationBehavior, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <WcfDataMemberGenerationBehavior>All</WcfDataMemberGenerationBehavior>
         </ed:Property>
       </Template>
       <Template Name="EntityObject" Description="Use this template to generate a strongly-typed ObjectContext class and persistence-aware classes." Enabled="True" PredefinedTemplateName="Entity C#">
-        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <ValidationFramework>None</ValidationFramework>
         </ed:Property>
-        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <ValidationErrorMessages xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
         </ed:Property>
         <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -111,14 +114,14 @@
         <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <string>CM Informatik AG</string>
         </ed:Property>
-        <ed:Property Name="EntitiesOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="EntitiesOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Project />
             <ProjectFolder />
             <DestinationFolder />
           </OutputInfo>
         </ed:Property>
-        <ed:Property Name="ContextOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="ContextOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Project />
             <ProjectFolder />
@@ -134,10 +137,10 @@
         <ed:Property Name="ImplementEquals" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>false</boolean>
         </ed:Property>
-        <ed:Property Name="PrimitiveDefaultValueGeneration" Type="EntityDeveloper.DefaultValueBehavior, EntityDeveloper.Orm.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="PrimitiveDefaultValueGeneration" Type="EntityDeveloper.DefaultValueBehavior, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <DefaultValueBehavior>Literal</DefaultValueBehavior>
         </ed:Property>
-        <ed:Property Name="NullableReferenceTypes" Type="EntityDeveloper.ReferenceTypeNullability, EntityDeveloper.Orm.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+        <ed:Property Name="NullableReferenceTypes" Type="EntityDeveloper.ReferenceTypeNullability, EntityDeveloper.Orm.Common, Version=7.4.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <ReferenceTypeNullability>Default</ReferenceTypeNullability>
         </ed:Property>
         <ed:Property Name="JsonFileBasePath" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -149,5 +152,71 @@
       </Template>
     </Templates>
     <AttributeAssemblies />
+    <UpdateToDatabaseExcludes>
+      <Exclude Name="ID" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FamilyName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FirstName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Organization" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Street" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="StreetAttachment" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ZipCode" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Town" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CountryCode" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="EmailAddress" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="PhoneNumber" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="SkypeName" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Setting" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Claims" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Created" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Updated" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Fulltext" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="UserExtId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Language" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CreatedOn" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="CreatedBy" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ModifiedOn" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ModifiedBy" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Birthday" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="FabasoftDossier" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ReasonForRejection" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="IsInternalUser" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="RolePublicClient" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="EiamRoles" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ResearcherGroup" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="InternalConsultation" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="IdentifierDocument" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="MobileNumber" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ReasonForRejectionDate" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="DownloadLimitDisabledUntil" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="DigitalisierungsbeschraenkungAufgehobenBis" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ActiveAspNetSessionId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="" Table="dbo.ApplicationUser" Type="Constraint" />
+      <Exclude Name="CollectionId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ParentId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Language" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Title" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="DescriptionShort" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Description" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ValidFrom" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ValidTo" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CollectionTypeId" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Image" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Thumbnail" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ImageAltText" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ImageMimeType" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="Link" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CollectionPath" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="SortOrder" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CreatedOn" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="CreatedBy" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ModifiedOn" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="ModifiedBy" Table="dbo.Collection" Type="Column" />
+      <Exclude Name="" Table="dbo.Collection" Type="Constraint" />
+      <Exclude Name="Collection_Collection" Table="dbo.Collection" Type="Constraint" />
+      <Exclude Name="Setting" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Claims" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="ActiveAspNetSessionId" Table="dbo.ApplicationUser" Type="Column" />
+      <Exclude Name="Description" Table="dbo.Collection" Type="Column" />
+    </UpdateToDatabaseExcludes>
   </ModelSettings>
 </EntityDeveloper>

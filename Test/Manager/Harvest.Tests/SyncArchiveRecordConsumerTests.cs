@@ -41,6 +41,15 @@ namespace CMI.Manager.Harvest.Tests
             var mutationId = 6616;
             var ar = new ArchiveRecord { ArchiveRecordId = archvieRecordId, Metadata = new ArchiveRecordMetadata { PrimaryDataLink = null } };
             harvestManager.Setup(e => e.BuildArchiveRecord(archvieRecordId)).Returns(Task.FromResult(ar));
+            var findResult = new FindArchiveRecordResponse
+            {
+                ArchiveRecordId = archvieRecordId,
+                ElasticArchiveRecord = new ElasticArchiveRecord { ArchiveRecordId = archvieRecordId }
+            };
+            var response = new Mock<Response<FindArchiveRecordResponse>>();
+            response.Setup(r => r.Message).Returns(findResult);
+            findArchiveRecordClient.Setup(e => e.GetResponse<FindArchiveRecordResponse>(It.IsAny<FindArchiveRecordRequest>(), It.IsAny<CancellationToken>(), It.IsAny<RequestTimeout>()))
+                .Returns(Task.FromResult(response.Object));
 
             var harness = new InMemoryTestHarness();
             var consumer = harness.Consumer(() => new SyncArchiveRecordConsumer(harvestManager.Object, findArchiveRecordClient.Object, convertArchiveRecordClient.Object, cachedHarvesterSetting.Object));

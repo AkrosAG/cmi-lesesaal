@@ -128,5 +128,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="VSyncActions">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.VSyncAction">
+        <MappingFragment StoreEntitySet="v_SyncActions">
+          <ScalarProperty Name="SyncActionId" ColumnName="SyncActionId" />
+          <ScalarProperty Name="ArchiveRecordId" ColumnName="ArchiveRecordId" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="ActionStatus" ColumnName="ActionStatus" />
+          <ScalarProperty Name="NumberOfTries" ColumnName="NumberOfTries" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SyncActionLogId" ColumnName="SyncActionLogId" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="ErrorReason" ColumnName="ErrorReason" />
+          <ScalarProperty Name="ActionStatusHistory" ColumnName="ActionStatusHistory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VSyncNumberPerHours">
+      <EntityTypeMapping TypeName="CMI.Access.Sql.Lesesaal.EF.VSyncNumberPerHour">
+        <MappingFragment StoreEntitySet="v_SyncNumberPerHours">
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="LastModifiedDay" ColumnName="LastModifiedDay" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="ActionStatus" ColumnName="ActionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

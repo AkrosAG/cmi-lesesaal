@@ -42,6 +42,7 @@ namespace CMI.Manager.Index.Consumer
 
                     await context.Publish<IArchiveRecordRemoved>(new
                     {
+                        context.Message.ArchiveRecordId,
                         context.Message.MutationId,
                         ActionSuccessful = true
                     });

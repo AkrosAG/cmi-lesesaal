@@ -7,6 +7,8 @@
     <EntitySet Name="SyncActionLogs" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncActionLog" store:Type="Tables" Schema="dbo" Table="SyncActionLog" />
     <EntitySet Name="v_CollectionLists" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_CollectionList" store:Type="Views" Schema="dbo" Table="v_CollectionList" />
     <EntitySet Name="SyncInfos" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.SyncInfo" store:Type="Tables" Schema="dbo" Table="SyncInfo" />
+    <EntitySet Name="v_SyncActions" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_SyncAction" store:Type="Views" Schema="dbo" Table="v_SyncAction" />
+    <EntitySet Name="v_SyncNumberPerHours" EntityType="CMI.Access.Sql.Lesesaal.EF.Store.v_SyncNumberPerHour" store:Type="Views" Schema="dbo" Table="v_SyncNumberPerHour" />
     <AssociationSet Name="Collection_Collection" Association="CMI.Access.Sql.Lesesaal.EF.Store.Collection_Collection">
       <End Role="Collection" EntitySet="Collections" />
       <End Role="Collection1" EntitySet="Collections" />
@@ -262,7 +264,7 @@
     <Key>
       <PropertyRef Name="SyncActionId" />
     </Key>
-    <Property Name="SyncActionId" Type="bigint" Nullable="false" />
+    <Property Name="SyncActionId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ArchiveRecordId" Type="nvarchar" MaxLength="255" />
     <Property Name="ActionType" Type="nvarchar" MaxLength="40" />
     <Property Name="ActionStatus" Type="int" DefaultValue="0" />
@@ -322,6 +324,32 @@
     </Key>
     <Property Name="SyncInfoId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LastSequenceNumber" Type="bigint" />
+  </EntityType>
+  <EntityType Name="v_SyncAction">
+    <Key>
+      <PropertyRef Name="SyncActionId" />
+    </Key>
+    <Property Name="SyncActionId" Type="bigint" Nullable="false" />
+    <Property Name="ArchiveRecordId" Type="nvarchar" MaxLength="255" />
+    <Property Name="ActionType" Type="nvarchar" MaxLength="40" />
+    <Property Name="ActionStatus" Type="int" />
+    <Property Name="NumberOfTries" Type="int" />
+    <Property Name="CreatedOn" Type="datetime2" />
+    <Property Name="ModifiedOn" Type="datetime2" />
+    <Property Name="SyncActionLogId" Type="int" />
+    <Property Name="LogDate" Type="datetime2" />
+    <Property Name="ErrorReason" Type="nvarchar" MaxLength="4000" />
+    <Property Name="ActionStatusHistory" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="v_SyncNumberPerHour">
+    <Key>
+      <PropertyRef Name="LastModified" />
+      <PropertyRef Name="ActionStatus" />
+    </Key>
+    <Property Name="LastModified" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="LastModifiedDay" Type="date" />
+    <Property Name="RecordCount" Type="int" />
+    <Property Name="ActionStatus" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="Collection_Collection">
     <End Role="Collection" Type="CMI.Access.Sql.Lesesaal.EF.Store.Collection" Multiplicity="0..1" />

@@ -25,6 +25,9 @@
     /// </summary>
     public static class BusConstants
     {
+        // Messages the Datafeed Manager subscribes to
+        public const string DatafeedSchedulerTriggerMessageQueue = "m.datafeed.manager.schedulerTrigger";
+        public const string DataFeedManagerSyncRecordMessageQueue = "m.datafeed.manager.initiateSync";
         // Messages the Harvest Manager subscribes to
         public const string HarvestManagerSyncArchiveRecordMessageQueue = "m.harvest.manager.syncArchiveRecord";
 

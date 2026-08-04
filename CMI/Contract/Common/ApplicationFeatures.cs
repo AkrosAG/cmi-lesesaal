@@ -182,7 +182,15 @@ namespace CMI.Contract.Common
         AdministrationSammlungenEinsehen = 10000098,
 
         [Description("Administration-Sammlungen-Bearbeiten")]
-        AdministrationSammlungenBearbeiten = 10000099
+        AdministrationSammlungenBearbeiten = 10000099,
+        [Description("Synchronization-Hinzufügen-Einsehen")]
+        SynchronizationHinzufuegenEinsehen = 10000100,
+
+        [Description("Synchronization-Überwachen-Einsehen")]
+        SynchronizationUeberwachenEinsehen = 10000101,
+
+        [Description("Synchronization-Hinzufügen-Bearbeiten")]
+        SynchronizationHinzufuegenBearbeiten = 10000102
     }
 
     public class ApplicationFeatureInfo

@@ -79,4 +79,12 @@ export class LeftNavigationComponent {
 	public canSeeCollection(): boolean {
 		return this._authorization.hasApplicationFeature(ApplicationFeatureEnum.AdministrationSammlungenEinsehen);
 	}
+
+	public canSeeSynchronizationViewAdd(): boolean {
+		return this._authorization.hasApplicationFeature(ApplicationFeatureEnum.SynchronizationHinzufuegenEinsehen);
+	}
+
+	public canSeeSynchronizationViewMonitor(): boolean {
+		return this._authorization.hasApplicationFeature(ApplicationFeatureEnum.SynchronizationUeberwachenEinsehen);
+	}
 }

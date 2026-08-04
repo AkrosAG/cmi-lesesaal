@@ -290,7 +290,7 @@ namespace CMI.Access.Harvest.CMIAIS
                         : info.ErrorMessage + Environment.NewLine + Environment.NewLine + info.StackTrace;
                     var logEntry = new SyncActionLog()
                     {
-                        SyncActionId = info.MutationId,
+                        SyncActionId = record.SyncActionId,
                         ActionStatusHistory = info.NewStatus.ToString(),
                         LogDate = DateTime.Now,
                         ErrorReason = error

@@ -8,6 +8,7 @@
 // the code is regenerated.
 //------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 namespace CMI.Access.Sql.Lesesaal.EF
@@ -20,7 +21,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public CollectionDto() {
         }
 
-        public CollectionDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, byte[] image, byte[] thumbnail, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, List<CollectionDto> childCollections, CollectionDto parent) {
+        public CollectionDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, DateTime validFrom, DateTime validTo, int collectionTypeId, byte[] image, byte[] thumbnail, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, DateTime createdOn, string createdBy, DateTime? modifiedOn, string modifiedBy, List<CollectionDto> childCollections, CollectionDto parent) {
 
           this.CollectionId = collectionId;
           this.ParentId = parentId;
@@ -62,9 +63,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public string Description { get; set; }
 
-        public global::System.DateTime ValidFrom { get; set; }
+        public DateTime ValidFrom { get; set; }
 
-        public global::System.DateTime ValidTo { get; set; }
+        public DateTime ValidTo { get; set; }
 
         public int CollectionTypeId { get; set; }
 
@@ -82,11 +83,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public int SortOrder { get; set; }
 
-        public global::System.DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public string CreatedBy { get; set; }
 
-        public global::System.DateTime? ModifiedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
         public string ModifiedBy { get; set; }
 
@@ -108,7 +109,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public ApplicationUserDto() {
         }
 
-        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, global::System.DateTime created, global::System.DateTime updated, string fulltext, string userExtId, string language, global::System.DateTime createdOn, string createdBy, global::System.DateTime modifiedOn, string modifiedBy, global::System.DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool InternalConsultation, byte[] identifierDocument, string mobileNumber, global::System.DateTime? reasonForRejectionDate, global::System.DateTime? downloadLimitDisabledUntil, global::System.DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
+        public ApplicationUserDto(string iD, string familyName, string firstName, string organization, string street, string streetAttachment, string zipCode, string town, string countryCode, string emailAddress, string phoneNumber, string skypeName, string setting, string claims, DateTime created, DateTime updated, string fulltext, string userExtId, string language, DateTime createdOn, string createdBy, DateTime modifiedOn, string modifiedBy, DateTime? birthday, string fabasoftDossier, string reasonForRejection, bool isInternalUser, string rolePublicClient, string eiamRoles, bool researcherGroup, bool internalConsultation, byte[] identifierDocument, string mobileNumber, DateTime? reasonForRejectionDate, DateTime? downloadLimitDisabledUntil, DateTime? digitalisierungsbeschraenkungAufgehobenBis, string activeAspNetSessionId) {
 
           this.ID = iD;
           this.FamilyName = familyName;
@@ -140,7 +141,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
           this.RolePublicClient = rolePublicClient;
           this.EiamRoles = eiamRoles;
           this.ResearcherGroup = researcherGroup;
-          this.InternalConsultation = InternalConsultation;
+          this.InternalConsultation = internalConsultation;
           this.IdentifierDocument = identifierDocument;
           this.MobileNumber = mobileNumber;
           this.ReasonForRejectionDate = reasonForRejectionDate;
@@ -181,9 +182,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public string Claims { get; set; }
 
-        public global::System.DateTime Created { get; set; }
+        public DateTime Created { get; set; }
 
-        public global::System.DateTime Updated { get; set; }
+        public DateTime Updated { get; set; }
 
         public string Fulltext { get; set; }
 
@@ -191,15 +192,15 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public string Language { get; set; }
 
-        public global::System.DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public string CreatedBy { get; set; }
 
-        public global::System.DateTime ModifiedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public string ModifiedBy { get; set; }
 
-        public global::System.DateTime? Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public string FabasoftDossier { get; set; }
 
@@ -219,11 +220,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public string MobileNumber { get; set; }
 
-        public global::System.DateTime? ReasonForRejectionDate { get; set; }
+        public DateTime? ReasonForRejectionDate { get; set; }
 
-        public global::System.DateTime? DownloadLimitDisabledUntil { get; set; }
+        public DateTime? DownloadLimitDisabledUntil { get; set; }
 
-        public global::System.DateTime? DigitalisierungsbeschraenkungAufgehobenBis { get; set; }
+        public DateTime? DigitalisierungsbeschraenkungAufgehobenBis { get; set; }
 
         public string ActiveAspNetSessionId { get; set; }
 
@@ -237,7 +238,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public SyncActionDto() {
         }
 
-        public SyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, global::System.DateTime? createdOn, global::System.DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
+        public SyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, DateTime? createdOn, DateTime? modifiedOn, List<SyncActionLogDto> syncActionLogs) {
 
           this.SyncActionId = syncActionId;
           this.ArchiveRecordId = archiveRecordId;
@@ -263,9 +264,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public int? NumberOfTries { get; set; }
 
-        public global::System.DateTime? CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
-        public global::System.DateTime? ModifiedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
         #endregion
 
@@ -283,7 +284,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public SyncActionLogDto() {
         }
 
-        public SyncActionLogDto(int syncActionLogId, long? syncActionId, global::System.DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
+        public SyncActionLogDto(int syncActionLogId, long? syncActionId, DateTime? logDate, string actionStatusHistory, string errorReason, SyncActionDto syncAction) {
 
           this.SyncActionLogId = syncActionLogId;
           this.SyncActionId = syncActionId;
@@ -301,7 +302,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public long? SyncActionId { get; set; }
 
-        public global::System.DateTime? LogDate { get; set; }
+        public DateTime? LogDate { get; set; }
 
         public string ActionStatusHistory { get; set; }
 
@@ -323,7 +324,7 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public CollectionListItemDto() {
         }
 
-        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, global::System.DateTime validFrom, global::System.DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, global::System.DateTime createdOn, string createdBy, global::System.DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
+        public CollectionListItemDto(int collectionId, int? parentId, string language, string title, string descriptionShort, string description, DateTime validFrom, DateTime validTo, int collectionTypeId, string imageAltText, string imageMimeType, string link, string collectionPath, int sortOrder, DateTime createdOn, string createdBy, DateTime? modifiedOn, string modifiedBy, string parent, string childCollections) {
 
           this.CollectionId = collectionId;
           this.ParentId = parentId;
@@ -363,9 +364,9 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public string Description { get; set; }
 
-        public global::System.DateTime ValidFrom { get; set; }
+        public DateTime ValidFrom { get; set; }
 
-        public global::System.DateTime ValidTo { get; set; }
+        public DateTime ValidTo { get; set; }
 
         public int CollectionTypeId { get; set; }
 
@@ -379,11 +380,11 @@ namespace CMI.Access.Sql.Lesesaal.EF
 
         public int SortOrder { get; set; }
 
-        public global::System.DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public string CreatedBy { get; set; }
 
-        public global::System.DateTime? ModifiedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
         public string ModifiedBy { get; set; }
 
@@ -414,6 +415,87 @@ namespace CMI.Access.Sql.Lesesaal.EF
         public long SyncInfoId { get; set; }
 
         public long? LastSequenceNumber { get; set; }
+
+        #endregion
+    }
+
+    public partial class VSyncActionDto
+    {
+        #region Constructors
+
+        public VSyncActionDto() {
+        }
+
+        public VSyncActionDto(long syncActionId, string archiveRecordId, string actionType, int? actionStatus, int? numberOfTries, DateTime? createdOn, DateTime? modifiedOn, int? syncActionLogId, DateTime? logDate, string errorReason, string actionStatusHistory) {
+
+          this.SyncActionId = syncActionId;
+          this.ArchiveRecordId = archiveRecordId;
+          this.ActionType = actionType;
+          this.ActionStatus = actionStatus;
+          this.NumberOfTries = numberOfTries;
+          this.CreatedOn = createdOn;
+          this.ModifiedOn = modifiedOn;
+          this.SyncActionLogId = syncActionLogId;
+          this.LogDate = logDate;
+          this.ErrorReason = errorReason;
+          this.ActionStatusHistory = actionStatusHistory;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public long SyncActionId { get; set; }
+
+        public string ArchiveRecordId { get; set; }
+
+        public string ActionType { get; set; }
+
+        public int? ActionStatus { get; set; }
+
+        public int? NumberOfTries { get; set; }
+
+        public DateTime? CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public int? SyncActionLogId { get; set; }
+
+        public DateTime? LogDate { get; set; }
+
+        public string ErrorReason { get; set; }
+
+        public string ActionStatusHistory { get; set; }
+
+        #endregion
+    }
+
+    public partial class VSyncNumberPerHourDto
+    {
+        #region Constructors
+
+        public VSyncNumberPerHourDto() {
+        }
+
+        public VSyncNumberPerHourDto(string lastModified, DateTime? lastModifiedDay, int recordCount, int actionStatus) {
+
+          this.LastModified = lastModified;
+          this.LastModifiedDay = lastModifiedDay;
+          this.RecordCount = recordCount;
+          this.ActionStatus = actionStatus;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public string LastModified { get; set; }
+
+        public DateTime? LastModifiedDay { get; set; }
+
+        public int RecordCount { get; set; }
+
+        public int ActionStatus { get; set; }
 
         #endregion
     }

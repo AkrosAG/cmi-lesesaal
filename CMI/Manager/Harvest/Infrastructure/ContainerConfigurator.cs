@@ -6,9 +6,9 @@ using CMI.Contract.Common.Compiler;
 using CMI.Contract.Harvest;
 using CMI.Contract.Parameter;
 using CMI.Manager.Harvest.Properties;
+using CMI.Manager.Harvest.SyncLog;
 using Microsoft.CSharp;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using System.Runtime.Caching;
 
 
@@ -28,11 +28,12 @@ namespace CMI.Manager.Harvest.Infrastructure
             services.AddTransient<IAISDataProviderFactory, AISDataProviderFactory>();
             services.AddTransient<IArchiveRecordBuilderFactory, ArchiveRecordBuilderFactory>();
             services.AddTransient<CSharpCodeProvider>();
+            services.AddTransient<IDbSyncLogAccess, DbSyncLogAccess>();
 
             services.AddScoped<SipDateBuilder>();
             services.AddScoped<DigitizationOrderBuilder>();
             services.AddScoped<AISDataAccess>();
-            services.AddScoped<IDbMutationQueueAccess>(sp => sp.GetRequiredService<AISDataAccess>());
+           
             services.AddScoped<IDbMetadataAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             services.AddScoped<IDbResyncAccess>(sp => sp.GetRequiredService<AISDataAccess>());
             services.AddScoped<IDbStatusAccess>(sp => sp.GetRequiredService<AISDataAccess>());
@@ -40,7 +41,7 @@ namespace CMI.Manager.Harvest.Infrastructure
             var connectionString = DbConnectionSetting.Default.ConnectionStringEF;
             services.AddScoped<LesesaalDb>(sp => new LesesaalDb(connectionString));
 
-
+            services.AddTransient<IAISDataProvider, CMIAISDataProvider>();
             services.AddSingleton<ICachedHarvesterSetting, CachedHarvesterSetting>();
             services.AddSingleton<IParameterHelper, ParameterHelper>();
             services.AddSingleton<MemoryCache>(MemoryCache.Default);

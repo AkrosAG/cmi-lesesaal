@@ -1,22 +1,26 @@
-﻿using CMI.Contract.Monitoring;
+﻿using Autofac;
+using CMI.Contract.Messaging;
+using CMI.Contract.Monitoring;
+using CMI.Manager.DataFeed.Consumers;
 using CMI.Manager.DataFeed.Infrastructure;
 using CMI.Utilities.Bus.Configuration;
 using CMI.Utilities.Logging.Configurator;
+using GreenPipes;
 using MassTransit;
-using Microsoft.Extensions.DependencyInjection;
 using Quartz;
+using Quartz.Impl;
 using Serilog;
-using System.Reflection;
+using System;
 using System.Threading.Tasks;
 
 namespace CMI.Manager.DataFeed
 {
     public class DataFeedService
     {
-        private readonly IServiceCollection services;
+        private IContainer container;
+        private ContainerBuilder containerBuilder;
         private IBusControl bus;
         private IScheduler scheduler;
-        private ServiceProvider provider;
 
         /// <summary>
         ///     The data feed service uses a timer to poll the mutation queue for any pending changes.
@@ -25,7 +29,7 @@ namespace CMI.Manager.DataFeed
         public DataFeedService()
         {
             // Configure IoC Container
-            services = ContainerConfigurator.Configure();
+            containerBuilder = ContainerConfigurator.Configure();
             LogConfigurator.ConfigureForService();
         }
 
@@ -38,17 +42,39 @@ namespace CMI.Manager.DataFeed
             Log.Information("DataFeed service is starting");
 
             // Configure Bus
+            BusConfigurator.ConfigureBus(containerBuilder, MonitoredServices.DataFeedService, (cfg, ctx) =>
+            {
+                cfg.ReceiveEndpoint(BusConstants.DatafeedSchedulerTriggerMessageQueue, ec =>
+                {
+                    ec.Consumer(ctx.Resolve<SchedulerTriggerConsumer>);
+                    ec.UseMessageRetry(retryPolicy =>
+                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                });
 
-            BusConfigurator.ConfigureBusModern(services, MonitoredServices.DataFeedService, AddConsumers, (context, cfg) => { });
+                cfg.ReceiveEndpoint(BusConstants.DataFeedManagerSyncRecordMessageQueue, ec =>
+                {
+                    ec.Consumer(ctx.Resolve<SyncRecordConsumer>);
+                    ec.UseMessageRetry(retryPolicy =>
+                        retryPolicy.Exponential(10, TimeSpan.FromSeconds(1), TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(5)));
+                });
+
+            });
+
+            // Start the timer
+            scheduler = await StdSchedulerFactory.GetDefaultScheduler();
+            containerBuilder.RegisterInstance<IScheduler>(scheduler);
+
+            container = containerBuilder.Build();
+            await SchedulerConfigurator.Configure(container, scheduler);
+
+            bus = container.Resolve<IBusControl>();
+            bus.Start();
 
             Log.Verbose("Starting scheduler");
-            // Start the timer
-            provider = services.BuildServiceProvider();
-            scheduler = await SchedulerConfigurator.Configure(provider);
             await scheduler.Start();
-            bus = provider.GetRequiredService<IBusControl>();
+
+
             Log.Information("DataFeed service started");
-            bus.Start();
         }
 
         /// <summary>
@@ -60,9 +86,7 @@ namespace CMI.Manager.DataFeed
             Log.Information("DataFeed service is stopping");
 
             // Get the singleton JobCancelToken and cancel any running job
-            var token = provider.GetRequiredService<ICancelToken>();
-
-            // Job abbrechen
+            var token = container.Resolve<ICancelToken>();
             token.Cancel();
 
             // Stop the scheduler and wait until any running jobs have completed
@@ -72,12 +96,6 @@ namespace CMI.Manager.DataFeed
 
             Log.Information("DataFeed service stopped");
             Log.CloseAndFlush();
-        }
-
-        private void AddConsumers(IBusRegistrationConfigurator x)
-        {
-            // registers all IConsumer implementations in this assembly
-            x.AddConsumers(Assembly.GetExecutingAssembly());
         }
     }
 }

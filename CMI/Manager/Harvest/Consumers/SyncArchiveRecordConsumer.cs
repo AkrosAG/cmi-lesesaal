@@ -162,7 +162,22 @@ namespace CMI.Manager.Harvest.Consumers
 
                         break;
                     case "delete":
-                        await DeleteElasticRecord(context, message);
+                        elasticRecord = await GetElasticArchiveRecord(message.ArchiveRecordId);
+                        if (elasticRecord != null)
+                        {
+                            await DeleteElasticRecord(context, message);
+                        }
+                        else
+                        {
+                            await harvestManager.UpdateMutationStatus(new MutationStatusInfo
+                            {
+                                MutationId = context.Message.MutationId,
+                                NewStatus = ActionStatus.SyncAborted,
+                                ArchiveRecordId = message.ArchiveRecordId,
+                                ChangeFromStatus = ActionStatus.SyncInProgress,
+                                ErrorMessage = "Record could not be deleted because the archive record was not found in Elastic."
+                            });
+                        }
                         break;
                     default:
                         throw new NotSupportedException($"The action: {message.Action} is not a supported action name!");

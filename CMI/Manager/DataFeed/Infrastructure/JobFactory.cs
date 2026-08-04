@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 using Quartz;
 using Quartz.Spi;
-using System;
 
 namespace CMI.Manager.DataFeed.Infrastructure
 {
@@ -10,28 +9,21 @@ namespace CMI.Manager.DataFeed.Infrastructure
     /// </summary>
     internal class JobFactory : IJobFactory
     {
-        private readonly IServiceProvider provider;
+        private readonly IContainer container;
 
-        public JobFactory(IServiceProvider provider)
+        public JobFactory(IContainer container)
         {
-            this.provider = provider;
+            this.container = container;
         }
 
         public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
         {
-            var job = provider.GetRequiredService(bundle.JobDetail.JobType);
-            // Job aus DI auflösen
-            return (IJob)job;
+            return (IJob)container.Resolve(bundle.JobDetail.JobType);
         }
 
         public void ReturnJob(IJob job)
         {
-            // In Microsoft DI musst du normalerweise nichts zurückgeben.
-            // Optional: Wenn du IDisposable Jobs hast:
-            if (job is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
+            container.Resolve(job.GetType());
         }
     }
 }

@@ -7,6 +7,7 @@ export interface ManagementUserSettings extends UserUiSettings {
 	einsichtsGesuchSettings: EinsichtsgesuchUserSettings;
 	ablieferndeStelleSettings: AblieferndeStelleSettings;
 	collectionSettings: CollectionSettings;
+	synchronizationMonitorSettings: SynchronizationMonitorSettings;
 }
 
 export interface CollectionSettings {
@@ -30,5 +31,9 @@ export interface UserListUserSettings {
 }
 
 export interface AblieferndeStelleSettings {
+	columns: any;
+}
+
+export interface SynchronizationMonitorSettings {
 	columns: any;
 }
