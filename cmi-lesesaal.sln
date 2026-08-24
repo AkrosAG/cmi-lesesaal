@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32421.90
+# Visual Studio Version 18
+VisualStudioVersion = 18.8.12023.21 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Access", "Access", "{63F3F03A-B708-4794-AFB4-48B5F3C921B4}"
 EndProject
@@ -399,6 +399,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HSA", "HSA", "{5F9AD745-4B9
 		CMI\CustomerScripts\ETH\HSA\customer.settings.json = CMI\CustomerScripts\ETH\HSA\customer.settings.json
 		CMI\CustomerScripts\ETH\HSA\customer.translations.de.json = CMI\CustomerScripts\ETH\HSA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\HSA\customer.translations.en.json = CMI\CustomerScripts\ETH\HSA\customer.translations.en.json
+		CMI\CustomerScripts\ETH\HSA\customFieldsConfig.json = CMI\CustomerScripts\ETH\HSA\customFieldsConfig.json
 		CMI\CustomerScripts\ETH\HSA\facetten.json = CMI\CustomerScripts\ETH\HSA\facetten.json
 		CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\HSA\HarvestCustomScript.cs
 		CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\HSA\IndexCustomScript.cs
@@ -417,6 +418,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MFA", "MFA", "{C1970419-83B
 		CMI\CustomerScripts\ETH\MFA\customer.settings.json = CMI\CustomerScripts\ETH\MFA\customer.settings.json
 		CMI\CustomerScripts\ETH\MFA\customer.translations.de.json = CMI\CustomerScripts\ETH\MFA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\MFA\customer.translations.en.json = CMI\CustomerScripts\ETH\MFA\customer.translations.en.json
+		CMI\CustomerScripts\ETH\MFA\customFieldsConfig.json = CMI\CustomerScripts\ETH\MFA\customFieldsConfig.json
 		CMI\CustomerScripts\ETH\MFA\facetten.json = CMI\CustomerScripts\ETH\MFA\facetten.json
 		CMI\CustomerScripts\ETH\MFA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\MFA\HarvestCustomScript.cs
 		CMI\CustomerScripts\ETH\MFA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\MFA\IndexCustomScript.cs
@@ -435,6 +437,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMA", "TMA", "{6DD2ED61-62B
 		CMI\CustomerScripts\ETH\TMA\customer.settings.json = CMI\CustomerScripts\ETH\TMA\customer.settings.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.de.json = CMI\CustomerScripts\ETH\TMA\customer.translations.de.json
 		CMI\CustomerScripts\ETH\TMA\customer.translations.en.json = CMI\CustomerScripts\ETH\TMA\customer.translations.en.json
+		CMI\CustomerScripts\ETH\TMA\customFieldsConfig.json = CMI\CustomerScripts\ETH\TMA\customFieldsConfig.json
 		CMI\CustomerScripts\ETH\TMA\facetten.json = CMI\CustomerScripts\ETH\TMA\facetten.json
 		CMI\CustomerScripts\ETH\TMA\HarvestCustomScript.cs = CMI\CustomerScripts\ETH\TMA\HarvestCustomScript.cs
 		CMI\CustomerScripts\ETH\TMA\IndexCustomScript.cs = CMI\CustomerScripts\ETH\TMA\IndexCustomScript.cs

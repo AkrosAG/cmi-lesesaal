@@ -23,7 +23,7 @@ namespace CMI.Manager.Index.Infrastructure
         {
             var builder = new ContainerBuilder();
 
-            var configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customFieldsConfig.json");
+            var configFile = Path.Combine(Settings.Default.CustomFolderPath, "customFieldsConfig.json");
 
             // register the different consumers and classes
             builder.RegisterType<IndexManager>().As<IIndexManager>();
@@ -36,7 +36,7 @@ namespace CMI.Manager.Index.Infrastructure
             builder.RegisterType<DynamicScriptProvider>().As<IDynamicScriptProvider>().SingleInstance();
             builder.Register(ctx =>
             {
-                var path = Settings.Default.CustomScriptPath;
+                var path = Path.Combine(Settings.Default.CustomFolderPath, "IndexCustomScript.cs");
                 return new CustomScriptLocator(path);
             })
             .AsImplementedInterfaces()

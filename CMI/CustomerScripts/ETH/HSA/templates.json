@@ -235,7 +235,7 @@
               "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "URL",
                 "en": "URL"
@@ -335,6 +335,16 @@
                 "en": "Conditions Governing Access"
               }
             },
+            {
+              "DbFieldName": "Permission",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Benutzbarkeit",
+                "en": "Access"
+              }
+			},
             {
               "DbFieldName": "protectionStartDate",
               "DbType": "Text",
@@ -766,7 +776,7 @@
               "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "URL",
                 "en": "URL"
@@ -1240,7 +1250,7 @@
               "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "URL",
                 "en": "URL"
@@ -1715,7 +1725,7 @@
               "DbFieldName": "DetailData.URL",
               "DbType": "HTML",
               "ElasticType": "string",
-              "Visibility": 0,
+              "Visibility": 1,
               "FieldLabels": {
                 "de": "URL",
                 "en": "URL"

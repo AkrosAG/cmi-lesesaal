@@ -62,6 +62,7 @@ export class CheckoutOrderDetailsStepComponent implements OnInit {
 				, 'checkoutOrderDetailsStep.datumLesesaalText', 1);
 		} else {
 			const vorlauf: number = this._scs.getOpeningVorlaufDays();
+			console.log(vorlauf);
 			this.datumLesesaalText = this._txt.translate('Bitte wählen Sie ein Datum aus (Bearbeitung mind. {0} Arbeitstage).'
 				, 'checkoutOrderDetailsStep.datumLesesaalText', vorlauf);
 			this.minimumDate = this.addWorkdays(new Date(), vorlauf);
