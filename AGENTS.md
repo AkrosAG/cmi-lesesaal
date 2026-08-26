@@ -50,7 +50,8 @@ npm run test          # interactive watch mode
 ## Git workflow
 
 - All changes go via **feature branches** — never commit directly to `develop` or `master`
-- Branch naming: `feature/<short-description>` (kebab-case, no spaces)
+- Branch naming: `feature/DLS-XXXX-short-description` (hyphens, no spaces)
+- PR title: `feature/DLS-XXXX <short description>` targeting `develop`
 - Open a **Pull Request** targeting `develop`; at least one approved review is required before merging
 - PRs to `develop` trigger the CI workflow automatically
 - **Do not commit anything that does not build**, including lint errors

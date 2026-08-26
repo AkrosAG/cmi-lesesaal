@@ -7,6 +7,7 @@ Repository documentation lives in `readme.md` and `docs/`, especially:
 - `docs/requirements.md`
 - `docs/connection-ais.md`
 - `docs/connection-dir.md`
+- `docs/github-copilot.md` — Copilot CLI setup and YouTrack MCP integration
 
 ## Domain glossary
 
@@ -133,8 +134,37 @@ Always ask before:
 - Destructive database operations that are not reversible by a migration
 - Writing secrets or credentials into files
 
-## Issue tracking
+## Issue tracking — YouTrack
 
-Use **GitHub Issues** in the repository: <https://github.com/AkrosAG/cmi-lesesaal>.
+Issues are tracked in **YouTrack** (project key: `DLS`) at https://cmiag.myjetbrains.com/youtrack. The MCP server is registered per developer via `copilot mcp add` — see `docs/github-copilot.md` for setup.
 
-When a task refers to an issue, use the GitHub issue number and repository context instead of external trackers. Do not assume ticket prefixes such as `PVW-XXXX`.
+When the MCP server is active, you can read and update issues directly by ID (e.g. `DLS-123`).
+
+### User Story structure
+Each User Story follows this description template:
+```
+# Beschreibung
+Als PO möchte ich, dass ...
+
+# Erläuterung Vorgehen / Prozess / Kontext
+...
+
+# Akzeptanzkriterien
+- ...
+- ...
+
+# CMI: Testing
+...
+
+# CMI: Umsetzungsbeschreibung
+...
+
+# CMI: Deploymentrelevante Punkte
+...
+```
+
+When implementing a ticket: read **Akzeptanzkriterien** as your definition of done, **CMI: Umsetzungsbeschreibung** for implementation notes, and **CMI: Deploymentrelevante Punkte** for anything needing a deployment step.
+
+### Branch and PR naming
+- Branch: `feature/DLS-XXXX-short-description` (hyphens, no spaces)
+- PR title: `feature/DLS-XXXX <short description>` targeting `develop`
