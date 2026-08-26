@@ -18,7 +18,7 @@ public class GetAISDateienConsumer : IConsumer<GetAISDateienRequest>
     {
         using (LogContext.PushProperty(nameof(context.ConversationId), context.ConversationId))
         {
-            var titlePageBytes = assetCreatePdf.CreateTitlePage(context.Message);
+            var titlePageBytes = assetCreatePdf.CreateTitlePage(context.Message.Metadaten);
             var contentBytes = await assetCreatePdf.GetFileContentFromUrlAsync(context.Message.URLDatei);
             var mergedBytes = assetCreatePdf.MergeTitlePageWithContent(titlePageBytes, contentBytes);
 

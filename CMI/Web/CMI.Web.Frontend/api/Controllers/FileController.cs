@@ -13,6 +13,7 @@ using MassTransit;
 using Nest;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -186,13 +187,15 @@ namespace CMI.Web.Frontend.api.Controllers
                 var langPartURL = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
                 var aisRequest = new GetAISDateienRequest
                 {
-                    Titel = record.Title,
-                    Entstehungszeitraum = record.ProtectionStartDate,
-                    Signatur = record.ReferenceCode,
-                    Urheber = record.Author,
-                    URLVerzeichniseinheit = WebHelper.PublicClientUrl + langPartURL + record.ArchiveRecordId,
                     URLDatei = file.DownloadUrl,
-                    TemplatesDefinitionDirectory = WebHelper.TemplatesDefinitionDirectory
+                    Metadaten = new Dictionary<string, string>
+                    {
+                        ["titel"] = record.Title,
+                        ["entstehungszeitraum"] = record.ProtectionStartDate,
+                        ["urheber"] = record.Author,
+                        ["signatur"] = record.ReferenceCode,
+                        ["permanente_url"] = WebHelper.PublicClientUrl + langPartURL + record.ArchiveRecordId
+                    }
                 };
 
                 var aisResult = (await aisDateienRequestClient.GetResponse<GetAISDateienResult>(aisRequest)).Message;

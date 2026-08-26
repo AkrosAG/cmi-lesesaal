@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 
@@ -70,13 +70,17 @@ namespace CMI.Contract.Messaging
 
     public class GetAISDateienRequest
     {
-        public string Titel { get; set; }
-        public string Entstehungszeitraum { get; set; }
-        public string Urheber { get; set; }
-        public string Signatur { get; set; }
-        public string URLVerzeichniseinheit { get; set; }
+        /// <summary>
+        /// URL der herunterzuladenden AIS-Datei.
+        /// </summary>
         public string URLDatei { get; set; }
-        public string TemplatesDefinitionDirectory { get; set; }
+
+        /// <summary>
+        /// Metadaten als Key-Value-Paare. Die Schlüssel entsprechen direkt den {{placeholder}}-Namen
+        /// im Titelblatt-Template (z.B. "titel", "signatur", "permanente_url").
+        /// Neue Felder können hinzugefügt werden, ohne den Request anzupassen.
+        /// </summary>
+        public Dictionary<string, string> Metadaten { get; set; }
     }
 
     public class GetAISDateienResult

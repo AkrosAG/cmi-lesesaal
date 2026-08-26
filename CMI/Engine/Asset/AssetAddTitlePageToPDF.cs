@@ -1,56 +1,52 @@
 ﻿using Aspose.Pdf;
-using CMI.Contract.Messaging;
+using CMI.Contract.Parameter;
+using CMI.Engine.Asset.ParameterSettings;
 using CMI.Utilities.License;
-using Newtonsoft.Json.Linq;
 using Serilog;
-using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Path = System.IO.Path;
 
 namespace CMI.Engine.Asset;
 
 /// <summary>
-/// Implementiert <see cref="IAssetCreatePDF"/> und stellt Methoden bereit,
-/// um Titelseiten für PDF-Dokumente zu erstellen und diese mit dem eigentlichen
-/// Dokument zusammenzuführen.
+/// Erstellt Titelseiten für AIS-PDF-Downloads und führt sie mit dem Originaldokument zusammen.
+/// Das HTML-Template und das Logo werden aus <see cref="TitelblattSettings"/> gelesen
+/// und können über die Management-Oberfläche pro Kunde überschrieben werden.
 /// </summary>
 public class AssetAddTitlePageToPDF : IAssetCreatePDF
 {
     private static readonly HttpClient httpClient = new HttpClient();
+    private readonly IParameterHelper parameterHelper;
 
-    public AssetAddTitlePageToPDF()
+    public AssetAddTitlePageToPDF(IParameterHelper parameterHelper)
     {
         LicenseHelper.SetAsposeLicense();
+        this.parameterHelper = parameterHelper;
     }
 
     /// <summary>
-    /// Erstellt eine PDF-Titelseite basierend auf den Metadaten des <see cref="GetAISDateienRequest"/>
-    /// und gibt sie als Byte-Array zurück.
+    /// Erstellt eine PDF-Titelseite aus dem konfigurierten Template und den übergebenen Metadaten.
     /// </summary>
-    public byte[] CreateTitlePage(GetAISDateienRequest request)
+    /// <param name="metadaten">
+    /// Key-Value-Paare der Template-Platzhalter. Schlüssel entsprechen direkt den
+    /// {{placeholder}}-Namen im Mustache-Template (z.B. "titel", "signatur", "permanente_url").
+    /// </param>
+    public byte[] CreateTitlePage(Dictionary<string, string> metadaten)
     {
-        var templatePath = Path.Combine(request.TemplatesDefinitionDirectory, "TitelBlattPDF.Body.mustache");
-        var htmlContent = File.ReadAllText(templatePath);
+        var settings = parameterHelper.GetSetting<TitelblattSettings>();
 
-        var placeholders = new JObject
-        {
-            { "logo_url", Path.Combine(request.TemplatesDefinitionDirectory, "logo.svg") },
-            { "titel", request.Titel },
-            { "entstehungszeitraum", request.Entstehungszeitraum },
-            { "urheber", request.Urheber },
-            { "signatur", request.Signatur },
-            { "permanente_url", request.URLVerzeichniseinheit }
-        };
+        var html = settings.HtmlTemplate;
+        html = html.Replace("{{logo_base64}}", settings.LogoBase64 ?? string.Empty);
 
-        foreach (var property in placeholders.Properties())
+        foreach (var kv in metadaten)
         {
-            htmlContent = htmlContent.Replace("{{" + property.Name + "}}", property.Value?.ToString() ?? string.Empty);
+            html = html.Replace("{{" + kv.Key + "}}", kv.Value ?? string.Empty);
         }
 
-        using var ms = new MemoryStream(Encoding.UTF8.GetBytes(htmlContent));
+        using var ms = new MemoryStream(Encoding.UTF8.GetBytes(html));
         var pdfDocument = new Document(ms, new HtmlLoadOptions());
         using var outputStream = new MemoryStream();
         pdfDocument.Save(outputStream);
@@ -58,7 +54,7 @@ public class AssetAddTitlePageToPDF : IAssetCreatePDF
     }
 
     /// <summary>
-    /// Lädt den Inhalt einer Datei von einer URL herunter und gibt ihn als Byte-Array zurück.
+    /// Lädt den Inhalt einer Datei von einer URL herunter.
     /// </summary>
     public async Task<byte[]> GetFileContentFromUrlAsync(string url)
     {
