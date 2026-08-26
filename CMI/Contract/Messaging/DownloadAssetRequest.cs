@@ -81,6 +81,6 @@ namespace CMI.Contract.Messaging
 
     public class GetAISDateienResult
     {
-        public MemoryStream MemoryStreamDatei { get; set; }
+        public byte[] PdfBytes { get; set; }
     }
 }

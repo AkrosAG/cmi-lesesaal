@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
-using static MassTransit.Util.ChartTable;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -174,57 +173,40 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var file = record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
-                // https://vls.tma.ethz.ch/client/#/de/archiv/einheit/2c1ed7028b204af5a7f63cb22dca71c7
-                // https://vls.tma.ethz.ch/client/#/en/archive/unit/2c1ed7028b204af5a7f63cb22dca71c7 
+                if (file == null)
+                {
+                    return BadRequest($"{name} could not be found.");
+                }
+
+                if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
+                {
+                    return BadRequest($"{name} access not allowed.");
+                }
 
                 var langPartURL = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
-                var prepareAssetRequest = new GetAISDateienRequest
+                var aisRequest = new GetAISDateienRequest
                 {
                     Titel = record.Title,
-
                     Entstehungszeitraum = record.ProtectionStartDate,
                     Signatur = record.ReferenceCode,
                     Urheber = record.Author,
-
-
-                    URLVerzeichniseinheit = WebHelper.PublicClientUrl + langPartURL +record.ArchiveRecordId,
+                    URLVerzeichniseinheit = WebHelper.PublicClientUrl + langPartURL + record.ArchiveRecordId,
                     URLDatei = file.DownloadUrl,
                     TemplatesDefinitionDirectory = WebHelper.TemplatesDefinitionDirectory
                 };
-                var prepareAssetResult = (await aisDateienRequestClient.GetResponse<GetAISDateienResult>(prepareAssetRequest)).Message;
 
+                var aisResult = (await aisDateienRequestClient.GetResponse<GetAISDateienResult>(aisRequest)).Message;
 
-                //if (file is not null)
-                //{
-                //    if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
-                //    {
-                //        return BadRequest($"{name} access not allowed.");
-                //    }
-
-                //    var mediaType = MimeMapping.GetMimeMapping(file.Filename);
-                //    var buffer = await GetFileContentFromUrlAsync(file.DownloadUrl);
-                //    if (buffer != null && buffer.Any())
-                //    {
                 var response = new HttpResponseMessage
                 {
-                    Content = new StreamContent(prepareAssetResult.MemoryStreamDatei)
+                    Content = new StreamContent(new MemoryStream(aisResult.PdfBytes))
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-                response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = name
-                } :
-                new ContentDispositionHeaderValue("inline")
-                {
-                    FileName = name
-                };
+                response.Content.Headers.ContentDisposition = download
+                    ? new ContentDispositionHeaderValue("attachment") { FileName = name }
+                    : new ContentDispositionHeaderValue("inline") { FileName = name };
 
-                var result = await Task.FromResult(response);
-                return ResponseMessage(result);
-                //    }
-                //}
-
-                //return BadRequest($"{name} could not be found.");
+                return ResponseMessage(await Task.FromResult(response));
             }
             catch (Exception e)
             {

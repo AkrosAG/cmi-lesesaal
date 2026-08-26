@@ -18,11 +18,11 @@ public class GetAISDateienConsumer : IConsumer<GetAISDateienRequest>
     {
         using (LogContext.PushProperty(nameof(context.ConversationId), context.ConversationId))
         {
-            var filePath = assetCreatePdf.CreateTitlePage(context.Message);
+            var titlePageBytes = assetCreatePdf.CreateTitlePage(context.Message);
+            var contentBytes = await assetCreatePdf.GetFileContentFromUrlAsync(context.Message.URLDatei);
+            var mergedBytes = assetCreatePdf.MergeTitlePageWithContent(titlePageBytes, contentBytes);
 
-            var stream = await assetCreatePdf.GetFileContentFromUrlAsync(context.Message.URLDatei);
-
-            await assetCreatePdf.AssetAddTitlePageToPDFToTitle(stream, filePath);
+            await context.RespondAsync(new GetAISDateienResult { PdfBytes = mergedBytes });
         }
     }
 }
