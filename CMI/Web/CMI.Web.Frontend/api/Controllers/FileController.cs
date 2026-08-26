@@ -23,6 +23,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -173,7 +175,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     return NotFound();
                 }
 
-                var file = record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
+                var file = record.Files.Count == 1 ? record.Files.FirstOrDefault() 
+                                                     : record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
                 if (file == null)
                 {
                     return BadRequest($"{name} could not be found.");
@@ -199,10 +202,12 @@ namespace CMI.Web.Frontend.api.Controllers
                 };
 
                 var aisResult = (await aisDateienRequestClient.GetResponse<GetAISDateienResult>(aisRequest)).Message;
+                var contentBytes = await GetFileContentFromUrlAsync(file.DownloadUrl);
+                var pdfBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
 
                 var response = new HttpResponseMessage
                 {
-                    Content = new StreamContent(new MemoryStream(aisResult.PdfBytes))
+                    Content = new StreamContent(new MemoryStream(pdfBytes))
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
                 response.Content.Headers.ContentDisposition = download
@@ -445,6 +450,33 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             return access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens);
+        }
+
+        private byte[] MergeTitlePageWithContent(byte[] titlePageBytes, byte[] contentBytes)
+        {
+            if (titlePageBytes == null || titlePageBytes.Length == 0)
+            {
+                return contentBytes;
+            }
+
+            using var outputDoc = new PdfDocument();
+            using var titleStream = new MemoryStream(titlePageBytes);
+            using var titleDoc = PdfReader.Open(titleStream, PdfDocumentOpenMode.Import);
+            for (var i = 0; i < titleDoc.PageCount; i++)
+            {
+                outputDoc.AddPage(titleDoc.Pages[i]);
+            }
+
+            using var contentStream = new MemoryStream(contentBytes);
+            using var contentDoc = PdfReader.Open(contentStream, PdfDocumentOpenMode.Import);
+            for (var i = 0; i < contentDoc.PageCount; i++)
+            {
+                outputDoc.AddPage(contentDoc.Pages[i]);
+            }
+
+            using var result = new MemoryStream();
+            outputDoc.Save(result, false);
+            return result.ToArray();
         }
 
         private async Task<byte[]> GetFileContentFromUrlAsync(string url)

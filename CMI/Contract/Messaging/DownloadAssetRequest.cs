@@ -85,6 +85,10 @@ namespace CMI.Contract.Messaging
 
     public class GetAISDateienResult
     {
-        public byte[] PdfBytes { get; set; }
+        /// <summary>
+        /// Die generierte Titelseite als PDF-Bytes.
+        /// Ist null wenn kein Template konfiguriert ist oder das Template fehlerhaft ist.
+        /// </summary>
+        public byte[] TitlePagePdfBytes { get; set; }
     }
 }

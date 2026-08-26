@@ -29,6 +29,7 @@ public class AssetAddTitlePageToPDF : IAssetCreatePDF
 
     /// <summary>
     /// Erstellt eine PDF-Titelseite aus dem konfigurierten Template und den übergebenen Metadaten.
+    /// Gibt <c>null</c> zurück, wenn kein Template konfiguriert ist oder das Template fehlerhaft ist.
     /// </summary>
     /// <param name="metadaten">
     /// Key-Value-Paare der Template-Platzhalter. Schlüssel entsprechen direkt den
@@ -38,19 +39,33 @@ public class AssetAddTitlePageToPDF : IAssetCreatePDF
     {
         var settings = parameterHelper.GetSetting<TitelblattSettings>();
 
-        var html = settings.HtmlTemplate;
-        html = html.Replace("{{logo_base64}}", settings.LogoBase64 ?? string.Empty);
-
-        foreach (var kv in metadaten)
+        if (string.IsNullOrWhiteSpace(settings?.HtmlTemplate))
         {
-            html = html.Replace("{{" + kv.Key + "}}", kv.Value ?? string.Empty);
+            Log.Information("Kein Titelblatt-Template konfiguriert – Titelseite wird übersprungen.");
+            return null;
         }
 
-        using var ms = new MemoryStream(Encoding.UTF8.GetBytes(html));
-        var pdfDocument = new Document(ms, new HtmlLoadOptions());
-        using var outputStream = new MemoryStream();
-        pdfDocument.Save(outputStream);
-        return outputStream.ToArray();
+        try
+        {
+            var html = settings.HtmlTemplate;
+            html = html.Replace("{{logo_base64}}", settings.LogoBase64 ?? string.Empty);
+
+            foreach (var kv in metadaten)
+            {
+                html = html.Replace("{{" + kv.Key + "}}", kv.Value ?? string.Empty);
+            }
+
+            using var ms = new MemoryStream(Encoding.UTF8.GetBytes(html));
+            var pdfDocument = new Document(ms, new HtmlLoadOptions());
+            using var outputStream = new MemoryStream();
+            pdfDocument.Save(outputStream);
+            return outputStream.ToArray();
+        }
+        catch (System.Exception ex)
+        {
+            Log.Warning(ex, "Titelblatt konnte nicht erstellt werden – Titelseite wird übersprungen.");
+            return null;
+        }
     }
 
     /// <summary>

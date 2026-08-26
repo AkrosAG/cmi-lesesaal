@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>{{titel}}</title>
     <style>
+        @page { size: A4; margin: 2.5cm; }
+        html, body { height: 100%; overflow: hidden; }
         body {
             font-family: Arial, sans-serif;
             font-size: 11pt;
             line-height: 1.5;
             color: #000;
-            margin: 2.5cm;
+            margin: 0;
             padding: 0;
         }
 
-        /* Logo oben mittig */
         .logo-container {
             text-align: center;
             margin-bottom: 24pt;
@@ -24,7 +25,6 @@
             width: auto;
         }
 
-        /* Header-Block: alles zentriert */
         .header {
             text-align: center;
             margin-bottom: 24pt;
@@ -49,22 +49,25 @@
         .institution {
             font-weight: bold;
             margin-bottom: 2pt;
+            text-align: center;
         }
 
         .signatur {
             margin-bottom: 12pt;
+            text-align: center;
         }
 
         .url-label {
             font-size: 10pt;
             margin-bottom: 2pt;
+            text-align: center;
         }
 
         .url-value {
             font-size: 10pt;
+            text-align: center;
         }
 
-        /* Nutzungsbedingungen: linksbündig */
         .terms-section {
             margin-top: 36pt;
         }
@@ -81,7 +84,7 @@
 <body>
 
     <div class="logo-container">
-        <img src="{{logo_url}}" alt="Logo" class="logo">
+        <img src="{{logo_base64}}" alt="Logo" class="logo">
     </div>
 
     <div class="header">

@@ -4,36 +4,36 @@
     <meta charset="UTF-8">
     <title>{{titel}}</title>
     <style>
+        @page { size: A4; margin: 2.5cm; }
+        html, body { height: 100%; overflow: hidden; }
         body {
             font-family: Arial, sans-serif;
             font-size: 11pt;
             line-height: 1.5;
             color: #000;
-            margin: 2.5cm;
+            margin: 0;
             padding: 0;
         }
 
-        /* Logo oben mittig */
         .logo-container {
             text-align: center;
-            margin-bottom: 24pt;
+            margin-bottom: 16pt;
         }
 
         .logo {
-            max-height: 100px;
+            max-height: 80px;
             width: auto;
         }
 
-        /* Header-Block: alles zentriert */
         .header {
             text-align: center;
-            margin-bottom: 24pt;
+            margin-bottom: 16pt;
         }
 
         .titel {
-            font-size: 14pt;
+            font-size: 13pt;
             font-weight: bold;
-            margin-bottom: 12pt;
+            margin-bottom: 8pt;
         }
 
         .entstehungszeitraum {
@@ -43,45 +43,50 @@
 
         .urheber {
             font-weight: bold;
-            margin-bottom: 12pt;
+            margin-bottom: 8pt;
         }
 
         .institution {
             font-weight: bold;
             margin-bottom: 2pt;
+            text-align: center;
         }
 
         .signatur {
-            margin-bottom: 12pt;
+            margin-bottom: 8pt;
+            text-align: center;
         }
 
         .url-label {
-            font-size: 10pt;
+            font-size: 11pt;
             margin-bottom: 2pt;
+            text-align: center;
         }
 
         .url-value {
-            font-size: 10pt;
+            font-size: 11pt;
+            text-align: center;
+            margin-bottom: 0;
         }
 
-        /* Nutzungsbedingungen: linksbündig */
         .terms-section {
-            margin-top: 36pt;
+            margin-top: 20pt;
+            text-align: left;
         }
 
         .terms-block {
-            margin-bottom: 12pt;
+            margin-bottom: 10pt;
         }
 
         .contact {
-            margin-top: 12pt;
+            margin-top: 8pt;
         }
     </style>
 </head>
 <body>
 
     <div class="logo-container">
-        <img src="{{logo_url}}" alt="Logo" class="logo">
+        <img src="{{logo_base64}}" alt="Logo" class="logo">
     </div>
 
     <div class="header">
