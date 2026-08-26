@@ -77,6 +77,7 @@
         public const string WebApiDownloadAssetRequestQueue = "r.web.api.downloadAsset";
         public const string WebApiPrepareAssetRequestQueue = "r.web.api.prepareAsset";
         public const string WebApiGetAssetStatusRequestQueue = "r.web.api.getAssetStatus";
+        public const string WebApiGetAISDateienRequestQueue = "r.web.api.getAISDateien";
 
         // Events the Repository Manager Test clients subscribes to
         public const string RepositoryTestPackageDownloadedEventQueue = "e.repository.test.packageDownloaded";

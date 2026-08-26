@@ -79,7 +79,7 @@ namespace CMI.Web.Common.Helpers
 
         public static string ViewerUrl => GetStringSetting("viewer-url", "");
 
-        public static string AsposeLicense => GetStringSetting("asposeLicense", "@@CMI.Utilities.License.Properties.Settings.AsposeLicense@@");
+        public static string AsposeLicense => GetStringSetting("asposeLicense", "&lt;License&gt;\n&lt;Data&gt;\n&lt;LicensedTo&gt;CM Informatik AG&lt;/LicensedTo&gt;\n&lt;EmailTo&gt;hess@cmiag.ch&lt;/EmailTo&gt;\n&lt;LicenseType&gt;Site OEM&lt;/LicenseType&gt;\n&lt;LicenseNote&gt;Up To 10 Developers And Unlimited Deployment Locations&lt;/LicenseNote&gt;\n&lt;OrderID&gt;211029075911&lt;/OrderID&gt;\n&lt;UserID&gt;391952&lt;/UserID&gt;\n&lt;OEM&gt;This is a redistributable license&lt;/OEM&gt;\n&lt;Products&gt;\n&lt;Product&gt;Aspose.Total for .NET&lt;/Product&gt;\n&lt;/Products&gt;\n&lt;EditionType&gt;Enterprise&lt;/EditionType&gt;\n&lt;SerialNumber&gt;9466a02e-00a9-4968-8da5-e8e8393eee87&lt;/SerialNumber&gt;\n&lt;SubscriptionExpiry&gt;20221029&lt;/SubscriptionExpiry&gt;\n&lt;LicenseVersion&gt;3.0&lt;/LicenseVersion&gt;\n&lt;LicenseInstructions&gt;https://purchase.aspose.com/policies/use-license&lt;/LicenseInstructions&gt;\n&lt;/Data&gt;\n&lt;Signature&gt;CjQzH4cdrYWJZ3lL/M50tHjkPKliaBNw6C6FPksflDt4bcouemKn8zyZh4CTy01dSsrrifImp1SAGAnksNfGg3St4h3KPIwU8SmOpk2JCjf0M3dvXXAhNTpEDopg98Ce6CljnlRWRPuP3uyY0NWHCottoT9kwh9K5BonFA6DuK0=&lt;/Signature&gt;\n&lt;/License&gt;");
 
         #region CMI / App Settings
 

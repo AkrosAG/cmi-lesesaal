@@ -78,6 +78,10 @@ namespace CMI.Manager.Asset.Infrasctructure
 
             builder.RegisterType<PackagePriorizationEngine>().As<IPackagePriorizationEngine>();
 
+            builder.RegisterType<AssetAddTitlePageToPDF>().As<IAssetCreatePDF>();
+
+           
+
             builder.Register(ctx =>
             {
                 var helper = ctx.Resolve<IParameterHelper>();

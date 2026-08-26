@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 
@@ -64,5 +65,22 @@ namespace CMI.Contract.Messaging
         public DateTime EstimatedPreparationEnd { get; set; }
         public TimeSpan EstimatedPreparationDuration { get; set; }
         public long FileSizeInBytes { get; set; }
+    }
+
+
+    public class GetAISDateienRequest
+    {
+        public string Titel { get; set; }
+        public string Entstehungszeitraum { get; set; }
+        public string Urheber { get; set; }
+        public string Signatur { get; set; }
+        public string URLVerzeichniseinheit { get; set; }
+        public string URLDatei { get; set; }
+        public string TemplatesDefinitionDirectory { get; set; }
+    }
+
+    public class GetAISDateienResult
+    {
+        public MemoryStream MemoryStreamDatei { get; set; }
     }
 }
