@@ -10,7 +10,10 @@ using CMI.Web.Common.Helpers;
 using CMI.Web.Frontend.api.Interfaces;
 using CMI.Web.Frontend.Helpers;
 using MassTransit;
+using Microsoft.Ajax.Utilities;
 using Nest;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -23,8 +26,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -142,7 +143,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 var prepareAssetRequest = new PrepareAssetRequest
                 {
-                    ArchiveRecordId = id.ToString(),
+                    ArchiveRecordId = id,
                     AssetType = AssetType.Gebrauchskopie,
                     CallerId = access.UserId,
                     AssetId = packageId,
@@ -175,11 +176,10 @@ namespace CMI.Web.Frontend.api.Controllers
                     return NotFound();
                 }
 
-                var file = record.Files.Count == 1 ? record.Files.FirstOrDefault() 
-                                                     : record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
+                var file = record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
                 if (file == null)
                 {
-                    return BadRequest($"{name} could not be found.");
+                    return BadRequest($"File {name} could not be found.");
                 }
 
                 if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
@@ -187,17 +187,17 @@ namespace CMI.Web.Frontend.api.Controllers
                     return BadRequest($"{name} access not allowed.");
                 }
 
-                var langPartURL = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
+                var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
                 var aisRequest = new GetAISDateienRequest
                 {
                     URLDatei = file.DownloadUrl,
                     Metadaten = new Dictionary<string, string>
                     {
-                        ["titel"] = record.Title,
-                        ["entstehungszeitraum"] = record.ProtectionStartDate,
-                        ["urheber"] = record.Author,
-                        ["signatur"] = record.ReferenceCode,
-                        ["permanente_url"] = WebHelper.PublicClientUrl + langPartURL + record.ArchiveRecordId
+                        ["titel"] = string.IsNullOrWhiteSpace(record.Title) ? "unbekannt" : record.Title,
+                        ["entstehungszeitraum"] = string.IsNullOrWhiteSpace(record.CreationPeriod.Text) ? "unbekannt" : record.CreationPeriod.Text,
+                        ["urheber"] = string.IsNullOrWhiteSpace(record.Author) ? "unbekannt" : record.Author,
+                        ["signatur"] = string.IsNullOrWhiteSpace(record.ReferenceCode) ? "unbekannt" : record.ReferenceCode,
+                        ["permanente_url"] = WebHelper.PublicClientUrl + languagePartUrl + record.ArchiveRecordId
                     }
                 };
 
