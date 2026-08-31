@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CMI.Contract.Asset;
 using CMI.Contract.Common;
 
@@ -64,5 +65,24 @@ namespace CMI.Contract.Messaging
         public DateTime EstimatedPreparationEnd { get; set; }
         public TimeSpan EstimatedPreparationDuration { get; set; }
         public long FileSizeInBytes { get; set; }
+    }
+
+    public class GetTitlePageForAISFilesRequest
+    {
+        /// <summary>
+        /// Metadaten als Key-Value-Paare. Die Schlüssel entsprechen direkt den {{placeholder}}-Namen
+        /// im Titelblatt-Template (z.B. "titel", "signatur", "permanente_url").
+        /// Neue Felder können hinzugefügt werden, ohne den Request anzupassen.
+        /// </summary>
+        public Dictionary<string, string> Metadaten { get; set; }
+    }
+
+    public class GetTitlePageForAISFilesResult
+    {
+        /// <summary>
+        /// Die generierte Titelseite als PDF-Bytes.
+        /// Ist null wenn kein Template konfiguriert ist oder das Template fehlerhaft ist.
+        /// </summary>
+        public byte[] TitlePagePdfBytes { get; set; }
     }
 }

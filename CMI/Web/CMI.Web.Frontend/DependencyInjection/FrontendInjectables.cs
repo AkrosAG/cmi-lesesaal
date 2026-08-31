@@ -72,6 +72,7 @@ namespace CMI.Web.Frontend.DependencyInjection
             builder.RegisterType<DownloadTokenDataAccess>().As<IDownloadTokenDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);
             builder.RegisterType<DownloadLogDataAccess>().As<IDownloadLogDataAccess>().InstancePerRequest().WithParameter(nameof(connectionString), connectionString);
 
+            builder.Register(c => BusConfig.RegisterAISDateienCallback()).As<IRequestClient<GetTitlePageForAISFilesRequest>>();
             builder.Register(c => BusConfig.RegisterDownloadAssetCallback()).As<IRequestClient<DownloadAssetRequest>>();
             builder.Register(c => BusConfig.RegisterGetAssetStatusCallback()).As<IRequestClient<GetAssetStatusRequest>>();
             builder.Register(c => BusConfig.RegisterPrepareAssetCallback()).As<IRequestClient<PrepareAssetRequest>>();

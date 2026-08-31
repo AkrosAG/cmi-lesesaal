@@ -427,6 +427,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MFA", "MFA", "{C1970419-83B
 		CMI\CustomerScripts\ETH\MFA\logo.svg = CMI\CustomerScripts\ETH\MFA\logo.svg
 		CMI\CustomerScripts\ETH\MFA\HTMLSite\account\opening-an-account.html = CMI\CustomerScripts\ETH\MFA\HTMLSite\account\opening-an-account.html
 		CMI\CustomerScripts\ETH\MFA\templates.json = CMI\CustomerScripts\ETH\MFA\templates.json
+		CMI\CustomerScripts\ETH\MFA\TitelBlattPDF.Body.mustache = CMI\CustomerScripts\ETH\MFA\TitelBlattPDF.Body.mustache
+		CMI\CustomerScripts\ETH\MFA\TitelblattSettings.LogoBase64 = CMI\CustomerScripts\ETH\MFA\TitelblattSettings.LogoBase64
 		CMI\CustomerScripts\ETH\MFA\HTMLSite\account\userTable.html = CMI\CustomerScripts\ETH\MFA\HTMLSite\account\userTable.html
 	EndProjectSection
 EndProject
@@ -446,6 +448,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMA", "TMA", "{6DD2ED61-62B
 		CMI\CustomerScripts\ETH\TMA\logo.png = CMI\CustomerScripts\ETH\TMA\logo.png
 		CMI\CustomerScripts\ETH\TMA\HTMLSite\account\opening-an-account.html = CMI\CustomerScripts\ETH\TMA\HTMLSite\account\opening-an-account.html
 		CMI\CustomerScripts\ETH\TMA\templates.json = CMI\CustomerScripts\ETH\TMA\templates.json
+		CMI\CustomerScripts\ETH\TMA\TitelBlattPDF.Body.mustache = CMI\CustomerScripts\ETH\TMA\TitelBlattPDF.Body.mustache
+		CMI\CustomerScripts\ETH\TMA\TitelblattSettings.LogoBase64 = CMI\CustomerScripts\ETH\TMA\TitelblattSettings.LogoBase64
 		CMI\CustomerScripts\ETH\TMA\HTMLSite\account\userTable.html = CMI\CustomerScripts\ETH\TMA\HTMLSite\account\userTable.html
 	EndProjectSection
 EndProject

@@ -78,6 +78,8 @@ namespace CMI.Manager.Asset.Infrasctructure
 
             builder.RegisterType<PackagePriorizationEngine>().As<IPackagePriorizationEngine>();
 
+            builder.Register(ctx => new AssetGetTitlePageForPDF(ctx.Resolve<IParameterHelper>())).As<IAssetGetTitlePageForPDF>();
+
             builder.Register(ctx =>
             {
                 var helper = ctx.Resolve<IParameterHelper>();

@@ -1,4 +1,22 @@
-﻿using System;
+﻿using CMI.Access.Sql.Lesesaal;
+using CMI.Access.Sql.Lesesaal.File;
+using CMI.Contract.Asset;
+using CMI.Contract.Common;
+using CMI.Contract.Messaging;
+using CMI.Manager.Order.Status;
+using CMI.Utilities.Cache.Access;
+using CMI.Web.Common.api;
+using CMI.Web.Common.Helpers;
+using CMI.Web.Frontend.api.Interfaces;
+using CMI.Web.Frontend.Helpers;
+using MassTransit;
+using Microsoft.Ajax.Utilities;
+using Nest;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using Serilog;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,19 +26,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
-using CMI.Access.Sql.Lesesaal.File;
-using CMI.Access.Sql.Lesesaal;
-using CMI.Contract.Asset;
-using CMI.Contract.Common;
-using CMI.Contract.Messaging;
-using CMI.Utilities.Cache.Access;
-using CMI.Web.Common.api;
-using CMI.Web.Common.Helpers;
-using CMI.Web.Frontend.api.Interfaces;
-using CMI.Web.Frontend.Helpers;
-using MassTransit;
-using Serilog;
-using Nest;
 using SourceFilter = Nest.SourceFilter;
 
 namespace CMI.Web.Frontend.api.Controllers
@@ -38,6 +43,8 @@ namespace CMI.Web.Frontend.api.Controllers
         private readonly HttpClient httpClient;
         private readonly IOrderDataAccess orderDataAccess;
         private readonly IRequestClient<PrepareAssetRequest> prepareClient;
+
+        private readonly IRequestClient<GetTitlePageForAISFilesRequest> aisDateienRequestClient;
         private readonly IRequestClient<GetAssetStatusRequest> statusClient;
         private readonly ITranslator translator;
         private readonly IUsageAnalyzer usageAnalyzer;
@@ -57,12 +64,14 @@ namespace CMI.Web.Frontend.api.Controllers
             IOrderDataAccess orderDataAccess,
             IDownloadLogHelper logLogHelper,
             IKontrollstellenInformer kontrollstellenInformer,
-            HttpClient httpClient)
+            HttpClient httpClient,
+            IRequestClient<GetTitlePageForAISFilesRequest> aisDateienRequestClient)
         {
             this.usageAnalyzer = usageAnalyzer;
             this.translator = translator;
             this.cacheHelper = cacheHelper;
             this.downloadClient = downloadClient;
+            this.aisDateienRequestClient = aisDateienRequestClient;
             this.statusClient = statusClient;
             this.prepareClient = prepareClient;
             this.downloadTokenDataAccess = downloadTokenDataAccess;
@@ -134,7 +143,7 @@ namespace CMI.Web.Frontend.api.Controllers
 
                 var prepareAssetRequest = new PrepareAssetRequest
                 {
-                    ArchiveRecordId = id.ToString(),
+                    ArchiveRecordId = id,
                     AssetType = AssetType.Gebrauchskopie,
                     CallerId = access.UserId,
                     AssetId = packageId,
@@ -167,37 +176,43 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var file = record.Files.FirstOrDefault(f => f.Filename == name && f.DownloadUrl.Contains(fileId));
-                if (file is not null)
+                if (file == null)
                 {
-                    if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
-                    {
-                        return BadRequest($"{name} access not allowed.");
-                    }
-
-                    var mediaType = MimeMapping.GetMimeMapping(file.Filename);
-                    var buffer = await GetFileContentFromUrlAsync(file.DownloadUrl);
-                    if (buffer != null && buffer.Any())
-                    {
-                        var response = new HttpResponseMessage
-                        {
-                            Content = new StreamContent(new MemoryStream(buffer))
-                        };
-                        response.Content.Headers.ContentType = new MediaTypeHeaderValue(mediaType);
-                        response.Content.Headers.ContentDisposition = download ? new ContentDispositionHeaderValue("attachment")
-                        {
-                            FileName = name
-                        } :
-                        new ContentDispositionHeaderValue("inline")
-                        {
-                            FileName = name
-                        };
-
-                        var result = await Task.FromResult(response);
-                        return ResponseMessage(result);
-                    }
+                    return BadRequest($"File {name} could not be found.");
                 }
-                
-                return BadRequest($"{name} could not be found.");
+
+                if (!CheckUserHasDownloadTokensForVe(access, record) && file.Publikation.ToLower() != "sofort")
+                {
+                    return BadRequest($"{name} access not allowed.");
+                }
+
+                var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
+                var aisRequest = new GetTitlePageForAISFilesRequest
+                {
+                    Metadaten = new Dictionary<string, string>
+                    {
+                        ["titel"] = string.IsNullOrWhiteSpace(record.Title) ? "unbekannt" : record.Title,
+                        ["entstehungszeitraum"] = string.IsNullOrWhiteSpace(record.CreationPeriod.Text) ? "unbekannt" : record.CreationPeriod.Text,
+                        ["urheber"] = string.IsNullOrWhiteSpace(record.Author) ? "unbekannt" : record.Author,
+                        ["signatur"] = string.IsNullOrWhiteSpace(record.ReferenceCode) ? "unbekannt" : record.ReferenceCode,
+                        ["permanente_url"] = WebHelper.PublicClientUrl + languagePartUrl + record.ArchiveRecordId
+                    }
+                };
+
+                var aisResult = (await aisDateienRequestClient.GetResponse<GetTitlePageForAISFilesResult>(aisRequest)).Message;
+                var contentBytes = await GetFileContentFromUrlAsync(file.DownloadUrl);
+                var pdfBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
+
+                var response = new HttpResponseMessage
+                {
+                    Content = new StreamContent(new MemoryStream(pdfBytes))
+                };
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+                response.Content.Headers.ContentDisposition = download
+                    ? new ContentDispositionHeaderValue("attachment") { FileName = name }
+                    : new ContentDispositionHeaderValue("inline") { FileName = name };
+
+                return ResponseMessage(await Task.FromResult(response));
             }
             catch (Exception e)
             {
@@ -433,6 +448,33 @@ namespace CMI.Web.Frontend.api.Controllers
             }
 
             return access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens);
+        }
+
+        private byte[] MergeTitlePageWithContent(byte[] titlePageBytes, byte[] contentBytes)
+        {
+            if (titlePageBytes == null || titlePageBytes.Length == 0)
+            {
+                return contentBytes;
+            }
+
+            using var outputDoc = new PdfDocument();
+            using var titleStream = new MemoryStream(titlePageBytes);
+            using var titleDoc = PdfReader.Open(titleStream, PdfDocumentOpenMode.Import);
+            for (var i = 0; i < titleDoc.PageCount; i++)
+            {
+                outputDoc.AddPage(titleDoc.Pages[i]);
+            }
+
+            using var contentStream = new MemoryStream(contentBytes);
+            using var contentDoc = PdfReader.Open(contentStream, PdfDocumentOpenMode.Import);
+            for (var i = 0; i < contentDoc.PageCount; i++)
+            {
+                outputDoc.AddPage(contentDoc.Pages[i]);
+            }
+
+            using var result = new MemoryStream();
+            outputDoc.Save(result, false);
+            return result.ToArray();
         }
 
         private async Task<byte[]> GetFileContentFromUrlAsync(string url)

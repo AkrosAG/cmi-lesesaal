@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{{titel}}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 24pt;
+        }
+
+        .logo {
+            height: 3.5cm;
+            width: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36pt;
+        }
+
+        .titel {
+            font-size: 15pt;
+            margin-top: 36pt;
+            margin-bottom: 12pt;
+        }
+
+        .entstehungszeitraum {
+            font-weight: bold;
+            margin-top: 18pt;
+            margin-bottom: 4pt;
+        }
+
+        .urheber {
+            font-weight: bold;
+            margin-bottom: 36pt;
+        }
+
+        .institution {
+            font-weight: bold;
+            margin-bottom: 4pt;
+            text-align: center;
+        }
+
+        .signatur {
+            margin-bottom: 24pt;
+            text-align: center;
+        }
+
+        .url-label {
+            margin-top: 18pt;
+            font-size: 10pt;
+            margin-bottom: 4pt;
+            text-align: center;
+        }
+
+        .url-value {
+            font-size: 10pt;
+            text-align: center;
+            margin-bottom: 12pt;
+        }
+
+        .terms-section {
+            margin-top: 12pt;
+        }
+
+        .terms-block {
+            font-size: 10pt;
+            margin-bottom: 4pt;
+        }
+
+        .contact {
+            font-size: 10pt;
+            margin-top: 4pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container"><img src="{{logo_base64}}" alt="Logo" class="logo"></div>
+    <div class="header">
+        <div class="titel">{{titel}}</div>
+        <div class="entstehungszeitraum">{{entstehungszeitraum}}</div>
+        <div class="urheber">{{urheber}}</div>
+        <div class="institution">ETH-Bibliothek Zürich</div>
+        <div class="institution">Thomas-Mann-Archiv</div>
+        <div class="signatur">{{signatur}}</div>
+        <div class="url-value"><a href="{{permanente_url}}">{{permanente_url}}</a></div>
+    </div>
+    <div class="terms-section">
+        <div class="terms-block">
+            <strong>Nutzungsbedingungen:</strong> Die Nutzung des Digitalisats ist nur für den privaten Gebrauch gestattet. Druckfähige Reproduktionsvorlagen können auf Anfrage bereitgestellt werden. Benutzende sind verpflichtet, Urheberrechte sowie Persönlichkeits- und Datenschutz zu beachten. Im Fall von urheberrechtlich geschützten Dokumenten sind Zitate sowohl von den jeweiligen Rechteinhabern als auch vom Thomas-Mann-Archiv zu genehmigen. In Zitaten ist stets der Standort des Dokuments (ETH-Bibliothek, Thomas-Mann-Archiv) zu vermerken. Das Thomas-Mann-Archiv bittet um ein Belegexemplar der Publikation.
+        </div>
+        <div class="terms-block">
+            <strong>Terms of Use:</strong> Use of the digital copy is permitted for private use only. Print-ready reproduction files can be provided on request. Users are obliged to respect copyright, as well as privacy and data protection rights. In the case of copyright-protected documents, quotations must be authorised by both the respective rights holders and the Thomas Mann Archive. When quoting, please always state the location of the document (ETH Library, Thomas Mann Archive). The Thomas Mann Archive requests a copy of the publication.
+        </div>
+        <div class="contact">
+            <strong>Kontakt per E-Mail / Contact us by email:</strong> <a href="mailto:tma@library.ethz.ch">tma@library.ethz.ch</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -83,6 +83,7 @@ namespace CMI.Manager.Asset
                 cfg.ReceiveEndpoint(BusConstants.WebApiDownloadAssetRequestQueue, ec => { ec.Consumer(ctx.Resolve<DownloadAssetConsumer>); });
                 cfg.ReceiveEndpoint(BusConstants.WebApiGetAssetStatusRequestQueue, ec => { ec.Consumer(ctx.Resolve<GetAssetStatusConsumer>); });
                 cfg.ReceiveEndpoint(BusConstants.WebApiPrepareAssetRequestQueue, ec => { ec.Consumer(ctx.Resolve<PrepareAssetConsumer>); });
+                cfg.ReceiveEndpoint(BusConstants.WebApiGetAISDateienRequestQueue, ec => { ec.Consumer(ctx.Resolve<GetTitlePageForAISFilesConsumer>); });
                 cfg.ReceiveEndpoint(BusConstants.AssetManagerAssetReadyEventQueue, ec =>
                 {
                     ec.Consumer(ctx.Resolve<AssetReadyConsumer>);

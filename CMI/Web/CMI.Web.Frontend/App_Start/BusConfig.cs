@@ -71,5 +71,10 @@ namespace CMI.Web.Frontend
         {
             return GetRequestClient<PrepareAssetRequest>(BusConstants.WebApiPrepareAssetRequestQueue);
         }
+
+        public static IRequestClient<GetTitlePageForAISFilesRequest> RegisterAISDateienCallback()
+        {
+            return GetRequestClient<GetTitlePageForAISFilesRequest>(BusConstants.WebApiGetAISDateienRequestQueue);
+        }
     }
 }

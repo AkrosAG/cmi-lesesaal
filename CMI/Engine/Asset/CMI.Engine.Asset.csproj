@@ -153,6 +153,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetGetTitlePageForPDF.cs" />
+    <Compile Include="IAssetGetTitlePageForPDF.cs" />
     <Compile Include="PostProcess\DipExtensions.cs" />
     <Compile Include="PostProcess\EnumerableExtensions.cs" />
     <Compile Include="PostProcess\PathHelper.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="PackagePriorizationEngine.cs" />
     <Compile Include="ParameterSettings\AssetPreparationSettings.cs" />
     <Compile Include="ParameterSettings\ScansZusammenfassenSettings.cs" />
+    <Compile Include="ParameterSettings\TitelblattSettings.cs" />
     <Compile Include="PreparationTimeCalculator.cs" />
     <Compile Include="IRenderEngine.cs" />
     <Compile Include="ITextEngine.cs" />
@@ -658,6 +661,10 @@
   </Target>
   <Import Project="..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Import Project="..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\..\..\packages\Nerdbank.GitVersioning.3.4.255\build\Nerdbank.GitVersioning.targets')" />
+  <ItemGroup>
+    <EmbeddedResource Include="Defaults\TitelblattSettings.HtmlTemplate.mustache" />
+    <EmbeddedResource Include="Defaults\TitelblattSettings.LogoBase64" />
+  </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
