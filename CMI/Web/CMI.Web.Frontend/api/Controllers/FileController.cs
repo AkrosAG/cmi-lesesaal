@@ -170,8 +170,7 @@ namespace CMI.Web.Frontend.api.Controllers
             {
                 var access = GetUserAccessFunc(null);
                 var record = GetRecordWithBase64(id, access);
-                // DLS-510 CR 35: AIS-Digitalisate erst ab Ö2 anzeigen
-                if (record == null || !access.HasAnyTokenFor(new[] { "Ö2", "Ö3", "EMA", "AMA" }))
+                if (record == null)
                 {
                     return NotFound();
                 }

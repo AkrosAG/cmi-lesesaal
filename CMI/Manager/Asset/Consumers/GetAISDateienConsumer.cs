@@ -8,18 +8,18 @@ namespace CMI.Manager.Asset.Consumers;
 
 public class GetAISDateienConsumer : IConsumer<GetAISDateienRequest>
 {
-    private readonly IAssetCreatePDF assetCreatePdf;
+    private readonly IAssetGetTitlePageForPDF assetGetTitlePageForPdf;
 
-    public GetAISDateienConsumer(IAssetCreatePDF assetCreatePdf)
+    public GetAISDateienConsumer(IAssetGetTitlePageForPDF assetGetTitlePageForPdf)
     {
-        this.assetCreatePdf = assetCreatePdf;
+        this.assetGetTitlePageForPdf = assetGetTitlePageForPdf;
     }
 
     public async Task Consume(ConsumeContext<GetAISDateienRequest> context)
     {
         using (LogContext.PushProperty(nameof(context.ConversationId), context.ConversationId))
         {
-            var titlePageBytes = assetCreatePdf.CreateTitlePage(context.Message.Metadaten);
+            var titlePageBytes = assetGetTitlePageForPdf.CreateTitlePage(context.Message.Metadaten);
             await context.RespondAsync(new GetAISDateienResult { TitlePagePdfBytes = titlePageBytes });
         }
     }

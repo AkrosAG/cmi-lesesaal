@@ -16,12 +16,12 @@ namespace CMI.Engine.Asset;
 /// Das HTML-Template und das Logo werden aus <see cref="TitelblattSettings"/> gelesen
 /// und können über die Management-Oberfläche pro Kunde überschrieben werden.
 /// </summary>
-public class AssetAddTitlePageToPDF : IAssetCreatePDF
+public class AssetGetTitlePageForPDF : IAssetGetTitlePageForPDF
 {
     private static readonly HttpClient httpClient = new HttpClient();
     private readonly IParameterHelper parameterHelper;
 
-    public AssetAddTitlePageToPDF(IParameterHelper parameterHelper)
+    public AssetGetTitlePageForPDF(IParameterHelper parameterHelper)
     {
         LicenseHelper.SetAsposeLicense();
         this.parameterHelper = parameterHelper;

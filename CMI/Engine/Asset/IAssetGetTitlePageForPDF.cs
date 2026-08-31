@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace CMI.Engine.Asset;
 
-public interface IAssetCreatePDF
+public interface IAssetGetTitlePageForPDF
 {
     byte[] CreateTitlePage(Dictionary<string, string> metadaten);
     Task<byte[]> GetFileContentFromUrlAsync(string url);
