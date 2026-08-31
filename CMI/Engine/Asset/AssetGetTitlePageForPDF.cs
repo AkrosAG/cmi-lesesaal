@@ -5,9 +5,7 @@ using CMI.Utilities.License;
 using Serilog;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CMI.Engine.Asset;
 
@@ -18,7 +16,6 @@ namespace CMI.Engine.Asset;
 /// </summary>
 public class AssetGetTitlePageForPDF : IAssetGetTitlePageForPDF
 {
-    private static readonly HttpClient httpClient = new HttpClient();
     private readonly IParameterHelper parameterHelper;
 
     public AssetGetTitlePageForPDF(IParameterHelper parameterHelper)
@@ -66,34 +63,5 @@ public class AssetGetTitlePageForPDF : IAssetGetTitlePageForPDF
             Log.Warning(ex, "Titelblatt konnte nicht erstellt werden – Titelseite wird übersprungen.");
             return null;
         }
-    }
-
-    /// <summary>
-    /// Lädt den Inhalt einer Datei von einer URL herunter.
-    /// </summary>
-    public async Task<byte[]> GetFileContentFromUrlAsync(string url)
-    {
-        Log.Information("Lade Datei von URL: {Url}", url);
-        return await httpClient.GetByteArrayAsync(url);
-    }
-
-    /// <summary>
-    /// Fügt die Titelseite dem PDF-Inhalt voran und gibt das zusammengeführte PDF zurück.
-    /// </summary>
-    public byte[] MergeTitlePageWithContent(byte[] titlePageBytes, byte[] contentBytes)
-    {
-        Log.Information("Führe Titelseite mit PDF-Inhalt zusammen");
-
-        using var titleStream = new MemoryStream(titlePageBytes);
-        using var contentStream = new MemoryStream(contentBytes);
-
-        var titleDocument = new Document(titleStream);
-        var contentDocument = new Document(contentStream);
-
-        titleDocument.Pages.Add(contentDocument.Pages);
-
-        using var outputStream = new MemoryStream();
-        titleDocument.Save(outputStream);
-        return outputStream.ToArray();
     }
 }

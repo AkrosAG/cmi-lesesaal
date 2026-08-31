@@ -67,14 +67,8 @@ namespace CMI.Contract.Messaging
         public long FileSizeInBytes { get; set; }
     }
 
-
-    public class GetAISDateienRequest
+    public class GetTitlePageForAISFilesRequest
     {
-        /// <summary>
-        /// URL der herunterzuladenden AIS-Datei.
-        /// </summary>
-        public string URLDatei { get; set; }
-
         /// <summary>
         /// Metadaten als Key-Value-Paare. Die Schlüssel entsprechen direkt den {{placeholder}}-Namen
         /// im Titelblatt-Template (z.B. "titel", "signatur", "permanente_url").
@@ -83,7 +77,7 @@ namespace CMI.Contract.Messaging
         public Dictionary<string, string> Metadaten { get; set; }
     }
 
-    public class GetAISDateienResult
+    public class GetTitlePageForAISFilesResult
     {
         /// <summary>
         /// Die generierte Titelseite als PDF-Bytes.

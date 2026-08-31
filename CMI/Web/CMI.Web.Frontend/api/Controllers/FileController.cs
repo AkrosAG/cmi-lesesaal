@@ -44,7 +44,7 @@ namespace CMI.Web.Frontend.api.Controllers
         private readonly IOrderDataAccess orderDataAccess;
         private readonly IRequestClient<PrepareAssetRequest> prepareClient;
 
-        private readonly IRequestClient<GetAISDateienRequest> aisDateienRequestClient;
+        private readonly IRequestClient<GetTitlePageForAISFilesRequest> aisDateienRequestClient;
         private readonly IRequestClient<GetAssetStatusRequest> statusClient;
         private readonly ITranslator translator;
         private readonly IUsageAnalyzer usageAnalyzer;
@@ -65,7 +65,7 @@ namespace CMI.Web.Frontend.api.Controllers
             IDownloadLogHelper logLogHelper,
             IKontrollstellenInformer kontrollstellenInformer,
             HttpClient httpClient,
-            IRequestClient<GetAISDateienRequest> aisDateienRequestClient)
+            IRequestClient<GetTitlePageForAISFilesRequest> aisDateienRequestClient)
         {
             this.usageAnalyzer = usageAnalyzer;
             this.translator = translator;
@@ -187,9 +187,8 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
-                var aisRequest = new GetAISDateienRequest
+                var aisRequest = new GetTitlePageForAISFilesRequest
                 {
-                    URLDatei = file.DownloadUrl,
                     Metadaten = new Dictionary<string, string>
                     {
                         ["titel"] = string.IsNullOrWhiteSpace(record.Title) ? "unbekannt" : record.Title,
@@ -200,7 +199,7 @@ namespace CMI.Web.Frontend.api.Controllers
                     }
                 };
 
-                var aisResult = (await aisDateienRequestClient.GetResponse<GetAISDateienResult>(aisRequest)).Message;
+                var aisResult = (await aisDateienRequestClient.GetResponse<GetTitlePageForAISFilesResult>(aisRequest)).Message;
                 var contentBytes = await GetFileContentFromUrlAsync(file.DownloadUrl);
                 var pdfBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
 
