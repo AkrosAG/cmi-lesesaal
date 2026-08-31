@@ -13,7 +13,7 @@
     "cartText": "Sie haben noch offene Bestellungen im <a href=\"#/{0}\">Bestellkorb</a>.",
     "checkStatusText": "Den Status Ihrer Bestellung können Sie in Ihrem <a href=\"#/{0}\">Benutzerkonto</a> verfolgen.",
     "disclaimerText": "Der Videoanruf wird aufgezeichnet, nach Abschluss der Identifizierung aber wieder gelöscht. Das Archiv speichert ausschliesslich die Kopie des Ausweises, die Fotografie und tabellarische Benutzerdaten. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu verlangen (Art. 8 DSG).",
-    "thxTextDigi": " Vielen Dank für den Auftrag. Sie erhalten per E-Mail eine Offerte zugestellt.",
+    "thxTextDigi": "Vielen Dank für den Auftrag. Sie erhalten per E-Mail eine Offerte zugestellt.",
     "thxTextEischtisgesuch": "Wir werden Ihr Gesuch an die zuständige Stelle weiterleiten. Die Beantwortung von Einsichtsgesuchen kann bis zu 4 Wochen dauern.",
     "thxTextEischtisgesuchAnmeldenUndIndentifizieren": "Falls Ihr Gesuch bewilligt wird, müssen Sie sich identifizieren, um die Unterlagen zu konsultieren (siehe <a href=\"{0}\">Anmelden und Identifizieren</a>).",
     "thxTextEischtisgesuchIntroduction": "Vielen Dank für Ihr Einsichtsgesuch in folgende Unterlagen:",
@@ -21,8 +21,8 @@
     "thxTextVerwaltungsausleihe": "Vielen Dank für Ihre Bestellung. Sie erhalten die Unterlagen innerhalb von ein bis zwei Arbeitstagen per Post."
   },
   "error": {
-    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an mfa@library.ethz.ch.",
-    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an mfa@library.ethz.ch.",
+    "orderErrorMessage": "Ihre Bestellung konnte leider nicht durchgeführt werden. Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
+    "unknownErrorMessage": "Bitte versuchen Sie es später erneut. Falls das Problem bestehen bleibt, wenden Sie sich bitte an die Beratung oder an archiv@library.ethz.ch.",
     "unknownErrorTitle": "Es ist ein Fehler aufgetreten."
   },
   "facette": {
@@ -46,14 +46,15 @@
     "Sachregister": "Sachregister",
     "Werkregister": "Werkregister",
     "DatenDigitalVorhanden": "Daten digital vorhanden"
+
   },
   "footer": {
     "footerTitle": "Fusszeile",
-    "title": "Max Frisch-Archiv an der ETH-Bibliothek"
+    "title": "Hochschularchiv der ETH Zürich"
   },
   "header": {
     "abmelden": "Abmelden",
-    "altText": "Logo vom Max Frisch-Archiv | ETH Zürich – zur Startseite",
+    "altText": "Logo vom Hochschularchiv der ETH Zürich – zur Startseite",
     "anmelden": "Anmelden",
     "barAbbr": "BAR",
     "homeOrganisationName": "ETH Zürich",
@@ -63,14 +64,14 @@
     "bestellkorb": "Bestellkorb",
     "bestellkorbItemsCount": "Bestellkorb ({0})",
     "bestelluebersicht": "Bestellübersicht",
-    "claim": "Virtueller Lesesaal",
+    "claim": "Hochschularchiv der ETH Zürich <br>Virtueller Lesesaal",
     "closeMobileNavigation": "Navigation schliessen",
     "closeNav": "Navigation schliessen",
     "closeUserAccount": "Benutzermenu schliessen",
     "breadcrumb1": "ETH-Bibliothek",
     "breadcrumb1Link": "https://library.ethz.ch/",
-    "breadcrumb2": "Max Frisch-Archiv",
-    "breadcrumb2Link": "https://mfa.ethz.ch/en/",
+    "breadcrumb2": "Hochschularchiv",
+    "breadcrumb2Link": "https://library.ethz.ch/archivieren-und-digitalisieren/archivieren/hochschularchiv-der-eth-zuerich.html",
     "breadcrumb3": "Virtueller Lesesaal",
     "breadcrumb3Link": "#/de/suche/einfach",
     "favoriten": "Favoriten",
@@ -86,10 +87,10 @@
     "openUserAccount": "Benutzermenu öffnen",
     "register": "Registrieren",
     "srBreadcrumbOrientation": "Orientierung auf der Webseite",
-    "title": "Max Frisch-Archiv | ETH Zürich",
+    "title": "Hochschularchiv der ETH Zürich | ETH Zürich",
     "zumBestellkorb": "Zum Bestellkorb mit {0} Positionen navigieren",
     "favoritesCount": "Favoriten ({0})",
-    "logoLink": "https://mfa.ethz.ch"
+    "logoLink": "https://ethz.ch/de.html"
   },
   "metadata": {
     "boolean": {
@@ -203,49 +204,45 @@
     "exceedDigitalisierungOthers": "Alternativ dazu ist eine Bestellung in den Lesesaal jederzeit möglich."
   },
   "page": {
-    "description": "vls.mfa.ch",
-    "title": "Max Frisch-Archiv an der ETH-Bibliothek"
+    "description": "vls.hsa.ch",
+    "title": "Hochschularchiv der ETH Zürich"
   },
   "registerInfo": {
     "cancelRegister": "Abbrechen",
-    "chLoginAltText": "Logo des Max Frisch-Archiv an der ETH-Bibliothek",
-    "chLoginException": "Ausnahme: Mitarbeitende der Bundesverwaltung müssen sich via «FED-LOGIN» registrieren.",
-    "chooseCHLogin": "Wählen Sie bitte im nächsten Schritt die Option «CH-LOGIN».",
-    "info1": "Sie können den Online-Zugang anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
+    "info1": "Sie können den Virtuellen Lesesaal anonym, als registrierte oder als identifizierte Person nutzen. Je nach Benutzerstatus stehen Ihnen unterschiedliche Funktionen zur Verfügung.",
     "infoBox": "Info-Box",
     "infoTitle": "Hinweis",
-    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
+    "questionText": "Bei Fragen zur Registrierung wenden Sie sich bitte an die Beratung oder an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
     "registerImEiam": "Registrieren",
-    "title": "Kontoeröffnung für das Max Frisch-Archiv an der ETH-Bibliothek Virtueller Lesesaal"
+    "title": "Kontoeröffnung für den Virtuellen Lesesaal des Hochschularchivs der ETH Zürich"
   },
   "search": {
     "advanced": {
       "field": {
+        "archivalienart": {
+          "unikatcharakter": "Text mit Unikatcharakter",
+          "korrespondenzstueck": "Korrespondenzstück",
+          "graueLiteratur": "Graue Literatur u. Publikationen",
+          "bildlicheDarstellung": "Bildliche Darstellung (statisch)",
+          "bewegtesBild": "Bewegtes Bild",
+          "physischesObjekt": "Physisches Objekt",
+          "medailleMuenze": "Medaille/Münze",
+          "linguistischesSystem": "Linguistisches System (u.a. Lochstreifen)",
+          "tonMedien": "Ton-Medien",
+          "strukturierteDaten": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+          "software": "Software",
+          "interaktiveRessource": "Interaktive Ressource",
+          "webPages": "Web pages"
+        },
         "addNewGroup": "Weitere Suchgruppe hinzufügen",
+        "ueberlieferungsform": {
+          "analog": "Analog",
+          "digital": "Digital"
+        },
         "permission": {
           "freiZugaenglich": "Frei einsehbar",
           "inSchutzfrist": "Gesuchspflichtig",
           "teileinSchutzfrist": "Teile davon gesuchspflichtig"
-        },
-        "ueberlieferungsform": {
-          "original": "Original",
-          "kopie": "Kopie",
-	      "durchschlag": "Durchschlag",
-	      "abschrift": "Abschrift",
-          "digitaleRessource": "Digitale Ressource"
-        },
-        "archivalienart": {
-          "artikel": "Artikel",
-          "bild": "Bild",
-          "dokument": "Dokument",
-          "film": "Film/Video",
-          "graueLiteratur": "Graue Literatur",
-          "korrespondenz": "Korrespondenz",
-          "manuskript": "Manuskript",
-          "objekt": "Objekt",
-          "plakat": "Plakat",
-          "plan": "Plan",
-          "tondokument": "Tondokument"
         }
       },
       "group": {
@@ -348,7 +345,7 @@
     "simple": {
       "beratung": "Beratung",
       "informationen": "Informationen",
-      "intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für Manuskripte, Briefe oder andere Dokumente zu Max Frisch? <br/>Recherchieren Sie in unserem Katalog. Wenn Sie sich registrieren, können Sie für die Dokumente ein Einsichtsgesuch stellen. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto: mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
+      "intro": "<a href=\"#/de/suche/erweitert\">Erweiterte Suche</a> <br/><br/>Interessieren Sie sich für die Geschichte der ETH Zürich, arbeiten Sie an einem wissenschafts- oder technikhistorischen Thema oder haben Sie Vorfahren, die an der ETH Zürich studiert, gelehrt oder geforscht haben? Dann sind Sie im Hochschularchiv der ETH Zürich genau richtig. <br/>Recherchieren Sie in unserem Katalog und greifen Sie direkt auf gescannte oder genuin digitale Originaldokumente aus den Aktenbeständen der ETH Zürich, des ETH-Rats sowie aus Nachlässen und Autographen von Forschenden mit Bezug zur ETH Zürich zu. Bei Fragen wenden Sie sich bitte direkt an <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
       "title": "Einfache Suche",
       "unter": "und unter"
     },
@@ -377,7 +374,7 @@
     "addToCart": "Hinzufügen",
     "aktenzeichen": "Aktenzeichen",
     "archivNr": "Archivnummer",
-    "bestellenText": "Wir werden Ihre Bestellung hinsichtlich Zugänglichkeit überprüfen. Die Einsichtnahme erfolgt grundsätzlich digital. In begründeten Einzelfällen kann das Original im Lesesaal eingesehen werden. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
+    "bestellenText": "Wir werden Ihre Bestellung hinsichtlich Zugänglichkeit überprüfen. Bitte klicken Sie auf \"Weiter\", um den Bestellvorgang fortzusetzen.",
     "dossierTitel": "Dossiertitel",
     "einsichtsbewilligungenNotwendig": "Für diese Dossiers sind Einsichtsbewilligungen notwendig:",
     "einsichtsBewilligungVorhanden": "Sie verfügen für diese Unterlagen bereits über eine Einsichtsbewilligung? Bitte kontaktieren Sie uns.",
@@ -388,7 +385,7 @@
     "exampleAblieferung": "z. B. 1988/234",
     "fieldIsRequired": "Dies ist ein Pflichtfeld",
     "fieldsMarkedWithAreCompulsory": "*: Diese Felder müssen ausgefüllt werden.",
-    "headingTitleText": "Bestellen Sie Unterlagen in den Lesesaal oder reichen Sie Einsichtsgesuche ein.",
+    "headingTitleText": "Bestellen Sie Unterlagen in den Lesesaal, stellen Sie Digitalisierungsanträge oder reichen Sie Einsichtsgesuche ein.",
     "inputArchivNrIsRequired": "Dieses oder das Behältnisnummer-Feld muss ausgefüllt sein.",
     "inputBehaeltnisNrIsRequired": "Dieses oder das Archivnummer-Feld muss ausgefüllt sein.",
     "order": "Weiter",
@@ -406,23 +403,23 @@
     "fuzzy": "Suchen Sie nach ähnlichen, aber nicht exakten Wörtern mit dem Fuzzy-Operator.",
     "fuzzyExample": "Bsp.: um «Universität», «Université», «University» etc. zu finden: Universität~",
     "gewichtung": "Erhöhen Sie mit ^ die Gewichtung eines Wortes.",
-    "gewichtungExample": "Bsp.: um «Frisch» doppelt so hoch zu gewichten wie «Max»: Max Frisch^2",
+    "gewichtungExample": "Bsp.: um «ETH» doppelt so hoch zu gewichten wie «Universität»: Universität ETH^2",
     "group": "Benutzen Sie Klammern, um Operatoren zu gruppieren.",
-    "groupExample": "Bsp.: (Max OR Lina) AND Frisch",
+    "groupExample": "Bsp.: (ETH OR Zürich) AND Hochschule",
     "hochkommas": "Schliessen Sie eine Phrase in Anführungszeichen ein, um eine genaue Suche nach dieser Wortphrase abzusetzen.",
-    "hochkommasExample": "Bsp.: \"Der Mensch erscheint im Holozän\"",
+    "hochkommasExample": "Bsp.: \"Schweizerischer Schulrat\"",
     "minus": "Verwenden Sie ein - vor einem Suchbegriff, um diesen aus in der Trefferliste auszuschliessen.",
-    "minusExample": "Bsp.: -Frisch",
+    "minusExample": "Bsp.: -Einstein",
     "not": "Benutzen Sie NOT, um einzelne Begriffe auszuschliessen.",
-    "notExample": "Bsp.: NOT Lina",
+    "notExample": "Bsp.: NOT Hochschule",
     "or": "Benutzen Sie OR, um alle Resultate mit dem einen oder dem anderen Suchbegriff zu finden.",
-    "orExample": "Bsp.: Max OR Frisch",
+    "orExample": "Bsp.: ETH OR Zürich",
     "plus": "Verwenden Sie ein + vor einem Suchbegriff, um diesen zwingend in der Trefferliste zu erhalten.",
-    "plusExample": "Bsp.: +Frisch",
+    "plusExample": "Bsp.: +Einstein",
     "proximity": "Suchen Sie in der Nähe von (Proximity Searches). Die Zahl gibt die maximale Anzahl Wörter zwischen den Begriffen an.",
-    "proximityExample": "Bsp.: \"Verleger  Unseld\" ~5",
+    "proximityExample": "Bsp.: \"Professor Einstein\" ~5",
     "wildcard": "Benutzen Sie * oder ?, um mehrere oder einzelne Buchstaben zu ersetzen (wird am Wortanfang nicht unterstützt).",
-    "wildcardExample": "Bsp.: Preis* oder Me?er"
+    "wildcardExample": "Bsp.: Wissenschaft*, Me?er"
   },
   "user": {
     "cancelRegistrationMessage": "Bitte schliessen Sie die Registrierung ab und speichern Sie die Daten.",
@@ -434,7 +431,7 @@
     "firstName": "Vorname(n)",
     "infoText": "Bitte erfassen Sie Ihre Benutzerdaten, damit wir Sie bei Bedarf erreichen können. Sie können diese Daten jederzeit aktualisieren.",
     "legalAgreementConsentTitle": "Datenschutzerklärung",
-    "legelAgreementConsentText": "Ich bin einverstanden, dass das Max Frisch-Archiv an der ETH-Bibliothek meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
+    "legelAgreementConsentText": "Ich bin einverstanden, dass das Hochschularchiv der ETH Zürich meine Personendaten wie in der <a href=\"#/{0}\">Datenschutzerklärung</a> beschrieben zur Erbringung von Benutzungsdienstleistungen im Rahmen des Online-Zugangs verwenden darf.",
     "mobileTel": "Mobiltelefon",
     "organization": "Organisation",
     "pageTitle": "Eingabe Benutzerdaten",
@@ -478,12 +475,6 @@
     "contact": {
       "changeLoginData": " ",
       "changeLoginDataLink": " "
-    }
-  },
-  "navigation": {
-    "information": {
-      "protectionAndPetitions": "Einsichtsgesuche",
-      "protectionAndPetitionsTeaserText": "Informationen zu geschützten Unterlagen sowie den nötigen Einsichtsgesuchen."
     }
   }
 }

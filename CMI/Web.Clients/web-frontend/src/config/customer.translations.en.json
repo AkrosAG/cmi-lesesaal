@@ -21,8 +21,8 @@
     "thxTextVerwaltungsausleihe": "Thank you for your order. You will receive your documents within one to two working days by post."
   },
   "error": {
-    "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to mfa@library.ethz.ch.",
-    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to mfa@library.ethz.ch.",
+    "orderErrorMessage": "Unfortunately it was not possible to carry out your order. Please try again later. If the problem persists, please contact our advice service or send an e-mail to archiv@library.ethz.ch.",
+    "unknownErrorMessage": "Please try again later. If the problem persists, please contact our advice service or send an e-mail to archiv@library.ethz.ch.",
     "unknownErrorTitle": "An error has occurred."
   },
   "facette": {
@@ -49,11 +49,11 @@
   },
   "footer": {
     "footerTitle": "Footer",
-    "title": "Max Frisch Archive at the ETH Library"
+    "title": "ETH Zurich University Archives"
   },
   "header": {
     "abmelden": "Log out",
-    "altText": "Max Frisch Archive | ETH Zurich logo – to homepage",
+    "altText": "ETH Zurich University Archives logo – to homepage",
     "anmelden": "Log in",
     "barAbbr": "SFA",
     "homeOrganisationName": "ETH Zurich",
@@ -63,14 +63,14 @@
     "bestellkorb": "Shopping cart",
     "bestellkorbItemsCount": "Shopping cart ({0})",
     "bestelluebersicht": "Order overview",
-    "claim": "Virtual Reading Room",
+    "claim": "ETH Zurich University Archives <br/>Virtual Reading Room",
     "closeMobileNavigation": "Close navigation",
     "closeNav": "Close navigation",
     "closeUserAccount": "Close user menu",
     "breadcrumb1": "ETH Library",
     "breadcrumb1Link": "https://library.ethz.ch/en/",
-    "breadcrumb2": "Max Frisch Archive",
-    "breadcrumb2Link": "https://mfa.ethz.ch/en/",
+    "breadcrumb2": "University Archives",
+    "breadcrumb2Link": "https://library.ethz.ch/en/archiving-and-digitising/archiving/eth-zurich-university-archives.html",
     "breadcrumb3": "Virtual Reading Room",
     "breadcrumb3Link": "#/en/search/simple",
     "favoriten": "Favourites",
@@ -86,10 +86,10 @@
     "openUserAccount": "Open user menu",
     "register": "Register",
     "srBreadcrumbOrientation": "Navigating the website",
-    "title": "Max Frisch Archive | ETH Zurich",
+    "title": "ETH Zurich University Archives | ETH Zurich",
     "zumBestellkorb": "Navigate to shopping cart with {0} items",
     "favoritesCount": "Favourites ({0})",
-    "logoLink": "https://mfa.ethz.ch/en/"
+    "logoLink": "https://ethz.ch/en.html"
   },
   "metadata": {
     "boolean": {
@@ -127,11 +127,7 @@
       "Verwaltungssignatur": "Administrative File Number",
       "Archivalienart": "Type of Material",
       "Sprachen": "Language of Material",
-      "Ueberlieferungsform": "Form of Item at Acquisition",
-      "Ortsregister": "Location register",
-      "Sachregister": "Subject index",
-      "Koerperschaftsregister": "Register of Corporate Bodies",
-      "Werkregister": "Register of works"
+      "Ueberlieferungsform": "Form of Item at Acquisition"
     },
     "sortFields": {
       "creationPeriod": {
@@ -208,18 +204,17 @@
     "exceedDigitalisierungOthers": "Alternatively you can order them for consultation in the reading room at any time."
   },
   "page": {
-    "description": "vls.mfa.ch",
-    "title": "Max Frisch Archive at the ETH Library"
+    "description": "vls.hsa.ch",
+    "title": "ETH Zurich University Archives"
   },
   "registerInfo": {
     "cancelRegister": "Cancel",
-    "chLoginAltText": "CH-Login logo",
     "chLoginException": "Exception: Federal Administration staff must register via “FED-LOGIN“.",
     "chooseCHLogin": "Please select the “CH-LOGIN” option in the next step.",
     "info1": "You can use the online access service anonymously or as a registered or identified person. Depending on your user status, the functions available to you will vary.",
     "infoBox": "Info box",
     "infoTitle": "Note",
-    "questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
+    "questionText": "If you have any questions about registration please contact our advice service or send an e-mail to <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
     "registerImEiam": "Register in eIAM",
     "title": "Opening an account for online access to the Federal Archives"
   },
@@ -227,30 +222,29 @@
     "advanced": {
       "addNewGroup": "Add another search group",
       "field": {
+        "archivalienart": {
+          "unikatcharakter": "Text mit Unikatcharakter",
+          "korrespondenzstueck": "Korrespondenzstück",
+          "graueLiteratur": "Graue Literatur u. Publikationen",
+          "bildlicheDarstellung": "Bildliche Darstellung (statisch)",
+          "bewegtesBild": "Bewegtes Bild",
+          "physischesObjekt": "Physisches Objekt",
+          "medailleMuenze": "Medaille/Münze",
+          "linguistischesSystem": "Linguistisches System (u.a. Lochstreifen)",
+          "tonMedien": "Ton-Medien",
+          "strukturierteDaten": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+          "software": "Software",
+          "interaktiveRessource": "Interaktive Ressource",
+          "webPages": "Web pages"
+        },
+        "ueberlieferungsform": {
+          "analog": "Analog",
+          "digital": "Digital"
+        },
         "permission": {
           "freiZugaenglich": "Without restriction",
           "inSchutzfrist": "Subject to request",
           "teileinSchutzfrist": "Parts of it subject to request"
-        },
-        "ueberlieferungsform": {
-          "original": "Original",
-          "kopie": "Kopie",
-		  "durchschlag": "Durchschlag",
-		  "abschrift": "Abschrift",
-          "digitaleRessource": "Digitale Ressource"
-        },
-        "archivalienart": {
-          "artikel": "Artikel",
-          "bild": "Bild",
-          "dokument": "Dokument",
-          "film": "Film/Video",
-          "graueLiteratur": "Graue Literatur",
-          "korrespondenz": "Korrespondenz",
-          "manuskript": "Manuskript",
-          "objekt": "Objekt",
-          "plakat": "Plakat",
-          "plan": "Plan",
-          "tondokument": "Tondokument"
         }
       },
       "group": {
@@ -269,6 +263,7 @@
       "title": "Advanced search"
     },
     "advancedSearch": "Advanced search",
+
     "archivePlanSearch": "Archive plan",
     "archivePlanSearchTeaserText": "Search in the archive plan to place the documents in their context.",
     "ausfuehrlicheBeschreibung": "Detailed description",
@@ -353,7 +348,7 @@
     "simple": {
       "beratung": "Advice",
       "informationen": "Information",
-      "intro": "<a href=\"#/en/search/advanced\">Advanced search</a> <br/><br/>Are you interested in manuscripts, letters or other documents on Max Frisch?<br/>Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. Search our catalog. After registration you can submit a request to view the documents. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:mfa@library.ethz.ch \"> mfa@library.ethz.ch</a>.",
+      "intro": "<a href=\"#/en/search/advanced\">Advanced search</a> <br/><br/>Are you interested in the history of ETH Zurich, are you working on a topic related to the history of science or technology, or do you have ancestors who studied, taught or researched at ETH Zurich? Then the ETH Zurich University Archives is the right place for you.<br/>Search our catalog and directly access scanned or genuine digital documents from the records of ETH Zurich, the ETH Board as well as from personal papers and autographs of scientists related to ETH Zurich. If you have any questions, please do not hesitate to contact us directly at <a href=\"mailto:archiv@library.ethz.ch\">archiv@library.ethz.ch</a>.",
       "title": "Simple search",
       "unter": "and"
     },
@@ -382,7 +377,7 @@
     "addToCart": "Add",
     "aktenzeichen": "File reference",
     "archivNr": "Archive number",
-    "bestellenText": "We will check your order regarding the accessibility of the requested documents. Please click \"Continue\" to proceed with your order.",
+    "bestellenText": "These documents are freely accessible to you or their accessibility must be reviewed by the SFA. Please click on \"Continue\" to proceed with the order process.",
     "dossierTitel": "Dossier title",
     "einsichtsbewilligungenNotwendig": "Authorisations are required to consult these dossiers:",
     "einsichtsBewilligungVorhanden": "Have you already received authorisation to consult these documents? Please contact us.",
@@ -393,7 +388,7 @@
     "exampleAblieferung": "e.g. 1988/234",
     "fieldIsRequired": "This is a mandatory field",
     "fieldsMarkedWithAreCompulsory": "*: These fields must be completed.",
-    "headingTitleText": "Order documents for the reading room, make a request for digitisation or a request for access.",
+    "headingTitleText": "Order the documents for the reading room, place digitisation orders or submit requests to consult records.",
     "inputArchivNrIsRequired": "This field or the container number field must be completed.",
     "inputBehaeltnisNrIsRequired": "This field or the archive number field must be completed.",
     "order": "Continue",
@@ -411,23 +406,23 @@
     "fuzzy": "Search for similar but not identical words using the fuzzy operator.",
     "fuzzyExample": "e.g.: in order to find&nbsp;«Universität», «Université», «University» etc. use: Universität~",
     "gewichtung": "Use ^ to increase the weighting of a word.",
-    "gewichtungExample": "e.g.: Max Frisch^2",
+    "gewichtungExample": "e.g.: Universität ETH^2",
     "group": "Use brackets to group operators.",
-    "groupExample": "e.g.:  (Max OR Lina) AND Frisch",
+    "groupExample": "e.g.: (ETH OR Zürich) AND Hochschule",
     "hochkommas": "Place quotation marks around a phrase to search for that exact phrase.",
-    "hochkommasExample": "e.g.: \"Der Mensch erscheint im Holozän\"",
+    "hochkommasExample": "e.g.: \"Schweizerischer Schulrat\"",
     "minus": "Use - in front of a search term to exclude it from the hit list.",
-    "minusExample": "e.g.: -Frisch",
+    "minusExample": "e.g.: -Einstein",
     "not": "Use NOT to exclude individual terms.",
-    "notExample": "e.g.: NOT Lina",
+    "notExample": "e.g.: NOT Hochschule",
     "or": "Use OR between search terms to find all results containing one or other of the search terms.",
-    "orExample": "e.g.: Max OR Frisch",
+    "orExample": "e.g.: ETH OR Zürich",
     "plus": "Use  + in front of a search term to make it mandatory in the hit list.",
-    "plusExample": "e.g.: +Frisch",
+    "plusExample": "e.g.: +Einstein",
     "proximity": "Use proximity searches. The number indicates the maximum number of words between the terms.",
-    "proximityExample": "e.g.: \"Verleger Unseld\" ~5",
+    "proximityExample": "e.g.: \"Professor Einstein\" ~5",
     "wildcard": "Use * or ? to replace one or more letters (not supported at the start of a word).",
-    "wildcardExample": "e.g.: Preis*, Me?er"
+    "wildcardExample": "e.g.: Wissenschaft*, Me?er"
   },
   "user": {
     "cancelRegistrationMessage": "Please complete the registration and save the data.",
@@ -439,7 +434,7 @@
     "firstName": "First name(s)",
     "infoText": "Please enter your user data so that we can contact you if necessary. You can update these data at any time.",
     "legalAgreementConsentTitle": "Data protection policy",
-    "legelAgreementConsentText": "I agree that the Max Frisch Archive at the ETH Library can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
+    "legelAgreementConsentText": "I agree that the ETH Zurich University Archives can use my personal data as described in the <a href=\"#/{0}\">data protection policy</a> to provide user services as part of online access.",
     "mobileTel": "Mobile phone",
     "organization": "Organisation",
     "pageTitle": "Enter user data",
@@ -483,12 +478,6 @@
     "contact": {
       "changeLoginData": " ",
       "changeLoginDataLink": " "
-    }
-  },
-  "navigation": {
-    "information": {
-      "protectionAndPetitions": "Requests to consult records",
-      "protectionAndPetitionsTeaserText": "Information on protected documents and the necessary consulation requests."
     }
   }
 }

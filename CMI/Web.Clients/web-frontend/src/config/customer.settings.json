@@ -45,39 +45,6 @@
         "translatorType": "StandardTranslator"
       },
       {
-        "type": "Dropdown",
-        "key": "Ueberlieferungsform",
-        "displayName": "Überlieferungsform",
-        "translatorType": "DetailDataTranslator",
-        "items": [
-          {
-            "searchKey": "Original",
-            "defaultLabel": "Original",
-            "translationKey": "search.advanced.field.ueberlieferungsform.original"
-          },
-          {
-            "searchKey": "Kopie",
-            "defaultLabel": "Kopie",
-            "translationKey": "search.advanced.field.ueberlieferungsform.kopie"
-          },
-		  {
-            "searchKey": "Durchschlag",
-            "defaultLabel": "Durchschlag",
-            "translationKey": "search.advanced.field.ueberlieferungsform.durchschlag"
-          },
-          {
-            "searchKey": "Abschrift",
-            "defaultLabel": "Abschrift",
-            "translationKey": "search.advanced.field.ueberlieferungsform.abschrift"
-          },
-          {
-            "searchKey": "Digitale Ressource",
-            "defaultLabel": "Digitale Ressource",
-            "translationKey": "search.advanced.field.ueberlieferungsform.digitaleRessource"
-          }
-        ]
-      },
-      {
         "type": "Text",
         "key": "Sprachen",
         "displayName": "Sprachen",
@@ -90,59 +57,69 @@
         "translatorType": "DetailDataTranslator",
         "items": [
           {
-            "searchKey": "Artikel",
-            "defaultLabel": "Artikel",
-            "translationKey": "search.advanced.field.archivalienart.artikel"
+            "searchKey": "'Text mit Unikatcharakter'",
+            "defaultLabel": "Text mit Unikatcharakter",
+            "translationKey": "search.advanced.field.archivalienart.unikatcharakter"
           },
           {
-            "searchKey": "Bild",
-            "defaultLabel": "Bild",
-            "translationKey": "search.advanced.field.archivalienart.bild"
+            "searchKey": "Korrespondenzstück",
+            "defaultLabel": "Korrespondenzstück",
+            "translationKey": "search.advanced.field.archivalienart.korrespondenzstueck"
           },
           {
-            "searchKey": "Dokument",
-            "defaultLabel": "Dokument",
-            "translationKey": "search.advanced.field.archivalienart.dokument"
-          },
-          {
-            "searchKey": "Film/Video",
-            "defaultLabel": "Film/Video",
-            "translationKey": "search.advanced.field.archivalienart.film"
-          },
-          {
-            "searchKey": "'Graue Literatur'",
-            "defaultLabel": "Graue Literatur",
+            "searchKey": "'Graue Literatur u. Publikationen",
+            "defaultLabel": "Graue Literatur u. Publikationen",
             "translationKey": "search.advanced.field.archivalienart.graueLiteratur"
           },
           {
-            "searchKey": "Korrespondenz",
-            "defaultLabel": "Korrespondenz",
-            "translationKey": "search.advanced.field.archivalienart.korrespondenz"
+            "searchKey": "'Bildliche Darstellung (statisch)'",
+            "defaultLabel": "Bildliche Darstellung (statisch)",
+            "translationKey": "search.advanced.field.archivalienart.bildlicheDarstellung"
           },
           {
-            "searchKey": "Manuskript",
-            "defaultLabel": "Manuskript",
-            "translationKey": "search.advanced.field.archivalienart.manuskript"
+            "searchKey": "'Bewegtes Bild'",
+            "defaultLabel": "Bewegtes Bild",
+            "translationKey": "search.advanced.field.archivalienart.bewegtesBild"
           },
           {
-            "searchKey": "Objekt",
-            "defaultLabel": "Objekt",
-            "translationKey": "search.advanced.field.archivalienart.objekt"
+            "searchKey": "'Physisches Objekt'",
+            "defaultLabel": "Physisches Objekt",
+            "translationKey": "search.advanced.field.archivalienart.physischesObjekt"
           },
           {
-            "searchKey": "Plakat",
-            "defaultLabel": "Plakat",
-            "translationKey": "search.advanced.field.archivalienart.plakat"
+            "searchKey": "'Medaille/Münze'",
+            "defaultLabel": "Medaille/Münze",
+            "translationKey": "search.advanced.field.archivalienart.MedailleMuenze"
           },
           {
-            "searchKey": "Plan",
-            "defaultLabel": "Plan",
-            "translationKey": "search.advanced.field.archivalienart.plan"
+            "searchKey": "'Linguistisches System (u.a. Lochstreifen)'",
+            "defaultLabel": "Linguistisches System (u.a. Lochstreifen)",
+            "translationKey": "search.advanced.field.archivalienart.linguistischesSystem"
           },
           {
-            "searchKey": "Tondokument",
-            "defaultLabel": "Tondokument",
-            "translationKey": "search.advanced.field.archivalienart.tondokument"
+            "searchKey": "'Ton-Medien'",
+            "defaultLabel": "Ton-Medien",
+            "translationKey": "search.advanced.field.archivalienart.tonMedien"
+          },
+          {
+            "searchKey": "'Strukturierte Daten (u.a. Tabellen, Datenbanken)'",
+            "defaultLabel": "Strukturierte Daten (u.a. Tabellen, Datenbanken)",
+            "translationKey": "search.advanced.field.archivalienart.strukturierteDaten"
+          },
+          {
+            "searchKey": "'Software'",
+            "defaultLabel": "Software",
+            "translationKey": "search.advanced.field.archivalienart.software"
+          },
+          {
+            "searchKey": "'Interaktive Ressource'",
+            "defaultLabel": "Interaktive Ressource",
+            "translationKey": "search.advanced.field.archivalienart.interaktiveRessource"
+          },
+          {
+            "searchKey": "'Web pages'",
+            "defaultLabel": "Web pages",
+            "translationKey": "search.advanced.field.archivalienart.webPages"
           }
         ]
       },
@@ -154,13 +131,36 @@
         "items": [
           {
             "searchKey": "frei*",
-            "defaultLabel": "Frei zugänglich",
-            "translationKey": "search.advanced.field.permission.free"
+            "defaultLabel": "Frei einsehbar",
+            "translationKey": "search.advanced.field.permission.freiZugaenglich"
           },
           {
             "searchKey": "Gesuchspflichtig",
             "defaultLabel": "Gesuchspflichtig",
-            "translationKey": "search.advanced.field.permission.subjectToRequest"
+            "translationKey": "search.advanced.field.permission.inSchutzfrist"
+          },
+          {
+            "searchKey": "Teile*",
+            "defaultLabel": "Teile davon gesuchspflichtig",
+            "translationKey": "search.advanced.field.permission.teileinSchutzfrist"
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
+        "key": "Ueberlieferungsform",
+        "displayName": "Überlieferungsform",
+        "translatorType": "DetailDataTranslator",
+        "items": [
+          {
+            "searchKey": "Analog",
+            "defaultLabel": "Analog",
+            "translationKey": "search.advanced.field.ueberlieferungsform.analog"
+          },
+          {
+            "searchKey": "digital",
+            "defaultLabel": "Digital",
+            "translationKey": "search.advanced.field.ueberlieferungsform.digital"
           }
         ]
       },
@@ -168,30 +168,6 @@
         "type": "Thesaurus",
         "key": "Personenregister",
         "displayName": "Personenregister",
-        "translatorType": "ThesaurusTranslator"
-      },
-      {
-        "type": "Thesaurus",
-        "key": "Koerperschaftsregister",
-        "displayName": "Körperschaftsregister",
-        "translatorType": "ThesaurusTranslator"
-      },
-      {
-        "type": "Thesaurus",
-        "key": "Ortsregister",
-        "displayName": "Ortsregister",
-        "translatorType": "ThesaurusTranslator"
-      },
-      {
-        "type": "Thesaurus",
-        "key": "Werkregister",
-        "displayName": "Werkregister",
-        "translatorType": "ThesaurusTranslator"
-      },
-      {
-        "type": "Thesaurus",
-        "key": "Sachregister",
-        "displayName": "Sachregister",
         "translatorType": "ThesaurusTranslator"
       }
     ],
