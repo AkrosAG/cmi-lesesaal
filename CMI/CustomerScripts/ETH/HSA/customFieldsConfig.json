@@ -584,15 +584,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementName": "CustomFreeTextField02",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Erläuterung",
-    "TargetField": "Erlaeuterung",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementName": "CustomFreeTextField03",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "LinkZuDigitalisat",
