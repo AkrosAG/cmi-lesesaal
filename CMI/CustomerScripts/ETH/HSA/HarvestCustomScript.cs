@@ -136,7 +136,7 @@ namespace CMI.Contract.Common.Compiler
                     if (archiveRecord.Metadata.Usage.ProtectionEndDate.HasValue &&
                         archiveRecord.Metadata.Usage.ProtectionEndDate.Value > DateTime.Today)
                     {
-                        archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
+                        archiveRecord.Security.MetadataAccessToken = CreateRestrictedAccessTokens(archiveRecord);
                     }
                     else
                     {
@@ -146,7 +146,7 @@ namespace CMI.Contract.Common.Compiler
                     break;
                 // Regel 4
                 default:
-                    archiveRecord.Security.MetadataAccessToken = new List<string>(new[] { "AMA" });
+                    archiveRecord.Security.MetadataAccessToken = CreateRestrictedAccessTokens(archiveRecord);
                     break;
             }
         }
@@ -182,17 +182,44 @@ namespace CMI.Contract.Common.Compiler
                     // Regel 4
                     else
                     {
-                        archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                        archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                        archiveRecord.Security.PrimaryDataDownloadAccessToken = CreateRestrictedAccessTokens(archiveRecord);
+                        archiveRecord.Security.PrimaryDataFulltextAccessToken = CreateRestrictedAccessTokens(archiveRecord);
                     }
 
                     break;
                 default:
                     // Zugriff auf Files ist beschränkt
-                    archiveRecord.Security.PrimaryDataDownloadAccessToken = new List<string>(new[] { "AMA" });
-                    archiveRecord.Security.PrimaryDataFulltextAccessToken = new List<string>(new[] { "AMA" });
+                    archiveRecord.Security.PrimaryDataDownloadAccessToken = CreateRestrictedAccessTokens(archiveRecord);
+                    archiveRecord.Security.PrimaryDataFulltextAccessToken = CreateRestrictedAccessTokens(archiveRecord);
                     break;
             }
+        }
+
+        private List<string> CreateRestrictedAccessTokens(ArchiveRecord archiveRecord)
+        {
+            var accessTokens = new List<string>(new[] { "AMA" });
+            var verwaltungseinheiten = GetDefaultElementValue(archiveRecord.Metadata.DetailData, "CustomFreeTextField02");
+            if (string.IsNullOrEmpty(verwaltungseinheiten))
+            {
+                return accessTokens;
+            }
+
+            foreach (var verwaltungseinheit in verwaltungseinheiten.Split(','))
+            {
+                var delimiterPosition = verwaltungseinheit.IndexOf(" -", StringComparison.Ordinal);
+                if (delimiterPosition <= 0)
+                {
+                    continue;
+                }
+
+                var kuerzel = verwaltungseinheit.Substring(0, delimiterPosition).Trim();
+                if (!string.IsNullOrEmpty(kuerzel))
+                {
+                    accessTokens.Add("AS_" + kuerzel);
+                }
+            }
+
+            return accessTokens;
         }
         
         private string GetDefaultElementValue(List<DataElement> detailData, string fieldName)
