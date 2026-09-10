@@ -789,6 +789,16 @@
               }
             },
             {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
+            },
+            {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
@@ -1350,6 +1360,16 @@
               "FieldLabels": {
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
             },
             {
