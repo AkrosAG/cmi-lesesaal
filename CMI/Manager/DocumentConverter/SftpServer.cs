@@ -147,7 +147,7 @@ namespace CMI.Manager.DocumentConverter
 
         public JobInfoDetails GetJobInfo(string jobId)
         {
-            return jobStorage[jobId];
+            return jobStorage.TryGetValue(jobId, out var jobInfoDetails) ? jobInfoDetails : null;
         }
 
         /// <summary>
@@ -156,12 +156,14 @@ namespace CMI.Manager.DocumentConverter
         /// <param name="jobGuid">The job unique identifier.</param>
         public void RemoveJob(string jobGuid)
         {
-            // JobGuid is same as username
-            lock (fileServerLock)
+            if (string.IsNullOrEmpty(jobGuid))
             {
-                var user = fileServer.Users[jobGuid];
-                RemoveJobInternal(user);
+                return;
             }
+
+            RemoveJobDirectory(jobGuid);
+            RemoveJobInfo(jobGuid);
+            RemoveJobUser(jobGuid);
         }
 
         private LocalFileSystemProvider CreateFileSystem(string rootDir)
@@ -170,66 +172,60 @@ namespace CMI.Manager.DocumentConverter
             return localFileSystem;
         }
 
-        private void RemoveJobInternal(FileServerUser user)
+        private void RemoveJobDirectory(string jobGuid)
         {
-            if (user == null)
+            lock (directoryInformationLock)
+            {
+                Log.Information("Cleaning up after download...");
+                var di = GetJobDirectory(jobGuid);
+
+                if (!di.Exists)
+                {
+                    return;
+                }
+
+                try
+                {
+                    di.Delete(true);
+                    Log.Information("Folder '{FullName}' and contents removed", di.FullName);
+                }
+                catch (Exception e)
+                {
+                    Log.Warning(e, "Unable to delete folder '{FullName}'", di.FullName);
+                }
+            }
+        }
+
+        private void RemoveJobInfo(string jobGuid)
+        {
+            if (!jobStorage.ContainsKey(jobGuid))
             {
                 return;
             }
-            try
+
+            if (jobStorage.TryRemove(jobGuid, out _))
             {
-                lock (directoryInformationLock)
-                {
-                    Log.Information("Cleaning up after download...");
-                    var di = GetJobDirectory(user.Name);
+                Log.Information("JobInfo and conversion settings for job id '{JobGuid}' removed.", jobGuid);
+            }
+            else
+            {
+                Log.Warning("Failed to remove jobInfo and conversion settings for job id '{JobGuid}'.", jobGuid);
+            }
+        }
 
-                    if (di.Exists)
-                    {
-                        try
-                        {
-                            di.Delete(true);
-                            Log.Information("Folder '{FullName}' and contents removed", di.FullName);
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Warning(e, "Unable to delete folder '{FullName}'", di.FullName);
-                        }
-                    }
-                }
+        private void RemoveJobUser(string jobGuid)
+        {
+            // JobGuid is same as username
+            lock (fileServerLock)
+            {
+                var user = fileServer.Users[jobGuid];
 
-                var jobInfo = GetJobInfo(user.Name);
-
-                if (jobInfo == null)
+                if (user == null)
                 {
                     return;
                 }
 
-
-                if (!jobStorage.ContainsKey(jobInfo.Result.JobGuid))
-                {
-                    return;
-                }
-
-                if (jobStorage.TryRemove(jobInfo.Result.JobGuid, out var jobDetails))
-                {
-                    Log.Information("JobInfo and conversion settings for job id '{JobGuid}' removed.", jobDetails.Result.JobGuid);
-                }
-                else
-                {
-                    Log.Warning("Failed to remove jobInfo and conversion settings for job id '{JobGuid}'.", jobDetails.Result.JobGuid);
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(e, e.Message);
-            }
-            finally
-            {
-                lock (fileServerLock)
-                {
-                    fileServer.Users.Remove(user);
-                }
-
+                fileServer.Users.Remove(user);
                 Log.Information("User '{Name}' removed from sftp server", user.Name);
             }
         }
