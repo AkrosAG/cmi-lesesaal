@@ -405,10 +405,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -789,16 +789,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
-              }
-            },
-            {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
@@ -978,10 +968,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1209,6 +1199,16 @@
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
             }
           ],
@@ -1363,16 +1363,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
-              }
-            },
-            {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
@@ -1552,10 +1542,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1783,6 +1773,16 @@
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
             }
           ],
@@ -2116,10 +2116,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {

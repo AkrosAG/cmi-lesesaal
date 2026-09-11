@@ -182,6 +182,16 @@
               }
             },
             {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -306,6 +316,16 @@
                 "de": "Ordnung und Klassifikation",
                 "en": "System of Arrangement"
               }
+            },
+            {
+              "DbFieldName": "DetailData.PID",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "PID",
+                "en": "PID"
+              }
             }
           ]
         },
@@ -356,13 +376,13 @@
               }
             },
             {
-              "DbFieldName": "protectionEndDate",
+              "DbFieldName": "ProtectionEndDate",
               "DbType": "Date",
               "ElasticType": "ElasticTimePeriod",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
-                "en": "Expiration Date Closure Period"
+                "en": "End of Closure Period"
               }
             },
             {
@@ -723,6 +743,16 @@
               }
             },
             {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -828,6 +858,26 @@
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
               }
+            },
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.PID",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "PID",
+                "en": "PID"
+              }
             }
           ],
           "SubSections": []
@@ -849,7 +899,7 @@
               }
             },
             {
-              "DbFieldName": "Permission",
+              "DbFieldName": "permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1197,6 +1247,16 @@
               }
             },
             {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1302,6 +1362,26 @@
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
               }
+			},
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.PID",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "PID",
+                "en": "PID"
+              }
             }
           ],
           "SubSections": []
@@ -1323,7 +1403,7 @@
               }
             },
             {
-              "DbFieldName": "Permission",
+              "DbFieldName": "permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1672,6 +1752,16 @@
               }
             },
             {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticTimePeriod",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1776,6 +1866,26 @@
               "FieldLabels": {
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.PID",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "PID",
+                "en": "PID"
               }
             }
           ],

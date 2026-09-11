@@ -575,6 +575,24 @@
     "IsRepeatable": 0
   },
   {
+    "ElementName": "OrdnungKlassifikation",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "OrdnungKlassifikation",
+    "TargetField": "OrdnungKlassifikation",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
+    "ElementName": "PID",
+    "SourceType": "Text (max. 4000 Z.)",
+    "Label": "PID",
+    "TargetField": "PID",
+    "IsDefaultField": 0,
+    "Type": "string",
+    "IsRepeatable": 0
+  },
+  {
     "ElementName": "CustomFreeTextField01",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Lizenz",

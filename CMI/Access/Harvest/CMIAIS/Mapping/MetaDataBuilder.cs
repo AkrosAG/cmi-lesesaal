@@ -76,6 +76,7 @@ public class MetaDataBuilder
 
     public MetaDataBuilder WithUsageInfos()
     {
+        
         archiveRecord.Metadata.Usage = new ArchiveRecordMetadataUsage
         {
             AlwaysVisibleOnline = StringComparer.InvariantCultureIgnoreCase.Compare(cmiRecord.Publikation, "sofort") == 0,

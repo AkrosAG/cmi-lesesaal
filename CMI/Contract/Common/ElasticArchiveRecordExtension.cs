@@ -72,7 +72,11 @@ namespace CMI.Contract.Common
                 {
                     record.Level = level;
                 }
-                record.Permission = ResourceManager.GetString(record.Permission ?? "", cultureInfo);
+                var permission = ResourceManager.GetString(record.Permission ?? "", cultureInfo);
+                if (!string.IsNullOrEmpty(permission))
+                {
+                    record.Permission = permission;
+                }
             }
             catch (Exception ex)
             {

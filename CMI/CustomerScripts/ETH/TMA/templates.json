@@ -789,16 +789,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
-              }
-            },
-            {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
@@ -1209,6 +1199,26 @@
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.VerwandtesMaterial",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Verwandtes Material",
+                "en": "Related Material"
               }
             }
           ],
@@ -1363,16 +1373,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
-              }
-            },
-            {
               "DbFieldName": "DetailData.LinkZuDigitalisat",
               "DbType": "HTML",
               "ElasticType": "ElasticHyperlink",
@@ -1638,16 +1638,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Veroeffentlichungen",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1783,6 +1773,26 @@
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.VerwandtesMaterial",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 1,
+              "FieldLabels": {
+                "de": "Verwandtes Material",
+                "en": "Related Material"
               }
             }
           ],
@@ -2199,16 +2209,6 @@
               "FieldLabels": {
                 "de": "Reproduktionsarten",
                 "en": "Reproduction methods"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
               }
             },
             {
