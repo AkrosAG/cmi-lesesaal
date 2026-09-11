@@ -129,8 +129,7 @@ namespace CMI.Manager.Index
                 ? new ElasticDateWithYear
                 {
                     Date = archiveRecord.Metadata.Usage.ProtectionEndDate.Value,
-                    Year = archiveRecord.Metadata.Usage.ProtectionEndDate.Value.Year,
-                    
+                    Year = archiveRecord.Metadata.Usage.ProtectionEndDate.Value.Year
                 }
                 : null;
             

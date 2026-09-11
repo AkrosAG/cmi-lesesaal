@@ -88,6 +88,16 @@
               }
             },
             {
+              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Erläuterung",
+                "en": "Explanatory note"
+              }
+            },
+            {
               "DbFieldName": "DetailData.InterneAnmerkungen",
               "DbType": "Text",
               "ElasticType": "string",
