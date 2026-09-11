@@ -41,6 +41,7 @@ namespace CMI.Engine.Asset
         public async Task<string> ExtractText(string file, JobContext context)
         {
             var fi = new FileInfo(file);
+            string jobGuid = null;
 
             try
             {
@@ -60,6 +61,8 @@ namespace CMI.Engine.Asset
                 {
                     throw new Exception(registrationResponse.ErrorMessage);
                 }
+
+                jobGuid = registrationResponse.JobGuid;
 
                 Log.Information("Successfully registered job for text extraction of file {Name}. Got job id {JobId}", fi.Name,
                     registrationResponse.JobGuid);
@@ -94,10 +97,6 @@ namespace CMI.Engine.Asset
                     await DownloadAndStoreFiles(extractionResult, fi);
                 }
 
-                // Remove the job
-                await jobEndRequestClient.GetResponse<JobEndResult>(new JobEndRequest { JobGuid = extractionResult.JobGuid });
-                Log.Debug($"Removed the job with the id {extractionResult.JobGuid}.");
-
                 return extractionResult.Text;
             }
             catch (Exception ex)
@@ -111,6 +110,30 @@ namespace CMI.Engine.Asset
                 }
                 Log.Error(ex, "Unexpected error while extracting text for file {FullName}", fi.FullName);
                 throw;
+            }
+            finally
+            {
+                // Always remove the job on the document converter, otherwise the job folder
+                // and the sftp user would remain on the converter machine.
+                await RemoveJob(jobGuid);
+            }
+        }
+
+        private async Task RemoveJob(string jobGuid)
+        {
+            if (string.IsNullOrEmpty(jobGuid))
+            {
+                return;
+            }
+
+            try
+            {
+                await jobEndRequestClient.GetResponse<JobEndResult>(new JobEndRequest { JobGuid = jobGuid });
+                Log.Debug("Removed the job with the id {JobGuid}.", jobGuid);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(ex, "Unable to remove the job with the id {JobGuid} on the document converter", jobGuid);
             }
         }
 
