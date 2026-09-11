@@ -62,6 +62,7 @@ namespace CMI.Engine.Asset
         public async Task<string> ConvertFile(string file, string destinationExtension, JobContext context)
         {
             var fi = new FileInfo(file);
+            string jobGuid = null;
 
             Log.Information("Start converting file: {FullName}", fi.FullName);
 
@@ -82,6 +83,8 @@ namespace CMI.Engine.Asset
                 {
                     throw new Exception($"JobInit request was not valid. Error message: {registrationResponse.ErrorMessage}");
                 }
+
+                jobGuid = registrationResponse.JobGuid;
 
                 Log.Information("Successfully registered job for conversion of file {Name}. Got job id {JobId}", fi.Name,
                     registrationResponse.JobGuid);
@@ -106,16 +109,36 @@ namespace CMI.Engine.Asset
                 Log.Information(
                     $"Retrieved conversion result for file {fi.FullName} in {stopWatch.ElapsedMilliseconds} ms. Length of content is {result.LengthOfContent} bytes.");
 
-                // Remove the job
-                await jobEndRequestClient.GetResponse<JobEndResult>(new JobEndRequest { JobGuid = convertionResponse.JobGuid });
-                Log.Information($"Removed the job with the id {convertionResponse.JobGuid}.");
-
                 return result.TargetPath;
             }
             catch (Exception ex)
             {
                 Log.Error(ex, "Unexpected error while converting file {FullName}", fi.FullName);
                 throw;
+            }
+            finally
+            {
+                // Always remove the job on the document converter, otherwise the job folder
+                // and the sftp user would remain on the converter machine.
+                await RemoveJob(jobGuid);
+            }
+        }
+
+        private async Task RemoveJob(string jobGuid)
+        {
+            if (string.IsNullOrEmpty(jobGuid))
+            {
+                return;
+            }
+
+            try
+            {
+                await jobEndRequestClient.GetResponse<JobEndResult>(new JobEndRequest { JobGuid = jobGuid });
+                Log.Information("Removed the job with the id {JobGuid}.", jobGuid);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(ex, "Unable to remove the job with the id {JobGuid} on the document converter", jobGuid);
             }
         }
 
