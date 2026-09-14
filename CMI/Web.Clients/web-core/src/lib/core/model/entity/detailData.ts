@@ -1,5 +1,12 @@
 export interface DetailData {
 	elementName: string;
-	elementType: string;
-	elementValue: any;
+	typeName: string;
+	textValues?: string[];
+	dateRangeValues?: any;
+	boolValue?: boolean;
+	int64Values?: number;
+	floatValue?: number;
+	hyperlinkValue?: string;
+	entityLinkValue?: any;
+	blobValues?: any;
 }

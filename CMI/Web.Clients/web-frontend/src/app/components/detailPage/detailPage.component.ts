@@ -1,6 +1,6 @@
-import { Component,  OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { ClientContext, ConfigService, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
+import {ClientContext, ConfigService, Entity, TranslationService, Utilities as _util} from '@cmi/lesesaal-web-core';
 import {
 	AuthorizationService,
 	EntityRenderService,
@@ -180,5 +180,33 @@ export class DetailPageComponent implements OnInit {
 	public get errorDetails(): string {
 		const error = this._error || {};
 		return error.details;
+	}
+
+	public get pidText(): string {
+		const allowedLevels = [
+			'Bestand',
+			'Serie',
+			'Dossier',
+			'Einzelstück',
+			'Einzelstueck',
+			'Fonds',
+			'Series',
+			'Dossiers',
+			'Single item'
+		];
+		const level = this.entity?.level;
+		if (!allowedLevels.includes(level)) {
+			return '';
+		}
+
+		const pidEntry = this.entity?.detailData?.find(d => d && d.elementName === 'PID');
+		const pidEntryText =  pidEntry?.textValues?.join('\n') || '';
+
+		if (pidEntryText !== '') {
+			return 'DOI-Link: ' + pidEntryText;
+		} else {
+			return '';
+		}
+
 	}
 }

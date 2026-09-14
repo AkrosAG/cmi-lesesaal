@@ -192,16 +192,6 @@
               }
             },
             {
-              "DbFieldName": "ProtectionEndDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Schutzfrist",
-                "en": "End of Closure Period"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -308,16 +298,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BewertungKassation",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bewertung und Kassation",
-                "en": "Appraisal, Destruction and Scheduling Information"
-              }
-            },
-            {
               "DbFieldName": "DetailData.OrdnungKlassifikation",
               "DbType": "Text",
               "ElasticType": "string",
@@ -328,13 +308,13 @@
               }
             },
             {
-              "DbFieldName": "DetailData.PID",
+              "DbFieldName": "DetailData.BewertungKassation",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
               "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
+                "de": "Bewertung und Kassation",
+                "en": "Appraisal, Destruction and Scheduling Information"
               }
             }
           ]
@@ -355,16 +335,6 @@
                 "en": "Conditions Governing Access"
               }
             },
-            {
-              "DbFieldName": "Permission",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Benutzbarkeit",
-                "en": "Access"
-              }
-			},
             {
               "DbFieldName": "protectionStartDate",
               "DbType": "Text",
@@ -388,21 +358,11 @@
             {
               "DbFieldName": "ProtectionEndDate",
               "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "ElasticType": "ElasticDateWithYear",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
                 "en": "End of Closure Period"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Verfuegbarkeit",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verfügbarkeit",
-                "en": "Availability"
               }
             },
             {
@@ -413,6 +373,16 @@
               "FieldLabels": {
                 "de": "Benutzbarkeit",
                 "en": "Access"
+              }
+			},
+            {
+              "DbFieldName": "DetailData.Verfuegbarkeit",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Verfügbarkeit",
+                "en": "Availability"
               }
             },
             {
@@ -878,16 +848,6 @@
                 "de": "Ordnung und Klassifikation",
                 "en": "System of Arrangement"
               }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
-              }
             }
           ],
           "SubSections": []
@@ -909,7 +869,27 @@
               }
             },
             {
-              "DbFieldName": "permission",
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -917,7 +897,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
@@ -1382,16 +1362,6 @@
                 "de": "Ordnung und Klassifikation",
                 "en": "System of Arrangement"
               }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
-              }
             }
           ],
           "SubSections": []
@@ -1413,7 +1383,27 @@
               }
             },
             {
-              "DbFieldName": "permission",
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
               "Visibility": 0,
@@ -1421,7 +1411,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
@@ -1887,16 +1877,6 @@
                 "de": "Ordnung und Klassifikation",
                 "en": "System of Arrangement"
               }
-            },
-            {
-              "DbFieldName": "DetailData.PID",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "PID",
-                "en": "PID"
-              }
             }
           ],
           "SubSections": []
@@ -1918,6 +1898,26 @@
               }
             },
             {
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1926,7 +1926,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",

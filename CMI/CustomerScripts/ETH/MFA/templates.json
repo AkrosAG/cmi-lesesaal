@@ -246,16 +246,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -807,16 +797,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -1013,6 +993,16 @@
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
               }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
             }
           ],
           "SubSections": []
@@ -1199,16 +1189,6 @@
               "FieldLabels": {
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
               }
             }
           ],
@@ -1381,16 +1361,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -1587,6 +1557,16 @@
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
               }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
             }
           ],
           "SubSections": []
@@ -1774,16 +1754,6 @@
                 "de": "Bemerkungen zum Umfang",
                 "en": "Scope Note"
               }
-            },
-            {
-              "DbFieldName": "DetailData.Abmessungen",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Abmessungen",
-                "en": "Measurements"
-              }
             }
           ],
           "SubSections": []
@@ -1954,16 +1924,6 @@
               "FieldLabels": {
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
               }
             }
           ]
