@@ -723,16 +723,6 @@
               }
             },
             {
-              "DbFieldName": "ProtectionEndDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticDateWithYear",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Schutzfrist",
-                "en": "End of Closure Period"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Bezugszeitraum",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1234,16 +1224,6 @@
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
                 "en": "Date"
-              }
-            },
-            {
-              "DbFieldName": "ProtectionEndDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Schutzfrist",
-                "en": "End of Closure Period"
               }
             },
             {
@@ -1749,16 +1729,6 @@
               "FieldLabels": {
                 "de": "Entstehungszeitraum",
                 "en": "Date"
-              }
-            },
-            {
-              "DbFieldName": "ProtectionEndDate",
-              "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Ablauf Schutzfrist",
-                "en": "End of Closure Period"
               }
             },
             {
