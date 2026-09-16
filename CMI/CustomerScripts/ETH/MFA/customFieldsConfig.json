@@ -575,15 +575,6 @@
     "IsRepeatable": 0
   },
   {
-    "ElementName": "Reproduktionsbestimmungen",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Reproduktionsbestimmungen",
-    "TargetField": "Reproduktionsbestimmungen",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
     "ElementName": "CustomFreeTextField01",
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Lizenz",
@@ -679,15 +670,6 @@
     "SourceType": "Text (max. 4000 Z.)",
     "Label": "Übergeordnetes Objekt in der Tektonik",
     "TargetField": "UebergeordnetesObjektTektonik",
-    "IsDefaultField": 0,
-    "Type": "string",
-    "IsRepeatable": 0
-  },
-  {
-    "ElementName": "CustomFreeTextField13",
-    "SourceType": "Text (max. 4000 Z.)",
-    "Label": "Erläuterung",
-    "TargetField": "Erlaeuterung",
     "IsDefaultField": 0,
     "Type": "string",
     "IsRepeatable": 0

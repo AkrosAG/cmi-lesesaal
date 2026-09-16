@@ -236,26 +236,6 @@
                 "de": "Link zu Digitalisat",
                 "en": "Link to Scanned Document"
               }
-            },
-            {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
-              "DbType": "HTML",
-              "ElasticType": "ElasticHyperlink",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Link auf digitales Original",
-                "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -405,7 +385,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -787,26 +767,6 @@
                 "de": "Link zu Digitalisat",
                 "en": "Link to Scanned Document"
               }
-            },
-            {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
-              "DbType": "HTML",
-              "ElasticType": "ElasticHyperlink",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Link auf digitales Original",
-                "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -958,7 +918,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -1018,7 +978,7 @@
               "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwandtes Material",
                 "en": "Related Material"
@@ -1361,26 +1321,6 @@
                 "de": "Link zu Digitalisat",
                 "en": "Link to Scanned Document"
               }
-            },
-            {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
-              "DbType": "HTML",
-              "ElasticType": "ElasticHyperlink",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Link auf digitales Original",
-                "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -1532,7 +1472,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -1576,7 +1516,8 @@
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
-              },
+			  }
+            },
             {
               "DbFieldName": "DetailData.Abmessungen",
               "DbType": "Text",
@@ -1591,13 +1532,12 @@
               "DbFieldName": "DetailData.VerwandtesMaterial",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Verwandtes Material",
                 "en": "Related Material"
               }
-            }
-            }
+            }            
           ],
           "SubSections": []
         },
@@ -1935,26 +1875,6 @@
                 "de": "Link zu Digitalisat",
                 "en": "Link to Scanned Document"
               }
-            },
-            {
-              "DbFieldName": "DetailData.LinkAufDigitalesOriginal",
-              "DbType": "HTML",
-              "ElasticType": "ElasticHyperlink",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Link auf digitales Original",
-                "en": "Link to Born Digital"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -2106,7 +2026,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"

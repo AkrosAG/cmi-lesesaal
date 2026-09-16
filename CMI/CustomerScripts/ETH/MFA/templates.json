@@ -60,16 +60,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Erlaeuterung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Erläuterung",
-                "en": "Explanatory note"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
@@ -614,7 +604,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Umfänge",
-                "en": "Extent of the Unit of Description "
+                "en": "Extent of the Unit of Description"
               }
             },
             {
@@ -981,7 +971,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
@@ -1545,7 +1535,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
@@ -2109,7 +2099,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
