@@ -5,8 +5,7 @@
       "Sections": [
         {
           "SectionLabels": {
-            "de": "Identifikation",
-            "fr": "Identité",
+            "de": "Identifikation",           
             "en": "Identity"
           },
           "Fields": [
@@ -85,6 +84,16 @@
               "FieldLabels": {
                 "de": "Bezeichnung",
                 "en": "Description"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Erlaeuterung",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Erläuterung",
+                "en": "Explanatory note"
               }
             },
             {
@@ -288,16 +297,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.BewertungKassation",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bewertung und Kassation",
-                "en": "Appraisal, Destruction and Scheduling Information"
-              }
-            },
-            {
               "DbFieldName": "DetailData.OrdnungKlassifikation",
               "DbType": "Text",
               "ElasticType": "string",
@@ -305,6 +304,16 @@
               "FieldLabels": {
                 "de": "Ordnung und Klassifikation",
                 "en": "System of Arrangement"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.BewertungKassation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Bewertung und Kassation",
+                "en": "Appraisal, Destruction and Scheduling Information"
               }
             }
           ]
@@ -326,16 +335,6 @@
               }
             },
             {
-              "DbFieldName": "Permission",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Benutzbarkeit",
-                "en": "Access"
-              }
-			},
-            {
               "DbFieldName": "protectionStartDate",
               "DbType": "Text",
               "ElasticType": "string",
@@ -356,23 +355,13 @@
               }
             },
             {
-              "DbFieldName": "protectionEndDate",
+              "DbFieldName": "ProtectionEndDate",
               "DbType": "Date",
-              "ElasticType": "ElasticTimePeriod",
+              "ElasticType": "ElasticDateWithYear",
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Ablauf Schutzfrist",
-                "en": "Expiration Date Closure Period"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.Verfuegbarkeit",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Verfügbarkeit",
-                "en": "Availability"
+                "en": "End of Closure Period"
               }
             },
             {
@@ -383,6 +372,16 @@
               "FieldLabels": {
                 "de": "Benutzbarkeit",
                 "en": "Access"
+              }
+			},
+            {
+              "DbFieldName": "DetailData.Verfuegbarkeit",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Verfügbarkeit",
+                "en": "Availability"
               }
             },
             {
@@ -402,7 +401,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -828,6 +827,16 @@
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
               }
+            },
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
             }
           ],
           "SubSections": []
@@ -849,6 +858,26 @@
               }
             },
             {
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
@@ -857,7 +886,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
@@ -875,7 +904,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1302,6 +1331,16 @@
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
               }
+			},
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
             }
           ],
           "SubSections": []
@@ -1323,6 +1362,26 @@
               }
             },
             {
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1331,7 +1390,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
@@ -1349,7 +1408,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1777,6 +1836,16 @@
                 "de": "Überlieferungsformen",
                 "en": "Form of Item at Acquisition"
               }
+            },
+            {
+              "DbFieldName": "DetailData.OrdnungKlassifikation",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ordnung und Klassifikation",
+                "en": "System of Arrangement"
+              }
             }
           ],
           "SubSections": []
@@ -1798,6 +1867,26 @@
               }
             },
             {
+              "DbFieldName": "protectionCategory",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Schutzfrist",
+                "en": "Closure Period"
+              }
+            },
+            {
+              "DbFieldName": "ProtectionEndDate",
+              "DbType": "Date",
+              "ElasticType": "ElasticDateWithYear",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Ablauf Schutzfrist",
+                "en": "End of Closure Period"
+              }
+            },
+            {
               "DbFieldName": "Permission",
               "DbType": "Text",
               "ElasticType": "string",
@@ -1806,7 +1895,7 @@
                 "de": "Benutzbarkeit",
                 "en": "Access"
               }
-            },
+			},
             {
               "DbFieldName": "DetailData.Lizenz",
               "DbType": "Text",
@@ -1824,7 +1913,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {

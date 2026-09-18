@@ -226,6 +226,16 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
             }
           ]
         },
@@ -375,7 +385,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -457,16 +467,6 @@
               "FieldLabels": {
                 "de": "Reproduktionsarten",
                 "en": "Reproduction methods"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
               }
             },
             {
@@ -757,6 +757,16 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
             }
           ]
         },
@@ -908,7 +918,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -953,6 +963,26 @@
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
               }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.VerwandtesMaterial",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Verwandtes Material",
+                "en": "Related Material"
+              }
             }
           ],
           "SubSections": []
@@ -991,16 +1021,6 @@
               "FieldLabels": {
                 "de": "Reproduktionsarten",
                 "en": "Reproduction methods"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
               }
             },
             {
@@ -1291,6 +1311,16 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
             }
           ]
         },
@@ -1442,7 +1472,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -1486,8 +1516,28 @@
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
+			  }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
-            }
+            },
+            {
+              "DbFieldName": "DetailData.VerwandtesMaterial",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Verwandtes Material",
+                "en": "Related Material"
+              }
+            }            
           ],
           "SubSections": []
         },
@@ -1525,16 +1575,6 @@
               "FieldLabels": {
                 "de": "Reproduktionsarten",
                 "en": "Reproduction methods"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
               }
             },
             {
@@ -1825,6 +1865,16 @@
                 "de": "Bemerkungen zur Datierung",
                 "en": "Details regarding Date"
               }
+            },
+            {
+              "DbFieldName": "DetailData.LinkZuDigitalisat",
+              "DbType": "HTML",
+              "ElasticType": "ElasticHyperlink",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Link zu Digitalisat",
+                "en": "Link to Scanned Document"
+              }
             }
           ]
         },
@@ -1976,7 +2026,7 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
                 "en": "Conditions Governing Reproduction"
@@ -2019,7 +2069,8 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
-                 "en": "Physical Characteristics and Technical Requirements"              }
+                "en": "Physical Characteristics and Technical Requirements"
+              }
             }
           ],
           "SubSections": []
@@ -2058,16 +2109,6 @@
               "FieldLabels": {
                 "de": "Reproduktionsarten",
                 "en": "Reproduction methods"
-              }
-            },
-            {
-              "DbFieldName": "DetailData.VerwandtesMaterial",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Verwandtes Material",
-                "en": "Related Units of Description"
               }
             },
             {

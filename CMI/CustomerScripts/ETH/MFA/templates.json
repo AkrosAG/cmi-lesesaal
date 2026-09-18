@@ -60,16 +60,6 @@
               }
             },
             {
-              "DbFieldName": "DetailData.Erlaeuterung",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 1,
-              "FieldLabels": {
-                "de": "Erläuterung",
-                "en": "Explanatory note"
-              }
-            },
-            {
               "DbFieldName": "DetailData.Bemerkungen",
               "DbType": "Text",
               "ElasticType": "string",
@@ -246,16 +236,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -405,10 +385,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -624,7 +604,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Umfänge",
-                "en": "Extent of the Unit of Description "
+                "en": "Extent of the Unit of Description"
               }
             },
             {
@@ -807,16 +787,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -968,10 +938,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1001,7 +971,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
@@ -1012,6 +982,16 @@
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
             }
           ],
@@ -1371,16 +1351,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -1532,10 +1502,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -1565,7 +1535,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
@@ -1576,6 +1546,16 @@
               "FieldLabels": {
                 "de": "Physische Beschaffenheit und technische Anforderungen",
                 "en": "Physical Characteristics and Technical Requirements"
+              }
+            },
+            {
+              "DbFieldName": "DetailData.Abmessungen",
+              "DbType": "Text",
+              "ElasticType": "string",
+              "Visibility": 0,
+              "FieldLabels": {
+                "de": "Abmessungen",
+                "en": "Measurements"
               }
             }
           ],
@@ -1935,16 +1915,6 @@
                 "de": "Link auf digitales Original",
                 "en": "Link to Born Digital"
               }
-            },
-            {
-              "DbFieldName": "DetailData.BemerkungUmfang",
-              "DbType": "Text",
-              "ElasticType": "string",
-              "Visibility": 0,
-              "FieldLabels": {
-                "de": "Bemerkungen zum Umfang",
-                "en": "Extent Note"
-              }
             }
           ]
         },
@@ -2096,10 +2066,10 @@
               "DbFieldName": "DetailData.Reproduktionsbestimmungen",
               "DbType": "Text",
               "ElasticType": "string",
-              "Visibility": 1,
+              "Visibility": 0,
               "FieldLabels": {
                 "de": "Reproduktionsbestimmungen",
-                "en": "Conditions Governing Reproduction"
+                "en": "Reproduction Terms and Conditions"
               }
             },
             {
@@ -2129,7 +2099,7 @@
               "Visibility": 0,
               "FieldLabels": {
                 "de": "Bemerkungen zur Sprache",
-                "en": "Comment on Language "
+                "en": "Comment on Language"
               }
             },
             {
