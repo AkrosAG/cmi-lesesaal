@@ -13,7 +13,6 @@ export class FileSectionComponent implements OnInit {
 
 	@Input()
 	public entity: Entity;
-	public files: any[];
 	public showHasProtectedFiles = false;
 
 	constructor(private _options: CoreOptions,
@@ -23,7 +22,6 @@ export class FileSectionComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this.files = this.entity.files;
 		this.showHasProtectedFiles = this.entity.hasProtectedFiles;
 	}
 
