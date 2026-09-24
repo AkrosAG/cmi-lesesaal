@@ -1,6 +1,6 @@
 <div class="file-section" *ngIf="entity">
 	<div *ngIf="this._context.authenticated">
-		<div class="row"  *ngFor="let file of files;">
+		<div class="row"  *ngFor="let file of entity.files;">
 			<div class="col col-xs-1">
 				<span style="font-size: 16px;">
 					<i class={{getSymbolClass(file.extension)}}></i>

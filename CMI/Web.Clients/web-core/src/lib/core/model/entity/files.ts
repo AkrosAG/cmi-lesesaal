@@ -5,4 +5,5 @@ version: string;
 sizeInBytes: any;
 art: string;
 extension: string;
+downloadUrl: string;
 }
