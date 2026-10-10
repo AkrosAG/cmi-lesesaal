@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CMI.Contract.Common.Compiler
 {
@@ -142,20 +144,32 @@ namespace CMI.Contract.Common.Compiler
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "werkregister", true);
                 CreateThesaurusDetail(elasticArchiveRecord, ref counter, "sachregister");
 
-                if (elasticArchiveRecord.ReferenceCode == "\u200A")
+            }
+            
+            if (elasticArchiveRecord.Files.Count == 1)
+            {
+                elasticArchiveRecord.Files[0].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title);
+            }
+            else if (elasticArchiveRecord.Files.Count > 1)
+            {
+                for (int i = 0; i < elasticArchiveRecord.Files.Count; i++)
                 {
-                    switch (elasticArchiveRecord.Level.ToLower())
-                    {
-                        case "bestand":
-                        case "serie":
-                        case "dossier":
-                        case "einzelstück":
-                        case "einzelstueck":
-                            elasticArchiveRecord.ReferenceCode = "[ohne Signatur]";
-                            break;
-                    }
+                    elasticArchiveRecord.Files[i].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title, "_Datei_" + (i + 1));
                 }
+            }
 
+            if (elasticArchiveRecord.ReferenceCode == "\u200A")
+            {
+                switch (elasticArchiveRecord.Level.ToLower())
+                {
+                    case "bestand":
+                    case "serie":
+                    case "dossier":
+                    case "einzelstück":
+                    case "einzelstueck":
+                        elasticArchiveRecord.ReferenceCode = "[ohne Signatur]";
+                        break;
+                }
             }
         }
 
@@ -205,6 +219,13 @@ namespace CMI.Contract.Common.Compiler
                     descriptor.IdName = descriptor.Function != string.Empty ? string.Format("{0}, {1}", descriptor.Name, descriptor.Function) : descriptor.Name;
                 }
             }
+        }
+
+        private static string GetFileNameForDownload(string referenceCode, string titleVe, string fileSuffix = "")
+        {
+            var filename = string.IsNullOrEmpty(referenceCode) || referenceCode == "\u200A" ?
+                "TMA_" + Regex.Match(titleVe, "^.{0,20}").Value + fileSuffix : "TMA_" + referenceCode + fileSuffix;
+            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
     }
 }
