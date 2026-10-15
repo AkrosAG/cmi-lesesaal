@@ -148,13 +148,15 @@ namespace CMI.Contract.Common.Compiler
             
             if (elasticArchiveRecord.Files.Count == 1)
             {
-                elasticArchiveRecord.Files[0].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title);
+                elasticArchiveRecord.Files[0].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title,
+                    fileExtension: Path.GetExtension(elasticArchiveRecord.Files[0].Filename));
             }
             else if (elasticArchiveRecord.Files.Count > 1)
             {
                 for (int i = 0; i < elasticArchiveRecord.Files.Count; i++)
                 {
-                    elasticArchiveRecord.Files[i].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title, "_Datei_" + (i + 1));
+                    elasticArchiveRecord.Files[i].Filename = GetFileNameForDownload(elasticArchiveRecord.ReferenceCode, elasticArchiveRecord.Title,
+                        "_Datei_" + (i + 1), Path.GetExtension(elasticArchiveRecord.Files[i].Filename));
                 }
             }
 
@@ -221,11 +223,11 @@ namespace CMI.Contract.Common.Compiler
             }
         }
 
-        private static string GetFileNameForDownload(string referenceCode, string titleVe, string fileSuffix = "")
+        private static string GetFileNameForDownload(string referenceCode, string titleVe, string fileSuffix = "", string fileExtension = "")
         {
             var filename = string.IsNullOrEmpty(referenceCode) || referenceCode == "\u200A" ?
                 "TMA_" + Regex.Match(titleVe, "^.{0,20}").Value + fileSuffix : "TMA_" + referenceCode + fileSuffix;
-            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+            return string.Join("_", filename.Split(Path.GetInvalidFileNameChars())) + fileExtension;
         }
     }
 }
