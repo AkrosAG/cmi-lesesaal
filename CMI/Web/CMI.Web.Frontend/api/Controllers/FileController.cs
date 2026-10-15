@@ -208,9 +208,8 @@ namespace CMI.Web.Frontend.api.Controllers
                     Content = new StreamContent(new MemoryStream(pdfBytes))
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-                var downloadFileName = name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) ? name : name + ".pdf";
                 response.Content.Headers.ContentDisposition = download
-                    ? new ContentDispositionHeaderValue("attachment") { FileName = downloadFileName }
+                    ? new ContentDispositionHeaderValue("attachment") { FileName = name }
                     : new ContentDispositionHeaderValue("inline") { FileName = name };
 
                 return ResponseMessage(await Task.FromResult(response));
