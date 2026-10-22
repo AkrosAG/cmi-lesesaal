@@ -22,6 +22,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -186,31 +187,42 @@ namespace CMI.Web.Frontend.api.Controllers
                     return BadRequest($"{name} access not allowed.");
                 }
 
-                var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
-                var aisRequest = new GetTitlePageForAISFilesRequest
-                {
-                    Metadaten = new Dictionary<string, string>
-                    {
-                        ["titel"] = string.IsNullOrWhiteSpace(record.Title) ? "unbekannt" : record.Title,
-                        ["entstehungszeitraum"] = string.IsNullOrWhiteSpace(record.CreationPeriod.Text) ? "unbekannt" : record.CreationPeriod.Text,
-                        ["urheber"] = string.IsNullOrWhiteSpace(record.Author) ? "unbekannt" : record.Author,
-                        ["signatur"] = string.IsNullOrWhiteSpace(record.ReferenceCode) ? "unbekannt" : record.ReferenceCode,
-                        ["permanente_url"] = WebHelper.PublicClientUrl + languagePartUrl + record.ArchiveRecordId
-                    }
-                };
-
-                var aisResult = (await aisDateienRequestClient.GetResponse<GetTitlePageForAISFilesResult>(aisRequest)).Message;
                 var contentBytes = await GetFileContentFromUrlAsync(file.DownloadUrl);
-                var pdfBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
+                if (file.Extension.ToLowerInvariant() == ".pdf")
+                {
+                    var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
+                    var aisRequest = new GetTitlePageForAISFilesRequest
+                    {
+                        Metadaten = new Dictionary<string, string>
+                        {
+                            ["titel"] = string.IsNullOrWhiteSpace(record.Title) ? "unbekannt" : record.Title,
+                            ["entstehungszeitraum"] = string.IsNullOrWhiteSpace(record.CreationPeriod.Text) ? "unbekannt" : record.CreationPeriod.Text,
+                            ["urheber"] = string.IsNullOrWhiteSpace(record.Author) ? "unbekannt" : record.Author,
+                            ["signatur"] = string.IsNullOrWhiteSpace(record.ReferenceCode) ? "unbekannt" : record.ReferenceCode,
+                            ["permanente_url"] = WebHelper.PublicClientUrl + languagePartUrl + record.ArchiveRecordId
+                        }
+                    };
+                    var aisResult = (await aisDateienRequestClient.GetResponse<GetTitlePageForAISFilesResult>(aisRequest)).Message;
+                    contentBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
+                }
 
+                var contentType = file.Extension.ToLowerInvariant() switch
+                {
+                    ".pdf" => "application/pdf",
+                    ".jpg" => "image/jpeg",
+                    ".jpeg" => "image/jpeg",
+                    ".png" => "image/png",
+                    ".txt" => "text/plain",
+                    _ => "application/pdf" // Default to PDF if unknown
+                };
                 var response = new HttpResponseMessage
                 {
-                    Content = new StreamContent(new MemoryStream(pdfBytes))
+                    Content = new StreamContent(new MemoryStream(contentBytes))
                 };
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
                 response.Content.Headers.ContentDisposition = download
-                    ? new ContentDispositionHeaderValue("attachment") { FileName = name }
-                    : new ContentDispositionHeaderValue("inline") { FileName = name };
+                    ? new ContentDispositionHeaderValue("attachment") { FileName = name  + file.Extension }
+                    : new ContentDispositionHeaderValue("inline") { FileName = name + file.Extension };
 
                 return ResponseMessage(await Task.FromResult(response));
             }
@@ -450,7 +462,7 @@ namespace CMI.Web.Frontend.api.Controllers
             return access.HasAnyTokenFor(record.PrimaryDataDownloadAccessTokens);
         }
 
-        private byte[] MergeTitlePageWithContent(byte[] titlePageBytes, byte[] contentBytes)
+        internal byte[] MergeTitlePageWithContent(byte[] titlePageBytes, byte[] contentBytes)
         {
             if (titlePageBytes == null || titlePageBytes.Length == 0)
             {

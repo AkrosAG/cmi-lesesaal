@@ -30,13 +30,16 @@ export class FileSectionComponent implements OnInit {
 		let cssClass: string;
 		switch (extension) {
 			case '.jpg':
+			case '.jpeg':
+			case '.tif':
+			case '.png':
 				cssClass = 'fa-solid fa-file-image fa-2xl';
 				break;
 			case '.pdf':
 				cssClass = 'fa-solid fa-file-pdf fa-2xl';
 				break;
-			case '.tif':
-				cssClass = 'fa-solid fa-file-image fa-2xl';
+			case '.txt':
+				cssClass = 'fa-solid fa-file-txt fa-2xl';
 				break;
 			default:
 				cssClass = 'fa-solid fa-file fa-2xl';
