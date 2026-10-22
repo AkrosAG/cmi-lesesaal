@@ -39,7 +39,7 @@ export class FileSectionComponent implements OnInit {
 				cssClass = 'fa-solid fa-file-pdf fa-2xl';
 				break;
 			case '.txt':
-				cssClass = 'fa-solid fa-file-txt fa-2xl';
+				cssClass = 'fa-solid fa-file-lines fa-2xl';
 				break;
 			default:
 				cssClass = 'fa-solid fa-file fa-2xl';

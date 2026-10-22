@@ -22,7 +22,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -188,7 +187,7 @@ namespace CMI.Web.Frontend.api.Controllers
                 }
 
                 var contentBytes = await GetFileContentFromUrlAsync(file.DownloadUrl);
-                if (file.Extension.ToLowerInvariant() == ".pdf")
+                if (string.Equals(file.Extension, ".pdf", StringComparison.OrdinalIgnoreCase))
                 {
                     var languagePartUrl = access.Language == "de" ? "/#/de/archiv/einheit/" : "/#/en/archive/unit/";
                     var aisRequest = new GetTitlePageForAISFilesRequest
@@ -206,22 +205,37 @@ namespace CMI.Web.Frontend.api.Controllers
                     contentBytes = MergeTitlePageWithContent(aisResult.TitlePagePdfBytes, contentBytes);
                 }
 
-                var contentType = file.Extension.ToLowerInvariant() switch
+                string contentType;
+                switch (file.Extension?.ToLowerInvariant())
                 {
-                    ".pdf" => "application/pdf",
-                    ".jpg" => "image/jpeg",
-                    ".jpeg" => "image/jpeg",
-                    ".png" => "image/png",
-                    ".txt" => "text/plain",
-                    _ => "application/pdf" // Default to PDF if unknown
-                };
+                    case ".pdf":
+                        contentType = "application/pdf";
+                        break;
+                    case ".jpg":
+                    case ".jpeg":
+                        contentType = "image/jpeg";
+                        break;
+                    case ".png":
+                        contentType = "image/png";
+                        break;
+                    case ".tif":
+                    case ".tiff":
+                        contentType = "image/tiff";
+                        break;
+                    case ".txt":
+                        contentType = "text/plain";
+                        break;
+                    default:
+                        contentType = "application/octet-stream";
+                        break;
+                }
                 var response = new HttpResponseMessage
                 {
                     Content = new StreamContent(new MemoryStream(contentBytes))
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
                 response.Content.Headers.ContentDisposition = download
-                    ? new ContentDispositionHeaderValue("attachment") { FileName = name  + file.Extension }
+                    ? new ContentDispositionHeaderValue("attachment") { FileName = name + file.Extension }
                     : new ContentDispositionHeaderValue("inline") { FileName = name + file.Extension };
 
                 return ResponseMessage(await Task.FromResult(response));
