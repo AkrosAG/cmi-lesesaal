@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CmiGridComponent, ConfigService, CoreOptions, SyncActionLogDto, SyncNumberPerHourDto, TranslationService} from '@cmi/lesesaal-web-core';
 import {SortDescription, DataType} from '@mescius/wijmo';
 import {WjMenu} from '@mescius/wijmo.angular2.input';
@@ -18,7 +18,10 @@ import { CellRange } from '@mescius/wijmo.grid';
     styleUrls: ['./synchronization-monitor-page.component.less'],
     standalone: false
 })
-export class SynchronizationMonitorPageComponent implements OnInit {
+export class SynchronizationMonitorPageComponent implements OnInit, OnDestroy {
+
+	private _destroyed = false;
+	private _logRequestVersion = 0;
 
 	@ViewChild('flexGrid', {static: true })
 	public flexGrid: CmiGridComponent;
@@ -61,6 +64,10 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 	public ngOnInit(): void {
 		this.buildCrumbs();
 		this._initTableView();
+	}
+
+	public ngOnDestroy(): void {
+		this._destroyed = true;
 	}
 
 
@@ -168,25 +175,40 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 					this.flexGrid.select(cell, true);
 				this.updateLogViewForSelectedItem(); // Log dazu anzeigen
 			} else {
-				this.updateLogViewForSelectedItem(); // Leert Log wenn nichts da
+				this.clearLogView();
 			}
 			this.onGridFilterApplied(null);
 		});
 	}
 
-	private updateLogViewForSelectedItem(): void {
-		const selected = this.flexGrid.selectedItems?.[0];
-		if (selected) {
-			// Logs zurücksetzen
-			this.syncActionLogItems = [];
+	private clearLogView(): void {
+		this._logRequestVersion++;
+		this.syncActionLogItems = [];
+		if (this.flexGridLog) {
 			this.flexGridLog.itemsSource = [];
+			this.flexGridLog.refresh();
+		}
+	}
 
+	private updateLogViewForSelectedItem(): void {
+		if (this._destroyed) { return; }
+		const requestVersion = ++this._logRequestVersion;
+		this.syncActionLogItems = [];
+		if (this.flexGridLog) {
+			this.flexGridLog.itemsSource = [];
+			this.flexGridLog.refresh();
+		}
+
+		const selected = this.flexGrid?.selectedItems?.[0];
+		if (selected) {
 			if (selected?.syncActionId) {
 
 				const cleanedId = selected.syncActionId?.replace(/[’']/g, '').trim();
 				setTimeout(() => {
+					if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 					this._sys.getLogData(cleanedId).subscribe({
 						next: retryData => {
+							if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 							if (retryData !== null) {
 								this.syncActionLogItems = retryData;
 							}
@@ -194,6 +216,7 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 							this.flexGridLog.refresh();
 						},
 						error: secondError => {
+							if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 							console.error('Retry for getLogData failed', secondError);
 							this._err.showOdataErrorIfNecessary(secondError);
 						}
@@ -201,6 +224,7 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 				}, 50);
 				this._sys.getLogData(cleanedId).subscribe({
 					next: r => {
+						if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 						if (r !== null) {
 							this.syncActionLogItems = r;
 						}
@@ -213,8 +237,10 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 					error: () => {
 						// Nach 0.95 Sekunde erneut versuchen
 						setTimeout(() => {
+							if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 							this._sys.getLogData(cleanedId).subscribe({
 								next: retryData => {
+									if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 									if (retryData !== null) {
 										this.syncActionLogItems = retryData;
 									}
@@ -222,6 +248,7 @@ export class SynchronizationMonitorPageComponent implements OnInit {
 									this.flexGridLog.refresh();
 								},
 								error: secondError => {
+									if (this._destroyed || requestVersion !== this._logRequestVersion) { return; }
 									console.error('Retry for getLogData failed', secondError);
 									this._err.showOdataErrorIfNecessary(secondError);
 								}
